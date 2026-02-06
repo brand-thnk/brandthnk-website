@@ -874,9 +874,62 @@
             transform: scale(1.03);
         }
 
+        .briefings-cta {
+            margin-top: 48px;
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .briefings-cta-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .briefings-cta-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .briefings-cta-description {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+        .briefings-cta-button {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 14px 28px;
+            color: var(--black);
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .briefings-cta-button:hover {
+            transform: scale(1.03);
+        }
+
         @media (max-width: 768px) {
             .briefings-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .briefings-cta {
+                padding: 24px;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .briefing-card-trigger {
@@ -1911,6 +1964,14 @@
                     </div>
                 </div>
             </article>
+        </div>
+
+        <div class="briefings-cta animate-on-scroll stagger-5">
+            <div class="briefings-cta-text">
+                <div class="briefings-cta-title">Want the full archive?</div>
+                <p class="briefings-cta-description">Subscribe to the BrandThnk Briefing for weekly essays on brand strategy, positioning, and what makes financial brands grow. Sent every Wednesday.</p>
+            </div>
+            <a href="https://brandthnk.beehiiv.com/subscribe" class="briefings-cta-button" target="_blank" rel="noopener">Subscribe Free</a>
         </div>
     </section>
 
