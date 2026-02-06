@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maybe You Don’t Need a Rebrand. — BrandThnk Briefing</title>
+    <meta name="description" content="Maybe You Need a Reframe.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        /* Briefing Content */
+        .briefing-page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 140px 40px 100px;
+        }
+
+        .briefing-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .briefing-date {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .briefing-type {
+            font-family: var(--font-heading);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: var(--yellow);
+            padding: 4px 10px;
+        }
+
+        .briefing-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .briefing-subtitle {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .briefing-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 65ch;
+        }
+
+        .briefing-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .briefing-content strong {
+            font-weight: 700;
+        }
+
+        .briefing-content em {
+            font-style: italic;
+        }
+
+        .briefing-content a {
+            color: var(--black);
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        .briefing-content a:hover {
+            background: var(--yellow);
+        }
+
+        /* Footer */
+        .briefing-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .footer-back:hover {
+            text-decoration-color: var(--yellow);
+        }
+
+        .footer-subscribe {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-subscribe:hover {
+            transform: scale(1.03);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                padding: 16px 24px;
+            }
+
+            .briefing-page {
+                padding: 120px 24px 60px;
+            }
+
+            .briefing-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .site-nav {
+                display: none;
+            }
+
+            .briefing-page {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-wordmark">BrandThnk</a>
+        <a href="../index.html#briefings" class="nav-back">&larr; Back to Briefings</a>
+    </nav>
+
+    <main class="briefing-page">
+        <div class="briefing-meta">
+            <span class="briefing-date">April 2, 2026</span>
+            <span class="briefing-type">Briefing</span>
+        </div>
+        <h1 class="briefing-title">Maybe You Don’t Need a Rebrand.</h1>
+        <p class="briefing-subtitle">Maybe You Need a Reframe.</p>
+
+        <div class="briefing-content">
+            <p><em>The difference between changing how you look and changing how you're understood.</em></p>
+            <p>Most fintechs and financial institutions are not suffering from outdated brands. They're suffering from outdated frames.</p>
+            <p>A rebrand changes how you look, while a reframe changes how you are understood. The difference is subtle but critical: rebrands tend to focus on what the company wants to say, but reframes focus on what the market actually needs to hear.</p>
+            <p>In 2026, the brands creating real growth are not the ones shouting the loudest or refreshing their logos. They're the ones translating their conviction into clarity, reframing their role in a market that has changed faster than their messaging.</p>
+            <p><strong>This is not a cosmetic problem - it's a comprehension problem.</strong></p>
+            <p>During a recent conversation with a Wisconsin community bank, their CMO said something that stopped me: "We thought we had an aging market. Turns out, we just have an aging customer base."</p>
+            <p>That single realization reshaped their growth strategy. Their brand was strong and their story was heartfelt, but their frame was anchored in who they used to serve. Their customers were changing faster than their communications, and the logo didn't need work - the lens did.</p>
+            <p>A fintech founder I spoke with the same week had a similar moment. His company had doubled revenue two years in a row, added major enterprise clients, and built a genuinely credible product. Yet when I asked him "Why do you matter in this market right now?" the answer took three minutes and a PowerPoint deck to get through.</p>
+            <p>That's not a clarity problem - it's a framing problem.</p>
+            <p>Both teams had momentum but lacked precision. Their brands were working hard but not smart, and they didn't need a full redesign. They needed to reframe their value in a way that the market could instantly understand and repeat.</p>
+            <p><strong>Here's what I've noticed about framing problems: they hide behind success.</strong></p>
+            <p>When revenue is growing and customers are renewing, it's easy to assume the story is working. But growth can mask drift, and you keep winning the customers who already get you while becoming invisible to the ones who should.</p>
+            <p>The Wisconsin bank had strong relationships with longtime customers, but they weren't showing up in the consideration set for younger business owners who had moved to town in the last five years. The fintech had a product that customers loved, but prospects couldn't articulate what made it different from the three other platforms they were evaluating.</p>
+            <p>In both cases, the work wasn't broken - the frame was just too narrow.</p>
+            <p><strong>Reframing isn't about abandoning your story. It's about updating the container.</strong></p>
+            <p>Think of it this way: a rebrand is like renovating your house with new paint, new fixtures, and maybe knocking out a wall. A reframe is like realizing you've been showing people the wrong rooms. The house is fine, but the tour needs to change.</p>
+            <p>The fintech founder didn't need a new logo or a new website. He needed a new answer to "what do you do?" that could travel - something a customer could repeat to their CFO in an elevator, or something a prospect could remember after evaluating five vendors in a week.</p>
+            <p>The community bank didn't need new colors or a new tagline. They needed to tell a story that resonated with business owners who had never set foot in a branch and didn't plan to - same values, different frame.</p>
+            <p><strong>Most messaging audits ask the wrong question.</strong></p>
+            <p>They ask "Is this clear?" when the better question is "Is this understood by the people we need to reach next?"</p>
+            <p>Clarity is necessary but not sufficient. You can be perfectly clear about something that doesn't matter to your future customers, and you can articulate your value proposition with precision while still speaking a language your market has moved on from.</p>
+            <p>The real test is whether someone who has never heard of you can hear your story once and know exactly who you're for and why you're different - not because you told them, but because the frame made it obvious.</p>
+            <p><strong>Try this with your team.</strong></p>
+            <p>Ask two questions and resist the urge to rush through them.</p>
+            <p>First: What are we assuming still works? List the programs, channels, or messages that have been "good enough" for years, and identify which of those are now habits rather than strategies - the things you keep doing because you've always done them, not because they're producing results for the customers you want to reach next.</p>
+            <p>Second: Who in our market is aging out of our story? Pull your demographic data and ask whether your story, visuals, and tone still speak to the customers you want or just the ones you already have. The Wisconsin bank discovered their messaging was optimized for customers who valued relationships built over decades, and it said almost nothing to founders who valued speed, digital access, and a bank that understood their business model.</p>
+            <p><strong>The honest answers to these questions usually reveal where the frame has drifted.</strong></p>
+            <p>Not dramatically, and not in a way that shows up in quarterly numbers yet, but in a way that explains why certain opportunities aren't converting, why certain markets feel harder than they should, and why growth feels like it's coming from the same pool of people over and over.</p>
+            <p><strong>Legacy is not built by repeating what worked before.</strong></p>
+            <p>It's built by reframing what still matters now. Your market evolves and your customers evolve, and the best brands evolve their story to match - not by abandoning what made them distinctive, but by translating it for the people they need to reach next.</p>
+            <p>The question isn't whether your brand needs a refresh. It's whether your frame still fits the market you're trying to win.</p>
+        </div>
+
+        <footer class="briefing-footer">
+            <a href="../index.html#briefings" class="footer-back">&larr; More Briefings</a>
+            <a href="https://brandthnk.beehiiv.com/subscribe" class="footer-subscribe" target="_blank" rel="noopener">Subscribe to the Briefing</a>
+        </footer>
+    </main>
+
+</body>
+</html>
