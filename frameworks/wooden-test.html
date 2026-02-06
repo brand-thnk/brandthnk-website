@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wooden Test — BrandThnk</title>
+    <meta name="description" content="A framework for auditing where competitive intelligence lives in your organization and whether it's helping or creating noise.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        /* Main Content */
+        .framework-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 140px 40px 100px;
+        }
+
+        .framework-domain {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .framework-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .framework-tagline {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 65ch;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+        }
+
+        .section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 70ch;
+        }
+
+        .section strong {
+            font-weight: 700;
+        }
+
+        /* Lists */
+        .applies-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .applies-list li {
+            font-size: 15px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .applies-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 3px;
+            background: var(--yellow);
+        }
+
+        /* Callout */
+        .callout {
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+
+        .callout p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .callout p + p {
+            margin-top: 16px;
+        }
+
+        /* Formula Block */
+        .formula-block {
+            background: var(--black);
+            color: var(--white);
+            padding: 28px 32px;
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.9;
+            margin: 24px 0 32px;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+        /* Part Cards */
+        .part-card {
+            border: 2px solid var(--black);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .part-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .part-label {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--yellow);
+            background: var(--black);
+            padding: 8px 16px;
+        }
+
+        .part-name {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .part-content p {
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .part-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .part-content ul {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .part-content ul li {
+            font-size: 15px;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .part-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 3px;
+            background: var(--yellow);
+        }
+
+        /* Diagnostic Questions */
+        .diagnostic-block {
+            background: var(--offwhite);
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+
+        .diagnostic-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .diagnostic-options {
+            list-style: none;
+        }
+
+        .diagnostic-options li {
+            font-size: 14px;
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .diagnostic-options li:last-child {
+            border-bottom: none;
+        }
+
+        .diagnostic-options li::before {
+            content: '○';
+            position: absolute;
+            left: 0;
+            color: var(--black);
+        }
+
+        .diagnostic-note {
+            font-size: 13px;
+            color: rgba(0,0,0,0.5);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Shift Table */
+        .shift-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-family: var(--font-body);
+            font-size: 15px;
+        }
+
+        .shift-table th {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            text-align: left;
+            padding: 14px 18px;
+            border-bottom: 3px solid var(--black);
+            background: var(--white);
+        }
+
+        .shift-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #E0E0E0;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .shift-table tr:last-child td {
+            border-bottom: 2px solid var(--black);
+        }
+
+        .shift-table td:last-child {
+            background: #FAFAFA;
+        }
+
+        /* Deploy Steps */
+        .deploy-block {
+            margin-bottom: 32px;
+        }
+
+        .deploy-audience {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .deploy-block p {
+            font-size: 15px;
+            max-width: 65ch;
+        }
+
+        /* Go Deeper */
+        .go-deeper {
+            background: var(--black);
+            color: var(--white);
+            padding: 32px;
+            margin-top: 48px;
+        }
+
+        .go-deeper-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--yellow);
+        }
+
+        .go-deeper p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .go-deeper a {
+            color: var(--yellow);
+        }
+
+        .go-deeper a:hover {
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .framework-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .footer-back:hover {
+            text-decoration-color: var(--yellow);
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        .footer-source {
+            font-size: 13px;
+            color: rgba(0,0,0,0.5);
+            margin-top: 24px;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                padding: 16px 24px;
+            }
+
+            .framework-page {
+                padding: 120px 24px 60px;
+            }
+
+            .part-card {
+                padding: 24px;
+            }
+
+            .shift-table {
+                font-size: 13px;
+            }
+
+            .shift-table th,
+            .shift-table td {
+                padding: 10px 12px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .site-nav {
+                display: none;
+            }
+
+            .framework-page {
+                padding: 0;
+            }
+
+            .part-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-wordmark">BrandThnk</a>
+        <a href="../index.html#frameworks" class="nav-back">&larr; Back to Library</a>
+    </nav>
+
+    <main class="framework-page">
+        <div class="framework-domain">Sales &amp; Brand Strategy</div>
+        <h1 class="framework-title">The Wooden Test</h1>
+        <p class="framework-tagline">A framework for auditing where competitive intelligence lives in your organization and whether it's helping execution or creating noise.</p>
+
+        <!-- The Problem -->
+        <section class="section">
+            <h2 class="section-heading">The Problem</h2>
+            <p>Competitive intelligence is supposed to inform strategy, but it often consumes it instead.</p>
+            <p>In <strong>sales</strong>, teams arm themselves with battle cards and kill sheets, then lead with competitive framing in conversations where the buyer wasn't even thinking about competitors. You've introduced competition that wasn't there, and conversations spiral into feature parity debates and future gap analysis until the deal stalls.</p>
+            <p>In <strong>brand building</strong>, leadership teams lament that "nobody knows who we are" while spending energy watching what competitors do instead of executing what they're known for. Millions go to events, PR, and positioning, but the strategy is reactive. Something gets built because a competitor built it, not because it's strength-adjacent.</p>
+            <p>The pattern is the same: attention pointed outward instead of inward, with execution replaced by reaction.</p>
+        </section>
+
+        <!-- The Insight -->
+        <section class="section">
+            <h2 class="section-heading">The Insight</h2>
+            <p>John Wooden won 10 NCAA championships in 12 years, making him the most successful coach in college basketball history. His teams faced fierce competitors, and his staff scouted extensively.</p>
+            <p>But his players never saw the scouting reports.</p>
+            <p>Wooden filtered competitive information away from the people responsible for execution. They knew one thing: execute what you've trained to do. The opponent didn't change the game plan.</p>
+            <p>The insight isn't "ignore competitors." It's about <strong>where competitive intelligence lives and who it reaches.</strong></p>
+
+            <div class="callout">
+                <p>When competitive intel saturates the organization, it creates three problems. First, <strong>distraction</strong>, because people watch competitors instead of executing. Second, <strong>anxiety</strong>, because competitor moves trigger reactive decisions. And third, <strong>identity confusion</strong>, because you start defining yourself by what others do.</p>
+            </div>
+        </section>
+
+        <!-- The Tipping Point -->
+        <section class="section">
+            <h2 class="section-heading">The Tipping Point</h2>
+            <p>Here's the test:</p>
+            <div class="formula-block">
+                Are you doing this because a competitor did it, or because it's strength-adjacent to what you're known for?
+            </div>
+            <p>Competitor-driven work pulls you into their frame, while strength-adjacent work compounds what's already working. One path leads to differentiation theater and the other builds a brand.</p>
+        </section>
+
+        <!-- Applications -->
+        <section class="section">
+            <h2 class="section-heading">Applications</h2>
+
+            <div class="part-card">
+                <div class="part-header">
+                    <span class="part-label">Sales</span>
+                    <div class="part-name">Wooden's Approach to Enablement</div>
+                </div>
+                <div class="part-content">
+                    <p>Battle cards have their place, but if your sales team leads with competitive positioning, they're introducing a fight the buyer may not have been looking for.</p>
+                    <ul>
+                        <li>Train the team to talk at depth about what makes <em>this company</em> special</li>
+                        <li>Lead with your strengths, not their weaknesses</li>
+                        <li>Keep competitive intel with leadership rather than embedding it in every pitch</li>
+                    </ul>
+                    <p>When sellers are fluent in your story, they don't need to anchor on someone else's.</p>
+                </div>
+            </div>
+
+            <div class="part-card">
+                <div class="part-header">
+                    <span class="part-label">Brand</span>
+                    <div class="part-name">Strength-Adjacent Execution</div>
+                </div>
+                <div class="part-content">
+                    <p>"Nobody knows who we are" is rarely solved by more competitive positioning. It's solved by executing your strengths consistently and visibly.</p>
+                    <p><strong>Questions to pressure-test:</strong></p>
+                    <ul>
+                        <li>Is this campaign building on what we're known for, or reacting to what a competitor launched?</li>
+                        <li>Are we spending more time analyzing their moves or amplifying ours?</li>
+                        <li>Would we still do this if the competitor didn't exist?</li>
+                    </ul>
+                    <p>If the answer to that last question is no, you're not looking at strategy. You're looking at reaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Diagnostic -->
+        <section class="section">
+            <h2 class="section-heading">The Diagnostic</h2>
+
+            <div class="diagnostic-block">
+                <div class="diagnostic-title">1. Where does competitive intelligence live in your organization?</div>
+                <ul class="diagnostic-options">
+                    <li>Everywhere (all-hands, Slack, team updates) → High saturation</li>
+                    <li>Most people (managers share regularly) → Medium saturation</li>
+                    <li>Leadership only (informs strategy, doesn't saturate) → Wooden-filtered</li>
+                </ul>
+            </div>
+
+            <div class="diagnostic-block">
+                <div class="diagnostic-title">2. When you fall short of a goal, what does the conversation focus on?</div>
+                <ul class="diagnostic-options">
+                    <li>What competitors did that we didn't anticipate</li>
+                    <li>External conditions we couldn't control</li>
+                    <li>Our own execution and what we could have done better</li>
+                </ul>
+            </div>
+
+            <div class="diagnostic-block">
+                <div class="diagnostic-title">3. Are people accountable relative to competitors or for their own execution?</div>
+                <ul class="diagnostic-options">
+                    <li>"Beat X's market share" / "Close the gap with Y" → Competitor-referenced</li>
+                    <li>"Hit our targets" / "Deliver on commitments" → Execution-referenced</li>
+                </ul>
+            </div>
+
+            <div class="diagnostic-block">
+                <div class="diagnostic-title">4. In sales conversations, who brings up competitors first?</div>
+                <ul class="diagnostic-options">
+                    <li>We do (battle cards, positioning against)</li>
+                    <li>The buyer does (they're actively comparing)</li>
+                    <li>It rarely comes up (we lead with our story)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- The Shift -->
+        <section class="section">
+            <h2 class="section-heading">The Shift</h2>
+            <table class="shift-table">
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Competitive saturation</td>
+                        <td>Filtered intelligence</td>
+                    </tr>
+                    <tr>
+                        <td>Reaction-driven strategy</td>
+                        <td>Strength-adjacent execution</td>
+                    </tr>
+                    <tr>
+                        <td>Battle card dependence</td>
+                        <td>Story fluency</td>
+                    </tr>
+                    <tr>
+                        <td>"Beat competitor X"</td>
+                        <td>"Execute what we've trained to do"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Deployment -->
+        <section class="section">
+            <h2 class="section-heading">Deployment</h2>
+
+            <div class="deploy-block">
+                <div class="deploy-audience">For leadership:</div>
+                <p>Audit where competitive intel flows. If it reaches everyone, you've created an organization that watches instead of executes, so filter it.</p>
+            </div>
+
+            <div class="deploy-block">
+                <div class="deploy-audience">For sales enablement:</div>
+                <p>Invest in story fluency over battle card volume. Can your team talk for ten minutes about what makes you special without mentioning a competitor?</p>
+            </div>
+
+            <div class="deploy-block">
+                <div class="deploy-audience">For brand/marketing:</div>
+                <p>Before greenlighting work, ask: "Would we do this if the competitor didn't exist?" If the answer is no, reconsider.</p>
+            </div>
+        </section>
+
+        <!-- Go Deeper -->
+        <div class="go-deeper">
+            <div class="go-deeper-title">Go Deeper</div>
+            <p>The Wooden Test is one lens on competitive focus. For a full diagnostic on whether your organization is pointed at competitors or customers, work through <a href="better-not-different.html">Better Not Different</a>, which includes the Language Audit, Attention Audit, and Specificity Test.</p>
+        </div>
+
+        <p class="footer-source">Source: John Wooden's championship methodology + BrandThnk client work in fintech sales enablement</p>
+
+        <footer class="framework-footer">
+            <a href="../index.html#frameworks" class="footer-back">&larr; Back to Library</a>
+            <span class="footer-brand">BrandThnk</span>
+        </footer>
+    </main>
+
+</body>
+</html>

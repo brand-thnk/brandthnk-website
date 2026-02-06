@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandThnk — Build a Growth Brand</title>
+    <meta name="description" content="A boutique consultancy for fintechs and financial institutions who want to build a growth brand.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           BASE: Reset, Variables, Typography
+           ======================================== */
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+            --max-width: 1400px;
+            --gutter: 80px;
+            --section-spacing: 140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px var(--gutter);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s ease, border-color 0.4s ease, padding 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .site-nav.scrolled {
+            background: var(--white);
+            border-bottom-color: var(--black);
+            padding: 16px var(--gutter);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--black);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            font-family: var(--font-heading) !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            background: var(--yellow);
+            padding: 10px 24px;
+            border-radius: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.03);
+        }
+
+        /* Mobile hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 5px);
+            background: var(--white);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -5px);
+            background: var(--white);
+        }
+
+        /* Mobile overlay */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-nav a {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--yellow);
+        }
+
+        /* ========================================
+           HERO
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px var(--gutter) 80px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-headline {
+            font-family: var(--font-heading);
+            font-size: clamp(48px, 7.5vw, 110px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            max-width: 14ch;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .hero-sub {
+            font-family: var(--font-body);
+            font-size: clamp(16px, 1.4vw, 20px);
+            font-weight: 400;
+            margin-top: 32px;
+            max-width: 56ch;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 48px;
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 16px 36px;
+            color: var(--black);
+            transition: transform 0.2s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+        }
+
+        .hero-cta:hover {
+            transform: scale(1.03);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .scroll-indicator span {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--black);
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        /* ========================================
+           FRAMEWORK SHOWCASE
+           ======================================== */
+        .frameworks-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            font-family: var(--font-body);
+            font-size: 17px;
+            max-width: 65ch;
+            line-height: 1.7;
+            margin-bottom: 60px;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .framework-card {
+            border: 2px solid var(--black);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .framework-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        .framework-card.featured {
+            grid-column: 1 / -1;
+        }
+
+        .card-trigger {
+            padding: 36px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .featured .card-trigger {
+            padding: 48px;
+        }
+
+        .card-number {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--yellow);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 8px;
+        }
+
+        .featured .card-title {
+            font-size: 32px;
+        }
+
+        .card-description {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 60ch;
+        }
+
+        .card-domain {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--black);
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+
+        .card-toggle {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--black);
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            align-self: center;
+        }
+
+        .framework-card.expanded .card-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Expandable content */
+        .card-expandable {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .framework-card.expanded .card-expandable {
+            max-height: 1200px;
+        }
+
+        .card-content {
+            padding: 0 48px 48px;
+            border-top: 1px solid var(--black);
+            margin: 0 36px;
+            padding-top: 36px;
+        }
+
+        .featured .card-content {
+            margin: 0 48px;
+        }
+
+        .preview-problem {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 70ch;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .preview-layer {
+            background: var(--offwhite);
+            padding: 20px;
+        }
+
+        .preview-layer-number {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-bottom: 6px;
+        }
+
+        .preview-layer-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .preview-layer-text {
+            font-family: var(--font-body);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .preview-callout {
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 20px 24px;
+            margin-bottom: 32px;
+        }
+
+        .preview-callout-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .preview-callout-text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .action-view {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 12px 28px;
+            color: var(--black);
+            transition: transform 0.2s ease;
+        }
+
+        .action-view:hover {
+            transform: scale(1.03);
+        }
+
+        /* Simple preview for non-featured cards */
+        .simple-preview {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .simple-formula {
+            background: var(--black);
+            color: var(--white);
+            padding: 20px 24px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+            border-radius: 3px;
+        }
+
+        .simple-formula .formula-label {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+
+        /* ========================================
+           PRINCIPLES
+           ======================================== */
+        .principles-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--offwhite);
+        }
+
+        .principles-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .principle-card {
+            background: var(--white);
+            border: 2px solid var(--black);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        .principle-trigger {
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .principle-info {
+            flex: 1;
+        }
+
+        .principle-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .principle-description {
+            font-family: var(--font-body);
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .principle-toggle {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .principle-card.expanded .principle-toggle {
+            transform: rotate(45deg);
+        }
+
+        .principle-expandable {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .principle-card.expanded .principle-expandable {
+            max-height: 600px;
+        }
+
+        .principle-content {
+            padding: 0 28px 28px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 0 28px;
+            padding-top: 24px;
+        }
+
+        .principle-detail {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .principle-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .principle-formula {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 16px 0;
+        }
+
+        .principle-formula .label {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+            .principles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principle-card {
+                padding: 24px;
+            }
+        }
+
+        /* ========================================
+           RESOURCES
+           ======================================== */
+        .resources-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .resource-card {
+            border: 2px solid var(--black);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        .resource-type {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 4px 10px;
+            display: inline-block;
+            margin-bottom: 16px;
+            align-self: flex-start;
+        }
+
+        .resource-title {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .resource-description {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(0, 0, 0, 0.75);
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .resource-download {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            background: var(--yellow);
+            padding: 12px 24px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+            transition: transform 0.2s ease;
+        }
+
+        .resource-download:hover {
+            transform: scale(1.03);
+        }
+
+        .resource-download::after {
+            content: '↓';
+        }
+
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-card {
+                padding: 24px;
+            }
+        }
+
+        /* ========================================
+           ABOUT TEASER
+           ======================================== */
+        .about-section {
+            background: var(--black);
+            color: var(--white);
+            padding: var(--section-spacing) var(--gutter);
+        }
+
+        .about-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 3.5vw, 48px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .about-quote .highlight {
+            color: var(--yellow);
+        }
+
+        .about-right {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .about-headshot {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            flex-shrink: 0;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+        }
+
+        .about-headshot:hover {
+            filter: grayscale(0%);
+        }
+
+        .about-text {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-link {
+            display: inline-block;
+            margin-top: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-color: var(--yellow);
+            transition: text-decoration-thickness 0.2s ease;
+        }
+
+        .about-link:hover {
+            text-decoration-thickness: 3px;
+        }
+
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+        .newsletter-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-sub {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+
+        .newsletter-button {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 40px;
+            background: var(--yellow);
+            color: var(--black);
+            transition: transform 0.2s ease;
+        }
+
+        .newsletter-button:hover {
+            transform: scale(1.03);
+        }
+
+        /* ========================================
+           BOOK
+           ======================================== */
+        .book-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .book-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .book-cover-area {
+            position: relative;
+        }
+
+        .book-cover-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-cover-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-formats {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .book-format-btn {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 14px 24px;
+            border: 2px solid var(--black);
+            background: var(--white);
+            color: var(--black);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .book-format-btn:hover {
+            background: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .book-format-btn.primary {
+            background: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .book-format-btn.primary:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .book-details {
+            padding-top: 16px;
+        }
+
+        .book-section .section-label {
+            margin-bottom: 16px;
+        }
+
+        .book-title-text {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+
+        .book-description {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 36px;
+            max-width: 55ch;
+        }
+
+        .book-audience {
+            margin-bottom: 40px;
+        }
+
+        .book-audience-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .book-audience-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .book-audience-list li {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .book-audience-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 3px;
+            background: var(--yellow);
+        }
+
+        .book-testimonials {
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial {
+            margin-bottom: 28px;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .book-bonus {
+            margin-top: 36px;
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 20px 24px;
+        }
+
+        .book-bonus-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .book-bonus-text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .site-footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px var(--gutter) 40px;
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 40ch;
+        }
+
+        .footer-col-title {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0s; }
+        .stagger-2 { transition-delay: 0.12s; }
+        .stagger-3 { transition-delay: 0.24s; }
+        .stagger-4 { transition-delay: 0.36s; }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            :root {
+                --gutter: 40px;
+                --section-spacing: 100px;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .framework-card.featured {
+                grid-column: auto;
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .about-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .book-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .book-cover-area {
+                max-width: 360px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --gutter: 24px;
+                --section-spacing: 80px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero-headline {
+                letter-spacing: -1px;
+            }
+
+            .card-trigger {
+                padding: 24px;
+            }
+
+            .featured .card-trigger {
+                padding: 24px;
+            }
+
+            .card-number {
+                font-size: 36px;
+            }
+
+            .card-content {
+                padding: 0 24px 24px;
+                margin: 0 24px;
+            }
+
+            .featured .card-content {
+                margin: 0 24px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-quote {
+                line-height: 1.25;
+            }
+
+            .about-right {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .about-headshot {
+                width: 120px;
+                height: 120px;
+            }
+
+            .book-formats {
+                flex-direction: column;
+            }
+
+            .book-format-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== NAVIGATION ======== -->
+    <nav class="site-nav" id="siteNav">
+        <a href="/" class="nav-wordmark">BrandThnk</a>
+        <div class="nav-links">
+            <a href="#book">Book</a>
+            <a href="#frameworks">Frameworks</a>
+            <a href="#povs">POVs</a>
+            <a href="#resources">Resources</a>
+            <a href="#about">About</a>
+            <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+        </div>
+        <div class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile nav overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#book" onclick="closeMobileNav()">Book</a>
+        <a href="#frameworks" onclick="closeMobileNav()">Frameworks</a>
+        <a href="#povs" onclick="closeMobileNav()">POVs</a>
+        <a href="#resources" onclick="closeMobileNav()">Resources</a>
+        <a href="#about" onclick="closeMobileNav()">About</a>
+        <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+
+    <!-- ======== HERO ======== -->
+    <section class="hero">
+        <h1 class="hero-headline">Brand is your only lasting advantage.</h1>
+        <p class="hero-sub">A boutique consultancy for fintechs and financial institutions who want to build a growth brand. We turn strategic conviction into frameworks that compound.</p>
+        <a href="#frameworks" class="hero-cta">See the Frameworks</a>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ======== BOOK ======== -->
+    <section class="book-section" id="book">
+        <div class="book-layout">
+            <div class="book-cover-area animate-on-scroll stagger-1">
+                <img src="assets/book-cover.png" alt="Think Like a Brand, Not a Bank - Second Edition by Allison Netzer" class="book-cover-image">
+                <div class="book-formats">
+                    <a href="https://allisonthinker.gumroad.com/l/tlab2paperback" class="book-format-btn primary" target="_blank" rel="noopener">Paperback</a>
+                    <a href="https://allisonthinker.gumroad.com/l/tlab2ebook" class="book-format-btn" target="_blank" rel="noopener">eBook</a>
+                    <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="book-format-btn" target="_blank" rel="noopener">Audiobook</a>
+                </div>
+            </div>
+
+            <div class="book-details animate-on-scroll stagger-2">
+                <div class="section-label">The Book</div>
+                <h2 class="book-title-text">When everyone has a good product, brand becomes your only advantage.</h2>
+                <p class="book-description">In this provocative second edition, brand strategist Allison Netzer challenges readers to abandon conventional "bank thinking" and embrace the bold, counterintuitive strategies that define iconic brands. Through practical frameworks like the Box→Edge model, the Salt Shaker Theory, and the Pain→Promise→Proof approach, this book shows how to transform from commodity provider into a brand customers genuinely connect with.</p>
+
+                <div class="book-audience">
+                    <div class="book-audience-title">Who it's for</div>
+                    <ul class="book-audience-list">
+                        <li><strong>CEOs</strong> watching inferior competitors win on pricing while you struggle to articulate what makes you different</li>
+                        <li><strong>CMOs and Marketers</strong> stuck in campaign mode without organizational buy-in to build something that lasts</li>
+                        <li><strong>Fintech Founders</strong> realizing product innovation alone won't scale. You need a brand that compounds.</li>
+                        <li><strong>Operators</strong> who know their daily decisions either reinforce or undermine the brand promise</li>
+                    </ul>
+                </div>
+
+                <div class="book-bonus">
+                    <div class="book-bonus-title">Included free: TLAB 2 Toolkit</div>
+                    <div class="book-bonus-text">Five field-tested frameworks designed to help financial brands operationalize the principles in Think Like a Brand, Not a Bank. Practical, collaborative tools that turn brand thinking into daily practice across strategy, product, marketing, and execution.</div>
+                </div>
+
+                <div class="book-testimonials">
+                    <div class="testimonial">
+                        <div class="testimonial-text">"You absolutely nailed it. So much good, applicable, relevant information in every chapter."</div>
+                        <div class="testimonial-author">Josh Herman, CU Wealthnext</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">"I think you've really done a great job using the brain science framework to explain your concepts in a simple way."</div>
+                        <div class="testimonial-author">Jim Eup, Vericast</div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">"I found myself nodding quite a bit reading this."</div>
+                        <div class="testimonial-author">Jeff McCarthy, Bank Five Nine</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== FRAMEWORK SHOWCASE ======== -->
+    <section class="frameworks-section" id="frameworks">
+        <div class="section-label animate-on-scroll stagger-1">Strategic IP</div>
+        <h2 class="section-heading animate-on-scroll stagger-1">The Library</h2>
+        <p class="section-intro animate-on-scroll stagger-2">Open-source frameworks for brand strategy, positioning, and operating models. Built from real client work with fintechs and financial institutions. Use them, share them, bring them to your next leadership meeting.</p>
+
+        <div class="framework-grid">
+
+            <!-- FEATURED: Brand Advantage -->
+            <article class="framework-card featured animate-on-scroll stagger-2" data-framework="brand-advantage">
+                <div class="card-trigger">
+                    <span class="card-number">01</span>
+                    <div class="card-info">
+                        <div class="card-domain">Brand Strategy</div>
+                        <h3 class="card-title">Brand Advantage Framework</h3>
+                        <p class="card-description">Replace "differentiation" with "better," measure brand as business performance, and translate brand strength into enterprise value.</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="preview-problem">Organizations in M&A environments default to "differentiation" as a strategy. The conversation spirals into features, technology, and peer comparison. Meanwhile, brand is treated as collateral damage in the deal rather than a strategic asset that drives enterprise value.</p>
+
+                        <div class="preview-grid">
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">01</div>
+                                <div class="preview-layer-title">Better, Not Different</div>
+                                <div class="preview-layer-text">Replace "How are we different?" with "How are we better?" for whom, for what, and only then, how.</div>
+                            </div>
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">02</div>
+                                <div class="preview-layer-title">Brand = Business</div>
+                                <div class="preview-layer-text">Brand health is business health. Same metrics. Same scorecard. No separate measurement needed.</div>
+                            </div>
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">03</div>
+                                <div class="preview-layer-title">Enterprise Value</div>
+                                <div class="preview-layer-text">Brand is a capital asset. Pricing power, economic goodwill, and M&A positioning are the proof.</div>
+                            </div>
+                        </div>
+
+                        <div class="preview-callout">
+                            <div class="preview-callout-title">Key Insight</div>
+                            <div class="preview-callout-text">No one asks the CFO how they measure the value of having a finance department. Brand is the same kind of organizational function. It exists whether you invest in it or not.</div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/brand-advantage.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Box → Edge -->
+            <article class="framework-card animate-on-scroll stagger-3" data-framework="box-edge">
+                <div class="card-trigger">
+                    <span class="card-number">02</span>
+                    <div class="card-info">
+                        <div class="card-domain">Positioning</div>
+                        <h3 class="card-title">Box → Edge Framework</h3>
+                        <p class="card-description">Clarify your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge).</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="simple-preview">Most fintechs and financial institutions can't explain what they do in one breath. The Box tells people what drawer you belong in. The Edge tells them why they should care. Get the Box wrong and you're fighting for attention in the wrong room.</p>
+
+                        <div class="simple-formula">
+                            <span class="formula-label">Box:</span> We're a [category] for [segment].<br><br>
+                            <span class="formula-label">Edge:</span> Unlike [status quo],<br>
+                            &nbsp;&nbsp;we [mechanism]<br>
+                            &nbsp;&nbsp;so you can [outcome],<br>
+                            &nbsp;&nbsp;[proof].
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/box-edge.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Reframe vs. Rebrand -->
+            <article class="framework-card animate-on-scroll stagger-4" data-framework="reframe-rebrand">
+                <div class="card-trigger">
+                    <span class="card-number">03</span>
+                    <div class="card-info">
+                        <div class="card-domain">Positioning</div>
+                        <h3 class="card-title">Reframe vs. Rebrand</h3>
+                        <p class="card-description">A diagnostic that prevents you from investing in visual identity when your real problem is story clarity.</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="simple-preview">Most organizations don't have an outdated brand. They have an outdated frame. A rebrand changes how you look. A reframe changes how you're understood. The reframe is almost always where you should start, and it costs a fraction of the alternative.</p>
+
+                        <div class="preview-callout">
+                            <div class="preview-callout-title">The Decision</div>
+                            <div class="preview-callout-text">Score clarity, credibility, and execution on a 1-3 scale. If any score below 3, your priority is a reframe. A rebrand won't solve those problems. It will just make them more expensive.</div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/reframe-vs-rebrand.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Better Not Different -->
+            <article class="framework-card animate-on-scroll stagger-4" data-framework="better-not-different">
+                <div class="card-trigger">
+                    <span class="card-number">04</span>
+                    <div class="card-info">
+                        <div class="card-domain">Positioning</div>
+                        <h3 class="card-title">Better, Not Different</h3>
+                        <p class="card-description">A self-assessment that reveals whether your strategy is competitor-focused or customer-focused.</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="simple-preview">Nobody wakes up asking how Bank A is different from Bank B. They want better. Better for their situation, better for where they're trying to go. This diagnostic audits your language, your attention, and your specificity to show where your organization really points its energy.</p>
+
+                        <div class="simple-formula">
+                            <span class="formula-label">The Better Cascade:</span><br><br>
+                            How are we <span class="formula-label">better</span>?<br>
+                            &nbsp;&nbsp;→ Better for <span class="formula-label">whom</span>?<br>
+                            &nbsp;&nbsp;→ Better for <span class="formula-label">what</span>?<br>
+                            &nbsp;&nbsp;→ Better <span class="formula-label">how</span>?
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/better-not-different.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- F/M/B Model -->
+            <article class="framework-card animate-on-scroll stagger-4" data-framework="fmb-model">
+                <div class="card-trigger">
+                    <span class="card-number">05</span>
+                    <div class="card-info">
+                        <div class="card-domain">Operating Model</div>
+                        <h3 class="card-title">The F/M/B Model</h3>
+                        <p class="card-description">Frontline, Midline, Backline. An operating framework that clarifies who owns what across customer experience.</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="simple-preview">In many organizations, the biggest barrier to growth isn't intent. It's ownership. Everyone wants to improve the experience, but who actually owns each customer moment? The F/M/B Model solves this by defining clear layers of accountability while keeping collaboration fluid.</p>
+
+                        <div class="preview-grid">
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">F</div>
+                                <div class="preview-layer-title">Frontline</div>
+                                <div class="preview-layer-text">Customer interaction layer. Branch, digital, contact center. Delivers the promise.</div>
+                            </div>
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">M</div>
+                                <div class="preview-layer-title">Midline</div>
+                                <div class="preview-layer-text">Experience orchestration. Marketing, UX, Product, Data. Connects the dots.</div>
+                            </div>
+                            <div class="preview-layer">
+                                <div class="preview-layer-number">B</div>
+                                <div class="preview-layer-title">Backline</div>
+                                <div class="preview-layer-text">Enablement layer. Ops, IT, Risk, Legal. Makes it possible.</div>
+                            </div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/fmb-model.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- The Wooden Test -->
+            <article class="framework-card animate-on-scroll stagger-5" data-framework="wooden-test">
+                <div class="card-trigger">
+                    <span class="card-number">06</span>
+                    <div class="card-info">
+                        <div class="card-domain">Sales &amp; Brand Strategy</div>
+                        <h3 class="card-title">The Wooden Test</h3>
+                        <p class="card-description">Audit where competitive intelligence lives in your organization and whether it's helping execution or creating noise.</p>
+                    </div>
+                    <span class="card-toggle">+</span>
+                </div>
+                <div class="card-expandable">
+                    <div class="card-content">
+                        <p class="simple-preview">John Wooden won 10 championships in 12 years, but his players never saw the scouting reports. He filtered competitive information away from the people responsible for execution. In sales and brand building, the same principle applies: are you executing your strengths, or reacting to competitors?</p>
+
+                        <div class="simple-formula">
+                            <span class="formula-label">The Tipping Point:</span><br><br>
+                            Are you doing this because a <span class="formula-label">competitor</span> did it,<br>
+                            or because it's <span class="formula-label">strength-adjacent</span> to what you're known for?
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="frameworks/wooden-test.html" class="action-view">View Full Framework</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ======== POVs ======== -->
+    <section class="principles-section" id="povs">
+        <div class="principles-inner">
+            <div class="section-label animate-on-scroll stagger-1">Operating Philosophy</div>
+            <h2 class="section-heading animate-on-scroll stagger-1">POVs</h2>
+            <p class="section-intro animate-on-scroll stagger-2">The POV pieces that shape how we think about brand strategy. Use them to filter decisions, coach teams, and cut through noise.</p>
+
+            <div class="principles-grid">
+                <article class="principle-card animate-on-scroll stagger-2">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">The One-Breath Test</h3>
+                            <p class="principle-description">Can you explain your value in a single breath? If not, simplify.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">Multi-breath explanations usually mean unclear strategy. If you can't say it in one breath, your customer can't repeat it.</p>
+                            <div class="principle-formula">
+                                <span class="label">Formula:</span> We help [who] do [what] by [how].
+                            </div>
+                            <p class="principle-detail">Swap in buyer language, not internal capability words. Don't say "integrated solutions for digital transformation." Say "We help banks build brands that drive growth."</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-2">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">3-3-3 Proof Model</h3>
+                            <p class="principle-description">3 Outcomes. 3 Stories. 3 Artifacts. Back up every claim.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">If you can't back up your claims with all three types of proof, you haven't earned a rebrand yet.</p>
+                            <p class="principle-detail"><strong>3 Outcomes:</strong> Quantifiable results from actual customers. Real metrics, not projections.</p>
+                            <p class="principle-detail"><strong>3 Stories:</strong> Narrative evidence showing transformation. Real customer journeys with specific details.</p>
+                            <p class="principle-detail"><strong>3 Artifacts:</strong> Tangible proof points prospects can see, touch, and experience. Case studies, testimonials, demos.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-3">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">Busy ≠ Bold</h3>
+                            <p class="principle-description">Activity doesn't equal impact. Motion isn't progress.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail"><strong>Busy</strong> = Reacting, optimizing, doing more of the same. Running more campaigns without a clear message. Adding features without clarifying the category.</p>
+                            <p class="principle-detail"><strong>Bold</strong> = Choosing, creating, doing what's hard but right. Saying no to good opportunities to focus on the right ones. Simplifying messaging even when it feels risky.</p>
+                            <p class="principle-detail">Busy creates exhaustion. Bold creates momentum.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-3">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">Use Words Real People Use</h3>
+                            <p class="principle-description">If your customers wouldn't say it, you shouldn't either.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">Jargon creates distance. When you use words customers don't use, they feel talked at, not talked with.</p>
+                            <p class="principle-detail"><strong>Don't say:</strong> "Comprehensive financial solutions" / "Integrated suite of services" / "End-to-end digital transformation"</p>
+                            <p class="principle-detail"><strong>Say:</strong> "Help me save money" / "Make banking easier" / "Tools that actually work"</p>
+                            <p class="principle-detail">Test: Would your customer use this word in a casual conversation? If no, find a simpler alternative.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-4">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">Done Is Better Than Perfect</h3>
+                            <p class="principle-description">Ship the work. Iterate based on reality, not theory.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">Perfection is a procrastination tool. Waiting for perfect means insights go stale, market opportunities pass, competitors move faster, teams lose momentum.</p>
+                            <p class="principle-detail">Your capture layer is not your performance layer. Raw thinking doesn't need to be polished to be valuable.</p>
+                            <p class="principle-detail"><strong>Ask:</strong> "Is this good enough to test or learn from?" If yes, ship it.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-4">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">Score What's True</h3>
+                            <p class="principle-description">Base assessments on market evidence, not aspiration.</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">What you hope is true isn't the same as what is true. Score based on market evidence, customer feedback, and actual results.</p>
+                            <p class="principle-detail">When running diagnostics, the goal isn't to score well. It's to see clearly. Honest self-assessment beats comfortable delusion.</p>
+                            <p class="principle-detail">If you're scoring your own clarity, credibility, or execution, ask: "Would a customer confirm this?"</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="principle-card animate-on-scroll stagger-5">
+                    <div class="principle-trigger">
+                        <div class="principle-info">
+                            <h3 class="principle-title">Sort or Discover</h3>
+                            <p class="principle-description">Are you sorting customers into products, or discovering what they're trying to do?</p>
+                        </div>
+                        <span class="principle-toggle">+</span>
+                    </div>
+                    <div class="principle-expandable">
+                        <div class="principle-content">
+                            <p class="principle-detail">Banks, churches, and libraries are the three places people go for guidance — and three places that cause the most anxiety. Why? None of them are set up to ask curiosity-based questions.</p>
+                            <p class="principle-detail"><strong>Product questions</strong> sort people into buckets: "Business or personal?" / "Checking or savings?" / "Do you need a debit card?" They put the burden on the customer to already know what they need.</p>
+                            <p class="principle-detail"><strong>Curiosity-based questions</strong> discover aspirations: "What's going on in your life that brought you in today?" / "What are you hoping this account helps you do?"</p>
+                            <p class="principle-detail">Behind every account opening is an aspiration — like the nurse renovating her kitchen so her aging mom can move in, or the small business owner who's finally ready to hire local. You'll never hear those stories if you're sorting instead of discovering.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== RESOURCES ======== -->
+    <section class="resources-section" id="resources">
+        <div class="section-label animate-on-scroll stagger-1">Downloads</div>
+        <h2 class="section-heading animate-on-scroll stagger-1">Resources</h2>
+        <p class="section-intro animate-on-scroll stagger-2">Print-ready PDFs you can bring to your next leadership meeting or share with your team.</p>
+
+        <div class="resources-grid">
+            <article class="resource-card animate-on-scroll stagger-2">
+                <span class="resource-type">Worksheet</span>
+                <h3 class="resource-title">Better Not Different: Self-Assessment</h3>
+                <p class="resource-description">A guided worksheet to reveal whether your strategy is competitor-focused or customer-focused. Work through it solo or with your leadership team.</p>
+                <a href="assets/better-not-different-worksheet.pdf" class="resource-download" download>Download PDF</a>
+            </article>
+
+            <article class="resource-card animate-on-scroll stagger-3">
+                <span class="resource-type">Research Brief</span>
+                <h3 class="resource-title">Brand as Moat: Buffett Research</h3>
+                <p class="resource-description">How Warren Buffett thinks about brand as a defensible competitive advantage. Includes See's Candies case study and boardroom-ready language.</p>
+                <a href="assets/brand-as-moat-research-brief.pdf" class="resource-download" download>Download PDF</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- ======== ABOUT TEASER ======== -->
+    <section class="about-section" id="about">
+        <div class="about-inner">
+            <div class="about-quote animate-on-scroll stagger-1">
+                Great brands never die. I still believe you can build one <span class="highlight">in financial services.</span>
+            </div>
+            <div class="about-right animate-on-scroll stagger-2">
+                <img src="assets/headshot.jpeg" alt="Allison Netzer" class="about-headshot">
+                <div class="about-text">
+                    <p>Allison Netzer has partnered with Dell, Southwest, the NFL, and more than 75 of the most disruptive brands in fintech and financial services.</p>
+                    <p>She's the author of <em>Think Like a Brand, Not a Bank</em> and the strategist behind BrandThnk, a consultancy built on one conviction: brand is your only lasting competitive advantage.</p>
+                    <a href="mailto:allison@brandthnk.co" class="about-link">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== NEWSLETTER ======== -->
+    <section class="newsletter-section" id="newsletter">
+        <h2 class="newsletter-heading animate-on-scroll stagger-1">The BrandThnk Briefing</h2>
+        <p class="newsletter-sub animate-on-scroll stagger-2">Frameworks, field notes, and sharp thinking for FI and fintech leaders working on brand, positioning, and operating models.</p>
+        <a href="https://brandthnk.beehiiv.com/subscribe" class="newsletter-button animate-on-scroll stagger-3" target="_blank" rel="noopener">Subscribe</a>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">BrandThnk</div>
+                <div class="footer-tagline">A boutique consultancy for fintechs and financial institutions who want to build a growth brand.</div>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Navigate</div>
+                <a href="#book">Book</a>
+                <a href="#frameworks">Frameworks</a>
+                <a href="#povs">POVs</a>
+                <a href="#resources">Resources</a>
+                <a href="#about">About</a>
+                <a href="https://brandthnk.beehiiv.com/" target="_blank" rel="noopener">BrandThnk Briefing</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Connect</div>
+                <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" target="_blank" rel="noopener">Book a Call</a>
+                <a href="https://www.linkedin.com/in/allison-netzer-1b98335/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 BrandThnk. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ======== JAVASCRIPT ======== -->
+    <script>
+        // ---- Scroll-aware navigation ----
+        const nav = document.getElementById('siteNav');
+        const heroSection = document.querySelector('.hero');
+
+        const navObserver = new IntersectionObserver(
+            ([entry]) => {
+                nav.classList.toggle('scrolled', !entry.isIntersecting);
+            },
+            { threshold: 0.1 }
+        );
+        navObserver.observe(heroSection);
+
+        // ---- Mobile navigation ----
+        const hamburger = document.getElementById('navHamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        function closeMobileNav() {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ---- Scroll animations ----
+        const scrollObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        scrollObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.08 }
+        );
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // ---- Framework card expand/collapse ----
+        document.querySelectorAll('.framework-card').forEach(card => {
+            const trigger = card.querySelector('.card-trigger');
+
+            trigger.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('expanded');
+
+                // Close all other cards
+                document.querySelectorAll('.framework-card.expanded').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('expanded');
+                    }
+                });
+
+                card.classList.toggle('expanded', !isExpanded);
+            });
+        });
+
+        // Prevent card actions from triggering collapse
+        document.querySelectorAll('.card-actions a, .card-actions button').forEach(el => {
+            el.addEventListener('click', e => e.stopPropagation());
+        });
+
+        // ---- POV card expand/collapse ----
+        document.querySelectorAll('.principle-card').forEach(card => {
+            const trigger = card.querySelector('.principle-trigger');
+
+            trigger.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('expanded');
+
+                // Close all other POV cards
+                document.querySelectorAll('.principle-card.expanded').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('expanded');
+                    }
+                });
+
+                card.classList.toggle('expanded', !isExpanded);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The F/M/B Model — BrandThnk</title>
+    <meta name="description" content="Frontline, Midline, Backline operating framework that clarifies who owns what across customer experience delivery.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        /* Main Content */
+        .framework-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 140px 40px 100px;
+        }
+
+        .framework-domain {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .framework-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .framework-tagline {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 65ch;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+        }
+
+        .section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 70ch;
+        }
+
+        .section strong {
+            font-weight: 700;
+        }
+
+        /* When This Applies */
+        .applies-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .applies-list li {
+            font-size: 15px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .applies-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 10px;
+            height: 3px;
+            background: var(--yellow);
+        }
+
+        .applies-list.not-applies li::before {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Layer Cards */
+        .layer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .layer-card {
+            border: 2px solid var(--black);
+            padding: 32px;
+        }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .layer-letter {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--yellow);
+            line-height: 1;
+            width: 60px;
+            text-align: center;
+        }
+
+        .layer-name {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .layer-subtitle {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-top: 4px;
+        }
+
+        .layer-section {
+            margin-bottom: 20px;
+        }
+
+        .layer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .layer-section-title {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .layer-section p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .layer-examples {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .layer-examples li {
+            font-size: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .layer-examples li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 8px;
+            height: 2px;
+            background: var(--black);
+        }
+
+        /* Journey Table */
+        .journey-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            font-size: 14px;
+        }
+
+        .journey-table th,
+        .journey-table td {
+            border: 1px solid var(--black);
+            padding: 16px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .journey-table th {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .journey-table th.layer-f {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .journey-table th.layer-m {
+            background: var(--offwhite);
+            color: var(--black);
+        }
+
+        .journey-table th.layer-b {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--black);
+        }
+
+        /* Deploy Steps */
+        .deploy-steps {
+            counter-reset: step;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .deploy-steps li {
+            font-size: 15px;
+            padding-left: 48px;
+            position: relative;
+        }
+
+        .deploy-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--yellow);
+        }
+
+        .deploy-steps li strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        /* Callout */
+        .callout {
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 24px 28px;
+            margin: 32px 0;
+        }
+
+        .callout-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .callout p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        /* Diagnostic Questions */
+        .diagnostic-list {
+            counter-reset: question;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .diagnostic-list li {
+            font-size: 16px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .diagnostic-list li::before {
+            counter-increment: question;
+            content: counter(question) ".";
+            position: absolute;
+            left: 0;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        /* Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .outcome-card {
+            background: var(--offwhite);
+            padding: 24px;
+        }
+
+        .outcome-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .outcome-text {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .framework-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .footer-back:hover {
+            text-decoration-color: var(--yellow);
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                padding: 16px 24px;
+            }
+
+            .framework-page {
+                padding: 120px 24px 60px;
+            }
+
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-table {
+                font-size: 12px;
+            }
+
+            .journey-table th,
+            .journey-table td {
+                padding: 12px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .site-nav {
+                display: none;
+            }
+
+            .framework-page {
+                padding: 0;
+            }
+
+            .layer-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-wordmark">BrandThnk</a>
+        <a href="../index.html#frameworks" class="nav-back">&larr; Back to Library</a>
+    </nav>
+
+    <main class="framework-page">
+        <div class="framework-domain">Operating Model</div>
+        <h1 class="framework-title">The F/M/B Model</h1>
+        <p class="framework-tagline">Frontline / Midline / Backline operating framework that clarifies who owns what across customer experience delivery.</p>
+
+        <!-- When This Applies -->
+        <section class="section">
+            <h2 class="section-heading">When This Applies</h2>
+            <ul class="applies-list">
+                <li>Customer journeys break down between teams</li>
+                <li>"Everyone owns CX" means no one owns CX</li>
+                <li>Digital transformation creating new handoff points</li>
+                <li>Cross-functional alignment needed for new product launches</li>
+                <li>Diagnosing why customer experiences feel disconnected</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-heading">When This Does NOT Apply</h2>
+            <ul class="applies-list not-applies">
+                <li>Small team where everyone does everything</li>
+                <li>Problem is strategy, not execution</li>
+                <li>Single-channel business with no handoffs</li>
+            </ul>
+        </section>
+
+        <!-- The Framework -->
+        <section class="section">
+            <h2 class="section-heading">The Framework</h2>
+            <p>In many financial institutions, the biggest barrier to growth isn't intent. It's <strong>ownership</strong>. Everyone wants to improve the experience, but it's often unclear: Who actually owns each customer moment? Where do journeys break down? How do you align local execution with enterprise strategy?</p>
+            <p>The F/M/B Model solves this by defining clear layers of accountability while keeping collaboration fluid and cross-functional.</p>
+
+            <div class="layer-grid">
+                <div class="layer-card">
+                    <div class="layer-header">
+                        <div class="layer-letter">F</div>
+                        <div>
+                            <div class="layer-name">Frontline</div>
+                            <div class="layer-subtitle">Customer Interaction Layer</div>
+                        </div>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">What It Owns</div>
+                        <p>Direct engagement with customers across branch, digital, and contact center touchpoints.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Who's Involved</div>
+                        <p>Branch bankers, tellers, relationship managers, contact center reps, digital support teams.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Core Role</div>
+                        <p><strong>Deliver the promise.</strong> Frontline staff bring the strategy to life in the customer's world. They answer questions, solve problems, and create moments that reinforce the brand's values.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Examples</div>
+                        <ul class="layer-examples">
+                            <li>Onboarding a new checking account</li>
+                            <li>Guiding customers through app setup</li>
+                            <li>Handling service escalations with empathy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="layer-card">
+                    <div class="layer-header">
+                        <div class="layer-letter">M</div>
+                        <div>
+                            <div class="layer-name">Midline</div>
+                            <div class="layer-subtitle">Experience Orchestration Layer</div>
+                        </div>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">What It Owns</div>
+                        <p>Journey design, communications, personalization, and CRM-driven engagement.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Who's Involved</div>
+                        <p>Marketing, UX, Product, Data & Analytics teams.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Core Role</div>
+                        <p><strong>Connect the dots.</strong> The Midline ensures that customer insights inform every message, touchpoint, and follow-up. Creates continuity between what the customer expects and what they experience.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Examples</div>
+                        <ul class="layer-examples">
+                            <li>Designing onboarding sequences and follow-up messaging</li>
+                            <li>Managing CRM journeys and data-driven triggers</li>
+                            <li>Coordinating campaigns or offers that align with personas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="layer-card">
+                    <div class="layer-header">
+                        <div class="layer-letter">B</div>
+                        <div>
+                            <div class="layer-name">Backline</div>
+                            <div class="layer-subtitle">Enablement + Operational Delivery Layer</div>
+                        </div>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">What It Owns</div>
+                        <p>Infrastructure, systems, compliance, and operational support that make customer journeys actually work.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Who's Involved</div>
+                        <p>Operations, Digital Platform Owners, IT, Risk, and Legal teams.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Core Role</div>
+                        <p><strong>Make it possible.</strong> The Backline enables and sustains the experience by providing the platforms, processes, and safeguards that allow the Frontline and Midline to perform consistently and confidently.</p>
+                    </div>
+                    <div class="layer-section">
+                        <div class="layer-section-title">Examples</div>
+                        <ul class="layer-examples">
+                            <li>Ensuring OLB and treasury onboarding run smoothly</li>
+                            <li>Managing digital integrations and data flows</li>
+                            <li>Aligning compliance and risk parameters with experience goals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Journey -->
+        <section class="section">
+            <h2 class="section-heading">Example: Account Setup Journey</h2>
+            <table class="journey-table">
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th class="layer-f">Frontline</th>
+                        <th class="layer-m">Midline</th>
+                        <th class="layer-b">Backline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Account setup</strong></td>
+                        <td>Guides customer in-branch or online</td>
+                        <td>Sends onboarding messages, collects data</td>
+                        <td>Ensures systems integration & approvals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Issue triage</strong></td>
+                        <td>Responds and escalates</td>
+                        <td>Tracks issue patterns, refines comms</td>
+                        <td>Improves process flow and risk alignment</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">Real Example: Treasury Onboarding</div>
+                <p>Applied F/M/B to treasury management onboarding. Discovered Midline (marketing) had no visibility into Backline (ops) approval bottlenecks. Customers were getting nurture emails after already being stuck for weeks. Fixed by adding status triggers.</p>
+            </div>
+        </section>
+
+        <!-- How to Deploy -->
+        <section class="section">
+            <h2 class="section-heading">How to Deploy</h2>
+            <ol class="deploy-steps">
+                <li>
+                    <strong>Select a journey to map</strong>
+                    Start with one high-friction or high-value journey.
+                </li>
+                <li>
+                    <strong>Identify current owners</strong>
+                    Who touches each step today?
+                </li>
+                <li>
+                    <strong>Apply F/M/B lens</strong>
+                    Categorize each owner by layer.
+                </li>
+                <li>
+                    <strong>Surface the gaps</strong>
+                    Where is ownership unclear? Where are handoffs breaking?
+                </li>
+                <li>
+                    <strong>Clarify accountabilities</strong>
+                    Assign primary owner per step, define escalation paths.
+                </li>
+                <li>
+                    <strong>Test with a live journey</strong>
+                    Run one customer through and observe where it breaks.
+                </li>
+            </ol>
+        </section>
+
+        <!-- Diagnostic Questions -->
+        <section class="section">
+            <h2 class="section-heading">Diagnostic Questions</h2>
+            <ol class="diagnostic-list">
+                <li>For your most important customer journey, can you name one owner for each step?</li>
+                <li>When a customer experience breaks, who is accountable for fixing it?</li>
+                <li>Do your Midline teams have visibility into what Frontline is actually experiencing?</li>
+                <li>Does your Backline understand the customer impact of their platform decisions?</li>
+            </ol>
+        </section>
+
+        <!-- Outcomes -->
+        <section class="section">
+            <h2 class="section-heading">Outcomes</h2>
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <div class="outcome-title">Ownership builds confidence</div>
+                    <div class="outcome-text">Teams perform better when roles are visible.</div>
+                </div>
+                <div class="outcome-card">
+                    <div class="outcome-title">Clarity fuels execution</div>
+                    <div class="outcome-text">Every team knows what to own and when to escalate.</div>
+                </div>
+                <div class="outcome-card">
+                    <div class="outcome-title">Structure supports scale</div>
+                    <div class="outcome-text">The same framework applies to every journey.</div>
+                </div>
+                <div class="outcome-card">
+                    <div class="outcome-title">Experience is everyone's job</div>
+                    <div class="outcome-text">The model connects strategy to every layer.</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="framework-footer">
+            <a href="../index.html#frameworks" class="footer-back">&larr; Back to Framework Library</a>
+            <div class="footer-brand">BrandThnk</div>
+        </footer>
+    </main>
+
+</body>
+</html>
