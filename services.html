@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — BrandThnk</title>
+    <meta name="description" content="Brand strategy and positioning for fintechs and financial institutions. I help marketing leaders who know the right narrative changes everything.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+            --max-width: 1400px;
+            --gutter: 80px;
+            --section-spacing: 140px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px var(--gutter);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--black);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            font-family: var(--font-heading) !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            background: var(--yellow);
+            padding: 10px 24px;
+            border-radius: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.03);
+        }
+
+        /* Mobile hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--black);
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 5px);
+            background: var(--white);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -5px);
+            background: var(--white);
+        }
+
+        /* Mobile overlay */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        .mobile-nav a {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--white);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--yellow);
+        }
+
+        /* Hero */
+        .page-hero {
+            padding: 180px var(--gutter) 120px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .page-hero-label {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .page-hero-headline {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            max-width: 20ch;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+        }
+
+        .page-hero-sub {
+            font-family: var(--font-body);
+            font-size: clamp(16px, 1.4vw, 20px);
+            font-weight: 400;
+            max-width: 60ch;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+
+        /* Core Offering */
+        .offering-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--offwhite);
+        }
+
+        .offering-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .offering-label {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .offering-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        .offering-content {
+            padding-top: 8px;
+        }
+
+        .offering-text {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 32px;
+        }
+
+        .offering-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* Punchline */
+        .punchline-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .punchline-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .punchline-text {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            max-width: 22ch;
+            margin: 0 auto 48px;
+        }
+
+        .punchline-text .highlight {
+            color: var(--yellow);
+        }
+
+        .punchline-cta {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 16px 40px;
+            color: var(--black);
+            transition: transform 0.2s ease;
+        }
+
+        .punchline-cta:hover {
+            transform: scale(1.03);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px var(--gutter) 40px;
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 40ch;
+        }
+
+        .footer-col-title {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-col a {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 { transition-delay: 0s; }
+        .stagger-2 { transition-delay: 0.12s; }
+        .stagger-3 { transition-delay: 0.24s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            :root {
+                --gutter: 40px;
+                --section-spacing: 100px;
+            }
+
+            .offering-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --gutter: 24px;
+                --section-spacing: 80px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .page-hero {
+                padding-top: 140px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <a href="/" class="nav-wordmark">BrandThnk</a>
+        <div class="nav-links">
+            <a href="services.html">Services</a>
+            <a href="/#book">Book</a>
+            <a href="/#frameworks">Frameworks</a>
+            <a href="/#briefings">Briefings</a>
+            <a href="/#about">About</a>
+            <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+        </div>
+        <div class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile nav overlay -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="services.html" onclick="closeMobileNav()">Services</a>
+        <a href="/#book" onclick="closeMobileNav()">Book</a>
+        <a href="/#frameworks" onclick="closeMobileNav()">Frameworks</a>
+        <a href="/#briefings" onclick="closeMobileNav()">Briefings</a>
+        <a href="/#about" onclick="closeMobileNav()">About</a>
+        <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="page-hero-label">Services</div>
+        <h1 class="page-hero-headline">Brand strategy for leaders who already know what needs to change.</h1>
+        <p class="page-hero-sub">I work with marketing leaders who know the right narrative changes everything, but can't get there on their own.</p>
+    </section>
+
+    <!-- Core Offering -->
+    <section class="offering-section">
+        <div class="offering-inner">
+            <div class="offering-left animate-on-scroll stagger-1">
+                <div class="offering-label">The Work</div>
+                <h2 class="offering-heading">Why it's hard to do internally</h2>
+            </div>
+            <div class="offering-content animate-on-scroll stagger-2">
+                <p class="offering-text">Stepping back to see yourself how the market sees you is nearly impossible when you're inside it, you have a day job, and admitting your current story isn't working requires more bravery than most organizations reward.</p>
+                <p class="offering-text">CMO is an extremely lonely position. No natural colleague. You're not going to talk to the CFO about positioning. So there's no one to bounce things off of without worrying you'll sound dumb. I try to be that person: a confidant who helps leaders trust what they already know.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Punchline -->
+    <section class="punchline-section">
+        <div class="punchline-inner animate-on-scroll stagger-1">
+            <p class="punchline-text">I don't show anyone a road they've never considered. I give them the confidence to take <span class="highlight">the one they've been avoiding.</span></p>
+            <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" class="punchline-cta" target="_blank" rel="noopener">Book a Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">BrandThnk</div>
+                <div class="footer-tagline">A boutique consultancy for fintechs and financial institutions who want to build a growth brand.</div>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Navigate</div>
+                <a href="services.html">Services</a>
+                <a href="/#book">Book</a>
+                <a href="/#frameworks">Frameworks</a>
+                <a href="/#briefings">Briefings</a>
+                <a href="/#about">About</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Connect</div>
+                <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" target="_blank" rel="noopener">Book a Call</a>
+                <a href="https://www.linkedin.com/in/allison-netzer-1b98335/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 BrandThnk. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation
+        const hamburger = document.getElementById('navHamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        function closeMobileNav() {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Scroll animations
+        const scrollObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        scrollObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.08 }
+        );
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            scrollObserver.observe(el);
+        });
+    </script>
+
+</body>
+</html>
