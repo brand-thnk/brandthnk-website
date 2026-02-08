@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract — BrandThnk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .contract-content {
+            margin-bottom: 48px;
+        }
+
+        .contract-content h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .contract-content h2 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content p {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content ul {
+            font-size: 14px;
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content li {
+            margin-bottom: 8px;
+        }
+
+        .contract-meta {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .contract-meta p {
+            margin-bottom: 8px;
+        }
+
+        .contract-meta strong {
+            font-weight: 700;
+        }
+
+        .signature-section {
+            background: var(--offwhite);
+            padding: 32px;
+            border: 2px solid var(--black);
+        }
+
+        .signature-section h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .signature-block {
+            padding: 16px;
+            background: var(--white);
+        }
+
+        .signature-block h4 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .signed-info {
+            font-size: 13px;
+        }
+
+        .signed-info p {
+            margin-bottom: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            border: 1px solid #ccc;
+            background: var(--white);
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 16px;
+            background: var(--white);
+            border: 1px solid #ccc;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BrandThnk</div>
+            <div class="tagline">Build a Growth Brand</div>
+        </header>
+
+        <main>
+            <div class="contract-content" id="contract-content">
+                <h1>Test Agreement</h1>
+
+                <div class="contract-meta">
+                    <p><strong>Client:</strong> Test Company</p>
+                    <p><strong>Prepared for:</strong> Allison Netzer</p>
+                    <p><strong>Date:</strong> February 8, 2026</p>
+                </div>
+
+                <h2>Overview</h2>
+                <p>This is a test contract to verify the e-signature system is working correctly.</p>
+
+                <h2>Terms</h2>
+                <ul>
+                    <li>This is not a real contract</li>
+                    <li>No obligations are created by signing</li>
+                    <li>This is purely for testing the signature flow</li>
+                </ul>
+
+                <h2>Investment</h2>
+                <p><strong>Total:</strong> $0 (Test Only)</p>
+            </div>
+
+            <div class="signature-section">
+                <h3>Agreement</h3>
+                <p style="font-size: 14px; margin-bottom: 24px;">
+                    By signing below, both parties agree to the terms outlined in this agreement.
+                </p>
+
+                <div class="signature-grid">
+                    <div class="signature-block">
+                        <h4>BrandThnk</h4>
+                        <div class="signed-info">
+                            <p><strong>Name:</strong> Allison Netzer</p>
+                            <p><strong>Title:</strong> CEO</p>
+                            <p><strong>Signed:</strong> February 8, 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="signature-block">
+                        <h4>Test Company</h4>
+
+                        <div id="signature-form-container">
+                            <form id="signature-form">
+                                <input type="hidden" name="contractId" value="test-2026-02">
+                                <input type="hidden" name="clientEmail" value="allison@brandthnk.co">
+
+                                <div class="form-group">
+                                    <label for="signerName">Full Name</label>
+                                    <input type="text" id="signerName" name="signerName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signerTitle">Title</label>
+                                    <input type="text" id="signerTitle" name="signerTitle" required>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="signed-confirmation" class="hidden signed-info">
+                            <p><strong>Name:</strong> <span id="confirmed-name"></span></p>
+                            <p><strong>Title:</strong> <span id="confirmed-title"></span></p>
+                            <p><strong>Signed:</strong> <span id="confirmed-date"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="agreement-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeCheckbox" name="agree">
+                        <label for="agreeCheckbox">
+                            I have read and agree to all terms and conditions outlined in this agreement.
+                            I understand that checking this box constitutes a legally binding electronic signature.
+                        </label>
+                    </div>
+
+                    <div id="form-message" class="message hidden"></div>
+
+                    <button type="button" id="submitBtn" class="submit-btn" disabled>
+                        Sign Agreement
+                    </button>
+                </div>
+
+                <div id="success-message" class="message success hidden">
+                    <strong>Agreement signed successfully!</strong><br>
+                    A confirmation email with the signed agreement has been sent to both parties.
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>This agreement is secured and legally binding under the ESIGN Act and UETA.</p>
+            <p>Questions? Contact allison@brandthnk.co</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('signature-form');
+        const submitBtn = document.getElementById('submitBtn');
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const formMessage = document.getElementById('form-message');
+        const successMessage = document.getElementById('success-message');
+        const agreementSection = document.getElementById('agreement-section');
+        const signedConfirmation = document.getElementById('signed-confirmation');
+        const formContainer = document.getElementById('signature-form-container');
+
+        function checkFormValid() {
+            const name = document.getElementById('signerName').value.trim();
+            const title = document.getElementById('signerTitle').value.trim();
+            const agreed = agreeCheckbox.checked;
+            submitBtn.disabled = !(name && title && agreed);
+        }
+
+        agreeCheckbox.addEventListener('change', checkFormValid);
+        document.getElementById('signerName').addEventListener('input', checkFormValid);
+        document.getElementById('signerTitle').addEventListener('input', checkFormValid);
+
+        submitBtn.addEventListener('click', async function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            formMessage.classList.add('hidden');
+
+            const formData = new FormData(form);
+            const data = {
+                contractId: formData.get('contractId'),
+                clientEmail: formData.get('clientEmail'),
+                signerName: formData.get('signerName'),
+                signerTitle: formData.get('signerTitle'),
+                agreedToTerms: agreeCheckbox.checked,
+                signedAt: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+
+            try {
+                const response = await fetch('/.netlify/functions/sign-contract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    formContainer.classList.add('hidden');
+                    agreementSection.classList.add('hidden');
+                    signedConfirmation.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+
+                    document.getElementById('confirmed-name').textContent = data.signerName;
+                    document.getElementById('confirmed-title').textContent = data.signerTitle;
+                    document.getElementById('confirmed-date').textContent = new Date().toLocaleDateString('en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                } else {
+                    throw new Error(result.error || 'Failed to process signature');
+                }
+            } catch (error) {
+                formMessage.textContent = 'Error: ' + error.message;
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign Agreement';
+            }
+        });
+    </script>
+</body>
+</html>
