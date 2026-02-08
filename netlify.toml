@@ -1,5 +1,10 @@
 [build]
   functions = "netlify/functions"
+  included_files = ["newsletter/**"]
 
 [functions]
   node_bundler = "esbuild"
+
+# Newsletter scheduled function runs hourly
+[functions."newsletter-send"]
+  schedule = "0 * * * *"
