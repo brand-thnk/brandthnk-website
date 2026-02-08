@@ -49,19 +49,25 @@ export default async function handler(request) {
     const item = readyToSend[0];
     console.log('Sending newsletter:', item.id);
 
-    // Read the newsletter markdown content
-    // Note: The markdown file path is relative to Content folder, so we fetch from the draft location
-    // For now, the content should be embedded in the schedule.json as html_content
     if (!item.newsletter.html_content) {
       console.error('No HTML content found for newsletter:', item.id);
       return new Response('Newsletter missing content', { status: 400 });
     }
 
-    // Build the email HTML
-    const emailHtml = template
-      .replace('{{TITLE}}', item.newsletter.title)
-      .replace('{{SUBTITLE}}', item.newsletter.subtitle || '')
-      .replace('{{BODY_HTML}}', item.newsletter.html_content);
+    // Use html_content directly - it's either:
+    // 1. Full Beehiiv HTML (for imported posts) - used as-is
+    // 2. Body content (for new posts) - wrapped in template
+    let emailHtml;
+    if (item.newsletter.html_content.includes('<!DOCTYPE html>')) {
+      // Full HTML from Beehiiv import - use directly
+      emailHtml = item.newsletter.html_content;
+    } else {
+      // Body content only - wrap in template
+      emailHtml = template
+        .replace('{{TITLE}}', item.newsletter.title)
+        .replace('{{SUBTITLE}}', item.newsletter.subtitle || '')
+        .replace('{{BODY_HTML}}', item.newsletter.html_content);
+    }
 
     // Send via webhook
     const webhookUrl = process.env.NEWSLETTER_WEBHOOK_URL;

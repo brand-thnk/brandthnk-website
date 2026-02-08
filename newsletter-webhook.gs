@@ -73,7 +73,14 @@ function handleSend(data) {
       try {
         // Generate personalized unsubscribe link
         const unsubLink = generateUnsubscribeLink(subscriber.email);
-        const personalizedHtml = html.replace('{{UNSUBSCRIBE_LINK}}', unsubLink);
+
+        // Replace unsubscribe links - both our placeholder and Beehiiv links
+        let personalizedHtml = html.replace('{{UNSUBSCRIBE_LINK}}', unsubLink);
+        // Replace Beehiiv unsubscribe/preferences links
+        personalizedHtml = personalizedHtml.replace(
+          /https:\/\/brandthnk\.beehiiv\.com\/subscribe\/[^"'\s]*/g,
+          unsubLink
+        );
 
         GmailApp.sendEmail(subscriber.email, subject, '', {
           htmlBody: personalizedHtml,
