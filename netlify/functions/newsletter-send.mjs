@@ -10,7 +10,7 @@ import { join } from 'path';
 
 // Netlify scheduled function config
 export const config = {
-  schedule: "0 * * * *"  // Every hour at :00
+  schedule: "0 13 * * *"  // Daily at 8am EST (13:00 UTC)
 };
 
 export default async function handler(request) {
