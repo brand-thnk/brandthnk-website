@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Think Like a Brand, Not a Bank — Second Edition</title>
+    <meta name="description" content="When everyone has a good product, brand becomes your only advantage. The second edition of the book that's changing how financial institutions think about brand.">
+    <meta property="og:title" content="Think Like a Brand, Not a Bank — Second Edition">
+    <meta property="og:description" content="When everyone has a good product, brand becomes your only advantage.">
+    <meta property="og:image" content="https://brandthnk.co/assets/book-cover.png">
+    <meta property="og:url" content="https://brandthnk.co/book">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+            --max-width: 1200px;
+            --gutter: 80px;
+            --section-spacing: 100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px var(--gutter);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 400;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px var(--gutter) var(--section-spacing);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .book-cover-wrapper {
+            position: sticky;
+            top: 120px;
+        }
+
+        .book-cover {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-cover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-formats {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .format-btn {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 14px 28px;
+            border: 2px solid var(--black);
+            background: transparent;
+            transition: all 0.2s ease;
+            text-align: center;
+            flex: 1;
+        }
+
+        .format-btn:hover {
+            background: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .format-btn.primary {
+            background: var(--yellow);
+            border-color: var(--yellow);
+        }
+
+        .format-btn.primary:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero-headline {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 28px;
+        }
+
+        .hero-description {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 55ch;
+        }
+
+        /* Audience */
+        .audience {
+            margin-bottom: 48px;
+        }
+
+        .audience-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .audience-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .audience-list li {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .audience-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--yellow);
+        }
+
+        /* Bonus */
+        .bonus-card {
+            background: var(--offwhite);
+            border-left: 4px solid var(--yellow);
+            padding: 24px 28px;
+        }
+
+        .bonus-title {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .bonus-text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Frameworks Section */
+        .frameworks-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--offwhite);
+        }
+
+        .frameworks-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            font-family: var(--font-body);
+            font-size: 17px;
+            max-width: 65ch;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .framework-card {
+            border: 2px solid var(--black);
+            padding: 32px;
+            background: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .framework-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
+        .framework-number {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+
+        .framework-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .framework-text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .testimonial {
+            padding: 32px;
+            border: 2px solid var(--black);
+        }
+
+        .testimonial-text {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* Principles */
+        .principles-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .principles-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .principles-section .section-label {
+            color: var(--yellow);
+        }
+
+        .principles-section .section-heading {
+            color: var(--white);
+        }
+
+        .principles-section .section-intro {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .principle-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .principle {
+            border-left: 3px solid var(--yellow);
+            padding-left: 24px;
+        }
+
+        .principle-title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .principle-text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Author */
+        .author-section {
+            padding: var(--section-spacing) var(--gutter);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .author-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .author-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .author-bio {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 60ch;
+        }
+
+        .author-bio strong {
+            font-family: var(--font-heading);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: var(--section-spacing) var(--gutter);
+            background: var(--yellow);
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-headline {
+            font-family: var(--font-heading);
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            padding: 16px 36px;
+            border: 2px solid var(--black);
+            background: var(--black);
+            color: var(--white);
+            transition: all 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Footer */
+        .site-footer {
+            padding: 48px var(--gutter);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-wordmark {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            :root {
+                --gutter: 40px;
+            }
+
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .book-cover-wrapper {
+                position: static;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .framework-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principle-list {
+                grid-template-columns: 1fr;
+            }
+
+            .author-layout {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .author-photo {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --gutter: 24px;
+                --section-spacing: 80px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .book-formats {
+                flex-direction: column;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <a href="/" class="nav-wordmark">BrandThnk</a>
+        <div class="nav-links">
+            <a href="/#frameworks">Frameworks</a>
+            <a href="/#briefings">Briefings</a>
+            <a href="/#about">About</a>
+            <a href="/#newsletter">Newsletter</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-layout">
+            <div class="book-cover-wrapper">
+                <img src="../assets/book-cover.png" alt="Think Like a Brand, Not a Bank - Second Edition by Allison Netzer" class="book-cover">
+                <div class="book-formats">
+                    <a href="https://allisonthinker.gumroad.com/l/tlab2paperback" class="format-btn primary" target="_blank" rel="noopener">Paperback</a>
+                    <a href="https://allisonthinker.gumroad.com/l/tlab2ebook" class="format-btn" target="_blank" rel="noopener">eBook</a>
+                    <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="format-btn" target="_blank" rel="noopener">Audiobook</a>
+                </div>
+            </div>
+
+            <div class="book-details">
+                <div class="section-label">Second Edition</div>
+                <h1 class="hero-headline">When everyone has a good product, brand becomes your only advantage.</h1>
+                <p class="hero-description">Brand strategist Allison Netzer challenges readers to abandon conventional "bank thinking" and embrace the bold, counterintuitive strategies that define iconic brands. Through practical frameworks like Box to Edge, the Salt Shaker Theory, and Pain to Promise to Proof, this book shows how to transform from commodity provider into a brand customers genuinely connect with.</p>
+
+                <div class="audience">
+                    <div class="audience-title">Who it's for</div>
+                    <ul class="audience-list">
+                        <li><strong>CEOs</strong> watching inferior competitors win on pricing while you struggle to articulate what makes you different</li>
+                        <li><strong>CMOs and Marketers</strong> stuck in campaign mode without organizational buy-in to build something that lasts</li>
+                        <li><strong>Fintech Founders</strong> realizing product innovation alone won't scale. You need a brand that compounds.</li>
+                        <li><strong>Operators</strong> who know their daily decisions either reinforce or undermine the brand promise</li>
+                    </ul>
+                </div>
+
+                <div class="bonus-card">
+                    <div class="bonus-title">Included free: TLAB 2 Toolkit</div>
+                    <div class="bonus-text">Five field-tested frameworks designed to help financial brands operationalize the principles in Think Like a Brand, Not a Bank. Practical, collaborative tools that turn brand thinking into daily practice across strategy, product, marketing, and execution.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="frameworks-section">
+        <div class="frameworks-inner">
+            <div class="section-label">What's Inside</div>
+            <h2 class="section-heading">Frameworks that stick</h2>
+            <p class="section-intro">These aren't theoretical models. They're practical tools built from real client work with fintechs and financial institutions. Use them in your next leadership meeting.</p>
+
+            <div class="framework-grid">
+                <div class="framework-card">
+                    <div class="framework-number">01</div>
+                    <div class="framework-title">Pain to Promise to Proof</div>
+                    <div class="framework-text">The narrative sequence that matches how brains process decisions. Most banks reverse this. That's starting at step 3 when brains need to start at step 1.</div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-number">02</div>
+                    <div class="framework-title">Box to Edge</div>
+                    <div class="framework-text">Establish category credibility first, then differentiate. If a stranger can't categorize you in 5 seconds and articulate your difference in 10, you're asking brains to work too hard.</div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-number">03</div>
+                    <div class="framework-title">The Assumption Trap</div>
+                    <div class="framework-text">Success breeds certainty. Certainty breeds assumptions. Assumptions quietly erode the curiosity that drives growth. Your biggest competitor is believing you already understand your market.</div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-number">04</div>
+                    <div class="framework-title">Salt Shaker Theory</div>
+                    <div class="framework-text">Set the standard. Expect drift. Provide gentle correction. The job isn't preventing drift. It's consistent, gentle correction back to standard.</div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-number">05</div>
+                    <div class="framework-title">F/M/B Model</div>
+                    <div class="framework-text">Frontline, Midline, Backline. Structure for operationalizing brand. Brand isn't what marketing says. It's what every person in your organization does when no one's watching.</div>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-number">06</div>
+                    <div class="framework-title">Infrastructure Test</div>
+                    <div class="framework-text">Does this positioning require you to build or change infrastructure? If yes, it's genuinely differentiating. The resistance IS the signal.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="section-label">Readers</div>
+        <h2 class="section-heading">What people are saying</h2>
+
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="testimonial-text">"You absolutely nailed it. So much good, applicable, relevant information in every chapter."</div>
+                <div class="testimonial-author">Josh Herman, CU Wealthnext</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">"I think you've really done a great job using the brain science framework to explain your concepts in a simple way."</div>
+                <div class="testimonial-author">Jim Eup, Vericast</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">"I found myself nodding quite a bit reading this."</div>
+                <div class="testimonial-author">Jeff McCarthy, Bank Five Nine</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles-section">
+        <div class="principles-inner">
+            <div class="section-label">Core Ideas</div>
+            <h2 class="section-heading">Five principles that change everything</h2>
+            <p class="section-intro">These principles run through every chapter. They're counterintuitive on purpose. Your brain resists them biologically. That resistance signals you might be onto something.</p>
+
+            <div class="principle-list">
+                <div class="principle">
+                    <div class="principle-title">Do the Counterintuitive Thing</div>
+                    <div class="principle-text">Pattern violations force attention. Attention creates memory. Expect resistance. It signals you might be onto something.</div>
+                </div>
+                <div class="principle">
+                    <div class="principle-title">Embrace Tension and Create Contradictions</div>
+                    <div class="principle-text">Tension isn't a bug. It's a feature. The strings of a piano are tightened to extreme tension. That's what makes the sound.</div>
+                </div>
+                <div class="principle">
+                    <div class="principle-title">Cue the Remix</div>
+                    <div class="principle-text">You're not inventing from scratch. Take what you have and recombine in ways that solve problems differently. Fire bullets, then cannonballs.</div>
+                </div>
+                <div class="principle">
+                    <div class="principle-title">Product Is Proof, Not Promise</div>
+                    <div class="principle-text">Your mobile app, rates, and platform prove you can deliver. But the promise itself is what you enable customers to do or become.</div>
+                </div>
+                <div class="principle">
+                    <div class="principle-title">Coach and Compose</div>
+                    <div class="principle-text">Innovation without implementation is expensive brainstorming. Medals are won in training. You claim them in the race.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="author-section">
+        <div class="section-label">About the Author</div>
+        <h2 class="section-heading">Allison Netzer</h2>
+
+        <div class="author-layout">
+            <img src="../assets/headshot.jpeg" alt="Allison Netzer" class="author-photo">
+            <p class="author-bio"><strong>Allison Netzer</strong> is a brand strategist who works with fintechs and financial institutions building growth brands. She's spent her career helping organizations move from commodity provider to category leader by challenging the assumptions that keep them stuck. Think Like a Brand, Not a Bank distills two decades of client work into frameworks you can use tomorrow.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-inner">
+            <h2 class="cta-headline">Ready to think like a brand?</h2>
+            <div class="cta-buttons">
+                <a href="https://allisonthinker.gumroad.com/l/tlab2paperback" class="cta-btn" target="_blank" rel="noopener">Get the Paperback</a>
+                <a href="https://allisonthinker.gumroad.com/l/tlab2ebook" class="cta-btn secondary" target="_blank" rel="noopener">Get the eBook</a>
+                <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="cta-btn secondary" target="_blank" rel="noopener">Get the Audiobook</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <a href="/" class="footer-wordmark">BrandThnk</a>
+            <div class="footer-links">
+                <a href="/#frameworks">Frameworks</a>
+                <a href="/#briefings">Briefings</a>
+                <a href="/#newsletter">Newsletter</a>
+                <a href="mailto:allison@brandthnk.co">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
