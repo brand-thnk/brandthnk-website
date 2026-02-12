@@ -34,6 +34,26 @@
       <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-05-what-vs-why.mp3</guid>
       <itunes:duration>00:08:00</itunes:duration>
     </item>
+    <item>
+      <title>Topline: The New Pipeline Playbook</title>
+      <description>Craig Rosenberg breaks down the who, when, what, and how of modern pipeline generation - from microsegmentation to multi-channel outreach.</description>
+      <pubDate>Wed, 11 Feb 2026 19:40:00 -0600</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/topline-2026-02-10-pipeline-playbook.mp3"
+                 length="3269808"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/topline-2026-02-10-pipeline-playbook.mp3</guid>
+      <itunes:duration>00:10:00</itunes:duration>
+    </item>
+    <item>
+      <title>Topline: Mark Roberge on the End of Sales Specialization</title>
+      <description>The Sales Acceleration Formula author on scaling science, AI reversing the SDR/AE split, and why to triple-down if the bubble bursts.</description>
+      <pubDate>Wed, 11 Feb 2026 19:45:00 -0600</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/topline-2026-02-05-mark-roberge.mp3"
+                 length="3414528"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/topline-2026-02-05-mark-roberge.mp3</guid>
+      <itunes:duration>00:11:00</itunes:duration>
+    </item>
     <!-- EPISODE_MARKER -->
 
   </channel>
