@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Newsletter Audio</title>
+    <link>https://brandthnk.co/podcast</link>
+    <description>Newsletters converted to audio for listening on the go.</description>
+    <language>en-us</language>
+    <atom:link href="https://brandthnk.co/podcast/feed.xml" rel="self" type="application/rss+xml"/>
+    <itunes:author>Allison Netzer</itunes:author>
+    <itunes:summary>Newsletters converted to audio for listening on the go.</itunes:summary>
+    <itunes:category text="Technology"/>
+    <itunes:explicit>false</itunes:explicit>
+
+    <!-- Episodes are inserted here, newest first -->
+    <item>
+      <title>Growth Newsletter: How Two Words Generated Millions in Revenue</title>
+      <description>Justin Setzer shares how adding "it's free" to Grammarly's CTA buttons produced 8x lift - and why finding the right lever matters more than taking big swings.</description>
+      <pubDate>Tue, 11 Feb 2026 19:30:00 -0600</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/growth-newsletter-2026-02-10-two-words.mp3"
+                 length="2536416"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-10-two-words.mp3</guid>
+      <itunes:duration>00:07:00</itunes:duration>
+    </item>
+    <!-- EPISODE_MARKER -->
+
+  </channel>
+</rss>
