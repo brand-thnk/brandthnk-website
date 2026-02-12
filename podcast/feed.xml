@@ -24,6 +24,16 @@
       <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-10-two-words.mp3</guid>
       <itunes:duration>00:07:00</itunes:duration>
     </item>
+    <item>
+      <title>Growth Newsletter: Your Growth Experiments Are Lying to You</title>
+      <description>Justin Setzer explains the "what vs. why trap" - how growth teams conflate what happened with why it happened, and why qualitative research is essential.</description>
+      <pubDate>Wed, 11 Feb 2026 19:35:00 -0600</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/growth-newsletter-2026-02-05-what-vs-why.mp3"
+                 length="2813040"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-05-what-vs-why.mp3</guid>
+      <itunes:duration>00:08:00</itunes:duration>
+    </item>
     <!-- EPISODE_MARKER -->
 
   </channel>
