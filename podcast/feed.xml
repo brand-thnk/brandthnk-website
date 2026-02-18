@@ -15,6 +15,36 @@
 
     <!-- Episodes are inserted here, newest first -->
     <item>
+      <title>Growth Newsletter: How to Identify Your Highest-Impact Growth Opportunities</title>
+      <description>Justin Setzer shares the 6-step Problem Discovery process that separates teams with outsized results from everyone else - and why diagnosing before prescribing is the real growth lever.</description>
+      <pubDate>Mon, 17 Feb 2026 22:32:00 +0000</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/growth-newsletter-2026-02-17-growth-leverage.mp3"
+                 length="4055760"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-17-growth-leverage.mp3</guid>
+      <itunes:duration>00:11:00</itunes:duration>
+    </item>
+    <item>
+      <title>Chief Martec: Context Is Gravity in an Expanding Software Universe</title>
+      <description>Scott Brinker on why SaaS isn't dying but transforming - the shift to context-as-a-service platforms, ecosystem judo, and why domain expertise matters more than ever in the AI era.</description>
+      <pubDate>Fri, 13 Feb 2026 11:15:00 +0000</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/chiefmartec-2026-02-13-context-is-gravity.mp3"
+                 length="5551920"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/chiefmartec-2026-02-13-context-is-gravity.mp3</guid>
+      <itunes:duration>00:16:00</itunes:duration>
+    </item>
+    <item>
+      <title>Growth Newsletter: How to Win on Reddit in 2026</title>
+      <description>Colin James Belyea shares the Karma Ladder framework - the counterintuitive playbook for building real organic influence on Reddit through trust, not promotion.</description>
+      <pubDate>Thu, 12 Feb 2026 19:23:00 +0000</pubDate>
+      <enclosure url="https://brandthnk.co/podcast/growth-newsletter-2026-02-12-reddit-playbook.mp3"
+                 length="3881952"
+                 type="audio/mpeg"/>
+      <guid>https://brandthnk.co/podcast/growth-newsletter-2026-02-12-reddit-playbook.mp3</guid>
+      <itunes:duration>00:11:00</itunes:duration>
+    </item>
+    <item>
       <title>Growth Newsletter: How Two Words Generated Millions in Revenue</title>
       <description>Justin Setzer shares how adding "it's free" to Grammarly's CTA buttons produced 8x lift - and why finding the right lever matters more than taking big swings.</description>
       <pubDate>Tue, 11 Feb 2026 19:30:00 -0600</pubDate>
