@@ -55,6 +55,19 @@ Update subscribers.json and commit to remove them from the list.
 function handleSend(data) {
   const { subscribers, subject, html, fromName, replyTo, newsletterId } = data;
 
+  // Check for duplicate send (prevents retries from sending multiple times)
+  const sentNewsletters = getSentNewsletters();
+  if (sentNewsletters.includes(newsletterId)) {
+    console.log('Newsletter already sent, skipping:', newsletterId);
+    return jsonResponse({
+      newsletterId: newsletterId,
+      skipped: true,
+      reason: 'already_sent',
+      totalSent: 0,
+      failures: 0
+    });
+  }
+
   const results = {
     newsletterId: newsletterId,
     totalSent: 0,
@@ -104,6 +117,9 @@ function handleSend(data) {
 
   console.log('Newsletter sent:', newsletterId, results.totalSent, 'success,', results.failures, 'failed');
 
+  // Mark newsletter as sent (prevents duplicate sends on retry)
+  markNewsletterSent(newsletterId);
+
   // Notify Allison of completion
   GmailApp.sendEmail('allison@brandthnk.co', 'Newsletter Sent: ' + subject, `
 Newsletter ID: ${newsletterId}
@@ -132,6 +148,26 @@ function generateUnsubscribeLink(email) {
 function jsonResponse(data) {
   return ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Track sent newsletters to prevent duplicates
+function getSentNewsletters() {
+  const props = PropertiesService.getScriptProperties();
+  const sent = props.getProperty('SENT_NEWSLETTERS');
+  return sent ? JSON.parse(sent) : [];
+}
+
+function markNewsletterSent(newsletterId) {
+  const props = PropertiesService.getScriptProperties();
+  const sent = getSentNewsletters();
+  if (!sent.includes(newsletterId)) {
+    sent.push(newsletterId);
+    // Keep only last 100 to avoid hitting property size limits
+    if (sent.length > 100) {
+      sent.shift();
+    }
+    props.setProperty('SENT_NEWSLETTERS', JSON.stringify(sent));
+  }
 }
 
 // Test function - run manually to verify setup
