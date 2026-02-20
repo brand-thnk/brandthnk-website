@@ -5,6 +5,6 @@
 [functions]
   node_bundler = "esbuild"
 
-# Newsletter scheduled function runs daily at 8am EST
-[functions."newsletter-send"]
-  schedule = "0 13 * * *"
+# DISABLED - Newsletter system sending duplicate emails
+# [functions."newsletter-send"]
+#   schedule = "0 13 * * *"
