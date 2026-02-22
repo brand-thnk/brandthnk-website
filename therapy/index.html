@@ -472,14 +472,6 @@
                     </h3>
                     <div className="flex items-center gap-2 flex-wrap">
                       <button
-                        onClick={handleCopy}
-                        className="flex items-center gap-2 px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors"
-                        style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.1em' }}
-                      >
-                        <Icon name={copied ? "Check" : "Copy"} size={16} />
-                        <span className="uppercase font-bold">{copied ? 'Copied' : 'Copy'}</span>
-                      </button>
-                      <button
                         onClick={handlePDFClick}
                         disabled={isGeneratingPDF}
                         className="flex items-center gap-2 px-5 py-2 border-2 border-black transition-colors disabled:opacity-50"
