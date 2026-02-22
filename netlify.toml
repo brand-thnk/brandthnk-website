@@ -1,10 +1,5 @@
 [build]
   functions = "netlify/functions"
-  included_files = ["newsletter/**"]
 
 [functions]
   node_bundler = "esbuild"
-
-# DISABLED - Newsletter system sending duplicate emails
-# [functions."newsletter-send"]
-#   schedule = "0 13 * * *"
