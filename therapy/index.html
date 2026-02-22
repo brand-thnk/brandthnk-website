@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Therapy | BrandThnk</title>
+  <meta name="description" content="Brand thinking applied to identity, products, and storytelling. A free tool from BrandThnk.">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- html2pdf.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    body { font-family: 'Roboto Mono', monospace; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Icon components using Lucide
+    const Icon = ({ name, ...props }) => {
+      const ref = React.useRef(null);
+      React.useEffect(() => {
+        if (ref.current) {
+          ref.current.innerHTML = '';
+          const icon = lucide.createElement(lucide.icons[name]);
+          icon.setAttribute('width', props.size || 24);
+          icon.setAttribute('height', props.size || 24);
+          if (props.fill) icon.setAttribute('fill', props.fill);
+          if (props.stroke) icon.setAttribute('stroke', props.stroke);
+          if (props.strokeWidth) icon.setAttribute('stroke-width', props.strokeWidth);
+          ref.current.appendChild(icon);
+        }
+      }, [name, props.fill, props.stroke]);
+      return <span ref={ref} className={props.className} style={{ display: 'inline-flex', ...props.style }} />;
+    };
+
+    const BrandTherapyApp = () => {
+      const [word1, setWord1] = useState('');
+      const [word2, setWord2] = useState('');
+      const [selectedCategory, setSelectedCategory] = useState('');
+      const [ideas, setIdeas] = useState('');
+      const [isLoading, setIsLoading] = useState(false);
+      const [copied, setCopied] = useState(false);
+      const [starredIdeas, setStarredIdeas] = useState(new Set());
+      const [showEmailGate, setShowEmailGate] = useState(false);
+      const [email, setEmail] = useState('');
+      const [emailSubmitted, setEmailSubmitted] = useState(false);
+      const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+
+      const wordBank = [
+        'trust', 'loyalty', 'belonging', 'conviction', 'courage', 'clarity', 'momentum', 'legacy', 'culture', 'voice',
+        'deposit', 'lending', 'branch', 'digital', 'member', 'community', 'advisor', 'portfolio', 'vault', 'ledger',
+        'fear', 'pride', 'hope', 'curiosity', 'empathy', 'resilience', 'ambition', 'nostalgia', 'joy', 'grit',
+        'moat', 'signal', 'leverage', 'anchor', 'bridge', 'catalyst', 'compass', 'flywheel', 'gravity', 'threshold',
+        'friction', 'spark', 'shift', 'edge', 'mirror', 'lens', 'fracture', 'fusion', 'pivot', 'leap',
+        'myth', 'ritual', 'anthem', 'origin', 'chapter', 'arc', 'villain', 'hero', 'tension', 'resolution',
+        'algorithm', 'API', 'platform', 'dashboard', 'automation', 'AI', 'cloud', 'data', 'interface', 'ecosystem',
+        'lighthouse', 'foundation', 'scaffolding', 'telescope', 'blueprint', 'canvas', 'megaphone', 'thermometer', 'compass', 'ladder'
+      ];
+
+      const getRandomWord = () => wordBank[Math.floor(Math.random() * wordBank.length)];
+
+      const categories = [
+        { id: 'identity', name: 'Identity', icon: '🪞', blurb: 'See your brand the way the market does' },
+        { id: 'products', name: 'Products', icon: '📦', blurb: 'Product ideas from a brand lens' },
+        { id: 'storytelling', name: 'Storytelling', icon: '📖', blurb: 'Build narratives people repeat' },
+      ];
+
+      const getCategoryName = (id) => categories.find(c => c.id === id)?.name || id;
+
+      const toggleStar = (index) => {
+        setStarredIdeas(prev => {
+          const next = new Set(prev);
+          if (next.has(index)) next.delete(index);
+          else next.add(index);
+          return next;
+        });
+      };
+
+      const parseIdeas = (raw) => {
+        return raw.split('\n').filter(line => line.trim() && /^\d+\./.test(line.trim())).map((idea) => {
+          const cleanIdea = idea.replace(/^\d+\.\s*/, '').trim();
+          let title, description;
+          if (cleanIdea.includes(' - ')) {
+            [title, ...description] = cleanIdea.split(' - ');
+            description = description.join(' - ');
+          } else if (cleanIdea.includes(': ')) {
+            [title, ...description] = cleanIdea.split(': ');
+            description = description.join(': ');
+          } else {
+            if (cleanIdea.length > 100) {
+              const sentences = cleanIdea.split(/\.\s+(?=[A-Z])/);
+              title = sentences[0];
+              description = sentences.slice(1).join('. ');
+              if (description) description += '.';
+            } else {
+              title = cleanIdea;
+              description = '';
+            }
+          }
+          return { title: title.replace(/^["']|["']$/g, ''), description };
+        });
+      };
+
+      const buildPlainText = () => {
+        const parsed = parseIdeas(ideas);
+        const catName = getCategoryName(selectedCategory);
+        const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        let txt = `BRAND THERAPY — ${catName.toUpperCase()}\n${'='.repeat(40)}\n\n`;
+        txt += `Words: ${word1} + ${word2}\nSession: ${catName}\nGenerated: ${date}\n\n${'—'.repeat(20)}\n\n`;
+        parsed.forEach((idea, i) => {
+          const star = starredIdeas.has(i) ? ' ★' : '';
+          txt += `${i + 1}.${star} ${idea.title}\n`;
+          if (idea.description) txt += `   ${idea.description}\n`;
+          txt += '\n';
+        });
+        txt += `${'—'.repeat(20)}\nGenerated by BrandThnk — brandthnk.co`;
+        return txt;
+      };
+
+      const handleCopy = async () => {
+        const text = buildPlainText();
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      };
+
+      const handlePDFClick = () => {
+        if (emailSubmitted) {
+          generatePDF();
+        } else {
+          setShowEmailGate(true);
+        }
+      };
+
+      const handleEmailSubmit = async () => {
+        if (email.trim() && email.includes('@')) {
+          // Capture email with session context
+          const parsed = parseIdeas(ideas);
+          const starredTitles = Array.from(starredIdeas).map(i => parsed[i]?.title).filter(Boolean);
+
+          try {
+            await fetch('/.netlify/functions/therapy-capture', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: email,
+                sessionContext: {
+                  word1,
+                  word2,
+                  category: getCategoryName(selectedCategory),
+                  ideasCount: parsed.length,
+                  starredCount: starredIdeas.size,
+                  starredTitles,
+                },
+              }),
+            });
+          } catch (err) {
+            console.error('Email capture failed:', err);
+          }
+
+          setEmailSubmitted(true);
+          setShowEmailGate(false);
+          generatePDF();
+        }
+      };
+
+      const generatePDF = () => {
+        setIsGeneratingPDF(true);
+        const parsed = parseIdeas(ideas);
+        const catName = getCategoryName(selectedCategory);
+        const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const catIcon = categories.find(c => c.id === selectedCategory)?.icon || '';
+
+        const ideasHTML = parsed.map((idea, i) => `
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:24px;border:2px solid #000;background:#F5F5F5;margin-bottom:12px;break-inside:avoid;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:#FFEB3B;border:2px solid #000;font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:14px;">${i + 1}</div>
+              ${starredIdeas.has(i) ? '<div style="font-size:16px;">★</div>' : ''}
+            </div>
+            <div style="flex:1;">
+              <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:16px;margin-bottom:6px;">
+                <span style="background:#FFEB3B;padding:0 4px;">${idea.title}</span>
+              </div>
+              ${idea.description ? `<div style="font-family:'Roboto Mono',Courier,monospace;font-size:13px;line-height:1.7;opacity:0.7;">${idea.description}</div>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        const html = `
+          <div style="font-family:'Roboto Mono',Courier,monospace;color:#000;background:#fff;padding:48px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #000;padding-bottom:16px;margin-bottom:32px;">
+              <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;">BrandThnk</div>
+              <div style="font-family:'Roboto Mono',Courier,monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.4;">${date}</div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:36px;margin-bottom:4px;">Brand <span style="background:#FFEB3B;padding:0 6px;">Therapy</span></div>
+            </div>
+            <div style="display:inline-block;padding:6px 16px;background:#FFEB3B;border:2px solid #000;font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:14px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;">${catIcon} ${catName} Session</div>
+            <div style="display:flex;gap:24px;align-items:center;padding:16px 0;border-top:2px solid #000;border-bottom:2px solid #000;margin-bottom:32px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">
+              <div><span style="opacity:0.4;">Words:</span> <strong>${word1} + ${word2}</strong></div>
+              <div style="opacity:0.2;">|</div>
+              <div><span style="opacity:0.4;">${parsed.length} ideas generated</span></div>
+              ${starredIdeas.size > 0 ? `<div style="opacity:0.2;">|</div><div><span style="opacity:0.4;">★ ${starredIdeas.size} starred</span></div>` : ''}
+            </div>
+            ${ideasHTML}
+            <div style="margin-top:40px;padding:24px;border:2px solid #000;background:#F5F5F5;break-inside:avoid;">
+              <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:16px;margin-bottom:8px;">Want to pressure-test these?</div>
+              <div style="font-family:'Roboto Mono',Courier,monospace;font-size:12px;line-height:1.7;opacity:0.6;margin-bottom:12px;">A tool generates ideas. A strategist helps you pick the right one and build the case for it internally.</div>
+              <div style="font-family:'Roboto Mono',Courier,monospace;font-size:11px;font-weight:700;">Book time at brandthnk.co</div>
+            </div>
+            <div style="margin-top:24px;padding-top:16px;border-top:3px solid #000;display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:900;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">BrandThnk</div>
+              <div style="font-family:'Roboto Mono',Courier,monospace;font-size:10px;opacity:0.3;letter-spacing:0.1em;text-transform:uppercase;">brandthnk.co</div>
+            </div>
+          </div>
+        `;
+
+        // Create temporary container
+        const container = document.createElement('div');
+        container.innerHTML = html;
+        container.style.position = 'absolute';
+        container.style.left = '-9999px';
+        container.style.width = '8.5in';
+        document.body.appendChild(container);
+
+        // Generate PDF with html2pdf
+        const opt = {
+          margin: 0.5,
+          filename: `brand-therapy-${catName.toLowerCase()}-${Date.now()}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        };
+
+        html2pdf().set(opt).from(container).save().then(() => {
+          document.body.removeChild(container);
+          setIsGeneratingPDF(false);
+        }).catch((err) => {
+          console.error('PDF generation failed:', err);
+          document.body.removeChild(container);
+          setIsGeneratingPDF(false);
+        });
+      };
+
+      const generateIdeas = async () => {
+        if (!word1.trim() || !word2.trim() || !selectedCategory) return;
+        setIsLoading(true);
+        setIdeas('');
+        setStarredIdeas(new Set());
+
+        try {
+          const sharedContext = 'The audience is US banks, credit unions, regional FIs, and fintechs selling software/platforms to those institutions. All ideas should be grounded in the BrandThnk philosophy: brand is not your logo — it is your operating system, your momentum, your economic moat. Think brand-first, not product-first. Challenge the sea of sameness in financial services.';
+
+          const categoryContext = {
+            identity: `brand identity and positioning for financial services. This is the mirror-holding session — helping FIs and fintechs see themselves how the market actually sees them, not how they wish to be seen. Ideas should address: stripping away the logo, tagline, and rate sheet to find what's actually there; using the F/M/B Model to align function, meaning, and brand; April Dunford's positioning framework — competitive alternatives define differentiation, find the market frame that makes your value obvious, deliberate positioning over default positioning; Emily Heyward's insistence on grounding brand in a real problem not a solution, and defining what people should feel when they interact with you; Marty Neumeier's definition of brand as a gut feeling and his question "what makes you the only?"; the hard truth that most FIs are interchangeable and most fintechs sound identical. Ideas should force uncomfortable clarity — the kind that makes a room go quiet before the real work begins. ${sharedContext}`,
+
+            products: `new product concepts for US banks, credit unions, and fintechs. For FIs, think deposit products, lending innovations, financial wellness tools, youth/Gen Z accounts, small business banking packages, digital-first account experiences, or member loyalty programs. For fintechs selling to FIs, think SaaS platforms, API integrations, white-label solutions, compliance automation tools, onboarding platforms, data analytics dashboards, or AI-powered underwriting. Ideas should solve real pain points and create competitive differentiation. Products should embody the brand, not just serve a function — every product is a brand expression. ${sharedContext}`,
+
+            storytelling: `content storytelling for US banks, credit unions, and fintechs. Ideas should be narrative frameworks and story concepts that financial services companies can actually use — brand origin stories that go beyond "founded in 1952," customer success narratives that put the member/customer as the hero not the institution, case study formats that prove ROI without reading like whitepapers, thought leadership angles that challenge industry orthodoxy, founder stories for fintech companies selling into FIs, employee culture stories that attract talent and build internal brand alignment, community impact narratives tied to CRA and reinvestment, financial wellness storytelling that builds trust with Gen Z and millennials, and conference/keynote narrative arcs for industry events. Stories should feel human, specific, and conviction-driven — not corporate, not safe, not the same "we care about you" messaging every FI runs. ${sharedContext}`,
+          };
+
+          const prompt = `Generate exactly 4 creative and practical ideas that combine the words "${word1}" and "${word2}" for ${categoryContext[selectedCategory]}
+
+Make the ideas innovative, unique, practical and achievable. Each idea should have a clear title followed by a detailed explanation. Vary scope and approach.
+
+Format as a numbered list: "1. [Idea Title] - [Detailed explanation in 1-2 sentences]"
+
+Example: "1. The Mirror Audit - A structured 90-day process where an outside strategist interviews customers, prospects, and lost deals to build an honest portrait of how the market actually perceives the institution, presented back to the C-suite as a gap analysis between brand intent and brand reality."
+
+Generate exactly 4 ideas. Make sure every idea has both a title AND a description separated by " - "`;
+
+          const response = await fetch('/.netlify/functions/anthropic-proxy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt }),
+          });
+
+          if (!response.ok) {
+            throw new Error('API request failed');
+          }
+
+          const data = await response.json();
+          setIdeas(data.response || 'Something went wrong. Try again.');
+        } catch (error) {
+          console.error('Error:', error);
+          setIdeas('Something went wrong. Try again.');
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      const resetApp = () => {
+        setWord1('');
+        setWord2('');
+        setSelectedCategory('');
+        setIdeas('');
+        setStarredIdeas(new Set());
+      };
+
+      const parsedIdeas = ideas ? parseIdeas(ideas) : [];
+
+      return (
+        <div style={{ fontFamily: "'Roboto Mono', monospace" }} className="min-h-screen bg-white text-black flex items-center justify-center p-4">
+          <div className="w-full max-w-4xl">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="inline-block mb-6">
+                <a href="/" style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900, fontSize: '0.85rem', letterSpacing: '0.15em', textDecoration: 'none' }} className="uppercase text-black hover:opacity-70 transition-opacity">
+                  BrandThnk
+                </a>
+              </div>
+              <h1 style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900 }} className="text-5xl text-black mb-4">
+                Brand <span style={{ backgroundColor: '#FFEB3B', padding: '0 6px' }}>Therapy</span>
+              </h1>
+              <p style={{ fontFamily: "'Roboto Mono', monospace", maxWidth: '520px', margin: '0 auto' }} className="text-sm text-black opacity-50 leading-relaxed">
+                Brand thinking applied to identity, products, and storytelling.
+              </p>
+            </div>
+
+            {/* Main Content Card */}
+            <div className="bg-white border-2 border-black p-8">
+              {/* Instructions */}
+              <div className="mb-8 pb-6 border-b-2 border-black">
+                <p style={{ fontFamily: "'Roboto Mono', monospace", lineHeight: 1.8 }} className="text-sm text-black opacity-50">
+                  Type your brand name or any two words that speak to your current challenge. Pick a session and let the tool run. Not every idea will be <em>the</em> one, but if it sparks something new you can run with, it counts.
+                </p>
+              </div>
+
+              {/* Word Inputs */}
+              <div className="mb-8">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="border-2 border-black p-6 relative" style={{ backgroundColor: '#F5F5F5' }}>
+                    <label style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.2em' }} className="block font-bold mb-3 text-black opacity-50 uppercase">
+                      Word 1
+                    </label>
+                    <input
+                      type="text"
+                      value={word1}
+                      onChange={(e) => setWord1(e.target.value)}
+                      placeholder="trust"
+                      style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 700 }}
+                      className="w-full text-2xl bg-transparent border-none outline-none text-black placeholder-gray-400"
+                    />
+                    <button
+                      onClick={() => setWord1(getRandomWord())}
+                      className="absolute top-4 right-4 p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
+                      title="Random word"
+                    >
+                      <Icon name="Shuffle" size={20} />
+                    </button>
+                  </div>
+                  <div className="border-2 border-black p-6 relative" style={{ backgroundColor: '#F5F5F5' }}>
+                    <label style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.2em' }} className="block font-bold mb-3 text-black opacity-50 uppercase">
+                      Word 2
+                    </label>
+                    <input
+                      type="text"
+                      value={word2}
+                      onChange={(e) => setWord2(e.target.value)}
+                      placeholder="friction"
+                      style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 700 }}
+                      className="w-full text-2xl bg-transparent border-none outline-none text-black placeholder-gray-400"
+                    />
+                    <button
+                      onClick={() => setWord2(getRandomWord())}
+                      className="absolute top-4 right-4 p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
+                      title="Random word"
+                    >
+                      <Icon name="Shuffle" size={20} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Session label */}
+              <div className="mb-4">
+                <span style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.2em' }} className="uppercase text-black opacity-50 font-bold">
+                  Pick a session
+                </span>
+              </div>
+
+              {/* Categories */}
+              <div className="mb-8">
+                <div className="grid grid-cols-3 gap-3">
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.id)}
+                      className="p-5 border-2 transition-all duration-150 text-left"
+                      style={{
+                        borderColor: '#000000',
+                        backgroundColor: selectedCategory === category.id ? '#FFEB3B' : '#F5F5F5',
+                        fontFamily: "'Roboto Mono', monospace",
+                      }}
+                    >
+                      <div className="text-2xl mb-2">{category.icon}</div>
+                      <div className="font-bold text-xs uppercase" style={{ letterSpacing: '0.05em' }}>{category.name}</div>
+                      <div className="mt-2 opacity-40" style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.6rem', lineHeight: 1.5 }}>{category.blurb}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Generate Button */}
+              {!ideas && (
+                <div className="mb-8">
+                  <button
+                    onClick={generateIdeas}
+                    disabled={isLoading || !word1.trim() || !word2.trim() || !selectedCategory}
+                    className="w-full py-6 text-lg uppercase tracking-widest transition-all duration-150 flex items-center justify-center gap-3 disabled:opacity-30 disabled:cursor-not-allowed"
+                    style={{
+                      fontFamily: "'Roboto Slab', serif",
+                      fontWeight: 900,
+                      backgroundColor: isLoading || !word1.trim() || !word2.trim() || !selectedCategory ? '#E0E0E0' : '#000000',
+                      color: isLoading || !word1.trim() || !word2.trim() || !selectedCategory ? '#999' : '#FFEB3B',
+                      border: '2px solid #000',
+                    }}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Icon name="Loader" size={20} className="animate-spin" />
+                        Working...
+                      </>
+                    ) : (
+                      'Start Session'
+                    )}
+                  </button>
+                </div>
+              )}
+
+              {/* Ideas Display */}
+              {ideas && parsedIdeas.length > 0 && (
+                <div className="mt-8">
+                  <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
+                    <h3 style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900 }} className="text-2xl text-black">
+                      Session Notes
+                    </h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        onClick={handleCopy}
+                        className="flex items-center gap-2 px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors"
+                        style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.1em' }}
+                      >
+                        <Icon name={copied ? "Check" : "Copy"} size={16} />
+                        <span className="uppercase font-bold">{copied ? 'Copied' : 'Copy'}</span>
+                      </button>
+                      <button
+                        onClick={handlePDFClick}
+                        disabled={isGeneratingPDF}
+                        className="flex items-center gap-2 px-5 py-2 border-2 border-black transition-colors disabled:opacity-50"
+                        style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.1em', backgroundColor: '#FFEB3B' }}
+                      >
+                        <Icon name={isGeneratingPDF ? "Loader" : "Download"} size={16} className={isGeneratingPDF ? "animate-spin" : ""} />
+                        <span className="uppercase font-bold">{isGeneratingPDF ? 'Creating...' : 'PDF'}</span>
+                      </button>
+                      <button
+                        onClick={resetApp}
+                        style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.75rem', letterSpacing: '0.1em' }}
+                        className="px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white uppercase font-bold transition-colors"
+                      >
+                        New Session
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Star callout */}
+                  <div className="mb-6 p-4 border-2 border-black flex items-center gap-3" style={{ backgroundColor: '#FFFDE7' }}>
+                    <Icon name="Star" size={20} fill="#FFEB3B" stroke="#000" strokeWidth={2} />
+                    <span style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.8rem', fontWeight: 700 }}>
+                      Star the ones worth exploring. They'll be marked in your PDF.
+                    </span>
+                  </div>
+
+                  {/* Meta line */}
+                  <div className="mb-6 pb-4 border-b-2 border-black flex items-center gap-4 flex-wrap" style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.1em' }}>
+                    <span className="uppercase opacity-50">Words:</span>
+                    <span className="font-bold">{word1} + {word2}</span>
+                    <span className="opacity-30">|</span>
+                    <span className="uppercase opacity-50">Session:</span>
+                    <span className="font-bold">{getCategoryName(selectedCategory)}</span>
+                    <span className="opacity-30">|</span>
+                    <span className="uppercase opacity-50">{parsedIdeas.length} ideas</span>
+                    {starredIdeas.size > 0 && (
+                      <>
+                        <span className="opacity-30">|</span>
+                        <span className="uppercase opacity-50">★ {starredIdeas.size} starred</span>
+                      </>
+                    )}
+                  </div>
+
+                  <div className="space-y-4">
+                    {parsedIdeas.map((idea, index) => (
+                      <div
+                        key={index}
+                        className="border-2 border-black p-6 relative transition-all duration-150"
+                        style={{ backgroundColor: starredIdeas.has(index) ? '#FFFDE7' : '#F5F5F5' }}
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="flex flex-col items-center gap-2 flex-shrink-0">
+                            <div
+                              className="w-8 h-8 flex items-center justify-center font-bold text-sm"
+                              style={{
+                                fontFamily: "'Roboto Slab', serif",
+                                fontWeight: 900,
+                                backgroundColor: '#FFEB3B',
+                                border: '2px solid #000',
+                              }}
+                            >
+                              {index + 1}
+                            </div>
+                            <button
+                              onClick={() => toggleStar(index)}
+                              className="p-1 transition-all duration-150"
+                              title={starredIdeas.has(index) ? 'Remove star' : 'Star this idea'}
+                            >
+                              <Icon
+                                name="Star"
+                                size={20}
+                                fill={starredIdeas.has(index) ? '#FFEB3B' : 'none'}
+                                stroke={starredIdeas.has(index) ? '#000' : '#ccc'}
+                                strokeWidth={2}
+                              />
+                            </button>
+                          </div>
+                          <div className="flex-1">
+                            <h4
+                              style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 700 }}
+                              className="text-lg text-black mb-2"
+                            >
+                              <span style={{ backgroundColor: '#FFEB3B', padding: '0 4px', display: 'inline' }}>
+                                {idea.title}
+                              </span>
+                            </h4>
+                            {idea.description && (
+                              <p style={{ fontFamily: "'Roboto Mono', monospace", lineHeight: 1.7 }} className="text-black opacity-70">
+                                {idea.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Session Summary / CTA Block */}
+                  <div className="mt-8 border-2 border-black p-8" style={{ backgroundColor: '#F5F5F5' }}>
+                    <h4 style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900 }} className="text-xl text-black mb-3">
+                      {starredIdeas.size > 0
+                        ? `You starred ${starredIdeas.size} idea${starredIdeas.size > 1 ? 's' : ''}. Here's what happens next.`
+                        : 'This is where the tool stops and the real work starts.'
+                      }
+                    </h4>
+                    <p style={{ fontFamily: "'Roboto Mono', monospace", lineHeight: 1.8 }} className="text-black opacity-60 mb-4">
+                      {starredIdeas.size > 0
+                        ? "BrandThnk helps banks, credit unions, and fintechs turn ideas like these into strategies their leadership will back. We work with marketing teams to sharpen positioning, build brand-driven growth plans, and make the internal case for brand investment."
+                        : "BrandThnk works with banks, credit unions, and fintechs who know their brand should be doing more but need a clearer path to get there. We help marketing leaders sharpen their positioning, align their team, and build the case that gets leadership behind the investment."
+                      }
+                    </p>
+                    <p style={{ fontFamily: "'Roboto Mono', monospace", lineHeight: 1.8 }} className="text-black opacity-60 mb-6">
+                      If any of this resonated, a 30-minute conversation will tell us both whether there's a fit.
+                    </p>
+                    <a
+                      href="https://calendar.app.google/RyJnkSz3VdxYh64x7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-3 py-4 px-8 transition-all duration-150 hover:opacity-90"
+                      style={{
+                        fontFamily: "'Roboto Slab', serif",
+                        fontWeight: 900,
+                        fontSize: '0.85rem',
+                        backgroundColor: '#000',
+                        color: '#FFEB3B',
+                        border: '2px solid #000',
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      <Icon name="Calendar" size={16} />
+                      Book Time
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="text-center mt-8 space-y-2">
+              <span style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900, fontSize: '0.75rem', letterSpacing: '0.15em' }} className="uppercase text-black block">
+                Built by BrandThnk
+              </span>
+              <a href="/" style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.05em' }} className="text-black opacity-50 hover:opacity-100 transition-opacity block">
+                brandthnk.co
+              </a>
+              <p style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.65rem', maxWidth: '400px', margin: '4px auto 0' }} className="text-black opacity-35 leading-relaxed">
+                A boutique consultancy for fintechs and FIs who want to build a growth brand.
+              </p>
+            </div>
+          </div>
+
+          {/* Email Gate Modal */}
+          {showEmailGate && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white border-2 border-black p-8 max-w-md w-full relative">
+                <button
+                  onClick={() => setShowEmailGate(false)}
+                  className="absolute top-4 right-4 p-1 opacity-40 hover:opacity-100 transition-opacity"
+                >
+                  <Icon name="X" size={20} />
+                </button>
+                <h4 style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 900 }} className="text-xl mb-3">
+                  Get the Full PDF
+                </h4>
+                <p style={{ fontFamily: "'Roboto Mono', monospace", lineHeight: 1.7 }} className="text-sm opacity-60 mb-6">
+                  Drop your email and we'll generate a PDF you can share with your team.
+                </p>
+                <div className="flex gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleEmailSubmit()}
+                    placeholder="you@yourbank.com"
+                    style={{ fontFamily: "'Roboto Mono', monospace" }}
+                    className="flex-1 px-4 py-3 border-2 border-black bg-white outline-none text-sm"
+                  />
+                  <button
+                    onClick={handleEmailSubmit}
+                    disabled={!email.trim() || !email.includes('@')}
+                    className="px-6 py-3 border-2 border-black transition-all duration-150 disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2"
+                    style={{
+                      fontFamily: "'Roboto Slab', serif",
+                      fontWeight: 900,
+                      fontSize: '0.8rem',
+                      backgroundColor: !email.trim() || !email.includes('@') ? '#E0E0E0' : '#000',
+                      color: !email.trim() || !email.includes('@') ? '#999' : '#FFEB3B',
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Get PDF
+                  </button>
+                </div>
+                <p style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.6rem' }} className="mt-4 opacity-30">
+                  No drip campaigns. Your PDF opens immediately.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<BrandTherapyApp />);
+  </script>
+</body>
+</html>
