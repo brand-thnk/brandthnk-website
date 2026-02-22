@@ -1,7 +1,7 @@
 // Netlify Function: Anthropic API Proxy
 // Keeps API key server-side while allowing client requests
 
-export async function handler(event) {
+exports.handler = async (event, context) => {
   // CORS headers
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -89,4 +89,4 @@ export async function handler(event) {
       body: JSON.stringify({ error: 'Internal server error' }),
     };
   }
-}
+};

@@ -1,7 +1,7 @@
 // Netlify Function: Brand Therapy Email Capture
 // Sends to Beehiiv + logs to Google Sheet with session context
 
-export async function handler(event) {
+exports.handler = async (event, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -36,7 +36,7 @@ export async function handler(event) {
 
     // 1. Add to Beehiiv
     const beehiivApiKey = process.env.BEEHIIV_API_KEY;
-    const beehiivPublicationId = process.env.BEEHIIV_PUBLICATION_ID;
+    const beehiivPublicationId = process.env.BEEHIIV_PUBLICATION_ID || process.env.BEEHIIV_PUB_ID;
 
     if (beehiivApiKey && beehiivPublicationId) {
       try {
@@ -129,4 +129,4 @@ export async function handler(event) {
       body: JSON.stringify({ error: 'Internal server error' }),
     };
   }
-}
+};
