@@ -20,8 +20,8 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-  <!-- html2pdf.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Session Prompts Config -->
+  <script src="session-prompts.js"></script>
 
   <style>
     body { font-family: 'Roboto Mono', monospace; }
@@ -51,6 +51,17 @@
       return <span ref={ref} className={props.className} style={{ display: 'inline-flex', ...props.style }} />;
     };
 
+    // Get config from external file
+    const { sessions, buildSessionPrompt } = window.BrandTherapyConfig;
+
+    // Build categories array from sessions config
+    const categories = Object.entries(sessions).map(([id, session]) => ({
+      id,
+      name: session.name,
+      icon: session.icon,
+      blurb: session.blurb,
+    }));
+
     const BrandTherapyApp = () => {
       const [word1, setWord1] = useState('');
       const [word2, setWord2] = useState('');
@@ -76,12 +87,6 @@
       ];
 
       const getRandomWord = () => wordBank[Math.floor(Math.random() * wordBank.length)];
-
-      const categories = [
-        { id: 'identity', name: 'Identity', icon: '🪞', blurb: 'See your brand the way the market does' },
-        { id: 'products', name: 'Products', icon: '📦', blurb: 'Product ideas from a brand lens' },
-        { id: 'storytelling', name: 'Storytelling', icon: '📖', blurb: 'Build narratives people repeat' },
-      ];
 
       const getCategoryName = (id) => categories.find(c => c.id === id)?.name || id;
 
@@ -286,25 +291,8 @@
         setStarredIdeas(new Set());
 
         try {
-          const sharedContext = 'The audience is US banks, credit unions, regional FIs, and fintechs selling software/platforms to those institutions. All ideas should be grounded in the BrandThnk philosophy: brand is not your logo — it is your operating system, your momentum, your economic moat. Think brand-first, not product-first. Challenge the sea of sameness in financial services.';
-
-          const categoryContext = {
-            identity: `brand identity and positioning for financial services. This is the mirror-holding session — helping FIs and fintechs see themselves how the market actually sees them, not how they wish to be seen. Ideas should address: stripping away the logo, tagline, and rate sheet to find what's actually there; using the F/M/B Model to align function, meaning, and brand; April Dunford's positioning framework — competitive alternatives define differentiation, find the market frame that makes your value obvious, deliberate positioning over default positioning; Emily Heyward's insistence on grounding brand in a real problem not a solution, and defining what people should feel when they interact with you; Marty Neumeier's definition of brand as a gut feeling and his question "what makes you the only?"; the hard truth that most FIs are interchangeable and most fintechs sound identical. Ideas should force uncomfortable clarity — the kind that makes a room go quiet before the real work begins. ${sharedContext}`,
-
-            products: `new product concepts for US banks, credit unions, and fintechs. For FIs, think deposit products, lending innovations, financial wellness tools, youth/Gen Z accounts, small business banking packages, digital-first account experiences, or member loyalty programs. For fintechs selling to FIs, think SaaS platforms, API integrations, white-label solutions, compliance automation tools, onboarding platforms, data analytics dashboards, or AI-powered underwriting. Ideas should solve real pain points and create competitive differentiation. Products should embody the brand, not just serve a function — every product is a brand expression. ${sharedContext}`,
-
-            storytelling: `content storytelling for US banks, credit unions, and fintechs. Ideas should be narrative frameworks and story concepts that financial services companies can actually use — brand origin stories that go beyond "founded in 1952," customer success narratives that put the member/customer as the hero not the institution, case study formats that prove ROI without reading like whitepapers, thought leadership angles that challenge industry orthodoxy, founder stories for fintech companies selling into FIs, employee culture stories that attract talent and build internal brand alignment, community impact narratives tied to CRA and reinvestment, financial wellness storytelling that builds trust with Gen Z and millennials, and conference/keynote narrative arcs for industry events. Stories should feel human, specific, and conviction-driven — not corporate, not safe, not the same "we care about you" messaging every FI runs. ${sharedContext}`,
-          };
-
-          const prompt = `Generate exactly 4 creative and practical ideas that combine the words "${word1}" and "${word2}" for ${categoryContext[selectedCategory]}
-
-Make the ideas innovative, unique, practical and achievable. Each idea should have a clear title followed by a detailed explanation. Vary scope and approach.
-
-Format as a numbered list: "1. [Idea Title] - [Detailed explanation in 1-2 sentences]"
-
-Example: "1. The Mirror Audit - A structured 90-day process where an outside strategist interviews customers, prospects, and lost deals to build an honest portrait of how the market actually perceives the institution, presented back to the C-suite as a gap analysis between brand intent and brand reality."
-
-Generate exactly 4 ideas. Make sure every idea has both a title AND a description separated by " - "`;
+          // Use prompt from config file
+          const prompt = buildSessionPrompt(selectedCategory, word1, word2);
 
           const response = await fetch('/.netlify/functions/anthropic-proxy', {
             method: 'POST',
@@ -378,13 +366,18 @@ Generate exactly 4 ideas. Make sure every idea has both a title AND a descriptio
                       style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 700 }}
                       className="w-full text-2xl bg-transparent border-none outline-none text-black placeholder-gray-400"
                     />
-                    <button
-                      onClick={() => setWord1(getRandomWord())}
-                      className="absolute top-4 right-4 p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
-                      title="Random word"
-                    >
-                      <Icon name="Shuffle" size={20} />
-                    </button>
+                    <div className="absolute top-4 right-4 flex flex-col items-center">
+                      <button
+                        onClick={() => setWord1(getRandomWord())}
+                        className="p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
+                        title="Random word"
+                      >
+                        <Icon name="Shuffle" size={20} />
+                      </button>
+                      <span style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.5rem', opacity: 0.3 }}>
+                        randomize
+                      </span>
+                    </div>
                   </div>
                   <div className="border-2 border-black p-6 relative" style={{ backgroundColor: '#F5F5F5' }}>
                     <label style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.7rem', letterSpacing: '0.2em' }} className="block font-bold mb-3 text-black opacity-50 uppercase">
@@ -398,13 +391,18 @@ Generate exactly 4 ideas. Make sure every idea has both a title AND a descriptio
                       style={{ fontFamily: "'Roboto Slab', serif", fontWeight: 700 }}
                       className="w-full text-2xl bg-transparent border-none outline-none text-black placeholder-gray-400"
                     />
-                    <button
-                      onClick={() => setWord2(getRandomWord())}
-                      className="absolute top-4 right-4 p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
-                      title="Random word"
-                    >
-                      <Icon name="Shuffle" size={20} />
-                    </button>
+                    <div className="absolute top-4 right-4 flex flex-col items-center">
+                      <button
+                        onClick={() => setWord2(getRandomWord())}
+                        className="p-2 text-black opacity-30 hover:opacity-100 transition-opacity duration-200"
+                        title="Random word"
+                      >
+                        <Icon name="Shuffle" size={20} />
+                      </button>
+                      <span style={{ fontFamily: "'Roboto Mono', monospace", fontSize: '0.5rem', opacity: 0.3 }}>
+                        randomize
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
