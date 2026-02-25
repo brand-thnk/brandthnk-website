@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Assumption Audit — BrandThnk</title>
+<meta name="description" content="Surface, label, and prioritize the beliefs shaping your strategy before they become traps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --yellow: #FFEB3B;
+    --gray: #666666;
+    --light-gray: #F5F5F5;
+    --border: #e0e0e0;
+    --font-heading: 'Roboto Slab', serif;
+    --font-body: 'Roboto Mono', monospace;
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--black);
+  }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Navigation - matches brandthnk.co */
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 16px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border-bottom: 1px solid var(--black);
+  }
+
+  .nav-wordmark {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-tool-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-tool-label::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: var(--yellow);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 140px 40px 50px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 .accent {
+    background: var(--yellow);
+    padding: 0 8px;
+    display: inline;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: rgba(0,0,0,0.7);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .instructions-block {
+    border-left: 4px solid var(--yellow);
+    padding: 20px 24px;
+    background: var(--light-gray);
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--black);
+  }
+
+  .instructions-block strong {
+    font-weight: 700;
+  }
+
+  /* Main layout */
+  .main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* Section headers */
+  .section-header {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    color: var(--black);
+    margin: 64px 0 8px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--black);
+  }
+
+  .section-desc {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  /* Add belief form */
+  .add-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .add-form textarea {
+    flex: 1;
+    min-width: 200px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 14px 16px;
+    border: 2px solid var(--black);
+    background: var(--white);
+    color: var(--black);
+    resize: none;
+    line-height: 1.5;
+    min-height: 54px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .add-form textarea:focus {
+    border-color: var(--black);
+    box-shadow: 0 0 0 3px var(--yellow);
+  }
+
+  .add-form textarea::placeholder { color: #999; }
+
+  .btn-add {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 28px;
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+    height: 54px;
+  }
+
+  .btn-add:hover { transform: scale(1.03); }
+
+  /* Belief cards */
+  .beliefs-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .belief-card {
+    border: 2px solid var(--black);
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+    align-items: center;
+    transition: border-color 0.15s, background 0.15s;
+    animation: slideIn 0.25s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .belief-card.proven { border-left: 6px solid #22c55e; }
+  .belief-card.assumed { border-left: 6px solid #f97316; }
+  .belief-card.inherited { border-left: 6px solid #ef4444; }
+  .belief-card.unlabeled { border-left: 6px solid var(--border); }
+
+  .belief-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--black);
+  }
+
+  .label-select {
+    font-family: var(--font-body);
+    font-size: 12px;
+    padding: 8px 32px 8px 12px;
+    border: 2px solid var(--black);
+    background: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23000'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    min-width: 170px;
+  }
+
+  .label-select:focus { box-shadow: 0 0 0 3px var(--yellow); }
+
+  .btn-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray);
+    font-size: 20px;
+    padding: 4px 8px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+
+  .btn-delete:hover { color: #ef4444; }
+
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    border: 2px dashed var(--border);
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* Category prompts */
+  .category-prompts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 48px 0;
+  }
+
+  .cat-card {
+    padding: 24px 20px;
+    border: 2px solid var(--black);
+    position: relative;
+    transition: background 0.15s;
+  }
+
+  .cat-card:hover { background: var(--light-gray); }
+
+  .cat-dot {
+    width: 12px;
+    height: 12px;
+    margin-bottom: 12px;
+  }
+
+  .cat-card.proven .cat-dot { background: #22c55e; }
+  .cat-card.assumed .cat-dot { background: #f97316; }
+  .cat-card.inherited .cat-dot { background: #ef4444; }
+
+  .cat-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .cat-desc {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .cat-count {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--black);
+  }
+
+  /* Summary section */
+  .summary {
+    margin-top: 64px;
+    border: 3px solid var(--yellow);
+    padding: 32px;
+    display: none;
+  }
+
+  .summary.visible { display: block; animation: slideIn 0.3s ease; }
+
+  .summary h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--black);
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .summary-stat {
+    text-align: center;
+    padding: 24px;
+    background: var(--light-gray);
+  }
+
+  .summary-stat .num {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .summary-stat .label-text {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .risk-bar-wrap { margin-bottom: 32px; }
+
+  .risk-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    margin-bottom: 10px;
+  }
+
+  .risk-bar-track {
+    height: 14px;
+    background: var(--light-gray);
+    border: 2px solid var(--black);
+    overflow: hidden;
+  }
+
+  .risk-bar-fill {
+    height: 100%;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    background: var(--yellow);
+  }
+
+  .risk-bar-fill.high { background: #ef4444; }
+  .risk-bar-fill.medium { background: #f97316; }
+  .risk-bar-fill.low { background: #22c55e; }
+
+  .diagnosis {
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 24px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .diagnosis strong { color: var(--yellow); }
+
+  /* Priority list */
+  .priority-section { margin-top: 32px; }
+
+  .priority-section h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .priority-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .priority-item:last-child { border-bottom: none; }
+
+  .priority-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .priority-tag.assumed { background: #fff3e0; color: #e65100; }
+  .priority-tag.inherited { background: #fef2f2; color: #c62828; }
+
+  /* Export button */
+  .btn-export {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 28px;
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-top: 24px;
+  }
+
+  .btn-export:hover { background: var(--black); color: var(--white); }
+
+  /* Starter prompts */
+  .starter-prompts {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: -16px;
+    margin-bottom: 24px;
+  }
+
+  .starter-prompts span {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+
+  .starter-prompts span:hover {
+    color: var(--black);
+  }
+
+  /* Footer */
+  .footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 80px;
+  }
+
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+  }
+
+  .footer-links a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-underline-offset: 4px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .site-nav { padding: 16px 24px; }
+    .nav-tool-label { display: none; }
+    .hero { padding: 120px 24px 40px; }
+    .main { padding: 0 24px 60px; }
+    .category-prompts { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .belief-card { grid-template-columns: 1fr; gap: 12px; }
+    .add-form { flex-direction: column; }
+    .btn-add { width: 100%; }
+    .footer { padding: 40px 24px; }
+    .footer-grid { flex-direction: column; gap: 24px; }
+  }
+
+  /* Print */
+  @media print {
+    .site-nav { display: none; }
+    .hero { padding-top: 40px; }
+    .add-form, .btn-delete, .btn-export { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://brandthnk.co" class="nav-wordmark">BrandThnk</a>
+  <div class="nav-tool-label">Interactive Tool</div>
+</nav>
+
+<section class="hero">
+  <p class="hero-tag">Framework</p>
+  <h1>The <span class="accent">Assumption</span> Audit</h1>
+  <p class="hero-sub">The most dangerous words in a marketing meeting are: "We already know that." This tool helps you surface, label, and prioritize the beliefs shaping your strategy before they become traps.</p>
+  <div class="instructions-block">
+    <strong>How to use:</strong> List every belief your team holds about your audience, brand, and market. Don't filter for importance. Label each one honestly. Then focus your next quarter's learning on converting <em>Assumed True</em> and <em>Inherited Truth</em> into <em>Proven Recently</em>.
+  </div>
+</section>
+
+<main class="main">
+
+  <!-- Category legend -->
+  <div class="category-prompts">
+    <div class="cat-card proven">
+      <div class="cat-dot"></div>
+      <div class="cat-label">Proven Recently</div>
+      <div class="cat-desc">Supported by data from the last 12 months. Current evidence that this is true in today's market.</div>
+      <div class="cat-count" id="count-proven">0</div>
+    </div>
+    <div class="cat-card assumed">
+      <div class="cat-dot"></div>
+      <div class="cat-label">Assumed True</div>
+      <div class="cat-desc">You think it's right but have no current proof. The dangerous category.</div>
+      <div class="cat-count" id="count-assumed">0</div>
+    </div>
+    <div class="cat-card inherited">
+      <div class="cat-dot"></div>
+      <div class="cat-label">Inherited Truth</div>
+      <div class="cat-desc">You say it because it's always been said. Nobody remembers where it came from.</div>
+      <div class="cat-count" id="count-inherited">0</div>
+    </div>
+  </div>
+
+  <!-- Add belief -->
+  <h2 class="section-header">Your Beliefs</h2>
+  <p class="section-desc">Add every belief your team holds as fact. Start with audience, then brand, then market. Aim for at least 10 before you stop.</p>
+
+  <div class="add-form">
+    <textarea id="new-belief" placeholder="e.g. Our customers are primarily over 55..." rows="2"></textarea>
+    <button class="btn-add" onclick="addBelief()">+ Add Belief</button>
+  </div>
+
+  <p class="starter-prompts">
+    <strong>Prompts:</strong>&nbsp;
+    <span onclick="setPrompt('Our customers prefer in-person service over digital.')">In-person preference</span> ·
+    <span onclick="setPrompt('Price is the main decision driver for our segment.')">Price sensitivity</span> ·
+    <span onclick="setPrompt('Our target market is aging and shrinking.')">Market demographics</span> ·
+    <span onclick="setPrompt('Brand awareness is strong in our footprint.')">Brand awareness</span>
+  </p>
+
+  <div class="beliefs-list" id="beliefs-list">
+    <div class="empty-state" id="empty-state">
+      No beliefs added yet.<br>Start by listing what your team treats as fact.
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary" id="summary">
+    <h2>Audit Results</h2>
+    <div class="summary-grid">
+      <div class="summary-stat">
+        <span class="num" id="sum-proven">0</span>
+        <span class="label-text">Proven Recently</span>
+      </div>
+      <div class="summary-stat">
+        <span class="num" id="sum-assumed">0</span>
+        <span class="label-text">Assumed True</span>
+      </div>
+      <div class="summary-stat">
+        <span class="num" id="sum-inherited">0</span>
+        <span class="label-text">Inherited Truth</span>
+      </div>
+    </div>
+
+    <div class="risk-bar-wrap">
+      <p class="risk-label">Assumption Risk Score</p>
+      <div class="risk-bar-track">
+        <div class="risk-bar-fill" id="risk-bar" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="diagnosis" id="diagnosis">
+      Label your beliefs above to see your diagnosis.
+    </div>
+
+    <div class="priority-section" id="priority-section" style="display:none;">
+      <h3>Beliefs to Verify This Quarter</h3>
+      <div id="priority-list"></div>
+    </div>
+
+    <button class="btn-export" onclick="exportResults()">Export Results</button>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">BrandThnk</div>
+      <div class="footer-tagline">Build a Growth Brand</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://brandthnk.co/briefings/the-assumption-trap">Read the Briefing</a>
+      <a href="https://brandthnk.co/book/">Get the Book</a>
+      <a href="https://brandthnk.co">brandthnk.co</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let beliefs = [];
+  let nextId = 0;
+
+  function setPrompt(text) {
+    document.getElementById('new-belief').value = text;
+    document.getElementById('new-belief').focus();
+  }
+
+  function addBelief() {
+    const input = document.getElementById('new-belief');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const belief = { id: nextId++, text, label: '' };
+    beliefs.push(belief);
+    input.value = '';
+    input.focus();
+    renderBeliefs();
+    updateSummary();
+  }
+
+  document.getElementById('new-belief').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      addBelief();
+    }
+  });
+
+  function deleteBelief(id) {
+    beliefs = beliefs.filter(b => b.id !== id);
+    renderBeliefs();
+    updateSummary();
+  }
+
+  function updateLabel(id, label) {
+    const belief = beliefs.find(b => b.id === id);
+    if (belief) { belief.label = label; }
+    renderBeliefs();
+    updateSummary();
+  }
+
+  function renderBeliefs() {
+    const list = document.getElementById('beliefs-list');
+    const empty = document.getElementById('empty-state');
+
+    if (beliefs.length === 0) {
+      list.innerHTML = '';
+      list.appendChild(empty);
+      empty.style.display = 'block';
+      return;
+    }
+
+    empty.style.display = 'none';
+    list.innerHTML = '';
+
+    beliefs.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'belief-card ' + (b.label || 'unlabeled');
+
+      card.innerHTML = `
+        <div class="belief-text">${escapeHtml(b.text)}</div>
+        <select class="label-select" onchange="updateLabel(${b.id}, this.value)">
+          <option value="" ${!b.label ? 'selected' : ''}>— Label this belief —</option>
+          <option value="proven" ${b.label === 'proven' ? 'selected' : ''}>Proven Recently</option>
+          <option value="assumed" ${b.label === 'assumed' ? 'selected' : ''}>Assumed True</option>
+          <option value="inherited" ${b.label === 'inherited' ? 'selected' : ''}>Inherited Truth</option>
+        </select>
+        <button class="btn-delete" onclick="deleteBelief(${b.id})" title="Remove">×</button>
+      `;
+
+      list.appendChild(card);
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function updateSummary() {
+    const labeled = beliefs.filter(b => b.label);
+    const proven = beliefs.filter(b => b.label === 'proven').length;
+    const assumed = beliefs.filter(b => b.label === 'assumed').length;
+    const inherited = beliefs.filter(b => b.label === 'inherited').length;
+    const total = labeled.length;
+
+    document.getElementById('count-proven').textContent = proven;
+    document.getElementById('count-assumed').textContent = assumed;
+    document.getElementById('count-inherited').textContent = inherited;
+
+    if (total === 0 && beliefs.length === 0) {
+      document.getElementById('summary').classList.remove('visible');
+      return;
+    }
+
+    document.getElementById('summary').classList.add('visible');
+    document.getElementById('sum-proven').textContent = proven;
+    document.getElementById('sum-assumed').textContent = assumed;
+    document.getElementById('sum-inherited').textContent = inherited;
+
+    let risk = 0;
+    if (total > 0) {
+      risk = Math.round(((assumed + (inherited * 1.5)) / (total + (beliefs.filter(b=>!b.label).length * 0.5))) * 100);
+      risk = Math.min(risk, 100);
+    }
+
+    const bar = document.getElementById('risk-bar');
+    bar.style.width = risk + '%';
+    bar.className = 'risk-bar-fill ' + (risk > 60 ? 'high' : risk > 35 ? 'medium' : 'low');
+
+    const diag = document.getElementById('diagnosis');
+    const unlabeled = beliefs.filter(b => !b.label).length;
+
+    if (total === 0) {
+      diag.innerHTML = `You have <strong>${unlabeled} belief${unlabeled !== 1 ? 's' : ''}</strong> waiting to be labeled. Start with the ones that feel most obviously true — those are often the most dangerous.`;
+    } else if (risk > 60) {
+      diag.innerHTML = `<strong>High assumption risk.</strong> ${Math.round(((assumed + inherited) / total) * 100)}% of your labeled beliefs lack current evidence. Your strategy is likely built on memory, not signal. The next 90 days should be about verification, not execution.`;
+    } else if (risk > 35) {
+      diag.innerHTML = `<strong>Moderate assumption risk.</strong> You have a real mix here. The proven beliefs give you a foundation — now focus on stress-testing the assumed and inherited ones before they quietly shape decisions in the wrong direction.`;
+    } else if (total > 0) {
+      diag.innerHTML = `<strong>Low assumption risk.</strong> Most of your beliefs are recently verified. That's good — but it's worth asking whether you're capturing enough beliefs that feel uncomfortable or counterintuitive. The safest-sounding beliefs are sometimes the most calcified.`;
+    }
+
+    const atRisk = beliefs.filter(b => b.label === 'assumed' || b.label === 'inherited');
+    const prioritySection = document.getElementById('priority-section');
+    const priorityList = document.getElementById('priority-list');
+
+    if (atRisk.length > 0) {
+      prioritySection.style.display = 'block';
+      priorityList.innerHTML = atRisk.map(b => `
+        <div class="priority-item">
+          <span class="priority-tag ${b.label}">${b.label === 'assumed' ? 'Assumed' : 'Inherited'}</span>
+          <span>${escapeHtml(b.text)}</span>
+        </div>
+      `).join('');
+    } else {
+      prioritySection.style.display = 'none';
+    }
+  }
+
+  function exportResults() {
+    const proven = beliefs.filter(b => b.label === 'proven');
+    const assumed = beliefs.filter(b => b.label === 'assumed');
+    const inherited = beliefs.filter(b => b.label === 'inherited');
+    const unlabeled = beliefs.filter(b => !b.label);
+
+    let output = `ASSUMPTION AUDIT\n`;
+    output += `Generated: ${new Date().toLocaleDateString()}\n`;
+    output += `${'─'.repeat(50)}\n\n`;
+    output += `TOTALS: ${proven.length} Proven  |  ${assumed.length} Assumed  |  ${inherited.length} Inherited  |  ${unlabeled.length} Unlabeled\n\n`;
+
+    if (proven.length) {
+      output += `PROVEN RECENTLY (${proven.length})\n${'-'.repeat(30)}\n`;
+      proven.forEach(b => output += `• ${b.text}\n`);
+      output += '\n';
+    }
+
+    if (assumed.length) {
+      output += `ASSUMED TRUE — VERIFY THIS QUARTER (${assumed.length})\n${'-'.repeat(30)}\n`;
+      assumed.forEach(b => output += `• ${b.text}\n`);
+      output += '\n';
+    }
+
+    if (inherited.length) {
+      output += `INHERITED TRUTHS — CHALLENGE THESE (${inherited.length})\n${'-'.repeat(30)}\n`;
+      inherited.forEach(b => output += `• ${b.text}\n`);
+      output += '\n';
+    }
+
+    output += `\n─────────────────────────────────────────────────\n`;
+    output += `BrandThnk  |  brandthnk.co\n`;
+    output += `Read the briefing: brandthnk.co/briefings/the-assumption-trap\n`;
+
+    const blob = new Blob([output], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'assumption-audit.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>
