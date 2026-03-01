@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Diagnostic Discipline Framework — BrandThnk</title>
+    <meta name="description" content="A systematic six-step approach to problem discovery that separates high-performing growth teams from everyone else.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a {
+            color: var(--black);
+        }
+
+        /* Navigation */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .nav-wordmark {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        /* Main Content */
+        .framework-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 140px 40px 100px;
+        }
+
+        .framework-domain {
+            font-family: var(--font-body);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--black);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .framework-title {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .framework-subtitle {
+            font-family: var(--font-body);
+            font-size: 20px;
+            line-height: 1.6;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 48px;
+            max-width: 65ch;
+        }
+
+        .framework-personas {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 48px;
+            font-style: italic;
+        }
+
+        .framework-intro {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .framework-content h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin: 56px 0 28px 0;
+        }
+
+        .framework-content h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+            margin: 40px 0 20px 0;
+        }
+
+        .framework-content h4 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin: 28px 0 16px 0;
+        }
+
+        .framework-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            max-width: 70ch;
+        }
+
+        .framework-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .framework-content strong {
+            font-weight: 700;
+        }
+
+        .framework-content em {
+            font-style: italic;
+        }
+
+        .framework-content a {
+            color: var(--black);
+            text-decoration: underline;
+            text-decoration-color: var(--yellow);
+            text-underline-offset: 4px;
+        }
+
+        .framework-content a:hover {
+            background: var(--yellow);
+        }
+
+        .framework-content ul {
+            margin: 24px 0;
+            padding-left: 28px;
+        }
+
+        .framework-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .framework-content ul li::marker {
+            color: var(--black);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: var(--black);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        .process-box {
+            background: var(--offwhite);
+            border: 2px solid var(--black);
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .process-box h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .example-box {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .example-label {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .toolkit {
+            background: var(--yellow);
+            padding: 40px;
+            margin: 56px 0;
+        }
+
+        .toolkit h2 {
+            margin-top: 0;
+            margin-bottom: 32px;
+        }
+
+        .toolkit-item {
+            margin-bottom: 32px;
+        }
+
+        .toolkit-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .toolkit-item h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .checklist {
+            background: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .checklist ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 8px;
+        }
+
+        .checklist li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+            margin: 56px 0;
+        }
+
+        /* Footer */
+        .framework-footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-back {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .footer-back:hover {
+            text-decoration-color: var(--yellow);
+        }
+
+        .footer-subscribe {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 700;
+            background: var(--yellow);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .footer-subscribe:hover {
+            transform: scale(1.03);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-nav {
+                padding: 16px 24px;
+            }
+
+            .framework-page {
+                padding: 120px 24px 60px;
+            }
+
+            .framework-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .process-box {
+                padding: 24px;
+            }
+
+            .toolkit {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .site-nav {
+                display: none;
+            }
+
+            .framework-page {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="../index.html" class="nav-wordmark">BrandThnk</a>
+        <a href="../index.html#frameworks" class="nav-back">&larr; Back to Frameworks</a>
+    </nav>
+
+    <main class="framework-page">
+        <div class="framework-domain">Growth Strategy</div>
+        <h1 class="framework-title">The Diagnostic Discipline: Why Most Growth Teams Fail (And How to Fix It)</h1>
+        <p class="framework-subtitle">A systematic six-step approach to problem discovery that separates high-performing growth teams from everyone else.</p>
+        <p class="framework-personas"><strong>Target Personas:</strong> Grace (execution discipline), Marcus (growth intelligence), Keith (strategic ROI)</p>
+
+        <div class="framework-intro">
+            <strong>Core Insight:</strong> The teams that consistently produce outsized results don't have better execution—they have better diagnosis. When you understand the problem deeply, even small solutions produce massive results.
+        </div>
+
+        <div class="framework-content">
+            <h2>The Problem Every Growth Team Faces</h2>
+            <p>Your growth team analyzes the data, identifies a bottleneck, and immediately jumps to solutions. Checkout conversion is low? Let's redesign the checkout page. Email open rates are declining? Let's test new subject lines. User engagement is flat? Let's copy what worked for [insert successful company].</p>
+            <p>Six months later, you've run dozens of tests with minimal impact. The bottlenecks remain. The real problems were never diagnosed.</p>
+            <p><strong>You're operating like a bad doctor: symptom → prescription. No diagnosis.</strong></p>
+
+            <h2>The Case for Diagnostic Discipline</h2>
+            <p>At Duolingo, daily active users had stalled. The team's first two attempts followed the standard playbook—they saw slow growth and jumped straight to solutions. They borrowed game mechanics from Gardenscapes (failed), copied Uber's referral program (excluded the exact users it needed), and burned months on minimal-impact tests.</p>
+            <p><strong>The turning point:</strong> They stopped shipping and started diagnosing. They built a detailed growth model, segmented users by engagement, and ran sensitivity analysis on every lever. <strong>Result:</strong> Current user retention rate was 5x more impactful than any other factor.</p>
+            <p>That single diagnostic finding reoriented their entire strategy. They focused everything on retention instead of acquisition. <strong>Outcome:</strong> 4.5x DAU growth over four years in a mature product category.</p>
+            <p><strong>The difference wasn't better execution. It was better diagnosis.</strong></p>
+
+            <div class="process-box">
+                <h2>The Six-Step Diagnostic Framework</h2>
+                <p>Most growth teams excel at Solution Discovery—hypothesis, test, analyze, iterate. What they skip entirely is Problem Discovery. Here's the systematic approach that separates high-performing teams from everyone else:</p>
+            </div>
+
+            <h3><span class="step-number">1</span>Define Goal and Constraints</h3>
+            <p><strong>The Problem:</strong> "Grow revenue" isn't a goal—it's a direction without actionable parameters.</p>
+            <p><strong>The Fix:</strong> Specify the destination, investment capacity, and timeline.</p>
+            <ul>
+                <li><strong>Weak:</strong> "Increase customer acquisition"</li>
+                <li><strong>Strong:</strong> "Add $400K MRR within 90 days without increasing CAC more than 15%"</li>
+            </ul>
+
+            <div class="example-box">
+                <div class="example-label">For Community FIs:</div>
+                <p>"Grow deposits" becomes "Increase consumer deposits by $50M in 6 months while maintaining current acquisition cost per account."</p>
+            </div>
+
+            <div class="example-box">
+                <div class="example-label">For Fintech Growth:</div>
+                <p>"Scale our community bank partnership channel" becomes "Add 25 community bank partners generating $2M ARR within 12 months using existing sales team capacity."</p>
+            </div>
+
+            <h3><span class="step-number">2</span>Map the Levers</h3>
+            <p><strong>The Problem:</strong> Teams jump between tactics without understanding how they connect to business outcomes.</p>
+            <p><strong>The Fix:</strong> Build a growth model that breaks your North Star into controllable inputs.</p>
+
+            <div class="example-box">
+                <div class="example-label">Example Progression:</div>
+                <ul>
+                    <li>Revenue = Customers × Revenue per Customer</li>
+                    <li>Customers = Leads × Conversion Rate</li>
+                    <li>Leads = Website Visits × Sign-up Rate</li>
+                    <li>Website Visits = Organic + Paid + Referral + Direct</li>
+                </ul>
+                <p>Keep decomposing until you reach levers you can directly influence through marketing, product, or operational changes.</p>
+            </div>
+
+            <div class="example-box">
+                <div class="example-label">For Financial Services:</div>
+                <ul>
+                    <li>Deposit Growth = New Accounts × Average Deposit + Existing Accounts × Deposit Increase</li>
+                    <li>New Accounts = Marketing Qualified Leads × Application Rate × Approval Rate</li>
+                    <li>MQLs = Content Engagement × Lead Magnet Conversion + Event Attendance × Follow-up Conversion</li>
+                </ul>
+            </div>
+
+            <h3><span class="step-number">3</span>Identify High-Impact Levers</h3>
+            <p><strong>The Problem:</strong> Teams choose tactics based on what "feels" important or what worked elsewhere.</p>
+            <p><strong>The Fix:</strong> Let mathematics narrow the field through sensitivity analysis.</p>
+            <p><strong>Duolingo's Approach:</strong> If we improved each lever by the same amount, which moves our North Star metric most? Their analysis revealed retention had 5x more impact than acquisition.</p>
+
+            <div class="example-box">
+                <div class="example-label">For Smaller Organizations:</div>
+                <p>Work backwards from your goal. To add $50M in deposits in 6 months, would you need to increase account acquisition by 30% or average account size by 15%? Which is more achievable given your constraints?</p>
+            </div>
+
+            <h3><span class="step-number">4</span>Select the Problem Worth Solving</h3>
+            <p><strong>The Problem:</strong> Highest-impact levers aren't always the right problems to solve.</p>
+            <p><strong>The Fix:</strong> Balance impact, feasibility, and evidence of underperformance.</p>
+
+            <div class="process-box">
+                <h4>Evaluation Criteria:</h4>
+                <ul>
+                    <li><strong>Impact:</strong> How much does moving this lever affect your North Star?</li>
+                    <li><strong>Feasibility:</strong> Can you actually influence this with available resources?</li>
+                    <li><strong>Evidence:</strong> Is there clear proof this lever is genuinely underperforming?</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <div class="example-label">Example:</div>
+                <p>Email conversion might have higher mathematical impact than website conversion, but if your email deliverability is already industry-leading while your website converts 40% below benchmark, the website is the right problem to solve.</p>
+            </div>
+
+            <h3><span class="step-number">5</span>Diagnose Before You Prescribe</h3>
+            <p><strong>The Problem:</strong> Teams skip straight from problem selection to solution brainstorming.</p>
+            <p><strong>The Fix:</strong> Build a comprehensive case for why the lever is stuck before generating solutions.</p>
+
+            <div class="process-box">
+                <h4>Investigation Methods:</h4>
+                <ul>
+                    <li><strong>User Interviews:</strong> Why do qualified prospects not convert? What objections or confusion arise?</li>
+                    <li><strong>Internal Intelligence:</strong> What do sales, support, and customer success teams hear repeatedly?</li>
+                    <li><strong>Historical Data:</strong> When did performance change? What else changed simultaneously?</li>
+                    <li><strong>Competitive Analysis:</strong> How do similar organizations handle this challenge?</li>
+                    <li><strong>Funnel Analysis:</strong> What happens upstream that affects this lever's performance?</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <div class="example-label">Example:</div>
+                <p>Low website conversion could be caused by traffic quality (wrong audience), value communication (unclear benefits), trust signals (insufficient social proof), or friction (complex forms). Each root cause requires completely different solutions.</p>
+            </div>
+
+            <h3><span class="step-number">6</span>Enter Solution Discovery</h3>
+            <p><strong>The Fix:</strong> Now the conventional growth playbook works because it's grounded in real evidence.</p>
+            <p>Generate hypotheses based on root cause analysis. Test systematically. Measure against the specific lever you've diagnosed. Iterate based on learning rather than opinion.</p>
+
+            <h2>Why This Changes Everything</h2>
+            <p><strong>Magnitude of Outcomes:</strong> Getting Problem Discovery right doesn't just improve test success rates—it changes the scale of results. Grammarly achieved 8x lift from changing two words because they diagnosed the right problem first. Small solutions produce massive results when they address genuine root causes.</p>
+            <p><strong>Resource Efficiency:</strong> Diagnostic discipline prevents wasted effort on irrelevant optimizations. Better to spend two weeks diagnosing the right problem than six months testing solutions to the wrong one.</p>
+            <p><strong>Strategic Clarity:</strong> Teams with diagnostic discipline develop intuition about what actually drives their business versus what feels important or worked elsewhere.</p>
+
+            <h2>Application for Different Contexts</h2>
+
+            <h3>For Community FI Marketing Teams (Grace)</h3>
+            <p><strong>Common Symptom:</strong> Low digital engagement among existing members</p>
+            <p><strong>Typical Response:</strong> Copy successful digital campaigns from larger banks</p>
+            <p><strong>Diagnostic Questions:</strong></p>
+            <ul>
+                <li>Are members aware digital services exist?</li>
+                <li>Do they understand the value proposition versus branch services?</li>
+                <li>Are there usability or trust barriers specific to your member base?</li>
+                <li>What drives digital adoption in similar institutions?</li>
+            </ul>
+            <p><strong>Better Approach:</strong> Diagnose why your specific members haven't adopted digital services before copying tactics that worked for different demographics.</p>
+
+            <h3>For Fintech Growth Leaders (Marcus)</h3>
+            <p><strong>Common Symptom:</strong> Slow enterprise sales cycles with community FIs</p>
+            <p><strong>Typical Response:</strong> Add more features or reduce pricing</p>
+            <p><strong>Diagnostic Questions:</strong></p>
+            <ul>
+                <li>What specific concerns do community FI decision-makers raise repeatedly?</li>
+                <li>How do successful deals differ from stalled ones in terms of evaluation process?</li>
+                <li>What do internal champions need to build the business case?</li>
+                <li>Which competitive factors actually influence decisions versus which you assume matter?</li>
+            </ul>
+            <p><strong>Better Approach:</strong> Understand the institutional buying process before adjusting product or pricing strategies.</p>
+
+            <h3>For C-Suite Strategic Planning (Keith)</h3>
+            <p><strong>Common Symptom:</strong> Marketing spend increasing faster than customer acquisition</p>
+            <p><strong>Typical Response:</strong> Cut marketing budget or demand more leads</p>
+            <p><strong>Diagnostic Questions:</strong></p>
+            <ul>
+                <li>Which marketing investments generate customers versus which generate activity?</li>
+                <li>Are conversion rate problems masquerading as lead volume problems?</li>
+                <li>Is product-market fit strong enough to support current acquisition strategies?</li>
+                <li>What changed about market conditions, competition, or customer behavior?</li>
+            </ul>
+            <p><strong>Better Approach:</strong> Diagnose whether you have a marketing efficiency problem, a market positioning problem, or a strategic alignment problem.</p>
+
+            <h2>Implementation Framework</h2>
+
+            <h3>Phase 1: Audit Current Approach (Week 1)</h3>
+            <p>Review your last six growth initiatives:</p>
+            <ul>
+                <li>What problems were you trying to solve?</li>
+                <li>How much diagnostic work preceded solution development?</li>
+                <li>What evidence supported your problem selection?</li>
+                <li>Which initiatives produced outsized results versus minimal impact?</li>
+            </ul>
+
+            <h3>Phase 2: Choose One High-Stakes Challenge (Week 2)</h3>
+            <p>Select a current growth bottleneck and apply the full six-step process:</p>
+            <ul>
+                <li>Define specific goals and constraints</li>
+                <li>Map all relevant levers mathematically</li>
+                <li>Identify high-impact opportunities through analysis, not assumption</li>
+                <li>Select the right problem balancing impact, feasibility, and evidence</li>
+                <li>Conduct thorough root cause diagnosis</li>
+                <li>Generate solutions based on evidence rather than best practices</li>
+            </ul>
+
+            <h3>Phase 3: Systematize Diagnostic Discipline (Weeks 3-4)</h3>
+            <p>Build diagnostic discipline into your growth process:</p>
+            <ul>
+                <li>Require problem diagnosis before solution brainstorming</li>
+                <li>Create templates for lever mapping and sensitivity analysis</li>
+                <li>Establish evidence standards for problem selection</li>
+                <li>Train team members on investigative methods</li>
+            </ul>
+
+            <h2>The Strategic Advantage</h2>
+            <p>Organizations that master diagnostic discipline develop a compounding advantage. They build institutional knowledge about what actually drives their business. They avoid costly solution cycles on the wrong problems. They achieve breakthrough results by addressing genuine root causes rather than obvious symptoms.</p>
+            <p><strong>The teams that consistently produce outsized results don't guess better. They diagnose better.</strong></p>
+            <p>When your growth feels stalled, resist the temptation to immediately test new tactics. Instead, slow down and ask: What problems genuinely exist? Why do they exist? Which ones actually matter? And what levers can we influence to address them?</p>
+            <p><strong>When you understand the problem deeply, even small solutions can produce massive results. When you don't, even massive solutions produce nothing.</strong></p>
+
+            <div class="toolkit">
+                <h2>Diagnostic Toolkit</h2>
+
+                <div class="toolkit-item">
+                    <h3>Lever Mapping Template</h3>
+                    <ol>
+                        <li><strong>North Star Metric:</strong> [Your primary business outcome]</li>
+                        <li><strong>Primary Inputs:</strong> [2-3 factors that mathematically drive North Star]</li>
+                        <li><strong>Secondary Inputs:</strong> [Factors that drive each primary input]</li>
+                        <li><strong>Controllable Levers:</strong> [Specific actions that influence secondary inputs]</li>
+                    </ol>
+                </div>
+
+                <div class="toolkit-item">
+                    <h3>Problem Selection Matrix</h3>
+                    <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+                        <tr style="border-bottom: 1px solid black;">
+                            <th style="text-align: left; padding: 8px; border-right: 1px solid black;">Lever</th>
+                            <th style="text-align: left; padding: 8px; border-right: 1px solid black;">Impact Score (1-10)</th>
+                            <th style="text-align: left; padding: 8px; border-right: 1px solid black;">Feasibility Score (1-10)</th>
+                            <th style="text-align: left; padding: 8px; border-right: 1px solid black;">Evidence of Underperformance</th>
+                            <th style="text-align: left; padding: 8px;">Total Priority</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="toolkit-item">
+                    <h3>Root Cause Investigation Checklist</h3>
+                    <div class="checklist">
+                        <ul>
+                            <li>User interview insights gathered</li>
+                            <li>Internal team intelligence documented</li>
+                            <li>Historical data analysis completed</li>
+                            <li>Competitive research conducted</li>
+                            <li>Upstream funnel analysis performed</li>
+                            <li>Root cause hypothesis formed with supporting evidence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="toolkit-item">
+                    <h3>Success Measurement</h3>
+                    <ul>
+                        <li><strong>Diagnostic Quality:</strong> Time spent on problem diagnosis vs. solution development</li>
+                        <li><strong>Resource Efficiency:</strong> Percentage of tests that achieve meaningful impact</li>
+                        <li><strong>Strategic Learning:</strong> Rate of breakthrough insights about business drivers</li>
+                        <li><strong>Outcome Magnitude:</strong> Difference in results from evidence-based vs. assumption-based initiatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="font-style: italic; color: rgba(0, 0, 0, 0.6); font-size: 14px; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <em>This framework synthesizes Demand Curve's Problem Discovery methodology with financial services applications, emphasizing systematic diagnosis over tactical experimentation for sustainable growth results.</em>
+            </p>
+        </div>
+
+        <footer class="framework-footer">
+            <a href="../index.html#frameworks" class="footer-back">&larr; More Frameworks</a>
+            <a href="../newsletter/subscribe.html" class="footer-subscribe">Subscribe to the Briefing</a>
+        </footer>
+    </main>
+
+</body>
+</html>
