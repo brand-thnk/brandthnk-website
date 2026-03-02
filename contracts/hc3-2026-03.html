@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract — BrandThnk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Contract Content */
+        .contract-content {
+            margin-bottom: 48px;
+        }
+
+        .contract-content h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .contract-content h2 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content h3 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .contract-content p {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content ul {
+            font-size: 14px;
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .contract-content li {
+            margin-bottom: 8px;
+        }
+
+        .contract-meta {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .contract-meta p {
+            margin-bottom: 8px;
+        }
+
+        .contract-meta strong {
+            font-weight: 700;
+        }
+
+        /* Signature Section */
+        .signature-section {
+            background: var(--offwhite);
+            padding: 32px;
+            border: 2px solid var(--black);
+        }
+
+        .signature-section h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .signature-block {
+            padding: 16px;
+            background: var(--white);
+        }
+
+        .signature-block h4 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .signed-info {
+            font-size: 13px;
+        }
+
+        .signed-info p {
+            margin-bottom: 4px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            border: 1px solid #ccc;
+            background: var(--white);
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 16px;
+            background: var(--white);
+            border: 1px solid #ccc;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        /* Success/Error States */
+        .message {
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BrandThnk</div>
+            <div class="tagline">Build a Growth Brand</div>
+        </header>
+
+        <main>
+            <!-- CONTRACT CONTENT START -->
+            <div class="contract-content" id="contract-content">
+                <h1>BrandThnk Breakthrough: 8-Week Brand & GTM Sprint</h1>
+
+                <div class="contract-meta">
+                    <p><strong>Client:</strong> HC3</p>
+                    <p><strong>Prepared for:</strong> Kristan Hill</p>
+                    <p><strong>Date:</strong> March 2, 2026</p>
+                </div>
+
+                <h2>Project Overview</h2>
+                <p>This agreement outlines the scope, deliverables, and terms for BrandThnk's 8-week Brand & GTM Sprint engagement with HC3.</p>
+
+                <h2>Investment</h2>
+                <p><strong>Total Project Investment:</strong> $25,000</p>
+                <p><strong>Payment Terms:</strong> 50% due upon signing ($12,500), 50% due at project completion ($12,500)</p>
+
+                <h2>Timeline</h2>
+                <p><strong>Duration:</strong> 8 weeks from kickoff</p>
+                <p><strong>Estimated Start Date:</strong> Week of March 10, 2026</p>
+
+                <h2>Scope of Work</h2>
+
+                <h3>Week 1–2: Deep Discovery</h3>
+                <p><strong>Objective:</strong> Understand your business DNA, audience mindset, and market context.</p>
+                <ul>
+                    <li>Stakeholder interviews with execs, sales, product, customers if possible</li>
+                    <li>Quick audit of existing brand, messaging, GTM plans</li>
+                    <li>Identify blockers — internal blockers and external whitespace</li>
+                    <li>Define goals and what "breakthrough" looks like</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Strategy Brief – distilled insights, aligned goals, and a shared lens</p>
+
+                <h3>Week 3: Positioning Lab</h3>
+                <p><strong>Objective:</strong> Find the sharpest, clearest articulation of your brand's "why now"</p>
+                <ul>
+                    <li>Messaging sprint: core narrative, proof points, and audience resonance</li>
+                    <li>Clarify what you are (and are not)</li>
+                    <li>Build a messaging hierarchy: vision-level to campaign-ready</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Brand Positioning Map + Messaging Framework (ready to plug into GTM, content, sales enablement)</p>
+
+                <h3>Week 4: Go-to-Market Model</h3>
+                <p><strong>Objective:</strong> Build a practical and punchy GTM plan rooted in your business reality</p>
+                <ul>
+                    <li>Select best-fit channels for traction, not noise</li>
+                    <li>Align product moments with marketing moments</li>
+                    <li>Define "launch-ready" and what follows it</li>
+                </ul>
+                <p><strong>Deliverable:</strong> 90-Day GTM Activation Plan (with milestones, roles, content hooks, and external leverage points)</p>
+
+                <h3>Week 5: Signal Amplification</h3>
+                <p><strong>Objective:</strong> Get others talking about you (not just you talking about you)</p>
+                <ul>
+                    <li>Plan for third-party distribution (media, influencers, analysts)</li>
+                    <li>Outline content placement and PR strategies</li>
+                    <li>Identify internal champions and external advocates</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Distribution & Advocacy Toolkit (third-party channels, media angles, customer-led stories)</p>
+
+                <h3>Week 6: The Strategy-to-Execution Bridge</h3>
+                <p><strong>Objective:</strong> Turn the strategy into scalable action</p>
+                <ul>
+                    <li>Work with internal teams to prep activation</li>
+                    <li>Set up internal documentation for handoff</li>
+                    <li>Coach teams/agencies on adoption and adaptation</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Internal Playbook + Training Session</p>
+
+                <h3>Week 7: Feedback Loop Setup</h3>
+                <p><strong>Objective:</strong> Ensure the strategy can flex with the market</p>
+                <ul>
+                    <li>Set up measurable KPIs tied to business outcomes</li>
+                    <li>Build a rhythm for reflection and course correction</li>
+                    <li>Define what "working" actually looks like (and what it doesn't)</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Impact Dashboard Template (with guidance on how to read, report, and act on it)</p>
+
+                <h3>Week 8: Executive Strategy Session</h3>
+                <p><strong>Objective:</strong> Align leadership and energize go-forward motion</p>
+                <ul>
+                    <li>60-90 minute working session with C-suite or GTM leaders</li>
+                    <li>Present final strategy and make the case for change</li>
+                    <li>Map next-phase priorities and ownership</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Executive Debrief Presentation (slides + spoken walkthrough + next steps checklist)</p>
+
+                <h2>Terms & Conditions</h2>
+                <ul>
+                    <li>Project begins upon receipt of signed agreement and initial payment</li>
+                    <li>All deliverables remain property of HC3 upon full payment</li>
+                    <li>BrandThnk retains the right to use non-confidential elements as case study materials</li>
+                    <li>Weekly check-ins will be scheduled to ensure alignment and progress</li>
+                    <li>Any scope changes require written approval and may adjust timeline/investment</li>
+                    <li>Final payment due within 30 days of project completion</li>
+                </ul>
+
+                <h2>About BrandThnk</h2>
+                <p>BrandThnk is a boutique consultancy for fintechs and financial institutions who want to build a growth brand. We do this through sharper strategy, stronger positioning, and a proven playbook.</p>
+                <p>Learn more at brandthnk.co</p>
+            </div>
+            <!-- CONTRACT CONTENT END -->
+
+            <!-- SIGNATURE SECTION -->
+            <div class="signature-section">
+                <h3>Agreement</h3>
+                <p style="font-size: 14px; margin-bottom: 24px;">
+                    By signing below, both parties agree to the terms outlined in this agreement.
+                </p>
+
+                <div class="signature-grid">
+                    <!-- BrandThnk (Pre-signed) -->
+                    <div class="signature-block">
+                        <h4>BrandThnk</h4>
+                        <div class="signed-info">
+                            <p><strong>Name:</strong> Allison Netzer</p>
+                            <p><strong>Title:</strong> CEO</p>
+                            <p><strong>Signed:</strong> March 2, 2026</p>
+                        </div>
+                    </div>
+
+                    <!-- Client Signature Form -->
+                    <div class="signature-block">
+                        <h4>HC3</h4>
+
+                        <div id="signature-form-container">
+                            <form id="signature-form">
+                                <input type="hidden" name="contractId" value="hc3-2026-03">
+                                <input type="hidden" name="clientEmail" value="khill@hc3.io">
+
+                                <div class="form-group">
+                                    <label for="signerName">Full Name</label>
+                                    <input type="text" id="signerName" name="signerName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signerTitle">Title</label>
+                                    <input type="text" id="signerTitle" name="signerTitle" required>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="signed-confirmation" class="hidden signed-info">
+                            <p><strong>Name:</strong> <span id="confirmed-name"></span></p>
+                            <p><strong>Title:</strong> <span id="confirmed-title"></span></p>
+                            <p><strong>Signed:</strong> <span id="confirmed-date"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="agreement-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeCheckbox" name="agree">
+                        <label for="agreeCheckbox">
+                            I have read and agree to all terms and conditions outlined in this agreement.
+                            I understand that checking this box constitutes a legally binding electronic signature.
+                        </label>
+                    </div>
+
+                    <div id="form-message" class="message hidden"></div>
+
+                    <button type="button" id="submitBtn" class="submit-btn" disabled>
+                        Sign Agreement
+                    </button>
+                </div>
+
+                <div id="success-message" class="message success hidden">
+                    <strong>Agreement signed successfully!</strong><br>
+                    A confirmation email with the signed agreement has been sent to both parties.
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>This agreement is secured and legally binding under the ESIGN Act and UETA.</p>
+            <p>Questions? Contact allison@brandthnk.co</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('signature-form');
+        const submitBtn = document.getElementById('submitBtn');
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const formMessage = document.getElementById('form-message');
+        const successMessage = document.getElementById('success-message');
+        const agreementSection = document.getElementById('agreement-section');
+        const signedConfirmation = document.getElementById('signed-confirmation');
+        const formContainer = document.getElementById('signature-form-container');
+
+        // Enable submit button only when checkbox is checked and form is filled
+        function checkFormValid() {
+            const name = document.getElementById('signerName').value.trim();
+            const title = document.getElementById('signerTitle').value.trim();
+            const agreed = agreeCheckbox.checked;
+            submitBtn.disabled = !(name && title && agreed);
+        }
+
+        agreeCheckbox.addEventListener('change', checkFormValid);
+        document.getElementById('signerName').addEventListener('input', checkFormValid);
+        document.getElementById('signerTitle').addEventListener('input', checkFormValid);
+
+        submitBtn.addEventListener('click', async function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            formMessage.classList.add('hidden');
+
+            const formData = new FormData(form);
+            const data = {
+                contractId: formData.get('contractId'),
+                clientEmail: formData.get('clientEmail'),
+                signerName: formData.get('signerName'),
+                signerTitle: formData.get('signerTitle'),
+                agreedToTerms: agreeCheckbox.checked,
+                signedAt: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+
+            try {
+                const response = await fetch('/.netlify/functions/sign-contract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Show success state
+                    formContainer.classList.add('hidden');
+                    agreementSection.classList.add('hidden');
+                    signedConfirmation.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+
+                    document.getElementById('confirmed-name').textContent = data.signerName;
+                    document.getElementById('confirmed-title').textContent = data.signerTitle;
+                    document.getElementById('confirmed-date').textContent = new Date().toLocaleDateString('en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                } else {
+                    throw new Error(result.error || 'Failed to process signature');
+                }
+            } catch (error) {
+                formMessage.textContent = 'Error: ' + error.message;
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign Agreement';
+            }
+        });
+    </script>
+</body>
+</html>
