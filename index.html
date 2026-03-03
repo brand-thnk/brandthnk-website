@@ -541,92 +541,6 @@
 
   .btn-white:hover { background: var(--white); color: var(--black); }
 
-  /* SIGNAL TEST */
-  .signal-test {
-    padding: 100px 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .signal-question {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    line-height: 1.3;
-    margin: 48px auto 60px;
-    max-width: 800px;
-    color: var(--black);
-  }
-
-  .signal-buttons {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    margin-bottom: 48px;
-  }
-
-  .signal-btn {
-    background: transparent;
-    color: var(--black);
-    padding: 16px 48px;
-    font-size: 16px;
-    font-weight: 400;
-    border: 2px solid var(--black);
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-    min-width: 120px;
-  }
-
-  .signal-btn:hover {
-    background: var(--yellow);
-    color: var(--black);
-    border-color: var(--yellow);
-  }
-
-  .signal-response {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
-    max-width: 600px;
-    margin: 0 auto;
-    visibility: hidden;
-  }
-
-  .signal-response.show {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible;
-  }
-
-  .signal-response-text {
-    font-size: 18px;
-    color: var(--gray);
-    margin-bottom: 32px;
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  .signal-cta {
-    background: var(--black);
-    color: var(--white);
-    padding: 15px 32px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .signal-cta:hover { background: var(--yellow); color: var(--black); }
 
   /* BANK PIVOT */
   .bank-pivot {
@@ -813,12 +727,11 @@
       gap: 40px;
     }
     .hero { padding: 120px 24px 60px; }
-    section, .library-section, .signal-test { padding: 60px 24px; }
+    section, .library-section { padding: 60px 24px; }
     hr.rule { margin: 0 24px; }
     .plan-grid { grid-template-columns: 1fr 1fr; }
     .library-grid { grid-template-columns: 1fr; }
     .newsletter-strip { flex-direction: column; text-align: center; }
-    .signal-buttons { flex-direction: column; align-items: center; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 
@@ -944,18 +857,166 @@
 
 <hr class="rule">
 
-<!-- SIGNAL TEST -->
-<section class="signal-test">
-  <p class="section-label">The Signal Test</p>
-  <h2 class="signal-question">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
-  <div class="signal-buttons">
-    <button class="signal-btn" onclick="showResponse('yes')">Yes</button>
-    <button class="signal-btn" onclick="showResponse('no')">No</button>
-  </div>
-  <div id="signal-response" class="signal-response">
-    <div id="response-content"></div>
+<!-- SIGNAL TEST SECTION — Insert between Plan section and Work With Us section -->
+<!-- Matches BrandThnk brand: black/yellow/monospace (Roboto Mono) -->
+
+<section id="signal-test" style="
+  background: #000;
+  padding: 80px 60px;
+">
+  <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+
+    <p style="
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #FFEB3B;
+      margin-bottom: 40px;
+    ">The Signal Test</p>
+
+    <h2 style="
+      font-family: 'Roboto Slab', Georgia, serif;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 52px;
+      letter-spacing: -0.5px;
+    ">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
+
+    <div id="signal-buttons" style="
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    ">
+      <button
+        onclick="signalAnswer('yes')"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: #fff;
+          border: 2px solid #fff;
+          padding: 16px 48px;
+          cursor: pointer;
+          transition: all 0.15s;
+        "
+        onmouseover="this.style.background='#fff'; this.style.color='#000';"
+        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
+      >Yes</button>
+
+      <button
+        onclick="signalAnswer('no')"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: #fff;
+          border: 2px solid #fff;
+          padding: 16px 48px;
+          cursor: pointer;
+          transition: all 0.15s;
+        "
+        onmouseover="this.style.background='#fff'; this.style.color='#000';"
+        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
+      >No</button>
+    </div>
+
+    <!-- YES response -->
+    <div id="signal-yes" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
+      <p style="
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        color: #fff;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-weight: 400;
+      ">That's the goal. The question is whether your market is saying the same thing. The Box-Edge Framework is a good place to pressure-test it.</p>
+      <a href="/library/box-edge.html" style="
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FFEB3B;
+        text-decoration: none;
+        border-bottom: 1px solid #FFEB3B;
+        padding-bottom: 2px;
+      ">Read the Framework</a>
+    </div>
+
+    <!-- NO response -->
+    <div id="signal-no" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
+      <p style="
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        color: #fff;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-weight: 400;
+      ">Most can't. That's not a marketing problem -- it's a story problem. And it's exactly what we fix.</p>
+      <a href="#book-a-call" style="
+        display: inline-block;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: #FFEB3B;
+        color: #000;
+        text-decoration: none;
+        padding: 14px 32px;
+        border: 2px solid #FFEB3B;
+        transition: all 0.15s;
+      ">Book a Call</a>
+    </div>
+
+    <!-- Reset -->
+    <div id="signal-reset" style="display:none; margin-top: 32px;">
+      <button
+        onclick="signalReset()"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: rgba(255,255,255,0.3);
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-decoration: underline;
+        "
+      >Start over</button>
+    </div>
+
   </div>
 </section>
+
+<script>
+  function signalAnswer(answer) {
+    document.getElementById('signal-buttons').style.display = 'none';
+    document.getElementById('signal-yes').style.display = 'none';
+    document.getElementById('signal-no').style.display = 'none';
+    document.getElementById('signal-' + answer).style.display = 'block';
+    document.getElementById('signal-reset').style.display = 'block';
+  }
+  function signalReset() {
+    document.getElementById('signal-buttons').style.display = 'flex';
+    document.getElementById('signal-yes').style.display = 'none';
+    document.getElementById('signal-no').style.display = 'none';
+    document.getElementById('signal-reset').style.display = 'none';
+  }
+</script>
 
 <hr class="rule">
 
@@ -1036,7 +1097,7 @@
 </section>
 
 <!-- CTA BAND -->
-<div class="cta-band full-bleed">
+<div id="book-a-call" class="cta-band full-bleed">
   <div class="cta-band-inner">
     <h2>Ready to find out what's actually in the way?</h2>
     <p>Book a 30-minute call. We'll look at what you're doing, what's not working, and whether we're the right fit to fix it.</p>
@@ -1051,33 +1112,6 @@
   <p><a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
 </footer>
 
-<script>
-function showResponse(answer) {
-  const responseDiv = document.getElementById('signal-response');
-  const contentDiv = document.getElementById('response-content');
-
-  // Hide current response
-  responseDiv.classList.remove('show');
-
-  // Set new content after a brief delay for smooth transition
-  setTimeout(() => {
-    if (answer === 'yes') {
-      contentDiv.innerHTML = `
-        <p class="signal-response-text">That's the goal. The question is whether your market is saying the same thing. The Box-Edge Framework is a good place to pressure-test it.</p>
-        <a href="/library/box-edge.html" class="signal-cta">Read the Framework</a>
-      `;
-    } else {
-      contentDiv.innerHTML = `
-        <p class="signal-response-text">Most can't. That's not a marketing problem -- it's a story problem. And it's exactly what we fix.</p>
-        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="signal-cta">Book a Call</a>
-      `;
-    }
-
-    // Show the response
-    responseDiv.classList.add('show');
-  }, 200);
-}
-</script>
 
 </body>
 </html>
