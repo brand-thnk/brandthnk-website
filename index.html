@@ -541,6 +541,93 @@
 
   .btn-white:hover { background: var(--white); color: var(--black); }
 
+  /* SIGNAL TEST */
+  .signal-test {
+    padding: 100px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .signal-question {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 48px auto 60px;
+    max-width: 800px;
+    color: var(--black);
+  }
+
+  .signal-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  .signal-btn {
+    background: transparent;
+    color: var(--black);
+    padding: 16px 48px;
+    font-size: 16px;
+    font-weight: 400;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    min-width: 120px;
+  }
+
+  .signal-btn:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .signal-response {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    max-width: 600px;
+    margin: 0 auto;
+    visibility: hidden;
+  }
+
+  .signal-response.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .signal-response-text {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 32px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .signal-cta {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .signal-cta:hover { background: var(--yellow); color: var(--black); }
+
   /* BANK PIVOT */
   .bank-pivot {
     background: var(--offwhite);
@@ -726,11 +813,12 @@
       gap: 40px;
     }
     .hero { padding: 120px 24px 60px; }
-    section, .library-section { padding: 60px 24px; }
+    section, .library-section, .signal-test { padding: 60px 24px; }
     hr.rule { margin: 0 24px; }
     .plan-grid { grid-template-columns: 1fr 1fr; }
     .library-grid { grid-template-columns: 1fr; }
     .newsletter-strip { flex-direction: column; text-align: center; }
+    .signal-buttons { flex-direction: column; align-items: center; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 
@@ -856,6 +944,21 @@
 
 <hr class="rule">
 
+<!-- SIGNAL TEST -->
+<section class="signal-test">
+  <p class="section-label">The Signal Test</p>
+  <h2 class="signal-question">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
+  <div class="signal-buttons">
+    <button class="signal-btn" onclick="showResponse('yes')">Yes</button>
+    <button class="signal-btn" onclick="showResponse('no')">No</button>
+  </div>
+  <div id="signal-response" class="signal-response">
+    <div id="response-content"></div>
+  </div>
+</section>
+
+<hr class="rule">
+
 <!-- OFFERS -->
 <section id="offers">
   <p class="section-label">Work With Us</p>
@@ -947,6 +1050,34 @@
   <p>© 2025 BrandThnk. All rights reserved.</p>
   <p><a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
 </footer>
+
+<script>
+function showResponse(answer) {
+  const responseDiv = document.getElementById('signal-response');
+  const contentDiv = document.getElementById('response-content');
+
+  // Hide current response
+  responseDiv.classList.remove('show');
+
+  // Set new content after a brief delay for smooth transition
+  setTimeout(() => {
+    if (answer === 'yes') {
+      contentDiv.innerHTML = `
+        <p class="signal-response-text">That's the goal. The question is whether your market is saying the same thing. The Box-Edge Framework is a good place to pressure-test it.</p>
+        <a href="/library/box-edge.html" class="signal-cta">Read the Framework</a>
+      `;
+    } else {
+      contentDiv.innerHTML = `
+        <p class="signal-response-text">Most can't. That's not a marketing problem -- it's a story problem. And it's exactly what we fix.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="signal-cta">Book a Call</a>
+      `;
+    }
+
+    // Show the response
+    responseDiv.classList.add('show');
+  }, 200);
+}
+</script>
 
 </body>
 </html>
