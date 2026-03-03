@@ -409,7 +409,7 @@
   /* OFFERS */
   .offers-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 32px;
     margin-top: 56px;
   }
@@ -722,7 +722,11 @@
   @media (max-width: 900px) {
     nav { padding: 18px 24px; }
     .nav-links { display: none; }
-    .hero, .problem-grid, .guide-inner, .offers-grid, .bank-pivot-inner {
+    .hero, .problem-grid, .guide-inner, .bank-pivot-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .offers-grid {
       grid-template-columns: 1fr;
       gap: 40px;
     }
@@ -1036,6 +1040,12 @@
       <h3 class="offer-title">Advisory Access</h3>
       <p class="offer-body">This is direct access to Allison -- CMO, enterprise sales leader, and operator with 25 years in the field. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.<br><br>When you bring a decision to Advisory, you're not getting a consultant's opinion. You're getting someone who has been responsible for the outcome.<br><br>Use it to validate an assumption before you act on it, pressure-test a budget or strategy, get an honest read on whether your approach is right, or get connected to someone you need to know. There's no retainer and no overhead, just the thinking when you need it.</p>
       <a href="#" class="btn-secondary">Ask About Advisory</a>
+    </div>
+    <div class="offer-card">
+      <div class="offer-badge" style="background: var(--gray); color: var(--white);">Team Training</div>
+      <h3 class="offer-title">Think Like a Brand, Not a Bank Team Training</h3>
+      <p class="offer-body">Most brand workshops produce a deck that sits in a drawer. This one is designed to produce a team that can apply the thinking without needing to restart from scratch every time strategy changes hands.<br><br>The training runs as a 10-week series, kicking off in person and continuing virtually, with each session applying the eight frameworks from the book directly to your institution. Teams of 4 to 12 work through real decisions, not hypotheticals, and leave with a 90-day plan and owners assigned to each move.<br><br>Read the book before the first session. That's the foundation the rest of the work builds on.</p>
+      <a href="#" class="btn-secondary">Ask About the Training</a>
     </div>
   </div>
 </section>
