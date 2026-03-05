@@ -20,23 +20,30 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Roboto Mono', monospace;
     background: var(--white);
     color: var(--black);
     font-size: 17px;
     line-height: 1.6;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   /* NAV */
   nav {
-    padding: 20px 60px;
-    background: var(--white);
-    border-bottom: 1px solid var(--light-gray);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
   }
 
   .nav-logo {
@@ -98,133 +105,159 @@
   .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 80px 60px 120px;
+    padding: 160px 60px 120px;
   }
 
   .page-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
   }
 
   .page-eyebrow {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gray);
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
   .page-title {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(36px, 5vw, 52px);
+    font-size: clamp(48px, 6vw, 72px);
     font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 24px;
+    line-height: 1.1;
+    margin-bottom: 32px;
     color: var(--black);
+    letter-spacing: -1px;
   }
 
   .page-description {
-    font-size: 18px;
+    font-size: 20px;
     color: var(--gray);
-    max-width: 600px;
+    max-width: 640px;
     margin: 0 auto;
     font-weight: 400;
+    line-height: 1.6;
   }
 
   .section {
-    margin-bottom: 80px;
+    margin-bottom: 120px;
   }
 
   .section:last-child { margin-bottom: 0; }
 
   .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 56px;
   }
 
   .section-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 28px;
+    font-size: clamp(32px, 4vw, 44px);
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     color: var(--black);
+    line-height: 1.2;
   }
 
   .section-description {
-    font-size: 15px;
+    font-size: 17px;
     color: var(--gray);
-    max-width: 520px;
+    max-width: 560px;
     font-weight: 400;
+    line-height: 1.6;
   }
 
   .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 32px;
   }
 
   .content-card {
     border: 2px solid var(--light-gray);
-    padding: 32px;
+    padding: 40px 36px;
     border-radius: 0;
     background: var(--white);
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     text-decoration: none;
     color: inherit;
     display: block;
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
   }
 
   .content-card:hover {
     border-color: var(--black);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+
+  .content-card:hover .content-title {
+    color: var(--black);
+  }
+
+  .content-card:hover .content-type {
+    color: var(--black);
+    background: var(--yellow);
+    padding: 2px 8px;
+    margin-left: -8px;
   }
 
   .content-type {
     font-size: 11px;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--gray);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
   }
 
   .content-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     line-height: 1.3;
     color: var(--black);
+    transition: color 0.3s ease;
   }
 
   .content-description {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--gray);
-    line-height: 1.6;
+    line-height: 1.7;
     font-weight: 400;
   }
 
   .newsletter-cta {
     background: var(--black);
     border-radius: 0;
-    padding: 48px;
+    padding: 64px 48px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 140px;
   }
 
   .newsletter-cta h2 {
     font-family: 'Roboto Slab', serif;
-    font-size: 28px;
+    font-size: clamp(28px, 4vw, 36px);
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    line-height: 1.2;
   }
 
   .newsletter-cta p {
     color: var(--offwhite);
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 400;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
   }
 
   .btn-primary {
@@ -243,6 +276,28 @@
   }
 
   .btn-primary:hover { background: var(--white); color: var(--black); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-eyebrow { animation: fadeUp 0.6s ease both; }
+  .page-title { animation: fadeUp 0.6s 0.1s ease both; }
+  .page-description { animation: fadeUp 0.6s 0.2s ease both; }
+
+  .section-title { animation: fadeUp 0.6s ease both; }
+  .section-description { animation: fadeUp 0.6s 0.1s ease both; }
+
+  .content-card {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .content-card:nth-child(1) { animation-delay: 0.1s; }
+  .content-card:nth-child(2) { animation-delay: 0.2s; }
+  .content-card:nth-child(3) { animation-delay: 0.3s; }
+  .content-card:nth-child(4) { animation-delay: 0.4s; }
 
   @media (max-width: 900px) {
     nav {
@@ -281,9 +336,16 @@
 
     .nav-links a:last-child { border-bottom: none; }
 
-    .container { padding: 60px 24px 80px; }
-    .content-grid { grid-template-columns: 1fr; }
-    .newsletter-cta { padding: 32px 24px; }
+    .container { padding: 140px 24px 80px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .newsletter-cta { padding: 48px 24px; }
+
+    .page-header { margin-bottom: 80px; }
+    .section { margin-bottom: 80px; }
+    .section-header { margin-bottom: 40px; }
   }
 </style>
 </head>
