@@ -1008,6 +1008,140 @@
   </div>
 </section>
 
+<!-- SIGNAL TEST SECTION — Positioned before final CTA -->
+<section id="signal-test" style="
+  background: #000;
+  padding: 80px 60px;
+">
+  <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+
+    <p style="
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #FFEB3B;
+      margin-bottom: 40px;
+    ">The Signal Test</p>
+
+    <h2 style="
+      font-family: 'Roboto Slab', Georgia, serif;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 52px;
+      letter-spacing: -0.5px;
+    ">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
+
+    <div id="signal-buttons" style="
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    ">
+      <button
+        onclick="signalAnswer('yes')"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: #fff;
+          border: 2px solid #fff;
+          padding: 16px 48px;
+          cursor: pointer;
+          transition: all 0.15s;
+        "
+        onmouseover="this.style.background='#fff'; this.style.color='#000';"
+        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
+      >Yes</button>
+
+      <button
+        onclick="signalAnswer('no')"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: #fff;
+          border: 2px solid #fff;
+          padding: 16px 48px;
+          cursor: pointer;
+          transition: all 0.15s;
+        "
+        onmouseover="this.style.background='#fff'; this.style.color='#000';"
+        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
+      >No</button>
+    </div>
+
+    <!-- YES response -->
+    <div id="signal-yes" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
+      <p style="
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        color: #fff;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-weight: 400;
+      ">That's the goal. The question is whether your market is saying the same thing.</p>
+    </div>
+
+    <!-- NO response -->
+    <div id="signal-no" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
+      <p style="
+        font-family: 'Roboto Mono', monospace;
+        font-size: 16px;
+        color: #fff;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-weight: 400;
+      ">Most can't. That's not a content problem -- it's a brand problem.</p>
+    </div>
+
+    <!-- Reset -->
+    <div id="signal-reset" style="display:none; margin-top: 32px;">
+      <button
+        onclick="signalReset()"
+        style="
+          font-family: 'Roboto Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          background: transparent;
+          color: rgba(255,255,255,0.3);
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-decoration: underline;
+        "
+      >Start over</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function signalAnswer(answer) {
+    document.getElementById('signal-buttons').style.display = 'none';
+    document.getElementById('signal-yes').style.display = 'none';
+    document.getElementById('signal-no').style.display = 'none';
+    document.getElementById('signal-' + answer).style.display = 'block';
+    document.getElementById('signal-reset').style.display = 'block';
+  }
+  function signalReset() {
+    document.getElementById('signal-buttons').style.display = 'flex';
+    document.getElementById('signal-yes').style.display = 'none';
+    document.getElementById('signal-no').style.display = 'none';
+    document.getElementById('signal-reset').style.display = 'none';
+  }
+</script>
+
 <!-- CTA BAND -->
 <div id="book-a-call" class="cta-band full-bleed">
   <div class="cta-band-inner">
