@@ -1104,24 +1104,6 @@
       ">Most can't. That's not a content problem -- it's a brand problem.</p>
     </div>
 
-    <!-- Reset -->
-    <div id="signal-reset" style="display:none; margin-top: 32px;">
-      <button
-        onclick="signalReset()"
-        style="
-          font-family: 'Roboto Mono', monospace;
-          font-size: 11px;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          background: transparent;
-          color: rgba(255,255,255,0.3);
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          text-decoration: underline;
-        "
-      >Start over</button>
-    </div>
 
   </div>
 </section>
@@ -1132,13 +1114,6 @@
     document.getElementById('signal-yes').style.display = 'none';
     document.getElementById('signal-no').style.display = 'none';
     document.getElementById('signal-' + answer).style.display = 'block';
-    document.getElementById('signal-reset').style.display = 'block';
-  }
-  function signalReset() {
-    document.getElementById('signal-buttons').style.display = 'flex';
-    document.getElementById('signal-yes').style.display = 'none';
-    document.getElementById('signal-no').style.display = 'none';
-    document.getElementById('signal-reset').style.display = 'none';
   }
 </script>
 
