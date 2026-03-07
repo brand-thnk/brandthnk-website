@@ -821,7 +821,7 @@
   </button>
   <ul class="nav-links">
     <li><a href="#how">Work With Us</a></li>
-    <li><a href="/library/">Library</a></li>
+    <li><a href="/library/">Explore Our Library</a></li>
     <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
   </ul>
 </nav>
@@ -877,139 +877,6 @@
   </div>
 </div>
 
-<!-- SIGNAL TEST SECTION — Moved to new position between Real Problem and Guide -->
-<section id="signal-test" style="
-  background: #000;
-  padding: 80px 60px;
-">
-  <div style="max-width: 760px; margin: 0 auto; text-align: center;">
-
-    <p style="
-      font-family: 'Roboto Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #FFEB3B;
-      margin-bottom: 40px;
-    ">The Signal Test</p>
-
-    <h2 style="
-      font-family: 'Roboto Slab', Georgia, serif;
-      font-size: clamp(24px, 3.5vw, 38px);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.25;
-      margin-bottom: 52px;
-      letter-spacing: -0.5px;
-    ">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
-
-    <div id="signal-buttons" style="
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    ">
-      <button
-        onclick="signalAnswer('yes')"
-        style="
-          font-family: 'Roboto Mono', monospace;
-          font-size: 14px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          background: transparent;
-          color: #fff;
-          border: 2px solid #fff;
-          padding: 16px 48px;
-          cursor: pointer;
-          transition: all 0.15s;
-        "
-        onmouseover="this.style.background='#fff'; this.style.color='#000';"
-        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
-      >Yes</button>
-
-      <button
-        onclick="signalAnswer('no')"
-        style="
-          font-family: 'Roboto Mono', monospace;
-          font-size: 14px;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          background: transparent;
-          color: #fff;
-          border: 2px solid #fff;
-          padding: 16px 48px;
-          cursor: pointer;
-          transition: all 0.15s;
-        "
-        onmouseover="this.style.background='#fff'; this.style.color='#000';"
-        onmouseout="this.style.background='transparent'; this.style.color='#fff';"
-      >No</button>
-    </div>
-
-    <!-- YES response -->
-    <div id="signal-yes" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
-      <p style="
-        font-family: 'Roboto Mono', monospace;
-        font-size: 16px;
-        color: #fff;
-        line-height: 1.7;
-        margin-bottom: 24px;
-        font-weight: 400;
-      ">That's the goal. The question is whether your market is saying the same thing.</p>
-    </div>
-
-    <!-- NO response -->
-    <div id="signal-no" style="display:none; margin-top: 48px; text-align: left; border-left: 3px solid #FFEB3B; padding-left: 28px;">
-      <p style="
-        font-family: 'Roboto Mono', monospace;
-        font-size: 16px;
-        color: #fff;
-        line-height: 1.7;
-        margin-bottom: 24px;
-        font-weight: 400;
-      ">Most can't. That's not a content problem -- it's a brand problem.</p>
-    </div>
-
-    <!-- Reset -->
-    <div id="signal-reset" style="display:none; margin-top: 32px;">
-      <button
-        onclick="signalReset()"
-        style="
-          font-family: 'Roboto Mono', monospace;
-          font-size: 11px;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          background: transparent;
-          color: rgba(255,255,255,0.3);
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          text-decoration: underline;
-        "
-      >Start over</button>
-    </div>
-
-  </div>
-</section>
-
-<script>
-  function signalAnswer(answer) {
-    document.getElementById('signal-buttons').style.display = 'none';
-    document.getElementById('signal-yes').style.display = 'none';
-    document.getElementById('signal-no').style.display = 'none';
-    document.getElementById('signal-' + answer).style.display = 'block';
-    document.getElementById('signal-reset').style.display = 'block';
-  }
-  function signalReset() {
-    document.getElementById('signal-buttons').style.display = 'flex';
-    document.getElementById('signal-yes').style.display = 'none';
-    document.getElementById('signal-no').style.display = 'none';
-    document.getElementById('signal-reset').style.display = 'none';
-  }
-</script>
 
 <!-- GUIDE -->
 <div id="guide" class="guide-section full-bleed">
@@ -1079,13 +946,13 @@
       <div class="offer-badge" style="background: var(--black); color: var(--white);">Advisory</div>
       <h3 class="offer-title">Advisory Access</h3>
       <p class="offer-body">This is direct access to Allison -- CMO, enterprise sales leader, and operator with 25 years in the field. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.<br><br>When you bring a decision to Advisory, you're not getting a consultant's opinion. You're getting someone who has been responsible for the outcome.<br><br>Use it to validate an assumption before you act on it, pressure-test a budget or strategy, get an honest read on whether your approach is right, or get connected to someone you need to know. There's no retainer and no overhead, just the thinking when you need it.</p>
-      <a href="#" class="btn-secondary">Ask About Advisory</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-secondary">Ask About Advisory</a>
     </div>
     <div class="offer-card">
       <div class="offer-badge" style="background: var(--gray); color: var(--white);">Team Training</div>
       <h3 class="offer-title">Think Like a Brand, Not a Bank Team Training</h3>
       <p class="offer-body">Most brand workshops produce a deck that sits in a drawer. This one is designed to produce a team that can apply the thinking without needing to restart from scratch every time strategy changes hands.<br><br>The training runs as a 10-week series, kicking off in person and continuing virtually, with each session applying the eight frameworks from the book directly to your institution. Teams of 4 to 12 work through real decisions, not hypotheticals, and leave with a 90-day plan and owners assigned to each move.<br><br>Read the book before the first session. That's the foundation the rest of the work builds on.</p>
-      <a href="#" class="btn-secondary">Ask About Team Training</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-secondary">Ask About Team Training</a>
     </div>
   </div>
 </section>
@@ -1101,7 +968,7 @@
       <p>That's the gap BrandThnk works on with bank and credit union marketing leaders. We help leadership teams get to the real story -- the human problem the institution exists to solve -- and build the alignment needed to tell it consistently. When that work is done, marketing stops defending budget and starts driving growth.</p>
       <p>The engagement looks different from what we do with fintechs, but the standard is the same.</p>
       <h3 style="font-family: 'Roboto Slab', serif; font-size: 20px; font-weight: 700; line-height: 1.3; margin: 32px 0 24px; color: var(--black);">If you stripped away your branches, your rate sheet, and your founding year, could your leadership team agree on why your institution exists?</h3>
-      <a href="#" class="btn-primary" style="margin-top: 16px;">See How We Work With FIs</a>
+      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-primary" style="margin-top: 16px;">See How We Work With FIs</a>
     </div>
     <div class="bank-pivot-visual">
       <p style="font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">What the work produces</p>
@@ -1137,7 +1004,7 @@
       <h3>The BrandThnk Briefing</h3>
       <p>Join 2,000+ bank and fintech leaders who get sharp thinking on brand, positioning, and growth.</p>
     </div>
-    <a href="#" class="btn-primary" style="white-space: nowrap; flex-shrink: 0;">Subscribe to the Briefing</a>
+    <a href="https://brandthnk-briefing-from-allison-netzer.beehiiv.com/" class="btn-yellow" style="white-space: nowrap; flex-shrink: 0;">Subscribe to the Briefing</a>
   </div>
 </section>
 
