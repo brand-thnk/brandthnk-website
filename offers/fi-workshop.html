@@ -144,24 +144,15 @@
     font-style: italic;
   }
 
-  .cta-section {
-    background: var(--yellow);
-    padding: 48px 40px;
-    border-radius: 0;
-    margin: 60px 0;
+  .cta-inline {
     text-align: center;
+    padding: 40px 0;
+    margin: 20px 0;
   }
 
-  .cta-section.closing {
+  .cta-inline.closing {
+    margin-top: 60px;
     margin-bottom: 0;
-  }
-
-  .cta-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: var(--black);
   }
 
   .btn-primary {
@@ -181,37 +172,26 @@
 
   .btn-primary:hover { background: var(--white); color: var(--black); }
 
-  .question-section {
-    background: var(--black);
-    color: var(--offwhite);
-    padding: 48px 40px;
-    border-radius: 0;
-    margin-top: 60px;
-  }
-
-  .question-section .section-title {
-    color: var(--white);
-  }
-
-  .question-section p {
-    color: var(--offwhite);
-  }
-
-  .question-highlight {
-    font-family: 'Roboto Slab', serif;
-    font-size: 20px;
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
     font-weight: 400;
-    line-height: 1.4;
-    color: var(--yellow);
-    font-style: italic;
-    margin-bottom: 20px;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
   }
+
+  .btn-yellow:hover { background: var(--black); color: var(--white); }
 
   @media (max-width: 768px) {
     nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
     .container { padding: 40px 24px 80px; }
-    .cta-section { padding: 32px 24px; }
-    .question-section { padding: 32px 24px; }
   }
 </style>
 </head>
@@ -237,10 +217,6 @@
   <div class="content-section">
     <h2 class="section-title">What happens if this doesn't get resolved.</h2>
     <p>The institutions that lose ground to larger banks and fintechs rarely lose on product. They lose on clarity. A bigger bank with a weaker community story still wins if it can articulate why it exists and yours can't. The longer your leadership team can't agree on the answer to that question, the harder it is to hold the position you already have, let alone take new ground.</p>
-  </div>
-
-  <div class="cta-section">
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Discovery Call</a>
   </div>
 
   <div class="content-section">
@@ -270,14 +246,8 @@
     <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. She has run this work with over 50 financial institutions and fintech brands. She knows what the conversation sounds like when a leadership team is circling the real answer and what it sounds like when they've found it.</p>
   </div>
 
-  <div class="question-section">
-    <h2 class="section-title">The question that starts everything.</h2>
-    <p class="question-highlight">If you stripped away your branches, your rate sheet, and your founding year, could your leadership team agree on why your institution exists?</p>
-    <p>If the answer is no, or if it depends on who you ask, that's where the work starts.</p>
-  </div>
-
-  <div class="cta-section closing">
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Discovery Call</a>
+  <div class="cta-inline closing">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Discovery Call</a>
   </div>
 </div>
 
