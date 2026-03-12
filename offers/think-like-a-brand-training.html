@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Think Like a Brand, Not a Bank | BrandThnk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    padding: 20px 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .back-link {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--black); }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .page-subhead {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    font-style: italic;
+  }
+
+  .content-section {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .content-section:last-of-type { border-bottom: none; }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .content-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .content-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .phases-list {
+    margin-top: 24px;
+  }
+
+  .phase-item {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .phase-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .phase-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .phase-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .outcome-note {
+    font-size: 16px;
+    color: var(--black);
+    font-weight: 400;
+    margin-top: 24px;
+    line-height: 1.7;
+  }
+
+  .cta-inline {
+    text-align: center;
+    padding: 40px 0;
+    margin: 20px 0;
+  }
+
+  .cta-closing {
+    text-align: center;
+    padding: 60px 0 0;
+  }
+
+  .question-section {
+    background: var(--black);
+    color: var(--offwhite);
+    padding: 48px 40px;
+    border-radius: 0;
+    margin-top: 60px;
+  }
+
+  .question-section .section-title {
+    color: var(--white);
+  }
+
+  .question-section p {
+    color: var(--offwhite);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .question-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .question-highlight {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--yellow);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--black); color: var(--white); }
+
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
+    .container { padding: 40px 24px 80px; }
+    .question-section { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <a href="/" class="back-link">← Back to Home</a>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">Think Like a Brand, Not a Bank</h1>
+  <p class="page-subhead">A 10-session team training for bank and credit union leaders who need their whole organization pulling in the same direction</p>
+
+  <div class="content-section">
+    <h2 class="section-title">The problem isn't strategy. It's that the strategy doesn't survive contact with the team.</h2>
+    <p>Your leadership has a point of view on where the institution is headed. But somewhere between the executive offsite and the branch manager, the message shifts. Marketing is saying one thing, sales is saying another, and the board is hearing a third version.</p>
+    <p>That's not a communication problem. It's a brand problem, and it compounds every time a new person joins or a strategy changes hands.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What it costs when the team can't hold the story.</h2>
+    <p>Every campaign that starts from scratch because no one has shared language costs real time and budget. Every new hire who learns a different version of the institution's story becomes another source of drift. And every time a competitor with less history tells a cleaner story, you lose ground that's hard to reclaim.</p>
+  </div>
+
+  <div class="cta-inline">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Start the Conversation</a>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What the training produces.</h2>
+    <p>This is not a workshop that ends with a deck. It's a 10-session program that ends with a team who can apply the thinking to the decisions already in front of them, without needing to restart every time strategy changes hands.</p>
+    <p>The sessions run in two phases:</p>
+    <div class="phases-list">
+      <div class="phase-item">
+        <div class="phase-name">Foundation (Sessions 1-5)</div>
+        <p class="phase-desc">Kicking off in person and continuing virtually, each session applies the eight frameworks from the book directly to your institution's actual brand and positioning challenges. Teams work through real decisions, not hypotheticals pulled from someone else's market.</p>
+      </div>
+      <div class="phase-item">
+        <div class="phase-name">Application (Sessions 6-10)</div>
+        <p class="phase-desc">The team takes the frameworks into live decisions: messaging reviews, positioning questions, and the internal alignment conversations that keep slipping.</p>
+      </div>
+    </div>
+    <p class="outcome-note">Teams of 4 to 12 leave with a 90-day plan, owners assigned to each move, and the shared language to keep the work moving after the sessions end.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">Who runs this training and why the format matters.</h2>
+    <p>Most brand training teaches frameworks in the abstract and leaves the team to figure out how to apply them. This one is built on the premise that application is where the learning actually happens.</p>
+    <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. The training is built on the eight frameworks from her book, applied directly to your institution across every session.</p>
+    <p>The book is the foundation. Reading it before the first session is how the work starts.</p>
+  </div>
+
+  <div class="question-section">
+    <h2 class="section-title">The question worth asking your team.</h2>
+    <p class="question-highlight">If your three most senior marketing leaders each wrote one sentence describing why your institution exists, would the sentences match?</p>
+    <p>If they wouldn't, that's where this work begins.</p>
+  </div>
+
+  <div class="cta-closing">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">See If This Is the Right Fit</a>
+  </div>
+</div>
+
+</body>
+</html>
