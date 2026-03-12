@@ -19,6 +19,8 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Roboto Mono', monospace;
     background: var(--white);
@@ -28,9 +30,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* NAV - Persistent */
   nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     padding: 20px 60px;
-    background: var(--white);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--light-gray);
     display: flex;
     align-items: center;
@@ -45,160 +52,204 @@
     text-decoration: none;
   }
 
-  .back-link {
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
     color: var(--gray);
     text-decoration: none;
-    font-size: 14px;
     transition: color 0.2s;
   }
 
-  .back-link:hover { color: var(--black); }
+  .nav-links a:hover { color: var(--black); }
 
-  .container {
-    max-width: 900px;
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .page-hero {
+    padding: 140px 60px 80px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 40px 100px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .page-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 6px 14px;
+    margin-bottom: 24px;
   }
 
   .page-title {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 16px;
+    line-height: 1.05;
+    margin-bottom: 20px;
     color: var(--black);
+    max-width: 700px;
   }
 
   .page-subhead {
-    font-size: 18px;
+    font-size: 19px;
     color: var(--gray);
-    margin-bottom: 60px;
-    font-style: italic;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 80px;
+    padding: 80px 0;
+  }
+
+  .content-main {
+    max-width: 560px;
   }
 
   .content-section {
-    margin-bottom: 50px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 56px;
   }
 
-  .content-section:last-of-type { border-bottom: none; }
+  .content-section:last-of-type { margin-bottom: 0; }
 
   .section-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--black);
+    line-height: 1.3;
   }
 
   .content-section p {
     font-size: 16px;
     color: var(--gray);
     margin-bottom: 16px;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .content-section p:last-child {
     margin-bottom: 0;
   }
 
-  .use-cases {
-    margin: 24px 0;
+  /* SIDEBAR */
+  .content-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
   }
 
-  .use-case {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--light-gray);
+  .sidebar-card {
+    background: var(--offwhite);
+    padding: 32px;
+    border-left: 4px solid var(--yellow);
   }
 
-  .use-case:last-child {
-    border-bottom: none;
-  }
-
-  .use-case-icon {
-    width: 8px;
-    height: 8px;
-    background: var(--yellow);
-    border-radius: 0;
-    margin-top: 8px;
-    flex-shrink: 0;
-  }
-
-  .use-case-text {
-    font-size: 15px;
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--gray);
-    line-height: 1.6;
-  }
-
-  .cta-inline {
-    text-align: center;
-    padding: 40px 0;
-    margin: 20px 0;
-  }
-
-  .cta-closing {
-    text-align: center;
-    padding: 60px 0 0;
-  }
-
-  .question-section {
-    background: var(--black);
-    color: var(--offwhite);
-    padding: 48px 40px;
-    border-radius: 0;
-    margin-top: 60px;
-  }
-
-  .question-section .section-title {
-    color: var(--white);
-  }
-
-  .question-section p {
-    color: var(--offwhite);
-    font-size: 16px;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
-
-  .question-section p:last-child {
-    margin-bottom: 0;
-  }
-
-  .question-highlight {
-    font-family: 'Roboto Slab', serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.4;
-    color: var(--yellow);
-    font-style: italic;
     margin-bottom: 20px;
   }
 
-  .btn-primary {
-    background: var(--black);
-    color: var(--white);
-    padding: 15px 32px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
+  .sidebar-card .use-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+  .sidebar-card .use-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .sidebar-card .use-item:first-child {
+    padding-top: 0;
+  }
+
+  .use-icon {
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .use-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--black);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .cta-section-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-section p {
+    color: var(--offwhite);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .cta-highlight {
+    color: var(--yellow);
+    font-style: italic;
+  }
 
   .btn-yellow {
     background: var(--yellow);
     color: var(--black);
-    padding: 15px 32px;
+    padding: 16px 36px;
     font-size: 15px;
     font-weight: 400;
     border: none;
@@ -210,81 +261,145 @@
     font-family: 'Roboto Mono', monospace;
   }
 
-  .btn-yellow:hover { background: var(--black); color: var(--white); }
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
 
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
-    .container { padding: 40px 24px 80px; }
-    .question-section { padding: 32px 24px; }
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--black); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 120px 24px 60px; }
+    .container { padding: 0 24px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 0;
+    }
+    .content-sidebar {
+      position: static;
+      order: -1;
+    }
+    .cta-section { padding: 60px 24px; }
+    footer {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px 24px;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">BrandThnk</a>
-  <a href="/" class="back-link">← Back to Home</a>
+  <ul class="nav-links">
+    <li><a href="/#how">Work With Us</a></li>
+    <li><a href="/library/">Library</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
 </nav>
 
-<div class="container">
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-badge">Advisory</div>
   <h1 class="page-title">Advisory Access</h1>
-  <p class="page-subhead">Direct access to Allison Netzer for the decision in front of you right now</p>
+  <p class="page-subhead">Direct access to Allison Netzer for the decision in front of you right now.</p>
+</div>
 
-  <div class="content-section">
-    <h2 class="section-title">Some decisions can't wait for a process.</h2>
-    <p>You have a budget call next week, a positioning question you keep circling, or a move you're about to make that doesn't feel right yet. You don't need a six-week engagement. You need a clear point of view from someone who has been responsible for outcomes like this one.</p>
-    <p>A budget allocated to the wrong approach. A strategy that goes to the board before the logic holds. By the time the mistake is clear, the cost is real.</p>
-  </div>
+<!-- MAIN -->
+<div class="container">
+  <div class="content-grid">
+    <div class="content-main">
+      <div class="content-section">
+        <h2 class="section-title">Some decisions can't wait for a process.</h2>
+        <p>You have a budget call next week, a positioning question you keep circling, or a move you're about to make that doesn't feel right yet. You don't need a six-week engagement. You need a clear point of view from someone who has been responsible for outcomes like this one.</p>
+        <p>A budget allocated to the wrong approach. A strategy that goes to the board before the logic holds. By the time the mistake is clear, the cost is real.</p>
+      </div>
 
-  <div class="cta-inline">
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Start the Conversation</a>
-  </div>
+      <div class="content-section">
+        <h2 class="section-title">What you get from Advisory.</h2>
+        <p>This is direct access to Allison to work through one specific decision. You bring the question. She brings 25 years of experience as a CMO, an enterprise sales leader, and an operator who carried a bag.</p>
+      </div>
 
-  <div class="content-section">
-    <h2 class="section-title">What you get from Advisory.</h2>
-    <p>This is direct access to Allison to work through one specific decision. You bring the question. She brings 25 years of experience as a CMO, an enterprise sales leader, and an operator who carried a bag.</p>
-    <p>Advisory works for leaders who need to:</p>
-    <div class="use-cases">
-      <div class="use-case">
-        <div class="use-case-icon"></div>
-        <div class="use-case-text">Pressure-test an assumption before acting on it and finding out it was wrong.</div>
+      <div class="content-section">
+        <h2 class="section-title">What Advisory is not.</h2>
+        <p>It's not a retainer with monthly deliverables, though some clients use it that way. It's not a discovery process that takes four weeks before anything useful happens. You book time when you need it, work through the decision, and leave with a clear point of view and a next move you can defend.</p>
       </div>
-      <div class="use-case">
-        <div class="use-case-icon"></div>
-        <div class="use-case-text">Validate a strategy or budget before it goes to the board or a leadership team.</div>
+
+      <div class="content-section">
+        <h2 class="section-title">Who you're getting access to.</h2>
+        <p>Allison has spent 25 years at the intersection of brand strategy and revenue. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.</p>
+        <p>When you bring a decision to Advisory, you're not getting a consultant's opinion on what might work. You're getting a point of view from someone who has been accountable for the outcome.</p>
       </div>
-      <div class="use-case">
-        <div class="use-case-icon"></div>
-        <div class="use-case-text">Get a straight read on whether an approach is right, without the answer being shaped by someone who has something to sell you.</div>
-      </div>
-      <div class="use-case">
-        <div class="use-case-icon"></div>
-        <div class="use-case-text">Get connected to the right person or thinking you're missing, whether that's a clearer frame on the problem or someone who has solved it before.</div>
+    </div>
+
+    <div class="content-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">Advisory works for</div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Pressure-test an assumption before acting on it and finding out it was wrong.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Validate a strategy or budget before it goes to the board.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Get a straight read without the answer being shaped by someone selling you something.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Get connected to the right person or thinking you're missing.</div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="content-section">
-    <h2 class="section-title">What Advisory is not.</h2>
-    <p>It's not a retainer with monthly deliverables, though some clients use it that way. It's not a discovery process that takes four weeks before anything useful happens. You book time when you need it, work through the decision, and leave with a clear point of view and a next move you can defend.</p>
-  </div>
-
-  <div class="content-section">
-    <h2 class="section-title">Who you're getting access to.</h2>
-    <p>Allison has spent 25 years at the intersection of brand strategy and revenue. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.</p>
-    <p>When you bring a decision to Advisory, you're not getting a consultant's opinion on what might work. You're getting a point of view from someone who has been accountable for the outcome.</p>
-  </div>
-
-  <div class="question-section">
-    <h2 class="section-title">The question worth asking yourself.</h2>
-    <p class="question-highlight">Is the decision in front of you one you'd make more confidently with a second perspective from someone who has been on both sides of the table?</p>
-    <p>If yes, that's what Advisory is for.</p>
-  </div>
-
-  <div class="cta-closing">
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">See If This Is the Right Fit</a>
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-section-inner">
+    <h2>The question worth asking yourself.</h2>
+    <p><span class="cta-highlight">Is the decision in front of you one you'd make more confidently with a second perspective from someone who has been on both sides of the table?</span></p>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Start the Conversation</a>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about">About</a> &nbsp;·&nbsp; <a href="/therapy/">Brand Therapy</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
 
 </body>
 </html>

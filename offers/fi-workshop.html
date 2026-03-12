@@ -20,6 +20,8 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Roboto Mono', monospace;
     background: var(--white);
@@ -29,10 +31,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
+  /* NAV - Persistent */
   nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     padding: 20px 60px;
-    background: var(--white);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--light-gray);
     display: flex;
     align-items: center;
@@ -47,135 +53,211 @@
     text-decoration: none;
   }
 
-  .back-link {
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
     color: var(--gray);
     text-decoration: none;
-    font-size: 14px;
     transition: color 0.2s;
   }
 
-  .back-link:hover { color: var(--black); }
+  .nav-links a:hover { color: var(--black); }
 
-  /* MAIN */
-  .container {
-    max-width: 900px;
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .page-hero {
+    padding: 140px 60px 80px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 40px 100px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .page-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 6px 14px;
+    margin-bottom: 24px;
   }
 
   .page-title {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 16px;
+    line-height: 1.05;
+    margin-bottom: 20px;
     color: var(--black);
+    max-width: 700px;
   }
 
   .page-subhead {
-    font-size: 18px;
+    font-size: 19px;
     color: var(--gray);
-    margin-bottom: 60px;
-    font-style: italic;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 80px;
+    padding: 80px 0;
+  }
+
+  .content-main {
+    max-width: 560px;
   }
 
   .content-section {
-    margin-bottom: 50px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 56px;
   }
 
-  .content-section:last-of-type { border-bottom: none; }
+  .content-section:last-of-type { margin-bottom: 0; }
 
   .section-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--black);
+    line-height: 1.3;
   }
 
   .content-section p {
     font-size: 16px;
     color: var(--gray);
     margin-bottom: 16px;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .content-section p:last-child {
     margin-bottom: 0;
   }
 
-  .deliverables-list {
-    margin-top: 24px;
+  /* SIDEBAR */
+  .content-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
   }
 
-  .deliverable-item {
+  .sidebar-card {
     background: var(--offwhite);
+    padding: 32px;
     border-left: 4px solid var(--yellow);
-    padding: 20px 24px;
-    margin-bottom: 16px;
   }
 
-  .deliverable-item:last-child {
-    margin-bottom: 0;
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .sidebar-card .deliverable-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .sidebar-card .deliverable-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .sidebar-card .deliverable-item:first-child {
+    padding-top: 0;
   }
 
   .deliverable-name {
     font-family: 'Roboto Slab', serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--black);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .deliverable-desc {
-    font-size: 15px;
+    font-size: 13px;
     color: var(--gray);
     line-height: 1.5;
-    margin-bottom: 0;
   }
 
-  .session-note {
-    font-size: 15px;
-    color: var(--black);
-    font-weight: 400;
-    margin-top: 24px;
+  .sidebar-note {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
     font-style: italic;
   }
 
-  .cta-inline {
-    text-align: center;
-    padding: 40px 0;
-    margin: 20px 0;
-  }
-
-  .cta-inline.closing {
-    margin-top: 60px;
-    margin-bottom: 0;
-  }
-
-  .btn-primary {
+  /* CTA SECTION */
+  .cta-section {
     background: var(--black);
-    color: var(--white);
-    padding: 15px 32px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
+    padding: 80px 60px;
+    text-align: center;
   }
 
-  .btn-primary:hover { background: var(--white); color: var(--black); }
+  .cta-section-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-section p {
+    color: var(--offwhite);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .cta-highlight {
+    color: var(--yellow);
+    font-style: italic;
+  }
 
   .btn-yellow {
     background: var(--yellow);
     color: var(--black);
-    padding: 15px 32px;
+    padding: 16px 36px;
     font-size: 15px;
     font-weight: 400;
     border: none;
@@ -187,11 +269,55 @@
     font-family: 'Roboto Mono', monospace;
   }
 
-  .btn-yellow:hover { background: var(--black); color: var(--white); }
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
 
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
-    .container { padding: 40px 24px 80px; }
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--black); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 120px 24px 60px; }
+    .container { padding: 0 24px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 0;
+    }
+    .content-sidebar {
+      position: static;
+      order: -1;
+    }
+    .cta-section { padding: 60px 24px; }
+    footer {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px 24px;
+    }
   }
 </style>
 </head>
@@ -200,56 +326,85 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">BrandThnk</a>
-  <a href="/" class="back-link">← Back to Home</a>
+  <ul class="nav-links">
+    <li><a href="/#how">Work With Us</a></li>
+    <li><a href="/library/">Library</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
 </nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-badge">Workshop</div>
+  <h1 class="page-title">Your Brand Is Not Your Building</h1>
+  <p class="page-subhead">A brand clarity workshop for community bank and credit union leaders.</p>
+</div>
 
 <!-- MAIN -->
 <div class="container">
-  <h1 class="page-title">Your Brand Is Not Your Building</h1>
-  <p class="page-subhead">A brand clarity workshop for community bank and credit union leaders</p>
-
-  <div class="content-section">
-    <h2 class="section-title">The problem most institutions won't name out loud.</h2>
-    <p>Your institution has a real story. But when a prospective member or customer asks why they should choose you, the answer reaches for the founding year, the branch count, or the rate sheet. Those aren't reasons to choose you. They're reasons you exist, and that's a different thing entirely.</p>
-    <p>When the props become the story, marketing has nothing to work with. Every campaign defends the institution instead of differentiating it. Budget gets spent, activity gets generated, and the institution stays invisible to everyone who doesn't already know it.</p>
-  </div>
-
-  <div class="content-section">
-    <h2 class="section-title">What happens if this doesn't get resolved.</h2>
-    <p>The institutions that lose ground to larger banks and fintechs rarely lose on product. They lose on clarity. A bigger bank with a weaker community story still wins if it can articulate why it exists and yours can't. The longer your leadership team can't agree on the answer to that question, the harder it is to hold the position you already have, let alone take new ground.</p>
-  </div>
-
-  <div class="content-section">
-    <h2 class="section-title">What the workshop produces.</h2>
-    <p>This is a working session for your leadership team, not a presentation. BrandThnk facilitates the conversation your team has been circling and helps you land on language everyone can agree on and actually use.</p>
-    <p>You leave with three things:</p>
-    <div class="deliverables-list">
-      <div class="deliverable-item">
-        <div class="deliverable-name">Mirror Summary</div>
-        <p class="deliverable-desc">How your brand reads today against your immediate competitive set, and where the gaps are largest.</p>
+  <div class="content-grid">
+    <div class="content-main">
+      <div class="content-section">
+        <h2 class="section-title">The problem most institutions won't name out loud.</h2>
+        <p>Your institution has a real story. But when a prospective member or customer asks why they should choose you, the answer reaches for the founding year, the branch count, or the rate sheet. Those aren't reasons to choose you. They're reasons you exist, and that's a different thing entirely.</p>
+        <p>When the props become the story, marketing has nothing to work with. Every campaign defends the institution instead of differentiating it. Budget gets spent, activity gets generated, and the institution stays invisible to everyone who doesn't already know it.</p>
       </div>
-      <div class="deliverable-item">
-        <div class="deliverable-name">Core Tension statement</div>
-        <p class="deliverable-desc">The human problem your institution exists to solve, in language your leadership team has agreed on.</p>
+
+      <div class="content-section">
+        <h2 class="section-title">What happens if this doesn't get resolved.</h2>
+        <p>The institutions that lose ground to larger banks and fintechs rarely lose on product. They lose on clarity. A bigger bank with a weaker community story still wins if it can articulate why it exists and yours can't. The longer your leadership team can't agree on the answer to that question, the harder it is to hold the position you already have, let alone take new ground.</p>
       </div>
-      <div class="deliverable-item">
-        <div class="deliverable-name">Gap Map</div>
-        <p class="deliverable-desc">Where what you say, what you do, and what customers experience fall out of alignment, with first moves assigned to owners.</p>
+
+      <div class="content-section">
+        <h2 class="section-title">What the workshop produces.</h2>
+        <p>This is a working session for your leadership team, not a presentation. BrandThnk facilitates the conversation your team has been circling and helps you land on language everyone can agree on and actually use.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Who runs this work and why it matters.</h2>
+        <p>This work is hard to facilitate from inside the institution. The people who know the story best are also the ones who built it, which means they're too close to it to see where it breaks down.</p>
+        <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. She has run this work with over 50 financial institutions and fintech brands. She knows what the conversation sounds like when a leadership team is circling the real answer and what it sounds like when they've found it.</p>
       </div>
     </div>
-    <p class="session-note">The session runs as a half-day, in person, with your marketing and senior leadership team.</p>
-  </div>
 
-  <div class="content-section">
-    <h2 class="section-title">Who runs this work and why it matters.</h2>
-    <p>This work is hard to facilitate from inside the institution. The people who know the story best are also the ones who built it, which means they're too close to it to see where it breaks down.</p>
-    <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. She has run this work with over 50 financial institutions and fintech brands. She knows what the conversation sounds like when a leadership team is circling the real answer and what it sounds like when they've found it.</p>
-  </div>
-
-  <div class="cta-inline closing">
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Discovery Call</a>
+    <div class="content-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">You Leave With</div>
+        <div class="deliverable-item">
+          <div class="deliverable-name">Mirror Summary</div>
+          <p class="deliverable-desc">How your brand reads today against your immediate competitive set, and where the gaps are largest.</p>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-name">Core Tension Statement</div>
+          <p class="deliverable-desc">The human problem your institution exists to solve, in language your leadership team has agreed on.</p>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-name">Gap Map</div>
+          <p class="deliverable-desc">Where what you say, what you do, and what customers experience fall out of alignment, with first moves assigned to owners.</p>
+        </div>
+        <p class="sidebar-note">Half-day session, in person, with your marketing and senior leadership team.</p>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-section-inner">
+    <h2>The question that starts everything.</h2>
+    <p><span class="cta-highlight">If you stripped away your branches, your rate sheet, and your founding year, could your leadership team agree on why your institution exists?</span></p>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Start the Conversation</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about">About</a> &nbsp;·&nbsp; <a href="/therapy/">Brand Therapy</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
 
 </body>
 </html>
