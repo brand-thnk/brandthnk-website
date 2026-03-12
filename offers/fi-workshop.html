@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Your Brand Is Not Your Building | BrandThnk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    padding: 20px 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .back-link {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--black); }
+
+  /* MAIN */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .page-subhead {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    font-style: italic;
+  }
+
+  .content-section {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .content-section:last-of-type { border-bottom: none; }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .content-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .content-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .deliverables-list {
+    margin-top: 24px;
+  }
+
+  .deliverable-item {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+
+  .deliverable-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .deliverable-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .deliverable-desc {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .session-note {
+    font-size: 15px;
+    color: var(--black);
+    font-weight: 400;
+    margin-top: 24px;
+    font-style: italic;
+  }
+
+  .cta-section {
+    background: var(--yellow);
+    padding: 48px 40px;
+    border-radius: 0;
+    margin: 60px 0;
+    text-align: center;
+  }
+
+  .cta-section.closing {
+    margin-bottom: 0;
+  }
+
+  .cta-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--black);
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--white); color: var(--black); }
+
+  .question-section {
+    background: var(--black);
+    color: var(--offwhite);
+    padding: 48px 40px;
+    border-radius: 0;
+    margin-top: 60px;
+  }
+
+  .question-section .section-title {
+    color: var(--white);
+  }
+
+  .question-section p {
+    color: var(--offwhite);
+  }
+
+  .question-highlight {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--yellow);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
+    .container { padding: 40px 24px 80px; }
+    .cta-section { padding: 32px 24px; }
+    .question-section { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <a href="/" class="back-link">← Back to Home</a>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+  <h1 class="page-title">Your Brand Is Not Your Building</h1>
+  <p class="page-subhead">A brand clarity workshop for community bank and credit union leaders</p>
+
+  <div class="content-section">
+    <h2 class="section-title">The problem most institutions won't name out loud.</h2>
+    <p>Your institution has a real story. But when a prospective member or customer asks why they should choose you, the answer reaches for the founding year, the branch count, or the rate sheet. Those aren't reasons to choose you. They're reasons you exist, and that's a different thing entirely.</p>
+    <p>When the props become the story, marketing has nothing to work with. Every campaign defends the institution instead of differentiating it. Budget gets spent, activity gets generated, and the institution stays invisible to everyone who doesn't already know it.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What happens if this doesn't get resolved.</h2>
+    <p>The institutions that lose ground to larger banks and fintechs rarely lose on product. They lose on clarity. A bigger bank with a weaker community story still wins if it can articulate why it exists and yours can't. The longer your leadership team can't agree on the answer to that question, the harder it is to hold the position you already have, let alone take new ground.</p>
+  </div>
+
+  <div class="cta-section">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Discovery Call</a>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What the workshop produces.</h2>
+    <p>This is a working session for your leadership team, not a presentation. BrandThnk facilitates the conversation your team has been circling and helps you land on language everyone can agree on and actually use.</p>
+    <p>You leave with three things:</p>
+    <div class="deliverables-list">
+      <div class="deliverable-item">
+        <div class="deliverable-name">Mirror Summary</div>
+        <p class="deliverable-desc">How your brand reads today against your immediate competitive set, and where the gaps are largest.</p>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">Core Tension statement</div>
+        <p class="deliverable-desc">The human problem your institution exists to solve, in language your leadership team has agreed on.</p>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-name">Gap Map</div>
+        <p class="deliverable-desc">Where what you say, what you do, and what customers experience fall out of alignment, with first moves assigned to owners.</p>
+      </div>
+    </div>
+    <p class="session-note">The session runs as a half-day, in person, with your marketing and senior leadership team.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">Who runs this work and why it matters.</h2>
+    <p>This work is hard to facilitate from inside the institution. The people who know the story best are also the ones who built it, which means they're too close to it to see where it breaks down.</p>
+    <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. She has run this work with over 50 financial institutions and fintech brands. She knows what the conversation sounds like when a leadership team is circling the real answer and what it sounds like when they've found it.</p>
+  </div>
+
+  <div class="question-section">
+    <h2 class="section-title">The question that starts everything.</h2>
+    <p class="question-highlight">If you stripped away your branches, your rate sheet, and your founding year, could your leadership team agree on why your institution exists?</p>
+    <p>If the answer is no, or if it depends on who you ask, that's where the work starts.</p>
+  </div>
+
+  <div class="cta-section closing">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Discovery Call</a>
+  </div>
+</div>
+
+</body>
+</html>
