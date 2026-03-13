@@ -160,6 +160,97 @@
     margin-bottom: 0;
   }
 
+  /* WEEK BY WEEK */
+  .weeks-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .weeks-header {
+    margin-bottom: 48px;
+  }
+
+  .weeks-header h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  .week-block {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .week-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .week-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  .week-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .week-block p {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .week-block ul {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .week-block ul li {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .week-block ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .week-deliverable {
+    background: var(--offwhite);
+    padding: 16px 20px;
+    border-left: 4px solid var(--yellow);
+    font-size: 15px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .week-deliverable strong {
+    font-weight: 700;
+  }
+
   /* SIDEBAR */
   .content-sidebar {
     position: sticky;
@@ -222,25 +313,11 @@
     margin: 0 auto;
   }
 
-  .cta-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
   .cta-section p {
     color: var(--offwhite);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     margin-bottom: 32px;
-  }
-
-  .cta-highlight {
-    color: var(--yellow);
-    font-style: italic;
   }
 
   .btn-yellow {
@@ -300,6 +377,7 @@
       position: static;
       order: -1;
     }
+    .weeks-section { padding: 60px 0; }
     .cta-section { padding: 60px 24px; }
     footer {
       flex-direction: column;
@@ -317,7 +395,7 @@
   <a href="/" class="nav-logo">BrandThnk</a>
   <ul class="nav-links">
     <li><a href="/#how">Work With Us</a></li>
-    <li><a href="/library/">Library</a></li>
+    <li><a href="/library/">The Toolkit</a></li>
     <li><a href="/book/">Read the Book</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
@@ -327,8 +405,8 @@
 <!-- HERO -->
 <div class="page-hero">
   <div class="page-badge">Flagship Engagement</div>
-  <h1 class="page-title">BrandThnk Breakthrough</h1>
-  <p class="page-subhead">An eight-week engagement for fintech brands that are generating activity but not breaking through.</p>
+  <h1 class="page-title">You've invested in marketing. You're generating activity and none of it is breaking through.</h1>
+  <p class="page-subhead">The answer is a clearer brand, not more activity. The Breakthrough is how we build it.</p>
 </div>
 
 <!-- MAIN -->
@@ -336,50 +414,144 @@
   <div class="content-grid">
     <div class="content-main">
       <div class="content-section">
-        <h2 class="section-title">You have a real product. The market doesn't know it yet.</h2>
-        <p>You've invested in marketing. The content is going out, the campaigns are running, and the pipeline still isn't moving the way it should. The instinct is to do more -- more content, more channels, more spend.</p>
-        <p>The problem is rarely volume. It's almost always clarity. When your market can't quickly understand what you do, why it matters, and why you're the right choice, more activity makes the noise louder without making the signal stronger.</p>
+        <h2 class="section-title">The Problem</h2>
+        <p>Most bank and fintech marketing doesn't fail because of effort. It fails because the brand underneath the activity is unclear. When the story is scattered, every dollar you spend makes you harder to find, not easier.</p>
+        <p>The longer that continues, the harder the position is to claim. Market windows close. Board patience thins. Weaker products win on clarity while yours waits to be understood.</p>
       </div>
 
       <div class="content-section">
-        <h2 class="section-title">What it costs to stay here.</h2>
-        <p>Market windows in fintech close fast. The position you should own doesn't stay open while you figure out your messaging. Competitors with weaker products take it because they got clear first.</p>
-        <p>The harder problem is internal. When your team can't agree on what the brand stands for, every campaign starts from scratch and every new hire learns a different version of the story. That's not a marketing problem. It's a drag on the whole business.</p>
-      </div>
-
-      <div class="content-section">
-        <h2 class="section-title">What the engagement produces.</h2>
-        <p>The Breakthrough is eight weeks of focused work to find what's creating noise, build the brand platform that replaces it, and stay in it with you until the new positioning is in market and pulling.</p>
-      </div>
-
-      <div class="content-section">
-        <h2 class="section-title">Who runs this work.</h2>
-        <p>Allison Netzer has spent 25 years at the intersection of brand strategy and revenue, as a CMO, an enterprise sales leader, and an operator who carried a bag. She has run this engagement with over 50 fintech and financial institution brands.</p>
-        <p>The Breakthrough is grounded in that experience, not in a generic consulting playbook, and it starts with this question: If you stripped your logo from everything you published in the last 90 days, would anyone know it was you?</p>
-        <p>If the answer is no, that's not a content problem. It's a brand problem, and it doesn't fix itself.</p>
+        <h2 class="section-title">The Engagement</h2>
+        <p>Eight weeks. No 40-page deck you'll never use. What you get instead: a focused brand platform, a go-to-market plan, and someone who stays in it with you until it's pulling.</p>
+        <p>I've spent 25 years doing this work from inside the room -- as a CMO, an enterprise sales leader, and the person carrying a bag and responsible for the number. I know what a strategy looks like when it has to survive contact with a real market.</p>
       </div>
     </div>
 
     <div class="content-sidebar">
       <div class="sidebar-card">
-        <div class="sidebar-label">The Four Phases</div>
+        <div class="sidebar-label">Eight Weeks</div>
         <div class="phase-item">
-          <div class="phase-name">Discovery (Weeks 1-2)</div>
-          <p class="phase-desc">Stakeholder interviews, brand audit, and a Strategy Brief that gives your team a shared lens.</p>
+          <div class="phase-name">Weeks 1-2</div>
+          <p class="phase-desc">Deep Discovery</p>
         </div>
         <div class="phase-item">
-          <div class="phase-name">Positioning (Week 3)</div>
-          <p class="phase-desc">Brand Positioning Map and Messaging Framework, from vision level to campaign-ready.</p>
+          <div class="phase-name">Week 3</div>
+          <p class="phase-desc">Positioning Lab</p>
         </div>
         <div class="phase-item">
-          <div class="phase-name">Go-to-Market (Week 4)</div>
-          <p class="phase-desc">90-Day GTM Activation Plan with milestones, channels, and owners assigned.</p>
+          <div class="phase-name">Week 4</div>
+          <p class="phase-desc">Go-to-Market Model</p>
         </div>
         <div class="phase-item">
-          <div class="phase-name">Execution (Weeks 5-8)</div>
-          <p class="phase-desc">Distribution planning, team prep, and Executive Strategy Session with leadership.</p>
+          <div class="phase-name">Week 5</div>
+          <p class="phase-desc">Signal Amplification</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 6</div>
+          <p class="phase-desc">Strategy-to-Execution Bridge</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 7</div>
+          <p class="phase-desc">Feedback Loop Setup</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 8</div>
+          <p class="phase-desc">Executive Strategy Session</p>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEK BY WEEK -->
+<div class="container">
+  <div class="weeks-section">
+    <div class="weeks-header">
+      <h2>The Work, Week by Week</h2>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Weeks 1-2</div>
+      <h3 class="week-title">Deep Discovery</h3>
+      <p>Before we touch messaging, we get clear on what you've actually built, who it's really for, and where the real gap is between what you say and what your market hears.</p>
+      <ul>
+        <li>Stakeholder interviews: leadership, sales, product, customers where possible</li>
+        <li>Audit of existing brand, messaging, and GTM plans</li>
+        <li>Identify internal blockers and external whitespace</li>
+        <li>Define what breakthrough actually looks like for your business</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Strategy Brief -- distilled insights, aligned goals, and a shared lens the rest of the engagement builds on.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 3</div>
+      <h3 class="week-title">Positioning Lab</h3>
+      <p>Most leaders think the problem is awareness. Usually it's clarity. This is where we find the sharpest, most honest articulation of your brand's "why now" and build the messaging that flows from it.</p>
+      <ul>
+        <li>Core narrative, proof points, and audience resonance</li>
+        <li>Clarify what you are -- and what you are not</li>
+        <li>Build a messaging hierarchy from vision-level to campaign-ready</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Brand Positioning Map and Messaging Framework ready to plug into GTM, content, and sales enablement.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 4</div>
+      <h3 class="week-title">Go-to-Market Model</h3>
+      <p>Strategy without a plan is a presentation. This week we build the GTM model grounded in your business reality -- the channels that create traction, not noise.</p>
+      <ul>
+        <li>Select best-fit channels for your stage and audience</li>
+        <li>Align product moments with marketing moments</li>
+        <li>Define what "launch-ready" means and what follows it</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A 90-Day GTM Activation Plan with milestones, roles, content hooks, and external leverage points.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 5</div>
+      <h3 class="week-title">Signal Amplification</h3>
+      <p>Your brand gets stronger when others carry it. This week we build the distribution strategy that puts your story in front of the right audiences through third-party voices.</p>
+      <ul>
+        <li>Plan for media, analyst, and influencer distribution</li>
+        <li>Outline content placement and PR strategies</li>
+        <li>Identify internal champions and external advocates</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Distribution and Advocacy Toolkit with third-party channels, media angles, and customer-led story frameworks.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 6</div>
+      <h3 class="week-title">Strategy-to-Execution Bridge</h3>
+      <p>A strategy only works if your team can run it. This week we close the gap between what we built and what your teams, agencies, and partners can actually execute.</p>
+      <ul>
+        <li>Work with internal teams to prep activation</li>
+        <li>Set up internal documentation for handoff</li>
+        <li>Coach teams and agencies on adoption and adaptation</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Internal Playbook and a live training session with your team.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 7</div>
+      <h3 class="week-title">Feedback Loop Setup</h3>
+      <p>Markets move. This week we build the measurement rhythm that lets the strategy flex without losing its shape.</p>
+      <ul>
+        <li>Set KPIs tied to business outcomes, not vanity metrics</li>
+        <li>Build a rhythm for reflection and course correction</li>
+        <li>Define what "working" looks like -- and what it doesn't</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Impact Dashboard Template with guidance on how to read, report, and act on what you see.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 8</div>
+      <h3 class="week-title">Executive Strategy Session</h3>
+      <p>The work only holds if leadership owns it. This week we present the full strategy to your C-suite or GTM leaders and map what comes next.</p>
+      <ul>
+        <li>60-90 minute working session with leadership</li>
+        <li>Present the final strategy and make the case for change</li>
+        <li>Map next-phase priorities and assign ownership</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Executive Debrief Presentation -- slides, spoken walkthrough, and a next steps checklist.</div>
     </div>
   </div>
 </div>
@@ -387,8 +559,7 @@
 <!-- CTA -->
 <div class="cta-section">
   <div class="cta-section-inner">
-    <h2>The question worth sitting with.</h2>
-    <p><span class="cta-highlight">If you stripped your logo from everything you published in the last 90 days, would anyone know it was you?</span></p>
+    <p>A 30-minute call is enough to find out whether the Breakthrough is the right fit. We'll look at where you are, what's creating the gap, and whether this is the right next move.</p>
     <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Start the Conversation</a>
   </div>
 </div>
