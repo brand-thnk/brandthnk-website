@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Library | BrandThnk</title>
-<meta name="description" content="The thinking is free. The application is where we come in. Essential frameworks and briefings for fintech and bank brand strategy.">
+<meta name="description" content="Frameworks and diagnostics to sharpen your thinking. Essential tools for fintech and bank brand strategy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -280,7 +280,7 @@
   }
 
   .newsletter-cta {
-    background: var(--yellow);
+    background: var(--black);
     border-radius: 0;
     padding: 80px 60px;
     text-align: center;
@@ -289,10 +289,14 @@
 
   .newsletter-cta h2 {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 4vw, 44px);
+    font-size: clamp(24px, 3vw, 32px);
     font-weight: 700;
-    color: var(--black);
+    color: var(--white);
     margin-bottom: 36px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.3;
     line-height: 1.15;
     letter-spacing: -1px;
   }
@@ -331,6 +335,23 @@
   }
 
   .btn-black:hover { background: var(--white); color: var(--black); }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -426,7 +447,7 @@
 <div class="container">
   <div class="page-header">
     <p class="page-eyebrow">The Toolkit</p>
-    <h1 class="page-title">The thinking is free. The application is where we come in.</h1>
+    <h1 class="page-title">Frameworks and diagnostics to sharpen your thinking.</h1>
   </div>
 
   <div class="section">
@@ -495,7 +516,7 @@
 
   <div class="newsletter-cta">
     <h2>If you stripped your logo from everything you published in the last 90 days, would anyone know it was you?</h2>
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-black" style="margin-top: 36px;">Book a Call</a>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Call</a>
   </div>
 </div>
 

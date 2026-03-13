@@ -673,11 +673,29 @@
     background: var(--card-bg);
     transition: all 0.2s;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .resource-card:hover {
     border-color: var(--black);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .resource-link {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .resource-card:hover .resource-link {
+    color: var(--gray);
   }
 
   .resource-type {
@@ -981,16 +999,19 @@
       <p class="resource-type">Framework</p>
       <h3 class="resource-title">Box-Edge Framework</h3>
       <p class="resource-desc">Positioning breaks down in two places: teams can't agree on what category they belong in, and they can't say why they're better once they're in it. The Box-Edge Framework gives you a two-part structure for getting both right, and a test for knowing when you have.</p>
+      <span class="resource-link">Read →</span>
     </a>
     <a href="/library/wooden-test" class="resource-card">
       <p class="resource-type">Sales and Brand Strategy</p>
       <h3 class="resource-title">The Wooden Test</h3>
       <p class="resource-desc">John Wooden won 10 championships and never let his players see the scouting reports. When competitive intel saturates your team, you stop executing your story and start reacting to theirs. This is a one-question diagnostic for where your attention is actually pointed.</p>
+      <span class="resource-link">Read →</span>
     </a>
     <a href="/library/the-assumption-trap" class="resource-card">
       <p class="resource-type">Briefing</p>
       <h3 class="resource-title">The Assumption Trap</h3>
       <p class="resource-desc">Smart, experienced teams stop questioning their assumptions because they've earned the right to trust their instincts. That's exactly when assumptions become liabilities. This briefing walks through how to surface the beliefs shaping your strategy before they start shaping your results.</p>
+      <span class="resource-link">Read →</span>
     </a>
   </div>
   <div class="newsletter-strip">
