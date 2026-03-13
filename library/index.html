@@ -70,6 +70,16 @@
 
   .nav-links a:hover, .nav-links a.active { color: var(--black); }
 
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
   /* Mobile Menu Toggle */
   .mobile-menu-toggle {
     display: none;
@@ -439,7 +449,9 @@
   <ul class="nav-links">
     <li><a href="/#offers">Work With Us</a></li>
     <li><a href="/library/" class="active">The Toolkit</a></li>
-    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17">Book a Call</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
   </ul>
 </nav>
 
