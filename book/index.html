@@ -82,26 +82,33 @@
             gap: 36px;
         }
 
+        .nav-links {
+            list-style: none;
+        }
+
         .nav-links a {
             font-family: var(--font-body);
             font-size: 14px;
             font-weight: 400;
-            position: relative;
+            color: #666666;
+            transition: color 0.2s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--yellow);
-            transition: width 0.3s ease;
+        .nav-links a:hover {
+            color: var(--black);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-cta {
+            background: var(--black);
+            color: var(--white) !important;
+            padding: 10px 22px;
+            border-radius: 0;
+            transition: all 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--yellow) !important;
+            color: var(--black) !important;
         }
 
         /* Hero */
@@ -602,12 +609,13 @@
 <body>
     <nav class="site-nav">
         <a href="/" class="nav-wordmark">BrandThnk</a>
-        <div class="nav-links">
-            <a href="/#frameworks">Frameworks</a>
-            <a href="/#briefings">Briefings</a>
-            <a href="/#about">About</a>
-            <a href="/#newsletter">Newsletter</a>
-        </div>
+        <ul class="nav-links">
+            <li><a href="/#offers">Work With Us</a></li>
+            <li><a href="/library/">The Toolkit</a></li>
+            <li><a href="/book/">Read the Book</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+        </ul>
     </nav>
 
     <section class="hero">
