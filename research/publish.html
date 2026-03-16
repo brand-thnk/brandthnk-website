@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publish Research | BrandThnk</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --red: #D32F2F;
+    --green: #2E7D32;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 140px 60px 120px;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--black);
+    letter-spacing: -1px;
+  }
+
+  .page-description {
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  /* AUTH GATE */
+  #auth-gate, #publish-form, #manage-section { margin-bottom: 48px; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+
+  input[type="text"], input[type="password"], textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    border: 1px solid var(--light-gray);
+    background: var(--white);
+    color: var(--black);
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--black);
+  }
+
+  textarea {
+    min-height: 400px;
+    resize: vertical;
+    line-height: 1.6;
+  }
+
+  .field { margin-bottom: 24px; }
+
+  .btn {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn:hover { background: var(--yellow); color: var(--black); }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-danger {
+    background: var(--white);
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .btn-danger:hover { background: var(--red); color: var(--white); }
+
+  .message {
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .message.success { background: #E8F5E9; color: var(--green); }
+  .message.error { background: #FFEBEE; color: var(--red); }
+
+  .hidden { display: none; }
+
+  /* Published list */
+  .published-list { margin-top: 24px; }
+
+  .published-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--light-gray);
+    gap: 16px;
+  }
+
+  .published-item-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .published-item-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .published-item-title a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .published-item-title a:hover { color: var(--gray); }
+
+  .published-item-date {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  .published-item-actions { flex-shrink: 0; }
+
+  .help-text {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .container { padding: 120px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/research/">View Published</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <p class="page-eyebrow">Admin</p>
+  <h1 class="page-title">Publish Research</h1>
+  <p class="page-description">Paste Manus research output here to publish it to the site.</p>
+
+  <!-- AUTH GATE -->
+  <div id="auth-gate">
+    <div class="field">
+      <label for="api-key">API Key</label>
+      <input type="password" id="api-key" placeholder="Enter your research API key">
+    </div>
+    <button class="btn" onclick="authenticate()">Unlock</button>
+    <div id="auth-message"></div>
+  </div>
+
+  <!-- PUBLISH FORM (hidden until authenticated) -->
+  <div id="publish-form" class="hidden">
+    <div class="field">
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Research title">
+    </div>
+    <div class="field">
+      <label for="summary">Summary</label>
+      <input type="text" id="summary" placeholder="One-line summary (optional)">
+    </div>
+    <div class="field">
+      <label for="content">Content</label>
+      <textarea id="content" placeholder="Paste Manus research output here (Markdown supported)"></textarea>
+      <p class="help-text">Markdown formatting is supported: headings (#), bold (**), lists (-), links, etc.</p>
+    </div>
+    <button class="btn" id="publish-btn" onclick="publish()">Publish</button>
+    <div id="publish-message"></div>
+  </div>
+
+  <!-- MANAGE EXISTING (hidden until authenticated) -->
+  <div id="manage-section" class="hidden">
+    <h2 style="font-family: 'Roboto Slab', serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; padding-top: 48px; border-top: 2px solid var(--black);">Published Research</h2>
+    <div id="published-list" class="published-list">
+      <p style="color: var(--gray); font-size: 14px;">Loading...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+let storedKey = '';
+
+function authenticate() {
+  const key = document.getElementById('api-key').value.trim();
+  if (!key) {
+    showMessage('auth-message', 'Enter an API key.', 'error');
+    return;
+  }
+  storedKey = key;
+  // Test the key by fetching the index (this always works, but we'll validate on publish)
+  document.getElementById('auth-gate').classList.add('hidden');
+  document.getElementById('publish-form').classList.remove('hidden');
+  document.getElementById('manage-section').classList.remove('hidden');
+  loadPublished();
+}
+
+async function publish() {
+  const title = document.getElementById('title').value.trim();
+  const summary = document.getElementById('summary').value.trim();
+  const content = document.getElementById('content').value.trim();
+
+  if (!title || !content) {
+    showMessage('publish-message', 'Title and content are required.', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('publish-btn');
+  btn.disabled = true;
+  btn.textContent = 'Publishing...';
+
+  try {
+    const res = await fetch('/.netlify/functions/research', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': storedKey,
+      },
+      body: JSON.stringify({ title, summary, content }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showMessage('publish-message', data.error || 'Publish failed.', 'error');
+      return;
+    }
+
+    showMessage('publish-message', `Published! View at <a href="/research/?slug=${data.slug}" style="color: inherit; font-weight: bold;">/research/?slug=${data.slug}</a>`, 'success');
+    document.getElementById('title').value = '';
+    document.getElementById('summary').value = '';
+    document.getElementById('content').value = '';
+    loadPublished();
+  } catch (err) {
+    showMessage('publish-message', 'Network error. Try again.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Publish';
+  }
+}
+
+async function loadPublished() {
+  const container = document.getElementById('published-list');
+  try {
+    const res = await fetch('/.netlify/functions/research');
+    const items = await res.json();
+
+    if (!items.length) {
+      container.innerHTML = '<p style="color: var(--gray); font-size: 14px;">No research published yet.</p>';
+      return;
+    }
+
+    container.innerHTML = items.map(item => {
+      const date = new Date(item.publishedAt).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      return `
+        <div class="published-item">
+          <div class="published-item-info">
+            <div class="published-item-title"><a href="/research/?slug=${item.slug}">${escapeHtml(item.title)}</a></div>
+            <div class="published-item-date">${date}</div>
+          </div>
+          <div class="published-item-actions">
+            <button class="btn btn-danger" onclick="deleteEntry('${item.slug}')">Delete</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } catch {
+    container.innerHTML = '<p style="color: var(--gray); font-size: 14px;">Could not load published research.</p>';
+  }
+}
+
+async function deleteEntry(slug) {
+  if (!confirm('Delete this research entry? This cannot be undone.')) return;
+
+  try {
+    const res = await fetch(`/.netlify/functions/research?slug=${slug}`, {
+      method: 'DELETE',
+      headers: { 'X-API-Key': storedKey },
+    });
+
+    if (res.ok) {
+      loadPublished();
+    } else {
+      alert('Delete failed.');
+    }
+  } catch {
+    alert('Network error.');
+  }
+}
+
+function showMessage(id, text, type) {
+  const el = document.getElementById(id);
+  el.className = `message ${type}`;
+  el.innerHTML = text;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+</script>
+
+</body>
+</html>
