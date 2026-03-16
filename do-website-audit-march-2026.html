@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Audit - Digital Onboarding | BrandThnk</title>
+    <meta name="description" content="Comprehensive website audit of digitalonboarding.com using StoryBrand SB7 framework, competitive positioning analysis, and conversion optimization recommendations. March 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto Slab', serif;
+            color: #000000;
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 900;
+            border-bottom: 4px solid #FFEB3B;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #000000;
+            margin-top: 3em;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            font-weight: 500;
+            color: #000000;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .header {
+            background-color: #F5F5F5;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 8px solid #FFEB3B;
+        }
+
+        .header h1 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+            font-size: 2.2em;
+        }
+
+        .company-name {
+            font-size: 1.3em;
+            color: #000000;
+            margin-bottom: 1em;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 500;
+        }
+
+        .metadata {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 1.5em;
+        }
+
+        .metadata div {
+            margin-bottom: 0.3em;
+        }
+
+        .problem-statement {
+            background-color: #F5F5F5;
+            border-left: 4px solid #000000;
+            padding: 20px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background-color: #FFEB3B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .framework-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.9em;
+        }
+
+        .framework-table th {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 15px;
+            text-align: left;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        .framework-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .framework-table tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+
+        .page-section {
+            background-color: #F5F5F5;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #FFEB3B;
+        }
+
+        .page-section h3 {
+            margin-top: 0;
+            color: #000000;
+        }
+
+        .page-section h4 {
+            color: #000000;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+
+        .verdict {
+            background-color: #FFEB3B;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .storybrand-verdict {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .proposed-homepage {
+            background-color: #F5F5F5;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #000000;
+        }
+
+        .proposed-homepage h3 {
+            margin-top: 0;
+            color: #000000;
+        }
+
+        .action-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .action-table th {
+            background-color: #FFEB3B;
+            color: #000000;
+            padding: 15px;
+            text-align: left;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        .action-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .action-table tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+
+        .stop-table th {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .continue-table th {
+            background-color: #FFEB3B;
+            color: #000000;
+        }
+
+        .action-number {
+            font-weight: 700;
+            color: #000000;
+            min-width: 40px;
+        }
+
+        .competitive-insight {
+            background-color: #F5F5F5;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #000000;
+        }
+
+        .competitive-insight h4 {
+            margin-top: 0;
+            color: #000000;
+        }
+
+        .lorem-ipsum {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .bottom-line {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+
+        .bottom-line h2 {
+            color: #FFFFFF;
+            margin-top: 0;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #F5F5F5;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .framework-table,
+            .action-table {
+                font-size: 0.8em;
+            }
+
+            .framework-table th,
+            .framework-table td,
+            .action-table th,
+            .action-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Website Audit</h1>
+        <div class="company-name">Digital Onboarding, Inc.</div>
+        <div class="metadata">
+            <div><strong>Prepared by:</strong> BrandThnk</div>
+            <div><strong>Date:</strong> March 16, 2026</div>
+            <div><strong>Scope:</strong> Full website audit of digitalonboarding.com</div>
+            <div><strong>Lens:</strong> StoryBrand SB7 framework, competitive positioning, conversion optimization</div>
+            <div><strong>Inputs:</strong> Site crawl + Fintech Competitive Intelligence Dashboard (SimilarWeb, LinkedIn Ad Library, Meta Ad Library)</div>
+        </div>
+    </div>
+
+    <section>
+        <h2>Executive Summary</h2>
+        <p>digitalonboarding.com has strong product-market fit buried under weak storytelling. The site describes features clearly. It does not describe the buyer's problem at all. Every page leads with what Digital Onboarding does rather than what the buyer is struggling with. That distinction matters because it determines whether a first-time visitor stays for 10 seconds or 10 minutes.</p>
+
+        <p>The competitive intelligence dashboard makes the stakes plain. DO's organic traffic declined 29.3% year-over-year. The site pulls roughly 4,179 monthly visits against nCino's 69,541. There is near-zero paid search spend while Narmi has increased theirs by 548%. Every visitor who lands on this site is disproportionately valuable, and right now the site is not converting that scarce traffic into pipeline.</p>
+
+        <div class="problem-statement">
+            <strong>The site's biggest structural problem is that it positions Digital Onboarding as the hero of the story.</strong> StoryBrand's SB7 framework teaches the opposite: the customer is the hero, the brand is the guide.
+        </div>
+
+        <p>A community bank CMO running a four-person marketing team who just lost 15% of new accounts to dormancy should land on this homepage and immediately feel understood. Instead, they land on three rotating taglines ("Activate relationships. Deepen engagement. Amplify growth.") that could belong to any martech vendor in the country.</p>
+
+        <div class="lorem-ipsum">
+            <strong>Quality Control Issue:</strong> There is also a live Lorem ipsum block on the homepage awards section. That tells a prospect something about quality control.
+        </div>
+
+        <p>Two additional gaps compound the problem. First, DO's leadership team (Ted Brown, Nate Shahan, Adam Westley) is invisible on the site. The About page lists names and titles. It does not position these people as practitioners with a point of view on data-driven engagement, lifecycle orchestration, or the future of digital banking. In a market where nCino runs thought leadership ads featuring named executives and Fenergo promotes Elaine Zhang by name in webinar campaigns, DO's people are a dormant asset.</p>
+
+        <p>Second, the site does not tell a data story. DO's platform is built on first-party behavioral data, automated targeting, and lifecycle engagement across digital banking channels. None of that comes through in the messaging. The word "data" barely appears on the homepage. "Lifecycle" does not appear at all. "Digital banking" shows up in feature descriptions but never in the positioning. The site describes widgets when it should be describing the intelligence layer underneath them.</p>
+
+        <p>This audit covers six dimensions: homepage and first impression, site structure and navigation, messaging and StoryBrand alignment, visual and design execution, conversion path and CTAs, and competitive positioning. It concludes with a Start/Stop/Continue framework weighted toward low-effort, high-differentiation moves, with a specific emphasis on people productization and the data-driven engagement narrative.</p>
+    </section>
+
+    <section>
+        <h2>StoryBrand SB7 Framework Analysis</h2>
+        <p>Donald Miller's StoryBrand framework maps brand messaging to a seven-part narrative structure. When a website follows this structure, visitors immediately understand three things: what is the problem, how does this company help me solve it, and what does my life look like after. When it doesn't, visitors get feature lists and jargon. Here is how DO's site performs against each element of the SB7.</p>
+
+        <table class="framework-table">
+            <thead>
+                <tr>
+                    <th>SB7 Element</th>
+                    <th>Current State</th>
+                    <th>Assessment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Character (the hero)</strong></td>
+                    <td>Absent</td>
+                    <td>The hero should be the buyer: a CMO or VP Digital at a community bank/CU with a small team and big goals. The homepage never names this person. It opens with DO's capabilities, not the buyer's situation.</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Problem</strong></td>
+                    <td>Partially present</td>
+                    <td>The Onboarding page mentions the 2x2x2 failure and dormancy. But the homepage does not name the problem clearly. "Struggling to retain account holders?" appears only on the Platform Overview page, not above the fold on the homepage where it belongs. The deeper problem (disconnected data across the account holder lifecycle, no orchestration between channels, digital banking as an underused engagement surface) never gets articulated at all.</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Guide</strong></td>
+                    <td>Weak</td>
+                    <td>A guide demonstrates empathy and authority. The site has authority signals (170+ FIs, case study metrics, awards) but they're scattered. Empathy is almost entirely missing. No language acknowledges how hard the buyer's job is. The "We make small teams feel huge" line is the closest, but it's buried. Critically, none of DO's leaders (Ted, Nate, Adam) appear as guides on the site beyond an About page headshot grid. In StoryBrand, the Guide has a face, a voice, and a track record. DO's Guide is faceless.</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Plan</strong></td>
+                    <td>Overcomplicated</td>
+                    <td>StoryBrand says: give the hero a simple plan (3 steps). The site offers a maze: Platform Overview, Data & Targeting, Analytics, Setup & Support, Use Cases, Pricing, four Solution pages, and a widget library. A first-time visitor cannot figure out where to go. The pricing page alone is a wall of feature matrices.</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Call to Action</strong></td>
+                    <td>Present but soft</td>
+                    <td>"Let's Talk" is the primary CTA. It appears in the nav and on multiple pages. The conversion page itself is clean (Marketo form + ChiliPiper calendar). But there is no transitional CTA: no gated benchmark report, no ROI calculator, no self-assessment tool. The only path is a sales conversation.</td>
+                </tr>
+                <tr>
+                    <td><strong>6. Failure</strong></td>
+                    <td>Absent</td>
+                    <td>StoryBrand says: show the stakes. What happens if the buyer does nothing? DO knows the answer: dormancy, silent attrition, competitor poaching, wasted acquisition spend. The site never says this directly on the homepage. Fenergo, by contrast, leads with "$1.9B in EMEA regulatory penalties." Fear-based messaging works in financial services when it's grounded in real data.</td>
+                </tr>
+                <tr>
+                    <td><strong>7. Success</strong></td>
+                    <td>Partially present</td>
+                    <td>The case study metrics are strong: 375% more direct deposits, 64% reduction in attrition, 800% growth in online banking enrollments. But they appear as a scrolling ticker, not as a narrative. A visitor needs to see themselves in the transformation: "Here is what a bank our size achieved in 90 days." The current format is metrics without context.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="storybrand-verdict">
+            <h3>SB7 Verdict</h3>
+            <p>The site is organized around what DO sells rather than what the buyer needs. Rewriting the homepage through StoryBrand's lens is the single highest-ROI change available because it is the first thing every visitor sees, regardless of how they got there.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Page-by-Page Audit</h2>
+
+        <div class="page-section">
+            <h3>Homepage</h3>
+
+            <h4>First impression (5-second test):</h4>
+            <p>A visitor sees three rotating taglines ("Activate relationships. Deepen engagement. Amplify growth."), an awards banner, and a ticker of case study metrics. The taglines are internally focused verbs. They describe what DO wants to happen, not what the buyer wants to happen. A community bank CEO scanning this page cannot tell within five seconds what this company does for someone like them.</p>
+
+            <h4>Hero section:</h4>
+            <p>No customer-facing language above the fold. Compare to Narmi, whose homepage leads with a specific promise to a named buyer segment. Compare to Fenergo, who leads with a compliance pain point. DO's hero section reads like a brand guidelines exercise, not a sales page.</p>
+
+            <h4>Social proof:</h4>
+            <p>The scrolling metrics ticker is visually engaging but cognitively expensive. A visitor sees numbers fly by without context. 40% growth in online debit card spending means nothing without knowing: for whom? Starting from what baseline? In what timeframe? Narmi puts the institution name, the metric, and the timeframe in a single headline. That is the standard.</p>
+
+            <h4>Customer video testimonials:</h4>
+            <p>Strong asset. Three named executives (Massud Zahir at Department of Commerce FCU, Jay Tuli at Leader Bank, Kirsten Quam at FVSBank) give specific, credible endorsements. These are buried in a carousel below the fold. They should be prominent. Video testimonials from named executives are the single most trust-building element on the site.</p>
+
+            <div class="lorem-ipsum">
+                <strong>Lorem ipsum:</strong> There is live placeholder text on the homepage in the awards section: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique." followed by a "Button Text" CTA. This is a quality control failure visible to every visitor.
+            </div>
+
+            <h4>Footer:</h4>
+            <p>Clean. Email capture with Marketo integration. Contact info, support links, security compliance link. No issues.</p>
+        </div>
+
+        <div class="page-section">
+            <h3>Platform Overview Page</h3>
+
+            <h4>Opening:</h4>
+            <p>"Struggling to retain account holders? You're not alone." This is the best empathy line on the entire site. It should be on the homepage, not two clicks deep. The rest of the page shifts immediately into feature descriptions and widget inventories.</p>
+
+            <h4>Content structure:</h4>
+            <p>The page is extremely long. It cycles through: engage everywhere, popular campaigns, features, widgets, testimonials, case studies, and more features. A visitor scrolling through this is doing work the site should do for them. The widget library alone (Direct Deposit Widget, Enrollment Widget, Card on File Widget, Cross-Channel Engagement Tool, etc.) lists 10+ items. This is product documentation dressed as a marketing page.</p>
+
+            <h4>Testimonials:</h4>
+            <p>Five customer quotes from named executives. Brittny Williams (SVP Digital Growth), Brennan Wall (CMO), Eddie Army (CMO), Kristen Quam (CMO), Mira Ness (CEO). These are excellent. But one of them uses the phrase "game changer," which undercuts credibility.</p>
+
+            <h4>CTA:</h4>
+            <p>"Let's Talk" at the bottom. No intermediate conversion option for someone who is interested but not ready for a sales call.</p>
+        </div>
+
+        <div class="page-section">
+            <h3>Onboarding Solution Page</h3>
+
+            <h4>Opening:</h4>
+            <p>"The 2x2x2 strategy never worked." This is a strong, opinionated hook. It names a specific practice the buyer recognizes and declares it dead. This is the kind of point-of-view messaging that differentiates. It needs to be more prominent across the site.</p>
+
+            <h4>Proof points:</h4>
+            <p>Dense scrolling ticker of metrics (375% more direct deposits, 64% lower attrition, 8x online banking enrollments, 50% increase in eStatements). The numbers are strong. The format (rotating ticker) makes them hard to absorb and impossible to reference later.</p>
+
+            <h4>Content offer:</h4>
+            <p>Three gated reports at the bottom (Javelin's Digital Engagement Index, email marketing effectiveness, text messaging report). These are good transitional CTAs but they sit at the very bottom of a long page. Most visitors will never scroll there.</p>
+        </div>
+
+        <div class="page-section">
+            <h3>Customers Page</h3>
+
+            <h4>Structure:</h4>
+            <p>Organized into three themes: Driving adoption, Creating loyalty, and Starting strong. Each section lists customer stories with named institutions and specific metrics. Sound Credit Union (7% text conversion rate, 3x industry average), Island FCU (25% drop in checking attrition), Leader Bank (27% reduction in escrow calls), NYU FCU (10% of at-risk accounts saved).</p>
+
+            <div class="verdict">
+                <strong>Assessment:</strong> This is the strongest page on the site. The metrics are specific, named, and credible. The problem is discoverability: this page is one click deep in the navigation and the stories are not repurposed anywhere else on the site. Every one of these metrics should appear on the homepage, on the relevant solution page, and in paid ad copy.
+            </div>
+        </div>
+
+        <div class="page-section">
+            <h3>Pricing & Packages Page</h3>
+
+            <div class="verdict">
+                <strong>Assessment:</strong> This page is a conversion obstacle. It presents two product packages (Starter and Advanced) and three success plan tiers (Starter, Advanced, Premier) in massive feature comparison tables. The tables contain dozens of line items. No pricing is shown; the page exists to demonstrate complexity without providing clarity.
+            </div>
+
+            <p>In StoryBrand terms, this violates the Plan step. The plan should be three simple steps: Step 1: See a demo. Step 2: Choose a package. Step 3: Launch in weeks. Instead, the visitor is presented with a procurement spreadsheet. This page will lose more prospects than it converts.</p>
+        </div>
+
+        <div class="page-section">
+            <h3>Let's Talk (Conversion Page)</h3>
+
+            <h4>Page headline:</h4>
+            <p>"See our solutions in action." Functional but not compelling. In StoryBrand terms, the CTA page should reinforce the transformation. Something like: "See how banks like yours cut attrition by 64% in 90 days."</p>
+
+            <h4>Form:</h4>
+            <p>Marketo form with name, email, phone, company, and a multi-select for "How can we help?" options. These options are strong (Onboard New Account Openers, Maximize Cross-Sell, Reduce Paper, Manage M&A, Raise Deposits). The form connects to ChiliPiper for instant scheduling. This is a solid technical setup.</p>
+
+            <h4>Missing:</h4>
+            <p>No social proof on the conversion page. No testimonial, no case study metric, no trust badge. Every conversion page should have at least one customer quote and the "170+ banks and credit unions" proof point visible while the visitor fills out the form.</p>
+        </div>
+
+        <div class="page-section">
+            <h3>Blog</h3>
+
+            <h4>Recent titles:</h4>
+            <p>"Why banking growth starts with engagement, not volume" … "Why the 2x2x2 onboarding strategy is failing banks" … "From clicks to conversions: metrics that matter" … "Winning the age of AI fatigue." The topics are relevant and the 2x2x2 angle is sharp.</p>
+
+            <h4>Problem:</h4>
+            <p>The blog is disconnected from the rest of the site. Blog posts do not appear on solution pages as supporting content. There is no content hub or pillar page strategy connecting blog posts to product pages for SEO. Given that organic traffic is down 29.3%, the blog should be a primary organic acquisition channel, but it is not being used that way.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Competitive Positioning: Where the Site Falls Short</h2>
+        <p>Your competitive intelligence dashboard reveals three patterns that directly inform what this site needs to do differently:</p>
+
+        <div class="competitive-insight">
+            <h4>1. nCino's content machine is producing at scale.</h4>
+            <p>1,013 active LinkedIn ads, 69,541 monthly visits, +122.9% organic growth. Their website is a conversion engine backed by massive paid amplification. DO cannot match this spend. But DO can match the messaging discipline. nCino's ads lead with specific outcomes ("Onboard commercial clients 75% faster"). DO's homepage leads with abstractions.</p>
+        </div>
+
+        <div class="competitive-insight">
+            <h4>2. Narmi's proof-point strategy is the playbook to study.</h4>
+            <p>Narmi runs 101 LinkedIn ads and every single one features a named client with a specific metric ($22M in new deposits in 120 days, 89% digital adoption in 90 days, 50% less support volume). DO has comparable proof points but treats them as supporting details rather than headlines. The website should steal this structure.</p>
+        </div>
+
+        <div class="competitive-insight">
+            <h4>3. Fenergo's fear-based hook converts.</h4>
+            <p>Fenergo leads with "$1.9B in EMEA regulatory penalties" and "93% of FIs are planning to adopt agentic AI." Fear and urgency work in financial services when backed by third-party data. DO's equivalent fear hook is dormancy: what percentage of new accounts go dormant within 90 days? If DO has this number (or Javelin does), it belongs above the fold.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>What a StoryBrand-Aligned Homepage Could Look Like</h2>
+        <p>The SB7 rewrite below is meant to show how the homepage narrative shifts when the customer becomes the hero. This is directional, not final copy.</p>
+
+        <div class="proposed-homepage">
+            <table class="framework-table">
+                <thead>
+                    <tr>
+                        <th>SB7 Element</th>
+                        <th>Proposed Homepage Narrative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Character</strong></td>
+                        <td>You work hard to open new accounts. But too many go dormant before the relationship even starts. Your data sits in silos. Your digital banking channel is underused. And your team is too small to orchestrate lifecycle engagement manually.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Problem</strong></td>
+                        <td>External: New account holders don't adopt services, and existing ones drift toward competitors. Internal: Your data is fragmented across core, digital banking, CRM, and account opening systems. Your team doesn't have time to build manual targeting lists or run multi-channel drip campaigns. Philosophical: Financial institutions should use their own data to guide every account holder through a personalized lifecycle, not send batch emails and hope.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Guide</strong></td>
+                        <td>170+ banks and credit unions trust Digital Onboarding to turn their data into engagement. Ted Brown (CEO) built DO after seeing firsthand how account openers fall through the cracks. Nate Shahan (CPO) spent his career building data-driven products for financial services. They've worked with institutions exactly like yours. [Named customer quote from a CMO at a similar-size institution.]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plan</strong></td>
+                        <td>Step 1: See a 15-minute demo of the data-driven engagement platform. Step 2: Connect your data and launch your first lifecycle campaign in weeks (we handle setup and orchestration). Step 3: Watch adoption climb inside digital banking and across every channel.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CTA (Direct)</strong></td>
+                        <td>See how it works. [Primary button: Schedule a demo]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CTA (Transitional)</strong></td>
+                        <td>Not ready to talk? Download the 2026 Community Bank Onboarding Benchmark Report.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Failure</strong></td>
+                        <td>[X]% of new accounts go dormant within 90 days. Every dormant account is acquisition spend with zero return.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Success</strong></td>
+                        <td>Leader Bank cut escrow calls by 27%. Island FCU dropped attrition by 25%. Garden Savings saw 8x more online banking enrollments. [Full case studies linked.]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                This structure takes 60 seconds to absorb. The current homepage takes 60 seconds to figure out what the company does. That gap is the conversion gap.
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Start / Stop / Continue</h2>
+        <p>Prioritized by effort-to-impact ratio. The first three STARTs are the highest-leverage moves.</p>
+
+        <h3>START</h3>
+        <p><em>New actions. Ordered by impact.</em></p>
+
+        <table class="action-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Action</th>
+                    <th>Why</th>
+                    <th>Effort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="action-number">S1</td>
+                    <td>Rewrite the homepage hero through StoryBrand. Lead with the buyer's problem (disconnected data, dormant accounts, underused digital banking). Name the hero (community bank/CU marketing leader with a small team). Position DO as the data-driven engagement guide.</td>
+                    <td>Every visitor from every channel ends up here. The current hero says nothing about data, lifecycle, or digital banking. Those are the three words that should define the homepage.</td>
+                    <td>Medium (copy + design, 2-3 weeks)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S2</td>
+                    <td><strong>Fix the Lorem ipsum and "Button Text" placeholder on the homepage. Today.</strong></td>
+                    <td>This is live on the production site in the awards section. It signals to every visitor that the site is not maintained.</td>
+                    <td>Trivial (30 min)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S3</td>
+                    <td>Build dedicated profile pages for Ted, Nate, and Adam. Each page should feature their POV on data-driven engagement, a 60-second video, links to their authored content, and a booking link. Surface these in the site nav under "Our Team" or "Experts."</td>
+                    <td>People productization starts on the website. nCino promotes Casey Williams by name in mortgage ads. Fenergo promotes Elaine Zhang in AI compliance webinars. DO's leaders are invisible beyond a headshot grid. Buyers in financial services trust people with domain expertise before they trust platforms.</td>
+                    <td>Medium (content + design, 2-3 weeks)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S4</td>
+                    <td>Reposition the Platform Overview page around the data and lifecycle story. Lead with: "Your account holders generate behavioral data every day. We turn that data into personalized lifecycle engagement across digital banking, email, and SMS." Replace the widget inventory with a visual showing the data flow: core/CRM data in, automated targeting, orchestrated engagement across digital banking and other channels, measurable outcomes.</td>
+                    <td>The current Platform page reads as a feature catalog. The story should be: data in, intelligence applied, engagement out, results measured. That is the lifecycle orchestration narrative. Digital banking should be named explicitly as the primary engagement surface.</td>
+                    <td>Medium (copy + visual, 2-3 weeks)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S5</td>
+                    <td>Create a transitional CTA: a gated benchmark report authored by Nate or Ted ("2026 Data-Driven Onboarding Benchmarks: What 170+ FIs Taught Us About Lifecycle Engagement"). Place it on every page.</td>
+                    <td>The only current CTA is "Let's Talk" (a sales call). That is a high-commitment ask. Most visitors need a lower-friction entry point. Fenergo converts with gated reports. Attaching a named author (Nate or Ted) builds the people productization strategy simultaneously.</td>
+                    <td>Medium (content + design, 3-4 weeks)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S6</td>
+                    <td>Add a 3-step plan to the homepage: (1) Connect your data, (2) Launch lifecycle campaigns inside digital banking and across channels, (3) See adoption and engagement climb in weeks.</td>
+                    <td>StoryBrand's Plan step. Reduces perceived complexity. The current site makes DO look harder to buy than it is. The plan language should name "data," "lifecycle," and "digital banking" explicitly.</td>
+                    <td>Low (copy only)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S7</td>
+                    <td>Move customer video testimonials above the fold on the homepage. Surface the Sound CU, Island FCU, and Leader Bank metrics as headline-format proof points.</td>
+                    <td>The case study data is DO's strongest asset. It is buried. Narmi headlines these numbers. DO should too.</td>
+                    <td>Low (layout change)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S8</td>
+                    <td>Add social proof to the "Let's Talk" conversion page: one customer quote, the 170+ FI count, one case study metric, and a photo of the person they'll be meeting (Jen, Adam, or a named AE).</td>
+                    <td>Conversion pages with social proof convert 20-40% higher than bare forms. Showing the face of the person they'll speak with reinforces the people-first positioning.</td>
+                    <td>Low (copy + layout)</td>
+                </tr>
+                <tr>
+                    <td class="action-number">S9</td>
+                    <td>Build an SEO pillar page around "data-driven account holder engagement" (not just "onboarding") that links blog content, case studies, and solution pages. Target keywords: digital banking engagement, account holder lifecycle, data-driven onboarding.</td>
+                    <td>Organic traffic is down 29.3%. Blog posts exist but are disconnected from product pages. A pillar page anchored to the data + lifecycle + digital banking narrative can recover organic rankings and reinforce the positioning shift.</td>
+                    <td>Medium (content + SEO)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>STOP</h3>
+        <p><em>Patterns actively hurting engagement and conversion.</em></p>
+
+        <table class="action-table stop-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Action</th>
+                    <th>Why</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="action-number">X1</td>
+                    <td>Stop leading with capability language ("Activate relationships. Deepen engagement. Amplify growth."). Replace with problem language rooted in the data and lifecycle story: dormant accounts, fragmented data, underused digital banking channels.</td>
+                    <td>These taglines describe what DO wants. StoryBrand says: open with what the customer wants. The customer wants fewer dormant accounts, connected data, and lifecycle engagement that works inside their digital banking channel.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">X2</td>
+                    <td>Stop treating DO's leadership team as an afterthought. The About page has a headshot grid with no POV, no authored content, and no way to hear from Ted, Nate, or Adam directly.</td>
+                    <td>People productization requires more than bios. Every competitor site is faceless. If DO's leaders show up with a point of view on data-driven engagement, they become the Guide in the StoryBrand framework and the reason a prospect picks up the phone.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">X3</td>
+                    <td>Stop describing the platform as an "onboarding" tool. The messaging limits DO to one moment in the lifecycle. The site should position DO as a data-driven engagement platform that spans the full account holder lifecycle, starting with onboarding but extending through deepening and retention.</td>
+                    <td>Prospects who see "onboarding" assume a narrow point solution. DO's actual value is lifecycle orchestration powered by first-party data across digital banking and other channels. The site needs to say that.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">X4</td>
+                    <td>Stop using the pricing page as a feature comparison matrix. Replace with a simple "two paths" overview and push the detailed comparison to a PDF or a post-demo conversation.</td>
+                    <td>The current page creates buying friction. A prospect who was interested after the homepage will reconsider after seeing 50+ line items in a comparison table with no prices.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">X5</td>
+                    <td>Stop publishing case study metrics without institutional context. "375% more direct deposits" means nothing without a name, an asset size, and a timeframe.</td>
+                    <td>Narmi's proof-point ads show the standard: "$22M in new deposits in 120 days at Community Savings." The number, the institution, the timeframe. That format works.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>CONTINUE</h3>
+        <p><em>Working. Do more.</em></p>
+
+        <table class="action-table continue-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Action</th>
+                    <th>Why</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="action-number">C1</td>
+                    <td>Customer video testimonials from named executives (Massud Zahir, Jay Tuli, Kirsten Quam, Jill Schaffler). Keep producing these and give them more prominent placement. Next step: pair each video with a data point about lifecycle engagement results at that institution.</td>
+                    <td>Named executive video is the highest-trust content format in B2B fintech. DO has four. Most competitors have zero. Connecting each testimonial to a data-driven engagement outcome makes these even stronger.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">C2</td>
+                    <td>The 2x2x2 attack messaging on the Onboarding solution page. Expand this angle site-wide, and connect it to the data story: the reason 2x2x2 fails is that it ignores behavioral data and lifecycle timing.</td>
+                    <td>It names a specific practice, declares it dead, and positions DO as the alternative. Anchoring the attack in data (why it fails) and lifecycle (when it fails) makes the argument sharper and harder to dismiss.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">C3</td>
+                    <td>The "We make small teams feel huge" empathy line. Build on this voice and attach it to named people. When Ted or Nate says this in a talk or a post, it carries more weight than anonymous site copy.</td>
+                    <td>This is the only line on the site that acknowledges the buyer's reality. People productization means putting a face behind the empathy. The Guide in StoryBrand needs a name.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">C4</td>
+                    <td>Blog content on the 2x2x2 failure, engagement vs. volume, and AI fatigue topics. Keep publishing, but connect these posts to the data-driven engagement pillar page and author them under Ted, Nate, or Adam's byline.</td>
+                    <td>The blog topics are on-strategy. Two fixes multiply their impact: (1) link them into a content architecture anchored to digital banking engagement, and (2) use named authors to build individual authority.</td>
+                </tr>
+                <tr>
+                    <td class="action-number">C5</td>
+                    <td>ChiliPiper integration on the conversion page. Instant scheduling reduces friction. Add the photo and name of the person the prospect will meet.</td>
+                    <td>Good technical setup. Adding a face reinforces the people-first theme and makes the conversion moment personal.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="bottom-line">
+        <h2>Bottom Line</h2>
+        <p>The website has the raw materials of a high-converting site: named customer executives giving video testimonials, hard metrics across dozens of institutions, a differentiated attack angle (the 2x2x2 failure), a clear target buyer, and a leadership team (Ted, Nate, Adam) with deep domain credibility that the site currently hides.</p>
+
+        <p>What it lacks is a narrative built around two things: people and data. The site should position Ted, Nate, and Adam as visible guides with a point of view on data-driven lifecycle engagement. And it should tell the data story: DO's platform connects first-party behavioral data, automates targeting across the account holder lifecycle, and orchestrates engagement through digital banking and other channels. That story does not appear anywhere on the current site.</p>
+
+        <p>StoryBrand provides the framework to tell that story without a full redesign. The priority changes: rewrite the homepage hero around the data and lifecycle problem, build profile pages for Ted, Nate, and Adam, create a transitional CTA authored by a named leader (a gated report on data-driven engagement), fix the Lorem ipsum, and add a three-step plan that names data, lifecycle, and digital banking explicitly.</p>
+
+        <p>The competitive pressure from your dashboard (organic traffic down 29.3%, nCino at 17x the traffic volume, zero paid search to compensate) makes the timeline urgent. Every week the homepage stays in its current form is a week of scarce traffic meeting a site that does not convert and a leadership team that remains invisible.</p>
+
+        <div class="highlight-box">
+            <strong>Recommended next step:</strong> Schedule a 90-minute working session with Jen to (1) fix the Lorem ipsum immediately, (2) draft the StoryBrand homepage hero copy centered on data-driven lifecycle engagement, (3) spec profile pages for Ted, Nate, and Adam with POV content and booking links, and (4) outline the transitional CTA (a gated benchmark report authored by Nate or Ted on data-driven digital banking engagement). Items 1 and 2 can ship within two weeks. Items 3 and 4 within four.
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 BrandThnk | <a href="https://brandthnk.co">brandthnk.co</a> | Confidential</p>
+    </div>
+</body>
+</html>
