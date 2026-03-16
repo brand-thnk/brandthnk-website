@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advisory Access | BrandThnk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV - Persistent */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .page-hero {
+    padding: 140px 60px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .page-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 6px 14px;
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--black);
+    max-width: 700px;
+  }
+
+  .page-subhead {
+    font-size: 19px;
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 80px;
+    padding: 80px 0;
+  }
+
+  .content-main {
+    max-width: 560px;
+  }
+
+  .content-section {
+    margin-bottom: 56px;
+  }
+
+  .content-section:last-of-type { margin-bottom: 0; }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    line-height: 1.3;
+  }
+
+  .content-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+
+  .content-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* SIDEBAR */
+  .content-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+
+  .sidebar-card {
+    background: var(--offwhite);
+    padding: 32px;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .sidebar-card .use-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sidebar-card .use-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .sidebar-card .use-item:first-child {
+    padding-top: 0;
+  }
+
+  .use-icon {
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .use-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--black);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .cta-section-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .cta-section p {
+    color: var(--offwhite);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .cta-highlight {
+    color: var(--yellow);
+    font-style: italic;
+  }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--black); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 120px 24px 60px; }
+    .container { padding: 0 24px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 0;
+    }
+    .content-sidebar {
+      position: static;
+      order: -1;
+    }
+    .cta-section { padding: 60px 24px; }
+    footer {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-badge">Advisory</div>
+  <h1 class="page-title">Advisory Access</h1>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="content-grid">
+    <div class="content-main">
+      <div class="content-section">
+        <h2 class="section-title">Some decisions can't wait for a process.</h2>
+        <p>You have a budget call next week, a positioning question you keep circling, or a move you're about to make that doesn't feel right yet. You don't need a six-week engagement. You need a clear point of view from someone who has been responsible for outcomes like this one.</p>
+        <p>A budget allocated to the wrong approach. A strategy that goes to the board before the logic holds. By the time the mistake is clear, the cost is real.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">What you get from Advisory.</h2>
+        <p>This is direct access to Allison to work through one specific decision. You bring the question. She brings 25 years of experience as a CMO, an enterprise sales leader, and an operator who carried a bag.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">What Advisory is not.</h2>
+        <p>It's not a retainer with monthly deliverables, though some clients use it that way. It's not a discovery process that takes four weeks before anything useful happens. You book time when you need it, work through the decision, and leave with a clear point of view and a next move you can defend.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title">Who you're getting access to.</h2>
+        <p>I've spent 25 years at the intersection of brand strategy and revenue. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.</p>
+        <p>When you bring a decision to Advisory, you're not getting a consultant's opinion on what might work. You're getting a point of view from someone who has been accountable for the outcome.</p>
+      </div>
+    </div>
+
+    <div class="content-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">Advisory works for</div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Pressure-test an assumption before acting on it and finding out it was wrong.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Validate a strategy or budget before it goes to the board.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Get a straight read without the answer being shaped by someone selling you something.</div>
+        </div>
+        <div class="use-item">
+          <div class="use-icon"></div>
+          <div class="use-text">Get connected to the right person or thinking you're missing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-section-inner">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Start the Conversation</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about">About</a> &nbsp;·&nbsp; <a href="/therapy/">Brand Therapy</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+</body>
+</html>

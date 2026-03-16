@@ -82,26 +82,33 @@
             gap: 36px;
         }
 
+        .nav-links {
+            list-style: none;
+        }
+
         .nav-links a {
             font-family: var(--font-body);
             font-size: 14px;
             font-weight: 400;
-            position: relative;
+            color: #666666;
+            transition: color 0.2s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--yellow);
-            transition: width 0.3s ease;
+        .nav-links a:hover {
+            color: var(--black);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-cta {
+            background: var(--black);
+            color: var(--white) !important;
+            padding: 10px 22px;
+            border-radius: 0;
+            transition: all 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--yellow) !important;
+            color: var(--black) !important;
         }
 
         /* Hero */
@@ -602,12 +609,13 @@
 <body>
     <nav class="site-nav">
         <a href="/" class="nav-wordmark">BrandThnk</a>
-        <div class="nav-links">
-            <a href="/#frameworks">Frameworks</a>
-            <a href="/#briefings">Briefings</a>
-            <a href="/#about">About</a>
-            <a href="/#newsletter">Newsletter</a>
-        </div>
+        <ul class="nav-links">
+            <li><a href="/#offers">Work With Us</a></li>
+            <li><a href="/library/">Our Toolkit</a></li>
+            <li><a href="/book/">Read the Book</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+        </ul>
     </nav>
 
     <section class="hero">
@@ -623,107 +631,40 @@
 
             <div class="book-details">
                 <div class="section-label">Think Like a Brand, Not a Bank — Second Edition</div>
-                <h1 class="hero-headline">Your competitors aren't winning because they have a better product.</h1>
-                <p class="hero-description">They're winning because they have a clearer brand. This book shows you how to build one.</p>
+                <h1 class="hero-headline">Your competitors are winning on clarity, not product.</h1>
 
                 <div class="hero-description" style="margin-bottom: 40px;">
-                    <p style="margin-bottom: 20px;">You have a real product. You've invested in marketing. You're generating activity — content, campaigns, events — and none of it is breaking through.</p>
-                    <p style="margin-bottom: 20px;">The instinct is to do more. More content. More channels. More budget.</p>
-                    <p>But more of the wrong thing creates noise, and noise makes you invisible. The problem isn't effort. It's that most financial brands are built on product features and competitive comparisons instead of a brand that creates genuine pull.</p>
+                    <p>You have a strong product and you've invested in marketing — content, campaigns, events, ads — and none of it is breaking through. The instinct is to do more, but more of the wrong thing creates noise, and noise makes you invisible. Most financial brands are built on product features and competitive comparisons. That doesn't create pull.</p>
                 </div>
 
                 <div class="audience">
                     <div class="audience-title">Who this book is for:</div>
                     <ul class="audience-list">
-                        <li><strong>CEOs</strong> watching inferior competitors win on pricing while you struggle to articulate what makes you different</li>
-                        <li><strong>CMOs and Marketers</strong> stuck in campaign mode without organizational buy-in to build something that lasts</li>
-                        <li><strong>Fintech Founders</strong> realizing product innovation alone won't scale — you need a brand that compounds</li>
+                        <li><strong>CMOs</strong> stuck in campaign mode without organizational buy-in to build something that lasts</li>
+                        <li><strong>CEOs</strong> who keep losing to inferior competitors on pricing</li>
+                        <li><strong>Founders</strong> who've built something worth talking about and can't figure out why the market doesn't see it</li>
                         <li><strong>Operators</strong> whose daily decisions either reinforce or undermine the brand promise</li>
                     </ul>
                 </div>
 
                 <div class="bonus-card">
                     <div class="bonus-title">Included free: TLAB 2 Toolkit</div>
-                    <div class="bonus-text">Five frameworks built from real client work. Each one gives your team something they can use in their next leadership meeting.</div>
+                    <div class="bonus-text">Six frameworks you can put in front of your leadership team the week you finish reading.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="frameworks-section">
-        <div class="frameworks-inner">
-            <div class="section-label">What's Inside</div>
-            <h2 class="section-heading">Six frameworks built from real client work.</h2>
-            <p class="section-intro">These aren't theoretical models. Each one came out of a real engagement with a fintech or financial institution that was stuck. They're practical, memorable, and built to be used in your next leadership meeting.</p>
-
-            <div class="framework-grid">
-                <div class="framework-card">
-                    <div class="framework-number">01</div>
-                    <div class="framework-title">Pain to Promise to Proof</div>
-                    <div class="framework-text">The narrative sequence that matches how brains process decisions. Most banks reverse this. That's starting at step 3 when brains need to start at step 1.</div>
-                </div>
-                <div class="framework-card">
-                    <div class="framework-number">02</div>
-                    <div class="framework-title">Box to Edge</div>
-                    <div class="framework-text">Establish category credibility first, then differentiate. If a stranger can't categorize you in 5 seconds and articulate your difference in 10, you're asking brains to work too hard.</div>
-                </div>
-                <div class="framework-card">
-                    <div class="framework-number">03</div>
-                    <div class="framework-title">The Assumption Trap</div>
-                    <div class="framework-text">Success breeds certainty. Certainty breeds assumptions. Assumptions quietly erode the curiosity that drives growth. Your biggest competitor is believing you already understand your market.</div>
-                </div>
-                <div class="framework-card">
-                    <div class="framework-number">04</div>
-                    <div class="framework-title">Salt Shaker Theory</div>
-                    <div class="framework-text">Set the standard. Expect drift. Provide gentle correction. The job isn't preventing drift. It's consistent, gentle correction back to standard.</div>
-                </div>
-                <div class="framework-card">
-                    <div class="framework-number">05</div>
-                    <div class="framework-title">F/M/B Model</div>
-                    <div class="framework-text">Frontline, Midline, Backline. Structure for operationalizing brand. Brand isn't what marketing says. It's what every person in your organization does when no one's watching.</div>
-                </div>
-                <div class="framework-card">
-                    <div class="framework-number">06</div>
-                    <div class="framework-title">Infrastructure Test</div>
-                    <div class="framework-text">Does this positioning require you to build or change infrastructure? If yes, it's genuinely differentiating. The resistance IS the signal.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
-        <div class="section-label">Readers</div>
-        <h2 class="section-heading">What people are saying</h2>
-
-        <div class="testimonial-grid">
-            <div class="testimonial">
-                <!-- TODO: Add one transformation sentence before quote describing what Josh Herman did/changed after reading the book -->
-                <div class="testimonial-text">"You absolutely nailed it. So much good, applicable, relevant information in every chapter."</div>
-                <div class="testimonial-author">Josh Herman, CU Wealthnext</div>
-            </div>
-            <div class="testimonial">
-                <!-- TODO: Add one transformation sentence before quote describing what Jim Eup did/changed after reading the book -->
-                <div class="testimonial-text">"I think you've really done a great job using the brain science framework to explain your concepts in a simple way."</div>
-                <div class="testimonial-author">Jim Eup, Vericast</div>
-            </div>
-            <div class="testimonial">
-                <!-- TODO: Add one transformation sentence before quote describing what Jeff McCarthy did/changed after reading the book -->
-                <div class="testimonial-text">"I found myself nodding quite a bit reading this."</div>
-                <div class="testimonial-author">Jeff McCarthy, Bank Five Nine</div>
-            </div>
-        </div>
-    </section>
 
     <section class="principles-section">
         <div class="principles-inner">
             <div class="section-label">Core Ideas</div>
-            <h2 class="section-heading">Five principles that change everything</h2>
-            <p class="section-intro">These principles run through every chapter. They're counterintuitive on purpose. Your brain resists them biologically. That resistance signals you might be onto something.</p>
+            <h2 class="section-heading">Five principles that run through every chapter</h2>
 
             <div class="principle-list">
                 <div class="principle">
                     <div class="principle-title">Do the Counterintuitive Thing</div>
-                    <div class="principle-text">Pattern violations force attention. Attention creates memory. Expect resistance. It signals you might be onto something.</div>
+                    <div class="principle-text">Pattern violations force attention. Attention creates memory.</div>
                 </div>
                 <div class="principle">
                     <div class="principle-title">Embrace Tension and Create Contradictions</div>
@@ -735,7 +676,7 @@
                 </div>
                 <div class="principle">
                     <div class="principle-title">Product Is Proof, Not Promise</div>
-                    <div class="principle-text">Your mobile app, rates, and platform prove you can deliver. But the promise itself is what you enable customers to do or become.</div>
+                    <div class="principle-text">Your mobile app, rates, and platform prove you can deliver. The brand is what you enable customers to do or become.</div>
                 </div>
                 <div class="principle">
                     <div class="principle-title">Coach and Compose</div>
@@ -747,19 +688,16 @@
 
     <section class="author-section">
         <div class="section-label">About the Author</div>
-        <h2 class="section-heading">Allison Netzer has sat where you're sitting.</h2>
 
         <div class="author-layout">
             <img src="../assets/headshot.jpeg" alt="Allison Netzer" class="author-photo">
-            <p class="author-bio">Before writing this book, she spent two decades inside fintech and financial institutions — carrying a bag, running sales teams, sitting in the leadership meetings where positioning decisions get made and unmade.</p>
-            <p class="author-bio">She's watched strong products lose to weaker ones because the brand was unclear. She's seen marketing budgets spent on activity that created noise instead of traction.</p>
-            <p class="author-bio">Think Like a Brand, Not a Bank is the book she wished existed when she was doing that work.</p>
+            <p class="author-bio">I ran sales teams, sat in leadership meetings, and watched positioning decisions get made in the morning and unmade by lunch. Fifty-plus engagements later, I keep seeing the same pattern — strong products losing to clearer brands. This book is what I've learned about why that happens and how to fix it.</p>
         </div>
     </section>
 
     <section class="cta-section">
         <div class="cta-inner">
-            <h2 class="cta-headline">Ready to think like a brand?</h2>
+            <h2 class="cta-headline">Your product deserves a brand that matches it.</h2>
             <div class="cta-buttons">
                 <a href="https://allisonthinker.gumroad.com/l/tlab2paperback" class="cta-btn" target="_blank" rel="noopener">Get the Paperback</a>
                 <a href="https://allisonthinker.gumroad.com/l/tlab2ebook" class="cta-btn secondary" target="_blank" rel="noopener">Get the eBook</a>
@@ -770,12 +708,13 @@
 
     <footer class="site-footer">
         <div class="footer-inner">
-            <a href="/" class="footer-wordmark">BrandThnk</a>
+            <div class="footer-wordmark">BrandThnk</div>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.7);">© 2026 BrandThnk. All rights reserved.</p>
             <div class="footer-links">
-                <a href="/#frameworks">Frameworks</a>
-                <a href="/#briefings">Briefings</a>
-                <a href="/#newsletter">Newsletter</a>
-                <a href="mailto:allison@brandthnk.co">Contact</a>
+                <a href="/about">About</a>
+                <a href="/therapy/">Brand Therapy</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
             </div>
         </div>
     </footer>

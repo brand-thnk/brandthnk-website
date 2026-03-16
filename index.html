@@ -437,6 +437,36 @@
     font-weight: 400;
   }
 
+  .plan-step-highlight {
+    background: var(--yellow);
+  }
+
+  .plan-step-highlight:hover {
+    background: var(--yellow);
+  }
+
+  .plan-step-highlight .plan-number {
+    color: rgba(0,0,0,0.25);
+  }
+
+  .plan-outcome {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+  }
+
+  .plan-outcome p {
+    font-size: 17px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .plan-outcome strong {
+    color: var(--black);
+  }
+
   /* OFFERS */
   .offers-grid {
     display: grid;
@@ -660,11 +690,30 @@
     border-radius: 0;
     background: var(--card-bg);
     transition: all 0.2s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .resource-card:hover {
     border-color: var(--black);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .resource-link {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .resource-card:hover .resource-link {
+    color: var(--gray);
   }
 
   .resource-type {
@@ -820,9 +869,10 @@
     <span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="/book/">Read The Book</a></li>
-    <li><a href="#how">Work With Us</a></li>
-    <li><a href="/library/">Explore Our Library</a></li>
+    <li><a href="#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
     <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
   </ul>
 </nav>
@@ -834,7 +884,7 @@
     <p class="hero-subhead">We help financial brands stop their marketing from working against them by replacing scattered activity with a focused brand that creates pull.</p>
     <div class="hero-ctas">
       <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Call</a>
-      <a href="/library/" class="btn-secondary">Explore Our Library</a>
+      <a href="/library/" class="btn-secondary">Use Our Toolkit</a>
     </div>
   </div>
   <div class="hero-proof">
@@ -857,8 +907,8 @@
       <div class="problem-text">
         <p>You have a real product. You've invested in marketing. You're generating activity -- content, campaigns, events, ads -- and none of it is breaking through.</p>
         <p><strong>Here's what's actually happening: the volume is creating noise, and the noise is making you invisible.</strong></p>
-        <p>The longer this continues, the more expensive it gets. Competitors with weaker products take the position you should own.</p>
-        <p>More marketing won't fix this. A clearer story will.</p>
+        <p>The worst part isn't the wasted budget. It's knowing the product deserves better than the story you're telling about it.</p>
+        <p>Weaker products win on clarity every day. That's not how it should work -- but it's how it does work. The market doesn't reward the best product. It rewards the clearest story.</p>
       </div>
       <div class="problem-stakes">
         <div class="stake-item">
@@ -871,7 +921,7 @@
         </div>
         <div class="stake-item">
           <div class="stake-icon">3</div>
-          <div class="stake-text"><strong>Weaker products win.</strong> Clarity beats quality in the market. Always has.</div>
+          <div class="stake-text"><strong>Your product can't speak for itself.</strong> The market doesn't compare features. It picks the brand it understands fastest.</div>
         </div>
       </div>
     </div>
@@ -884,15 +934,15 @@
   <div class="guide-inner">
     <div>
       <p class="section-label">The Guide</p>
-      <h2 class="section-title">We've been here 50 times and counting.</h2>
+      <h2 class="section-title">We know what it feels like to do everything right and still not break through.</h2>
       <div class="guide-text">
-        <p>BrandThnk has helped over 50 fintech and bank brands diagnose why their marketing wasn't working -- and build the brand story that finally made it click.</p>
-        <p>We're not here to add to your to-do list or sell you another campaign. We're here to find what's actually broken and fix it.</p>
+        <p>The campaigns are running. The content is out. The team is working. And somehow the market still doesn't get it. We've been in that room -- not as consultants watching from the outside, but as the CMO who had to explain the results, and the sales leader who had to close anyway.</p>
+        <p>That's why we've spent the last decade helping 50+ fintech and bank brands find what's actually broken -- and fix it.</p>
       </div>
-      <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary" style="margin-top: 8px;">Book a Call</a>
+      <a href="/about" class="btn-primary" style="margin-top: 8px;">About BrandThnk</a>
     </div>
     <div>
-      <blockquote class="guide-quote">"Allison didn't show us a road we've never considered. She gave us the confidence to take the one we've been avoiding."</blockquote>
+      <blockquote class="guide-quote">"Allison is a brand therapist. She didn't show us a road we've never considered, but gave us the confidence to take the one we've been avoiding."</blockquote>
 
     </div>
   </div>
@@ -902,29 +952,28 @@
 
 <!-- PLAN -->
 <section id="how">
-  <p class="section-label">The Approach</p>
-  <h2 class="section-title">How it works.</h2>
-  <p style="color: var(--gray); max-width: 520px; font-weight: 400;">A simple four-step approach that has driven real, sustained growth for fintech brands at every stage.</p>
+  <p class="section-label">The BrandThnk Approach</p>
+  <h2 class="section-title">How we work.</h2>
   <div class="plan-grid">
     <div class="plan-step">
       <div class="plan-number">01</div>
-      <div class="plan-title">Understand your story</div>
-      <p class="plan-body">Before we touch messaging or positioning, we get clear on what you've actually built and who it's really for.</p>
+      <div class="plan-title">You get clear on what you've actually built.</div>
+      <p class="plan-body">Before any messaging changes, we find the version of your story that is already true and already worth telling. Most brands already have it. They just can't see it from inside.</p>
     </div>
     <div class="plan-step">
       <div class="plan-number">02</div>
-      <div class="plan-title">Diagnose the real problem</div>
-      <p class="plan-body">Most founders think the problem is awareness. Usually it's clarity. We find the actual gap between what you say and what your market hears.</p>
+      <div class="plan-title">You find out where the gap actually is.</div>
+      <p class="plan-body">Most leaders assume the problem is awareness. It's usually clarity. We identify the specific place where what you say and what your market hears fall out of alignment.</p>
     </div>
     <div class="plan-step">
       <div class="plan-number">03</div>
-      <div class="plan-title">Prescribe the solution</div>
-      <p class="plan-body">We give you a specific, prioritized plan -- not a 40-page deck you'll never use. What to fix, what to stop, what to say.</p>
+      <div class="plan-title">You get a specific plan, not a deck.</div>
+      <p class="plan-body">We give you a prioritized set of moves -- what to fix, what to stop, and what to say -- scoped to your situation and actionable without us in the room.</p>
     </div>
-    <div class="plan-step">
+    <div class="plan-step plan-step-highlight">
       <div class="plan-number">04</div>
-      <div class="plan-title">Show you how to get there</div>
-      <p class="plan-body">We don't hand you a strategy and disappear. We work with you until it's in market and pulling.</p>
+      <div class="plan-title">You leave with it in market, not just on paper.</div>
+      <p class="plan-body">We stay in it with you until the new positioning is live and pulling. The engagement doesn't end when the strategy is written.</p>
     </div>
   </div>
 </section>
@@ -935,69 +984,52 @@
 <!-- OFFERS -->
 <section id="offers">
   <p class="section-label">Work With Us</p>
-  <h2 class="section-title">How we work together.</h2>
+  <h2 class="section-title">How we can help.</h2>
   <div class="offers-grid">
     <div class="offer-card featured">
       <div class="offer-badge">Flagship Program</div>
       <h3 class="offer-title">BrandThnk Breakthrough</h3>
-      <p class="offer-body">You've been generating activity, and it isn't breaking through. The Breakthrough is an eight-week engagement where we find what's creating noise, build the brand platform that replaces it, and stay in it with you until it's in market and pulling.<br><br>The work is grounded in 25 years of building strategy and delivering it in the room -- as a CMO, as an enterprise sales leader, and as the person carrying a bag. It has helped fintech sales teams stop explaining what they do and start closing the accounts they've been chasing.<br><br>One client found category clarity in eight weeks and closed their next target account within 90 days.</p>
+      <p class="offer-body">You've been generating activity, and it isn't breaking through. The Breakthrough is an eight-week engagement where we find what's creating noise, build the brand platform that replaces it, and stay in it with you until it's in market and pulling.<br><br>The work is grounded in 25 years of building strategy and delivering it in the room -- as a CMO, as an enterprise sales leader and account exec in the field. It has helped fintech sales teams stop explaining what they do and start closing the accounts they've been chasing.</p>
       <a href="/offers/brandthnk-breakthrough.html" class="btn-primary">Start the Breakthrough</a>
     </div>
     <div class="offer-card">
       <div class="offer-badge" style="background: var(--black); color: var(--white);">Advisory</div>
       <h3 class="offer-title">Advisory Access</h3>
-      <p class="offer-body">This is direct access to Allison -- CMO, enterprise sales leader, and operator with 25 years in the field. Half of that career was carrying a bag and leading sales teams. The other half was building the brand strategy those teams had to deliver and own the results.<br><br>When you bring a decision to Advisory, you're not getting a consultant's opinion. You're getting someone who has been responsible for the outcome.<br><br>Use it to validate an assumption before you act on it, pressure-test a budget or strategy, get an honest read on whether your approach is right, or get connected to someone you need to know. There's no retainer and no overhead, just the thinking when you need it.</p>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-secondary">Ask About Advisory</a>
+      <p class="offer-body">Some decisions can't wait for a process. You have a budget call next week, a positioning question you keep circling, or a move you're about to make that doesn't feel right yet.<br><br>Advisory gives you direct access to someone who has owned the outcome on both sides of the table, as a CMO and as a sales leader. We work through the specific decision in front of you, pressure-test the assumption, and you leave with a clear point of view and a next move you can defend.</p>
+      <a href="/offers/advisory-access" class="btn-secondary">Ask About Advisory</a>
     </div>
     <div class="offer-card">
       <div class="offer-badge" style="background: var(--gray); color: var(--white);">Team Training</div>
-      <h3 class="offer-title">Think Like a Brand, Not a Bank Team Training</h3>
-      <p class="offer-body">Most brand workshops produce a deck that sits in a drawer. This one is designed to produce a team that can apply the thinking without needing to restart from scratch every time strategy changes hands.<br><br>The training runs as a 10-week series, kicking off in person and continuing virtually, with each session applying the eight frameworks from the book directly to your institution. Teams of 4 to 12 work through real decisions, not hypotheticals, and leave with a 90-day plan and owners assigned to each move.<br><br>Read the book before the first session. That's the foundation the rest of the work builds on.</p>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-secondary">Ask About Team Training</a>
+      <h3 class="offer-title">Think Like a Brand, Not a Bank Workshop</h3>
+      <p class="offer-body">Most brand workshops end with a deck. This one ends with a team that knows how to apply the thinking to the decisions already in front of them.<br><br>The training runs as 10 sessions, kicking off in person and continuing virtually. Each session applies the eight frameworks from the book directly to your institution's actual challenges and decisions. Teams of 4 to 12 leave with a 90-day plan, owners assigned, and the shared language to keep moving.</p>
+      <a href="/offers/think-like-a-brand-training" class="btn-secondary">Ask About Training</a>
     </div>
   </div>
 </section>
 
 
-<!-- BANK PIVOT -->
-<div class="bank-pivot full-bleed">
-  <div class="bank-pivot-inner">
-    <div>
-      <p class="section-label">For Bank and Credit Union Leaders</p>
-      <h2>Your brand is not your building.</h2>
-      <p>Most community banks and credit unions can describe what they offer. Very few can articulate why they exist without reaching for their founding year, their branch count, or their rate sheet. When those props are the story, the institution is invisible to everyone who doesn't already know it.</p>
-      <p>That's the gap BrandThnk works on with bank and credit union marketing leaders. We help leadership teams get to the real story -- the human problem the institution exists to solve -- and build the alignment needed to tell it consistently. When that work is done, marketing stops defending budget and starts driving growth.</p>
-      <p>The engagement looks different from what we do with fintechs, but the standard is the same.</p>
-      <h3 style="font-family: 'Roboto Slab', serif; font-size: 20px; font-weight: 700; line-height: 1.3; margin: 32px 0 24px; color: var(--black);">If you stripped away your branches, your rate sheet, and your founding year, could your leadership team agree on why your institution exists?</h3>
-      <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2I1ysM4ayOKzXD7d7lDTfVsQyXCooexin--sF2HN2JQw-eU_t0vKLxF9l_R1lCJdR0dguVWoDy" class="btn-primary" style="margin-top: 16px;">See How We Work With FIs</a>
-    </div>
-    <div class="bank-pivot-visual">
-      <p style="font-size: 13px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">What the work produces</p>
-      <p style="font-size: 15px; color: var(--gray); line-height: 1.7; font-weight: 400;">The session produces three things your team will actually use: a <strong>Mirror Summary</strong> that shows how your brand reads today versus competitors, a <strong>Core Tension</strong> statement that your leadership agrees on, and a <strong>Gap Map</strong> that identifies where what you say, what you do, and what customers feel fall out of alignment. You leave with first moves assigned to owners, not a strategy deck that sits in a drawer.</p>
-    </div>
-  </div>
-</div>
-
 <!-- LIBRARY -->
 <section id="library" class="library-section">
-  <p class="section-label">The Library</p>
-  <h2 class="section-title">See the thinking before you commit.</h2>
-  <p style="color: var(--gray); max-width: 480px; margin: 0 auto; font-weight: 400;">The frameworks, diagnostics, and briefings that fintech and bank leaders use to get clearer before they decide.</p>
+  <p class="section-label">Use Our Toolkit</p>
+  <h2 class="section-title">Sharpen your thinking.</h2>
   <div class="library-grid">
     <a href="/library/box-edge" class="resource-card">
       <p class="resource-type">Framework</p>
       <h3 class="resource-title">Box-Edge Framework</h3>
       <p class="resource-desc">Positioning breaks down in two places: teams can't agree on what category they belong in, and they can't say why they're better once they're in it. The Box-Edge Framework gives you a two-part structure for getting both right, and a test for knowing when you have.</p>
+      <span class="resource-link">Read →</span>
     </a>
     <a href="/library/wooden-test" class="resource-card">
       <p class="resource-type">Sales and Brand Strategy</p>
       <h3 class="resource-title">The Wooden Test</h3>
       <p class="resource-desc">John Wooden won 10 championships and never let his players see the scouting reports. When competitive intel saturates your team, you stop executing your story and start reacting to theirs. This is a one-question diagnostic for where your attention is actually pointed.</p>
+      <span class="resource-link">Read →</span>
     </a>
     <a href="/library/the-assumption-trap" class="resource-card">
       <p class="resource-type">Briefing</p>
       <h3 class="resource-title">The Assumption Trap</h3>
       <p class="resource-desc">Smart, experienced teams stop questioning their assumptions because they've earned the right to trust their instincts. That's exactly when assumptions become liabilities. This briefing walks through how to surface the beliefs shaping your strategy before they start shaping your results.</p>
+      <span class="resource-link">Read →</span>
     </a>
   </div>
   <div class="newsletter-strip">
@@ -1014,7 +1046,7 @@
 <div id="book-a-call" class="cta-band full-bleed">
   <div class="cta-band-inner">
     <h2>The brand problem doesn't fix itself.</h2>
-    <p>A 30-minute call is enough to find out whether it's a messaging problem, a positioning problem, or something else entirely. We'll look at what you're doing, where the gap is, and whether we're the right people to close it.</p>
+    <p>A 30-minute call is enough to find out what's actually broken and whether we're the right people to fix it.</p>
     <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-white">Book a Call</a>
   </div>
 </div>
@@ -1023,7 +1055,7 @@
 <footer>
   <div class="footer-logo">BrandThnk</div>
   <p>© 2026 BrandThnk. All rights reserved.</p>
-  <p><a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
+  <p><a href="/about" style="color: var(--gray); text-decoration: none;">About</a> &nbsp;·&nbsp; <a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
 </footer>
 
 <script>

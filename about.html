@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | BrandThnk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    padding: 20px 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 60px;
+    color: var(--black);
+  }
+
+  .content-section {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .content-section:last-of-type { border-bottom: none; }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .content-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .content-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  blockquote {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--black);
+    padding-left: 28px;
+    border-left: 4px solid var(--yellow);
+    margin: 32px 0;
+    font-style: italic;
+  }
+
+  .cta-closing {
+    text-align: center;
+    padding: 60px 0 0;
+  }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--black); color: var(--white); }
+
+  footer {
+    border-top: 2px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--black);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .container { padding: 40px 24px 80px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">About</h1>
+
+  <div class="content-section">
+    <h2 class="section-title">The problem this work solves.</h2>
+    <p>Most financial brands don't have a marketing problem. They have a clarity problem that marketing is being asked to fix. The campaigns go out, the content gets published, the spend increases, and the results don't follow because the underlying brand isn't strong enough to carry the message.</p>
+    <p>That gap is hard to see from inside the organization, and even harder to close without someone who has stood on both sides of it.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What it takes to close that gap.</h2>
+    <p>Brand clarity in financial services requires more than marketing expertise. It requires understanding how a sales conversation breaks down when the brand story isn't sharp, how a leadership team loses confidence in its own positioning, and how an institution can have a genuinely superior product and still lose an RFP to a competitor with a cleaner narrative.</p>
+    <p>That knowledge comes from specific experience, not from studying brand strategy. It comes from years of being accountable for revenue in environments where brand failure had a direct cost.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">How I got here.</h2>
+    <p>I spent the first half of my career in sales, including 13 years at Dell across markets, countries, and channels, carrying a quota and managing teams who had to close deals with whatever story the brand gave them. When the brand story was clear, the job was hard but executable. When it wasn't, every conversation started from scratch.</p>
+    <p>I moved into marketing without formal training and figured it out by accumulating lenses rather than following a single discipline. The process I use now looks a lot like what happens at the optometrist: switching perspectives, one click at a time, until the picture gets clear. A habit built from standing in a lot of different rooms over 25 years.</p>
+    <p>I founded BrandThnk to put that thinking within reach of more than a handful of brands a year. The Briefing, the Library, and the book exist so the thinking travels further than any single engagement can.</p>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">What you can expect.</h2>
+    <p>The goal of every engagement, session, or piece of content is the same: you leave clearer and more confident than when you walked in. With a better understanding of what actually matters and why.</p>
+    <blockquote>"Allison didn't show us a road we've never considered. She gave us the confidence to take the one we've been avoiding."</blockquote>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">Who this is for.</h2>
+    <p>If you have a real product and keep ending up on the wrong side of decisions you should be winning, this work is for you. If your institution has a genuine story and no one outside your existing members knows it, we should talk. If you've invested in marketing and still aren't seeing pull, that's the gap this work closes.</p>
+    <p>The frustration makes or breaks companies and careers. I've dedicated the last decade and the rest of my working life to helping financial brands get to the other side of it.</p>
+  </div>
+
+  <div class="cta-closing">
+    <a href="/#how" class="btn-yellow">See How We Work Together</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about">About</a> &nbsp;·&nbsp; <a href="/therapy/">Brand Therapy</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+</body>
+</html>

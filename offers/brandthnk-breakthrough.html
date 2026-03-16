@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrandThnk Breakthrough: 8-Week Brand & GTM Sprint | BrandThnk</title>
+<title>BrandThnk Breakthrough | BrandThnk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,6 +19,8 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Roboto Mono', monospace;
     background: var(--white);
@@ -28,10 +30,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
+  /* NAV - Persistent */
   nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     padding: 20px 60px;
-    background: var(--white);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--light-gray);
     display: flex;
     align-items: center;
@@ -46,42 +52,145 @@
     text-decoration: none;
   }
 
-  .back-link {
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
     color: var(--gray);
     text-decoration: none;
-    font-size: 14px;
     transition: color 0.2s;
   }
 
-  .back-link:hover { color: var(--black); }
+  .nav-links a:hover { color: var(--black); }
 
-  /* MAIN */
-  .container {
-    max-width: 900px;
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .page-hero {
+    padding: 140px 60px 80px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 40px 100px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .page-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 6px 14px;
+    margin-bottom: 24px;
   }
 
   .page-title {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(36px, 5vw, 56px);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 60px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--black);
+    max-width: 700px;
+  }
+
+  .page-subhead {
+    font-size: 19px;
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 80px;
+    padding: 80px 0;
+  }
+
+  .content-main {
+    max-width: 560px;
+  }
+
+  .content-section {
+    margin-bottom: 56px;
+  }
+
+  .content-section:last-of-type { margin-bottom: 0; }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    line-height: 1.3;
+  }
+
+  .content-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+
+  .content-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* WEEK BY WEEK */
+  .weeks-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .weeks-header {
+    margin-bottom: 48px;
+  }
+
+  .weeks-header h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
     color: var(--black);
   }
 
-  .week-section {
-    margin-bottom: 50px;
-    padding-bottom: 40px;
+  .week-block {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
     border-bottom: 1px solid var(--light-gray);
   }
 
-  .week-section:last-of-type { border-bottom: none; }
+  .week-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 
-  .week-header {
-    font-family: 'Roboto Slab', serif;
-    font-size: 14px;
+  .week-label {
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -91,117 +200,130 @@
 
   .week-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
-    margin-bottom: 12px;
     color: var(--black);
+    margin-bottom: 16px;
+    line-height: 1.3;
   }
 
-  .week-objective {
+  .week-block p {
     font-size: 16px;
     color: var(--gray);
-    margin-bottom: 24px;
-    font-style: italic;
+    line-height: 1.75;
+    margin-bottom: 16px;
   }
 
-  .week-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 32px;
-    margin-bottom: 24px;
+  .week-block ul {
+    list-style: none;
+    margin-bottom: 20px;
   }
 
-  .content-item h4 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--black);
-  }
-
-  .content-item p {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.5;
-  }
-
-  .deliverable {
-    background: var(--offwhite);
-    border-left: 4px solid var(--yellow);
-    padding: 20px 24px;
-    border-radius: 0;
-  }
-
-  .deliverable-label {
-    font-family: 'Roboto Slab', serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--black);
-    margin-bottom: 8px;
-  }
-
-  .deliverable-text {
+  .week-block ul li {
     font-size: 15px;
     color: var(--gray);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .week-block ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .week-deliverable {
+    background: var(--offwhite);
+    padding: 16px 20px;
+    border-left: 4px solid var(--yellow);
+    font-size: 15px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .week-deliverable strong {
+    font-weight: 700;
+  }
+
+  /* SIDEBAR */
+  .content-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+
+  .sidebar-card {
+    background: var(--offwhite);
+    padding: 32px;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .sidebar-card .phase-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .sidebar-card .phase-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .sidebar-card .phase-item:first-child {
+    padding-top: 0;
+  }
+
+  .phase-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    color: var(--gray);
     line-height: 1.5;
   }
 
-  .why-section {
-    background: var(--black);
-    color: var(--offwhite);
-    padding: 48px 40px;
-    border-radius: 0;
-    margin-top: 60px;
-    text-align: center;
-  }
-
-  .why-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--white);
-  }
-
-  .why-section p {
-    color: var(--offwhite);
-    margin-bottom: 16px;
-  }
-
-  .why-section p:last-child {
-    margin-bottom: 0;
-    color: var(--yellow);
-    font-weight: 700;
-  }
-
+  /* CTA SECTION */
   .cta-section {
-    background: var(--yellow);
-    padding: 48px 40px;
-    border-radius: 0;
-    margin-top: 60px;
+    background: var(--black);
+    padding: 80px 60px;
     text-align: center;
   }
 
-  .cta-section h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--black);
+  .cta-section-inner {
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .cta-section p {
-    color: var(--black);
-    margin-bottom: 24px;
-    opacity: 0.8;
+    color: var(--offwhite);
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 32px;
   }
 
-  .btn-primary {
-    background: var(--black);
-    color: var(--white);
-    padding: 15px 32px;
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 36px;
     font-size: 15px;
     font-weight: 400;
     border: none;
@@ -213,13 +335,56 @@
     font-family: 'Roboto Mono', monospace;
   }
 
-  .btn-primary:hover { background: var(--white); color: var(--black); }
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
 
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; flex-direction: column; gap: 16px; }
-    .container { padding: 40px 24px 80px; }
-    .week-content { grid-template-columns: 1fr; gap: 20px; }
-    .why-section, .cta-section { padding: 32px 24px; }
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--black); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .page-hero { padding: 120px 24px 60px; }
+    .container { padding: 0 24px; }
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding: 60px 0;
+    }
+    .content-sidebar {
+      position: static;
+      order: -1;
+    }
+    .weeks-section { padding: 60px 0; }
+    .cta-section { padding: 60px 24px; }
+    footer {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 40px 24px;
+    }
   }
 </style>
 </head>
@@ -228,198 +393,183 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">BrandThnk</a>
-  <a href="/" class="back-link">← Back to Home</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
 </nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-badge">Flagship Engagement</div>
+  <h1 class="page-title">You've invested in marketing. You're generating activity and none of it is breaking through.</h1>
+  <p class="page-subhead">The answer is a clearer brand, not more activity. The Breakthrough is how we build it.</p>
+</div>
 
 <!-- MAIN -->
 <div class="container">
-  <h1 class="page-title">BrandThnk Breakthrough: 8-Week Brand & GTM Sprint</h1>
+  <div class="content-grid">
+    <div class="content-main">
+      <div class="content-section">
+        <h2 class="section-title">The Problem</h2>
+        <p>Most bank and fintech marketing doesn't fail because of effort. It fails because the brand underneath the activity is unclear. When the story is scattered, every dollar you spend makes you harder to find, not easier.</p>
+        <p>The longer that continues, the harder the position is to claim. Market windows close. Board patience thins. Weaker products win on clarity while yours waits to be understood.</p>
+      </div>
 
-  <div class="week-section">
-    <div class="week-header">Week 1–2</div>
-    <h2 class="week-title">Deep Discovery</h2>
-    <p class="week-objective">Understand your business DNA, audience mindset, and market context.</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Stakeholder interviews</h4>
-        <p>execs, sales, product, customers if possible</p>
-      </div>
-      <div class="content-item">
-        <h4>Quick audit</h4>
-        <p>of existing brand, messaging, GTM plans</p>
-      </div>
-      <div class="content-item">
-        <h4>Identify blockers</h4>
-        <p>internal blockers and external whitespace</p>
+      <div class="content-section">
+        <h2 class="section-title">The Engagement</h2>
+        <p>Eight weeks. No 40-page deck you'll never use. What you get instead: a focused brand platform, a go-to-market plan, and someone who stays in it with you until it's pulling.</p>
+        <p>I've spent 25 years doing this work from inside the room -- as a CMO, an enterprise sales leader, and the person carrying a bag and responsible for the number. I know what a strategy looks like when it has to survive contact with a real market.</p>
       </div>
     </div>
-    <div class="content-item" style="margin-bottom: 24px;">
-      <h4>Define goals</h4>
-      <p>and what "breakthrough" looks like</p>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Strategy Brief – distilled insights, aligned goals, and a shared lens</p>
-    </div>
-  </div>
 
-  <div class="week-section">
-    <div class="week-header">Week 3</div>
-    <h2 class="week-title">Positioning Lab</h2>
-    <p class="week-objective">Find the sharpest, clearest articulation of your brand's "why now"</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Messaging sprint</h4>
-        <p>core narrative, proof points, and audience resonance</p>
-      </div>
-      <div class="content-item">
-        <h4>Clarify what you are (and are not)</h4>
-        <p></p>
-      </div>
-      <div class="content-item">
-        <h4>Build a messaging hierarchy</h4>
-        <p>vision-level to campaign-ready</p>
-      </div>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Brand Positioning Map + Messaging Framework (ready to plug into GTM, content, sales enablement)</p>
-    </div>
-  </div>
-
-  <div class="week-section">
-    <div class="week-header">Week 4</div>
-    <h2 class="week-title">Go-to-Market Model</h2>
-    <p class="week-objective">Build a practical and punchy GTM plan rooted in your business reality</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Select best-fit channels</h4>
-        <p>for traction, not noise</p>
-      </div>
-      <div class="content-item">
-        <h4>Align product moments</h4>
-        <p>with marketing moments</p>
-      </div>
-      <div class="content-item">
-        <h4>Define "launch-ready"</h4>
-        <p>and what follows it</p>
+    <div class="content-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">Eight Weeks</div>
+        <div class="phase-item">
+          <div class="phase-name">Weeks 1-2</div>
+          <p class="phase-desc">Deep Discovery</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 3</div>
+          <p class="phase-desc">Positioning Lab</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 4</div>
+          <p class="phase-desc">Go-to-Market Model</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 5</div>
+          <p class="phase-desc">Signal Amplification</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 6</div>
+          <p class="phase-desc">Strategy-to-Execution Bridge</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 7</div>
+          <p class="phase-desc">Feedback Loop Setup</p>
+        </div>
+        <div class="phase-item">
+          <div class="phase-name">Week 8</div>
+          <p class="phase-desc">Executive Strategy Session</p>
+        </div>
       </div>
     </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">90-Day GTM Activation Plan (with milestones, roles, content hooks, and external leverage points)</p>
-    </div>
-  </div>
-
-  <div class="week-section">
-    <div class="week-header">Week 5</div>
-    <h2 class="week-title">Signal Amplification</h2>
-    <p class="week-objective">Get others talking about you (not just you talking about you)</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Plan for third-party distribution</h4>
-        <p>media, influencers, analysts</p>
-      </div>
-      <div class="content-item">
-        <h4>Outline content placement and PR strategies</h4>
-        <p></p>
-      </div>
-      <div class="content-item">
-        <h4>Identify internal champions and external advocates</h4>
-        <p></p>
-      </div>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Distribution & Advocacy Toolkit (third-party channels, media angles, customer-led stories)</p>
-    </div>
-  </div>
-
-  <div class="week-section">
-    <div class="week-header">Week 6</div>
-    <h2 class="week-title">The Strategy-to-Execution Bridge</h2>
-    <p class="week-objective">Turn the strategy into scalable action</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Work with internal teams</h4>
-        <p>to prep activation</p>
-      </div>
-      <div class="content-item">
-        <h4>Set up internal documentation</h4>
-        <p>for handoff</p>
-      </div>
-      <div class="content-item">
-        <h4>Coach teams/agencies</h4>
-        <p>on adoption and adaptation</p>
-      </div>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Internal Playbook + Training Session</p>
-    </div>
-  </div>
-
-  <div class="week-section">
-    <div class="week-header">Week 7</div>
-    <h2 class="week-title">Feedback Loop Setup</h2>
-    <p class="week-objective">Ensure the strategy can flex with the market</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>Set up measurable KPIs</h4>
-        <p>tied to business outcomes</p>
-      </div>
-      <div class="content-item">
-        <h4>Build a rhythm for reflection and course correction</h4>
-        <p></p>
-      </div>
-      <div class="content-item">
-        <h4>Define what "working" actually looks like</h4>
-        <p>(and what it doesn't)</p>
-      </div>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Impact Dashboard Template (with guidance on how to read, report, and act on it)</p>
-    </div>
-  </div>
-
-  <div class="week-section">
-    <div class="week-header">Week 8</div>
-    <h2 class="week-title">Executive Strategy Session</h2>
-    <p class="week-objective">Align leadership and energize go-forward motion</p>
-    <div class="week-content">
-      <div class="content-item">
-        <h4>60-90 minute working session</h4>
-        <p>with C-suite or GTM leaders</p>
-      </div>
-      <div class="content-item">
-        <h4>Present final strategy</h4>
-        <p>and make the case for change</p>
-      </div>
-      <div class="content-item">
-        <h4>Map next-phase priorities</h4>
-        <p>and ownership</p>
-      </div>
-    </div>
-    <div class="deliverable">
-      <div class="deliverable-label">Deliverable</div>
-      <p class="deliverable-text">Executive Debrief Presentation (slides + spoken walkthrough + next steps checklist)</p>
-    </div>
-  </div>
-
-  <div class="why-section">
-    <h2>Why BrandThnk?</h2>
-    <p>BrandThnk is a boutique consultancy for fintechs and financial institutions who want to build a growth brand.</p>
-    <p>We do this through sharper strategy, stronger positioning, and a proven playbook.</p>
-    <p>Learn more at brandthnk.co</p>
-  </div>
-
-  <div class="cta-section">
-    <h2>Ready to break through?</h2>
-    <p>Book a 30-minute call to discuss your breakthrough opportunity and see if this sprint is right for you.</p>
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Call</a>
   </div>
 </div>
+
+<!-- WEEK BY WEEK -->
+<div class="container">
+  <div class="weeks-section">
+    <div class="weeks-header">
+      <h2>The Work, Week by Week</h2>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Weeks 1-2</div>
+      <h3 class="week-title">Deep Discovery</h3>
+      <p>Before we touch messaging, we get clear on what you've actually built, who it's really for, and where the real gap is between what you say and what your market hears.</p>
+      <ul>
+        <li>Stakeholder interviews: leadership, sales, product, customers where possible</li>
+        <li>Audit of existing brand, messaging, and GTM plans</li>
+        <li>Identify internal blockers and external whitespace</li>
+        <li>Define what breakthrough actually looks like for your business</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Strategy Brief -- distilled insights, aligned goals, and a shared lens the rest of the engagement builds on.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 3</div>
+      <h3 class="week-title">Positioning Lab</h3>
+      <p>Most leaders think the problem is awareness. Usually it's clarity. This is where we find the sharpest, most honest articulation of your brand's "why now" and build the messaging that flows from it.</p>
+      <ul>
+        <li>Core narrative, proof points, and audience resonance</li>
+        <li>Clarify what you are -- and what you are not</li>
+        <li>Build a messaging hierarchy from vision-level to campaign-ready</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Brand Positioning Map and Messaging Framework ready to plug into GTM, content, and sales enablement.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 4</div>
+      <h3 class="week-title">Go-to-Market Model</h3>
+      <p>Strategy without a plan is a presentation. This week we build the GTM model grounded in your business reality -- the channels that create traction, not noise.</p>
+      <ul>
+        <li>Select best-fit channels for your stage and audience</li>
+        <li>Align product moments with marketing moments</li>
+        <li>Define what "launch-ready" means and what follows it</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A 90-Day GTM Activation Plan with milestones, roles, content hooks, and external leverage points.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 5</div>
+      <h3 class="week-title">Signal Amplification</h3>
+      <p>Your brand gets stronger when others carry it. This week we build the distribution strategy that puts your story in front of the right audiences through third-party voices.</p>
+      <ul>
+        <li>Plan for media, analyst, and influencer distribution</li>
+        <li>Outline content placement and PR strategies</li>
+        <li>Identify internal champions and external advocates</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> A Distribution and Advocacy Toolkit with third-party channels, media angles, and customer-led story frameworks.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 6</div>
+      <h3 class="week-title">Strategy-to-Execution Bridge</h3>
+      <p>A strategy only works if your team can run it. This week we close the gap between what we built and what your teams, agencies, and partners can actually execute.</p>
+      <ul>
+        <li>Work with internal teams to prep activation</li>
+        <li>Set up internal documentation for handoff</li>
+        <li>Coach teams and agencies on adoption and adaptation</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Internal Playbook and a live training session with your team.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 7</div>
+      <h3 class="week-title">Feedback Loop Setup</h3>
+      <p>Markets move. This week we build the measurement rhythm that lets the strategy flex without losing its shape.</p>
+      <ul>
+        <li>Set KPIs tied to business outcomes, not vanity metrics</li>
+        <li>Build a rhythm for reflection and course correction</li>
+        <li>Define what "working" looks like -- and what it doesn't</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Impact Dashboard Template with guidance on how to read, report, and act on what you see.</div>
+    </div>
+
+    <div class="week-block">
+      <div class="week-label">Week 8</div>
+      <h3 class="week-title">Executive Strategy Session</h3>
+      <p>The work only holds if leadership owns it. This week we present the full strategy to your C-suite or GTM leaders and map what comes next.</p>
+      <ul>
+        <li>60-90 minute working session with leadership</li>
+        <li>Present the final strategy and make the case for change</li>
+        <li>Map next-phase priorities and assign ownership</li>
+      </ul>
+      <div class="week-deliverable"><strong>You leave with:</strong> An Executive Debrief Presentation -- slides, spoken walkthrough, and a next steps checklist.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-section-inner">
+    <p>A 30-minute call is enough to find out whether the Breakthrough is the right fit. We'll look at where you are, what's creating the gap, and whether this is the right next move.</p>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Start the Conversation</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about">About</a> &nbsp;·&nbsp; <a href="/therapy/">Brand Therapy</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
 
 </body>
 </html>
