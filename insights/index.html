@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insights | BrandThnk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    padding: 20px 60px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .page-subtitle {
+    font-size: 20px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    line-height: 1.4;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .insight-card {
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .insight-card:hover {
+    border-color: var(--black);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .insight-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .insight-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .insight-description {
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .insight-meta {
+    font-size: 14px;
+    color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .insight-type {
+    background: var(--offwhite);
+    padding: 4px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .coming-soon {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray);
+  }
+
+  .coming-soon h3 {
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 15px;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nav-links {
+      gap: 24px;
+    }
+
+    .container {
+      padding: 40px 24px 60px;
+    }
+
+    .insights-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .insight-card {
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/insights/">Insights</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1 class="page-title">Insights</h1>
+  <p class="page-subtitle">Industry intelligence, competitive analysis, and strategic perspectives from the BrandThnk team.</p>
+
+  <section>
+    <h2 class="section-title">Competitive Intelligence</h2>
+    <div class="insights-grid">
+
+      <div class="insight-card">
+        <a href="/insights/community-bank-analytics-competitive-intel.html">
+          <h3 class="insight-title">Community Bank Analytics — Competitive Intelligence Report</h3>
+          <p class="insight-description">Comprehensive analysis of the community bank analytics landscape, examining key players, market positioning, and strategic opportunities.</p>
+          <div class="insight-meta">
+            <span class="insight-type">Competitive Intel</span>
+            <span>2026</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="insight-card">
+        <a href="/insights/community-bank-analytics-intel.html">
+          <h3 class="insight-title">Community Bank Analytics Intelligence</h3>
+          <p class="insight-description">Strategic intelligence on analytics trends and market dynamics affecting community financial institutions.</p>
+          <div class="insight-meta">
+            <span class="insight-type">Market Intel</span>
+            <span>2026</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Additional Content</h2>
+    <div class="coming-soon">
+      <h3>More Content Coming Soon</h3>
+      <p>We're continuing to consolidate insights content from brandthnkinsights.com.<br>
+      Additional research, analysis, and strategic perspectives will be added here.</p>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
