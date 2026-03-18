@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banking Customer Personas | BrandThnk Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* INSIGHTS NAV */
+  .insights-nav {
+    background: var(--offwhite);
+    padding: 20px 60px;
+    border-bottom: 1px solid var(--light-gray);
+    margin-top: 80px;
+  }
+
+  .insights-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .insights-nav-item {
+    text-align: center;
+  }
+
+  .insights-nav-item a {
+    display: block;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .insights-nav-item a:hover,
+  .insights-nav-item a.active {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 60px 100px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .page-subtitle {
+    font-size: 20px;
+    color: var(--gray);
+    margin-bottom: 60px;
+    line-height: 1.4;
+  }
+
+  .segment-section {
+    margin-bottom: 80px;
+  }
+
+  .segment-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    border-bottom: 3px solid var(--yellow);
+    padding-bottom: 12px;
+    display: inline-block;
+  }
+
+  .segment-description {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  .personas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+  }
+
+  .persona-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .persona-card:hover {
+    border-color: var(--black);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .persona-header {
+    margin-bottom: 20px;
+  }
+
+  .persona-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .persona-age {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .persona-tagline {
+    font-style: italic;
+    color: var(--gray);
+    border-left: 3px solid var(--yellow);
+    padding-left: 16px;
+    margin-bottom: 16px;
+  }
+
+  .persona-description {
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .persona-meta {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .back-nav {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    color: var(--black);
+    background: var(--white);
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .data-source {
+    background: var(--offwhite);
+    padding: 30px;
+    margin: 60px 0;
+    border-left: 4px solid var(--black);
+  }
+
+  .data-source h3 {
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 12px;
+  }
+
+  .data-source p {
+    color: var(--gray);
+    font-size: 16px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .insights-nav {
+      padding: 20px 24px;
+    }
+
+    .container {
+      padding: 40px 24px 60px;
+    }
+
+    .personas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .persona-card {
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/insights/" class="active">Insights</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- INSIGHTS NAVIGATION -->
+<div class="insights-nav">
+  <div class="insights-nav-grid">
+    <div class="insights-nav-item">
+      <a href="/insights/">Overview</a>
+    </div>
+    <div class="insights-nav-item">
+      <a href="/insights/personas" class="active">Personas</a>
+    </div>
+    <div class="insights-nav-item">
+      <a href="/insights/modules">Research Modules</a>
+    </div>
+    <div class="insights-nav-item">
+      <a href="/insights/methodology">Methodology</a>
+    </div>
+    <div class="insights-nav-item">
+      <a href="/insights/reports">Report Samples</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="back-nav">
+    <a href="/insights/" class="btn">← Back to Insights</a>
+  </div>
+
+  <h1 class="page-title">13 Banking Customer Personas</h1>
+  <p class="page-subtitle">AI-simulated personas built from published banking data (FDIC, Federal Reserve, J.D. Power) and validated through 30+ strategy workshops with financial brands.</p>
+
+  <div class="data-source">
+    <h3>Data-Driven Foundation</h3>
+    <p>Our personas aren't based on assumptions. They're grounded in published industry research, demographic studies, and behavioral patterns validated across dozens of client engagements. Each persona responds to research questions based on documented values, motivations, and decision-making patterns.</p>
+  </div>
+
+  <!-- CONSUMER BANKING -->
+  <div class="segment-section">
+    <h2 class="segment-title">Consumer Banking</h2>
+    <p class="segment-description">Five personas representing the primary consumer banking segments, covering ages 22-74 with distinct digital preferences, relationship expectations, and financial priorities.</p>
+
+    <div class="personas-grid">
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Steady Stewards</h3>
+          <div class="persona-age">Age 55-74</div>
+          <p class="persona-tagline">"Relationship-loyal customers who value personal service above digital convenience."</p>
+        </div>
+        <div class="persona-description">
+          <p>These customers have built long-standing relationships with their financial institutions and prioritize personal connection over digital innovation. They value face-to-face interactions, trust their banker's advice, and are willing to pay for quality service. Digital tools are secondary to human relationships.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Relationship-focused, Service-oriented, Trust-driven, Traditional communication preferences
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Rising Builders</h3>
+          <div class="persona-age">Age 22-35</div>
+          <p class="persona-tagline">"Fee-averse and mobile-first. Choosing banks by app quality and values alignment."</p>
+        </div>
+        <div class="persona-description">
+          <p>Early-career professionals building their financial foundation. They expect seamless digital experiences, transparent pricing, and alignment with their values. App functionality often drives bank selection more than traditional factors like branch locations.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Mobile-first, Fee-conscious, Values-driven, Digital native expectations
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Rooted Families</h3>
+          <div class="persona-age">Age 30-50</div>
+          <p class="persona-tagline">"Managing multiple financial priorities simultaneously, anchored by homeownership and responsive to bundled services."</p>
+        </div>
+        <div class="persona-description">
+          <p>Parents and homeowners juggling mortgages, savings goals, children's education, and retirement planning. They appreciate bundled services and loyalty rewards but need efficiency and convenience to manage complex financial lives.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Multi-priority management, Homeowners, Bundle-responsive, Efficiency-focused
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Community Anchors</h3>
+          <div class="persona-age">Age 35-65</div>
+          <p class="persona-tagline">"Local business owners seeking integrated banking for personal and commercial needs under one roof."</p>
+        </div>
+        <div class="persona-description">
+          <p>Small business owners who want their personal and business banking unified with their local financial institution. They value community investment, local decision-making, and bankers who understand their business cycles and challenges.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Business owners, Community-focused, Integrated solutions, Local relationships
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Digital Pragmatists</h3>
+          <div class="persona-age">Age 25-55</div>
+          <p class="persona-tagline">"Rate-comparing, multi-bank optimizers. The hardest segment for community brands to win."</p>
+        </div>
+        <div class="persona-description">
+          <p>Analytically-minded customers who optimize across multiple financial institutions for the best rates and features. They use comparison tools, switch banks for better deals, and view banking relationships transactionally rather than emotionally.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Rate-focused, Multi-bank users, Optimization-driven, Transactional mindset
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMALL BUSINESS BANKING -->
+  <div class="segment-section">
+    <h2 class="segment-title">Small Business Banking</h2>
+    <p class="segment-description">Four personas representing distinct business banking needs, from under $2M startups to $5M+ professional practices, each with unique cash flow patterns and service requirements.</p>
+
+    <div class="personas-grid">
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Main Street Operator</h3>
+          <div class="persona-age">Under $2M Revenue</div>
+          <p class="persona-tagline">"Cash flow-focused retail/restaurant/service businesses needing accessible bankers."</p>
+        </div>
+        <div class="persona-description">
+          <p>Small retail, restaurant, and service business owners where daily cash flow management is critical. They need responsive banking support, simple lending processes, and bankers who understand the challenges of seasonal businesses and tight margins.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Cash flow sensitive, Local operations, Accessible banking needs, Responsive service required
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Professional Practice</h3>
+          <div class="persona-age">Revenue $1M-$5M</div>
+          <p class="persona-tagline">"Doctors, lawyers, accountants wanting wealth management tied to their practice."</p>
+        </div>
+        <div class="persona-description">
+          <p>High-net-worth professionals running successful practices who need integrated business and personal wealth management. They want sophisticated financial planning, practice transition guidance, and banking that understands professional service businesses.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> High-net-worth, Professional services, Wealth management focus, Integrated solutions
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Agricultural Operator</h3>
+          <div class="persona-age">Multi-generational</div>
+          <p class="persona-tagline">"Farmers and ranchers with seasonal patterns and long-standing banking relationships."</p>
+        </div>
+        <div class="persona-description">
+          <p>Multi-generational farming and ranching operations with complex seasonal cash flows, equipment financing needs, and land ownership considerations. They value long-term relationships and bankers who understand agricultural cycles.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Seasonal cash flow, Multi-generational, Equipment financing, Long-term relationships
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Startup / Side Hustle</h3>
+          <div class="persona-age">Age 25-40</div>
+          <p class="persona-tagline">"First-time business owners needing simple transition to business banking."</p>
+        </div>
+        <div class="persona-description">
+          <p>First-time entrepreneurs transitioning from personal to business banking structures. They need education, simple processes, and growth-oriented banking relationships that can scale with their business success.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> First-time business owners, Education needs, Simple processes, Growth potential
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2B FINTECH BUYERS -->
+  <div class="segment-section">
+    <h2 class="segment-title">B2B Fintech Buyers</h2>
+    <p class="segment-description">Four decision-maker personas representing different roles in financial institution technology purchases, from C-suite executives to innovation leaders.</p>
+
+    <div class="personas-grid">
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Marketing Modernizer</h3>
+          <div class="persona-age">CMO/VP Marketing</div>
+          <p class="persona-tagline">"Budget-conscious marketer requiring peer validation before purchases."</p>
+        </div>
+        <div class="persona-description">
+          <p>Marketing leaders looking to modernize their institution's digital presence and customer experience. They need to demonstrate ROI, often work with constrained budgets, and rely heavily on peer recommendations and case studies from similar institutions.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> ROI-focused, Budget constraints, Peer validation, Customer experience driven
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Technology Pragmatist</h3>
+          <div class="persona-age">CTO/CIO</div>
+          <p class="persona-tagline">"Evaluating integration complexity with decision-making veto power."</p>
+        </div>
+        <div class="persona-description">
+          <p>Technology leaders responsible for system integration, security, and operational reliability. They evaluate vendor solutions based on technical architecture, integration complexity, security standards, and long-term supportability.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Integration-focused, Security conscious, Veto power, Technical evaluation
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Transformation Champion</h3>
+          <div class="persona-age">CDO/Innovation Lead</div>
+          <p class="persona-tagline">"Visionary leader needing internal coalition support."</p>
+        </div>
+        <div class="persona-description">
+          <p>Digital transformation leaders driving institutional change. They understand the need for innovation but must build internal consensus and demonstrate business value to secure buy-in from traditional banking stakeholders.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Vision-driven, Coalition building, Change management, Innovation focused
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-header">
+          <h3 class="persona-name">Community Steward</h3>
+          <div class="persona-age">CEO/President</div>
+          <p class="persona-tagline">"Board-accountable executive prioritizing measurable outcomes over technology features."</p>
+        </div>
+        <div class="persona-description">
+          <p>Senior executives accountable to boards and communities for institutional performance. They focus on measurable business outcomes, risk management, and community impact rather than technology features themselves.</p>
+        </div>
+        <div class="persona-meta">
+          <strong>Key Traits:</strong> Outcome-focused, Board accountability, Risk conscious, Community impact
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 60px;">
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn" style="background: var(--black); color: var(--white); border-color: var(--black);">Test Your Ideas with These Personas</a>
+  </div>
+
+</div>
+
+</body>
+</html>
