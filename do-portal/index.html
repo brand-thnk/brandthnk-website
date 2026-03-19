@@ -112,7 +112,7 @@
 
     .dashboard-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 40px;
       margin-bottom: 60px;
     }
@@ -148,92 +148,106 @@
       padding: 30px;
     }
 
-    /* DECISIONS SECTION */
-    .decision-item {
+    /* NEXT MEETING */
+    .next-meeting {
+      margin-bottom: 40px;
+    }
+
+    .meeting-item {
       background: var(--offwhite);
       border-left: 4px solid var(--yellow);
       padding: 20px;
-      margin-bottom: 16px;
       border-radius: 0 6px 6px 0;
     }
 
-    .decision-title {
+    .meeting-title {
       font-family: 'Roboto Slab', serif;
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 8px;
+      color: var(--black);
     }
 
-    .decision-status {
-      font-size: 12px;
+    .meeting-time {
+      font-size: 16px;
       font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 3px;
-      display: inline-block;
+      color: var(--black);
       margin-bottom: 8px;
     }
 
-    .status-pending {
-      background: #fff3cd;
-      color: #856404;
-    }
-
-    .status-approved {
-      background: #d1edff;
-      color: #084c61;
-    }
-
-    .decision-description {
+    .meeting-attendees {
       font-size: 14px;
       color: var(--gray);
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
 
-    .decision-meta {
-      font-size: 12px;
-      color: var(--gray);
-    }
-
-    /* DISCUSSIONS SECTION */
-    .discussion-item {
-      border-bottom: 1px solid var(--light-gray);
-      padding: 20px 0;
-    }
-
-    .discussion-item:last-child {
-      border-bottom: none;
-    }
-
-    .discussion-header {
+    .meeting-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .discussion-title {
-      font-family: 'Roboto Slab', serif;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .discussion-date {
-      font-size: 12px;
-      color: var(--gray);
-      flex-shrink: 0;
-    }
-
-    .discussion-preview {
+    .meeting-link,
+    .calendar-link {
+      background: var(--yellow);
+      color: var(--black);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
       font-size: 14px;
-      color: var(--gray);
-      line-height: 1.5;
+      font-weight: 600;
+      transition: background-color 0.2s;
     }
 
-    .discussion-participants {
+    .meeting-link:hover,
+    .calendar-link:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* WHITEBOARD */
+    .whiteboard {
+      margin-bottom: 40px;
+    }
+
+    .whiteboard-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .whiteboard-item-content {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .whiteboard-item-meta {
       font-size: 12px;
       color: var(--gray);
-      margin-top: 8px;
+    }
+
+    .whiteboard-item-delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .whiteboard-item-delete:hover {
+      color: var(--black);
     }
 
     /* CRITICAL ACTIONS */
@@ -275,8 +289,8 @@
 
 
 
-    /* ADD DISCUSSION BUTTON */
-    .add-discussion-btn {
+    /* ADD ITEM BUTTON */
+    .add-item-btn {
       background: var(--yellow);
       color: var(--black);
       border: none;
@@ -290,7 +304,7 @@
       margin-top: 20px;
     }
 
-    .add-discussion-btn:hover {
+    .add-item-btn:hover {
       background: var(--black);
       color: var(--white);
     }
@@ -335,7 +349,6 @@
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('visibility-profile', this)">Visibility Profile</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-audit', this)">LinkedIn Audit</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('website-audit', this)">Website Audit</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('message-testing', this)">Message Testing</a></li>
       </ul>
     </div>
   </nav>
@@ -389,90 +402,36 @@
         </div>
       </div>
 
-      <!-- DECISIONS AND DISCUSSIONS GRID -->
-      <div class="dashboard-grid">
-        <!-- DECISIONS SECTION -->
-        <div class="dashboard-section">
-          <div class="section-header">
-            <h2 class="section-title">Decisions</h2>
-            <p class="section-subtitle">Items requiring approval or input</p>
-          </div>
-          <div class="section-content">
-
-            <div class="decision-item">
-              <div class="decision-status status-pending">Pending Review</div>
-              <div class="decision-title">LinkedIn Editorial Calendar Approval</div>
-              <div class="decision-description">4-week people-first content plan featuring Nate, Ted, and Adam needs final approval before implementation.</div>
-              <div class="decision-meta">Due: March 25, 2026 • Priority: High</div>
+      <!-- NEXT MEETING -->
+      <div class="dashboard-section next-meeting">
+        <div class="section-header">
+          <h2 class="section-title">Next Meeting</h2>
+          <p class="section-subtitle">Upcoming Digital Onboarding session</p>
+        </div>
+        <div class="section-content">
+          <div class="meeting-item">
+            <div class="meeting-title">Jen Packard / Allison Netzer (Digital Onboarding)</div>
+            <div class="meeting-time">Today, March 19, 2026 • 9:00 AM - 9:45 AM ET</div>
+            <div class="meeting-attendees">Attendees: Adam Westley, Jen Packard, Hailey, Allison Netzer</div>
+            <div class="meeting-actions">
+              <a href="https://meet.google.com/xbk-yyhv-kjw" target="_blank" class="meeting-link">Join Google Meet</a>
+              <a href="https://www.google.com/calendar/event?eid=X2NoZ21hYzltNnBpM2liYjJjbGhqZ2I5azcwcG1jYmIxY2xoM2diOW42Y3E2Y2Uxa2NsaTNjZTFtNm8gYWxsaXNvbkBicmFuZHRobmsuY28" target="_blank" class="calendar-link">View in Calendar</a>
             </div>
-
-            <div class="decision-item">
-              <div class="decision-status status-pending">Pending Input</div>
-              <div class="decision-title">Distribution Priority Ranking</div>
-              <div class="decision-description">Need to prioritize the 16 identified media opportunities based on business impact and resource allocation.</div>
-              <div class="decision-meta">Due: March 30, 2026 • Priority: Medium</div>
-            </div>
-
-            <div class="decision-item">
-              <div class="decision-status status-approved">Approved</div>
-              <div class="decision-title">Nate Shahan Visibility Strategy</div>
-              <div class="decision-description">Three-format approach (video series, LinkedIn posts, podcast circuit) approved for implementation.</div>
-              <div class="decision-meta">Approved: March 18, 2026</div>
-            </div>
-
           </div>
         </div>
+      </div>
 
-        <!-- DISCUSSIONS SECTION -->
-        <div class="dashboard-section">
-          <div class="section-header">
-            <h2 class="section-title">Discussions</h2>
-            <p class="section-subtitle">Ongoing conversations and notes</p>
+      <!-- WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <h2 class="section-title">Whiteboard</h2>
+          <p class="section-subtitle">Quick notes and ideas</p>
+        </div>
+        <div class="section-content">
+          <div id="whiteboard-items">
+            <!-- Whiteboard items will be added here -->
           </div>
-          <div class="section-content">
-
-            <div class="discussion-item">
-              <div class="discussion-header">
-                <div>
-                  <div class="discussion-title">AI Infrastructure Messaging</div>
-                  <div class="discussion-participants">Allison, Nate, Ted</div>
-                </div>
-                <div class="discussion-date">Mar 19, 2026</div>
-              </div>
-              <div class="discussion-preview">
-                Discussion on positioning DO's AI capabilities vs. data infrastructure in thought leadership pieces. Need to emphasize data foundation before AI deployment...
-              </div>
-            </div>
-
-            <div class="discussion-item">
-              <div class="discussion-header">
-                <div>
-                  <div class="discussion-title">Podcast Placement Strategy</div>
-                  <div class="discussion-participants">Allison, Team</div>
-                </div>
-                <div class="discussion-date">Mar 18, 2026</div>
-              </div>
-              <div class="discussion-preview">
-                Identified 5 target podcasts for Nate's 90-day circuit. Finalizing outreach strategy and key talking points for each show...
-              </div>
-            </div>
-
-            <div class="discussion-item">
-              <div class="discussion-header">
-                <div>
-                  <div class="discussion-title">Competitive Landscape Analysis</div>
-                  <div class="discussion-participants">Allison, Research Team</div>
-                </div>
-                <div class="discussion-date">Mar 17, 2026</div>
-              </div>
-              <div class="discussion-preview">
-                Need to validate positioning against nCino, Narmi, and Fenergo in upcoming content. Ensuring differentiation on lifecycle orchestration...
-              </div>
-            </div>
-
-            <button class="add-discussion-btn">+ Add Discussion</button>
-
-          </div>
+          <button class="add-item-btn">+ Add Item</button>
         </div>
       </div>
     </div>
@@ -496,10 +455,6 @@
 
     <div id="website-audit-section" class="content-section" style="display: none;">
       <iframe src="website-audit.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
-    </div>
-
-    <div id="message-testing-section" class="content-section" style="display: none;">
-      <iframe src="message-testing.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
     </div>
 
   </main>
@@ -536,35 +491,26 @@
       }
     }
 
-    // Handle add discussion button
-    document.querySelector('.add-discussion-btn').addEventListener('click', function() {
-      const title = prompt('Discussion title:');
-      if (title) {
-        const description = prompt('Discussion notes:');
-        if (description) {
-          addDiscussion(title, description);
-        }
+    // Handle add item button
+    document.querySelector('.add-item-btn').addEventListener('click', function() {
+      const content = prompt('Add whiteboard item:');
+      if (content) {
+        addWhiteboardItem(content);
       }
     });
 
-    function addDiscussion(title, description) {
-      const discussionsList = document.querySelector('.discussion-item').parentNode;
-      const button = document.querySelector('.add-discussion-btn');
+    function addWhiteboardItem(content) {
+      const whiteboardItems = document.getElementById('whiteboard-items');
 
-      const newDiscussion = document.createElement('div');
-      newDiscussion.className = 'discussion-item';
-      newDiscussion.innerHTML = `
-        <div class="discussion-header">
-          <div>
-            <div class="discussion-title">${title}</div>
-            <div class="discussion-participants">Added by user</div>
-          </div>
-          <div class="discussion-date">${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-        </div>
-        <div class="discussion-preview">${description}</div>
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.innerHTML = `
+        <button class="whiteboard-item-delete" onclick="this.parentElement.remove()">×</button>
+        <div class="whiteboard-item-content">${content}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
       `;
 
-      discussionsList.insertBefore(newDiscussion, button);
+      whiteboardItems.appendChild(newItem);
     }
   </script>
 </body>
