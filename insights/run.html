@@ -359,14 +359,34 @@
     margin-bottom: 4px;
   }
 
-  .persona-desc {
+  .persona-meta {
+    font-size: 11px;
     color: var(--gray);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .persona-desc {
+    color: var(--black);
     font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .persona-motivation {
+    font-size: 11px;
+    color: var(--gray);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .persona-motivation strong {
+    color: var(--black);
   }
 
   .persona-detail-link {
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 6px;
     font-size: 11px;
     color: var(--black);
     text-decoration: none;
@@ -378,7 +398,7 @@
   .persona-detail-link:hover {
     background: var(--yellow);
     padding: 2px 4px;
-    margin: 6px -4px -2px -4px;
+    margin: 4px -4px -2px -4px;
     border-bottom: none;
   }
 
@@ -577,6 +597,42 @@
     margin-bottom: 8px;
   }
 
+  .persona-profile {
+    background: var(--offwhite);
+    padding: 20px;
+    margin: 16px 0;
+    border-left: 4px solid var(--yellow);
+    border-radius: 4px;
+  }
+
+  .persona-profile-header {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .persona-profile-title {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .persona-profile-details {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .persona-profile-details p {
+    margin-bottom: 8px;
+  }
+
+  .persona-profile-details strong {
+    color: var(--black);
+  }
+
   .report-actions {
     background: var(--offwhite);
     padding: 20px 30px;
@@ -770,39 +826,8 @@
         <div class="report-date">Generated March 18, 2026</div>
       </div>
 
-      <div class="report-content">
-        <div class="report-section">
-          <h3 class="report-section-title">Executive Summary</h3>
-          <p>Testing revealed strong resonance with relationship-focused messaging among Steady Stewards and Community Anchors, but significant resistance to rate-focused positioning across all digital-native personas.</p>
-        </div>
-
-        <div class="report-section">
-          <h3 class="report-section-title">Key Findings</h3>
-
-          <div class="verdict-box">
-            <div class="verdict-title">Strong Resonance: "Community-focused banking"</div>
-            <p>"I want a bank that understands my business and my community, not one that treats me like an account number." — Community Anchor</p>
-          </div>
-
-          <div class="verdict-box">
-            <div class="verdict-title">Mixed Reaction: "Digital-first experience"</div>
-            <p>"Digital is fine, but when my loan gets complicated, I need a human who knows my business." — Main Street Operator</p>
-          </div>
-
-          <div class="verdict-box">
-            <div class="verdict-title">Does Not Resonate: "Best rates in town"</div>
-            <p>"Everyone says that. Show me the numbers and let me do the math myself." — Digital Pragmatist</p>
-          </div>
-        </div>
-
-        <div class="report-section">
-          <h3 class="report-section-title">Recommendations</h3>
-          <ol style="margin-left: 20px;">
-            <li style="margin-bottom: 12px;"><strong>Lead with relationship messaging</strong> for traditional banking channels and community-focused campaigns.</li>
-            <li style="margin-bottom: 12px;"><strong>Provide specific rate data</strong> rather than generic "best rates" claims when targeting digital-savvy segments.</li>
-            <li style="margin-bottom: 12px;"><strong>Position digital as enhancement</strong>, not replacement, for business banking communications.</li>
-          </ol>
-        </div>
+      <div class="report-content" id="report-content">
+        <!-- Report content will be dynamically generated -->
       </div>
 
       <div class="report-actions">
@@ -888,24 +913,167 @@ function loadPersonas(segment) {
   const personasGrid = document.getElementById('personas-grid');
 
   const personas = {
+    fintech: [
+      {
+        id: 'digital-transformation-champion',
+        name: 'Digital Transformation Champion',
+        age: '42',
+        title: 'VP of Digital Banking & Innovation',
+        institution: 'Mid-sized Regional Bank ($12B assets)',
+        desc: 'Visionary but frustrated by legacy constraints. Speaks in digital transformation and customer experience language.',
+        coreMotivation: 'Competitive positioning and time-to-market for digital offerings',
+        keyFears: 'Integration risk with legacy core systems and vendor stability',
+        typicalLanguage: '"We need to move faster," "what\'s the integration timeline?", "how does this work with Jack Henry?", "I need to show ROI to my CFO"',
+        processingQuote: 'We need to move faster than the competition. What\'s the integration timeline with our Jack Henry core?'
+      },
+      {
+        id: 'risk-compliance-gatekeeper',
+        name: 'Risk & Compliance Gatekeeper',
+        age: '56',
+        title: 'Chief Risk Officer',
+        institution: 'Community Credit Union ($1.8B assets)',
+        desc: 'Protects institution from regulatory fines and data breaches. Views every vendor as potential liability until proven otherwise.',
+        coreMotivation: 'Institutional preservation and regulatory compliance',
+        keyFears: 'Data security breaches, regulatory fines, and operational resilience failures',
+        typicalLanguage: '"Show me your SOC 2 report," "what\'s your incident response plan?", "how do you handle data residency?"',
+        processingQuote: 'I need to see your SOC 2 Type II report and incident response plan before we proceed.'
+      },
+      {
+        id: 'roi-focused-cfo',
+        name: 'ROI-Focused CFO',
+        age: '49',
+        title: 'Chief Financial Officer',
+        institution: 'Large Enterprise Fintech Company',
+        desc: 'Financial steward requiring rigorous ROI justification for every technology investment.',
+        coreMotivation: 'Financial performance and operational efficiency with measurable returns',
+        keyFears: 'Cost overruns, hidden fees, and ROI uncertainty',
+        typicalLanguage: '"What\'s the total cost of ownership?", "show me the ROI model", "I need case studies with hard numbers"',
+        processingQuote: 'What\'s the total cost of ownership? I need to see case studies with hard numbers, not vague value propositions.'
+      },
+      {
+        id: 'community-bank-ceo',
+        name: 'Community Bank CEO',
+        age: '58',
+        title: 'President & CEO',
+        institution: 'Community Bank ($450M assets)',
+        desc: 'Committed to community and relationship banking model. Cautious about technology investments due to limited resources.',
+        coreMotivation: 'Institution survival and growth while maintaining community focus',
+        keyFears: 'Failed implementation damaging reputation and vendor lock-in',
+        typicalLanguage: '"We\'re not a big bank," "I need a vendor who will be a true partner," "what do other community banks say?"',
+        processingQuote: 'We\'re not a big bank. I need a vendor who understands the community banking model and will be a true partner.'
+      }
+    ],
     consumer: [
-      {id: 'steady-stewards', name: 'Steady Stewards', desc: 'Age 55-74: Relationship-loyal, values personal service'},
-      {id: 'rising-builders', name: 'Rising Builders', desc: 'Age 22-35: Fee-averse and mobile-first'},
-      {id: 'rooted-families', name: 'Rooted Families', desc: 'Age 30-50: Managing multiple financial priorities'},
-      {id: 'community-anchors', name: 'Community Anchors', desc: 'Age 35-65: Local business owners'},
-      {id: 'digital-pragmatists', name: 'Digital Pragmatists', desc: 'Age 25-55: Rate-comparing optimizers'}
+      {
+        id: 'digital-optimizer',
+        name: 'Digital Native Optimizer',
+        age: '27',
+        occupation: 'UX Designer at tech startup',
+        income: '$82,000',
+        desc: 'Views banking as interconnected ecosystem of specialized apps. Financial optimizer who actively monitors rates and moves money.',
+        coreMotivation: 'Maximize financial returns with minimal friction',
+        keyFears: 'Hidden fees, slow transaction speeds, being locked into platforms',
+        typicalLanguage: '"Frictionless," "seamless," "what\'s the APY?", "does it integrate with...?", "I just need it to work."',
+        processingQuote: 'What\'s the APY? Does it integrate with my existing apps? I just need it to work seamlessly.'
+      },
+      {
+        id: 'anxious-pessimist',
+        name: 'Financially Anxious Pessimist',
+        age: '44',
+        occupation: 'Warehouse Supervisor',
+        income: '$62,000',
+        desc: 'Feels negative about economic environment. Living close to paycheck-to-paycheck despite reasonable income.',
+        coreMotivation: 'Financial stability and stop worrying about money',
+        keyFears: 'Unexpected expenses, overdraft fees, system not designed for people like him',
+        typicalLanguage: '"What\'s the catch?", "I can\'t afford to lose money," "I\'ve been burned before," "nobody tells you about the fees"',
+        processingQuote: 'What\'s the catch? I\'ve been burned before by fees nobody tells you about until it\'s too late.'
+      },
+      {
+        id: 'relationship-retiree',
+        name: 'Relationship-Seeking Retiree',
+        age: '67',
+        occupation: 'Retired (former school principal)',
+        income: '$58,000 (pension + Social Security)',
+        desc: 'Values human element in banking above all else. Has long-standing relationships and knows personal banker by name.',
+        coreMotivation: 'Security, simplicity, and human support when things go wrong',
+        keyFears: 'Being defrauded, losing access to savings, being left behind by digital-only services',
+        typicalLanguage: '"I just want to know my money is safe," "I like to talk to a real person," "I\'ve been with this bank for 30 years"',
+        processingQuote: 'I just want to know my money is safe. I\'ve been with this bank for 30 years and like talking to real people.'
+      },
+      {
+        id: 'wealth-building-parent',
+        name: 'Wealth-Building Millennial Parent',
+        age: '38',
+        occupation: 'Senior Software Engineer',
+        income: '$210,000 household',
+        desc: 'Financially literate and building wealth. Manages finances across multiple platforms, wants unified solution.',
+        coreMotivation: 'Build generational wealth and optimize tax situation',
+        keyFears: 'Market downturns, not saving enough for children\'s education, being underserved',
+        typicalLanguage: '"What\'s the fee structure?", "how does this compare to Fidelity?", "I need integration with existing accounts"',
+        processingQuote: 'What\'s the fee structure? How does this compare to Fidelity? I need this to integrate with my existing accounts.'
+      },
+      {
+        id: 'credit-invisible',
+        name: 'Credit-Invisible Young Adult',
+        age: '23',
+        occupation: 'Retail Associate / Part-time student',
+        income: '$28,000',
+        desc: 'Recently became banked after being rejected by traditional banks. Part of growing segment turning to neobanks.',
+        coreMotivation: 'Build credit, achieve financial stability, qualify for apartment and car loan',
+        keyFears: 'Being rejected by institutions, accumulating unpayable debt, not understanding the system',
+        typicalLanguage: '"I\'m trying to build my credit," "I don\'t want to get hit with fees," "I just need a chance"',
+        processingQuote: 'I\'m trying to build my credit. I don\'t want to get hit with fees - I just need a chance to prove myself.'
+      }
     ],
     business: [
-      {id: 'main-street', name: 'Main Street Operator', desc: 'Under $2M: Cash flow focused retail/service'},
-      {id: 'professional', name: 'Professional Practice', desc: '$1M-$5M: Doctors, lawyers, accountants'},
-      {id: 'agricultural', name: 'Agricultural Operator', desc: 'Multi-gen: Farmers and ranchers'},
-      {id: 'startup', name: 'Startup / Side Hustle', desc: 'Age 25-40: First-time business owners'}
-    ],
-    fintech: [
-      {id: 'marketing', name: 'Marketing Modernizer', desc: 'CMO/VP: Budget-conscious, peer validation'},
-      {id: 'technology', name: 'Technology Pragmatist', desc: 'CTO/CIO: Integration complexity focus'},
-      {id: 'transformation', name: 'Transformation Champion', desc: 'CDO: Innovation with coalition building'},
-      {id: 'community', name: 'Community Steward', desc: 'CEO: Board accountable, outcome focused'}
+      {
+        id: 'bootstrapped-solopreneur',
+        name: 'Bootstrapped Solopreneur',
+        age: '34',
+        business: 'Freelance Graphic Design & Brand Consulting (LLC)',
+        revenue: '$115,000',
+        desc: 'Solo entrepreneur who views bank as utility, not partner. Highly tech-forward, evaluates banking like design tools.',
+        coreMotivation: 'Minimize administrative overhead to focus on client work',
+        keyFears: 'Slow month wiping out reserves, being unable to access credit, wasting time on banking admin',
+        typicalLanguage: '"Does it integrate with QuickBooks?", "what are the fees?", "how fast does the money move?"',
+        processingQuote: 'Does it integrate with QuickBooks? What are the fees? I don\'t have time for complicated banking administration.'
+      },
+      {
+        id: 'main-street-retailer',
+        name: 'Main Street Retailer',
+        age: '51',
+        business: 'Independent Women\'s Clothing Boutique',
+        revenue: '$920,000',
+        desc: 'Established business owner who weathered multiple economic cycles. Values relationship with business banker.',
+        coreMotivation: 'Grow business sustainably and maintain supportive banking relationships',
+        keyFears: 'Recession reducing spending, cash flow crunch, losing competitive edge to online retailers',
+        typicalLanguage: '"My banker knows my business," "I\'ve been with this bank for 14 years," "the fees are killing me"',
+        processingQuote: 'My banker knows my business. I\'ve been with this bank for 14 years, but these merchant service fees are killing me.'
+      },
+      {
+        id: 'startup-founder',
+        name: 'High-Growth Startup Founder',
+        age: '32',
+        business: 'SaaS startup (HR tech)',
+        revenue: '$1.8M ARR',
+        desc: 'Venture-backed founder navigating complex financial needs of scaling company. Thinks in runway, burn rate, unit economics.',
+        coreMotivation: 'Scale company efficiently and manage cash runway carefully',
+        keyFears: 'Running out of runway before next funding, banking failure disrupting operations',
+        typicalLanguage: '"What\'s the API documentation?", "we need multi-user access," "how does this scale?"',
+        processingQuote: 'What\'s the API documentation? We need multi-user access and real-time data. How does this scale with our growth?'
+      },
+      {
+        id: 'minority-business-owner',
+        name: 'Minority-Owned Business Owner',
+        age: '41',
+        business: 'Commercial Cleaning Services',
+        revenue: '$380,000',
+        desc: 'Black business owner who faced barriers to capital access. Built successful business through careful cash flow management.',
+        coreMotivation: 'Grow business, access fair credit, find genuine banking support',
+        keyFears: 'Being denied credit due to bias, unable to compete for larger contracts, not being taken seriously',
+        typicalLanguage: '"I\'ve been turned down before," "I need a bank that actually wants my business," "I\'ve built this myself"',
+        processingQuote: 'I\'ve been turned down before. I need a bank that actually wants my business and understands what I\'ve built.'
+      }
     ]
   };
 
@@ -914,8 +1082,10 @@ function loadPersonas(segment) {
       <input type="checkbox" id="${persona.id}" value="${persona.id}">
       <label for="${persona.id}">
         <div class="persona-name">${persona.name}</div>
+        <div class="persona-meta">${persona.age ? `Age ${persona.age}` : ''}${persona.title ? ` • ${persona.title}` : ''}${persona.occupation ? ` • ${persona.occupation}` : ''}</div>
         <div class="persona-desc">${persona.desc}</div>
-        <a href="/insights/personas.html#${persona.name.toLowerCase().replace(/\s+/g, '-')}" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Detail</a>
+        <div class="persona-motivation"><strong>Core motivation:</strong> ${persona.coreMotivation}</div>
+        <a href="/insights/personas.html#${persona.name.toLowerCase().replace(/\s+/g, '-')}" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Character Profile</a>
       </label>
     </div>
   `).join('');
@@ -1210,12 +1380,29 @@ function simulateProgress() {
   const progressSteps = document.getElementById('progress-steps');
   const quoteDisplay = document.getElementById('quote-display');
 
-  // Sample quotes to rotate through
-  const quotes = [
-    {text: "I don't need my bank to make me feel warm and fuzzy. I need them to answer the phone when I call.", author: "Steady Steward"},
-    {text: "Your savings rate is 0.15%. Ally is 4.50%. Why would I keep money here?", author: "Digital Pragmatist"},
-    {text: "Farm Credit offered me 50 basis points lower. What are you going to do about it?", author: "Agricultural Operator"}
-  ];
+  // Get authentic quotes from selected personas
+  function getPersonaQuotes() {
+    return selectedPersonas.map(personaId => {
+      // Find the persona data across all segments
+      const allPersonas = [...personas.fintech, ...personas.consumer, ...personas.business];
+      const persona = allPersonas.find(p => p.id === personaId);
+
+      if (persona && persona.processingQuote) {
+        return {
+          text: persona.processingQuote,
+          author: persona.name,
+          context: `${persona.age ? `Age ${persona.age}` : ''}${persona.title ? ` • ${persona.title}` : ''}${persona.occupation ? ` • ${persona.occupation}` : ''}`
+        };
+      }
+
+      // Fallback for any personas without processing quotes
+      return {
+        text: "Let me think about this from my perspective...",
+        author: persona ? persona.name : "Unknown Persona",
+        context: ""
+      };
+    });
+  }
 
   // Create progress steps based on selected personas
   const steps = selectedPersonas.map((persona, index) => `
@@ -1234,6 +1421,9 @@ function simulateProgress() {
 
   progressSteps.innerHTML = steps.join('');
 
+  // Get authentic quotes from selected personas
+  const personaQuotes = getPersonaQuotes();
+
   // Simulate progress
   let currentStep = 0;
   const totalSteps = selectedPersonas.length + 1;
@@ -1245,11 +1435,11 @@ function simulateProgress() {
       stepElement.classList.add('active');
 
       // Update quote if not on synthesis step
-      if (currentStep < selectedPersonas.length && quotes[currentStep % quotes.length]) {
-        const quote = quotes[currentStep % quotes.length];
+      if (currentStep < selectedPersonas.length && personaQuotes[currentStep]) {
+        const quote = personaQuotes[currentStep];
         quoteDisplay.innerHTML = `
           <div class="quote-text">"${quote.text}"</div>
-          <div class="quote-attribution">— ${quote.author}</div>
+          <div class="quote-attribution">— ${quote.author}${quote.context ? ` (${quote.context})` : ''}</div>
         `;
       }
     }
@@ -1275,6 +1465,7 @@ function simulateProgress() {
       if (currentStep >= totalSteps) {
         clearInterval(progressInterval);
         setTimeout(() => {
+          generateReport();
           nextScreen('report-screen');
         }, 1500);
       }
@@ -1301,6 +1492,150 @@ function addMessageField() {
       document.querySelector('.add-message-btn').style.display = 'none';
     }
   }
+}
+
+function generateReport() {
+  const reportContent = document.getElementById('report-content');
+  const allPersonas = [...personas.fintech, ...personas.consumer, ...personas.business];
+  const interviewedPersonas = selectedPersonas.map(id => allPersonas.find(p => p.id === id)).filter(Boolean);
+
+  const reportHTML = `
+    <div class="report-section">
+      <h3 class="report-section-title">Executive Summary</h3>
+      <p>Testing involved ${interviewedPersonas.length} distinct customer personas through simulated 11-turn interviews. Analysis reveals significant variation in messaging reception across different decision-maker types and financial attitudes.</p>
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Personas Interviewed</h3>
+      ${interviewedPersonas.map(persona => `
+        <div class="persona-profile">
+          <div class="persona-profile-header">
+            <strong>${persona.name}</strong>${persona.age ? ` (Age ${persona.age})` : ''}
+            ${persona.title ? `<div class="persona-profile-title">${persona.title}</div>` : ''}
+            ${persona.occupation ? `<div class="persona-profile-title">${persona.occupation}</div>` : ''}
+          </div>
+          <div class="persona-profile-details">
+            <p><strong>Core motivation:</strong> ${persona.coreMotivation}</p>
+            <p><strong>Key fears:</strong> ${persona.keyFears}</p>
+            <p><strong>Typical language:</strong> ${persona.typicalLanguage}</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Key Findings</h3>
+
+      ${generateFindingsForPersonas(interviewedPersonas)}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Strategic Recommendations</h3>
+      ${generateRecommendationsForPersonas(interviewedPersonas)}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Cross-Persona Analysis</h3>
+      <p>Analysis reveals distinct patterns across the interviewed personas:</p>
+      <ul style="margin-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Trust factors vary significantly:</strong> ${getTrustFactorAnalysis(interviewedPersonas)}</li>
+        <li style="margin-bottom: 8px;"><strong>Decision criteria cluster around:</strong> ${getDecisionCriteriaAnalysis(interviewedPersonas)}</li>
+        <li style="margin-bottom: 8px;"><strong>Communication preferences:</strong> ${getCommunicationAnalysis(interviewedPersonas)}</li>
+      </ul>
+    </div>
+  `;
+
+  reportContent.innerHTML = reportHTML;
+}
+
+function generateFindingsForPersonas(personas) {
+  const findings = [];
+
+  personas.forEach(persona => {
+    if (persona.typicalLanguage.includes('integrate')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Integration Concerns</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> ${persona.name} evaluates solutions through ${persona.coreMotivation.toLowerCase()}.</p>
+        </div>
+      `);
+    } else if (persona.keyFears.includes('fees') || persona.keyFears.includes('money')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Cost Sensitivity</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Fee transparency and value demonstration critical for this segment.</p>
+        </div>
+      `);
+    } else if (persona.keyFears.includes('security') || persona.keyFears.includes('fraud')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Security Priority</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Risk mitigation messaging essential for building trust.</p>
+        </div>
+      `);
+    } else {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Relationship Focus</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Values relationship and service quality over pure efficiency.</p>
+        </div>
+      `);
+    }
+  });
+
+  return findings.slice(0, 3).join(''); // Show top 3 findings
+}
+
+function generateRecommendationsForPersonas(personas) {
+  const recommendations = [];
+
+  const hasFintech = personas.some(p => personas.fintech.includes(p));
+  const hasConsumer = personas.some(p => personas.consumer.includes(p));
+  const hasBusiness = personas.some(p => personas.business.includes(p));
+
+  if (hasFintech) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For B2B buyers:</strong> Lead with integration capabilities, security credentials, and measurable ROI data rather than generic innovation messaging.</li>');
+  }
+
+  if (hasConsumer) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For consumers:</strong> Emphasize fee transparency, security measures, and clear value propositions that match their financial goals and digital comfort level.</li>');
+  }
+
+  if (hasBusiness) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For businesses:</strong> Focus on cash flow impact, time savings, and relationship support rather than purely technological features.</li>');
+  }
+
+  recommendations.push('<li style="margin-bottom: 12px;"><strong>Cross-segment:</strong> Avoid one-size-fits-all messaging. Tailor communication style and proof points to match each persona\'s decision criteria and language preferences.</li>');
+
+  return '<ol style="margin-left: 20px;">' + recommendations.join('') + '</ol>';
+}
+
+function getTrustFactorAnalysis(personas) {
+  const trustFactors = [];
+  if (personas.some(p => p.keyFears.includes('security'))) trustFactors.push('security credentials');
+  if (personas.some(p => p.coreMotivation.includes('relationship'))) trustFactors.push('relationship history');
+  if (personas.some(p => p.keyFears.includes('regulatory'))) trustFactors.push('regulatory compliance');
+  return trustFactors.length ? trustFactors.join(', ') + ' are primary trust drivers' : 'varied across personas';
+}
+
+function getDecisionCriteriaAnalysis(personas) {
+  const criteria = [];
+  if (personas.some(p => p.typicalLanguage.includes('integrate'))) criteria.push('integration capability');
+  if (personas.some(p => p.typicalLanguage.includes('fees') || p.typicalLanguage.includes('cost'))) criteria.push('cost transparency');
+  if (personas.some(p => p.coreMotivation.includes('efficiency'))) criteria.push('operational efficiency');
+  return criteria.length ? criteria.join(', ') : 'relationship quality and trust';
+}
+
+function getCommunicationAnalysis(personas) {
+  const styles = [];
+  if (personas.some(p => p.typicalLanguage.includes('data') || p.typicalLanguage.includes('ROI'))) styles.push('data-driven');
+  if (personas.some(p => p.coreMotivation.includes('relationship'))) styles.push('relationship-focused');
+  if (personas.some(p => p.typicalLanguage.includes('integrate') || p.typicalLanguage.includes('API'))) styles.push('technically detailed');
+  return styles.length ? styles.join(' and ') + ' messaging required' : 'simple, clear communication preferred';
 }
 
 function resetTool() {
