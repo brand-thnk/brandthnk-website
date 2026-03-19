@@ -326,12 +326,12 @@
   <nav class="portal-nav">
     <div class="nav-container">
       <ul class="nav-tabs">
-        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard')">Dashboard</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('competitive-analysis')">Competitive Analysis</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('distribution-calendar')">Distribution Calendar</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('visibility-profile')">Visibility Profile</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-audit')">LinkedIn Audit</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('message-testing')">Message Testing</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('competitive-analysis', this)">Competitive Analysis</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('distribution-calendar', this)">Distribution Calendar</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('visibility-profile', this)">Visibility Profile</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-audit', this)">LinkedIn Audit</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('message-testing', this)">Message Testing</a></li>
       </ul>
     </div>
   </nav>
@@ -480,7 +480,7 @@
   </main>
 
   <script>
-    function showSection(sectionName) {
+    function showSection(sectionName, clickedElement = null) {
       // Hide all content sections
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(section => {
@@ -500,7 +500,15 @@
       });
 
       // Find and activate the clicked nav link
-      event.target.classList.add('active');
+      if (clickedElement) {
+        clickedElement.classList.add('active');
+      } else {
+        // Fallback: find by section name
+        const targetLink = document.querySelector(`[onclick*="${sectionName}"]`);
+        if (targetLink) {
+          targetLink.classList.add('active');
+        }
+      }
     }
 
     // Handle add discussion button
