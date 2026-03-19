@@ -309,50 +309,11 @@
     flex-wrap: wrap;
   }
 
-  .segment-toggle {
-    background: var(--offwhite);
-    border: 1px solid var(--light-gray);
-    padding: 12px 20px;
-    cursor: pointer;
-    font-family: 'Roboto Mono', monospace;
-    transition: all 0.2s;
-  }
+  /* Removed segment-toggle styles - automated selection only */
 
-  .segment-toggle:hover,
-  .segment-toggle.active {
-    background: var(--black);
-    color: var(--white);
-  }
+  /* Removed personas-grid styles - automated selection only */
 
-  .personas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-  }
-
-  .persona-checkbox {
-    position: relative;
-  }
-
-  .persona-checkbox input {
-    position: absolute;
-    opacity: 0;
-  }
-
-  .persona-checkbox label {
-    display: block;
-    padding: 15px;
-    background: var(--offwhite);
-    border: 1px solid var(--light-gray);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-size: 14px;
-  }
-
-  .persona-checkbox input:checked + label {
-    background: var(--yellow);
-    border-color: var(--black);
-  }
+  /* Removed persona-checkbox styles - automated selection only */
 
   .persona-name {
     font-weight: 700;
@@ -717,9 +678,7 @@
       flex-direction: column;
     }
 
-    .personas-grid {
-      grid-template-columns: 1fr;
-    }
+    /* Removed mobile personas-grid styles - automated selection only */
 
     .action-buttons {
       flex-direction: column;
@@ -1102,9 +1061,6 @@ window.PERSONAS = {}; // Will be populated below
 // Module selection
 document.addEventListener('DOMContentLoaded', function() {
   setupModuleSelection();
-  setupPersonaSelection();
-  setupMarketSelection();
-  loadPersonas('fintech');
 });
 
 function setupModuleSelection() {
@@ -1128,40 +1084,9 @@ function setupModuleSelection() {
   });
 }
 
-function setupPersonaSelection() {
-  const segmentToggles = document.querySelectorAll('[data-segment]');
+// Removed setupPersonaSelection() function - replaced with automated selection
 
-  segmentToggles.forEach(toggle => {
-    toggle.addEventListener('click', function() {
-      // Remove active class from all toggles
-      document.querySelectorAll('[data-segment]').forEach(t => t.classList.remove('active'));
-
-      // Add active class to clicked toggle
-      this.classList.add('active');
-
-      // Load personas for selected segment
-      currentPersonaSegment = this.dataset.segment;
-      loadPersonas(currentPersonaSegment);
-    });
-  });
-}
-
-function setupMarketSelection() {
-  const marketToggles = document.querySelectorAll('[data-market]');
-
-  marketToggles.forEach(toggle => {
-    toggle.addEventListener('click', function() {
-      // Remove active class from all market toggles
-      document.querySelectorAll('[data-market]').forEach(t => t.classList.remove('active'));
-
-      // Add active class to clicked toggle
-      this.classList.add('active');
-
-      // Store selected market
-      selectedMarket = this.dataset.market;
-    });
-  });
-}
+// Removed setupMarketSelection() function - replaced with dropdown in automated interface
 
 // Complete 22-Persona Library Implementation
 window.PERSONAS = {
@@ -1648,33 +1573,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     ],
 
-function loadPersonas(segment) {
-  const personasGrid = document.getElementById('personas-grid');
-
-  personasGrid.innerHTML = window.PERSONAS[segment].map(persona => `
-    <div class="persona-checkbox">
-      <input type="checkbox" id="${persona.id}" value="${persona.id}">
-      <label for="${persona.id}">
-        <div class="persona-name">${persona.name}</div>
-        <div class="persona-meta">${persona.age ? `Age ${persona.age}` : ''}${persona.title ? ` • ${persona.title}` : ''}${persona.occupation ? ` • ${persona.occupation}` : ''}</div>
-        <div class="persona-desc">${persona.desc}</div>
-        <div class="persona-motivation"><strong>Core motivation:</strong> ${persona.coreMotivation}</div>
-        <a href="/insights/personas.html#${persona.name.toLowerCase().replace(/\s+/g, '-')}" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Character Profile</a>
-      </label>
-    </div>
-  `).join('');
-
-  // Add event listeners to checkboxes
-  personasGrid.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        selectedPersonas.push(this.value);
-      } else {
-        selectedPersonas = selectedPersonas.filter(p => p !== this.value);
-      }
-    });
-  });
-}
+// Removed loadPersonas() function - replaced with automated selection
 
 function loadModuleContent() {
   const moduleContent = document.getElementById('module-content');
@@ -2098,7 +1997,7 @@ function simulateProgress() {
   steps.push(`
     <div class="progress-step">
       <div class="progress-circle" id="step-synthesis">S</div>
-      <div class="progress-label">Synthesis</div>
+      <div class="progress-label">Cross-Persona Synthesis</div>
     </div>
   `);
 
