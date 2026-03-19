@@ -237,36 +237,69 @@
       margin-bottom: 0.5rem;
     }
 
-    .navigation {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
       z-index: 1000;
     }
 
-    .navigation a {
-      color: var(--brandthnk-white);
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
       text-decoration: none;
-      display: block;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--brandthnk-gray);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
     }
 
-    .navigation a:last-child {
-      border-bottom: none;
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
     }
 
-    .navigation a:hover {
-      color: var(--brandthnk-yellow);
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
     }
 
     @media (max-width: 768px) {
-      .container {
+      .container, .nav-container {
         padding: 0 1rem;
       }
 
@@ -274,9 +307,20 @@
         font-size: 1.5rem;
       }
 
-      .navigation {
-        position: static;
-        margin-bottom: 2rem;
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
       }
     }
   </style>
@@ -285,11 +329,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="navigation">
-    <a href="index.html">← Portal Dashboard</a>
-    <a href="project-plan.html">Project Plan</a>
-    <a href="draft-website.html">Draft Website</a>
-  </div>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="project-plan.html" class="nav-link">Project Plan</a>
+        <a href="website-audit.html" class="nav-link active">Website Audit</a>
+        <a href="draft-website.html" class="nav-link">Draft Website</a>
+      </div>
+    </div>
+  </nav>
 
   <header class="header">
     <div class="container">

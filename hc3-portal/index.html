@@ -34,6 +34,56 @@
       padding: 0 2rem;
     }
 
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
     .header {
       background: var(--brandthnk-black);
       color: var(--brandthnk-white);
@@ -154,6 +204,22 @@
       background: var(--brandthnk-off-white);
       border-radius: 8px;
       border-left: 3px solid var(--brandthnk-yellow);
+      cursor: pointer;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .action-item:hover {
+      background: var(--brandthnk-white);
+    }
+
+    .action-item.completed {
+      opacity: 0.7;
+      background: var(--brandthnk-light-gray);
+      border-left-color: var(--brandthnk-gray);
+    }
+
+    .action-item.completed .action-content {
+      text-decoration: line-through;
     }
 
     .action-checkbox {
@@ -163,6 +229,22 @@
       border-radius: 3px;
       margin-top: 2px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .action-checkbox.checked {
+      background: var(--brandthnk-yellow);
+      border-color: var(--brandthnk-black);
+    }
+
+    .action-checkbox.checked::after {
+      content: '✓';
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brandthnk-black);
     }
 
     .action-content {
@@ -248,6 +330,14 @@
       text-align: center;
       font-size: 0.75rem;
       font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .timeline-week:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .timeline-week.active {
@@ -259,6 +349,76 @@
     .timeline-week.completed {
       background: var(--brandthnk-black);
       color: var(--brandthnk-white);
+    }
+
+    .timeline-week.selected {
+      border-color: var(--brandthnk-black);
+    }
+
+    .phase-details {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-yellow);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    .phase-details.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .phase-details h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .phase-objective {
+      background: var(--brandthnk-yellow);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-objective h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-activities, .phase-deliverable {
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-activities h4, .phase-deliverable h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .phase-activities ul {
+      margin-left: 1.5rem;
+    }
+
+    .phase-activities li {
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-deliverable {
+      background: var(--brandthnk-off-white);
+      padding: 1.5rem;
+      border-radius: 8px;
     }
 
     .contact-section {
@@ -298,44 +458,6 @@
       color: var(--brandthnk-yellow);
     }
 
-    .navigation {
-      position: sticky;
-      top: 20px;
-      float: right;
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
-      margin-left: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .navigation h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--brandthnk-yellow);
-    }
-
-    .navigation a {
-      color: var(--brandthnk-white);
-      text-decoration: none;
-      display: block;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--brandthnk-gray);
-      font-size: 0.875rem;
-    }
-
-    .navigation a:last-child {
-      border-bottom: none;
-    }
-
-    .navigation a:hover {
-      color: var(--brandthnk-yellow);
-    }
 
     @media (max-width: 1024px) {
       .dashboard-grid {
@@ -345,22 +467,24 @@
       .timeline {
         grid-template-columns: repeat(4, 1fr);
       }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
     }
 
     @media (max-width: 768px) {
-      .container {
+      .container, .nav-container {
         padding: 0 1rem;
       }
 
       .header h1 {
         font-size: 1.75rem;
-      }
-
-      .navigation {
-        position: static;
-        float: none;
-        margin-left: 0;
-        margin-bottom: 2rem;
       }
 
       .resource-grid {
@@ -370,6 +494,22 @@
       .timeline {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,12 +517,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="navigation">
-    <h3>Portal Navigation</h3>
-    <a href="website-audit.html">Website Audit</a>
-    <a href="project-plan.html">Project Plan</a>
-    <a href="draft-website.html">Draft Website</a>
-  </div>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="project-plan.html" class="nav-link">Project Plan</a>
+        <a href="website-audit.html" class="nav-link">Website Audit</a>
+        <a href="draft-website.html" class="nav-link">Draft Website</a>
+      </div>
+    </div>
+  </nav>
 
   <header class="header">
     <div class="container">
@@ -393,6 +538,34 @@
 
   <main class="container">
     <div class="dashboard-grid">
+      <section class="section contact-section">
+        <h2>Team & Communication</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>BrandThnk Team</h3>
+            <p><strong>Allison Netzer</strong><br>Lead Strategist</p>
+            <p><a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
+            <p>Specialist support as needed</p>
+          </div>
+
+          <div class="contact-item">
+            <h3>HC3 Primary Contact</h3>
+            <p><strong>Kristan Hill</strong></p>
+            <p>Weekly check-ins: 90 min/week C-level time</p>
+            <p>Microsoft Teams for day-to-day</p>
+            <p>Email for documentation</p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Interview Schedule</h3>
+            <p><strong>C-suite:</strong> Tori</p>
+            <p><strong>Frontline:</strong> Matt Engle</p>
+            <p><strong>Contrarian:</strong> Jeremiah James</p>
+            <p>30 minutes each, no prep needed</p>
+          </div>
+        </div>
+      </section>
+
       <section class="section">
         <h2>Project Status</h2>
         <div class="project-status">
@@ -426,7 +599,7 @@
 
       <section class="section">
         <h2>Critical Next Actions</h2>
-        <div class="action-item">
+        <div class="action-item" data-action="stakeholder-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Complete stakeholder interview list for Week 1-2 discovery</div>
@@ -434,7 +607,7 @@
           </div>
         </div>
 
-        <div class="action-item">
+        <div class="action-item" data-action="schedule-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Schedule interviews with C-suite (Tori), frontline (Matt Engle), contrarian (Jeremiah James)</div>
@@ -442,7 +615,7 @@
           </div>
         </div>
 
-        <div class="action-item">
+        <div class="action-item" data-action="review-audit">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Review website audit findings and prioritize quick wins</div>
@@ -450,7 +623,7 @@
           </div>
         </div>
 
-        <div class="action-item">
+        <div class="action-item" data-action="gather-data">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Gather customer outcome data for proof points (cost savings, satisfaction scores)</div>
@@ -458,7 +631,7 @@
           </div>
         </div>
 
-        <div class="action-item">
+        <div class="action-item" data-action="compile-assets">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Compile existing GTM plans, brand assets, and messaging for audit</div>
@@ -470,62 +643,38 @@
       <section class="section timeline-section">
         <h2>8-Week Timeline</h2>
         <div class="timeline">
-          <div class="timeline-week active">
+          <div class="timeline-week active" data-week="1-2">
             <div>Week 1-2</div>
             <div>Discovery</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="3">
             <div>Week 3</div>
             <div>Positioning</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="4">
             <div>Week 4</div>
             <div>GTM Model</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="5">
             <div>Week 5</div>
             <div>Signal Amp</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="6">
             <div>Week 6</div>
             <div>Execution</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="7">
             <div>Week 7</div>
             <div>Feedback</div>
           </div>
-          <div class="timeline-week">
+          <div class="timeline-week" data-week="8">
             <div>Week 8</div>
             <div>Executive</div>
           </div>
         </div>
-      </section>
 
-      <section class="section contact-section">
-        <h2>Team & Communication</h2>
-        <div class="contact-info">
-          <div class="contact-item">
-            <h3>BrandThnk Team</h3>
-            <p><strong>Allison Netzer</strong><br>Lead Strategist</p>
-            <p><a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
-            <p>Specialist support as needed</p>
-          </div>
-
-          <div class="contact-item">
-            <h3>HC3 Primary Contact</h3>
-            <p><strong>Kristan Hill</strong></p>
-            <p>Weekly check-ins: 90 min/week C-level time</p>
-            <p>Microsoft Teams for day-to-day</p>
-            <p>Email for documentation</p>
-          </div>
-
-          <div class="contact-item">
-            <h3>Interview Schedule</h3>
-            <p><strong>C-suite:</strong> Tori</p>
-            <p><strong>Frontline:</strong> Matt Engle</p>
-            <p><strong>Contrarian:</strong> Jeremiah James</p>
-            <p>30 minutes each, no prep needed</p>
-          </div>
+        <div class="phase-details" id="phase-details">
+          <!-- Phase details will be inserted here dynamically -->
         </div>
       </section>
     </div>
@@ -550,5 +699,209 @@
       </a>
     </div>
   </main>
+
+  <script>
+    // Phase details data
+    const phaseData = {
+      "1-2": {
+        title: "Week 1-2: Deep Discovery",
+        dates: "March 20-31, 2026",
+        objective: "Understand HC3's business DNA, audience mindset, and market context.",
+        activities: [
+          "Stakeholder interviews (execs, sales, product, customers)",
+          "Quick audit of existing brand, messaging, GTM plans",
+          "Identify internal blockers and external whitespace",
+          "Define goals and what \"breakthrough\" looks like"
+        ],
+        deliverable: "Strategy Brief — distilled insights, aligned goals, and a shared lens"
+      },
+      "3": {
+        title: "Week 3: Positioning Lab",
+        dates: "April 1-4, 2026",
+        objective: "Find the sharpest, clearest articulation of HC3's brand \"why now.\"",
+        activities: [
+          "Messaging sprint: core narrative, proof points, and audience resonance",
+          "Clarify what HC3 is (and is not)",
+          "Build a messaging hierarchy: vision-level to campaign-ready"
+        ],
+        deliverable: "Brand Positioning Map + Messaging Framework (ready to plug into GTM, content, sales enablement)"
+      },
+      "4": {
+        title: "Week 4: Go-to-Market Model",
+        dates: "April 7-11, 2026",
+        objective: "Build a practical and punchy GTM plan rooted in HC3's business reality.",
+        activities: [
+          "Select best-fit channels for traction, not noise",
+          "Align product moments with marketing moments",
+          "Define \"launch-ready\" and what follows it"
+        ],
+        deliverable: "90-Day GTM Activation Plan (with milestones, roles, content hooks, and external leverage points)"
+      },
+      "5": {
+        title: "Week 5: Signal Amplification",
+        dates: "April 14-18, 2026",
+        objective: "Get others talking about HC3 (not just HC3 talking about HC3).",
+        activities: [
+          "Plan for third-party distribution (media, influencers, analysts)",
+          "Outline content placement and PR strategies",
+          "Identify internal champions and external advocates"
+        ],
+        deliverable: "Distribution & Advocacy Toolkit (third-party channels, media angles, customer-led stories)"
+      },
+      "6": {
+        title: "Week 6: Strategy-to-Execution Bridge",
+        dates: "April 21-25, 2026",
+        objective: "Turn the strategy into scalable action.",
+        activities: [
+          "Work with internal teams to prep activation",
+          "Set up internal documentation for handoff",
+          "Coach teams/agencies on adoption and adaptation"
+        ],
+        deliverable: "Internal Playbook + Training Session"
+      },
+      "7": {
+        title: "Week 7: Feedback Loop Setup",
+        dates: "April 28-May 2, 2026",
+        objective: "Ensure the strategy can flex with the market.",
+        activities: [
+          "Set up measurable KPIs tied to business outcomes",
+          "Build a rhythm for reflection and course correction",
+          "Define what \"working\" actually looks like (and what it doesn't)"
+        ],
+        deliverable: "Impact Dashboard Template (with guidance on how to read, report, and act on it)"
+      },
+      "8": {
+        title: "Week 8: Executive Strategy Session",
+        dates: "May 5-7, 2026",
+        objective: "Align leadership and energize go-forward motion.",
+        activities: [
+          "60-90 minute working session with C-suite or GTM leaders",
+          "Present final strategy and make the case for change",
+          "Map next-phase priorities and ownership"
+        ],
+        deliverable: "Executive Debrief Presentation (slides + spoken walkthrough + next steps checklist)"
+      }
+    };
+
+    // Initialize page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Load saved action states
+      loadActionStates();
+
+      // Initialize action item click handlers
+      initializeActionItems();
+
+      // Initialize timeline click handlers
+      initializeTimeline();
+    });
+
+    // Action items functionality
+    function initializeActionItems() {
+      const actionItems = document.querySelectorAll('.action-item');
+
+      actionItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const checkbox = this.querySelector('.action-checkbox');
+          const isCompleted = this.classList.contains('completed');
+
+          if (isCompleted) {
+            // Uncomplete the task
+            this.classList.remove('completed');
+            checkbox.classList.remove('checked');
+          } else {
+            // Complete the task
+            this.classList.add('completed');
+            checkbox.classList.add('checked');
+          }
+
+          // Save state
+          saveActionStates();
+        });
+      });
+    }
+
+    // Save action states to localStorage
+    function saveActionStates() {
+      const states = {};
+      document.querySelectorAll('.action-item').forEach(item => {
+        const actionKey = item.dataset.action;
+        const isCompleted = item.classList.contains('completed');
+        states[actionKey] = isCompleted;
+      });
+      localStorage.setItem('hc3-action-states', JSON.stringify(states));
+    }
+
+    // Load action states from localStorage
+    function loadActionStates() {
+      const savedStates = localStorage.getItem('hc3-action-states');
+      if (savedStates) {
+        const states = JSON.parse(savedStates);
+        Object.keys(states).forEach(actionKey => {
+          const item = document.querySelector(`[data-action="${actionKey}"]`);
+          if (item && states[actionKey]) {
+            item.classList.add('completed');
+            item.querySelector('.action-checkbox').classList.add('checked');
+          }
+        });
+      }
+    }
+
+    // Timeline functionality
+    function initializeTimeline() {
+      const timelineWeeks = document.querySelectorAll('.timeline-week');
+      const phaseDetails = document.getElementById('phase-details');
+
+      timelineWeeks.forEach(week => {
+        week.addEventListener('click', function() {
+          const weekKey = this.dataset.week;
+          const isSelected = this.classList.contains('selected');
+
+          // Remove selected state from all weeks
+          timelineWeeks.forEach(w => w.classList.remove('selected'));
+
+          if (isSelected) {
+            // Hide details if clicking the same week
+            phaseDetails.classList.remove('visible');
+          } else {
+            // Select this week and show details
+            this.classList.add('selected');
+            showPhaseDetails(weekKey);
+          }
+        });
+      });
+    }
+
+    // Show phase details
+    function showPhaseDetails(weekKey) {
+      const phaseDetails = document.getElementById('phase-details');
+      const phase = phaseData[weekKey];
+
+      if (!phase) return;
+
+      const activitiesList = phase.activities.map(activity => `<li>${activity}</li>`).join('');
+
+      phaseDetails.innerHTML = `
+        <h3>${phase.title}</h3>
+        <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">${phase.dates}</p>
+
+        <div class="phase-objective">
+          <h4>Objective:</h4>
+          <p>${phase.objective}</p>
+        </div>
+
+        <div class="phase-activities">
+          <h4>Activities:</h4>
+          <ul>${activitiesList}</ul>
+        </div>
+
+        <div class="phase-deliverable">
+          <h4>Deliverable:</h4>
+          <p>${phase.deliverable}</p>
+        </div>
+      `;
+
+      phaseDetails.classList.add('visible');
+    }
+  </script>
 </body>
 </html>
