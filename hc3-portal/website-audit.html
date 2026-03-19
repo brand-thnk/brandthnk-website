@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HC3 - Website Audit | BrandThnk</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .main-content {
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--brandthnk-yellow);
+    }
+
+    .subsection {
+      margin-bottom: 2rem;
+    }
+
+    .subsection h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .subsection h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .executive-summary {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .scorecard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--brandthnk-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .scorecard-table th,
+    .scorecard-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .scorecard-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+    }
+
+    .scorecard-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .story-brand-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--brandthnk-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .story-brand-table th,
+    .story-brand-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid var(--brandthnk-light-gray);
+      font-size: 0.8rem;
+    }
+
+    .story-brand-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+    }
+
+    .story-brand-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .finding {
+      background: var(--brandthnk-off-white);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-gray);
+    }
+
+    .finding strong {
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .recommendation {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    .recommendation strong {
+      font-weight: 600;
+    }
+
+    .hero-rewrite {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .hero-rewrite h4 {
+      color: var(--brandthnk-yellow);
+      margin-bottom: 1rem;
+    }
+
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--brandthnk-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .priority-table th,
+    .priority-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid var(--brandthnk-light-gray);
+      font-size: 0.8rem;
+    }
+
+    .priority-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+    }
+
+    .priority-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .highlight-box {
+      background: var(--brandthnk-yellow);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    ul, ol {
+      margin: 1rem 0;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .navigation {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .navigation a {
+      color: var(--brandthnk-white);
+      text-decoration: none;
+      display: block;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--brandthnk-gray);
+    }
+
+    .navigation a:last-child {
+      border-bottom: none;
+    }
+
+    .navigation a:hover {
+      color: var(--brandthnk-yellow);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .navigation {
+        position: static;
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="navigation">
+    <a href="index.html">← Portal Dashboard</a>
+    <a href="project-plan.html">Project Plan</a>
+    <a href="draft-website.html">Draft Website</a>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <h1>HC3 <span class="brand-accent">Website Audit</span></h1>
+      <p>Visual | Messaging | Findability | Conversion • Prepared by BrandThnk • March 2026</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="executive-summary">
+      <h2 class="section-header">Executive Summary</h2>
+      <p>This audit evaluates hc3.io across four dimensions: Visual/UI Clarity, Messaging Clarity, Findability, and Conversion. Each dimension is scored and accompanied by specific, actionable recommendations. A StoryBrand SB7 analysis is layered throughout to identify where the site succeeds and fails at making the customer the hero of the story.</p>
+      <p>The site is clean and professional but fundamentally unclear about what HC3 does, who it serves, and why a prospect should act. The homepage leads with a clever tagline that sacrifices clarity for wordplay. Inner pages reinforce the "statement company" identity without bridging to the operational value HC3 actually delivers. Conversion paths are limited to a single "Schedule A Call" CTA with no intermediate steps for prospects who are not yet ready to talk.</p>
+    </div>
+
+    <section class="section">
+      <h2 class="section-header">Audit Scorecard</h2>
+      <table class="scorecard-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Visual / UI Clarity</strong></td>
+            <td>Adequate — Clean but static</td>
+          </tr>
+          <tr>
+            <td><strong>Messaging Clarity</strong></td>
+            <td>Weak — Unclear value proposition</td>
+          </tr>
+          <tr>
+            <td><strong>Findability</strong></td>
+            <td>Weak — Navigation gaps, no SEO signals</td>
+          </tr>
+          <tr>
+            <td><strong>Conversion</strong></td>
+            <td>Weak — Single CTA, no funnel</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">1. Visual / UI Clarity</h2>
+      <p>The site uses a consistent dark navy and white color palette with professional photography. Layout is clean with generous whitespace. However, the visual hierarchy fails to guide the eye toward a clear value proposition or action. Several sections feel decorative rather than functional.</p>
+
+      <div class="subsection">
+        <h3>What Works</h3>
+        <ul>
+          <li>Consistent brand palette (navy, white, teal accents) across all pages.</li>
+          <li>Professional photography of real people, not stock photos.</li>
+          <li>Clean layout with adequate whitespace on desktop.</li>
+          <li>Footer navigation reveals a more complete sitemap than the primary nav.</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>What Needs Work</h3>
+
+        <div class="finding">
+          <strong>Finding:</strong> The hero section uses an animated text effect ("statement / efficiencies / committed to your success") that cycles through words. The animation prioritizes cleverness over clarity. A first-time visitor cannot read a complete sentence.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Replace with a static, single-sentence value proposition that passes the 5-second test: Can a stranger understand what you do, who you serve, and why it matters?
+        </div>
+
+        <div class="finding">
+          <strong>Finding:</strong> Testimonial images appear as floating, disconnected visual elements with no attribution or quote text visible in the page structure. They read as decoration, not proof.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Pair every testimonial image with a named quote, title, and institution. Proof needs context to build trust.
+        </div>
+
+        <div class="finding">
+          <strong>Finding:</strong> The "Statement Challenges" section on the homepage uses four cards with questions as headlines. Good concept, but the visual weight is equal across all four, creating decision fatigue rather than guiding a prospect through a journey.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Prioritize one primary challenge card that links to the highest-converting pain point. Support with 2-3 secondary cards at reduced visual weight.
+        </div>
+
+        <div class="finding">
+          <strong>Finding:</strong> The About page is 70%+ leadership bios and employee benefits. There is no company story, origin narrative, or mission statement visible before the team section.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Lead the About page with HC3's origin story and mission. Move leadership bios below the fold or to a dedicated team page. Remove job benefits entirely (move to a Careers page).
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">2. Messaging Clarity</h2>
+      <p>This is the weakest dimension. The site does not answer the three fundamental questions a prospect needs answered in under 5 seconds: What do you do? Who do you do it for? Why should I care?</p>
+
+      <div class="subsection">
+        <h3>Current Messaging Assessment</h3>
+        <ul>
+          <li><strong>Page title:</strong> "HC3 | Make a Statement" — This is a tagline, not a positioning statement. It tells the prospect nothing about what HC3 does. "Make a Statement" could apply to a fashion brand, a PR firm, or a political consultancy.</li>
+          <li><strong>Hero copy:</strong> "We help Financial Institutions create [statement / efficiencies / committed to your success] that align with their unique needs -- reducing costs and saving..." — The rotating text makes this sentence literally unreadable. The prospect must wait through an animation cycle to piece together a value proposition.</li>
+          <li><strong>Services page lead:</strong> "Over the past 60 years, we've created proven processes that help financial institutions streamline..." — Better, but still leads with HC3 ("we") rather than the customer's problem. 60 years of history is a proof point, not a hook.</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>StoryBrand SB7 Analysis</h3>
+        <p>The StoryBrand framework positions the customer as the hero and the brand as the guide. HC3's current site inverts this relationship. Below is a gap analysis against each SB7 element:</p>
+
+        <table class="story-brand-table">
+          <thead>
+            <tr>
+              <th>SB7 Element</th>
+              <th>Current State</th>
+              <th>Recommendation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. A Character (Hero)</strong></td>
+              <td>The customer (financial institution) is mentioned but never centered. Headlines lead with "We" and "Our."</td>
+              <td>Rewrite all headlines to start with the customer's world. Example: "Your customers judge you by your statements. Make them count."</td>
+            </tr>
+            <tr>
+              <td><strong>2. Has a Problem</strong></td>
+              <td>The "Statement Challenges" cards hint at problems but frame them as questions, not pain. No language around cost, risk, or operational burden.</td>
+              <td>Name the external problem (statements are expensive and outdated), the internal problem (you know your statements don't reflect your brand), and the philosophical problem (customers deserve better communication from their bank).</td>
+            </tr>
+            <tr>
+              <td><strong>3. And Meets a Guide</strong></td>
+              <td>HC3 positions itself as a vendor, not a guide. No empathy statement. No authority signals on the homepage beyond a case study link.</td>
+              <td>Add a clear empathy statement: "We know statement operations drain resources." Follow with authority: "600+ financial institutions trust HC3 to handle X million statements monthly."</td>
+            </tr>
+            <tr>
+              <td><strong>4. Who Gives Them a Plan</strong></td>
+              <td>No visible plan or process. The Services page lists three offerings but doesn't walk the prospect through a journey of how engagement works.</td>
+              <td>Create a simple 3-step plan on the homepage: 1) We assess your current process. 2) We design and implement. 3) You focus on growth while we handle delivery.</td>
+            </tr>
+            <tr>
+              <td><strong>5. And Calls Them to Action</strong></td>
+              <td>"Schedule A Call" appears on every page, which is good consistency. But there is no transitional CTA (e.g., download, assessment, calculator) for prospects not ready to talk.</td>
+              <td>Add a transitional CTA: a statement cost calculator, a "Statement Health Check" self-assessment, or a downloadable guide. Place this alongside the direct CTA.</td>
+            </tr>
+            <tr>
+              <td><strong>6. That Helps Them Avoid Failure</strong></td>
+              <td>Almost no failure language. The site doesn't articulate what happens if a bank does nothing. No stakes = no urgency.</td>
+              <td>Add a section: "What's at stake?" with concrete consequences: customer attrition from poor communication, rising print/mail costs, compliance risk from inconsistent notices.</td>
+            </tr>
+            <tr>
+              <td><strong>7. And Ends in Success</strong></td>
+              <td>Case studies exist but are buried. The homepage quote is truncated and lacks attribution. No clear vision of the transformed future state.</td>
+              <td>Paint the success picture above the fold: "Banks that switch to HC3 reduce statement costs by X%, improve customer satisfaction scores, and reclaim Y hours per month." Use real numbers from case studies.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">3. Findability</h2>
+      <p>Findability covers two things: Can a prospect find HC3 through search? And once on the site, can they find what they need? Both are weak.</p>
+
+      <div class="subsection">
+        <h3>Navigation Issues</h3>
+
+        <div class="finding">
+          <strong>Finding:</strong> The main nav has only four items: Services, About, Menu, Contact. The "Menu" label is confusing. It appears to be a dropdown trigger but reads as redundant when "Menu" is itself a navigation item. The footer reveals additional pages (Thought Leadership, Strategic Partnerships) that are hidden from the primary navigation.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Restructure the primary nav: Solutions (with sub-nav for Document Design, Digital Delivery, Print & Mail), Partners, Resources (Thought Leadership, Case Studies), About, Contact. Remove the ambiguous "Menu" label.
+        </div>
+
+        <div class="finding">
+          <strong>Finding:</strong> Thought Leadership content is extensive (100+ articles) but has no categorization, filtering, search, or tagging. It renders as a massive single-page scroll of article cards.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Add category filters (industry trends, product updates, case studies, regulatory). Add search. Paginate or lazy-load. Tag content by service line and audience.
+        </div>
+
+        <div class="finding">
+          <strong>Finding:</strong> Case studies are mixed into the Thought Leadership page rather than having their own dedicated section. Prospects looking for proof cannot easily find it.
+        </div>
+        <div class="recommendation">
+          <strong>Recommendation:</strong> Create a dedicated Case Studies page. Feature 3-4 case studies with clear metrics (cost saved, time saved, satisfaction improved). Link from service pages.
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>SEO Observations</h3>
+        <ul>
+          <li>Page title "HC3 | Make a Statement" contains no target keywords. A prospect searching for "bank statement outsourcing" or "financial institution document management" will not find this site.</li>
+          <li>No visible meta descriptions optimized for search intent.</li>
+          <li>Service page URLs are clean (e.g., /document-design) but page titles lack keyword targeting.</li>
+          <li>No blog or resource hub structure to capture informational search traffic.</li>
+          <li>Image alt text is generic (e.g., "HC3-Sales-Deck-Updated") rather than descriptive and keyword-rich.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">4. Conversion</h2>
+      <p>Conversion is the weakest functional dimension. The site has one path to conversion (Schedule A Call) and no mechanism to capture interest from prospects who are earlier in their decision journey.</p>
+
+      <div class="subsection">
+        <h3>Current Conversion Architecture</h3>
+        <ul>
+          <li>Every page ends with "Interested in working with HC3? Schedule A Call." This is a direct CTA, which is necessary. But it is the only CTA.</li>
+          <li>The Contact page form asks for Company, Name, and Email. The dropdown offers "General Inquiry," "Referral Partnerships," and "Reseller Partnerships." There is no option for "I'm a bank exploring statement solutions" or similar prospect-qualifying language.</li>
+          <li>No lead magnets, downloadable resources, or gated content anywhere on the site.</li>
+          <li>No pricing signals, ROI calculators, or comparison tools that help a prospect self-qualify.</li>
+          <li>No chatbot, no live chat, no embedded scheduling tool (the CTA links to a form, not a calendar).</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h3>Conversion Recommendations</h3>
+
+        <h4>Add a Transitional CTA</h4>
+        <p>Create a "Statement Health Check" or "Statement Cost Calculator" that a prospect can use without talking to sales. This captures email, qualifies interest, and starts the relationship. Place this in the hero section alongside "Schedule A Call."</p>
+
+        <h4>Redesign the Contact Form</h4>
+        <p>Replace the generic dropdown with prospect-specific options: "I manage statements for a bank or credit union," "I want to explore outsourcing," "I'm a current client with a question." Add a field for asset size or number of accounts to help HC3 qualify leads before the first call.</p>
+
+        <h4>Add Social Proof to Every Conversion Point</h4>
+        <p>Place a stat or testimonial directly adjacent to every CTA. Example: "600+ financial institutions trust HC3" or a one-line quote from a named client. Proof reduces friction at the moment of decision.</p>
+
+        <h4>Create a Resource Hub</h4>
+        <p>Gate 2-3 high-value pieces of content (a statement cost benchmarking guide, a "What to Look for in a Statement Vendor" checklist, a case study compilation). These serve as transitional CTAs and build an email nurture list.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">5. StoryBrand SB7 Homepage Rewrite (Draft)</h2>
+      <p>Below is a v0 draft of how the HC3 homepage could be restructured using the SB7 framework. This is directional, not final copy.</p>
+
+      <div class="hero-rewrite">
+        <h4>Hero Section</h4>
+        <p><strong>Headline:</strong> "Your customers judge your bank by every piece of paper you send them."</p>
+        <p><strong>Subhead:</strong> "HC3 helps financial institutions design, deliver, and manage customer statements and notices that reduce costs, strengthen your brand, and keep customers engaged."</p>
+        <p><strong>Direct CTA:</strong> "Schedule a Call"</p>
+        <p><strong>Transitional CTA:</strong> "Take the Statement Health Check"</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Stakes Section</h3>
+        <p><strong>Header:</strong> "The hidden cost of doing nothing"</p>
+        <p>Three columns: Rising print and mail costs eating your margin. Inconsistent notices creating compliance exposure. Customers switching to banks with better digital experiences. Each column with a specific stat or data point.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Value / Guide Section</h3>
+        <p><strong>Header:</strong> "60 years of making statements work harder for banks like yours"</p>
+        <p>Empathy statement + authority proof. "We know managing statements in-house drains your operations team. We've helped 600+ institutions reclaim that time." Logos of core/online banking partners as trust badges.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Plan Section</h3>
+        <p><strong>Header:</strong> "Three steps to better statements"</p>
+        <p>Step 1: We assess your current statement process and identify savings. Step 2: Our team designs, integrates, and manages your statement delivery. Step 3: You focus on growth while your customers get a better experience.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Success Section</h3>
+        <p><strong>Header:</strong> "What banks like yours have achieved"</p>
+        <p>Featured case study with real metrics. 2-3 named testimonials with headshots, titles, and institutions. Clear before/after framing.</p>
+      </div>
+
+      <div class="subsection">
+        <h3>Final CTA</h3>
+        <p>Repeat the direct and transitional CTAs. Add a one-line urgency statement tied to a real business trigger (e.g., core conversion, rising postage rates, digital banking migration).</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">6. Priority Actions</h2>
+      <p>Ranked by impact and effort. Start with the items that change the most for the least cost.</p>
+
+      <table class="priority-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Action</th>
+            <th>Impact</th>
+            <th>Effort</th>
+            <th>Timeline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Rewrite homepage hero with static, clear value proposition</td>
+            <td>High</td>
+            <td>Low</td>
+            <td>Week 1</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Add a transitional CTA (Statement Health Check or Cost Calculator)</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Week 2-3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Restructure primary navigation to surface all key pages</td>
+            <td>High</td>
+            <td>Low</td>
+            <td>Week 1</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Add a 3-step plan section to homepage</td>
+            <td>High</td>
+            <td>Low</td>
+            <td>Week 1</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Create dedicated Case Studies page with metrics</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Week 2-3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Add stakes/failure language to homepage</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Week 1-2</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Redesign contact form with prospect-qualifying questions</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Week 2</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Restructure About page (story first, bios second, no benefits)</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Week 2</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Add category filters and search to Thought Leadership</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Week 3-4</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Optimize page titles and meta descriptions for search</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Week 2</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Create 2-3 gated resources for lead capture</td>
+            <td>High</td>
+            <td>High</td>
+            <td>Week 4-6</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Add named testimonials with attribution across site</td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Week 3-4</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="highlight-box">
+      <h2 class="section-header">Next Steps</h2>
+      <p>This audit provides the baseline for HC3's website strategy within the BrandThnk Breakthrough engagement. The findings here will inform the Discovery phase (Weeks 1-2) and directly feed into the Brand Positioning Map and Messaging Framework (Week 3).</p>
+
+      <p><strong>Recommended discussion points for kickoff:</strong></p>
+      <ul>
+        <li>Which findings resonate most with the HC3 team's internal perception?</li>
+        <li>Does HC3 have customer outcome data (cost savings, satisfaction scores) that can be used as proof points?</li>
+        <li>What is the current website CMS and who manages updates? (This determines speed of implementation.)</li>
+        <li>Is the Statement Health Check or Cost Calculator concept viable given HC3's data and sales process?</li>
+      </ul>
+
+      <p style="margin-top: 1.5rem; font-weight: 600;">BrandThnk | brandthnk.co | Confidential</p>
+    </div>
+  </main>
+</body>
+</html>
