@@ -1036,7 +1036,7 @@ function validateEmailAndUsage() {
   const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
 
   if (currentUsage >= 3) {
-    showError(`Domain ${domain} has reached the monthly limit of 3 research sessions. Limit resets next month.`);
+    showError(`Domain ${domain} has reached the monthly limit of 3 research sessions. Limit resets next month.`, domain);
     return false;
   }
 
@@ -1046,7 +1046,7 @@ function validateEmailAndUsage() {
   return true;
 }
 
-function showError(message) {
+function showError(message, domain = null) {
   // Remove any existing error messages
   const existingError = document.querySelector('.error-message');
   if (existingError) {
@@ -1065,7 +1065,21 @@ function showError(message) {
     font-size: 14px;
     text-align: center;
   `;
-  errorDiv.textContent = message;
+
+  // Add message and optional request button for usage limits
+  if (domain && message.includes('monthly limit')) {
+    errorDiv.innerHTML = `
+      <div>${message}</div>
+      <div style="margin-top: 12px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) has reached the 3-session monthly limit for BrandThnk Insights research. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--white); color: var(--black); padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
+  } else {
+    errorDiv.textContent = message;
+  }
 
   // Insert before the action buttons
   const actionButtons = document.querySelector('.action-buttons');
@@ -1110,9 +1124,25 @@ function checkDomainUsage() {
   const remaining = 3 - currentUsage;
 
   if (remaining <= 0) {
-    usageIndicator.innerHTML = `<span style="color: #ff4444;">❌ ${domain} has used all 3 sessions this month</span>`;
+    usageIndicator.innerHTML = `
+      <span style="color: #ff4444;">❌ ${domain} has used all 3 sessions this month</span>
+      <div style="margin-top: 8px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) has reached the 3-session monthly limit for BrandThnk Insights research. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--black); color: var(--white); padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
   } else if (remaining === 1) {
-    usageIndicator.innerHTML = `<span style="color: #ff8800;">⚠️ ${domain} has ${remaining} session remaining this month</span>`;
+    usageIndicator.innerHTML = `
+      <span style="color: #ff8800;">⚠️ ${domain} has ${remaining} session remaining this month</span>
+      <div style="margin-top: 8px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) is down to our last research session this month. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--yellow); color: var(--black); padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
   } else {
     usageIndicator.innerHTML = `<span style="color: #44aa44;">✅ ${domain} has ${remaining} sessions remaining this month</span>`;
   }
