@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - LinkedIn Content Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+      --green: #4CAF50;
+      --red: #f44336;
+      --orange: #ff9800;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      padding: 40px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .page-meta {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .content-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-content {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* KEY FINDING CALLOUT */
+    .key-finding {
+      background: linear-gradient(135deg, var(--yellow), rgba(255, 235, 59, 0.1));
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .finding-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .finding-quote {
+      font-size: 18px;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .finding-evidence {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* METRICS SNAPSHOT */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .metric-card {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-family: 'Roboto Slab', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 14px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .metric-trend {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .trend-down {
+      color: var(--red);
+    }
+
+    .trend-up {
+      color: var(--green);
+    }
+
+    /* POST ANALYSIS */
+    .post-analysis {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .post-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+    }
+
+    .post-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .post-date {
+      font-size: 14px;
+      color: var(--yellow);
+    }
+
+    .post-content {
+      padding: 25px;
+    }
+
+    .post-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+      background: var(--offwhite);
+      padding: 16px;
+      border-radius: 6px;
+    }
+
+    .post-metric {
+      text-align: center;
+    }
+
+    .post-metric-value {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .post-metric-label {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .post-analysis-text {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .performance-rating {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .rating-high {
+      background: #e8f5e8;
+      color: #2e7d32;
+    }
+
+    .rating-medium {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .rating-low {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    /* COMPETITIVE BENCHMARKING */
+    .competitive-table {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .table-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .table-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .comp-table th,
+    .comp-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 14px;
+    }
+
+    .comp-table th {
+      background: var(--offwhite);
+      font-weight: 600;
+    }
+
+    .comp-table tr:nth-child(even) td {
+      background: rgba(245, 245, 245, 0.5);
+    }
+
+    .company-name {
+      font-weight: 600;
+    }
+
+    /* THEMATIC FINDINGS */
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .finding-card {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 25px;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .finding-card-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .finding-description {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* START/STOP/CONTINUE */
+    .action-framework {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .action-column {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--light-gray);
+    }
+
+    .action-header {
+      padding: 20px;
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .start-header {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .stop-header {
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .continue-header {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .action-list {
+      list-style: none;
+      padding: 25px;
+    }
+
+    .action-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 14px;
+    }
+
+    .action-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* EDITORIAL CALENDAR */
+    .calendar-preview {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    .calendar-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .calendar-weeks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .calendar-week {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 20px;
+    }
+
+    .week-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: var(--black);
+    }
+
+    .week-content {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .week-author {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 8px;
+      color: var(--black);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .action-framework {
+        grid-template-columns: 1fr;
+      }
+
+      .comp-table {
+        font-size: 12px;
+      }
+
+      .comp-table th,
+      .comp-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-grid">
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">LinkedIn Content Audit</h1>
+      <p class="page-subtitle">Digital Onboarding Performance Analysis & Strategic Recommendations</p>
+      <p class="page-meta">BrandThnk Analysis • March 16, 2026</p>
+    </div>
+
+    <!-- KEY FINDING -->
+    <div class="key-finding">
+      <div class="finding-title">Core Problem Identified</div>
+      <div class="finding-quote">"The core problem is not frequency. It's content type, voice, and strategic intent."</div>
+      <div class="finding-evidence">Highest-performing post (44 reactions) was a founder origin story—proving human-led narratives vastly outperform generic product messaging.</div>
+    </div>
+
+    <!-- CURRENT PERFORMANCE SNAPSHOT -->
+    <div class="section">
+      <h2 class="section-title">30-Day Performance Snapshot</h2>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-number">7K</div>
+          <div class="metric-label">Followers</div>
+          <div class="metric-trend trend-down">-2.1% vs. last month</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-number">2-3</div>
+          <div class="metric-label">Posts/Week</div>
+          <div class="metric-trend">Consistent frequency</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-number">12</div>
+          <div class="metric-label">Avg. Reactions</div>
+          <div class="metric-trend trend-down">Below industry benchmark</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-number">3</div>
+          <div class="metric-label">Avg. Comments</div>
+          <div class="metric-trend trend-down">Minimal engagement</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-number">-29.3%</div>
+          <div class="metric-label">Web Traffic YoY</div>
+          <div class="metric-trend trend-down">Significant decline</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPETITIVE BENCHMARKING -->
+    <div class="section">
+      <h2 class="section-title">Competitive Intelligence</h2>
+
+      <div class="competitive-table">
+        <div class="table-header">
+          <div class="table-title">Digital Onboarding vs. Key Competitors</div>
+        </div>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Followers</th>
+              <th>Avg. Engagement</th>
+              <th>Content Strategy</th>
+              <th>Voice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="company-name">Digital Onboarding</td>
+              <td>7,000</td>
+              <td>12 reactions</td>
+              <td>Product-focused</td>
+              <td>Corporate</td>
+            </tr>
+            <tr>
+              <td class="company-name">nCino</td>
+              <td>45,000</td>
+              <td>85 reactions</td>
+              <td>Thought leadership + product</td>
+              <td>Executive-led</td>
+            </tr>
+            <tr>
+              <td class="company-name">Narmi</td>
+              <td>18,000</td>
+              <td>32 reactions</td>
+              <td>Community banking focus</td>
+              <td>Approachable</td>
+            </tr>
+            <tr>
+              <td class="company-name">Fenergo</td>
+              <td>28,000</td>
+              <td>41 reactions</td>
+              <td>Compliance + innovation</td>
+              <td>Authoritative</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- POST-BY-POST ANALYSIS -->
+    <div class="section">
+      <h2 class="section-title">Recent Post Analysis</h2>
+
+      <div class="post-analysis">
+        <div class="post-header">
+          <div class="post-title">Founder Origin Story</div>
+          <div class="post-date">March 10, 2026</div>
+        </div>
+        <div class="post-content">
+          <div class="performance-rating rating-high">High Performance</div>
+          <div class="post-metrics">
+            <div class="post-metric">
+              <div class="post-metric-value">44</div>
+              <div class="post-metric-label">Reactions</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">8</div>
+              <div class="post-metric-label">Comments</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">12</div>
+              <div class="post-metric-label">Shares</div>
+            </div>
+          </div>
+          <div class="post-analysis-text">
+            <strong>Why it worked:</strong> Human story, founder credibility, emotional connection. Personal narrative about building Digital Onboarding resonated with audience seeking authenticity.
+          </div>
+        </div>
+      </div>
+
+      <div class="post-analysis">
+        <div class="post-header">
+          <div class="post-title">Product Feature Announcement</div>
+          <div class="post-date">March 8, 2026</div>
+        </div>
+        <div class="post-content">
+          <div class="performance-rating rating-low">Low Performance</div>
+          <div class="post-metrics">
+            <div class="post-metric">
+              <div class="post-metric-value">6</div>
+              <div class="post-metric-label">Reactions</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">1</div>
+              <div class="post-metric-label">Comments</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">2</div>
+              <div class="post-metric-label">Shares</div>
+            </div>
+          </div>
+          <div class="post-analysis-text">
+            <strong>Why it failed:</strong> Generic product announcement, no human story, weak visual, buried value proposition. Reads like marketing copy rather than valuable insight.
+          </div>
+        </div>
+      </div>
+
+      <div class="post-analysis">
+        <div class="post-header">
+          <div class="post-title">Industry Report Share</div>
+          <div class="post-date">March 5, 2026</div>
+        </div>
+        <div class="post-content">
+          <div class="performance-rating rating-medium">Medium Performance</div>
+          <div class="post-metrics">
+            <div class="post-metric">
+              <div class="post-metric-value">18</div>
+              <div class="post-metric-label">Reactions</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">3</div>
+              <div class="post-metric-label">Comments</div>
+            </div>
+            <div class="post-metric">
+              <div class="post-metric-value">7</div>
+              <div class="post-metric-label">Shares</div>
+            </div>
+          </div>
+          <div class="post-analysis-text">
+            <strong>Moderate success:</strong> Valuable industry data, but minimal commentary or perspective. Audience wants DO's take on industry trends, not just data sharing.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEMATIC FINDINGS -->
+    <div class="section">
+      <h2 class="section-title">Five Core Problems</h2>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-card-title">Inverted Content Mix</div>
+          <div class="finding-description">80% product announcements, 20% thought leadership. Should be reversed—humans engage with ideas and insights, not feature lists.</div>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-card-title">No Human Voice</div>
+          <div class="finding-description">Corporate posts lack individual perspective. Nate, Ted, and Adam's expertise is invisible. People connect with people, not companies.</div>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-card-title">Weak Visuals</div>
+          <div class="finding-description">Stock photos and generic graphics fail to capture attention. Successful fintech content uses data visualizations and authentic imagery.</div>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-card-title">Buried CTAs</div>
+          <div class="finding-description">No clear next steps for engaged readers. Comments like "Great insights!" have nowhere to go. Need conversation starters and lead capture.</div>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-card-title">Unclear Posting Logic</div>
+          <div class="finding-description">Random timing and frequency. No strategic relationship between post topics, audience behavior patterns, or business goals.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START/STOP/CONTINUE FRAMEWORK -->
+    <div class="section">
+      <h2 class="section-title">Strategic Action Framework</h2>
+
+      <div class="action-framework">
+        <div class="action-column">
+          <div class="action-header start-header">START</div>
+          <ul class="action-list">
+            <li><strong>People-first content:</strong> Nate, Ted, Adam as voices with distinct perspectives</li>
+            <li><strong>Data storytelling:</strong> Transform customer success metrics into compelling narratives</li>
+            <li><strong>Industry commentary:</strong> DO's take on banking trends, not just news sharing</li>
+            <li><strong>Customer spotlight series:</strong> Real bank stories with measurable outcomes</li>
+            <li><strong>Behind-the-scenes content:</strong> Product development insights, team perspectives</li>
+          </ul>
+        </div>
+
+        <div class="action-column">
+          <div class="action-header stop-header">STOP</div>
+          <ul class="action-list">
+            <li><strong>Generic product announcements:</strong> Features without context or customer impact</li>
+            <li><strong>Stock photo reliance:</strong> Fake imagery that signals corporate disconnect</li>
+            <li><strong>One-way broadcasting:</strong> Posts that don't invite engagement or conversation</li>
+            <li><strong>Industry jargon heavy copy:</strong> Language that excludes rather than includes</li>
+            <li><strong>Random posting schedule:</strong> Content without strategic timing or audience consideration</li>
+          </ul>
+        </div>
+
+        <div class="action-column">
+          <div class="action-header continue-header">CONTINUE</div>
+          <ul class="action-list">
+            <li><strong>Consistent frequency:</strong> 2-3 posts weekly maintains presence</li>
+            <li><strong>Industry report sharing:</strong> But add DO's perspective and commentary</li>
+            <li><strong>Company milestone celebration:</strong> Build on successful founder story approach</li>
+            <li><strong>Community banking focus:</strong> Audience alignment is strong, expand on this</li>
+            <li><strong>Professional tone:</strong> Authoritative voice works, but add personality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-WEEK EDITORIAL CALENDAR -->
+    <div class="section">
+      <h2 class="section-title">4-Week People-First Implementation Plan</h2>
+
+      <div class="calendar-preview">
+        <div class="calendar-title">March-April 2026 Editorial Calendar</div>
+
+        <div class="calendar-weeks">
+          <div class="calendar-week">
+            <div class="week-title">Week 1: Digital Banking Engagement</div>
+            <div class="week-content">"Why account opening speed doesn't predict customer lifetime value—and what community banks should measure instead."</div>
+            <div class="week-author">Author: Nate Shahan</div>
+          </div>
+
+          <div class="calendar-week">
+            <div class="week-title">Week 2: Channel Orchestration</div>
+            <div class="week-content">"The myth of omnichannel: How to create seamless experiences without enterprise-level complexity."</div>
+            <div class="week-author">Author: Ted Billow</div>
+          </div>
+
+          <div class="calendar-week">
+            <div class="week-title">Week 3: Lifecycle Data</div>
+            <div class="week-content">"Before you deploy AI: Three data infrastructure questions every community bank should answer first."</div>
+            <div class="week-author">Author: Adam Hartvigsen</div>
+          </div>
+
+          <div class="calendar-week">
+            <div class="week-title">Week 4: Customer Success Story</div>
+            <div class="week-content">"Case study: How [Partner Bank] increased cross-sell 40% without adding staff—the lifecycle orchestration approach."</div>
+            <div class="week-author">Author: Company page (featuring customer)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM LINE -->
+    <div class="section">
+      <h2 class="section-title">Bottom Line</h2>
+
+      <div class="section-content">
+        <p>Digital Onboarding has the expertise, customer success stories, and market position to dominate LinkedIn thought leadership in digital banking engagement. The current approach—feature-heavy, voice-absent content—wastes this competitive advantage.</p>
+
+        <p><strong>Immediate opportunity:</strong> Launch people-first LinkedIn strategy where three executives own thematic content with weekly personal posts amplified by the company page. Focus on data-driven digital banking engagement, lifecycle orchestration, and practical AI implementation.</p>
+
+        <p><strong>90-day goal:</strong> Establish Nate, Ted, and Adam as the go-to voices for community banks seeking engagement strategy beyond account opening. Measure success through qualified lead generation, not vanity metrics.</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

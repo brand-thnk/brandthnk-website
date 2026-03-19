@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - Competitive Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      padding: 40px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .page-meta {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .content-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-content {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* COMPETITIVE GRID */
+    .competitor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .competitor-card {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 30px;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .competitor-name {
+      font-family: 'Roboto Slab', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .competitor-tagline {
+      font-size: 14px;
+      color: var(--gray);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .competitor-strengths,
+    .competitor-weaknesses {
+      margin-bottom: 16px;
+    }
+
+    .competitor-label {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .strength {
+      color: #2d5d31;
+    }
+
+    .weakness {
+      color: #8b2635;
+    }
+
+    .competitor-points {
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .competitor-points li {
+      padding: 4px 0;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .competitor-points li:before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+    }
+
+    .strength li:before {
+      color: #2d5d31;
+    }
+
+    .weakness li:before {
+      color: #8b2635;
+    }
+
+    /* POSITIONING MATRIX */
+    .positioning-matrix {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .matrix-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .matrix-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .matrix-table th {
+      background: var(--offwhite);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .matrix-table td {
+      font-size: 14px;
+    }
+
+    .matrix-table tr:nth-child(even) td {
+      background: rgba(245, 245, 245, 0.5);
+    }
+
+    .company-name {
+      font-weight: 600;
+    }
+
+    /* KEY INSIGHTS */
+    .insight-box {
+      background: linear-gradient(135deg, var(--yellow), rgba(255, 235, 59, 0.1));
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .insight-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .insight-list {
+      list-style: none;
+    }
+
+    .insight-list li {
+      padding: 8px 0;
+      position: relative;
+      padding-left: 20px;
+      font-size: 16px;
+    }
+
+    .insight-list li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* STRATEGIC RECOMMENDATIONS */
+    .recommendation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .recommendation-card {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 25px;
+    }
+
+    .recommendation-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--black);
+    }
+
+    .recommendation-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .competitor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recommendation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .matrix-table {
+        font-size: 12px;
+      }
+
+      .matrix-table th,
+      .matrix-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-grid">
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Competitive Analysis</h1>
+      <p class="page-subtitle">Digital Onboarding Positioning vs. Key Players</p>
+      <p class="page-meta">BrandThnk Research • March 2026</p>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+      <h2 class="section-title">Executive Summary</h2>
+      <div class="section-content">
+        <p>Digital Onboarding operates in a competitive landscape dominated by established players focusing on account opening and basic workflow automation. Our analysis reveals a clear differentiation opportunity: <strong>lifecycle orchestration beyond initial onboarding.</strong></p>
+
+        <p>While competitors emphasize opening accounts faster, Digital Onboarding's strength lies in what happens after account opening—turning new customers into engaged, profitable relationships through data-driven engagement strategies.</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title">Key Strategic Insights</div>
+        <ul class="insight-list">
+          <li><strong>Market Gap:</strong> Most competitors stop at account opening; DO continues through the full lifecycle</li>
+          <li><strong>Data Advantage:</strong> Segmint heritage provides superior engagement analytics vs. basic workflow tools</li>
+          <li><strong>Positioning Opportunity:</strong> "Beyond Onboarding" messaging differentiates from speed-focused competitors</li>
+          <li><strong>Target Shift:</strong> Focus on engagement outcomes, not just operational efficiency</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- COMPETITIVE LANDSCAPE -->
+    <div class="section">
+      <h2 class="section-title">Competitive Landscape</h2>
+
+      <div class="competitor-grid">
+        <div class="competitor-card">
+          <div class="competitor-name">nCino</div>
+          <div class="competitor-tagline">"Bank Operating System"</div>
+
+          <div class="competitor-strengths">
+            <div class="competitor-label strength">Strengths</div>
+            <ul class="competitor-points strength">
+              <li>Comprehensive commercial lending platform</li>
+              <li>Strong enterprise presence</li>
+              <li>End-to-end workflow automation</li>
+              <li>Robust compliance features</li>
+            </ul>
+          </div>
+
+          <div class="competitor-weaknesses">
+            <div class="competitor-label weakness">Weaknesses</div>
+            <ul class="competitor-points weakness">
+              <li>Complex implementation (12-18 months)</li>
+              <li>Limited post-onboarding engagement</li>
+              <li>High total cost of ownership</li>
+              <li>Overkill for community banks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-name">Narmi</div>
+          <div class="competitor-tagline">"Digital Banking Platform"</div>
+
+          <div class="competitor-strengths">
+            <div class="competitor-label strength">Strengths</div>
+            <ul class="competitor-points strength">
+              <li>Modern UI/UX design</li>
+              <li>Quick deployment capabilities</li>
+              <li>Mobile-first approach</li>
+              <li>Community bank focus</li>
+            </ul>
+          </div>
+
+          <div class="competitor-weaknesses">
+            <div class="competitor-label weakness">Weaknesses</div>
+            <ul class="competitor-points weakness">
+              <li>Surface-level personalization</li>
+              <li>Limited analytics depth</li>
+              <li>Focus on interface, not intelligence</li>
+              <li>Minimal lifecycle orchestration</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-name">Fenergo</div>
+          <div class="competitor-tagline">"Client Lifecycle Management"</div>
+
+          <div class="competitor-strengths">
+            <div class="competitor-label strength">Strengths</div>
+            <ul class="competitor-points strength">
+              <li>Strong KYC/compliance focus</li>
+              <li>Enterprise client management</li>
+              <li>Regulatory expertise</li>
+              <li>Global presence</li>
+            </ul>
+          </div>
+
+          <div class="competitor-weaknesses">
+            <div class="competitor-label weakness">Weaknesses</div>
+            <ul class="competitor-points weakness">
+              <li>Compliance-heavy, not engagement-focused</li>
+              <li>Complex enterprise-only approach</li>
+              <li>Limited small business/retail focus</li>
+              <li>Reactive rather than predictive</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="competitor-card">
+          <div class="competitor-name">Digital Onboarding</div>
+          <div class="competitor-tagline">"Lifecycle Orchestration Platform"</div>
+
+          <div class="competitor-strengths">
+            <div class="competitor-label strength">Strengths</div>
+            <ul class="competitor-points strength">
+              <li>Post-onboarding engagement focus</li>
+              <li>Segmint data intelligence heritage</li>
+              <li>Predictive lifecycle analytics</li>
+              <li>Right-sized for community banks</li>
+            </ul>
+          </div>
+
+          <div class="competitor-weaknesses">
+            <div class="competitor-label weakness">Areas to Address</div>
+            <ul class="competitor-points weakness">
+              <li>Newer brand vs. established players</li>
+              <li>Need stronger thought leadership presence</li>
+              <li>Opportunity to own "beyond onboarding" messaging</li>
+              <li>Untapped data storytelling potential</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSITIONING MATRIX -->
+    <div class="section">
+      <h2 class="section-title">Positioning Matrix</h2>
+
+      <div class="positioning-matrix">
+        <div class="matrix-header">
+          <div class="matrix-title">Key Differentiators Comparison</div>
+        </div>
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Primary Focus</th>
+              <th>Target Market</th>
+              <th>Key Strength</th>
+              <th>Engagement Strategy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="company-name">nCino</td>
+              <td>Commercial lending workflow</td>
+              <td>Large banks ($50B+)</td>
+              <td>Comprehensive platform</td>
+              <td>Operational efficiency</td>
+            </tr>
+            <tr>
+              <td class="company-name">Narmi</td>
+              <td>Digital banking interface</td>
+              <td>Community banks</td>
+              <td>Modern UI/UX</td>
+              <td>User experience</td>
+            </tr>
+            <tr>
+              <td class="company-name">Fenergo</td>
+              <td>Compliance & KYC</td>
+              <td>Enterprise</td>
+              <td>Regulatory expertise</td>
+              <td>Risk management</td>
+            </tr>
+            <tr>
+              <td class="company-name">Digital Onboarding</td>
+              <td>Lifecycle orchestration</td>
+              <td>Community banks</td>
+              <td>Post-onboarding engagement</td>
+              <td>Data-driven personalization</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- STRATEGIC RECOMMENDATIONS -->
+    <div class="section">
+      <h2 class="section-title">Strategic Recommendations</h2>
+
+      <div class="recommendation-grid">
+        <div class="recommendation-card">
+          <div class="recommendation-title">Own "Beyond Onboarding"</div>
+          <div class="recommendation-description">
+            Position as the only platform that doesn't stop at account opening. Emphasize lifecycle value and long-term customer engagement vs. speed-focused competitors.
+          </div>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="recommendation-title">Leverage Data Heritage</div>
+          <div class="recommendation-description">
+            Emphasize Segmint acquisition and data intelligence capabilities. Competitors offer workflow; DO offers insights and predictive engagement.
+          </div>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="recommendation-title">Target the "Missing Middle"</div>
+          <div class="recommendation-description">
+            Focus on community banks who need more than basic digital banking but less than enterprise-level complexity. Right-sized sophistication.
+          </div>
+        </div>
+
+        <div class="recommendation-card">
+          <div class="recommendation-title">Emphasize Outcomes</div>
+          <div class="recommendation-description">
+            While competitors sell features, sell measurable business outcomes: improved customer lifetime value, reduced churn, increased cross-sell success.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

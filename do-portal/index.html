@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - Client Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* PORTAL HEADER */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .portal-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .client-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+    .portal-nav {
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--light-gray);
+      overflow-x: auto;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* MAIN CONTENT */
+    .portal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .dashboard-section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 30px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    .section-content {
+      padding: 30px;
+    }
+
+    /* DECISIONS SECTION */
+    .decision-item {
+      background: var(--offwhite);
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .decision-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .decision-status {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-approved {
+      background: #d1edff;
+      color: #084c61;
+    }
+
+    .decision-description {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .decision-meta {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* DISCUSSIONS SECTION */
+    .discussion-item {
+      border-bottom: 1px solid var(--light-gray);
+      padding: 20px 0;
+    }
+
+    .discussion-item:last-child {
+      border-bottom: none;
+    }
+
+    .discussion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .discussion-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .discussion-date {
+      font-size: 12px;
+      color: var(--gray);
+      flex-shrink: 0;
+    }
+
+    .discussion-preview {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .discussion-participants {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+
+    /* PROJECT OVERVIEW */
+    .project-overview {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--yellow) 0%, rgba(255, 235, 59, 0.1) 100%);
+      border: none;
+      margin-bottom: 0;
+    }
+
+    .overview-header {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .overview-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+    }
+
+    .stat-number {
+      font-family: 'Roboto Slab', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    /* ADD DISCUSSION BUTTON */
+    .add-discussion-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+    }
+
+    .add-discussion-btn:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .portal-content {
+        padding: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .nav-container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PORTAL HEADER -->
+  <header class="portal-header">
+    <div class="portal-header-content">
+      <h1 class="client-title">Digital Onboarding</h1>
+      <p class="portal-subtitle">BrandThnk Client Portal • Last Updated: March 19, 2026</p>
+    </div>
+  </header>
+
+  <!-- HORIZONTAL NAVIGATION -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard')">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('competitive-analysis')">Competitive Analysis</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('distribution-calendar')">Distribution Calendar</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('visibility-profile')">Visibility Profile</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-audit')">LinkedIn Audit</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('message-testing')">Message Testing</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="portal-content">
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard-section" class="content-section">
+      <!-- PROJECT OVERVIEW -->
+      <div class="dashboard-section project-overview">
+        <div class="section-header overview-header">
+          <h2 class="section-title">Project Overview</h2>
+          <p class="section-subtitle">Digital Onboarding Brand Strategy & Visibility Campaign</p>
+        </div>
+        <div class="section-content">
+          <div class="overview-stats">
+            <div class="stat-item">
+              <div class="stat-number">6</div>
+              <div class="stat-label">Strategy Assets</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">16</div>
+              <div class="stat-label">Media Opportunities</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">8</div>
+              <div class="stat-label">Target Publications</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Executive Profiles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DECISIONS AND DISCUSSIONS GRID -->
+      <div class="dashboard-grid">
+        <!-- DECISIONS SECTION -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-title">Decisions</h2>
+            <p class="section-subtitle">Items requiring approval or input</p>
+          </div>
+          <div class="section-content">
+
+            <div class="decision-item">
+              <div class="decision-status status-pending">Pending Review</div>
+              <div class="decision-title">LinkedIn Editorial Calendar Approval</div>
+              <div class="decision-description">4-week people-first content plan featuring Nate, Ted, and Adam needs final approval before implementation.</div>
+              <div class="decision-meta">Due: March 25, 2026 • Priority: High</div>
+            </div>
+
+            <div class="decision-item">
+              <div class="decision-status status-pending">Pending Input</div>
+              <div class="decision-title">Distribution Priority Ranking</div>
+              <div class="decision-description">Need to prioritize the 16 identified media opportunities based on business impact and resource allocation.</div>
+              <div class="decision-meta">Due: March 30, 2026 • Priority: Medium</div>
+            </div>
+
+            <div class="decision-item">
+              <div class="decision-status status-approved">Approved</div>
+              <div class="decision-title">Nate Shahan Visibility Strategy</div>
+              <div class="decision-description">Three-format approach (video series, LinkedIn posts, podcast circuit) approved for implementation.</div>
+              <div class="decision-meta">Approved: March 18, 2026</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DISCUSSIONS SECTION -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-title">Discussions</h2>
+            <p class="section-subtitle">Ongoing conversations and notes</p>
+          </div>
+          <div class="section-content">
+
+            <div class="discussion-item">
+              <div class="discussion-header">
+                <div>
+                  <div class="discussion-title">AI Infrastructure Messaging</div>
+                  <div class="discussion-participants">Allison, Nate, Ted</div>
+                </div>
+                <div class="discussion-date">Mar 19, 2026</div>
+              </div>
+              <div class="discussion-preview">
+                Discussion on positioning DO's AI capabilities vs. data infrastructure in thought leadership pieces. Need to emphasize data foundation before AI deployment...
+              </div>
+            </div>
+
+            <div class="discussion-item">
+              <div class="discussion-header">
+                <div>
+                  <div class="discussion-title">Podcast Placement Strategy</div>
+                  <div class="discussion-participants">Allison, Team</div>
+                </div>
+                <div class="discussion-date">Mar 18, 2026</div>
+              </div>
+              <div class="discussion-preview">
+                Identified 5 target podcasts for Nate's 90-day circuit. Finalizing outreach strategy and key talking points for each show...
+              </div>
+            </div>
+
+            <div class="discussion-item">
+              <div class="discussion-header">
+                <div>
+                  <div class="discussion-title">Competitive Landscape Analysis</div>
+                  <div class="discussion-participants">Allison, Research Team</div>
+                </div>
+                <div class="discussion-date">Mar 17, 2026</div>
+              </div>
+              <div class="discussion-preview">
+                Need to validate positioning against nCino, Narmi, and Fenergo in upcoming content. Ensuring differentiation on lifecycle orchestration...
+              </div>
+            </div>
+
+            <button class="add-discussion-btn">+ Add Discussion</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT SECTIONS (Hidden by default) -->
+    <div id="competitive-analysis-section" class="content-section" style="display: none;">
+      <iframe src="competitive-analysis.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
+    </div>
+
+    <div id="distribution-calendar-section" class="content-section" style="display: none;">
+      <iframe src="distribution-calendar.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
+    </div>
+
+    <div id="visibility-profile-section" class="content-section" style="display: none;">
+      <iframe src="visibility-profile.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
+    </div>
+
+    <div id="linkedin-audit-section" class="content-section" style="display: none;">
+      <iframe src="linkedin-audit.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
+    </div>
+
+    <div id="message-testing-section" class="content-section" style="display: none;">
+      <iframe src="message-testing.html" style="width: 100%; height: 800px; border: none; border-radius: 8px;"></iframe>
+    </div>
+
+  </main>
+
+  <script>
+    function showSection(sectionName) {
+      // Hide all content sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      // Show target section
+      const targetSection = document.getElementById(sectionName + '-section');
+      if (targetSection) {
+        targetSection.style.display = 'block';
+      }
+
+      // Update active nav link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Find and activate the clicked nav link
+      event.target.classList.add('active');
+    }
+
+    // Handle add discussion button
+    document.querySelector('.add-discussion-btn').addEventListener('click', function() {
+      const title = prompt('Discussion title:');
+      if (title) {
+        const description = prompt('Discussion notes:');
+        if (description) {
+          addDiscussion(title, description);
+        }
+      }
+    });
+
+    function addDiscussion(title, description) {
+      const discussionsList = document.querySelector('.discussion-item').parentNode;
+      const button = document.querySelector('.add-discussion-btn');
+
+      const newDiscussion = document.createElement('div');
+      newDiscussion.className = 'discussion-item';
+      newDiscussion.innerHTML = `
+        <div class="discussion-header">
+          <div>
+            <div class="discussion-title">${title}</div>
+            <div class="discussion-participants">Added by user</div>
+          </div>
+          <div class="discussion-date">${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+        </div>
+        <div class="discussion-preview">${description}</div>
+      `;
+
+      discussionsList.insertBefore(newDiscussion, button);
+    }
+  </script>
+</body>
+</html>

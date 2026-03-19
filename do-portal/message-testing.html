@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - Message Testing Synthetic Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      padding: 40px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .page-meta {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .content-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* PLACEHOLDER CONTAINER */
+    .placeholder-container {
+      background: linear-gradient(135deg, var(--yellow), rgba(255, 235, 59, 0.1));
+      border-radius: 12px;
+      padding: 60px 40px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .placeholder-icon {
+      font-size: 72px;
+      margin-bottom: 30px;
+      opacity: 0.7;
+    }
+
+    .placeholder-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .placeholder-message {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: var(--gray);
+    }
+
+    .placeholder-details {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .details-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .planned-content {
+      list-style: none;
+      font-size: 16px;
+    }
+
+    .planned-content li {
+      padding: 8px 0;
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+
+    .planned-content li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .contact-button {
+      background: var(--black);
+      color: var(--white);
+      padding: 16px 32px;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .contact-button:hover {
+      background: var(--gray);
+    }
+
+    /* RESEARCH METHODOLOGY PREVIEW */
+    .methodology-preview {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+
+    .methodology-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .method-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 20px;
+      border-left: 3px solid var(--yellow);
+    }
+
+    .method-title {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .method-description {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* EXPECTED DELIVERABLES */
+    .deliverables-section {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .deliverables-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .deliverables-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .deliverables-content {
+      padding: 30px;
+    }
+
+    .deliverable-item {
+      background: var(--offwhite);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .deliverable-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .deliverable-name {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .deliverable-desc {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    /* TIMELINE */
+    .timeline-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .timeline-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .timeline-content {
+      background: var(--offwhite);
+      border-radius: 6px;
+      padding: 20px;
+      font-size: 16px;
+      color: var(--gray);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .placeholder-container {
+        padding: 40px 20px;
+      }
+
+      .methodology-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-grid">
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Message Testing Synthetic Research</h1>
+      <p class="page-subtitle">AI-Simulated Customer Response Analysis</p>
+      <p class="page-meta">Digital Onboarding • Content In Development</p>
+    </div>
+
+    <!-- PLACEHOLDER CONTAINER -->
+    <div class="placeholder-container">
+      <div class="placeholder-icon">🔬</div>
+      <div class="placeholder-title">Research Content Coming Soon</div>
+      <div class="placeholder-message">
+        This section will contain comprehensive message testing results using BrandThnk's synthetic research methodology
+      </div>
+
+      <div class="placeholder-details">
+        <div class="details-title">Planned Research Scope</div>
+        <ul class="planned-content">
+          <li><strong>Message Framework Testing:</strong> Core positioning statements across Digital Onboarding's key value propositions</li>
+          <li><strong>Persona Response Analysis:</strong> Community bank decision makers, technology leaders, and operations executives</li>
+          <li><strong>Competitive Message Comparison:</strong> DO messaging vs. nCino, Narmi, and Fenergo positioning</li>
+          <li><strong>Channel Optimization:</strong> LinkedIn, email, sales presentation, and website copy effectiveness</li>
+          <li><strong>Lifecycle Stage Messaging:</strong> Awareness, consideration, and decision-stage message performance</li>
+        </ul>
+      </div>
+
+      <a href="mailto:allison@brandthnk.co?subject=Message Testing Research Request&body=Hi Allison,%0D%0A%0D%0AI'd like to discuss the message testing research for Digital Onboarding. Can we schedule time to review the research scope and timeline?%0D%0A%0D%0AThanks!" class="contact-button">Request Research Timeline</a>
+    </div>
+
+    <!-- RESEARCH METHODOLOGY PREVIEW -->
+    <div class="methodology-preview">
+      <div class="methodology-title">Research Methodology Overview</div>
+
+      <div class="methodology-grid">
+        <div class="method-card">
+          <div class="method-title">Persona-Based Testing</div>
+          <div class="method-description">AI-simulated interviews with Digital Onboarding's target customer personas, grounded in industry data and behavioral patterns</div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-title">Multi-Turn Analysis</div>
+          <div class="method-description">11-turn interview protocol testing initial reaction, comprehension, and purchase intent for each message variant</div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-title">Competitive Context</div>
+          <div class="method-description">Message effectiveness measured against competitor positioning to identify differentiation opportunities</div>
+        </div>
+
+        <div class="method-card">
+          <div class="method-title">Cross-Segment Synthesis</div>
+          <div class="method-description">Pattern analysis across customer segments to identify universal themes and segment-specific variations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPECTED DELIVERABLES -->
+    <div class="deliverables-section">
+      <div class="deliverables-header">
+        <div class="deliverables-title">Expected Research Deliverables</div>
+      </div>
+
+      <div class="deliverables-content">
+        <div class="deliverable-item">
+          <div class="deliverable-name">Message Performance Report</div>
+          <div class="deliverable-desc">Comprehensive analysis of message variants with performance ratings, persona responses, and optimization recommendations</div>
+        </div>
+
+        <div class="deliverable-item">
+          <div class="deliverable-name">Competitive Messaging Matrix</div>
+          <div class="deliverable-desc">Side-by-side comparison of Digital Onboarding messages vs. competitor positioning, identifying differentiation gaps</div>
+        </div>
+
+        <div class="deliverable-item">
+          <div class="deliverable-name">Persona Response Profiles</div>
+          <div class="deliverable-desc">Detailed breakdown of how each customer segment responds to different messaging approaches and value propositions</div>
+        </div>
+
+        <div class="deliverable-item">
+          <div class="deliverable-name">Channel-Specific Recommendations</div>
+          <div class="deliverable-desc">Optimized messaging for LinkedIn, email campaigns, sales presentations, and website copy</div>
+        </div>
+
+        <div class="deliverable-item">
+          <div class="deliverable-name">Implementation Guide</div>
+          <div class="deliverable-desc">Step-by-step messaging deployment strategy with priorities, timelines, and success metrics</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-section">
+      <div class="timeline-title">Research Timeline</div>
+      <div class="timeline-content">
+        Research completion: <strong>2-3 weeks from initiation</strong> • Includes persona interviews, competitive analysis, cross-segment synthesis, and strategic recommendations
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

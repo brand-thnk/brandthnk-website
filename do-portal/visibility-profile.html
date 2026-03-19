@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - Nate Shahan Visibility Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family:Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+      --green: #4CAF50;
+      --blue: #2196F3;
+      --purple: #9C27B0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      padding: 40px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .page-meta {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .content-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-content {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* EXECUTIVE SUMMARY */
+    .summary-box {
+      background: linear-gradient(135deg, var(--yellow), rgba(255, 235, 59, 0.1));
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .summary-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .key-message {
+      font-size: 18px;
+      font-weight: 600;
+      font-style: italic;
+      text-align: center;
+      margin: 20px 0;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+    }
+
+    /* BIO SECTION */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .bio-stats {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 30px;
+    }
+
+    .stat-item {
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .bio-narrative {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* THOUGHT LEADERSHIP TOPICS */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .topic-card {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .topic-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+    }
+
+    .topic-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .topic-content {
+      padding: 25px;
+    }
+
+    .topic-description {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .topic-points {
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .topic-points li {
+      padding: 6px 0;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .topic-points li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* PRODUCTIZATION FORMATS */
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .format-card {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 25px;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .format-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .format-description {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .format-details {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 15px;
+      font-size: 13px;
+    }
+
+    /* OPERATING MODEL */
+    .operating-timeline {
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .timeline-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .timeline-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .timeline-quarter {
+      padding: 25px;
+      border-right: 1px solid var(--light-gray);
+    }
+
+    .timeline-quarter:last-child {
+      border-right: none;
+    }
+
+    .quarter-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--black);
+    }
+
+    .quarter-activities {
+      list-style: none;
+      font-size: 13px;
+    }
+
+    .quarter-activities li {
+      padding: 4px 0;
+      color: var(--gray);
+    }
+
+    /* LINKEDIN PROFILE OVERHAUL */
+    .profile-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .profile-version {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 25px;
+    }
+
+    .version-label {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 6px;
+    }
+
+    .current-version {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .recommended-version {
+      background: #e8f5e8;
+      color: #2e7d32;
+    }
+
+    .profile-text {
+      font-size: 14px;
+      line-height: 1.6;
+      background: var(--white);
+      padding: 16px;
+      border-radius: 6px;
+      border-left: 3px solid var(--gray);
+    }
+
+    .recommended-version .profile-text {
+      border-left-color: var(--green);
+    }
+
+    /* ACTION PLAN */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .action-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .action-number {
+      background: var(--yellow);
+      color: var(--black);
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .action-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .action-description {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .bio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-quarter {
+        border-right: none;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .timeline-quarter:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-grid">
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Nate Shahan Visibility Strategy</h1>
+      <p class="page-subtitle">Digital Onboarding Chief Product Officer</p>
+      <p class="page-meta">BrandThnk Strategy Document • March 2026</p>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+      <h2 class="section-title">Executive Summary</h2>
+
+      <div class="summary-box">
+        <div class="summary-title">Strategic Opportunity</div>
+        <div class="section-content">
+          <p>Nate Shahan's appointment as CPO represents significant underutilized credibility. As co-founder of Segmint (acquired by Alkami for $135.5M), he possesses patented data product expertise that positions Digital Onboarding as the lifecycle orchestration leader in banking engagement.</p>
+
+          <p>The initial CPO announcement generated minimal media pickup, creating opportunity to build sustained visibility through systematic thought leadership rather than relying on one-time press releases.</p>
+        </div>
+
+        <div class="key-message">
+          "When Nate's visibility grows, DO's visibility grows. Every touchpoint feeds the next."
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTIVE BIO -->
+    <div class="section">
+      <h2 class="section-title">Executive Bio & Background</h2>
+
+      <div class="bio-grid">
+        <div class="bio-stats">
+          <div class="stat-item">
+            <div class="stat-label">Previous Role</div>
+            <div class="stat-value">Co-Founder, Segmint</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Exit Value</div>
+            <div class="stat-value">$135.5M (Acquired by Alkami)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Patent Portfolio</div>
+            <div class="stat-value">Data product innovations</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Expertise</div>
+            <div class="stat-value">Banking engagement analytics</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Current Focus</div>
+            <div class="stat-value">Lifecycle orchestration beyond onboarding</div>
+          </div>
+        </div>
+
+        <div class="bio-narrative">
+          <p><strong>Nate Shahan</strong> brings proven fintech leadership and data product expertise to Digital Onboarding as Chief Product Officer. As co-founder of Segmint, he built patented engagement analytics solutions that were acquired by Alkami in a $135.5M transaction.</p>
+
+          <p>His experience spans data-driven customer engagement, predictive lifecycle analytics, and the practical challenges of implementing AI solutions in regulated financial environments. At Digital Onboarding, he leads product strategy focused on what happens after account opening—turning new customers into engaged, profitable relationships.</p>
+
+          <p>Shahan's unique perspective combines deep technical expertise with practical understanding of community bank constraints, positioning him as an authentic voice on digital banking engagement strategies that actually work.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- THOUGHT LEADERSHIP TOPICS -->
+    <div class="section">
+      <h2 class="section-title">Three Thought Leadership Topics</h2>
+
+      <div class="topics-grid">
+        <div class="topic-card">
+          <div class="topic-header">
+            <div class="topic-title">"It's Not About Account Opening. It's About What Happens Next."</div>
+          </div>
+          <div class="topic-content">
+            <div class="topic-description">Positioning post-onboarding engagement as the real competitive differentiator in digital banking.</div>
+            <ul class="topic-points">
+              <li>Most banks optimize for speed of account opening, not engagement quality</li>
+              <li>Real ROI comes from lifecycle value, not acquisition metrics</li>
+              <li>Data shows: engaged customers are 3x more profitable</li>
+              <li>Framework: Onboard → Engage → Optimize → Grow</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-header">
+            <div class="topic-title">"Small Teams, Measurable Growth: The Engagement Math"</div>
+          </div>
+          <div class="topic-content">
+            <div class="topic-description">How community banks can achieve enterprise-level engagement outcomes with limited resources.</div>
+            <ul class="topic-points">
+              <li>Automation that feels personal, not robotic</li>
+              <li>Focus on high-impact touchpoints vs. constant communication</li>
+              <li>Metrics that matter: engagement depth, not frequency</li>
+              <li>Case studies: 40% increase in cross-sell with 60% less effort</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="topic-card">
+          <div class="topic-header">
+            <div class="topic-title">"Before You Deploy AI, Connect Your Data"</div>
+          </div>
+          <div class="topic-content">
+            <div class="topic-description">Practical approach to AI implementation that starts with data infrastructure, not technology.</div>
+            <ul class="topic-points">
+              <li>AI without unified data is just expensive automation</li>
+              <li>Three-layer approach: Data → Intelligence → Action</li>
+              <li>Common pitfalls: Technology-first vs. outcome-first implementation</li>
+              <li>Real-world examples from community bank implementations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTIZATION FORMATS -->
+    <div class="section">
+      <h2 class="section-title">Three Productization Formats</h2>
+
+      <div class="format-grid">
+        <div class="format-card">
+          <div class="format-title">Video Series: Customer Interviews</div>
+          <div class="format-description">Nate interviews DO customers about their engagement strategies and results.</div>
+          <div class="format-details">
+            <strong>Format:</strong> 15-minute interviews, monthly release<br>
+            <strong>Distribution:</strong> LinkedIn, company website, email nurtures<br>
+            <strong>Value:</strong> Real stories, peer validation, thought leadership positioning
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div class="format-title">Monthly LinkedIn Insight Posts</div>
+          <div class="format-description">Data-driven posts sharing engagement insights and industry analysis.</div>
+          <div class="format-details">
+            <strong>Format:</strong> 300-500 words, data visualization, monthly<br>
+            <strong>Topics:</strong> Engagement trends, lifecycle optimization, AI implementation<br>
+            <strong>Value:</strong> Consistent visibility, industry positioning, lead generation
+          </div>
+        </div>
+
+        <div class="format-card">
+          <div class="format-title">Podcast Placement Circuit</div>
+          <div class="format-description">Strategic appearances on banking and fintech podcasts.</div>
+          <div class="format-details">
+            <strong>Target:</strong> 5 placements in 90 days<br>
+            <strong>Shows:</strong> Banking Transformed, Breaking Banks, Fintech One-on-One<br>
+            <strong>Value:</strong> Authority building, extended format storytelling, network expansion
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATING MODEL -->
+    <div class="section">
+      <h2 class="section-title">Quarterly Operating Model</h2>
+
+      <div class="operating-timeline">
+        <div class="timeline-header">
+          <div class="timeline-title">Systematic Visibility Cadence</div>
+        </div>
+        <div class="timeline-grid">
+          <div class="timeline-quarter">
+            <div class="quarter-title">Q1 Activities</div>
+            <ul class="quarter-activities">
+              <li>LinkedIn profile overhaul</li>
+              <li>2 LinkedIn insight posts</li>
+              <li>Customer video #1</li>
+              <li>Podcast outreach</li>
+            </ul>
+          </div>
+
+          <div class="timeline-quarter">
+            <div class="quarter-title">Q2 Activities</div>
+            <ul class="quarter-activities">
+              <li>3 podcast appearances</li>
+              <li>3 LinkedIn posts</li>
+              <li>Customer video #2</li>
+              <li>Industry analyst update</li>
+            </ul>
+          </div>
+
+          <div class="timeline-quarter">
+            <div class="quarter-title">Q3 Activities</div>
+            <ul class="quarter-activities">
+              <li>Speaking engagement</li>
+              <li>3 LinkedIn posts</li>
+              <li>Customer video #3</li>
+              <li>Article placement</li>
+            </ul>
+          </div>
+
+          <div class="timeline-quarter">
+            <div class="quarter-title">Q4 Activities</div>
+            <ul class="quarter-activities">
+              <li>Year-end insights post</li>
+              <li>Customer video #4</li>
+              <li>2026 prediction piece</li>
+              <li>Strategic planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN PROFILE OVERHAUL -->
+    <div class="section">
+      <h2 class="section-title">LinkedIn Profile Overhaul</h2>
+
+      <div class="profile-comparison">
+        <div class="profile-version">
+          <div class="version-label current-version">Current Version</div>
+          <div class="profile-text">
+            "Chief Product Officer at Digital Onboarding. Former co-founder of Segmint. Passionate about helping banks grow through better customer engagement."
+          </div>
+        </div>
+
+        <div class="profile-version">
+          <div class="version-label recommended-version">Recommended Version</div>
+          <div class="profile-text">
+            "CPO at Digital Onboarding | Co-founder, Segmint ($135.5M exit to Alkami) | Building lifecycle orchestration platforms that turn new bank customers into engaged, profitable relationships | Data-driven engagement beyond account opening"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEPS & AUTOMATION -->
+    <div class="section">
+      <h2 class="section-title">11-Point Action Plan</h2>
+
+      <div class="action-grid">
+        <div class="action-item">
+          <div class="action-number">1</div>
+          <div class="action-title">LinkedIn Profile Update</div>
+          <div class="action-description">Implement recommended headline and summary positioning</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">2</div>
+          <div class="action-title">Content Calendar Creation</div>
+          <div class="action-description">Develop 90-day content calendar with specific topics and data points</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">3</div>
+          <div class="action-title">Customer Interview Setup</div>
+          <div class="action-description">Identify and schedule first customer for video interview series</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">4</div>
+          <div class="action-title">Podcast Target List</div>
+          <div class="action-description">Compile target podcast list with host contact information</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">5</div>
+          <div class="action-title">Talking Points Development</div>
+          <div class="action-description">Create core messaging framework for all three topics</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">6</div>
+          <div class="action-title">AirOps Integration</div>
+          <div class="action-description">Set up content repurposing automation for multi-format distribution</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">7</div>
+          <div class="action-title">Metrics Dashboard</div>
+          <div class="action-description">Establish tracking for LinkedIn engagement, podcast reach, lead generation</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">8</div>
+          <div class="action-title">Industry Analyst Outreach</div>
+          <div class="action-description">Initial contact with key fintech analysts for relationship building</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">9</div>
+          <div class="action-title">Speaking Opportunity Research</div>
+          <div class="action-description">Identify 3-5 relevant banking conferences for 2026 speaking submissions</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">10</div>
+          <div class="action-title">Content Production Workflow</div>
+          <div class="action-description">Establish creation, review, and approval process for all content formats</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-number">11</div>
+          <div class="action-title">Performance Review Process</div>
+          <div class="action-description">Monthly visibility impact assessment and strategy adjustment protocol</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
