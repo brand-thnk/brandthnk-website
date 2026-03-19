@@ -346,29 +346,6 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   }
 
-  .feature-card.clickable {
-    cursor: pointer;
-  }
-
-  .feature-card.clickable:hover {
-    transform: translateY(-2px);
-  }
-
-  .feature-card.clickable::after {
-    content: 'Click to start research →';
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-    font-size: 14px;
-    color: var(--yellow);
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .feature-card.clickable:hover::after {
-    opacity: 1;
-  }
 
   .feature-title {
     font-family: 'Roboto Slab', serif;
@@ -483,9 +460,10 @@
   <div class="container">
     <h2 class="section-title">What BrandThnk Insights Does</h2>
     <div class="section-content">
-      <p>BrandThnk Insights runs AI-simulated research interviews against banking customer personas that behave like real people. You input your messages, product concepts, or campaign ideas. The system interviews each persona using a structured research protocol. You get a branded report with findings, cross-segment comparison, and specific recommendations.</p>
+      <p>BrandThnk Insights runs AI-simulated research interviews against banking customer personas that behave like real people. You input your messages, product concepts, or campaign ideas. Each persona participates in an 11-turn, three-phase interview staying in character based on documented values and behaviors.</p>
       <p><strong>Built for financial institutions and fintechs selling to banks.</strong> Whether you're a community bank testing a new campaign or a fintech validating your value proposition to FI buyers, our personas cover consumer banking, small business banking, and B2B fintech decision-makers.</p>
-      <p><strong>Research that takes 10 minutes, not 10 weeks.</strong></p>
+      <p>Our personas are built from published banking data (FDIC, Federal Reserve, J.D. Power) and validated through 30+ strategy workshops with financial brands across three segments: B2B Fintech Buyers, Consumer Banking, Small Business Banking.</p>
+      <p>The system analyzes patterns across all personas to identify agreements, divergences, and strategic gaps. Receive an executive-ready document with direct quotes, comparison matrices, strategic analysis, and actionable recommendations.</p>
       <p><em>We built a structured interview system, not a chatbot with banking knowledge.</em></p>
     </div>
   </div>
@@ -535,75 +513,7 @@
   </div>
 </section>
 
-<!-- RESEARCH MODULES PREVIEW -->
-<section class="section section-alt">
-  <div class="container">
-    <h2 class="section-title">Six Research Modules</h2>
-    <div class="feature-grid">
-      <div class="feature-card clickable" data-module="message-testing">
-        <h3 class="feature-title">Message Testing</h3>
-        <p class="feature-description">Evaluate taglines, positioning statements, and campaign messages to identify what resonates with audiences and differentiates from competitors.</p>
-      </div>
 
-      <div class="feature-card clickable" data-module="product-validation">
-        <h3 class="feature-title">Product Validation</h3>
-        <p class="feature-description">Test product concepts and feature bundles to determine customer need recognition, adoption likelihood, and pricing acceptance.</p>
-      </div>
-
-      <div class="feature-card clickable" data-module="competitive-positioning">
-        <h3 class="feature-title">Competitive Positioning</h3>
-        <p class="feature-description">Assess how your brand performs against named competitors, revealing perception gaps and switching motivators by segment.</p>
-      </div>
-
-      <div class="feature-card clickable" data-module="persona-pressure-test">
-        <h3 class="feature-title">Persona Pressure Test</h3>
-        <p class="feature-description">Validate or challenge assumptions about existing personas to uncover blind spots and missed insights.</p>
-      </div>
-
-      <div class="feature-card clickable" data-module="campaign-pre-test">
-        <h3 class="feature-title">Campaign Pre-Test</h3>
-        <p class="feature-description">Evaluate a full campaign concept including creative direction, channel strategy, offer appeal, and shareability before budget commitment.</p>
-      </div>
-
-      <div class="feature-card clickable" data-module="journey-gap-analysis">
-        <h3 class="feature-title">Journey Gap Analysis</h3>
-        <p class="feature-description">Guide personas through customer journeys step-by-step to identify friction points and decision moments.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PERSONAS PREVIEW -->
-<section class="section">
-  <div class="container">
-    <h2 class="section-title">13 Banking Customer Personas</h2>
-    <div class="section-content">
-      <p>Our personas are built from published banking data (FDIC, Federal Reserve, J.D. Power) and validated through 30+ strategy workshops with financial brands across three segments:</p>
-    </div>
-    <div class="feature-grid" style="margin-top: 40px;">
-      <div class="feature-card">
-        <h3 class="feature-title">Consumer Banking</h3>
-        <p class="feature-description">5 personas including Steady Stewards, Rising Builders, Rooted Families, Community Anchors, and Digital Pragmatists.</p>
-        <div class="feature-meta">Age ranges: 22-74</div>
-      </div>
-
-      <div class="feature-card">
-        <h3 class="feature-title">Small Business Banking</h3>
-        <p class="feature-description">4 personas covering Main Street Operators, Professional Practices, Agricultural Operators, and Startups/Side Hustles.</p>
-        <div class="feature-meta">Revenue ranges: Under $2M - $5M+</div>
-      </div>
-
-      <div class="feature-card">
-        <h3 class="feature-title">B2B Fintech Buyers</h3>
-        <p class="feature-description">4 decision-maker personas: Marketing Modernizers, Technology Pragmatists, Transformation Champions, and Community Stewards.</p>
-        <div class="feature-meta">C-suite and VP-level roles</div>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="/insights/personas" class="btn btn-secondary">View All Personas</a>
-    </div>
-  </div>
-</section>
 
 <!-- CTA SECTION -->
 <section class="section section-alt">
@@ -614,19 +524,5 @@
   </div>
 </section>
 
-<script>
-// Make research module cards clickable
-document.addEventListener('DOMContentLoaded', function() {
-  const moduleCards = document.querySelectorAll('.feature-card.clickable');
-
-  moduleCards.forEach(card => {
-    card.addEventListener('click', function() {
-      const module = this.dataset.module;
-      // Redirect to research platform with the specific module pre-selected
-      window.location.href = `/insights/run?module=${module}`;
-    });
-  });
-});
-</script>
 </body>
 </html>
