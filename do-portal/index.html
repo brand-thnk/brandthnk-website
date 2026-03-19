@@ -236,44 +236,79 @@
       margin-top: 8px;
     }
 
-    /* PROJECT OVERVIEW */
-    .project-overview {
+    /* CRITICAL ACTIONS */
+    .critical-actions {
       grid-column: 1 / -1;
-      background: linear-gradient(135deg, var(--yellow) 0%, rgba(255, 235, 59, 0.1) 100%);
-      border: none;
+      background: var(--offwhite);
+      border: 2px solid var(--light-gray);
       margin-bottom: 0;
     }
 
-    .overview-header {
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .overview-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-    }
-
-    .stat-item {
-      text-align: center;
+    .action-item {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
       padding: 20px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 8px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
     }
 
-    .stat-number {
+    .action-title {
       font-family: 'Roboto Slab', serif;
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--black);
+      font-size: 16px;
+      font-weight: 600;
       margin-bottom: 8px;
+      color: var(--black);
     }
 
-    .stat-label {
+    .action-description {
       font-size: 14px;
       color: var(--gray);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .action-meta {
+      font-size: 12px;
+      color: var(--gray);
       font-weight: 600;
+    }
+
+    .next-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+    }
+
+    .step-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      padding: 15px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .step-number {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--gray);
     }
 
     /* ADD DISCUSSION BUTTON */
@@ -310,6 +345,18 @@
       .nav-container {
         padding: 0 20px;
       }
+
+      .next-steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .action-item {
+        padding: 15px;
+      }
+
+      .step-item {
+        padding: 12px;
+      }
     }
   </style>
 </head>
@@ -341,29 +388,61 @@
   <main class="portal-content">
     <!-- DASHBOARD SECTION -->
     <div id="dashboard-section" class="content-section">
-      <!-- PROJECT OVERVIEW -->
-      <div class="dashboard-section project-overview">
-        <div class="section-header overview-header">
-          <h2 class="section-title">Project Overview</h2>
-          <p class="section-subtitle">Digital Onboarding Brand Strategy & Visibility Campaign</p>
+      <!-- CRITICAL NEXT ACTIONS -->
+      <div class="dashboard-section critical-actions">
+        <div class="section-header">
+          <h2 class="section-title">Critical Next Actions</h2>
+          <p class="section-subtitle">Immediate priorities from Distribution Calendar and Visibility Profile</p>
         </div>
         <div class="section-content">
-          <div class="overview-stats">
-            <div class="stat-item">
-              <div class="stat-number">7</div>
-              <div class="stat-label">Strategy Assets</div>
+          <!-- Immediate Actions (Next 30 Days) -->
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--black);">Immediate Actions (Next 30 Days)</h3>
+
+          <div class="action-item">
+            <div class="action-title">CU 2.0 Provider Guide</div>
+            <div class="action-description">Contact info@cu-2.com to get DO listed in the Account Opening and Onboarding Provider Guide. Zero-effort, high-value evergreen placement.</div>
+            <div class="action-meta">Owner: Jen Packard | Deadline: March 30</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Pitch CU 2.0 Podcast</div>
+            <div class="action-description">Pitch Nate for Kirk Drake's "Fintech Friday" or "Mastermind" podcast. Lead with Segmint/Alkami story and "Before You Deploy AI, Connect Your Data" thesis.</div>
+            <div class="action-meta">Owner: BrandThnk | Deadline: April 7</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Draft BankThink Submission</div>
+            <div class="action-description">Draft "Before You Buy AI, Fix Your Data" for American Banker BankThink. Target May publication. Submit to Victoria Finkle per BankThink guidelines.</div>
+            <div class="action-meta">Owner: BrandThnk + Nate | Deadline: April 15</div>
+          </div>
+
+          <!-- Recommended Next Steps -->
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 600; margin: 30px 0 20px 0; color: var(--black);">Recommended Next Steps (Visibility Profile)</h3>
+
+          <div class="next-steps-grid">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-text">Present plan at March 19 working session. Align on priority thought leadership topic.</div>
             </div>
-            <div class="stat-item">
-              <div class="stat-number">16</div>
-              <div class="stat-label">Media Opportunities</div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-text">Update Nate's LinkedIn profile package. Target: ASAP, before outreach.</div>
             </div>
-            <div class="stat-item">
-              <div class="stat-number">8</div>
-              <div class="stat-label">Target Publications</div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-text">Schedule voice capture call with Nate. Target: week of March 23.</div>
             </div>
-            <div class="stat-item">
-              <div class="stat-number">3</div>
-              <div class="stat-label">Executive Profiles</div>
+            <div class="step-item">
+              <div class="step-number">4</div>
+              <div class="step-text">Deliver analyst update template. Target: week of March 23.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">5</div>
+              <div class="step-text">Draft first Nate's Notebook LinkedIn post. Target: week of March 30.</div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">6</div>
+              <div class="step-text">Build analyst target list and begin monthly updates. Target: April 1.</div>
             </div>
           </div>
         </div>
