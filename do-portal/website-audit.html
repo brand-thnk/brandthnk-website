@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Onboarding - Website Audit</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --text-gray: #333333;
+      --light-gray: #666666;
+      --border-gray: #E0E0E0;
+      --success-green: #4CAF50;
+      --warning-orange: #FF9800;
+      --error-red: #F44336;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      line-height: 1.6;
+      color: var(--text-gray);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 30px 0;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Audit Meta */
+    .audit-meta {
+      background: var(--brandthnk-off-white);
+      border-left: 5px solid var(--brandthnk-yellow);
+      padding: 25px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--brandthnk-black);
+      margin-bottom: 5px;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      color: var(--text-gray);
+    }
+
+    /* Section Headers */
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: var(--brandthnk-black);
+      border-bottom: 3px solid var(--brandthnk-yellow);
+      padding-bottom: 10px;
+    }
+
+    .subsection-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 30px 0 15px 0;
+      color: var(--brandthnk-black);
+    }
+
+    /* Content Blocks */
+    .content-block {
+      background: var(--brandthnk-white);
+      border: 2px solid var(--border-gray);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .content-block p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Executive Summary */
+    .executive-summary {
+      background: linear-gradient(135deg, var(--brandthnk-yellow) 0%, rgba(255, 235, 59, 0.1) 100%);
+      border: 2px solid var(--brandthnk-black);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .executive-summary h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 20px;
+    }
+
+    /* Tables */
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--border-gray);
+    }
+
+    .audit-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      padding: 15px;
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .audit-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--border-gray);
+      vertical-align: top;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .audit-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .audit-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .framework-element {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+    }
+
+    .current-state {
+      color: var(--error-red);
+      font-weight: 600;
+    }
+
+    /* Action Lists */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .action-section {
+      background: var(--brandthnk-white);
+      border: 2px solid var(--border-gray);
+      border-radius: 8px;
+      padding: 25px;
+    }
+
+    .action-section.start {
+      border-color: var(--success-green);
+    }
+
+    .action-section.stop {
+      border-color: var(--error-red);
+    }
+
+    .action-section.continue {
+      border-color: var(--warning-orange);
+    }
+
+    .action-section h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--brandthnk-black);
+    }
+
+    .action-section.start h3 {
+      color: var(--success-green);
+    }
+
+    .action-section.stop h3 {
+      color: var(--error-red);
+    }
+
+    .action-section.continue h3 {
+      color: var(--warning-orange);
+    }
+
+    .action-item {
+      background: var(--brandthnk-off-white);
+      border-left: 4px solid var(--brandthnk-yellow);
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .action-number {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 10px;
+    }
+
+    .action-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 10px;
+    }
+
+    .action-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .effort-badge {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* Highlight Boxes */
+    .highlight-box {
+      background: var(--brandthnk-yellow);
+      border: 2px solid var(--brandthnk-black);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .highlight-box h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+      font-size: 1rem;
+      color: var(--brandthnk-black);
+      font-weight: 500;
+    }
+
+    /* Key Points */
+    .key-points {
+      background: var(--brandthnk-off-white);
+      border-left: 5px solid var(--brandthnk-yellow);
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .key-points ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-points li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .key-points li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--brandthnk-black);
+      font-weight: bold;
+    }
+
+    /* Bottom Line */
+    .bottom-line {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 40px;
+      border-radius: 8px;
+      margin-top: 50px;
+    }
+
+    .bottom-line h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--brandthnk-yellow);
+    }
+
+    .bottom-line p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .next-step {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    .next-step strong {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--brandthnk-off-white);
+      padding: 20px 0;
+      margin-top: 40px;
+      text-align: center;
+      border-top: 1px solid var(--border-gray);
+    }
+
+    .footer p {
+      font-size: 0.9rem;
+      color: var(--light-gray);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .section-header {
+        font-size: 1.5rem;
+      }
+
+      .audit-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .action-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      .audit-table {
+        font-size: 0.9rem;
+      }
+
+      .audit-table th,
+      .audit-table td {
+        padding: 10px;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <h1>Website Audit</h1>
+      <p class="subtitle">Digital Onboarding Portal - Comprehensive Website Analysis</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Audit Meta Information -->
+    <div class="audit-meta">
+      <div class="meta-item">
+        <div class="meta-label">Client</div>
+        <div class="meta-value">Digital Onboarding, Inc.</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Prepared by</div>
+        <div class="meta-value">BrandThnk</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Date</div>
+        <div class="meta-value">March 16, 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Scope</div>
+        <div class="meta-value">Full website audit of digitalonboarding.com</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Lens</div>
+        <div class="meta-value">StoryBrand SB7 framework, competitive positioning, conversion optimization</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Inputs</div>
+        <div class="meta-value">Site crawl + Fintech Competitive Intelligence Dashboard (SimilarWeb, LinkedIn Ad Library, Meta Ad Library)</div>
+      </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="section">
+      <h2 class="section-header">Executive Summary</h2>
+      <div class="executive-summary">
+        <h3>Key Findings</h3>
+        <p>digitalonboarding.com has strong product-market fit buried under weak storytelling. The site describes features clearly. It does not describe the buyer's problem at all. Every page leads with what Digital Onboarding does rather than what the buyer is struggling with. That distinction matters because it determines whether a first-time visitor stays for 10 seconds or 10 minutes.</p>
+
+        <p>The competitive intelligence dashboard makes the stakes plain. DO's organic traffic declined 29.3% year-over-year. The site pulls roughly 4,179 monthly visits against nCino's 69,541. There is near-zero paid search spend while Narmi has increased theirs by 548%. Every visitor who lands on this site is disproportionately valuable, and right now the site is not converting that scarce traffic into pipeline.</p>
+      </div>
+
+      <div class="content-block">
+        <p>The site's biggest structural problem is that it positions Digital Onboarding as the hero of the story. StoryBrand's SB7 framework teaches the opposite: the customer is the hero, the brand is the guide. A community bank CMO running a four-person marketing team who just lost 15% of new accounts to dormancy should land on this homepage and immediately feel understood. Instead, they land on three rotating taglines ("Activate relationships. Deepen engagement. Amplify growth.") that could belong to any martech vendor in the country.</p>
+
+        <p>There is also a live Lorem ipsum block on the homepage awards section. That tells a prospect something about quality control.</p>
+
+        <p>Two additional gaps compound the problem. First, DO's leadership team (Ted Brown, Nate Shahan, Adam Westley) is invisible on the site. The About page lists names and titles. It does not position these people as practitioners with a point of view on data-driven engagement, lifecycle orchestration, or the future of digital banking.</p>
+
+        <p>Second, the site does not tell a data story. DO's platform is built on first-party behavioral data, automated targeting, and lifecycle engagement across digital banking channels. None of that comes through in the messaging. The word "data" barely appears on the homepage. "Lifecycle" does not appear at all.</p>
+      </div>
+    </div>
+
+    <!-- StoryBrand SB7 Framework Analysis -->
+    <div class="section">
+      <h2 class="section-header">StoryBrand SB7 Framework Analysis</h2>
+      <div class="content-block">
+        <p>Donald Miller's StoryBrand framework maps brand messaging to a seven-part narrative structure. When a website follows this structure, visitors immediately understand three things: what is the problem, how does this company help me solve it, and what does my life look like after. When it doesn't, visitors get feature lists and jargon. Here is how DO's site performs against each element of the SB7.</p>
+      </div>
+
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>SB7 Element</th>
+            <th>Current State</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="framework-element">1. Character (the hero)</td>
+            <td class="current-state">Absent</td>
+            <td>The hero should be the buyer: a CMO or VP Digital at a community bank/CU with a small team and big goals. The homepage never names this person. It opens with DO's capabilities, not the buyer's situation.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">2. Problem</td>
+            <td class="current-state">Partially present</td>
+            <td>The Onboarding page mentions the 2x2x2 failure and dormancy. But the homepage does not name the problem clearly. "Struggling to retain account holders?" appears only on the Platform Overview page, not above the fold on the homepage where it belongs.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">3. Guide</td>
+            <td class="current-state">Weak</td>
+            <td>A guide demonstrates empathy and authority. The site has authority signals (170+ FIs, case study metrics, awards) but they're scattered. Empathy is almost entirely missing. Critically, none of DO's leaders (Ted, Nate, Adam) appear as guides on the site beyond an About page headshot grid.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">4. Plan</td>
+            <td class="current-state">Overcomplicated</td>
+            <td>StoryBrand says: give the hero a simple plan (3 steps). The site offers a maze: Platform Overview, Data & Targeting, Analytics, Setup & Support, Use Cases, Pricing, four Solution pages, and a widget library. A first-time visitor cannot figure out where to go.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">5. Call to Action</td>
+            <td class="current-state">Present but soft</td>
+            <td>"Let's Talk" is the primary CTA. It appears in the nav and on multiple pages. The conversion page itself is clean (Marketo form + ChiliPiper calendar). But there is no transitional CTA: no gated benchmark report, no ROI calculator, no self-assessment tool.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">6. Failure</td>
+            <td class="current-state">Absent</td>
+            <td>StoryBrand says: show the stakes. What happens if the buyer does nothing? DO knows the answer: dormancy, silent attrition, competitor poaching, wasted acquisition spend. The site never says this directly on the homepage.</td>
+          </tr>
+          <tr>
+            <td class="framework-element">7. Success</td>
+            <td class="current-state">Partially present</td>
+            <td>The case study metrics are strong: 375% more direct deposits, 64% reduction in attrition, 800% growth in online banking enrollments. But they appear as a scrolling ticker, not as a narrative. A visitor needs to see themselves in the transformation.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <h4>SB7 Verdict</h4>
+        <p>The site is organized around what DO sells rather than what the buyer needs. Rewriting the homepage through StoryBrand's lens is the single highest-ROI change available because it is the first thing every visitor sees, regardless of how they got there.</p>
+      </div>
+    </div>
+
+    <!-- Page-by-Page Audit -->
+    <div class="section">
+      <h2 class="section-header">Page-by-Page Audit</h2>
+
+      <h3 class="subsection-header">Homepage</h3>
+      <div class="content-block">
+        <p><strong>First impression (5-second test):</strong> A visitor sees three rotating taglines ("Activate relationships. Deepen engagement. Amplify growth."), an awards banner, and a ticker of case study metrics. The taglines are internally focused verbs. They describe what DO wants to happen, not what the buyer wants to happen.</p>
+
+        <p><strong>Hero section:</strong> No customer-facing language above the fold. Compare to Narmi, whose homepage leads with a specific promise to a named buyer segment. Compare to Fenergo, who leads with a compliance pain point. DO's hero section reads like a brand guidelines exercise, not a sales page.</p>
+
+        <p><strong>Lorem ipsum:</strong> There is live placeholder text on the homepage in the awards section: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..." followed by a "Button Text" CTA. This is a quality control failure visible to every visitor.</p>
+      </div>
+
+      <h3 class="subsection-header">Platform Overview Page</h3>
+      <div class="content-block">
+        <p><strong>Opening:</strong> "Struggling to retain account holders? You're not alone." This is the best empathy line on the entire site. It should be on the homepage, not two clicks deep. The rest of the page shifts immediately into feature descriptions and widget inventories.</p>
+
+        <p><strong>Content structure:</strong> The page is extremely long. It cycles through: engage everywhere, popular campaigns, features, widgets, testimonials, case studies, and more features. A visitor scrolling through this is doing work the site should do for them.</p>
+      </div>
+
+      <h3 class="subsection-header">Customers Page</h3>
+      <div class="content-block">
+        <p><strong>Assessment:</strong> This is the strongest page on the site. The metrics are specific, named, and credible. Sound Credit Union (7% text conversion rate, 3x industry average), Island FCU (25% drop in checking attrition), Leader Bank (27% reduction in escrow calls), NYU FCU (10% of at-risk accounts saved).</p>
+
+        <p><strong>Problem:</strong> This page is one click deep in the navigation and the stories are not repurposed anywhere else on the site. Every one of these metrics should appear on the homepage, on the relevant solution page, and in paid ad copy.</p>
+      </div>
+    </div>
+
+    <!-- Competitive Positioning -->
+    <div class="section">
+      <h2 class="section-header">Competitive Positioning: Where the Site Falls Short</h2>
+      <div class="content-block">
+        <p>Your competitive intelligence dashboard reveals three patterns that directly inform what this site needs to do differently:</p>
+
+        <div class="key-points">
+          <ul>
+            <li><strong>nCino's content machine is producing at scale.</strong> 1,013 active LinkedIn ads, 69,541 monthly visits, +122.9% organic growth. Their website is a conversion engine backed by massive paid amplification. DO cannot match this spend. But DO can match the messaging discipline.</li>
+            <li><strong>Narmi's proof-point strategy is the playbook to study.</strong> Narmi runs 101 LinkedIn ads and every single one features a named client with a specific metric ($22M in new deposits in 120 days, 89% digital adoption in 90 days, 50% less support volume).</li>
+            <li><strong>Fenergo's fear-based hook converts.</strong> Fenergo leads with "$1.9B in EMEA regulatory penalties" and "93% of FIs are planning to adopt agentic AI." Fear and urgency work in financial services when backed by third-party data.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start/Stop/Continue -->
+    <div class="section">
+      <h2 class="section-header">Start / Stop / Continue</h2>
+      <p style="margin-bottom: 30px; font-style: italic;">Prioritized by effort-to-impact ratio. The first three STARTs are the highest-leverage moves.</p>
+
+      <div class="action-grid">
+        <!-- START Actions -->
+        <div class="action-section start">
+          <h3>START</h3>
+          <p style="margin-bottom: 20px; font-style: italic;">New actions. Ordered by impact.</p>
+
+          <div class="action-item">
+            <div class="action-number">S1</div>
+            <div class="action-title">Rewrite the homepage hero through StoryBrand</div>
+            <div class="action-description">Lead with the buyer's problem (disconnected data, dormant accounts, underused digital banking). Name the hero (community bank/CU marketing leader with a small team). Position DO as the data-driven engagement guide.</div>
+            <span class="effort-badge">Medium (copy + design, 2-3 weeks)</span>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">S2</div>
+            <div class="action-title">Fix the Lorem ipsum and "Button Text" placeholder</div>
+            <div class="action-description">This is live on the production site in the awards section. It signals to every visitor that the site is not maintained.</div>
+            <span class="effort-badge">Trivial (30 min)</span>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">S3</div>
+            <div class="action-title">Build dedicated profile pages for Ted, Nate, and Adam</div>
+            <div class="action-description">Each page should feature their POV on data-driven engagement, a 60-second video, links to their authored content, and a booking link. People productization starts on the website.</div>
+            <span class="effort-badge">Medium (content + design, 2-3 weeks)</span>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">S4</div>
+            <div class="action-title">Create a transitional CTA</div>
+            <div class="action-description">A gated benchmark report authored by Nate or Ted ("2026 Data-Driven Onboarding Benchmarks: What 170+ FIs Taught Us About Lifecycle Engagement"). Place it on every page.</div>
+            <span class="effort-badge">Medium (content + design, 3-4 weeks)</span>
+          </div>
+        </div>
+
+        <!-- STOP Actions -->
+        <div class="action-section stop">
+          <h3>STOP</h3>
+          <p style="margin-bottom: 20px; font-style: italic;">Patterns actively hurting engagement and conversion.</p>
+
+          <div class="action-item">
+            <div class="action-number">X1</div>
+            <div class="action-title">Stop leading with capability language</div>
+            <div class="action-description">These taglines describe what DO wants. StoryBrand says: open with what the customer wants. The customer wants fewer dormant accounts, connected data, and lifecycle engagement that works inside their digital banking channel.</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">X2</div>
+            <div class="action-title">Stop treating DO's leadership team as an afterthought</div>
+            <div class="action-description">The About page has a headshot grid with no POV, no authored content, and no way to hear from Ted, Nate, or Adam directly.</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">X3</div>
+            <div class="action-title">Stop describing the platform as an "onboarding" tool</div>
+            <div class="action-description">The messaging limits DO to one moment in the lifecycle. The site should position DO as a data-driven engagement platform that spans the full account holder lifecycle.</div>
+          </div>
+        </div>
+
+        <!-- CONTINUE Actions -->
+        <div class="action-section continue">
+          <h3>CONTINUE</h3>
+          <p style="margin-bottom: 20px; font-style: italic;">Working. Do more.</p>
+
+          <div class="action-item">
+            <div class="action-number">C1</div>
+            <div class="action-title">Customer video testimonials from named executives</div>
+            <div class="action-description">Named executive video is the highest-trust content format in B2B fintech. DO has four. Most competitors have zero. Next step: pair each video with a data point about lifecycle engagement results.</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">C2</div>
+            <div class="action-title">The 2x2x2 attack messaging</div>
+            <div class="action-description">It names a specific practice, declares it dead, and positions DO as the alternative. Expand this angle site-wide, and connect it to the data story: the reason 2x2x2 fails is that it ignores behavioral data and lifecycle timing.</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-number">C3</div>
+            <div class="action-title">The "We make small teams feel huge" empathy line</div>
+            <div class="action-description">This is the only line on the site that acknowledges the buyer's reality. People productization means putting a face behind the empathy. When Ted or Nate says this in a talk or a post, it carries more weight than anonymous site copy.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Line -->
+    <div class="bottom-line">
+      <h3>Bottom Line</h3>
+      <p>The website has the raw materials of a high-converting site: named customer executives giving video testimonials, hard metrics across dozens of institutions, a differentiated attack angle (the 2x2x2 failure), a clear target buyer, and a leadership team (Ted, Nate, Adam) with deep domain credibility that the site currently hides.</p>
+
+      <p>What it lacks is a narrative built around two things: people and data. The site should position Ted, Nate, and Adam as visible guides with a point of view on data-driven lifecycle engagement. And it should tell the data story: DO's platform connects first-party behavioral data, automates targeting across the account holder lifecycle, and orchestrates engagement through digital banking and other channels. That story does not appear anywhere on the current site.</p>
+
+      <p>StoryBrand provides the framework to tell that story without a full redesign. The priority changes: rewrite the homepage hero around the data and lifecycle problem, build profile pages for Ted, Nate, and Adam, create a transitional CTA authored by a named leader (a gated report on data-driven engagement), fix the Lorem ipsum, and add a three-step plan that names data, lifecycle, and digital banking explicitly.</p>
+
+      <div class="next-step">
+        <p><strong>Recommended next step:</strong> Schedule a 90-minute working session with Jen to (1) fix the Lorem ipsum immediately, (2) draft the StoryBrand homepage hero copy centered on data-driven lifecycle engagement, (3) spec profile pages for Ted, Nate, and Adam with POV content and booking links, and (4) outline the transitional CTA (a gated benchmark report authored by Nate or Ted on data-driven digital banking engagement). Items 1 and 2 can ship within two weeks. Items 3 and 4 within four.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>BrandThnk | brandthnk.co | Confidential</p>
+    </div>
+  </div>
+</body>
+</html>
