@@ -653,7 +653,11 @@
       </div>
       <div class="form-row">
         <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="your.email@institution.com">
+        <input type="email" class="form-input" placeholder="your.email@institution.com" onblur="checkDomainUsage()">
+        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
+          Work email required. Personal domains (gmail, yahoo, etc.) not accepted. 3 sessions per domain per month.
+        </div>
+        <div id="usage-indicator" style="font-size: 12px; margin-top: 5px; font-weight: 600;"></div>
       </div>
     </div>
 
@@ -989,11 +993,144 @@ function previousScreen(screenId) {
 }
 
 function startResearch() {
+  // Validate email and check usage limits before starting
+  if (!validateEmailAndUsage()) {
+    return; // Stop if validation fails
+  }
+
   // Move to progress screen
   nextScreen('progress-screen');
 
   // Simulate research progress
   simulateProgress();
+}
+
+function validateEmailAndUsage() {
+  const emailInput = document.querySelector('input[type="email"]');
+  const email = emailInput.value.trim();
+
+  // Check if email is provided
+  if (!email) {
+    showError('Please enter your email address.');
+    return false;
+  }
+
+  // Extract domain from email
+  const domain = email.split('@')[1]?.toLowerCase();
+
+  // Block consumer email domains
+  const blockedDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'live.com', 'msn.com',
+    'ymail.com', 'rocketmail.com', 'protonmail.com', 'tutanota.com'
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    showError('Please use your work email address. Personal email domains are not accepted.');
+    return false;
+  }
+
+  // Check usage limits for this domain
+  const currentMonth = new Date().toISOString().substring(0, 7); // YYYY-MM format
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+
+  if (currentUsage >= 3) {
+    showError(`Domain ${domain} has reached the monthly limit of 3 research sessions. Limit resets next month.`);
+    return false;
+  }
+
+  // Record this usage
+  localStorage.setItem(usageKey, (currentUsage + 1).toString());
+
+  return true;
+}
+
+function showError(message) {
+  // Remove any existing error messages
+  const existingError = document.querySelector('.error-message');
+  if (existingError) {
+    existingError.remove();
+  }
+
+  // Create and show error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'error-message';
+  errorDiv.style.cssText = `
+    background: #ff4444;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+  `;
+  errorDiv.textContent = message;
+
+  // Insert before the action buttons
+  const actionButtons = document.querySelector('.action-buttons');
+  actionButtons.parentNode.insertBefore(errorDiv, actionButtons);
+
+  // Auto-remove after 8 seconds
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.remove();
+    }
+  }, 8000);
+}
+
+function checkDomainUsage() {
+  const emailInput = document.querySelector('input[type="email"]');
+  const usageIndicator = document.getElementById('usage-indicator');
+  const email = emailInput.value.trim();
+
+  if (!email || !email.includes('@')) {
+    usageIndicator.innerHTML = '';
+    return;
+  }
+
+  const domain = email.split('@')[1]?.toLowerCase();
+
+  // Check if it's a blocked domain
+  const blockedDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'live.com', 'msn.com',
+    'ymail.com', 'rocketmail.com', 'protonmail.com', 'tutanota.com'
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    usageIndicator.innerHTML = `<span style="color: #ff4444;">❌ Personal email domains not accepted</span>`;
+    return;
+  }
+
+  // Show current usage for this domain
+  const currentMonth = new Date().toISOString().substring(0, 7);
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+  const remaining = 3 - currentUsage;
+
+  if (remaining <= 0) {
+    usageIndicator.innerHTML = `<span style="color: #ff4444;">❌ ${domain} has used all 3 sessions this month</span>`;
+  } else if (remaining === 1) {
+    usageIndicator.innerHTML = `<span style="color: #ff8800;">⚠️ ${domain} has ${remaining} session remaining this month</span>`;
+  } else {
+    usageIndicator.innerHTML = `<span style="color: #44aa44;">✅ ${domain} has ${remaining} sessions remaining this month</span>`;
+  }
+}
+
+// Admin function to reset usage for a domain (for debugging/overrides)
+// To use: resetDomainUsage('example.com') in browser console
+function resetDomainUsage(domain) {
+  const currentMonth = new Date().toISOString().substring(0, 7);
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  localStorage.removeItem(usageKey);
+  console.log(`Usage reset for ${domain} in ${currentMonth}`);
+
+  // Refresh usage indicator if email matches
+  const emailInput = document.querySelector('input[type="email"]');
+  if (emailInput && emailInput.value.includes(domain)) {
+    checkDomainUsage();
+  }
 }
 
 function simulateProgress() {
