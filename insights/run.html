@@ -189,6 +189,47 @@
     line-height: 1.5;
   }
 
+  .module-meta {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+  }
+
+  .module-card-coming-soon {
+    position: relative;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .module-card-coming-soon:hover {
+    border-color: var(--light-gray);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .coming-soon-text {
+    background: var(--gray);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
   /* FORM SECTION */
   .form-section {
     background: var(--white);
@@ -321,6 +362,24 @@
   .persona-desc {
     color: var(--gray);
     font-size: 12px;
+  }
+
+  .persona-detail-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--yellow);
+    padding-bottom: 2px;
+  }
+
+  .persona-detail-link:hover {
+    background: var(--yellow);
+    padding: 2px 4px;
+    margin: 6px -4px -2px -4px;
+    border-bottom: none;
   }
 
   /* BUTTONS */
@@ -599,32 +658,16 @@
     <div class="modules-grid" id="modules-grid">
       <div class="module-card" data-module="message-testing">
         <h3 class="module-title">Message Testing</h3>
-        <p class="module-description">Compare taglines, positioning statements, and campaign messages to identify what resonates with audiences and differentiates from competitors.</p>
+        <p class="module-description">Compare taglines, positioning statements, and campaign messages to identify what resonates with audiences.</p>
       </div>
 
-      <div class="module-card" data-module="product-validation">
-        <h3 class="module-title">Product Validation</h3>
-        <p class="module-description">Test product concepts and feature bundles to determine customer need recognition, adoption likelihood, and pricing acceptance.</p>
-      </div>
-
-      <div class="module-card" data-module="competitive-positioning">
+      <div class="module-card module-card-coming-soon">
         <h3 class="module-title">Competitive Positioning</h3>
         <p class="module-description">Evaluate bank positioning versus named competitors, revealing perception gaps and switching motivators by segment.</p>
-      </div>
-
-      <div class="module-card" data-module="persona-pressure-test">
-        <h3 class="module-title">Persona Pressure Test</h3>
-        <p class="module-description">Validate existing persona assumptions to uncover blind spots and missed insights in your current understanding.</p>
-      </div>
-
-      <div class="module-card" data-module="campaign-pre-test">
-        <h3 class="module-title">Campaign Pre-Test</h3>
-        <p class="module-description">Evaluate campaign concepts before launch, including creative direction, channel strategy, and offer appeal.</p>
-      </div>
-
-      <div class="module-card" data-module="journey-gap-analysis">
-        <h3 class="module-title">Journey Gap Analysis</h3>
-        <p class="module-description">Identify friction in customer journey steps to discover what causes drop-off and which moments win or lose customers.</p>
+        <div class="module-meta">Coming Soon</div>
+        <div class="coming-soon-overlay">
+          <span class="coming-soon-text">Coming Soon</span>
+        </div>
       </div>
     </div>
 
@@ -644,7 +687,7 @@
     <div class="form-section">
       <h2 class="form-section-title">Basic Information</h2>
       <div class="form-row">
-        <label class="form-label">Institution Name</label>
+        <label class="form-label">Company Name</label>
         <input type="text" class="form-input" placeholder="Your bank or financial institution">
       </div>
       <div class="form-row">
@@ -762,9 +805,7 @@
       </div>
 
       <div class="report-actions">
-        <button class="btn btn-primary">Download PDF</button>
-        <button class="btn btn-secondary">Copy Link</button>
-        <button class="btn btn-secondary" onclick="resetTool()">Run New Research</button>
+        <a href="mailto:allison@brandthnk.co?subject=Research Report Follow-up&body=Hi Allison,%0D%0A%0D%0AI just completed a research session on BrandThnk Insights and would like to discuss the results.%0D%0A%0D%0AResearch type: Message Testing%0D%0ACompany: [Your company]%0D%0A%0D%0ANext steps I'm considering:%0D%0A- [Add your questions or next steps]%0D%0A%0D%0AThanks,%0D%0A[Your name]" class="btn btn-primary">Discuss Results</a>
       </div>
     </div>
   </div>
@@ -787,13 +828,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function setupModuleSelection() {
-  const moduleCards = document.querySelectorAll('.module-card');
+  const moduleCards = document.querySelectorAll('.module-card:not(.module-card-coming-soon)');
   const continueBtn = document.getElementById('continue-btn');
 
   moduleCards.forEach(card => {
     card.addEventListener('click', function() {
       // Remove selected class from all cards
-      moduleCards.forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('.module-card').forEach(c => c.classList.remove('selected'));
 
       // Add selected class to clicked card
       this.classList.add('selected');
@@ -873,6 +914,7 @@ function loadPersonas(segment) {
       <label for="${persona.id}">
         <div class="persona-name">${persona.name}</div>
         <div class="persona-desc">${persona.desc}</div>
+        <a href="/insights/personas/${persona.id}.html" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Detail</a>
       </label>
     </div>
   `).join('');
