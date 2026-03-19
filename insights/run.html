@@ -281,11 +281,7 @@
     resize: vertical;
   }
 
-  .message-inputs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
+  /* Removed message-inputs CSS - using single "What You're Testing" field */
 
   .add-message-btn {
     background: var(--offwhite);
@@ -670,9 +666,7 @@
       grid-template-columns: 1fr;
     }
 
-    .message-inputs {
-      grid-template-columns: 1fr;
-    }
+    /* Removed mobile message-inputs CSS - using single "What You're Testing" field */
 
     .persona-segments {
       flex-direction: column;
@@ -1554,20 +1548,7 @@ function loadModuleContent() {
 
   const contentTemplates = {
     'message-testing': `
-      <div class="form-section">
-        <h2 class="form-section-title">Messages to Test</h2>
-        <div class="message-inputs">
-          <div class="form-row">
-            <label class="form-label">Message A</label>
-            <input type="text" class="form-input" placeholder="Enter your first message/tagline">
-          </div>
-          <div class="form-row">
-            <label class="form-label">Message B</label>
-            <input type="text" class="form-input" placeholder="Enter your second message/tagline">
-          </div>
-        </div>
-        <button class="add-message-btn" onclick="addMessageField()">+ Add Another Message</button>
-      </div>
+      <!-- No additional inputs needed - using "What You're Testing" field only -->
     `,
     'product-validation': `
       <div class="form-section">
@@ -2065,25 +2046,7 @@ function simulateProgress() {
   processStep();
 }
 
-function addMessageField() {
-  const messageInputs = document.querySelector('.message-inputs');
-  const fieldCount = messageInputs.querySelectorAll('.form-row').length;
-
-  if (fieldCount < 4) {
-    const letters = ['C', 'D'];
-    const newField = document.createElement('div');
-    newField.className = 'form-row';
-    newField.innerHTML = `
-      <label class="form-label">Message ${letters[fieldCount - 2]}</label>
-      <input type="text" class="form-input" placeholder="Enter message/tagline">
-    `;
-    messageInputs.appendChild(newField);
-
-    if (fieldCount >= 3) {
-      document.querySelector('.add-message-btn').style.display = 'none';
-    }
-  }
-}
+// Removed addMessageField() function - using single "What You're Testing" input only
 
 function generateReport() {
   console.log('generateReport() called');
@@ -2116,11 +2079,19 @@ function generateReport() {
             <strong>${persona.name}</strong>${persona.age ? ` (Age ${persona.age})` : ''}
             ${persona.title ? `<div class="persona-profile-title">${persona.title}</div>` : ''}
             ${persona.occupation ? `<div class="persona-profile-title">${persona.occupation}</div>` : ''}
+            ${persona.segment ? `<div class="persona-profile-title">${persona.segment}</div>` : ''}
+            ${persona.business ? `<div class="persona-profile-title">${persona.business}</div>` : ''}
+            ${persona.institution ? `<div class="persona-profile-title">${persona.institution}</div>` : ''}
           </div>
           <div class="persona-profile-details">
+            ${persona.desc ? `<p><strong>Profile:</strong> ${persona.desc}</p>` : ''}
             <p><strong>Core motivation:</strong> ${persona.coreMotivation}</p>
             <p><strong>Key fears:</strong> ${persona.keyFears}</p>
-            <p><strong>Typical language:</strong> ${persona.typicalLanguage}</p>
+            <p><strong>Communication style:</strong> ${persona.typicalLanguage}</p>
+            ${persona.processingQuote ? `<div style="margin-top: 16px; padding: 15px; background: var(--white); border-left: 3px solid var(--yellow); border-radius: 4px; font-style: italic;">
+              <div style="color: var(--gray); font-size: 12px; margin-bottom: 6px;">AUTHENTIC VOICE DURING RESEARCH:</div>
+              "${persona.processingQuote}"
+            </div>` : ''}
           </div>
         </div>
       `).join('')}
