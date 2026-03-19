@@ -1056,7 +1056,6 @@ class AutomatedPersonaSelector {
 }
 
 // Global personas object with rich data and autoMatchCriteria
-window.PERSONAS = {}; // Will be populated below
 
 // Module selection
 document.addEventListener('DOMContentLoaded', function() {
@@ -1547,31 +1546,6 @@ window.PERSONAS = {
   ]
 };
 
-// Module selection
-document.addEventListener('DOMContentLoaded', function() {
-  setupModuleSelection();
-  setupPersonaSelection();
-        name: 'Digital Transformation Champion',
-        age: '42',
-        title: 'VP of Digital Banking & Innovation',
-        institution: 'Mid-sized Regional Bank ($12B assets)',
-        desc: 'Visionary but frustrated by legacy constraints. Speaks in digital transformation and customer experience language.',
-        coreMotivation: 'Competitive positioning and time-to-market for digital offerings',
-        keyFears: 'Integration risk with legacy core systems and vendor stability',
-        typicalLanguage: '"We need to move faster," "what\'s the integration timeline?", "how does this work with Jack Henry?", "I need to show ROI to my CFO"',
-        processingQuote: 'We need to move faster than the competition. What\'s the integration timeline with our Jack Henry core?',
-        autoMatchCriteria: {
-          organizationTypes: ['regional-bank', 'fintech'],
-          targetAudiences: ['bank-executives', 'fintech-buyers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['digital', 'integration', 'api', 'technology', 'fintech', 'competitive', 'innovation'],
-            negative: ['community', 'traditional', 'relationship-focused']
-          },
-          selectionWeight: 0.9
-        }
-      }
-    ],
 
 // Removed loadPersonas() function - replaced with automated selection
 
