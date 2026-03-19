@@ -1424,11 +1424,11 @@ function simulateProgress() {
   // Get authentic quotes from selected personas
   const personaQuotes = getPersonaQuotes();
 
-  // Simulate progress
+  // Simulate progress with cleaner timing
   let currentStep = 0;
   const totalSteps = selectedPersonas.length + 1;
 
-  const progressInterval = setInterval(() => {
+  function processStep() {
     // Mark current step as active
     const stepElement = document.getElementById(`step-${currentStep === selectedPersonas.length ? 'synthesis' : currentStep}`);
     if (stepElement) {
@@ -1444,7 +1444,7 @@ function simulateProgress() {
       }
     }
 
-    // Mark previous steps as completed
+    // After 2 seconds, mark as completed and move to next
     setTimeout(() => {
       if (stepElement) {
         stepElement.classList.remove('active');
@@ -1459,19 +1459,23 @@ function simulateProgress() {
           <div class="quote-text">Analyzing patterns across all personas...</div>
           <div class="quote-attribution">Cross-persona synthesis in progress</div>
         `;
-      }
-
-      // Complete research and show report
-      if (currentStep >= totalSteps) {
-        clearInterval(progressInterval);
+        // Process synthesis step
+        setTimeout(() => processStep(), 500);
+      } else if (currentStep >= totalSteps) {
+        // Complete research and show report
         setTimeout(() => {
           generateReport();
           nextScreen('report-screen');
         }, 1500);
+      } else {
+        // Continue to next persona
+        setTimeout(() => processStep(), 500);
       }
     }, 2000);
+  }
 
-  }, 2500);
+  // Start the process
+  processStep();
 }
 
 function addMessageField() {
