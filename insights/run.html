@@ -1163,11 +1163,469 @@ function setupMarketSelection() {
   });
 }
 
-// Populate global personas object
+// Complete 22-Persona Library Implementation
 window.PERSONAS = {
-    fintech: [
-      {
-        id: 'digital-transformation-champion',
+  consumer: [
+    {
+      id: 'c1-mobile-first-momentum-builder',
+      name: 'Mobile-First Momentum Builder',
+      age: '24-32',
+      segment: 'Early-career professional',
+      coreMotivation: 'Build financial momentum through efficient digital tools',
+      keyFears: 'Hidden fees, wasting time, missing opportunities for growth',
+      typicalLanguage: 'get paid early, track subscriptions, instant transfers, slick UX',
+      processingQuote: 'I need tools that work as well as my other apps - fast, transparent, and always available.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank', 'regional-bank'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['mobile', 'fast', 'instant', 'digital', 'app', 'transparent', 'outcome-oriented'],
+          negative: ['branch', 'traditional', 'corporate jargon', 'innovation claims']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c2-guided-opportunity-seeker',
+      name: 'Guided Opportunity Seeker',
+      age: '18-26',
+      segment: 'Student or early-career with limited financial experience',
+      coreMotivation: 'Learn and avoid financial mistakes while building credit',
+      keyFears: 'Overdrafts, hidden fees, making wrong decisions, financial traps',
+      typicalLanguage: 'how does this work, what could go wrong, plain language, visual explainers',
+      processingQuote: 'I need to understand exactly how this works and what happens if I make a mistake.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'urban', 'mixed'],
+        contentSignals: {
+          positive: ['education', 'guidance', 'plain language', 'examples', 'coach', 'learn'],
+          negative: ['complex', 'assumes knowledge', 'APR tables', 'jargon']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'c3-busy-family-optimizer',
+      name: 'Busy Family Optimizer',
+      age: '35-48',
+      segment: 'Dual-income household with children',
+      coreMotivation: 'Automate financial management to save time and reduce stress',
+      keyFears: 'Missed payments, account management complexity, data security breaches',
+      typicalLanguage: 'automate bills, time-saving, family benefits, bundled value, cash-back',
+      processingQuote: 'I need banking that saves me time and gives me predictable family benefits.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'mixed'],
+        contentSignals: {
+          positive: ['automation', 'time-saving', 'family', 'bundled', 'predictable', 'rewards'],
+          negative: ['disjointed', 'complex pricing', 'unclear data sharing']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c4-relationship-first-traditionalist',
+      name: 'Relationship-First Traditionalist',
+      age: '50-68',
+      segment: 'Mid to late-career, values personal service',
+      coreMotivation: 'Maintain trusted banking relationships with personal service',
+      keyFears: 'Losing personal banker, forced into digital-only channels, service deterioration',
+      typicalLanguage: 'my banker, branch experience, personal service, tried and trusted',
+      processingQuote: 'I want to bank with people who know me and my business, not just a computer.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['rural', 'suburban'],
+        contentSignals: {
+          positive: ['personal', 'relationship', 'service', 'trusted', 'local', 'banker'],
+          negative: ['digital-only', 'app-based', 'automation', 'AI']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'c5-credit-stretched-rebuilder',
+      name: 'Credit-Stretched Rebuilder',
+      age: '28-45',
+      segment: 'Recovering from financial setback, rebuilding credit',
+      coreMotivation: 'Rebuild financial standing while avoiding further debt',
+      keyFears: 'Unexpected fees, credit denial, falling behind on payments',
+      typicalLanguage: 'second chance, no hidden fees, credit building, financial recovery',
+      processingQuote: 'I need a bank that helps me rebuild, not one that profits from my mistakes.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['second chance', 'credit building', 'transparent fees', 'financial recovery'],
+          negative: ['premium', 'exclusive', 'high-income', 'investment']
+        },
+        selectionWeight: 0.8
+      }
+    },
+    {
+      id: 'c6-mass-affluent-planner',
+      name: 'Mass Affluent Planner',
+      age: '40-60',
+      segment: 'High income, sophisticated financial needs',
+      coreMotivation: 'Optimize wealth through integrated financial services',
+      keyFears: 'Mediocre investment performance, poor financial advice, security breaches',
+      typicalLanguage: 'wealth management, investment integration, private banking, portfolio optimization',
+      processingQuote: 'I need sophisticated tools and advice that match my financial complexity.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['wealth', 'investment', 'private banking', 'sophisticated', 'integration'],
+          negative: ['basic', 'simple', 'one-size-fits-all']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c7-gig-economy-juggler',
+      name: 'Gig Economy Juggler',
+      age: '25-40',
+      segment: 'Multiple income streams, freelance/contractor',
+      coreMotivation: 'Manage irregular income across multiple platforms efficiently',
+      keyFears: 'Cash flow gaps, complex tax reporting, platform payment delays',
+      typicalLanguage: 'multiple income streams, gig payments, cash flow, instant access',
+      processingQuote: 'I need banking that works with my unpredictable income from multiple sources.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank'],
+        targetAudiences: ['retail-customers', 'business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['gig economy', 'multiple income', 'instant access', 'freelance', 'cash flow'],
+          negative: ['traditional employment', 'stable salary', 'long-term planning']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'c8-retired-security-seeker',
+      name: 'Retired Security Seeker',
+      age: '62+',
+      segment: 'Retired, focused on security and preservation',
+      coreMotivation: 'Preserve wealth with maximum security and minimal risk',
+      keyFears: 'Fraud, investment losses, complex digital systems, outliving savings',
+      typicalLanguage: 'safe and secure, FDIC insured, established bank, fraud protection',
+      processingQuote: 'I want banking with people I can trust and security I can understand.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'rural'],
+        contentSignals: {
+          positive: ['security', 'FDIC', 'established', 'trusted', 'safe', 'protection'],
+          negative: ['digital-first', 'innovation', 'disruption', 'new technology']
+        },
+        selectionWeight: 0.95
+      }
+    }
+  ],
+
+  business: [
+    {
+      id: 's1-time-starved-solo-owner',
+      name: 'Time-Starved Solo Owner',
+      age: '35-50',
+      business: 'Solo practice (law, accounting, consulting)',
+      coreMotivation: 'Minimize time spent on banking and administrative tasks',
+      keyFears: 'Wasted time on banking admin, missing client opportunities, cash flow gaps',
+      typicalLanguage: 'streamlined, automated, time-saving, simple setup, no hassle',
+      processingQuote: 'I need banking that takes five minutes to set up and runs itself.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'regional-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['automated', 'streamlined', 'time-saving', 'simple', 'efficient'],
+          negative: ['complex setup', 'relationship manager', 'meetings', 'paperwork']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's2-growth-oriented-founder',
+      name: 'Growth-Oriented Founder',
+      age: '28-45',
+      business: 'Scaling startup or growth company',
+      coreMotivation: 'Access capital and financial tools that scale with growth',
+      keyFears: 'Outgrowing banking capabilities, limiting growth due to financial constraints',
+      typicalLanguage: 'scalable, growth capital, lending, credit lines, cash management',
+      processingQuote: 'I need banking that grows with me and never becomes the bottleneck.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'regional-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['growth', 'scalable', 'capital', 'lending', 'expansion', 'credit lines'],
+          negative: ['traditional', 'conservative', 'small business only']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's3-family-main-street-operator',
+      name: 'Family Main Street Operator',
+      age: '45-65',
+      business: 'Family-owned local business (retail, restaurant, services)',
+      coreMotivation: 'Maintain business stability and community relationships',
+      keyFears: 'Losing local business advantages, being treated like a number',
+      typicalLanguage: 'local business, community bank, personal service, main street',
+      processingQuote: 'I want a bank that understands local business and supports our community.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['rural', 'suburban'],
+        contentSignals: {
+          positive: ['local', 'community', 'main street', 'family business', 'personal service'],
+          negative: ['digital-only', 'national', 'automated', 'impersonal']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 's4-professional-services-principal',
+      name: 'Professional Services Principal',
+      age: '40-60',
+      business: 'Professional services firm (law, accounting, consulting)',
+      coreMotivation: 'Sophisticated financial management and client trust accounts',
+      keyFears: 'Regulatory compliance issues, commingled funds, professional liability',
+      typicalLanguage: 'trust accounts, compliance, professional liability, sophisticated banking',
+      processingQuote: 'I need banking that handles professional requirements and regulatory compliance.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['professional', 'trust accounts', 'compliance', 'sophisticated', 'regulatory'],
+          negative: ['simple', 'basic', 'startup-focused', 'consumer-grade']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's5-nonprofit-steward',
+      name: 'Nonprofit Steward',
+      age: '35-55',
+      business: 'Nonprofit organization management',
+      coreMotivation: 'Maximize mission impact while ensuring financial stewardship',
+      keyFears: 'Fund mismanagement, high fees reducing mission funding, compliance issues',
+      typicalLanguage: 'mission-focused, stewardship, transparent fees, nonprofit banking',
+      processingQuote: 'We need banking that supports our mission and treats donor funds with respect.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['nonprofit', 'mission', 'stewardship', 'community', 'transparent'],
+          negative: ['profit-maximizing', 'commercial focus', 'high fees']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's6-operational-cfo',
+      name: 'Operational CFO',
+      age: '40-60',
+      business: 'Mid-market company financial management',
+      coreMotivation: 'Optimize cash management and operational efficiency',
+      keyFears: 'Operational inefficiencies, poor cash flow management, system integration issues',
+      typicalLanguage: 'cash management, operational efficiency, system integration, Treasury services',
+      processingQuote: 'I need banking that integrates seamlessly with our operational and financial systems.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['business-customers', 'bank-executives'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['cash management', 'operational', 'integration', 'treasury', 'efficiency'],
+          negative: ['simple', 'basic', 'small business', 'consumer-focused']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's7-tech-forward-digital-seller',
+      name: 'Tech-Forward Digital Seller',
+      age: '25-40',
+      business: 'E-commerce or digital services company',
+      coreMotivation: 'Integrate banking with digital sales and payment platforms',
+      keyFears: 'Payment processing delays, platform disconnects, API limitations',
+      typicalLanguage: 'API integration, payment processing, e-commerce, platform connectivity',
+      processingQuote: 'I need banking APIs that integrate perfectly with my sales and payment platforms.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['API', 'integration', 'e-commerce', 'digital', 'platform', 'payment processing'],
+          negative: ['traditional', 'branch-based', 'manual processes', 'legacy systems']
+        },
+        selectionWeight: 0.95
+      }
+    }
+  ],
+
+  fintech: [
+    {
+      id: 'b1-bank-head-digital-transformation',
+      name: 'Bank Head of Digital Transformation',
+      age: '35-50',
+      title: 'VP Digital Banking & Innovation',
+      institution: 'Regional bank or large credit union',
+      coreMotivation: 'Drive competitive digital capabilities while managing implementation risk',
+      keyFears: 'Failed digital initiatives, falling behind competition, integration disasters',
+      typicalLanguage: 'digital transformation, customer experience, integration timeline, competitive positioning',
+      processingQuote: 'We need solutions that transform our capabilities without disrupting operations.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['digital transformation', 'integration', 'competitive', 'customer experience'],
+          negative: ['risky', 'unproven', 'complex implementation']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'b2-enterprise-cio-cto',
+      name: 'Enterprise CIO/CTO',
+      age: '45-60',
+      title: 'Chief Information/Technology Officer',
+      institution: 'Large bank or enterprise',
+      coreMotivation: 'Modernize technology infrastructure while maintaining security and compliance',
+      keyFears: 'Security breaches, system downtime, regulatory violations, integration failures',
+      typicalLanguage: 'architecture, security, scalability, compliance, infrastructure modernization',
+      processingQuote: 'Any technology must meet our security and architectural standards before consideration.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['security', 'architecture', 'scalability', 'compliance', 'infrastructure'],
+          negative: ['quick implementation', 'minimal security', 'workarounds']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b3-chief-risk-compliance',
+      name: 'Chief Risk & Compliance Officer',
+      age: '45-65',
+      title: 'Chief Risk Officer',
+      institution: 'Financial institution',
+      coreMotivation: 'Protect institution from regulatory fines and operational risks',
+      keyFears: 'Regulatory violations, data breaches, operational failures, audit findings',
+      typicalLanguage: 'regulatory compliance, risk management, audit trail, governance framework',
+      processingQuote: 'Show me comprehensive risk controls and regulatory compliance documentation.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['suburban', 'rural', 'urban'],
+        contentSignals: {
+          positive: ['compliance', 'risk management', 'regulatory', 'audit', 'governance'],
+          negative: ['fast implementation', 'minimal oversight', 'move quickly']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'b4-payments-treasury-lead',
+      name: 'Payments/Treasury Product Lead',
+      age: '35-50',
+      title: 'VP Payments & Treasury Services',
+      institution: 'Bank product management',
+      coreMotivation: 'Launch innovative payment products that drive revenue growth',
+      keyFears: 'Product launch failures, poor customer adoption, competitive displacement',
+      typicalLanguage: 'payment innovation, product roadmap, customer adoption, revenue growth',
+      processingQuote: 'We need payment solutions that differentiate our product offering and drive adoption.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['payment', 'innovation', 'product', 'customer adoption', 'revenue'],
+          negative: ['traditional', 'conservative', 'slow to market']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b5-corporate-cfo-mid-market',
+      name: 'Corporate CFO (Mid-Market)',
+      age: '40-60',
+      title: 'Chief Financial Officer',
+      institution: 'Mid-market corporation',
+      coreMotivation: 'Optimize financial operations and cash management efficiency',
+      keyFears: 'Cash flow disruptions, operational inefficiencies, poor financial controls',
+      typicalLanguage: 'cash management, operational efficiency, financial controls, treasury optimization',
+      processingQuote: 'I need financial solutions that optimize our cash flow and operational efficiency.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['cash management', 'efficiency', 'treasury', 'optimization', 'financial controls'],
+          negative: ['simple', 'basic', 'small business focused']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b6-operations-shared-services',
+      name: 'Operations/Shared Services Leader',
+      age: '40-55',
+      title: 'VP Operations',
+      institution: 'Financial services operations',
+      coreMotivation: 'Streamline operations and reduce processing costs',
+      keyFears: 'Operational disruptions, increased processing costs, workflow inefficiencies',
+      typicalLanguage: 'operational efficiency, process automation, cost reduction, workflow optimization',
+      processingQuote: 'We need solutions that streamline operations and reduce our processing overhead.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['operational', 'automation', 'efficiency', 'cost reduction', 'streamline'],
+          negative: ['manual', 'complex', 'labor intensive']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'b7-procurement-vendor-management',
+      name: 'Procurement & Vendor Management',
+      age: '35-55',
+      title: 'VP Vendor Management',
+      institution: 'Financial institution procurement',
+      coreMotivation: 'Select vendors that provide value while managing institutional risk',
+      keyFears: 'Vendor failures, contract disputes, poor due diligence, budget overruns',
+      typicalLanguage: 'vendor due diligence, contract terms, risk assessment, value optimization',
+      processingQuote: 'Show me comprehensive vendor credentials and clear contract terms with measurable value.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['vendor', 'credentials', 'due diligence', 'contract', 'value', 'risk assessment'],
+          negative: ['untested', 'startup risk', 'unclear terms']
+        },
+        selectionWeight: 0.8
+      }
+    }
+  ]
+};
+
+// Module selection
+document.addEventListener('DOMContentLoaded', function() {
+  setupModuleSelection();
+  setupPersonaSelection();
         name: 'Digital Transformation Champion',
         age: '42',
         title: 'VP of Digital Banking & Innovation',
@@ -1187,277 +1645,8 @@ window.PERSONAS = {
           },
           selectionWeight: 0.9
         }
-      },
-      {
-        id: 'risk-compliance-gatekeeper',
-        name: 'Risk & Compliance Gatekeeper',
-        age: '56',
-        title: 'Chief Risk Officer',
-        institution: 'Community Credit Union ($1.8B assets)',
-        desc: 'Protects institution from regulatory fines and data breaches. Views every vendor as potential liability until proven otherwise.',
-        coreMotivation: 'Institutional preservation and regulatory compliance',
-        keyFears: 'Data security breaches, regulatory fines, and operational resilience failures',
-        typicalLanguage: '"Show me your SOC 2 report," "what\'s your incident response plan?", "how do you handle data residency?"',
-        processingQuote: 'I need to see your SOC 2 Type II report and incident response plan before we proceed.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
-          targetAudiences: ['bank-executives', 'fintech-buyers'],
-          marketTypes: ['suburban', 'rural', 'urban'],
-          contentSignals: {
-            positive: ['security', 'compliance', 'risk', 'regulatory', 'soc', 'audit', 'governance'],
-            negative: ['fast', 'move quickly', 'disrupt']
-          },
-          selectionWeight: 0.85
-        }
-      },
-      {
-        id: 'roi-focused-cfo',
-        name: 'ROI-Focused CFO',
-        age: '49',
-        title: 'Chief Financial Officer',
-        institution: 'Large Enterprise Fintech Company',
-        desc: 'Financial steward requiring rigorous ROI justification for every technology investment.',
-        coreMotivation: 'Financial performance and operational efficiency with measurable returns',
-        keyFears: 'Cost overruns, hidden fees, and ROI uncertainty',
-        typicalLanguage: '"What\'s the total cost of ownership?", "show me the ROI model", "I need case studies with hard numbers"',
-        processingQuote: 'What\'s the total cost of ownership? I need to see case studies with hard numbers, not vague value propositions.',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'regional-bank', 'neobank'],
-          targetAudiences: ['bank-executives', 'fintech-buyers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['roi', 'cost', 'savings', 'efficiency', 'revenue', 'profit', 'financial', 'value'],
-            negative: ['free', 'relationship', 'community']
-          },
-          selectionWeight: 0.8
-        }
-      },
-      {
-        id: 'community-bank-ceo',
-        name: 'Community Bank CEO',
-        age: '58',
-        title: 'President & CEO',
-        institution: 'Community Bank ($450M assets)',
-        desc: 'Committed to community and relationship banking model. Cautious about technology investments due to limited resources.',
-        coreMotivation: 'Institution survival and growth while maintaining community focus',
-        keyFears: 'Failed implementation damaging reputation and vendor lock-in',
-        typicalLanguage: '"We\'re not a big bank," "I need a vendor who will be a true partner," "what do other community banks say?"',
-        processingQuote: 'We\'re not a big bank. I need a vendor who understands the community banking model and will be a true partner.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'credit-union'],
-          targetAudiences: ['bank-executives', 'business-customers'],
-          marketTypes: ['suburban', 'rural'],
-          contentSignals: {
-            positive: ['community', 'relationship', 'trust', 'local', 'partnership', 'traditional', 'service'],
-            negative: ['api', 'integration', 'fintech', 'digital transformation', 'disrupt']
-          },
-          selectionWeight: 0.95
-        }
       }
     ],
-    consumer: [
-      {
-        id: 'digital-optimizer',
-        name: 'Digital Native Optimizer',
-        age: '27',
-        occupation: 'UX Designer at tech startup',
-        income: '$82,000',
-        desc: 'Views banking as interconnected ecosystem of specialized apps. Financial optimizer who actively monitors rates and moves money.',
-        coreMotivation: 'Maximize financial returns with minimal friction',
-        keyFears: 'Hidden fees, slow transaction speeds, being locked into platforms',
-        typicalLanguage: '"Frictionless," "seamless," "what\'s the APY?", "does it integrate with...?", "I just need it to work."',
-        processingQuote: 'What\'s the APY? Does it integrate with my existing apps? I just need it to work seamlessly.',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'neobank'],
-          targetAudiences: ['retail-customers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['digital', 'app', 'seamless', 'integration', 'api', 'rate', 'optimize', 'efficiency'],
-            negative: ['branch', 'traditional', 'relationship', 'in-person']
-          },
-          selectionWeight: 0.85
-        }
-      },
-      {
-        id: 'anxious-pessimist',
-        name: 'Financially Anxious Pessimist',
-        age: '44',
-        occupation: 'Warehouse Supervisor',
-        income: '$62,000',
-        desc: 'Feels negative about economic environment. Living close to paycheck-to-paycheck despite reasonable income.',
-        coreMotivation: 'Financial stability and stop worrying about money',
-        keyFears: 'Unexpected expenses, overdraft fees, system not designed for people like him',
-        typicalLanguage: '"What\'s the catch?", "I can\'t afford to lose money," "I\'ve been burned before," "nobody tells you about the fees"',
-        processingQuote: 'What\'s the catch? I\'ve been burned before by fees nobody tells you about until it\'s too late.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'credit-union'],
-          targetAudiences: ['retail-customers'],
-          marketTypes: ['suburban', 'rural'],
-          contentSignals: {
-            positive: ['transparent', 'no fees', 'safe', 'secure', 'protection', 'guaranteed', 'simple'],
-            negative: ['complex', 'premium', 'exclusive', 'fast growth', 'investment']
-          },
-          selectionWeight: 0.75
-        }
-      },
-      {
-        id: 'relationship-retiree',
-        name: 'Relationship-Seeking Retiree',
-        age: '67',
-        occupation: 'Retired (former school principal)',
-        income: '$58,000 (pension + Social Security)',
-        desc: 'Values human element in banking above all else. Has long-standing relationships and knows personal banker by name.',
-        coreMotivation: 'Security, simplicity, and human support when things go wrong',
-        keyFears: 'Being defrauded, losing access to savings, being left behind by digital-only services',
-        typicalLanguage: '"I just want to know my money is safe," "I like to talk to a real person," "I\'ve been with this bank for 30 years"',
-        processingQuote: 'I just want to know my money is safe. I\'ve been with this bank for 30 years and like talking to real people.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'credit-union'],
-          targetAudiences: ['retail-customers'],
-          marketTypes: ['suburban', 'rural'],
-          contentSignals: {
-            positive: ['security', 'safe', 'relationship', 'personal', 'human', 'support', 'traditional', 'trust'],
-            negative: ['digital-only', 'app', 'online-only', 'fintech', 'automated']
-          },
-          selectionWeight: 0.9
-        }
-      },
-      {
-        id: 'wealth-building-parent',
-        name: 'Wealth-Building Millennial Parent',
-        age: '38',
-        occupation: 'Senior Software Engineer',
-        income: '$210,000 household',
-        desc: 'Financially literate and building wealth. Manages finances across multiple platforms, wants unified solution.',
-        coreMotivation: 'Build generational wealth and optimize tax situation',
-        keyFears: 'Market downturns, not saving enough for children\'s education, being underserved',
-        typicalLanguage: '"What\'s the fee structure?", "how does this compare to Fidelity?", "I need integration with existing accounts"',
-        processingQuote: 'What\'s the fee structure? How does this compare to Fidelity? I need this to integrate with my existing accounts.',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'neobank', 'regional-bank'],
-          targetAudiences: ['retail-customers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['wealth', 'investment', 'growth', 'education', 'tax', 'optimization', 'integration', 'portfolio'],
-            negative: ['basic', 'simple', 'starter', 'fee-free only']
-          },
-          selectionWeight: 0.8
-        }
-      },
-      {
-        id: 'credit-invisible',
-        name: 'Credit-Invisible Young Adult',
-        age: '23',
-        occupation: 'Retail Associate / Part-time student',
-        income: '$28,000',
-        desc: 'Recently became banked after being rejected by traditional banks. Part of growing segment turning to neobanks.',
-        coreMotivation: 'Build credit, achieve financial stability, qualify for apartment and car loan',
-        keyFears: 'Being rejected by institutions, accumulating unpayable debt, not understanding the system',
-        typicalLanguage: '"I\'m trying to build my credit," "I don\'t want to get hit with fees," "I just need a chance"',
-        processingQuote: 'I\'m trying to build my credit. I don\'t want to get hit with fees - I just need a chance to prove myself.',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'neobank', 'credit-union'],
-          targetAudiences: ['retail-customers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['credit building', 'no credit check', 'second chance', 'starter', 'education', 'no fees'],
-            negative: ['premium', 'high balance', 'established credit', 'investment']
-          },
-          selectionWeight: 0.7
-        }
-      }
-    ],
-    business: [
-      {
-        id: 'bootstrapped-solopreneur',
-        name: 'Bootstrapped Solopreneur',
-        age: '34',
-        business: 'Freelance Graphic Design & Brand Consulting (LLC)',
-        revenue: '$115,000',
-        desc: 'Solo entrepreneur who views bank as utility, not partner. Highly tech-forward, evaluates banking like design tools.',
-        coreMotivation: 'Minimize administrative overhead to focus on client work',
-        keyFears: 'Slow month wiping out reserves, being unable to access credit, wasting time on banking admin',
-        typicalLanguage: '"Does it integrate with QuickBooks?", "what are the fees?", "how fast does the money move?"',
-        processingQuote: 'Does it integrate with QuickBooks? What are the fees? I don\'t have time for complicated banking administration.',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'neobank'],
-          targetAudiences: ['business-customers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['integration', 'quickbooks', 'api', 'automated', 'efficiency', 'simple', 'digital'],
-            negative: ['relationship manager', 'meetings', 'in-person', 'complex procedures']
-          },
-          selectionWeight: 0.85
-        }
-      },
-      {
-        id: 'main-street-retailer',
-        name: 'Main Street Retailer',
-        age: '51',
-        business: 'Independent Women\'s Clothing Boutique',
-        revenue: '$920,000',
-        desc: 'Established business owner who weathered multiple economic cycles. Values relationship with business banker.',
-        coreMotivation: 'Grow business sustainably and maintain supportive banking relationships',
-        keyFears: 'Recession reducing spending, cash flow crunch, losing competitive edge to online retailers',
-        typicalLanguage: '"My banker knows my business," "I\'ve been with this bank for 14 years," "the fees are killing me"',
-        processingQuote: 'My banker knows my business. I\'ve been with this bank for 14 years, but these merchant service fees are killing me.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'regional-bank'],
-          targetAudiences: ['business-customers'],
-          marketTypes: ['suburban', 'rural'],
-          contentSignals: {
-            positive: ['relationship', 'banker', 'support', 'local', 'community', 'established', 'trust'],
-            negative: ['digital-only', 'automated', 'fintech', 'disrupt', 'replace banker']
-          },
-          selectionWeight: 0.9
-        }
-      },
-      {
-        id: 'startup-founder',
-        name: 'High-Growth Startup Founder',
-        age: '32',
-        business: 'SaaS startup (HR tech)',
-        revenue: '$1.8M ARR',
-        desc: 'Venture-backed founder navigating complex financial needs of scaling company. Thinks in runway, burn rate, unit economics.',
-        coreMotivation: 'Scale company efficiently and manage cash runway carefully',
-        keyFears: 'Running out of runway before next funding, banking failure disrupting operations',
-        typicalLanguage: '"What\'s the API documentation?", "we need multi-user access," "how does this scale?"',
-        processingQuote: 'What\'s the API documentation? We need multi-user access and real-time data. How does this scale with our growth?',
-        autoMatchCriteria: {
-          organizationTypes: ['fintech', 'neobank'],
-          targetAudiences: ['business-customers'],
-          marketTypes: ['urban'],
-          contentSignals: {
-            positive: ['api', 'scale', 'growth', 'integration', 'real-time', 'automation', 'venture', 'startup'],
-            negative: ['traditional', 'manual processes', 'relationship manager', 'branch banking']
-          },
-          selectionWeight: 0.9
-        }
-      },
-      {
-        id: 'minority-business-owner',
-        name: 'Minority-Owned Business Owner',
-        age: '41',
-        business: 'Commercial Cleaning Services',
-        revenue: '$380,000',
-        desc: 'Black business owner who faced barriers to capital access. Built successful business through careful cash flow management.',
-        coreMotivation: 'Grow business, access fair credit, find genuine banking support',
-        keyFears: 'Being denied credit due to bias, unable to compete for larger contracts, not being taken seriously',
-        typicalLanguage: '"I\'ve been turned down before," "I need a bank that actually wants my business," "I\'ve built this myself"',
-        processingQuote: 'I\'ve been turned down before. I need a bank that actually wants my business and understands what I\'ve built.',
-        autoMatchCriteria: {
-          organizationTypes: ['community-bank', 'credit-union'],
-          targetAudiences: ['business-customers'],
-          marketTypes: ['urban', 'suburban'],
-          contentSignals: {
-            positive: ['minority-owned', 'diversity', 'inclusion', 'support', 'opportunity', 'fair', 'community'],
-            negative: ['traditional requirements', 'standard credit', 'exclusive']
-          },
-          selectionWeight: 0.85
-        }
-      }
-    ]
-};
 
 function loadPersonas(segment) {
   const personasGrid = document.getElementById('personas-grid');
