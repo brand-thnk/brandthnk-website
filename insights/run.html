@@ -714,9 +714,9 @@
       <h2 class="form-section-title">Select Personas to Interview</h2>
 
       <div class="persona-segments">
-        <div class="segment-toggle active" data-segment="consumer">Consumer Banking</div>
+        <div class="segment-toggle active" data-segment="fintech">B2B Fintech Buyers</div>
+        <div class="segment-toggle" data-segment="consumer">Consumer Banking</div>
         <div class="segment-toggle" data-segment="business">Small Business Banking</div>
-        <div class="segment-toggle" data-segment="fintech">B2B Fintech Buyers</div>
       </div>
 
       <div class="personas-grid" id="personas-grid">
@@ -728,7 +728,8 @@
     <div class="form-section">
       <h2 class="form-section-title">Market Type</h2>
       <div class="persona-segments">
-        <div class="segment-toggle active" data-market="suburban">Suburban</div>
+        <div class="segment-toggle active" data-market="na">N/A</div>
+        <div class="segment-toggle" data-market="suburban">Suburban</div>
         <div class="segment-toggle" data-market="urban">Urban</div>
         <div class="segment-toggle" data-market="rural">Rural</div>
       </div>
@@ -816,15 +817,15 @@
 // Research tool JavaScript
 let selectedModule = null;
 let selectedPersonas = [];
-let selectedMarket = 'suburban';
-let currentPersonaSegment = 'consumer';
+let selectedMarket = 'na';
+let currentPersonaSegment = 'fintech';
 
 // Module selection
 document.addEventListener('DOMContentLoaded', function() {
   setupModuleSelection();
   setupPersonaSelection();
   setupMarketSelection();
-  loadPersonas('consumer');
+  loadPersonas('fintech');
 });
 
 function setupModuleSelection() {
@@ -914,7 +915,7 @@ function loadPersonas(segment) {
       <label for="${persona.id}">
         <div class="persona-name">${persona.name}</div>
         <div class="persona-desc">${persona.desc}</div>
-        <a href="/insights/personas/${persona.id}.html" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Detail</a>
+        <a href="/insights/personas.html#${persona.name.toLowerCase().replace(/\s+/g, '-')}" target="_blank" class="persona-detail-link" onclick="event.stopPropagation();">View Full Detail</a>
       </label>
     </div>
   `).join('');
@@ -1306,8 +1307,8 @@ function resetTool() {
   // Reset all state
   selectedModule = null;
   selectedPersonas = [];
-  selectedMarket = 'suburban';
-  currentPersonaSegment = 'consumer';
+  selectedMarket = 'na';
+  currentPersonaSegment = 'fintech';
 
   // Reset UI
   document.querySelectorAll('.module-card').forEach(card => card.classList.remove('selected'));
