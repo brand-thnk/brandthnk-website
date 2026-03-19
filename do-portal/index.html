@@ -244,44 +244,36 @@
       margin-bottom: 0;
     }
 
-
-    .next-steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 15px;
-    }
-
-    .step-item {
+    .action-item {
       background: var(--white);
-      border: 1px solid var(--light-gray);
-      border-radius: 6px;
-      padding: 15px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
     }
 
-    .step-number {
-      background: var(--black);
-      color: var(--white);
+    .action-title {
       font-family: 'Roboto Slab', serif;
-      font-weight: 700;
-      font-size: 12px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
     }
 
-    .step-text {
+    .action-description {
       font-size: 14px;
-      line-height: 1.5;
       color: var(--gray);
+      margin-bottom: 8px;
+      line-height: 1.5;
     }
+
+    .action-meta {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+
 
     /* ADD DISCUSSION BUTTON */
     .add-discussion-btn {
@@ -318,12 +310,8 @@
         padding: 0 20px;
       }
 
-      .next-steps-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .step-item {
-        padding: 12px;
+      .action-item {
+        padding: 15px;
       }
     }
   </style>
@@ -360,37 +348,43 @@
       <div class="dashboard-section critical-actions">
         <div class="section-header">
           <h2 class="section-title">Critical Next Actions</h2>
-          <p class="section-subtitle">Priority action items from Visibility Profile</p>
+          <p class="section-subtitle">Priority action items across all strategy deliverables</p>
         </div>
         <div class="section-content">
-          <!-- Recommended Next Steps -->
-          <h3 style="font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 600; margin-bottom: 20px; color: var(--black);">Recommended Next Steps</h3>
+          <div class="action-item">
+            <div class="action-title">CU 2.0 Provider Guide</div>
+            <div class="action-description">Contact info@cu-2.com to get DO listed in the Account Opening and Onboarding Provider Guide. Zero-effort, high-value evergreen placement.</div>
+            <div class="action-meta">Owner: DO | Deadline: March 30</div>
+          </div>
 
-          <div class="next-steps-grid">
-            <div class="step-item">
-              <div class="step-number">1</div>
-              <div class="step-text">Present plan at March 19 working session. Align on priority thought leadership topic.</div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">2</div>
-              <div class="step-text">Update Nate's LinkedIn profile package. Target: ASAP, before outreach.</div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">3</div>
-              <div class="step-text">Schedule voice capture call with Nate. Target: week of March 23.</div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">4</div>
-              <div class="step-text">Deliver analyst update template. Target: week of March 23.</div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">5</div>
-              <div class="step-text">Draft first Nate's Notebook LinkedIn post. Target: week of March 30.</div>
-            </div>
-            <div class="step-item">
-              <div class="step-number">6</div>
-              <div class="step-text">Build analyst target list and begin monthly updates. Target: April 1.</div>
-            </div>
+          <div class="action-item">
+            <div class="action-title">Pitch CU 2.0 Podcast</div>
+            <div class="action-description">Pitch Nate for Kirk Drake's "Fintech Friday" or "Mastermind" podcast. Lead with Segmint/Alkami story and "Before You Deploy AI, Connect Your Data" thesis.</div>
+            <div class="action-meta">Owner: DO | Deadline: April 7</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Draft BankThink Submission</div>
+            <div class="action-description">Draft "Before You Buy AI, Fix Your Data" for American Banker BankThink. Target May publication. Submit to Victoria Finkle per BankThink guidelines.</div>
+            <div class="action-meta">Owner: DO | Deadline: April 15</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Deliver analyst update template</div>
+            <div class="action-description">Create template for monthly analyst updates to build systematic analyst relations program.</div>
+            <div class="action-meta">Owner: BrandThnk | Target: week of March 23</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Draft first Nate's Notebook LinkedIn post</div>
+            <div class="action-description">Create inaugural post for Nate's thought leadership series based on chosen topic and voice capture insights.</div>
+            <div class="action-meta">Owner: DO | Target: week of March 30</div>
+          </div>
+
+          <div class="action-item">
+            <div class="action-title">Build analyst target list and begin monthly updates</div>
+            <div class="action-description">Compile target list of key fintech and banking analysts and initiate monthly update cadence from Nate.</div>
+            <div class="action-meta">Owner: DO | Target: April 1</div>
           </div>
         </div>
       </div>
