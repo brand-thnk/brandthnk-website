@@ -2112,51 +2112,77 @@ function simulateProgress() {
   const totalSteps = selectedPersonas.length + 1;
 
   function processStep() {
-    console.log(`Processing step ${currentStep} of ${totalSteps}`);
+    console.log(`Processing step ${currentStep} of ${totalSteps}`, {
+      currentStep,
+      totalSteps,
+      selectedPersonas: selectedPersonas.length,
+      isSynthesis: currentStep === selectedPersonas.length
+    });
 
-    // Mark current step as active
-    const stepElement = document.getElementById(`step-${currentStep === selectedPersonas.length ? 'synthesis' : currentStep}`);
+    // Determine if this is the synthesis step
+    const isSynthesisStep = currentStep === selectedPersonas.length;
+    const stepElement = document.getElementById(isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`);
+
+    console.log(`Step element found: ${!!stepElement}, ID: ${isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`}`);
+
     if (stepElement) {
       stepElement.classList.add('active');
 
-      // Update quote if not on synthesis step
-      if (currentStep < selectedPersonas.length && personaQuotes[currentStep]) {
+      // Update quote based on step type
+      if (isSynthesisStep) {
+        console.log('Displaying synthesis message');
+        quoteDisplay.innerHTML = `
+          <div class="quote-text">Analyzing patterns across all personas...</div>
+          <div class="quote-attribution">Cross-persona synthesis in progress</div>
+        `;
+      } else if (personaQuotes[currentStep]) {
+        console.log(`Displaying quote for persona ${currentStep}`);
         const quote = personaQuotes[currentStep];
         quoteDisplay.innerHTML = `
           <div class="quote-text">"${quote.text}"</div>
           <div class="quote-attribution">— ${quote.author}${quote.context ? ` (${quote.context})` : ''}</div>
         `;
       }
+    } else {
+      console.error(`Step element not found for step ${currentStep}`, {
+        isSynthesisStep,
+        expectedId: isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`
+      });
     }
 
     // After 2 seconds, mark as completed and move to next
     setTimeout(() => {
+      console.log(`Completing step ${currentStep}`);
+
       if (stepElement) {
         stepElement.classList.remove('active');
         stepElement.classList.add('completed');
       }
 
       currentStep++;
+      console.log(`Advanced to step ${currentStep}, totalSteps: ${totalSteps}`);
 
-      // Show synthesis message on final step
-      if (currentStep === totalSteps - 1) {
-        console.log('Starting synthesis step');
+      if (currentStep >= totalSteps) {
+        // Research is complete - generate report
+        console.log('All steps complete, generating report');
         quoteDisplay.innerHTML = `
-          <div class="quote-text">Analyzing patterns across all personas...</div>
-          <div class="quote-attribution">Cross-persona synthesis in progress</div>
+          <div class="quote-text" style="color: #4CAF50; font-weight: bold;">✅ Research Complete!</div>
+          <div class="quote-attribution">Generating your executive-ready report...</div>
         `;
-        // Process synthesis step
-        setTimeout(() => processStep(), 500);
-      } else if (currentStep >= totalSteps) {
-        // Complete research and show report
-        console.log('Research complete, generating report');
         setTimeout(() => {
-          generateReport();
-          nextScreen('report-screen');
-        }, 1500);
+          try {
+            console.log('Calling generateReport()');
+            generateReport();
+            console.log('Moving to report screen');
+            nextScreen('report-screen');
+          } catch (error) {
+            console.error('Report generation error:', error);
+            quoteDisplay.innerHTML = `<div style="color: #f44336;">Report generation failed: ${error.message}</div>`;
+          }
+        }, 2000);
       } else {
-        // Continue to next persona
-        console.log('Moving to next step');
+        // Continue to next step
+        console.log(`Continuing to step ${currentStep}`);
         setTimeout(() => processStep(), 500);
       }
     }, 2000);
@@ -2187,9 +2213,21 @@ function addMessageField() {
 }
 
 function generateReport() {
+  console.log('generateReport() called');
+  console.log('selectedPersonas:', selectedPersonas);
+
   const reportContent = document.getElementById('report-content');
+  console.log('reportContent element found:', !!reportContent);
+
+  if (!reportContent) {
+    throw new Error('Report content element not found');
+  }
+
   const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+  console.log('Total personas available:', allPersonas.length);
+
   const interviewedPersonas = selectedPersonas.map(id => allPersonas.find(p => p.id === id)).filter(Boolean);
+  console.log('Interviewed personas found:', interviewedPersonas.length, interviewedPersonas.map(p => p.name));
 
   const reportHTML = `
     <div class="report-section">
@@ -2258,7 +2296,9 @@ function generateReport() {
     </div>
   `;
 
+  console.log('Setting report HTML content...');
   reportContent.innerHTML = reportHTML;
+  console.log('Report generated successfully!');
 }
 
 function generateFindingsForPersonas(personas) {
