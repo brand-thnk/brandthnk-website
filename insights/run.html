@@ -1797,8 +1797,23 @@ function startAutomatedResearch() {
   const personaSelector = new AutomatedPersonaSelector();
   const selectedResults = personaSelector.selectPersonas(businessParams);
 
+  console.log('Business params:', businessParams);
+  console.log('Selected results:', selectedResults);
+
   // Set the selectedPersonas array with the automated selections
   selectedPersonas = selectedResults.map(result => result.persona.id);
+
+  // Fallback if no personas selected
+  if (selectedPersonas.length === 0) {
+    console.error('No personas selected by algorithm, using fallback');
+    // Fallback to a few default personas based on segment
+    const primarySegment = personaSelector.determinePrimarySegment(businessParams);
+    const allPersonas = personaSelector.getAllPersonas();
+    const segmentPersonas = allPersonas[primarySegment] || allPersonas.fintech;
+    selectedPersonas = segmentPersonas.slice(0, 3).map(p => p.id);
+  }
+
+  console.log('Final selected personas:', selectedPersonas);
 
   // Store selection reasoning for report generation
   window.automatedSelectionResults = selectedResults;
@@ -2039,6 +2054,8 @@ function simulateProgress() {
   const progressSteps = document.getElementById('progress-steps');
   const quoteDisplay = document.getElementById('quote-display');
 
+  console.log('Starting progress simulation with personas:', selectedPersonas);
+
   // Get authentic quotes from selected personas
   function getPersonaQuotes() {
     return selectedPersonas.map(personaId => {
@@ -2064,12 +2081,19 @@ function simulateProgress() {
   }
 
   // Create progress steps based on selected personas
-  const steps = selectedPersonas.map((persona, index) => `
-    <div class="progress-step">
-      <div class="progress-circle" id="step-${index}">${index + 1}</div>
-      <div class="progress-label">${persona.replace('-', ' ')}</div>
-    </div>
-  `);
+  const steps = selectedPersonas.map((personaId, index) => {
+    // Find the persona to get the proper name
+    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+    const persona = allPersonas.find(p => p.id === personaId);
+    const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    return `
+      <div class="progress-step">
+        <div class="progress-circle" id="step-${index}">${index + 1}</div>
+        <div class="progress-label">${displayName}</div>
+      </div>
+    `;
+  });
 
   steps.push(`
     <div class="progress-step">
@@ -2088,6 +2112,8 @@ function simulateProgress() {
   const totalSteps = selectedPersonas.length + 1;
 
   function processStep() {
+    console.log(`Processing step ${currentStep} of ${totalSteps}`);
+
     // Mark current step as active
     const stepElement = document.getElementById(`step-${currentStep === selectedPersonas.length ? 'synthesis' : currentStep}`);
     if (stepElement) {
@@ -2114,6 +2140,7 @@ function simulateProgress() {
 
       // Show synthesis message on final step
       if (currentStep === totalSteps - 1) {
+        console.log('Starting synthesis step');
         quoteDisplay.innerHTML = `
           <div class="quote-text">Analyzing patterns across all personas...</div>
           <div class="quote-attribution">Cross-persona synthesis in progress</div>
@@ -2122,12 +2149,14 @@ function simulateProgress() {
         setTimeout(() => processStep(), 500);
       } else if (currentStep >= totalSteps) {
         // Complete research and show report
+        console.log('Research complete, generating report');
         setTimeout(() => {
           generateReport();
           nextScreen('report-screen');
         }, 1500);
       } else {
         // Continue to next persona
+        console.log('Moving to next step');
         setTimeout(() => processStep(), 500);
       }
     }, 2000);

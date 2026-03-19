@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debug Research System</title>
+<style>
+  body { font-family: 'Roboto Mono', monospace; margin: 40px; line-height: 1.6; }
+  .debug-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+  button { padding: 10px 20px; background: #FFEB3B; color: #000; border: 2px solid #000; cursor: pointer; margin: 5px; }
+  button:hover { background: #000; color: #FFEB3B; }
+  .debug-output { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 4px; white-space: pre-wrap; font-family: monospace; }
+  .error { color: #f44336; font-weight: bold; }
+  .success { color: #4CAF50; font-weight: bold; }
+  .progress-step { margin: 10px 0; padding: 10px; border-left: 4px solid #FFEB3B; }
+  .active { background: #e8f5e8; border-left-color: #4CAF50; }
+  .completed { background: #f0f0f0; border-left-color: #ccc; }
+</style>
+</head>
+<body>
+
+<h1>🔧 Debug Research System</h1>
+
+<div class="debug-section">
+  <h3>Step 1: Test Persona Library</h3>
+  <button onclick="testPersonaLibrary()">Test Persona Library</button>
+  <div id="persona-test-output" class="debug-output" style="display:none;"></div>
+</div>
+
+<div class="debug-section">
+  <h3>Step 2: Test Automated Selection</h3>
+  <button onclick="testAutomatedSelection()">Test Persona Selection Algorithm</button>
+  <div id="selection-test-output" class="debug-output" style="display:none;"></div>
+</div>
+
+<div class="debug-section">
+  <h3>Step 3: Test Progress Simulation</h3>
+  <button onclick="testProgressSimulation()">Test Progress Flow</button>
+  <div id="progress-test-output" class="debug-output" style="display:none;"></div>
+  <div id="progress-steps" style="margin-top: 20px;"></div>
+  <div id="quote-display" style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 4px; display:none;"></div>
+</div>
+
+<div class="debug-section">
+  <h3>Step 4: Manual Test</h3>
+  <button onclick="runManualTest()">Run Complete Test Flow</button>
+  <div id="manual-test-output" class="debug-output" style="display:none;"></div>
+</div>
+
+<script>
+// Mock personas for testing (minimal version)
+window.PERSONAS = {
+  consumer: [
+    { id: 'c1-mobile-first-momentum-builder', name: 'Mobile-First Momentum Builder', processingQuote: 'I need tools that work as well as my other apps - fast and transparent.' },
+    { id: 'c2-guided-opportunity-seeker', name: 'Guided Opportunity Seeker', processingQuote: 'I need to understand exactly how this works and what happens if I make a mistake.' }
+  ],
+  business: [
+    { id: 's1-time-starved-solo-owner', name: 'Time-Starved Solo Owner', processingQuote: 'I need banking that takes five minutes to set up and runs itself.' },
+    { id: 's2-growth-oriented-founder', name: 'Growth-Oriented Founder', processingQuote: 'I need banking that grows with me and never becomes the bottleneck.' }
+  ],
+  fintech: [
+    { id: 'b1-bank-head-digital-transformation', name: 'Bank Head of Digital Transformation', processingQuote: 'We need solutions that transform our capabilities without disrupting operations.' },
+    { id: 'b2-enterprise-cio-cto', name: 'Enterprise CIO/CTO', processingQuote: 'Any technology must meet our security and architectural standards before consideration.' }
+  ]
+};
+
+// Mock AutomatedPersonaSelector
+class AutomatedPersonaSelector {
+  constructor() {
+    this.weights = {
+      organizationType: 0.4,
+      targetAudience: 0.3,
+      marketType: 0.2,
+      contentAnalysis: 0.1
+    };
+  }
+
+  selectPersonas(businessParams) {
+    console.log('Selecting personas with params:', businessParams);
+
+    const primarySegment = this.determinePrimarySegment(businessParams);
+    const allPersonas = this.getAllPersonas();
+    const segmentPersonas = allPersonas[primarySegment] || allPersonas.fintech;
+
+    // Return top 3 personas with mock scoring
+    return segmentPersonas.slice(0, 3).map((persona, index) => ({
+      persona: persona,
+      score: 0.9 - (index * 0.1),
+      reasoning: `Selected for ${primarySegment} segment alignment`,
+      confidence: index === 0 ? 'high' : index === 1 ? 'medium' : 'low'
+    }));
+  }
+
+  determinePrimarySegment(businessParams) {
+    if (businessParams.organizationType === 'fintech' || businessParams.targetAudience === 'fintech-buyers') {
+      return 'fintech';
+    }
+    if (businessParams.targetAudience === 'business-customers') {
+      return 'business';
+    }
+    return 'consumer';
+  }
+
+  getAllPersonas() {
+    return window.PERSONAS;
+  }
+}
+
+let selectedPersonas = [];
+let currentDebugStep = 0;
+
+function testPersonaLibrary() {
+  const output = document.getElementById('persona-test-output');
+  output.style.display = 'block';
+
+  let result = '=== PERSONA LIBRARY TEST ===\n\n';
+
+  try {
+    const totalPersonas = Object.values(window.PERSONAS).reduce((sum, arr) => sum + arr.length, 0);
+    result += `✅ Total personas loaded: ${totalPersonas}\n\n`;
+
+    Object.entries(window.PERSONAS).forEach(([segment, personas]) => {
+      result += `${segment.toUpperCase()} (${personas.length} personas):\n`;
+      personas.forEach((persona, index) => {
+        result += `  ${index + 1}. ${persona.name} (ID: ${persona.id})\n`;
+        result += `     Quote: "${persona.processingQuote}"\n\n`;
+      });
+    });
+
+    output.className = 'debug-output success';
+  } catch (error) {
+    result += `❌ ERROR: ${error.message}\n`;
+    output.className = 'debug-output error';
+  }
+
+  output.textContent = result;
+}
+
+function testAutomatedSelection() {
+  const output = document.getElementById('selection-test-output');
+  output.style.display = 'block';
+
+  let result = '=== AUTOMATED SELECTION TEST ===\n\n';
+
+  try {
+    const testParams = {
+      organizationType: 'fintech',
+      targetAudience: 'bank-executives',
+      marketType: 'urban',
+      researchContent: 'API platform for digital transformation'
+    };
+
+    result += `Test parameters: ${JSON.stringify(testParams, null, 2)}\n\n`;
+
+    const selector = new AutomatedPersonaSelector();
+    const selectedResults = selector.selectPersonas(testParams);
+
+    result += `✅ Selected ${selectedResults.length} personas:\n\n`;
+
+    selectedResults.forEach((result, index) => {
+      result += `${index + 1}. ${result.persona.name}\n`;
+      result += `   Score: ${result.score}\n`;
+      result += `   Confidence: ${result.confidence}\n`;
+      result += `   Reasoning: ${result.reasoning}\n\n`;
+    });
+
+    // Set selectedPersonas for next test
+    selectedPersonas = selectedResults.map(r => r.persona.id);
+    result += `✅ selectedPersonas array set: [${selectedPersonas.join(', ')}]\n`;
+
+    output.className = 'debug-output success';
+  } catch (error) {
+    result += `❌ ERROR: ${error.message}\n`;
+    output.className = 'debug-output error';
+  }
+
+  output.textContent = result;
+}
+
+function testProgressSimulation() {
+  const output = document.getElementById('progress-test-output');
+  output.style.display = 'block';
+
+  let result = '=== PROGRESS SIMULATION TEST ===\n\n';
+
+  if (selectedPersonas.length === 0) {
+    selectedPersonas = ['b1-bank-head-digital-transformation', 'b2-enterprise-cio-cto'];
+    result += `⚠️  No personas selected, using fallback: [${selectedPersonas.join(', ')}]\n\n`;
+  }
+
+  result += `Starting progress with ${selectedPersonas.length} personas:\n`;
+  selectedPersonas.forEach((id, index) => {
+    result += `  ${index + 1}. ${id}\n`;
+  });
+  result += '\n';
+
+  try {
+    simulateProgressDebug();
+    result += '✅ Progress simulation started successfully\n';
+    result += 'Watch the progress steps below...\n';
+    output.className = 'debug-output success';
+  } catch (error) {
+    result += `❌ ERROR: ${error.message}\n`;
+    output.className = 'debug-output error';
+  }
+
+  output.textContent = result;
+}
+
+function simulateProgressDebug() {
+  const progressSteps = document.getElementById('progress-steps');
+  const quoteDisplay = document.getElementById('quote-display');
+
+  quoteDisplay.style.display = 'block';
+
+  console.log('Starting debug progress simulation with personas:', selectedPersonas);
+
+  // Create progress steps
+  const steps = selectedPersonas.map((personaId, index) => {
+    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+    const persona = allPersonas.find(p => p.id === personaId);
+    const displayName = persona ? persona.name : personaId;
+
+    return `
+      <div class="progress-step" id="step-${index}">
+        <strong>${index + 1}. ${displayName}</strong>
+      </div>
+    `;
+  });
+
+  steps.push(`
+    <div class="progress-step" id="step-synthesis">
+      <strong>S. Cross-Persona Synthesis</strong>
+    </div>
+  `);
+
+  progressSteps.innerHTML = steps.join('');
+
+  // Simulate progress
+  let currentStep = 0;
+  const totalSteps = selectedPersonas.length + 1;
+
+  function processStepDebug() {
+    console.log(`Processing step ${currentStep} of ${totalSteps}`);
+
+    // Mark current step as active
+    const stepElement = document.getElementById(`step-${currentStep === selectedPersonas.length ? 'synthesis' : currentStep}`);
+    if (stepElement) {
+      stepElement.classList.add('active');
+
+      // Show quote
+      if (currentStep < selectedPersonas.length) {
+        const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+        const persona = allPersonas.find(p => p.id === selectedPersonas[currentStep]);
+        if (persona) {
+          quoteDisplay.innerHTML = `
+            <div style="font-style: italic;">"${persona.processingQuote}"</div>
+            <div style="margin-top: 10px; font-weight: bold;">— ${persona.name}</div>
+          `;
+        }
+      } else {
+        quoteDisplay.innerHTML = `
+          <div style="font-style: italic;">Analyzing patterns across all personas...</div>
+          <div style="margin-top: 10px; font-weight: bold;">Cross-persona synthesis in progress</div>
+        `;
+      }
+    }
+
+    // After 2 seconds, mark as completed and move to next
+    setTimeout(() => {
+      if (stepElement) {
+        stepElement.classList.remove('active');
+        stepElement.classList.add('completed');
+      }
+
+      currentStep++;
+
+      if (currentStep === totalSteps - 1) {
+        console.log('Starting synthesis step');
+        setTimeout(() => processStepDebug(), 500);
+      } else if (currentStep >= totalSteps) {
+        console.log('Research complete!');
+        quoteDisplay.innerHTML = `
+          <div style="color: #4CAF50; font-weight: bold;">✅ Research Complete!</div>
+          <div>Report generation would start now...</div>
+        `;
+      } else {
+        console.log('Moving to next step');
+        setTimeout(() => processStepDebug(), 500);
+      }
+    }, 2000);
+  }
+
+  // Start the process
+  processStepDebug();
+}
+
+function runManualTest() {
+  const output = document.getElementById('manual-test-output');
+  output.style.display = 'block';
+
+  let result = '=== COMPLETE FLOW TEST ===\n\n';
+
+  try {
+    // Step 1: Test persona library
+    result += '1. Testing persona library...\n';
+    const totalPersonas = Object.values(window.PERSONAS).reduce((sum, arr) => sum + arr.length, 0);
+    result += `   ✅ ${totalPersonas} personas loaded\n\n`;
+
+    // Step 2: Test selection
+    result += '2. Testing automated selection...\n';
+    const testParams = {
+      organizationType: 'fintech',
+      targetAudience: 'bank-executives',
+      marketType: 'urban',
+      researchContent: 'API platform'
+    };
+
+    const selector = new AutomatedPersonaSelector();
+    const selectedResults = selector.selectPersonas(testParams);
+    selectedPersonas = selectedResults.map(r => r.persona.id);
+    result += `   ✅ Selected ${selectedPersonas.length} personas\n\n`;
+
+    // Step 3: Test progress
+    result += '3. Starting progress simulation...\n';
+    result += `   ✅ Will process ${selectedPersonas.length} personas + synthesis\n\n`;
+
+    result += 'Starting automated progress simulation...\n';
+
+    // Start the actual simulation
+    setTimeout(() => simulateProgressDebug(), 1000);
+
+    output.className = 'debug-output success';
+  } catch (error) {
+    result += `❌ ERROR: ${error.message}\n`;
+    output.className = 'debug-output error';
+  }
+
+  output.textContent = result;
+}
+
+// Auto-run library test on page load
+window.onload = function() {
+  testPersonaLibrary();
+}
+
+</script>
+
+</body>
+</html>
