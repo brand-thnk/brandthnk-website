@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persona Maturity Assessment | Horicon Bank Portal</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .main-content {
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--brandthnk-yellow);
+    }
+
+    .assessment-overview {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .assessment-overview h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .strengths-weaknesses {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .strength-section, .weakness-section {
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .strength-section {
+      border-left: 4px solid #4CAF50;
+    }
+
+    .weakness-section {
+      border-left: 4px solid #FF5722;
+    }
+
+    .strength-section h3 {
+      color: #4CAF50;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .weakness-section h3 {
+      color: #FF5722;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .maturity-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--brandthnk-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .maturity-table th,
+    .maturity-table td {
+      padding: 1rem;
+      text-align: left;
+      border: 1px solid var(--brandthnk-light-gray);
+      vertical-align: top;
+    }
+
+    .maturity-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .maturity-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .maturity-table td {
+      font-size: 0.85rem;
+    }
+
+    .persona-segments {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .segment-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .segment-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .retail-personas, .business-personas {
+      margin-bottom: 2rem;
+    }
+
+    .retail-personas h4, .business-personas h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+      font-size: 1.1rem;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .persona-item {
+      background: var(--brandthnk-off-white);
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 3px solid var(--brandthnk-yellow);
+    }
+
+    .persona-code {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      font-size: 0.875rem;
+    }
+
+    .persona-name {
+      font-size: 0.85rem;
+      color: var(--brandthnk-gray);
+      margin-top: 0.25rem;
+    }
+
+    .gap-highlight {
+      background: var(--brandthnk-yellow);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    .gap-highlight h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .recommendation-box {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .recommendation-box h3 {
+      color: var(--brandthnk-yellow);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .recommendation-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .recommendation-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--brandthnk-gray);
+    }
+
+    .recommendation-list li:last-child {
+      border-bottom: none;
+    }
+
+    .recommendation-list li::before {
+      content: "→";
+      color: var(--brandthnk-yellow);
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    @media (max-width: 1024px) {
+      .strengths-weaknesses {
+        grid-template-columns: 1fr;
+      }
+
+      .persona-segments {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+
+      .maturity-table {
+        font-size: 0.75rem;
+      }
+
+      .maturity-table th,
+      .maturity-table td {
+        padding: 0.5rem;
+      }
+
+      .persona-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Horicon Bank Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-engagement-assessment.html" class="nav-link">Pre-Engagement Assessment</a>
+        <a href="persona-maturity-assessment.html" class="nav-link active">Persona Maturity Assessment</a>
+        <a href="stakeholder-interviews.html" class="nav-link">Stakeholder Interviews</a>
+        <a href="competitive-intelligence.html" class="nav-link">Competitive Intelligence</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>Persona Maturity <span class="brand-accent">Assessment</span></h1>
+      <p>Pre-kickoff assessment • February 17, 2026</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="assessment-overview">
+      <h3>Overall Assessment</h3>
+      <p>Horicon has good building blocks but hasn't yet done the synthesis work to turn segmentation data into actionable personas.</p>
+    </div>
+
+    <div class="strengths-weaknesses">
+      <div class="strength-section">
+        <h3>✅ What Horicon Has (Strengths)</h3>
+
+        <h4>Strategy & Planning</h4>
+        <ul>
+          <li>Clear vision: "persona-led growth engine"</li>
+          <li>Strategic themes defined (Customer Experience, Community Engagement, Competitive Differentiation, Tech Integration)</li>
+          <li>Operating model emerging (Themes → Programs → Campaigns)</li>
+          <li>Governance structure (monthly standups, quarterly reviews)</li>
+          <li>Specific campaign calendar with KPIs</li>
+          <li>130th Anniversary as unifying narrative — smart positioning</li>
+        </ul>
+
+        <h4>Tech Stack</h4>
+        <ul>
+          <li>Total Expert, Alkami, Segmint, AnalyzerIQ, Vertical IQ</li>
+          <li>They're not flying blind on data</li>
+        </ul>
+
+        <h4>Segmentation Work</h4>
+        <ul>
+          <li>5 consumer life stages (Wealthy Achievers, Upscale Empty Nesters, Midscale Matures, Flourishing Families, Upwardly Mobile)</li>
+          <li>3 targeted retail segments (Leasing Luxury, School Daze, Fiscal Rookies)</li>
+          <li>5 business sectors (Professional Services, Manufacturing, Real Estate, Agriculture, Other Services)</li>
+        </ul>
+      </div>
+
+      <div class="weakness-section">
+        <h3>⚠️ Key Gaps</h3>
+
+        <table class="maturity-table">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Best Practice</th>
+              <th>Horicon Today</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Consolidation</strong></td>
+              <td>Synthesized down to 3–4 core personas</td>
+              <td>Still ~13 segments (5 life stages + 3 retail + 5 business)</td>
+            </tr>
+            <tr>
+              <td><strong>Persona type</strong></td>
+              <td>Synthesized, human-centered</td>
+              <td>Segmentation tool output (life stages, NAICS codes)</td>
+            </tr>
+            <tr>
+              <td><strong>Journey connection</strong></td>
+              <td>Each persona maps to specific journeys</td>
+              <td>Journeys mentioned but not mapped to personas</td>
+            </tr>
+            <tr>
+              <td><strong>Aspiration framing</strong></td>
+              <td>Goals and narrative arc before demographics</td>
+              <td>Demographically driven</td>
+            </tr>
+            <tr>
+              <td><strong>Operating model</strong></td>
+              <td>Cross-functional activation</td>
+              <td>Marketing-only hierarchy (Themes → Programs → Campaigns)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gap-highlight">
+      <h3>The Real Gap</h3>
+      <p>Horicon has segments, not personas.</p>
+      <p>The current work describes who customers are demographically but doesn't answer:</p>
+      <ul>
+        <li>What are they trying to accomplish?</li>
+        <li>What's the narrative arc of their financial life?</li>
+        <li>How does Horicon fit into their story, not just their wallet?</li>
+      </ul>
+      <p><strong>The discipline of consolidation and aspiration-first framing is the work that hasn't been done yet.</strong></p>
+    </div>
+
+    <section class="section">
+      <h2 class="section-header">Current Persona Structure</h2>
+
+      <div class="retail-personas">
+        <h4>Retail Personas (Top 5 Target Life Stages)</h4>
+        <div class="persona-grid">
+          <div class="persona-item">
+            <div class="persona-code">M2</div>
+            <div class="persona-name">Wealthy Achievers</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">M3</div>
+            <div class="persona-name">Upscale Empty Nesters</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">M4</div>
+            <div class="persona-name">Midscale Matures</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">F1</div>
+            <div class="persona-name">Flourishing Families</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">Y1</div>
+            <div class="persona-name">Upwardly Mobile</div>
+          </div>
+        </div>
+
+        <h4>Top 3 Targeted Segments</h4>
+        <div class="persona-grid">
+          <div class="persona-item">
+            <div class="persona-code">10 - Leasing Luxury</div>
+            <div class="persona-name">M2 Wealthy Achievers</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">14 - School Daze</div>
+            <div class="persona-name">F1 Flourishing Families</div>
+          </div>
+          <div class="persona-item">
+            <div class="persona-code">19 - Fiscal Rookies</div>
+            <div class="persona-name">Y1 Upwardly Mobile</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="business-personas">
+        <h4>Business & Industry Personas (Top 5 Business Sectors)</h4>
+        <div class="persona-segments">
+          <div class="segment-card">
+            <h4>55 - Professional, Scientific, and Technical Services</h4>
+            <p><strong>Special Concentrations:</strong> Legal Services, Accounting, Tax Preparation — Centers of Influence</p>
+          </div>
+          <div class="segment-card">
+            <h4>31–33 - Manufacturing</h4>
+            <p>Core manufacturing sector with established relationships</p>
+          </div>
+          <div class="segment-card">
+            <h4>53 - Real Estate Rental and Leasing</h4>
+            <p><strong>Special Concentrations:</strong> Commercial Real Estate</p>
+          </div>
+          <div class="segment-card">
+            <h4>11 - Agriculture, Forestry, Fishing and Hunting</h4>
+            <p><strong>Special Concentrations:</strong> Agriculture</p>
+          </div>
+          <div class="segment-card">
+            <h4>81 - Other Services</h4>
+            <p><strong>Special Concentrations:</strong> Non-Profits, Religious Organizations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="recommendation-box">
+      <h3>Validation Sprint Opportunity</h3>
+      <p>This is exactly what the engagement is for. Horicon has strong raw materials — the goal is to help them:</p>
+      <ul class="recommendation-list">
+        <li>Synthesize segments into 3–4 actionable personas</li>
+        <li>Add aspirational framing</li>
+        <li>Connect personas to journeys</li>
+        <li>Clarify the internal operating model beyond marketing</li>
+      </ul>
+      <p style="margin-top: 1.5rem;"><strong>Good starting point. Not starting from zero.</strong></p>
+    </div>
+
+    <section class="section">
+      <h2 class="section-header">Persona Development Strategy</h2>
+
+      <div class="persona-segments">
+        <div class="segment-card">
+          <h4>Purpose Statement</h4>
+          <p>The persona strategy focuses on understanding customer needs and behaviors to create personalized experiences that build trust and loyalty. Three stated goals: humanizing customer experience, data-driven persona creation, and strategic business outcomes.</p>
+        </div>
+
+        <div class="segment-card">
+          <h4>Success Metrics</h4>
+          <ul>
+            <li><strong>Deposit Growth</strong> — track net deposit growth monthly and annually within target opportunity segments</li>
+            <li><strong>Share of Wallet Analysis</strong> — monitor average deposit share of wallet and products per household</li>
+            <li><strong>Onboarding Activation Rate</strong> — measure engagement rates of new customer onboarding</li>
+            <li><strong>Digital Adoption & Engagement</strong> — analyze platform logins and engagement</li>
+          </ul>
+        </div>
+
+        <div class="segment-card">
+          <h4>Implementation Timeline</h4>
+          <ul>
+            <li><strong>December 2025:</strong> Initial Alignment & Governance</li>
+            <li><strong>January 2026:</strong> Persona Development & Training</li>
+            <li><strong>February 2026:</strong> Pilot Campaign Launch</li>
+            <li><strong>Q2 2026 onward:</strong> Scale & Continuous Improvement</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="gap-highlight">
+      <h3>Key Insight</h3>
+      <p>The current personas describe <em>who customers are</em> but not <em>what they're trying to become</em>. The path forward requires moving from demographic segmentation to aspiration-first personas that capture the narrative arc of customers' financial lives and position Horicon as a partner in their progress.</p>
+    </div>
+  </main>
+</body>
+</html>

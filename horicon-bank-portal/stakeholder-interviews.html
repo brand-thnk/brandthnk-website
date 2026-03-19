@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stakeholder Interviews | Horicon Bank Portal</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .main-content {
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--brandthnk-yellow);
+    }
+
+    .interview-overview {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .interview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .interview-section {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .completed-section {
+      border-left: 4px solid #4CAF50;
+    }
+
+    .upcoming-section {
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .interview-section h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .completed-section h3 {
+      color: #4CAF50;
+    }
+
+    .upcoming-section h3 {
+      color: var(--brandthnk-black);
+    }
+
+    .interview-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .interview-item {
+      padding: 1rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--brandthnk-yellow);
+    }
+
+    .interview-item.completed {
+      border-left-color: #4CAF50;
+      background: #f8f9f8;
+    }
+
+    .interview-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .interview-role {
+      font-size: 0.85rem;
+      color: var(--brandthnk-gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .interview-date {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+    }
+
+    .interview-notes-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--brandthnk-yellow);
+      border-radius: 4px;
+    }
+
+    .interview-notes-link:hover {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .finding-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .finding-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .finding-card .source {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .key-insights {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .key-insights h3 {
+      color: var(--brandthnk-yellow);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .insight-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .insight-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--brandthnk-gray);
+    }
+
+    .insight-list li:last-child {
+      border-bottom: none;
+    }
+
+    .insight-list li::before {
+      content: "→";
+      color: var(--brandthnk-yellow);
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .theme-card {
+      background: var(--brandthnk-off-white);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .theme-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .theme-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .theme-card li {
+      padding: 0.25rem 0;
+      font-size: 0.875rem;
+    }
+
+    .theme-card li::before {
+      content: "•";
+      color: var(--brandthnk-yellow);
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .interview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .findings-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Horicon Bank Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-engagement-assessment.html" class="nav-link">Pre-Engagement Assessment</a>
+        <a href="persona-maturity-assessment.html" class="nav-link">Persona Maturity Assessment</a>
+        <a href="stakeholder-interviews.html" class="nav-link active">Stakeholder Interviews</a>
+        <a href="competitive-intelligence.html" class="nav-link">Competitive Intelligence</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>Stakeholder <span class="brand-accent">Interviews</span></h1>
+      <p>Validation Sprint • 30-minute conversations gathering frontline perspective</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="interview-overview">
+      <h3>Interview Overview</h3>
+      <p>Scheduled 30-minute conversations to gather additional perspective across data analytics, operations, customer relations, and marketing. These interviews provide ground truth on persona usage, market reality, and implementation challenges to validate strategic direction.</p>
+    </div>
+
+    <div class="interview-grid">
+      <div class="interview-section completed-section">
+        <h3>✅ Completed Interviews</h3>
+        <ul class="interview-list">
+          <li class="interview-item completed">
+            <div class="interview-name">Chrissy Oelke</div>
+            <div class="interview-role">Data Analytics/CRM • 30 years at Horicon Bank</div>
+            <div class="interview-date">March 2, 2026 • 30 minutes</div>
+            <a href="#chrissy-findings" class="interview-notes-link">View Findings</a>
+          </li>
+          <li class="interview-item completed">
+            <div class="interview-name">Kerry Murphy</div>
+            <div class="interview-role">Customer Relations • 19 years at Horicon Bank</div>
+            <div class="interview-date">March 2, 2026 • 30 minutes</div>
+            <a href="#kerry-findings" class="interview-notes-link">View Findings</a>
+          </li>
+          <li class="interview-item completed">
+            <div class="interview-name">Danielle Schraufnagel</div>
+            <div class="interview-role">Marketing/Operations</div>
+            <div class="interview-date">March 4, 2026 • 30 minutes</div>
+            <a href="#danielle-findings" class="interview-notes-link">View Findings</a>
+          </li>
+          <li class="interview-item completed">
+            <div class="interview-name">Natalie Kollin</div>
+            <div class="interview-role">Marketing</div>
+            <div class="interview-date">March 4, 2026 • 30 minutes</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="interview-section upcoming-section">
+        <h3>📅 Upcoming Interviews</h3>
+        <ul class="interview-list">
+          <li class="interview-item">
+            <div class="interview-name">Cassie Voight</div>
+            <div class="interview-role">Operations, Senior Management</div>
+            <div class="interview-date">March 20, 2026 • 10:00 AM ET</div>
+          </li>
+          <li class="interview-item">
+            <div class="interview-name">Stephanie Albers</div>
+            <div class="interview-role">TBD Role</div>
+            <div class="interview-date">March 23, 2026 • 12:30 PM ET</div>
+          </li>
+        </ul>
+
+        <div style="margin-top: 1.5rem; padding: 1rem; background: var(--brandthnk-yellow); border-radius: 6px;">
+          <strong>Note:</strong> Rose will send intro email; Allison will schedule directly.
+        </div>
+      </div>
+    </div>
+
+    <div class="key-insights">
+      <h3>Key Insights Across Interviews</h3>
+      <ul class="insight-list">
+        <li>Persona work is "in infancy" and not yet used by frontline teams</li>
+        <li>Current segments came from data analytics tools, not customer synthesis</li>
+        <li>Gap between marketing strategy and frontline execution reality</li>
+        <li>Strong performance in established markets vs. challenges in Milwaukee expansion</li>
+        <li>Technology capabilities exist but need strategic direction for implementation</li>
+        <li>Clear opportunities: senior market, nonprofit strategy, Bank at Work program</li>
+      </ul>
+    </div>
+
+    <section class="section" id="chrissy-findings">
+      <h2 class="section-header">Chrissy Oelke Findings</h2>
+      <div class="source">Data Analytics/CRM • March 2, 2026</div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <h4>Data Analysis & Persona Validation</h4>
+          <ul>
+            <li>Current personas match data segmentation for existing customers</li>
+            <li>Wealthy achievers segment validated in data</li>
+            <li>Iterating based on deposit generation vs. customer count</li>
+            <li>December presentation was draft, excited for next-level development</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Platform Capabilities & Gaps</h4>
+          <ul>
+            <li>Total Expert journeys limited by technical constraints</li>
+            <li>Data backend setup creates roadblocks</li>
+            <li>Few journeys currently active</li>
+            <li>Business onboarding journey in development</li>
+            <li>Missing comprehensive customer journey mapping</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Key Challenges Identified</h4>
+          <ul>
+            <li>Gap between persona work and business goal alignment</li>
+            <li>Need clarity on new acquisition vs. existing customer growth</li>
+            <li>Milwaukee market (new) vs. established markets require different strategies</li>
+            <li>Acquisition struggles confirmed by data</li>
+            <li>Lacks consistent monitoring dashboard</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Internal Communication Gap</h4>
+          <ul>
+            <li>Data insights not shared with front-line staff</li>
+            <li>Different market experiences create siloed perspectives</li>
+            <li>Need transparency between data findings and employee observations</li>
+            <li>Operating in "survival mode" vs. strategic approach</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kerry-findings">
+      <h2 class="section-header">Kerry Murphy Findings</h2>
+      <div class="source">Customer Relations • March 2, 2026</div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <h4>Current Customer Service Reality</h4>
+          <ul>
+            <li>19 years at Horicon Bank, moved from frontline training to customer relations</li>
+            <li>Frontline teams identify customers by demographics/life events, not personas</li>
+            <li>"This person is buying a house" → ABC process</li>
+            <li>"55 or better" → certain products</li>
+            <li>Not using persona terminology at all</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Customer Pain Points & Satisfaction</h4>
+          <ul>
+            <li><strong>Unhappy customers:</strong> Confused about new money transfer methods, online banking complexity, policy misunderstandings</li>
+            <li><strong>Happy customers:</strong> Love staff personality and community presence, seeing bank employees at local events</li>
+            <li>Products "good enough" - competitive but not flashy</li>
+            <li>Transaction volume down, but service complexity up</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Geographic & Demographic Challenges</h4>
+          <ul>
+            <li><strong>Dodge County:</strong> Rural, simple lifestyle preferences, multi-generational values</li>
+            <li><strong>Milwaukee expansion:</strong> Different senior demographics, more diversity, requires different approach</li>
+            <li>Mortgage strength not translating to market awareness</li>
+            <li>"Best bank for mortgages" but not top-of-mind for home buyers</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>2026 Senior Market Focus</h4>
+          <ul>
+            <li>Kerry's focus: Expand senior customers in Milwaukee County</li>
+            <li>Events planned: Senior center symposiums, bingo sponsorship</li>
+            <li>Exploring partnerships with assisted living facilities</li>
+            <li>Considering dedicated "Golden Free Club" Facebook page</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="danielle-findings">
+      <h2 class="section-header">Danielle Schraufnagel Findings</h2>
+      <div class="source">Marketing/Operations • March 4, 2026</div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <h4>Total Expert Platform Capabilities</h4>
+          <ul>
+            <li>Sending majority of marketing campaigns through Total Expert</li>
+            <li>Building audiences within platform</li>
+            <li>3 customer onboarding journeys running (E-statement adoption)</li>
+            <li>Listen for triggers automatically</li>
+            <li>Retail staff actively using vs. business bankers</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Journey Performance Metrics</h4>
+          <ul>
+            <li><strong>Personal checking onboarding:</strong> 6% failure rate, 50-60% open rates (8 months running)</li>
+            <li><strong>Glider customers (55+):</strong> Zero percent failure rate, higher open rates than standard checking</li>
+            <li><strong>E-statement adoption:</strong> 56% conversion rate (launched January)</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Active Projects & Blockers</h4>
+          <ul>
+            <li>Happy birthday automation defect - want to target specific customer group vs. entire platform</li>
+            <li>Youth checking E-statement journey ready to launch - awaiting approval</li>
+            <li>3-year wish list includes commercial onboarding</li>
+            <li>Analysis paralysis in meetings prevents execution</li>
+          </ul>
+        </div>
+
+        <div class="finding-card">
+          <h4>Key Operational Challenges</h4>
+          <ul>
+            <li>Lack of clear strategic direction and prioritization</li>
+            <li>Event-heavy focus without follow-up playbooks</li>
+            <li>No systematic post-event nurturing</li>
+            <li>Missing comprehensive campaign measurement</li>
+            <li>No baseline performance tracking</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">Emerging Themes</h2>
+
+      <div class="themes-grid">
+        <div class="theme-card">
+          <h4>Execution Gap</h4>
+          <li>Strong strategy and tech stack but limited frontline activation</li>
+          <li>Persona work exists in marketing but not operationalized</li>
+          <li>Need bridge between data insights and customer-facing teams</li>
+        </div>
+
+        <div class="theme-card">
+          <h4>Market Complexity</h4>
+          <li>Established markets (Dodge County) vs. expansion markets (Milwaukee) require different approaches</li>
+          <li>Customer expectations vary significantly by geography</li>
+          <li>Senior market shows strong opportunity across all markets</li>
+        </div>
+
+        <div class="theme-card">
+          <h4>Technology Readiness</h4>
+          <li>Total Expert platform underutilized but showing strong performance where implemented</li>
+          <li>Data analytics capabilities exist but need strategic direction</li>
+          <li>Journey automation possible but needs persona connection</li>
+        </div>
+
+        <div class="theme-card">
+          <h4>Cultural Strengths</h4>
+          <li>Community presence and staff personality as differentiators</li>
+          <li>Long-term employee knowledge and relationships</li>
+          <li>Customer satisfaction with service quality and local connection</li>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
