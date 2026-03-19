@@ -5,175 +5,290 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nate Shahan - Visibility Profile | BrandThnk</title>
     <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --text-gray: #333333;
+            --light-gray: #666666;
+            --border-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto Mono', monospace;
             line-height: 1.6;
-            color: #000000;
-            background-color: #FFFFFF;
+            color: var(--text-gray);
+            background: var(--brandthnk-white);
             margin: 0;
             padding: 40px 20px;
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Roboto Slab', serif;
-            color: #000000;
+            color: var(--brandthnk-black);
             margin-top: 2em;
             margin-bottom: 0.5em;
         }
+
         h1 {
-            font-size: 2.5em;
-            font-weight: 900;
-            border-bottom: 4px solid #FFEB3B;
+            font-size: 2.5rem;
+            font-weight: 700;
+            border-bottom: 4px solid var(--brandthnk-yellow);
             padding-bottom: 10px;
             margin-top: 0;
         }
+
         h2 {
-            font-size: 1.8em;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #000000;
+            color: var(--brandthnk-black);
             margin-top: 3em;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+            padding-bottom: 10px;
         }
+
         h3 {
-            font-size: 1.4em;
-            font-weight: 500;
-            color: #000000;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--brandthnk-black);
         }
+
         h4 {
-            font-size: 1.2em;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brandthnk-black);
         }
         .header {
-            background-color: #F5F5F5;
-            padding: 30px;
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 40px;
             margin-bottom: 40px;
-            border-left: 8px solid #FFEB3B;
+            border-bottom: 4px solid var(--brandthnk-yellow);
         }
+
         .header h1 {
             margin-top: 0;
             border-bottom: none;
             padding-bottom: 0;
+            color: var(--brandthnk-white);
         }
+
         .subtitle {
-            font-size: 1.2em;
-            color: #000000;
+            font-size: 1.1rem;
+            color: var(--brandthnk-white);
             margin-bottom: 0.5em;
+            opacity: 0.9;
         }
+
         .prepared-by {
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--brandthnk-yellow);
             margin-top: 1em;
+            font-weight: 600;
         }
+
         .quote-box {
-            background-color: #F5F5F5;
-            border-left: 4px solid #FFEB3B;
-            padding: 20px;
-            margin: 20px 0;
+            background: var(--brandthnk-off-white);
+            border-left: 4px solid var(--brandthnk-yellow);
+            padding: 25px;
+            margin: 30px 0;
             font-style: italic;
+            border-radius: 0 8px 8px 0;
         }
+
         .quote-box strong {
             display: block;
             font-weight: 700;
             margin-bottom: 10px;
             font-style: normal;
+            color: var(--brandthnk-black);
         }
+
         .highlight-box {
-            background-color: #FFEB3B;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: var(--brandthnk-yellow);
+            border: 2px solid var(--brandthnk-black);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
         }
+
         .highlight-box strong {
             font-weight: 700;
             display: block;
             margin-bottom: 10px;
+            color: var(--brandthnk-black);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
+            margin: 30px 0;
+            font-size: 0.95rem;
+            background: var(--brandthnk-white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border-gray);
         }
+
         th, td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
-            border: 1px solid #ddd;
+            border-bottom: 1px solid var(--border-gray);
         }
+
         th {
-            background-color: #F5F5F5;
-            font-weight: 700;
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            font-weight: 600;
             font-family: 'Roboto Slab', serif;
         }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background: var(--brandthnk-off-white);
+        }
+
         .three-column {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
+
         .column {
             text-align: center;
-            padding: 20px;
-            background-color: #F5F5F5;
-            border-radius: 4px;
+            padding: 25px;
+            background: var(--brandthnk-off-white);
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
         }
+
         .column h4 {
             margin-top: 0;
             font-family: 'Roboto Slab', serif;
-            font-weight: 700;
+            font-weight: 600;
+            color: var(--brandthnk-black);
         }
+
         ul, ol {
-            margin: 1em 0;
+            margin: 1.5em 0;
             padding-left: 2em;
         }
+
         li {
-            margin: 0.5em 0;
+            margin: 0.8em 0;
+            line-height: 1.6;
         }
+
         .cadence-table {
-            background-color: #F5F5F5;
-            padding: 20px;
-            margin: 20px 0;
+            background: var(--brandthnk-off-white);
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
         }
+
         .steps-table {
-            margin: 20px 0;
+            margin: 30px 0;
         }
+
         .steps-table th {
-            background-color: #FFEB3B;
+            background: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
         }
+
         .brandthnk-note {
-            background-color: #F5F5F5;
-            border: 2px solid #FFEB3B;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
+            background: var(--brandthnk-off-white);
+            border: 2px solid var(--brandthnk-yellow);
+            border-left: 5px solid var(--brandthnk-yellow);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
         }
+
         .brandthnk-note strong {
-            color: #000000;
+            color: var(--brandthnk-black);
+            font-family: 'Roboto Slab', serif;
+            font-weight: 600;
         }
+
         a {
-            color: #000000;
+            color: var(--brandthnk-black);
             text-decoration: underline;
+            transition: background-color 0.2s;
         }
+
         a:hover {
-            background-color: #FFEB3B;
+            background: var(--brandthnk-yellow);
         }
+
         .footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #F5F5F5;
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 2px solid var(--border-gray);
             text-align: center;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--light-gray);
+        }
+
+        p {
+            margin-bottom: 1.5em;
+            line-height: 1.7;
         }
         @media (max-width: 768px) {
-            body { padding: 20px 15px; }
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.5em; }
-            .three-column { grid-template-columns: 1fr; gap: 15px; }
-            .header { padding: 20px; }
-            table { font-size: 0.8em; }
-            th, td { padding: 8px; }
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .three-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 12px 10px;
+            }
+
+            .quote-box,
+            .highlight-box,
+            .brandthnk-note,
+            .cadence-table {
+                padding: 20px;
+                margin: 20px 0;
+            }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">

@@ -5,295 +5,387 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkedIn Content Audit - Digital Onboarding | BrandThnk</title>
     <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --text-gray: #333333;
+            --light-gray: #666666;
+            --border-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto Mono', monospace;
             line-height: 1.6;
-            color: #000000;
-            background-color: #FFFFFF;
+            color: var(--text-gray);
+            background: var(--brandthnk-white);
             margin: 0;
             padding: 40px 20px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Roboto Slab', serif;
-            color: #000000;
+            color: var(--brandthnk-black);
             margin-top: 2em;
             margin-bottom: 0.5em;
         }
+
         h1 {
-            font-size: 2.5em;
-            font-weight: 900;
-            border-bottom: 4px solid #FFEB3B;
+            font-size: 2.5rem;
+            font-weight: 700;
+            border-bottom: 4px solid var(--brandthnk-yellow);
             padding-bottom: 10px;
             margin-top: 0;
         }
+
         h2 {
-            font-size: 1.8em;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #000000;
+            color: var(--brandthnk-black);
             margin-top: 3em;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+            padding-bottom: 10px;
         }
+
         h3 {
-            font-size: 1.4em;
-            font-weight: 500;
-            color: #000000;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--brandthnk-black);
         }
+
         h4 {
-            font-size: 1.2em;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brandthnk-black);
         }
         .header {
-            background-color: #F5F5F5;
-            padding: 30px;
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 40px;
             margin-bottom: 40px;
-            border-left: 8px solid #FFEB3B;
+            border-bottom: 4px solid var(--brandthnk-yellow);
         }
+
         .header h1 {
             margin-top: 0;
             border-bottom: none;
             padding-bottom: 0;
-            font-size: 2.2em;
+            font-size: 2.2rem;
+            color: var(--brandthnk-white);
         }
+
         .company-name {
-            font-size: 1.3em;
-            color: #000000;
+            font-size: 1.3rem;
+            color: var(--brandthnk-white);
             margin-bottom: 1em;
             font-family: 'Roboto Slab', serif;
-            font-weight: 500;
+            font-weight: 600;
+            opacity: 0.9;
         }
+
         .metadata {
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--brandthnk-yellow);
             margin-top: 1.5em;
+            font-weight: 600;
         }
+
         .metadata div {
             margin-bottom: 0.3em;
         }
+
         .highlight-box {
-            background-color: #FFEB3B;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+            background: var(--brandthnk-yellow);
+            border: 2px solid var(--brandthnk-black);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
         }
+
         .highlight-box strong {
             font-weight: 700;
             display: block;
             margin-bottom: 10px;
+            color: var(--brandthnk-black);
+            font-family: 'Roboto Slab', serif;
         }
+
         .problem-statement {
-            background-color: #F5F5F5;
-            border-left: 4px solid #000000;
-            padding: 20px;
-            margin: 20px 0;
+            background: var(--brandthnk-off-white);
+            border-left: 5px solid var(--brandthnk-black);
+            padding: 25px;
+            margin: 30px 0;
             font-weight: 500;
+            border-radius: 0 8px 8px 0;
         }
-        .metrics-table {
+
+        .metrics-table, .action-table {
             width: 100%;
             border-collapse: collapse;
             margin: 30px 0;
-            font-size: 0.9em;
+            font-size: 0.95rem;
+            background: var(--brandthnk-white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--border-gray);
         }
-        .metrics-table th {
-            background-color: #000000;
-            color: #FFFFFF;
+
+        .metrics-table th, .action-table th {
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
             padding: 15px;
             text-align: left;
             font-family: 'Roboto Slab', serif;
-            font-weight: 700;
+            font-weight: 600;
         }
-        .metrics-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
+
+        .metrics-table td, .action-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-gray);
             vertical-align: top;
         }
-        .metrics-table tr:nth-child(even) {
-            background-color: #F5F5F5;
+
+        .metrics-table tr:nth-child(even), .action-table tr:nth-child(even) {
+            background: var(--brandthnk-off-white);
         }
-        .post-audit {
-            background-color: #F5F5F5;
+
+        .metrics-table tr:last-child td, .action-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .post-audit, .finding-card, .content-angles {
+            background: var(--brandthnk-off-white);
+            border: 2px solid var(--border-gray);
+            border-left: 5px solid var(--brandthnk-yellow);
             padding: 25px;
-            margin: 25px 0;
-            border-left: 4px solid #FFEB3B;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
         }
-        .post-audit h3 {
+
+        .post-audit h3, .finding-card h4, .content-angles h4 {
             margin-top: 0;
-            color: #000000;
+            color: var(--brandthnk-black);
+            font-family: 'Roboto Slab', serif;
+            font-weight: 600;
         }
+
         .post-metadata {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-            background-color: #FFFFFF;
-            padding: 15px;
-            border-radius: 4px;
+            gap: 20px;
+            margin: 20px 0;
+            background: var(--brandthnk-white);
+            padding: 20px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
         }
+
         .post-metadata div {
             display: flex;
             justify-content: space-between;
         }
+
         .post-metadata strong {
             font-weight: 700;
+            color: var(--brandthnk-black);
         }
+
         .assessment-section {
-            margin: 15px 0;
+            margin: 20px 0;
         }
+
         .assessment-section h4 {
-            color: #000000;
+            color: var(--brandthnk-black);
             margin-bottom: 0.5em;
+            font-weight: 600;
         }
+
         .verdict {
-            background-color: #FFEB3B;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        .best-post {
-            background-color: #000000;
-            color: #FFFFFF;
+            background: var(--brandthnk-yellow);
+            border: 2px solid var(--brandthnk-black);
             padding: 20px;
             margin: 20px 0;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-weight: 500;
         }
-        .best-post h3 {
-            color: #FFFFFF;
+
+        .best-post, .bottom-line {
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .best-post h3, .bottom-line h2 {
+            color: var(--brandthnk-white);
             margin-top: 0;
         }
+
         .findings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            gap: 25px;
+            margin: 30px 0;
         }
-        .finding-card {
-            background-color: #F5F5F5;
-            padding: 20px;
-            border-left: 4px solid #FFEB3B;
-        }
-        .finding-card h4 {
-            margin-top: 0;
-            color: #000000;
-        }
-        .action-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-        .action-table th {
-            background-color: #FFEB3B;
-            color: #000000;
-            padding: 15px;
-            text-align: left;
-            font-family: 'Roboto Slab', serif;
-            font-weight: 700;
-        }
-        .action-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            vertical-align: top;
-        }
-        .action-table tr:nth-child(even) {
-            background-color: #F5F5F5;
-        }
+
         .action-number {
             font-weight: 700;
-            color: #000000;
+            color: var(--brandthnk-black);
+            font-family: 'Roboto Slab', serif;
         }
+
         .stop-table th {
-            background-color: #000000;
-            color: #FFFFFF;
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
         }
+
         .continue-table th {
-            background-color: #FFEB3B;
-            color: #000000;
+            background: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
         }
-        .competitive-stats {
-            background-color: #F5F5F5;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #000000;
-        }
-        .competitive-stats ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .bottom-line {
-            background-color: #000000;
-            color: #FFFFFF;
+
+        .competitive-stats, .calendar-section {
+            background: var(--brandthnk-off-white);
+            border: 2px solid var(--border-gray);
+            border-left: 5px solid var(--brandthnk-black);
             padding: 30px;
             margin: 30px 0;
-            border-radius: 4px;
+            border-radius: 0 8px 8px 0;
         }
-        .bottom-line h2 {
-            color: #FFFFFF;
-            margin-top: 0;
+
+        .competitive-stats ul, .content-angles ul {
+            margin: 15px 0;
+            padding-left: 25px;
         }
-        .calendar-section {
-            background-color: #F5F5F5;
-            padding: 30px;
-            margin: 30px 0;
-            border-left: 8px solid #FFEB3B;
+
+        .competitive-stats li, .content-angles li {
+            margin: 0.8em 0;
         }
+
         .calendar-section h3 {
             margin-top: 0;
-            color: #000000;
+            color: var(--brandthnk-black);
         }
+
         .week-block {
-            background-color: #FFFFFF;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 4px;
-            border-left: 4px solid #000000;
+            background: var(--brandthnk-white);
+            border: 2px solid var(--border-gray);
+            border-left: 4px solid var(--brandthnk-black);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
         }
+
         .week-block h4 {
             margin-top: 0;
-            color: #000000;
+            color: var(--brandthnk-black);
         }
+
         .post-plan {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #F5F5F5;
-            border-radius: 3px;
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--brandthnk-off-white);
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
         }
+
         .post-plan strong {
-            color: #000000;
+            color: var(--brandthnk-black);
         }
-        .content-angles {
-            background-color: #F5F5F5;
-            padding: 25px;
-            margin: 25px 0;
-            border-left: 4px solid #FFEB3B;
-        }
-        .content-angles h4 {
-            margin-top: 0;
-            color: #000000;
-        }
-        .content-angles ul {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
+
         .footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #F5F5F5;
+            margin-top: 60px;
+            padding: 30px 0;
+            border-top: 2px solid var(--border-gray);
             text-align: center;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--light-gray);
+        }
+
+        p {
+            margin-bottom: 1.5em;
+            line-height: 1.7;
+        }
+
+        ul, ol {
+            margin: 1.5em 0;
+            padding-left: 2em;
+        }
+
+        li {
+            margin: 0.8em 0;
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--brandthnk-black);
+            text-decoration: underline;
+            transition: background-color 0.2s;
+        }
+
+        a:hover {
+            background: var(--brandthnk-yellow);
         }
         @media (max-width: 768px) {
-            body { padding: 20px 15px; }
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.5em; }
-            .header { padding: 20px; }
-            .post-metadata { grid-template-columns: 1fr; gap: 10px; }
-            .findings-grid { grid-template-columns: 1fr; gap: 15px; }
-            .metrics-table, .action-table { font-size: 0.8em; }
-            .metrics-table th, .metrics-table td, .action-table th, .action-table td { padding: 8px; }
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .post-metadata {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .findings-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .metrics-table, .action-table {
+                font-size: 0.9rem;
+            }
+
+            .metrics-table th, .metrics-table td, .action-table th, .action-table td {
+                padding: 12px 10px;
+            }
+
+            .highlight-box,
+            .problem-statement,
+            .post-audit,
+            .finding-card,
+            .content-angles,
+            .competitive-stats,
+            .calendar-section {
+                padding: 20px;
+                margin: 20px 0;
+            }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
