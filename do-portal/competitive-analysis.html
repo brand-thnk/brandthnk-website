@@ -3,76 +3,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Onboarding - Competitive Research</title>
+  <title>Digital Onboarding - BrandThnk Insights</title>
   <style>
-    body, html {
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --text-gray: #333333;
+      --light-gray: #666666;
+      --border-gray: #E0E0E0;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
-    .redirect-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #f5f5f5;
-      font-family: 'Arial', sans-serif;
+    body {
+      font-family: 'Roboto Mono', monospace;
+      line-height: 1.6;
+      color: var(--text-gray);
+      background: var(--brandthnk-white);
     }
 
-    .redirect-message {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 20px 0;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .header .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    /* Hero Section */
+    .hero {
       text-align: center;
-      padding: 40px;
-      background: white;
+      margin-bottom: 60px;
+      padding: 40px 20px;
+      background: var(--brandthnk-off-white);
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .loading-text {
-      font-size: 18px;
-      color: #666;
+    .hero h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
       margin-bottom: 20px;
+      color: var(--brandthnk-black);
+      line-height: 1.3;
     }
 
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #FFEB3B;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
+    .hero .description {
+      font-size: 1.1rem;
+      color: var(--light-gray);
+      max-width: 800px;
       margin: 0 auto;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* Section Headers */
+    .section {
+      margin-bottom: 50px;
     }
 
-    .research-frame {
-      width: 100%;
-      height: 100vh;
-      border: none;
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: var(--brandthnk-black);
+      border-bottom: 3px solid var(--brandthnk-yellow);
+      padding-bottom: 10px;
+    }
+
+    /* Content Blocks */
+    .content-block {
+      background: var(--brandthnk-white);
+      border: 2px solid var(--border-gray);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .content-block h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--brandthnk-black);
+    }
+
+    .content-block p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      line-height: 1.7;
+    }
+
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* How It Works Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .step-card {
+      background: var(--brandthnk-off-white);
+      border: 2px solid var(--border-gray);
+      border-radius: 8px;
+      padding: 25px;
+      position: relative;
+    }
+
+    .step-card .step-number {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .step-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--brandthnk-black);
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-gray);
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: var(--brandthnk-yellow);
+      border: 2px solid var(--brandthnk-black);
+      border-radius: 8px;
+      padding: 25px;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .highlight-box h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 10px;
+    }
+
+    .highlight-box p {
+      font-size: 1rem;
+      color: var(--brandthnk-black);
+      font-weight: 500;
+    }
+
+    /* Key Points List */
+    .key-points {
+      background: var(--brandthnk-off-white);
+      border-left: 5px solid var(--brandthnk-yellow);
+      padding: 25px;
+      margin: 25px 0;
+    }
+
+    .key-points h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--brandthnk-black);
+    }
+
+    .key-points ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .key-points li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .key-points li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--brandthnk-black);
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 30px 0;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .hero h2 {
+        font-size: 1.6rem;
+      }
+
+      .section-header {
+        font-size: 1.5rem;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
     }
   </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="redirect-container" id="loading">
-    <div class="redirect-message">
-      <div class="loading-text">Loading competitive research platform...</div>
-      <div class="spinner"></div>
+  <div class="header">
+    <div class="container">
+      <h1>BrandThnk Insights</h1>
+      <p class="subtitle">Digital Onboarding Portal - Competitive Research Platform</p>
     </div>
   </div>
 
-  <iframe id="researchFrame" class="research-frame" style="display: none;" src="https://do.brandthnkinsights.com/"></iframe>
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <h2>Your customers have opinions about your brand. Now you can hear them before you spend the budget.</h2>
+      <p class="description">Synthetic research interviews with AI-simulated banking customer personas, grounded in published industry data and 30+ persona and strategy workshops with financial brands.</p>
+    </div>
 
-  <script>
-    // Show loading for 2 seconds, then display the iframe
-    setTimeout(function() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('researchFrame').style.display = 'block';
-    }, 2000);
-  </script>
+    <!-- Problem Section -->
+    <div class="section">
+      <h2 class="section-header">The Problem You Already Know</h2>
+      <div class="content-block">
+        <p>You have a tagline, a campaign concept, or a product idea. Your team likes it. Your agency likes it. Your CEO likes it. But you have no idea whether your customers will care.</p>
+
+        <p>Traditional research takes 6-12 weeks and costs $50,000 or more. Focus groups tell you what people say in a room with free sandwiches, not what they actually think. Online surveys produce data that confirms whatever you already believed.</p>
+
+        <p>So you skip the research. You launch. You spend the budget. And you find out whether it worked 90 days later when the numbers come in.</p>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div class="section">
+      <h2 class="section-header">What BrandThnk Insights Does</h2>
+      <div class="content-block">
+        <p>BrandThnk Insights runs AI-simulated research interviews against banking customer personas that behave like real people. You input your messages, product concepts, or campaign ideas. The system interviews each persona using a structured research protocol. You get a branded report with findings, cross-segment comparison, and specific recommendations.</p>
+
+        <div class="highlight-box">
+          <h3>You get results in minutes instead of months.</h3>
+        </div>
+
+        <p>This is a research methodology, not a prompt generator.</p>
+      </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="section">
+      <h2 class="section-header">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Choose a research module</h4>
+          <p>Select the decision type you're addressing from the six available modules and customer segment types.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>Set up your research</h4>
+          <p>Enter company information, test materials, market type, competitors, and select which personas to interview.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>System interviews each persona</h4>
+          <p>Each persona participates in an 11-turn, three-phase interview staying in character based on documented values and behaviors.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>Cross-persona synthesis</h4>
+          <p>The system analyzes patterns across all personas to identify agreements, divergences, and strategic gaps.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <h4>Get your branded report</h4>
+          <p>Receive an executive-ready document with direct quotes, comparison matrices, strategic analysis, and actionable recommendations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Benefits -->
+    <div class="section">
+      <div class="key-points">
+        <h4>Key Benefits</h4>
+        <ul>
+          <li>Research methodology grounded in 30+ financial services persona workshops</li>
+          <li>AI-simulated interviews that behave like real banking customers</li>
+          <li>Results delivered in minutes instead of months</li>
+          <li>Executive-ready reports with actionable recommendations</li>
+          <li>Cross-segment comparison and strategic gap analysis</li>
+          <li>Structured research protocol with consistent methodology</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <p>BrandThnk Insights - Digital Onboarding Competitive Research Platform</p>
+    </div>
+  </div>
 </body>
 </html>

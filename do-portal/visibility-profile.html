@@ -1,78 +1,509 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Onboarding - Visibility Profile</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .redirect-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #f5f5f5;
-      font-family: 'Arial', sans-serif;
-    }
-
-    .redirect-message {
-      text-align: center;
-      padding: 40px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .loading-text {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #FFEB3B;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .profile-frame {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nate Shahan - Visibility Profile | BrandThnk</title>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto Slab', serif;
+            color: #000000;
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 900;
+            border-bottom: 4px solid #FFEB3B;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #000000;
+            margin-top: 3em;
+        }
+        h3 {
+            font-size: 1.4em;
+            font-weight: 500;
+            color: #000000;
+        }
+        h4 {
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+        .header {
+            background-color: #F5F5F5;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 8px solid #FFEB3B;
+        }
+        .header h1 {
+            margin-top: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #000000;
+            margin-bottom: 0.5em;
+        }
+        .prepared-by {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 1em;
+        }
+        .quote-box {
+            background-color: #F5F5F5;
+            border-left: 4px solid #FFEB3B;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .quote-box strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-style: normal;
+        }
+        .highlight-box {
+            background-color: #FFEB3B;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .highlight-box strong {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #F5F5F5;
+            font-weight: 700;
+            font-family: 'Roboto Slab', serif;
+        }
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .column {
+            text-align: center;
+            padding: 20px;
+            background-color: #F5F5F5;
+            border-radius: 4px;
+        }
+        .column h4 {
+            margin-top: 0;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+        ul, ol {
+            margin: 1em 0;
+            padding-left: 2em;
+        }
+        li {
+            margin: 0.5em 0;
+        }
+        .cadence-table {
+            background-color: #F5F5F5;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .steps-table {
+            margin: 20px 0;
+        }
+        .steps-table th {
+            background-color: #FFEB3B;
+        }
+        .brandthnk-note {
+            background-color: #F5F5F5;
+            border: 2px solid #FFEB3B;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .brandthnk-note strong {
+            color: #000000;
+        }
+        a {
+            color: #000000;
+            text-decoration: underline;
+        }
+        a:hover {
+            background-color: #FFEB3B;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #F5F5F5;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            .three-column { grid-template-columns: 1fr; gap: 15px; }
+            .header { padding: 20px; }
+            table { font-size: 0.8em; }
+            th, td { padding: 8px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="redirect-container" id="loading">
-    <div class="redirect-message">
-      <div class="loading-text">Loading visibility profile...</div>
-      <div class="spinner"></div>
+    <div class="header">
+        <h1>Nate Shahan</h1>
+        <p class="subtitle">Chief Product Officer, Digital Onboarding</p>
+        <p class="subtitle">Visibility Profile, Thought Leadership Strategy & Productization Plan</p>
+        <p class="prepared-by">Prepared by BrandThnk | March 2026</p>
     </div>
-  </div>
 
-  <iframe id="profileFrame" class="profile-frame" style="display: none;" src="https://brandthnk.co/nate-shahan-visibility-profile.html"></iframe>
+    <h2>Executive Summary</h2>
+    <p>Nate Shahan's appointment as Chief Product Officer at Digital Onboarding is an underused asset. The press release got limited traction (one trade listing, no earned media), but Nate's background (co-founded Segmint, built patented data products for FIs, $135.5M exit to Alkami) makes him one of the most credible product voices in the digital banking engagement space.</p>
 
-  <script>
-    // Show loading for 2 seconds, then display the iframe
-    setTimeout(function() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('profileFrame').style.display = 'block';
-    }, 2000);
-  </script>
+    <p>This plan turns Nate into the face and voice of DO's data-driven engagement story. Three thought leadership topics map directly to messages DO already has in market, with specific focus on digital banking channel orchestration and lifecycle engagement. Three productization formats (video series, LinkedIn series, podcast circuit) create content that compounds. An operating cadence (monthly LinkedIn and analyst updates, quarterly speaking and analyst briefings) ensures consistency. LinkedIn profile recommendations and an AirOps content automation setup round out the program.</p>
+
+    <p>The engagement gap Nate is focused on closing isn't just about data — it's about connecting data to channel behavior so institutions can act in the moment, not after the fact. This makes him the ideal voice for digital banking channel orchestration at scale.</p>
+
+    <div class="highlight-box">
+        <strong>The Compound Effect:</strong> When Nate's visibility grows, DO's visibility grows. Every touchpoint feeds the next. The CPO appointment is the opening. This plan is the engine.
+    </div>
+
+    <h2>1. Nate Shahan: Executive Bio</h2>
+    <p>Nate Shahan is Chief Product Officer at Digital Onboarding, Inc., the leading digital engagement platform for banks and credit unions. The platform is trusted by 170+ financial institutions and built around a core thesis: growth isn't just about account opening, it's about what happens next.</p>
+
+    <p>Shahan brings more than two decades of experience building and scaling data-driven SaaS products for financial institutions, with deep expertise in product strategy and analytics. He has led the development of products that help banks and credit unions deepen customer relationships and increase revenues through more personalized experiences.</p>
+
+    <p>Most recently, Shahan was Co-founder and Chief Product Officer of Segmint, an analytics and engagement company that leveraged transaction data to deliver actionable customer insights to community financial institutions. He designed, developed, and patented data-driven products that help financial institutions turn transaction data into intelligence for cross-sell, acquisition, retention, and digital banking channel orchestration. Segmint was acquired by Alkami Technology for $135.5 million in 2022.</p>
+
+    <p>Following the acquisition, Shahan continued as a senior product executive at Alkami, helping integrate and expand analytics-driven capabilities across the platform. He presented at Alkami Co:Lab 2024 on the intersection of human intelligence and AI in financial services marketing.</p>
+
+    <p>Shahan holds a degree from The University of Akron and is based in Akron, Ohio.</p>
+
+    <h3>LinkedIn Positioning (current)</h3>
+    <p><em>"Founder | B2B SaaS Executive | AI | ML | Martech | Fintech | Data | Scaling startups and high-growth companies"</em></p>
+
+    <h3>Core Expertise</h3>
+
+    <h4>Data & AI in Digital Banking</h4>
+    <p>Patented products turning transaction data into actionable intelligence for digital channels</p>
+
+    <h4>Product-Led Growth</h4>
+    <p>Scaled Segmint from startup to $135.5M acquisition by Alkami</p>
+
+    <h4>Digital Banking Channel Orchestration</h4>
+    <p>Lifecycle engagement, cross-sell, and retention optimization for community FIs</p>
+
+    <h2>2. Appointment Announcement: Media Pickup Assessment</h2>
+
+    <h3>The Announcement</h3>
+    <p>Digital Onboarding published a press release and blog post authored by CEO Ted Brown announcing Nate Shahan as Chief Product Officer. The post is live at digitalonboarding.com/resources/blog/nate-shahan-appointed-chief-product-officer.</p>
+
+    <h3>Key Quotes from the PR</h3>
+    <div class="quote-box">
+        <strong>Ted Brown, CEO & Co-founder</strong>
+        "There are very few product leaders with Nate's combination of fintech depth, data expertise, and firsthand experience serving community financial institutions. His instincts and leadership will be instrumental as we continue to expand the impact of our platform."
+    </div>
+
+    <div class="quote-box">
+        <strong>Nate Shahan, CPO</strong>
+        "Growth in financial services isn't just about account opening, it's about what happens next. Digital Onboarding has a uniquely strong foundation for lifecycle engagement, bringing data, behavior, and action together in one platform. I'm excited to help scale that foundation so institutions can see, measure, and accelerate engagement-driven growth."
+    </div>
+
+    <h3>Current Pickup</h3>
+    <ul>
+        <li>FF News / Fintech Finance: Listed in people moves tracker</li>
+        <li>Digital Onboarding LinkedIn: Posted announcement</li>
+        <li>No confirmed pickup in American Banker, BAI, The Financial Brand, Finovate, CU Times, or CUInsight</li>
+        <li>No analyst or trade press features found beyond the FF News listing</li>
+    </ul>
+
+    <h3>Why Pickup Was Limited</h3>
+    <ul>
+        <li>CPO appointments at companies below $100M revenue rarely generate standalone coverage without a forward-looking news hook beyond the hire itself</li>
+        <li>The PR is well-written but structured as a traditional appointment announcement. It lacks a product or market thesis that gives reporters a story angle.</li>
+        <li>No external validator (analyst quote, customer quote, or partner endorsement) to amplify credibility beyond the company</li>
+    </ul>
+
+    <div class="brandthnk-note">
+        <strong>The Opportunity</strong> The appointment is the opening. The thought leadership that follows is the engine. The goal is not to retry the press release. It is to use Nate's credibility and track record to build an ongoing presence that references the CPO role as context, not headline. His own quote gives us the thesis to build on: data, behavior, and action in one platform.
+    </div>
+
+    <h2>3. Three Thought Leadership Topics for Nate Shahan</h2>
+    <p>Each topic starts from a message DO already has in market and layers Nate's specific credibility on top. He is not creating new messaging. He is delivering DO's existing story with the authority of someone who has built the technology behind it. The structure for each topic is: DO's message (what the market needs to hear), Nate's passion point (why he's the right voice), and the compound effect (what happens when the two reinforce each other).</p>
+
+    <h3>Topic 1: "It's Not About Account Opening. It's About What Happens Next."</h3>
+
+    <h4>DO Message</h4>
+    <p>This is Digital Onboarding's core market thesis, straight from Nate's own CPO announcement: "Growth in financial services isn't just about account opening, it's about what happens next." The entire platform exists to solve the post-opening engagement gap. DO's solutions map to the lifecycle: onboarding, nurturing, cross-selling, servicing. Their proof points (375% growth in direct deposits, 64% reduction in attrition) are all about what happens after the account is opened.</p>
+
+    <h4>Nate's Passion Point</h4>
+    <p>The reason most FIs fail at "what happens next" is that they can't see their own customer data clearly enough to act on it. Nate spent 15+ years at Segmint building and patenting the technology that turns truncated, manipulated transaction data into actionable intelligence. He knows, from building it, that the gap between account opening and real engagement is a data problem disguised as a marketing problem.</p>
+
+    <h4>The Compound</h4>
+    <p>When Nate talks about lifecycle engagement, he's not repeating a marketing message. He's explaining why the data layer underneath DO's platform is what makes "what happens next" actually work through intelligent channel orchestration. No other CPO in the digital banking engagement space can make this case with the same technical proof. That's the differentiation.</p>
+
+    <h4>Placement Targets</h4>
+    <ul>
+        <li>American Banker / PaymentsSource (byline: "The 90 Days After Digital Banking Onboarding That Determine Everything")</li>
+        <li>The Financial Brand (feature for digital banking leaders on the channel orchestration engagement gap)</li>
+        <li>BAI Banking Strategies (practitioner angle: what data do you need to close the digital banking lifecycle gap?)</li>
+        <li>Conference talk: American Banker Digital Banking 2026 (engagement or data track) - primary target</li>
+    </ul>
+
+    <h3>Topic 2: "Small Teams, Measurable Growth: The Engagement Math That Changes the Business Case"</h3>
+
+    <h4>DO Message</h4>
+    <p>"We make small teams feel huge." This is on the DO homepage and it's one of the most powerful positioning lines they have. Paired with the proof points (40% growth in online debit card spending, 100% increase in credit card cross-sell rate, 27% reduction in phone calls), it reframes digital engagement from a marketing expense to a P&L driver. DO's automated targeting engine and ready-made campaign templates are built for resource-constrained teams at community FIs.</p>
+
+    <h4>Nate's Passion Point</h4>
+    <p>The shift from cost center to profit center is a product problem, not a marketing problem. At Alkami, Nate co-developed the thesis that successful digital transformation requires FIs to stop treating digital banking as a cost of doing business. His entire career has been about building products that deliver measurable outcomes from data, not just dashboards or reports. He knows what it takes to build a platform that actually moves the numbers for small teams.</p>
+
+    <h4>The Compound</h4>
+    <p>DO has the outcomes data. Nate has the product credibility to explain why those outcomes happen. When a community bank CMO hears that 170+ FIs are getting 375% growth in direct deposits, the next question is "how." Nate can answer that with product specificity that a marketing message alone cannot deliver.</p>
+
+    <h3>Topic 3: "Before You Deploy AI, Connect Your Data"</h3>
+
+    <h4>DO Message</h4>
+    <p>DO's Data Connector Tool imports data via API, SFTP, or CSV from core, digital banking, account opening, CRM, and third-party systems. Their automated targeting engine does the heavy lifting so teams don't need to create and upload lists. This is a data integration and activation story, not an AI story. But every FI is asking about AI right now, and DO's answer is: AI is only as useful as the data you feed it. For digital banking specifically, this means connecting transaction behavior to channel engagement patterns so institutions can orchestrate timely, relevant interactions across mobile, web, and in-person touchpoints. The data layer is the product.</p>
+
+    <h4>Nate's Passion Point</h4>
+    <p>He presented at Alkami Co:Lab 2024 on "Humans and AI: How to Maximize Marketing ROI." He didn't talk about AI as magic. He talked about the data infrastructure that makes AI useful. At Segmint, he built products that solved the foundational data problem: transaction data that arrives riddled with manipulation and truncation. He knows, from building it, that AI trained on fragmented, dirty data produces garbage outputs. His credibility on this topic is not theoretical. It's patented.</p>
+
+    <h4>The Compound</h4>
+    <p>Every competitor in the engagement space is rushing to add "AI-powered" to their messaging. DO can differentiate by going one layer deeper: the data infrastructure that makes AI actually work. Nate has built both the data layer (Segmint) and the engagement layer (now at DO). When he says "fix your data before you buy AI," it carries the weight of 20 years of building the products that prove it.</p>
+
+    <h2>4. Three Ideas to Productize Nate Shahan</h2>
+    <p>Productizing a person means turning their expertise into a repeatable, visible asset that generates inbound attention, customer trust, and content simultaneously. These ideas go beyond "write a blog post." They create formats that compound.</p>
+
+    <h3>Idea 1: "The Data Layer" — A 3-Episode Video Series with DO Customers</h3>
+
+    <h4>Format</h4>
+    <p>Short-form video series (15-20 min per episode). Nate interviews a DO customer or friendly about a specific data and engagement challenge they solved. Produced for LinkedIn, YouTube, and the DO website.</p>
+
+    <h4>Why This Works</h4>
+    <ul>
+        <li>Puts Nate in the host seat, which positions him as the expert leading the conversation, not pitching</li>
+        <li>Generates customer proof points without asking for a formal case study (lower friction than a written case study, higher trust than a testimonial quote)</li>
+        <li>Creates 3 episodes of reusable content: full video, clips for social, pull quotes, LinkedIn posts, blog recaps, newsletter fodder</li>
+        <li>Gives DO an owned content property with a brand name that can scale beyond 3 episodes</li>
+    </ul>
+
+    <h3>Idea 2: "Nate's Notebook" — A Monthly LinkedIn Data Insight Series</h3>
+
+    <h4>Format</h4>
+    <p>One LinkedIn post per month from Nate's personal account that takes a single data point, trend, or customer insight and unpacks what it means for FI strategy. Short, opinionated, specific. Built to provoke comment and sharing.</p>
+
+    <h4>Sample Post Angles</h4>
+    <ol>
+        <li>"We're working with 170+ FIs. The ones winning at engagement aren't the ones with the best app. They're the ones with the cleanest data."</li>
+        <li>"Every FI I talk to wants AI-powered personalization. Almost none of them can tell me what data they're feeding it."</li>
+        <li>"The average community FI has 5 systems that know different things about the same customer. That's not a technology problem. It's a product problem."</li>
+        <li>"Attrition doesn't start when someone leaves. It starts 90 days after they open the account and nobody reaches out." (ties to DO's 64% attrition reduction stat)</li>
+    </ol>
+
+    <h3>Idea 3: "The CPO Circuit" — 5 Podcast Placements in 90 Days</h3>
+
+    <h4>Format</h4>
+    <p>A targeted podcast placement campaign. Identify 5 podcasts where Nate's expertise on data, AI, and lifecycle engagement in banking is a direct fit. Pitch him with pre-packaged talking points and episode concepts tailored to each host.</p>
+
+    <h4>Target Podcasts</h4>
+    <ol>
+        <li>Banking Transformed with Jim Marous (The Financial Brand) — largest audience in digital banking</li>
+        <li>Fintech One-on-One with Peter Renton — deep dives on fintech product strategy</li>
+        <li>Breaking Banks with Brett King — global audience, data and innovation focus</li>
+        <li>CUInsight — strong CU audience, Nate's track record serving community FIs is a direct fit</li>
+        <li>BAI Banking Strategies Podcast — practitioner audience, data and analytics themes</li>
+    </ol>
+
+    <h2>5. The Operating Model: Nate as DO's Data Voice</h2>
+    <p>Productizing a person works like a product release. It needs a launch and a cadence. The goal is not a one-time PR push. It is to make Nate the face and voice of every new market theme or message DO puts out around data. When Nate's visibility grows, DO's visibility grows. When DO ships a data story, Nate delivers it.</p>
+
+    <div class="brandthnk-note">
+        <strong>The Principle</strong> Nate is the delivery vehicle for DO's data story. Every new capability, customer proof point, or market insight should route through him as the voice. This creates a single, recognizable point of authority that analysts, editors, and event organizers learn to associate with DO and data-driven engagement.
+    </div>
+
+    <h3>Quarterly Cadence</h3>
+    <p>Treat Nate's visibility like a product roadmap with a quarterly release cycle.</p>
+
+    <table class="steps-table">
+        <thead>
+            <tr>
+                <th>Cadence</th>
+                <th>Activity</th>
+                <th>Purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Monthly</strong></td>
+                <td>Nate's Notebook LinkedIn post</td>
+                <td>Consistent visibility; builds personal brand</td>
+            </tr>
+            <tr>
+                <td><strong>Monthly</strong></td>
+                <td>Analyst update email from Nate</td>
+                <td>Keeps DO top-of-mind with influencers</td>
+            </tr>
+            <tr>
+                <td><strong>Quarterly</strong></td>
+                <td>1 speaking engagement or panel</td>
+                <td>Stage credibility; content generation</td>
+            </tr>
+            <tr>
+                <td><strong>Quarterly</strong></td>
+                <td>Analyst briefing (Nate as MC)</td>
+                <td>Positions Nate as DO's market voice</td>
+            </tr>
+            <tr>
+                <td><strong>Quarterly</strong></td>
+                <td>1 byline or contributed article</td>
+                <td>Earned media; SEO; repurposable content</td>
+            </tr>
+            <tr>
+                <td><strong>Ongoing</strong></td>
+                <td>Podcast placements (target 5 in first 90 days, then 1-2/quarter)</td>
+                <td>Authority building; backlinks; social proof</td>
+            </tr>
+            <tr>
+                <td><strong>Ongoing</strong></td>
+                <td>The Data Layer video series (1 episode/month after launch)</td>
+                <td>Customer proof; owned content asset</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>LinkedIn Profile Overhaul</h3>
+    <p>Nate's LinkedIn is the front door. Every podcast host, conference organizer, journalist, and analyst will check it before responding to a pitch. Right now it doesn't tell the story we need it to tell.</p>
+
+    <h4>Current State</h4>
+    <p><strong>Headline:</strong> "Founder | B2B SaaS Executive | AI | ML | Martech | Fintech | Data | Scaling startups and high-growth companies"</p>
+
+    <p>This is a keyword list, not a positioning statement. It doesn't mention Digital Onboarding, the CPO role, or what he's building. It reads as someone between roles, not someone leading product at a specific company.</p>
+
+    <h4>Recommended Updates</h4>
+    <p><strong>Headline Option A:</strong> Chief Product Officer, Digital Onboarding | Building the data and engagement platform for 170+ banks and credit unions</p>
+
+    <p><strong>Headline Option B:</strong> CPO at Digital Onboarding | Data-driven engagement for community financial institutions | Former Co-founder, Segmint (acquired by Alkami)</p>
+
+    <p><strong>BrandThnk Role:</strong> Happy to draft the full profile update package for Nate's review and approval. This is a 1-hour deliverable that should happen before any outreach begins.</p>
+
+    <h2>6. Recommended Next Steps</h2>
+    <table class="steps-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Present this plan at March 19 working session. Align on priority thought leadership topic and productization format.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Update Nate's LinkedIn (headline, About, Experience, Featured). Draft full profile update package. Target: ASAP, before any outreach.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Schedule 30-min voice capture call with Nate to get his POVs, stories, and natural cadence. Target: week of March 23.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Deliver monthly analyst update template to DO team. Target: week of March 23.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Draft first Nate's Notebook LinkedIn post based on chosen topic. Target: week of March 30.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Build analyst target list and begin monthly update cadence (from Nate). Target: April 1 start.</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Begin podcast research and outreach for The CPO Circuit (5 placements in 90 days). Target: April.</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Submit first conference speaking application (target: American Banker Digital Banking 2026). Target: April.</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Schedule first quarterly analyst briefing with Nate as MC. Target: Q2 2026.</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Scope "The Data Layer" video series (identify 3 customer participants from existing testimonial relationships). Target: April-May.</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Set up AirOps (free tier) to automate content repurposing from Nate's Notebook posts and podcast appearances. Target: April.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7. Content Automation: AirOps</h2>
+    <p>As Nate's content cadence ramps up (monthly LinkedIn posts, podcast appearances, bylines, analyst updates), the repurposing workload grows fast. AirOps (airops.com) offers a free tier that can automate the repetitive parts of content production without adding headcount.</p>
+
+    <h3>What AirOps Can Do for This Program</h3>
+    <ul>
+        <li>Auto-generate social media variants from a single Notebook post (LinkedIn, X, short-form for DO company page)</li>
+        <li>Repurpose podcast transcripts into blog draft summaries, pull quote cards, and newsletter snippets</li>
+        <li>Create first-draft analyst update emails from a structured input template (Nate or DO team fills in bullet points, AirOps formats and drafts the narrative)</li>
+        <li>Generate SEO-optimized meta descriptions and headers for bylines published on DO's blog</li>
+    </ul>
+
+    <div class="brandthnk-note">
+        <strong>Why This Matters:</strong> The biggest risk to a productization program is not quality. It is consistency. Automation removes the friction that causes cadence to slip. When the monthly Notebook post can spin into 4 social posts, an analyst update paragraph, and a blog excerpt in 15 minutes instead of 2 hours, the program stays on track.
+    </div>
+
+    <h2>Next Phase: Team Visibility Strategy</h2>
+    <p>This document focuses specifically on establishing Nate Shahan as DO's primary voice for data-driven engagement and digital banking channel orchestration. As outlined in the client direction emphasizing "people (Nate, Ted, Adam)," comprehensive visibility plans for Ted Brown and Adam White will be developed as follow-up deliverables.</p>
+
+    <div class="brandthnk-note">
+        <strong>Future Scope:</strong> Ted's founder voice on digital banking strategy and Adam's technical depth on channel orchestration will complement Nate's data expertise, creating a three-person thought leadership engine that covers the full spectrum of DO's market positioning in digital banking engagement.
+    </div>
+
+    <h2>Sources</h2>
+    <ul>
+        <li>Digital Onboarding press release: digitalonboarding.com/resources/blog/nate-shahan-appointed-chief-product-officer</li>
+        <li>Digital Onboarding homepage: digitalonboarding.com (accessed March 16, 2026)</li>
+        <li>Nate Shahan LinkedIn: linkedin.com/in/nateshahan</li>
+        <li>FF News People Moves: ffnews.com/people/nate-shahan/</li>
+        <li>TechCrunch: "Digital Onboarding grabs $58M to help banks with profitable customer engagement" (Jan 2024)</li>
+        <li>Crunchbase: crunchbase.com/person/nate-shahan</li>
+        <li>Finovate: Segmint archives</li>
+    </ul>
+
+    <div class="footer">
+        <p>© 2026 BrandThnk | <a href="https://brandthnk.co">brandthnk.co</a></p>
+    </div>
 </body>
 </html>

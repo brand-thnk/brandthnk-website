@@ -1,78 +1,1120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Onboarding - Distribution Calendar</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Onboarding | Distribution & Editorial Calendar Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --gray: #666666;
+            --light-gray: #CCCCCC;
+        }
 
-    .redirect-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #f5f5f5;
-      font-family: 'Arial', sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .redirect-message {
-      text-align: center;
-      padding: 40px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 400;
+            font-size: 14px;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+        }
 
-    .loading-text {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 20px;
-    }
+        h1, h2, h3, h4, .section-title, .pub-card h3, .action-card h4, .insight-box h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
 
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #FFEB3B;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto;
-    }
+        /* HEADER */
+        .header {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 60px 48px;
+        }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .header .brandmark {
+            font-family: 'Roboto Slab', serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 24px;
+        }
 
-    .calendar-frame {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-  </style>
+        .header h1 {
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .header .subtitle {
+            font-size: 13px;
+            color: var(--light-gray);
+            margin-bottom: 4px;
+        }
+
+        .header .meta {
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 16px;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px;
+        }
+
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 8px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        /* PUB CARDS */
+        .pub-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .pub-card h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .pub-card .pub-url {
+            font-size: 11px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+
+        .pub-card .pub-desc {
+            font-size: 13px;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        /* CALENDAR GRID */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background: var(--light-gray);
+            border: 1px solid var(--light-gray);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .month-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 10px 12px;
+            font-family: 'Roboto Slab', serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .month-cell {
+            background: var(--white);
+            padding: 14px 12px;
+            font-size: 11px;
+            min-height: 90px;
+            line-height: 1.7;
+        }
+
+        .month-cell.hot {
+            background: var(--offwhite);
+            border-left: 3px solid var(--gray);
+        }
+
+        .month-cell.prime {
+            background: var(--white);
+            border-left: 3px solid var(--yellow);
+        }
+
+        /* TAGS */
+        .tag {
+            display: inline-block;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 9px;
+            font-weight: 400;
+            padding: 2px 6px;
+            margin: 2px 2px 2px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-data {
+            background: var(--offwhite);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+        }
+
+        .tag-lifecycle {
+            background: var(--offwhite);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+        }
+
+        .tag-ai {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .tag-people {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .tag-momentum {
+            background: var(--offwhite);
+            color: var(--gray);
+            border: 1px solid var(--light-gray);
+        }
+
+        /* LEGEND */
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+            padding: 24px;
+            background: var(--offwhite);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        /* INSIGHT BOX */
+        .insight-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 28px 32px;
+            margin-top: 24px;
+        }
+
+        .insight-box h4 {
+            font-size: 13px;
+            color: var(--yellow);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .insight-box p {
+            font-size: 12px;
+            line-height: 1.9;
+            color: var(--light-gray);
+        }
+
+        .insight-box strong {
+            color: var(--white);
+        }
+
+        /* TABLE */
+        .match-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .match-table th {
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 14px;
+            text-align: left;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        .match-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--light-gray);
+            vertical-align: top;
+        }
+
+        .match-table tr:nth-child(even) {
+            background: var(--offwhite);
+        }
+
+        .match-table tr:hover {
+            background: #EFEFEF;
+        }
+
+        .priority {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .priority-high {
+            color: var(--black);
+            background: var(--yellow);
+            padding: 2px 8px;
+        }
+
+        .priority-med {
+            color: var(--gray);
+        }
+
+        /* ACTION CARDS */
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .action-card {
+            background: var(--offwhite);
+            padding: 28px;
+        }
+
+        .action-card h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .action-card p {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .action-card .timing {
+            font-size: 10px;
+            color: var(--gray);
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .action-card.immediate {
+            border-left: 3px solid var(--yellow);
+        }
+
+        /* TABS */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 0;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .tab-btn:hover {
+            color: var(--black);
+        }
+
+        .tab-btn.active {
+            color: var(--black);
+            border-bottom-color: var(--yellow);
+        }
+
+        .tab-content {
+            display: none;
+            padding-top: 32px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            color: var(--gray);
+            padding: 32px 60px;
+            font-size: 11px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .footer span {
+            color: var(--yellow);
+        }
+    </style>
 </head>
 <body>
-  <div class="redirect-container" id="loading">
-    <div class="redirect-message">
-      <div class="loading-text">Loading distribution calendar...</div>
-      <div class="spinner"></div>
+    <div class="header">
+        <div class="brandmark">BrandThnk</div>
+        <h1>Distribution & Editorial Calendar Map</h1>
+        <div class="subtitle">Digital Onboarding, Inc. | 8 Target Publications | April through September 2026</div>
+        <div class="meta">Prepared March 16, 2026 | Based on 6 months of editorial pattern analysis (Oct 2025 through Mar 2026)</div>
     </div>
-  </div>
 
-  <iframe id="calendarFrame" class="calendar-frame" style="display: none;" src="https://brandthnk.co/do-distribution-calendar-map.html"></iframe>
+    <div class="container">
+        <!-- DO Content Themes Section -->
+        <div class="section">
+            <h2 class="section-title">DO Content Themes</h2>
+            <p class="section-subtitle">Every placement recommendation maps to at least one of Digital Onboarding's core content themes.</p>
 
-  <script>
-    // Show loading for 2 seconds, then display the iframe
-    setTimeout(function() {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('calendarFrame').style.display = 'block';
-    }, 2000);
-  </script>
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="tag tag-data">DATA</span>
+                    <span>First-party behavioral data, automated targeting, lifecycle analytics</span>
+                </div>
+                <div class="legend-item">
+                    <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    <span>Beyond onboarding into full account holder journey</span>
+                </div>
+                <div class="legend-item">
+                    <span class="tag tag-ai">AI</span>
+                    <span>"Before you deploy AI, connect your data"</span>
+                </div>
+                <div class="legend-item">
+                    <span class="tag tag-people">PEOPLE</span>
+                    <span>People productization and thought leadership</span>
+                </div>
+                <div class="legend-item">
+                    <span class="tag tag-momentum">MOMENTUM</span>
+                    <span>Partner announcements, customer wins, 170+ FI proof</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publication Editorial Calendars -->
+        <div class="section">
+            <h2 class="section-title">Publication Editorial Calendars (Predicted)</h2>
+            <p class="section-subtitle">Based on 6 months of observed editorial patterns, seasonal rhythms, and conference cycles.</p>
+
+            <!-- American Banker -->
+            <div class="pub-card">
+                <h3>American Banker / BankThink</h3>
+                <div class="pub-url">americanbanker.com/bankthink | Editor: Victoria Finkle</div>
+                <div class="pub-desc">Prestige contributed opinion platform. Audience: C-suite bank executives. BankThink accepts strong, opinionated takes with no product promotion. Pattern: AI, data infrastructure, regulatory shifts, and modernization dominate.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Post-Digital Banking Conference coverage. AI implementation reality checks. Q1 earnings analysis. Open banking regulatory updates.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell prime">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year banking outlook. Core modernization series. Data infrastructure for AI readiness. Fintech partnership models.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        H1 performance review. Digital banking customer experience. Fraud trends mid-year. Real-time payments progress.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer lull. Lighter publishing. Innovation of the Year applications open. Strategic planning previews.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Innovation of the Year coverage. Pre-conference season. AI use case results. Community bank competitiveness.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall conference season. Q3 strategic shifts. Year-end planning content starts. Industry predictions begin.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>May 2026:</strong> Submit BankThink byline from Nate: "Before You Buy AI, Fix Your Data." Cornerstone's research shows FIs are "only halfway" on data execution. Nate's Segmint background gives him authority here. This aligns with AB's heavy AI + data infrastructure editorial thread.</p>
+                    <p style="margin-top: 12px;"><strong>September 2026:</strong> Submit "The 90 Days After Account Opening That Determine Everything" as BankThink opinion. Ties to AB's fall strategic planning content cycle and positions lifecycle engagement as a counter-narrative to the AI hype cycle.</p>
+                </div>
+            </div>
+
+            <!-- The Financial Brand -->
+            <div class="pub-card">
+                <h3>The Financial Brand</h3>
+                <div class="pub-url">thefinancialbrand.com | Jim Marous</div>
+                <div class="pub-desc">Massive reach among bank/CU marketing and digital leaders. Organized by topic verticals (AI, Digital Banking, Data Analytics, CX). Forum 2026 conference April 13-15 in Las Vegas. Pattern: AI as dominant story, digital engagement, data modernization, omnichannel strategy.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell prime">
+                        <strong>Predicted themes:</strong><br>
+                        Forum 2026 coverage (Apr 13-15). Post-event thought leadership. Digital engagement benchmarks. AI implementation stories.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                        <span class="tag tag-people">PEOPLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Post-Forum follow-up content. Data modernization deep dives. Customer engagement metrics. Branch + digital integration.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year digital banking benchmarks. Gen Z/millennial engagement. Personalization at scale. CX measurement.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell prime">
+                        <strong>Predicted themes:</strong><br>
+                        Summer strategy content. "What's working" case studies. Data-driven marketing effectiveness. Credit union digital strategies.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Back-to-business planning. AI ROI reporting. Digital banking platform comparisons. Omnichannel optimization.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall planning season. 2027 budget/strategy previews. Technology investment priorities. Year-ahead predictions start.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                        <span class="tag tag-people">PEOPLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>April 2026:</strong> Contribute post-Forum article on "data-driven engagement beyond onboarding." TFB's editorial heavily favors "money experiences" and outcomes over transactions. DO's 170+ FI proof points fit perfectly.</p>
+                    <p style="margin-top: 12px;"><strong>May 2026:</strong> Submit "The P&L Case for Digital Engagement" byline from Nate. TFB's data modernization coverage (banks at 50/100 maturity score) sets up DO's data story. Include DO metrics: 375% more direct deposits, 64% attrition reduction.</p>
+                    <p style="margin-top: 12px;"><strong>July 2026:</strong> Pitch customer case study with named FI executive (Massud Zahir or Jay Tuli). TFB runs "what's working" case studies in summer. DO's metrics are publication-ready.</p>
+                </div>
+            </div>
+
+            <!-- CUInsight -->
+            <div class="pub-card">
+                <h3>CUInsight</h3>
+                <div class="pub-url">cuinsight.com</div>
+                <div class="pub-desc">Leading digital publication for CU executives. Publishes multiple articles daily. Accepts guest contributors regularly. Strong podcast network. Mini-Con virtual events quarterly (May 13, Sep 16). Pattern: Digital engagement, data/AI, onboarding optimization, fintech partnerships, member lifecycle.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell prime">
+                        <strong>Predicted themes:</strong><br>
+                        Digital onboarding optimization. Data strategy for CUs. AI roadmap planning. Member engagement metrics. Spring campaign strategies.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mini-Con (May 13) content. Fintech partnership models. Predictive analytics for member retention. Cross-sell strategies.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year member engagement review. Technology implementation case studies. Payment modernization. AI compliance and trust.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer digital strategy. Next-gen member acquisition. Data-driven personalization. Fraud prevention tech.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Back-to-business planning. Budget season prep. Technology evaluation guides. Member retention benchmarks.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mini-Con (Sep 16) content. Fall technology decisions. 2027 planning. Strategic partnership announcements.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>April 2026:</strong> Guest article countering CUInsight's own headline "Credit Unions Push Toward Digital Onboarding But Many Still Lag Expectations." Position as: "What 170+ FIs Taught Us About the First 90 Days." DO becomes the authority on what actually works.</p>
+                    <p style="margin-top: 12px;"><strong>May 2026 (pre-Mini-Con):</strong> Pitch Nate for CUInsight Network podcast. CUInsight regularly features fintech executives and CPOs. Nate's Segmint background (Alkami acquisition) gives him credibility with the CU audience. Pair with a contributed article on data-driven cross-sell.</p>
+                    <p style="margin-top: 12px;"><strong>September 2026 (pre-Mini-Con):</strong> Partner announcement or customer win press release timed to Mini-Con. CUInsight covers industry announcements daily.</p>
+                </div>
+            </div>
+
+            <!-- CU 2.0 -->
+            <div class="pub-card">
+                <h3>CU 2.0</h3>
+                <div class="pub-url">cu-2.com | Kirk Drake</div>
+                <div class="pub-desc">Podcast-first model (300+ episodes). "Fintech Friday" and "Mastermind" recurring series. Has an Account Opening and Onboarding Provider Guide that DO should be listed in. AI strategy workshops with Kirk Drake. Pattern: AI strategy dominates, digital transformation, fintech partnerships, member engagement, loyalty.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        AI implementation stories. Digital onboarding deep dives. Fintech Friday features. Member acquisition via data.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        CEO strategy interviews. Loyalty program innovation. Data-driven personalization. Marketing automation.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fintech Meetup coverage. Partnership announcements. Digital banking platform features. Member lifecycle strategies.<br>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer strategy content. Emerging tech (blockchain, stablecoins). Member retention deep dives.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        AI readiness assessments. Technology evaluation season. Budget planning. Board-level technology presentations.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall conference coverage. 2027 strategy previews. Digital transformation case studies. Fintech ecosystem updates.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>Immediate:</strong> Get DO listed in the CU 2.0 Account Opening and Onboarding Provider Guide (cu-2.com/online-account-opening-onboarding-provider-guide/). This is an evergreen reference that CU digital leaders use for vendor evaluation.</p>
+                    <p style="margin-top: 12px;"><strong>April 2026:</strong> Pitch Nate for a "Fintech Friday" or "Mastermind" podcast episode. Kirk Drake's format favors deep technical conversations. Nate's "Before You Deploy AI, Connect Your Data" thesis aligns perfectly with CU 2.0's AI strategy focus. Talking point: "I built the data engine behind Alkami's $135.5M Segmint acquisition. Here's what that taught me about data readiness."</p>
+                    <p style="margin-top: 12px;"><strong>June 2026:</strong> If DO has partnership announcements, time them around Fintech Meetup for CU 2.0 blog coverage.</p>
+                </div>
+            </div>
+
+            <!-- CreditUnions.com -->
+            <div class="pub-card">
+                <h3>CreditUnions.com (Callahan & Associates)</h3>
+                <div class="pub-url">creditunions.com</div>
+                <div class="pub-desc">Data-driven CU editorial. Innovation Series with webinars and finalist profiles. Strong on benchmarking, financial performance, and member engagement analytics. 2026 Innovation Series categories include "Digital Member Engagement" and "Data & Decision Intelligence."</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Post-Innovation Series analysis. Q1 performance data (TrendWatch). Succession planning follow-up. Member engagement best practices.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year economic outlook. Loan growth analysis. Digital transformation ROI. Member retention benchmarks.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        H1 performance data. Innovation implementation stories. Partner Perspectives features. Board governance.<br>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer features. Member Story Project content. Leadership profiles. Economic analysis updates.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Back-to-business. Technology investment analysis. 2027 Innovation Series nominations open. Budget season content.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall conference coverage. 2027 Innovation Series categories announced. Year-ahead planning. Strategic investment priorities.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>May 2026:</strong> Pitch a "Partner Perspectives" contributed article anchored in DO's engagement data. CreditUnions.com is obsessively data-driven. Lead with: "What we learned from 170+ FIs about the engagement gap in the first 90 days." Include benchmarks Callahan's audience respects: deposit growth, attrition rates, cross-sell lift.</p>
+                    <p style="margin-top: 12px;"><strong>August-September 2026:</strong> Submit DO for 2027 Innovation Series consideration in "Digital Member Engagement" or "Data & Decision Intelligence" categories. DO's metrics (375% direct deposits, 64% attrition reduction, 8x online banking enrollments) are exactly what the Innovation Series profiles.</p>
+                </div>
+            </div>
+
+            <!-- Cornerstone Advisors -->
+            <div class="pub-card">
+                <h3>Cornerstone Advisors</h3>
+                <div class="pub-url">crnrstone.com/gonzobanker | Ron Shevlin, Sam Kilmer</div>
+                <div class="pub-desc">GonzoBanker blog + annual research reports. Ron Shevlin is among the world's top fintech influencers. Cornerstone partners with fintechs to produce co-branded research. Their 2026 finding that FIs are "only halfway" on data execution is a direct setup for DO.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Post-AOBA analysis. AI implementation reality. Data quality challenges. Core system deals and modernization.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year fintech deals roundup. Data strategy effectiveness research. Digital banking benchmarks. Partnership ecosystem analysis.<br>
+                        <span class="tag tag-data">DATA</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        H1 performance review. GonzoBanker Awards planning. Fraud trends update. Operational efficiency analysis.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer research. Fintech market dynamics. Community bank strategy. Technology vendor landscape.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Research fielding for 2027 "What's Going On in Banking." GonzoBanker Awards. Strategic planning season begins.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall conference commentary. Pre-Money20/20 content. 2027 banking predictions start. Technology investment trends.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>April-May 2026:</strong> Pitch co-branded research to Sam Kilmer's fintech advisory practice. Proposal: "The Engagement Gap: What 170+ FI Implementations Reveal About Data-Driven Lifecycle Engagement." Cornerstone's finding that data execution is at 50% creates the perfect problem statement. DO provides the solution data. This becomes a lead-gen asset for both companies.</p>
+                    <p style="margin-top: 12px;"><strong>Ongoing:</strong> Add Ron Shevlin to Nate's monthly analyst update distribution list. Cornerstone is already identified in DO project files as a research collaboration target. Ron's "If Your Data Quality Is Low, Your AI Strategy Will Blow" (Feb 2026) is essentially Nate's thesis stated by an independent analyst.</p>
+                </div>
+            </div>
+
+            <!-- Banking Dive -->
+            <div class="pub-card">
+                <h3>Banking Dive</h3>
+                <div class="pub-url">bankingdive.com</div>
+                <div class="pub-desc">Daily banking news with strong SEO authority. Daily Dive newsletter + weekly Banking Dive: Fintech (Wednesdays). Not a typical byline channel but strong for press release pickup and sponsored content.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Q1 earnings coverage. AI adoption progress. M&A deal flow. Digital banking CX innovations.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year banking outlook. Fintech partnership deals. Cloud migration progress. Regulatory updates.<br>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        H1 review. Technology spend analysis. Charter applications update. Customer engagement trends.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Summer deal flow. Leadership changes. Strategic planning previews. AI implementation case studies.<br>
+                        <span class="tag tag-ai">AI + DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Conference preview season. Technology investment priorities. Digital banking benchmarks. Regulatory outlook.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fall conference coverage. "Trends to Watch" early previews. M&A acceleration. AI ROI measurements.<br>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>Anytime (press release channel):</strong> Banking Dive picks up well-written press releases with news value. Use for: Nate Shahan CPO appointment (refresh with product vision angle), partner announcements, customer milestone press releases. Their Fintech Wednesday newsletter is a good target for fintech-angle stories.</p>
+                    <p style="margin-top: 12px;"><strong>September 2026:</strong> If DO has a sponsored content budget, Banking Dive's "deep dive" branded guides on digital transformation and AI strategy reach the right audience. Position DO's data story as a sponsored guide: "The Data Foundation for AI-Ready Engagement."</p>
+                </div>
+            </div>
+
+            <!-- Finovate -->
+            <div class="pub-card">
+                <h3>Finovate Blog</h3>
+                <div class="pub-url">finovate.com/blog</div>
+                <div class="pub-desc">Daily fintech ecosystem coverage. FinovateFall 2026 scheduled Sept 9-11 in NYC. Covers partnerships, acquisitions, product launches, regulatory updates. Strong on onboarding solutions and identity/verification.</div>
+
+                <div class="calendar-grid">
+                    <div class="month-header">APR 2026</div>
+                    <div class="month-header">MAY 2026</div>
+                    <div class="month-header">JUN 2026</div>
+                    <div class="month-header">JUL 2026</div>
+                    <div class="month-header">AUG 2026</div>
+                    <div class="month-header">SEP 2026</div>
+
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Post-FinovateEurope analysis. Partnership announcements. AI-powered onboarding solutions. Compliance updates.<br>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Fintech funding rounds. Product launches. Digital identity and verification. Customer experience innovations.<br>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        Mid-year fintech landscape. M&A activity. Open banking progress. Regulatory framework updates.<br>
+                        <span class="tag tag-data">DATA</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        FinovateFall speaker announcements begin. Demo applications. Pre-conference content. Innovation previews.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        FinovateFall 2026 preview content ramps up. Speaker profiles. Demo company features. Trend predictions for the event.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                    </div>
+                    <div class="month-cell">
+                        <strong>Predicted themes:</strong><br>
+                        FinovateFall 2026 (Sep 9-11, NYC). Live coverage. Demo videos. Post-event analysis. Partnership announcements at event.<br>
+                        <span class="tag tag-people">PEOPLE</span>
+                        <span class="tag tag-momentum">MOMENTUM</span>
+                        <span class="tag tag-lifecycle">LIFECYCLE</span>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <h4>DO Opportunity Windows</h4>
+                    <p><strong>July 2026:</strong> Apply for FinovateFall 2026 demo slot or speaking panel (Sep 9-11, NYC). This is already identified in DO project files as a target for Nate. Finovate's blog will feature speaker profiles and demo company previews starting in July/August. Submit early.</p>
+                    <p style="margin-top: 12px;"><strong>August-September 2026:</strong> Time any major product announcement or partnership news for FinovateFall week. Finovate blog coverage peaks during event weeks. A well-timed announcement gets amplified across Finovate's entire content ecosystem.</p>
+                    <p style="margin-top: 12px;"><strong>Ongoing:</strong> Finovate covers fintech partnerships daily. Any DO integration partner announcements should be pitched to Finovate's editorial team for blog coverage.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Opportunity Map -->
+        <div class="section">
+            <h2 class="section-title">Master Opportunity Map</h2>
+            <p class="section-subtitle">DO themes cross-referenced against predicted editorial windows. Yellow highlight = high priority.</p>
+
+            <table class="match-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Publication</th>
+                        <th>DO Theme</th>
+                        <th>Content Piece</th>
+                        <th>Author</th>
+                        <th>Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>APR 2026</td>
+                        <td>The Financial Brand</td>
+                        <td><span class="tag tag-lifecycle">LIFECYCLE</span> <span class="tag tag-data">DATA</span></td>
+                        <td>"Beyond Onboarding: What Data-Driven Lifecycle Engagement Actually Looks Like" (post-Forum timing)</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>APR 2026</td>
+                        <td>CUInsight</td>
+                        <td><span class="tag tag-lifecycle">LIFECYCLE</span> <span class="tag tag-data">DATA</span></td>
+                        <td>"What 170+ FIs Taught Us About the First 90 Days" (guest article)</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>APR 2026</td>
+                        <td>CU 2.0</td>
+                        <td><span class="tag tag-ai">AI + DATA</span></td>
+                        <td>Podcast: "Fintech Friday" or "Mastermind" episode. Segmint/Alkami story + AI data readiness thesis</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>APR 2026</td>
+                        <td>CU 2.0</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Get DO listed in Account Opening and Onboarding Provider Guide (evergreen)</td>
+                        <td>Jen Packard</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>MAY 2026</td>
+                        <td>American Banker</td>
+                        <td><span class="tag tag-ai">AI + DATA</span></td>
+                        <td>"Before You Buy AI, Fix Your Data" (BankThink opinion). Anchors in Cornerstone's "only halfway" finding</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>MAY 2026</td>
+                        <td>The Financial Brand</td>
+                        <td><span class="tag tag-data">DATA</span> <span class="tag tag-people">PEOPLE</span></td>
+                        <td>"The P&L Case for Digital Engagement" (byline with DO metrics: 375% direct deposits, 64% attrition reduction)</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>MAY 2026</td>
+                        <td>CreditUnions.com</td>
+                        <td><span class="tag tag-data">DATA</span> <span class="tag tag-lifecycle">LIFECYCLE</span></td>
+                        <td>"Partner Perspectives" article: "The Engagement Gap in the First 90 Days" (benchmarks-led)</td>
+                        <td>Nate or Adam</td>
+                        <td><span class="priority priority-med">MED</span></td>
+                    </tr>
+                    <tr>
+                        <td>MAY 2026</td>
+                        <td>Cornerstone</td>
+                        <td><span class="tag tag-data">DATA</span> <span class="tag tag-ai">AI + DATA</span></td>
+                        <td>Co-branded research pitch to Sam Kilmer: "The Engagement Gap" using DO's 170+ FI data</td>
+                        <td>Nate + Cornerstone</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>MAY 2026</td>
+                        <td>CUInsight</td>
+                        <td><span class="tag tag-people">PEOPLE</span></td>
+                        <td>CUInsight Network podcast appearance. Nate as CPO with Segmint/Alkami credibility</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-med">MED</span></td>
+                    </tr>
+                    <tr>
+                        <td>JUN 2026</td>
+                        <td>CU 2.0</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Partnership announcement timed to Fintech Meetup. Blog coverage + podcast mention</td>
+                        <td>DO PR</td>
+                        <td><span class="priority priority-med">MED</span></td>
+                    </tr>
+                    <tr>
+                        <td>JUL 2026</td>
+                        <td>The Financial Brand</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span> <span class="tag tag-data">DATA</span></td>
+                        <td>Customer case study with named FI executive (Massud Zahir or Jay Tuli). Summer "what's working" format</td>
+                        <td>Customer feature</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>JUL 2026</td>
+                        <td>Finovate</td>
+                        <td><span class="tag tag-people">PEOPLE</span></td>
+                        <td>Apply for FinovateFall demo/speaking slot (Sep 9-11). Submit early for speaker profile coverage</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>AUG 2026</td>
+                        <td>Finovate</td>
+                        <td><span class="tag tag-people">PEOPLE</span> <span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Pre-FinovateFall speaker profile and demo company preview. Major announcement timed to event</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>AUG-SEP</td>
+                        <td>CreditUnions.com</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Submit DO for 2027 Innovation Series ("Digital Member Engagement" or "Data & Decision Intelligence")</td>
+                        <td>Jen Packard</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>SEP 2026</td>
+                        <td>American Banker</td>
+                        <td><span class="tag tag-lifecycle">LIFECYCLE</span></td>
+                        <td>"The 90 Days After Account Opening That Determine Everything" (fall strategic planning cycle)</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>SEP 2026</td>
+                        <td>Finovate</td>
+                        <td><span class="tag tag-people">PEOPLE</span> <span class="tag tag-lifecycle">LIFECYCLE</span></td>
+                        <td>FinovateFall 2026 (Sep 9-11). Demo, speaking, event-week announcements</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                    <tr>
+                        <td>SEP 2026</td>
+                        <td>CUInsight</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Customer win or partner announcement timed to Mini-Con (Sep 16)</td>
+                        <td>DO PR</td>
+                        <td><span class="priority priority-med">MED</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ongoing</td>
+                        <td>Banking Dive</td>
+                        <td><span class="tag tag-momentum">MOMENTUM</span></td>
+                        <td>Press releases: partner announcements, customer milestones, executive visibility. Fintech Wednesday newsletter</td>
+                        <td>DO PR</td>
+                        <td><span class="priority priority-med">MED</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ongoing</td>
+                        <td>Cornerstone</td>
+                        <td><span class="tag tag-people">PEOPLE</span></td>
+                        <td>Add Ron Shevlin to Nate's monthly analyst update. Build relationship for research collaboration</td>
+                        <td>Nate Shahan</td>
+                        <td><span class="priority priority-high">HIGH</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Alignment Section -->
+        <div class="section">
+            <h2 class="section-title">Alignment with DO Project Recommendations</h2>
+            <p class="section-subtitle">Cross-referencing this distribution plan against existing engagement deliverables.</p>
+
+            <div class="pub-card">
+                <h3>Nate Shahan Visibility Profile</h3>
+                <p class="pub-desc">The Visibility Profile identified three core topics, podcast targets, and a speaking cadence. This calendar maps all three topics to specific publications and timing windows. The "CPO Circuit" 5-podcast-in-90-days target is now actionable: CU 2.0 (April), CUInsight (May), Banking Transformed (ongoing pitch), plus two more from the Visibility Profile list.</p>
+                <div style="padding: 16px 0; border-top: 1px solid var(--light-gray); margin-top: 16px;">
+                    <strong>Status:</strong> Fully aligned. Calendar adds specific timing and editorial context.
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <h3>Website Audit (StoryBrand)</h3>
+                <p class="pub-desc">The audit recommended a gated report: "2026 Data-Driven Onboarding Benchmarks." This calendar maps that asset as the basis for the Cornerstone co-branded research pitch (May) and as supporting material for every byline placement. The "Surface Customer Video Testimonials" recommendation feeds the Financial Brand case study pitch (July).</p>
+                <div style="padding: 16px 0; border-top: 1px solid var(--light-gray); margin-top: 16px;">
+                    <strong>Status:</strong> Fully aligned. Website fixes create the content engine these placements require.
+                </div>
+            </div>
+
+            <div class="pub-card">
+                <h3>People Productization</h3>
+                <p class="pub-desc">The engagement scoped Nate, Ted, and Adam as productization targets. This calendar is Nate-heavy (by design, he's first). Ted should be queued for Q4 2026 American Banker or Financial Brand byline. Adam's CU expertise maps to CUInsight and CreditUnions.com contributed articles in Q4.</p>
+                <div style="padding: 16px 0; border-top: 1px solid var(--light-gray); margin-top: 16px;">
+                    <strong>Status:</strong> Phase 1 (Nate) fully mapped. Ted and Adam need Q4 calendar extension.
+                </div>
+            </div>
+        </div>
+
+        <!-- Immediate Actions -->
+        <div class="section">
+            <h2 class="section-title">Immediate Actions (Next 30 Days)</h2>
+
+            <div class="action-row">
+                <div class="action-card immediate">
+                    <h4>CU 2.0 Provider Guide</h4>
+                    <p>Contact info@cu-2.com to get DO listed in the Account Opening and Onboarding Provider Guide. Zero-effort, high-value evergreen placement.</p>
+                    <div class="timing">Owner: Jen Packard | Deadline: March 30</div>
+                </div>
+
+                <div class="action-card immediate">
+                    <h4>Pitch CU 2.0 Podcast</h4>
+                    <p>Pitch Nate for Kirk Drake's "Fintech Friday" or "Mastermind" podcast. Lead with Segmint/Alkami story and "Before You Deploy AI, Connect Your Data" thesis.</p>
+                    <div class="timing">Owner: BrandThnk | Deadline: April 7</div>
+                </div>
+
+                <div class="action-card immediate">
+                    <h4>Draft BankThink Submission</h4>
+                    <p>Draft "Before You Buy AI, Fix Your Data" for American Banker BankThink. Target May publication. Submit to Victoria Finkle per BankThink guidelines.</p>
+                    <div class="timing">Owner: BrandThnk + Nate | Deadline: April 15</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>BrandThnk | Confidential | Prepared for Digital Onboarding, Inc.</p>
+    </div>
+
+    <script>
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
