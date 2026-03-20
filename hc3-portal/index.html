@@ -262,6 +262,63 @@
       color: var(--brandthnk-gray);
     }
 
+    .discussion-container {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .discussion-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .discussion-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .discussion-number {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+
+    .discussion-content h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--brandthnk-black);
+    }
+
+    .discussion-content p {
+      color: var(--brandthnk-gray);
+      line-height: 1.6;
+    }
+
+    .discussion-content code {
+      background: var(--brandthnk-off-white);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--brandthnk-black);
+    }
+
     .resource-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -675,6 +732,39 @@
 
         <div class="phase-details" id="phase-details">
           <!-- Phase details will be inserted here dynamically -->
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Discussion Topics</h2>
+
+        <div class="discussion-container">
+          <h3>Flagged for Kickoff Discussion (No Copy Changes Yet)</h3>
+          <p style="margin-bottom: 30px; color: var(--brandthnk-gray);">These items from Kristan's intake need validation before changing copy:</p>
+
+          <div class="discussion-item">
+            <div class="discussion-number">1</div>
+            <div class="discussion-content">
+              <h4><strong>"Messaging cannot outpace actual product maturity"</strong></h4>
+              <p>Review all draft website claims with HC3 team. The <code>[X]</code> placeholders are smart. Don't fill them with aspirational numbers. Confirm the "smarter statement processing" tagline aligns with what HC3 delivers today.</p>
+            </div>
+          </div>
+
+          <div class="discussion-item">
+            <div class="discussion-number">2</div>
+            <div class="discussion-content">
+              <h4><strong>"How far HC3 wants to move from Print & Mail in identity"</strong></h4>
+              <p>Kristan flagged this as needing more signal. The draft website currently balances print heritage with digital-forward positioning. Confirm this balance is right before adjusting further.</p>
+            </div>
+          </div>
+
+          <div class="discussion-item">
+            <div class="discussion-number">3</div>
+            <div class="discussion-content">
+              <h4><strong>Competitive posture</strong></h4>
+              <p>Kristan needs more signal on whether to position against legacy print vendors, digital-only players, or full-stack fintech platforms. This will affect homepage and solutions copy once decided.</p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
