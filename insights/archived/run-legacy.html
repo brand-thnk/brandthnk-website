@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run Research | BrandThnk Insights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --green: #4CAF50;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* MAIN CONTAINER */
+  .main-container {
+    margin-top: 80px;
+    padding: 40px 60px;
+    min-height: calc(100vh - 80px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .screen {
+    display: none;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  /* HEADER */
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .page-subtitle {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* MODULE SELECTION */
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .module-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .module-card:hover {
+    border-color: var(--black);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .module-card.selected {
+    border-color: var(--yellow);
+    background: var(--offwhite);
+  }
+
+  .module-card.selected::before {
+    content: '✓';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: var(--yellow);
+    color: var(--black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .module-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .module-description {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .module-meta {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+  }
+
+  .module-card-coming-soon {
+    position: relative;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .module-card-coming-soon:hover {
+    border-color: var(--light-gray);
+    transform: none;
+    box-shadow: none;
+  }
+
+  .coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .coming-soon-text {
+    background: var(--gray);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+
+  .form-section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 8px;
+    display: inline-block;
+  }
+
+  .form-row {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-gray);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--yellow);
+  }
+
+  .form-textarea {
+    height: 120px;
+    resize: vertical;
+  }
+
+  /* Removed message-inputs CSS - using single "What You're Testing" field */
+
+  .add-message-btn {
+    background: var(--offwhite);
+    border: 1px dashed var(--gray);
+    padding: 12px;
+    font-family: 'Roboto Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .add-message-btn:hover {
+    background: var(--yellow);
+    border-color: var(--black);
+  }
+
+  /* PERSONA SELECTION */
+  .persona-segments {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Removed segment-toggle styles - automated selection only */
+
+  /* Removed personas-grid styles - automated selection only */
+
+  /* Removed persona-checkbox styles - automated selection only */
+
+  .persona-name {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .persona-meta {
+    font-size: 11px;
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .persona-desc {
+    color: var(--black);
+    font-size: 12px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .persona-motivation {
+    font-size: 11px;
+    color: var(--gray);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .persona-motivation strong {
+    color: var(--black);
+  }
+
+  .persona-detail-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--yellow);
+    padding-bottom: 2px;
+  }
+
+  .persona-detail-link:hover {
+    background: var(--yellow);
+    padding: 2px 4px;
+    margin: 4px -4px -2px -4px;
+    border-bottom: none;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: none;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-primary:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* RESEARCH READY SECTION */
+  .research-ready-section {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+  }
+
+  .automation-message h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .automation-message p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  .validation-credentials {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .credential {
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .credential-number {
+    display: block;
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .credential-label {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .action-buttons {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* PROGRESS SCREEN */
+  .progress-container {
+    text-align: center;
+    padding: 60px 0;
+  }
+
+  .progress-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--black);
+  }
+
+  .progress-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    border: 2px solid var(--light-gray);
+    background: var(--white);
+    color: var(--gray);
+    transition: all 0.3s;
+  }
+
+  .progress-circle.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+  }
+
+  .progress-circle.completed {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+  }
+
+  .progress-circle.completed::after {
+    content: '✓';
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: var(--gray);
+    text-align: center;
+    max-width: 80px;
+  }
+
+  .quote-display {
+    background: var(--offwhite);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 600px;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .quote-text {
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .quote-attribution {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 500;
+  }
+
+  /* REPORT DISPLAY */
+  .report-container {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    margin: 40px 0;
+  }
+
+  .report-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .report-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .report-date {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .report-content {
+    padding: 30px;
+  }
+
+  .report-section {
+    margin-bottom: 30px;
+  }
+
+  .report-section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 8px;
+    display: inline-block;
+  }
+
+  .verdict-box {
+    background: var(--offwhite);
+    padding: 20px;
+    margin: 16px 0;
+    border-left: 4px solid var(--yellow);
+  }
+
+  .verdict-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .persona-profile {
+    background: var(--offwhite);
+    padding: 20px;
+    margin: 16px 0;
+    border-left: 4px solid var(--yellow);
+    border-radius: 4px;
+  }
+
+  .persona-profile-header {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .persona-profile-title {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .persona-profile-details {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .persona-profile-details p {
+    margin-bottom: 8px;
+  }
+
+  .persona-profile-details strong {
+    color: var(--black);
+  }
+
+  .report-actions {
+    background: var(--offwhite);
+    padding: 20px 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .main-container {
+      padding: 20px 24px;
+    }
+
+    .modules-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Removed mobile message-inputs CSS - using single "What You're Testing" field */
+
+    .persona-segments {
+      flex-direction: column;
+    }
+
+    /* Removed mobile personas-grid styles - automated selection only */
+
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .progress-steps {
+      flex-direction: column;
+    }
+
+    .report-header {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/insights/" class="active">Insights</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<div class="main-container">
+
+  <!-- SCREEN 1: MODULE SELECTION -->
+  <div id="module-screen" class="screen active">
+    <div class="page-header">
+      <h1 class="page-title">Choose Your Research Module</h1>
+      <p class="page-subtitle">Select the decision type you're addressing. Each module runs structured interviews with relevant personas.</p>
+    </div>
+
+    <div class="modules-grid" id="modules-grid">
+      <div class="module-card" data-module="message-testing">
+        <h3 class="module-title">Message Testing</h3>
+        <p class="module-description">Compare taglines, positioning statements, and campaign messages to identify what resonates with audiences.</p>
+      </div>
+
+      <div class="module-card module-card-coming-soon">
+        <h3 class="module-title">Competitive Positioning</h3>
+        <p class="module-description">Evaluate bank positioning versus named competitors, revealing perception gaps and switching motivators by segment.</p>
+        <div class="module-meta">Coming Soon</div>
+        <div class="coming-soon-overlay">
+          <span class="coming-soon-text">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="nextScreen('setup-screen')" id="continue-btn" disabled>Continue to Setup</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: SETUP FORM -->
+  <div id="setup-screen" class="screen">
+    <div class="page-header">
+      <h1 class="page-title">Set Up Your Research</h1>
+      <p class="page-subtitle">Configure your research parameters. Research participants will be automatically selected based on your organization and goals.</p>
+    </div>
+
+    <!-- Basic Information -->
+    <div class="form-section">
+      <h2 class="form-section-title">Basic Information</h2>
+      <div class="form-row">
+        <label class="form-label">Company Name</label>
+        <input type="text" class="form-input" placeholder="Your bank or financial institution">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" placeholder="Your full name">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="your.email@institution.com" onblur="checkDomainUsage()">
+        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
+          Work email required. Personal domains (gmail, yahoo, etc.) not accepted. 3 sessions per domain per month.
+        </div>
+        <div id="usage-indicator" style="font-size: 12px; margin-top: 5px; font-weight: 600;"></div>
+      </div>
+    </div>
+
+    <!-- Dynamic Content Section -->
+    <div id="module-content">
+      <!-- Content will be injected based on selected module -->
+    </div>
+
+    <!-- Research Parameters -->
+    <div class="form-section">
+      <h2 class="form-section-title">Research Parameters</h2>
+
+      <!-- Organization Type -->
+      <div class="form-row">
+        <label class="form-label">Organization Type</label>
+        <select id="organization-type" class="form-input">
+          <option value="">Select organization type...</option>
+          <option value="community-bank">Community Bank (Under $1B assets)</option>
+          <option value="regional-bank">Regional Bank ($1B-$50B assets)</option>
+          <option value="credit-union">Credit Union</option>
+          <option value="fintech">Fintech Company</option>
+          <option value="neobank">Neobank/Digital Bank</option>
+        </select>
+      </div>
+
+      <!-- Target Audience -->
+      <div class="form-row">
+        <label class="form-label">Primary Target Audience</label>
+        <select id="target-audience" class="form-input">
+          <option value="">Select target audience...</option>
+          <option value="business-customers">Business Banking Customers</option>
+          <option value="retail-customers">Retail Banking Customers</option>
+          <option value="bank-executives">Financial Institution Executives</option>
+          <option value="fintech-buyers">B2B Fintech Buyers</option>
+        </select>
+      </div>
+
+      <!-- Market Characteristics -->
+      <div class="form-row">
+        <label class="form-label">Market Characteristics</label>
+        <select id="market-type" class="form-input">
+          <option value="">Select market type...</option>
+          <option value="urban">Urban Markets</option>
+          <option value="suburban">Suburban Markets</option>
+          <option value="rural">Rural Markets</option>
+          <option value="mixed">Mixed Geographic Markets</option>
+        </select>
+      </div>
+
+      <!-- Research Content -->
+      <div class="form-row">
+        <label class="form-label">What You're Testing</label>
+        <textarea id="research-content" class="form-input" rows="4" placeholder="Describe the messages, products, or concepts you want to test..."></textarea>
+        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
+          Include key messages, positioning, or product concepts you want to validate with customers.
+        </div>
+      </div>
+    </div>
+
+    <!-- Automated Research Ready Section -->
+    <div class="form-section research-ready-section">
+      <div class="automation-message">
+        <h3>Research Participants Automatically Selected</h3>
+        <p>Based on your organization and research parameters, we'll identify the optimal research participants from our validated persona library.</p>
+
+        <div class="validation-credentials">
+          <div class="credential">
+            <span class="credential-number">30+</span>
+            <span class="credential-label">Client Workshops</span>
+          </div>
+          <div class="credential">
+            <span class="credential-number">22</span>
+            <span class="credential-label">Validated Personas</span>
+          </div>
+          <div class="credential">
+            <span class="credential-number">Industry</span>
+            <span class="credential-label">Data Grounded</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn btn-secondary" onclick="previousScreen('module-screen')">Back to Modules</button>
+      <button class="btn btn-primary" onclick="startAutomatedResearch()">Run Research Interviews</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: PROGRESS -->
+  <div id="progress-screen" class="screen">
+    <div class="progress-container">
+      <h1 class="progress-title">Running Research Interviews</h1>
+
+      <div class="progress-steps" id="progress-steps">
+        <!-- Progress steps will be populated dynamically -->
+      </div>
+
+      <div class="quote-display" id="quote-display">
+        <div class="quote-text">"I don't need my bank to make me feel warm and fuzzy. I need them to answer the phone when I call."</div>
+        <div class="quote-attribution">— Steady Steward, responding to emotional messaging</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: REPORT -->
+  <div id="report-screen" class="screen">
+    <div class="page-header">
+      <h1 class="page-title">Your Research Report</h1>
+      <p class="page-subtitle">Executive-ready insights with direct quotes, strategic analysis, and actionable recommendations.</p>
+    </div>
+
+    <div class="report-container">
+      <div class="report-header">
+        <div class="report-title">Research Report: Message Testing</div>
+        <div class="report-date">Generated March 18, 2026</div>
+      </div>
+
+      <div class="report-content" id="report-content">
+        <!-- Report content will be dynamically generated -->
+      </div>
+
+      <div class="report-actions">
+        <a href="mailto:allison@brandthnk.co?subject=Research Report Follow-up&body=Hi Allison,%0D%0A%0D%0AI just completed a research session on BrandThnk Insights and would like to discuss the results.%0D%0A%0D%0AResearch type: Message Testing%0D%0ACompany: [Your company]%0D%0A%0D%0ANext steps I'm considering:%0D%0A- [Add your questions or next steps]%0D%0A%0D%0AThanks,%0D%0A[Your name]" class="btn btn-primary">Discuss Results</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Research tool JavaScript
+let selectedModule = null;
+let selectedPersonas = [];
+let selectedMarket = 'na';
+let currentPersonaSegment = 'fintech';
+
+// AutomatedPersonaSelector Class
+class AutomatedPersonaSelector {
+  constructor() {
+    this.weights = {
+      organizationType: 0.4,    // Primary organization alignment
+      targetAudience: 0.3,      // Audience relevance
+      marketType: 0.2,          // Geographic/market fit
+      contentAnalysis: 0.1      // Message content signals
+    };
+  }
+
+  selectPersonas(businessParams) {
+    // Determine primary segment based on organization type and target audience
+    const primarySegment = this.determinePrimarySegment(businessParams);
+
+    // Get all personas from the primary segment
+    const allPersonas = this.getAllPersonas();
+    const segmentPersonas = allPersonas[primarySegment];
+
+    // Score each persona and select top 3-4
+    const scoredPersonas = segmentPersonas.map(persona => ({
+      persona,
+      score: this.calculatePersonaScore(persona, businessParams),
+      reasoning: this.generateReasoning(persona, businessParams)
+    }));
+
+    // Sort by score and return top 3-4
+    return scoredPersonas
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4)
+      .map(item => ({
+        ...item,
+        confidence: this.scoreToConfidence(item.score)
+      }));
+  }
+
+  determinePrimarySegment(params) {
+    const { organizationType, targetAudience } = params;
+
+    // Fintech organizations primarily target fintech buyers
+    if (organizationType === 'fintech' || organizationType === 'neobank') {
+      return targetAudience === 'fintech-buyers' ? 'fintech' : 'business';
+    }
+
+    // Banks and credit unions map based on target audience
+    if (organizationType === 'community-bank' || organizationType === 'credit-union' || organizationType === 'regional-bank') {
+      if (targetAudience === 'bank-executives' || targetAudience === 'fintech-buyers') {
+        return 'fintech';
+      } else if (targetAudience === 'business-customers') {
+        return 'business';
+      } else {
+        return 'consumer';
+      }
+    }
+
+    // Default mapping based on target audience
+    switch (targetAudience) {
+      case 'fintech-buyers':
+      case 'bank-executives':
+        return 'fintech';
+      case 'business-customers':
+        return 'business';
+      default:
+        return 'consumer';
+    }
+  }
+
+  calculatePersonaScore(persona, params) {
+    const criteria = persona.autoMatchCriteria;
+    if (!criteria) return 0.1; // Fallback for personas without criteria
+
+    let score = 0;
+
+    // Organization type alignment
+    const orgScore = criteria.organizationTypes.includes(params.organizationType) ? 1.0 : 0.2;
+    score += orgScore * this.weights.organizationType;
+
+    // Target audience alignment
+    const audienceScore = criteria.targetAudiences.includes(params.targetAudience) ? 1.0 : 0.3;
+    score += audienceScore * this.weights.targetAudience;
+
+    // Market type alignment
+    const marketScore = criteria.marketTypes.includes(params.marketType) ? 1.0 : 0.4;
+    score += marketScore * this.weights.marketType;
+
+    // Content analysis
+    const contentScore = this.scoreContent(criteria, params.researchContent);
+    score += contentScore * this.weights.contentAnalysis;
+
+    // Apply persona-specific weight multiplier
+    score *= criteria.selectionWeight;
+
+    return Math.min(1.0, score);
+  }
+
+  scoreContent(criteria, content) {
+    if (!content || !criteria.contentSignals) return 0.5;
+
+    const contentLower = content.toLowerCase();
+    let score = 0.5; // neutral base
+
+    // Positive signals boost score
+    const positiveMatches = criteria.contentSignals.positive.filter(keyword =>
+      contentLower.includes(keyword.toLowerCase())
+    ).length;
+    score += positiveMatches * 0.15;
+
+    // Negative signals reduce score
+    const negativeMatches = criteria.contentSignals.negative.filter(keyword =>
+      contentLower.includes(keyword.toLowerCase())
+    ).length;
+    score -= negativeMatches * 0.2;
+
+    return Math.max(0, Math.min(1, score));
+  }
+
+  generateReasoning(persona, params) {
+    const criteria = persona.autoMatchCriteria;
+    const reasons = [];
+
+    if (criteria.organizationTypes.includes(params.organizationType)) {
+      reasons.push(`${params.organizationType.replace('-', ' ')} alignment`);
+    }
+
+    if (criteria.marketTypes.includes(params.marketType)) {
+      reasons.push(`${params.marketType} market fit`);
+    }
+
+    if (params.researchContent && criteria.contentSignals) {
+      const contentLower = params.researchContent.toLowerCase();
+      const hasPositiveSignals = criteria.contentSignals.positive.some(keyword =>
+        contentLower.includes(keyword.toLowerCase())
+      );
+      if (hasPositiveSignals) {
+        reasons.push('content relevance');
+      }
+    }
+
+    return reasons.length ? reasons.join(', ') : 'general profile match';
+  }
+
+  scoreToConfidence(score) {
+    if (score >= 0.8) return 'High';
+    if (score >= 0.6) return 'Medium';
+    return 'Low';
+  }
+
+  getAllPersonas() {
+    // Return the global personas object
+    return window.PERSONAS;
+  }
+}
+
+// Global personas object with rich data and autoMatchCriteria
+
+// Module selection
+document.addEventListener('DOMContentLoaded', function() {
+  setupModuleSelection();
+});
+
+function setupModuleSelection() {
+  const moduleCards = document.querySelectorAll('.module-card:not(.module-card-coming-soon)');
+  const continueBtn = document.getElementById('continue-btn');
+
+  moduleCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Remove selected class from all cards
+      document.querySelectorAll('.module-card').forEach(c => c.classList.remove('selected'));
+
+      // Add selected class to clicked card
+      this.classList.add('selected');
+
+      // Store selected module
+      selectedModule = this.dataset.module;
+
+      // Enable continue button
+      continueBtn.disabled = false;
+    });
+  });
+}
+
+// Removed setupPersonaSelection() function - replaced with automated selection
+
+// Removed setupMarketSelection() function - replaced with dropdown in automated interface
+
+// Complete 22-Persona Library Implementation
+window.PERSONAS = {
+  consumer: [
+    {
+      id: 'c1-mobile-first-momentum-builder',
+      name: 'Mobile-First Momentum Builder',
+      age: '24-32',
+      segment: 'Early-career professional',
+      coreMotivation: 'Build financial momentum through efficient digital tools',
+      keyFears: 'Hidden fees, wasting time, missing opportunities for growth',
+      typicalLanguage: 'get paid early, track subscriptions, instant transfers, slick UX',
+      processingQuote: 'I need tools that work as well as my other apps - fast, transparent, and always available.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank', 'regional-bank'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['mobile', 'fast', 'instant', 'digital', 'app', 'transparent', 'outcome-oriented'],
+          negative: ['branch', 'traditional', 'corporate jargon', 'innovation claims']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c2-guided-opportunity-seeker',
+      name: 'Guided Opportunity Seeker',
+      age: '18-26',
+      segment: 'Student or early-career with limited financial experience',
+      coreMotivation: 'Learn and avoid financial mistakes while building credit',
+      keyFears: 'Overdrafts, hidden fees, making wrong decisions, financial traps',
+      typicalLanguage: 'how does this work, what could go wrong, plain language, visual explainers',
+      processingQuote: 'I need to understand exactly how this works and what happens if I make a mistake.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'urban', 'mixed'],
+        contentSignals: {
+          positive: ['education', 'guidance', 'plain language', 'examples', 'coach', 'learn'],
+          negative: ['complex', 'assumes knowledge', 'APR tables', 'jargon']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'c3-busy-family-optimizer',
+      name: 'Busy Family Optimizer',
+      age: '35-48',
+      segment: 'Dual-income household with children',
+      coreMotivation: 'Automate financial management to save time and reduce stress',
+      keyFears: 'Missed payments, account management complexity, data security breaches',
+      typicalLanguage: 'automate bills, time-saving, family benefits, bundled value, cash-back',
+      processingQuote: 'I need banking that saves me time and gives me predictable family benefits.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'mixed'],
+        contentSignals: {
+          positive: ['automation', 'time-saving', 'family', 'bundled', 'predictable', 'rewards'],
+          negative: ['disjointed', 'complex pricing', 'unclear data sharing']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c4-relationship-first-traditionalist',
+      name: 'Relationship-First Traditionalist',
+      age: '50-68',
+      segment: 'Mid to late-career, values personal service',
+      coreMotivation: 'Maintain trusted banking relationships with personal service',
+      keyFears: 'Losing personal banker, forced into digital-only channels, service deterioration',
+      typicalLanguage: 'my banker, branch experience, personal service, tried and trusted',
+      processingQuote: 'I want to bank with people who know me and my business, not just a computer.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['rural', 'suburban'],
+        contentSignals: {
+          positive: ['personal', 'relationship', 'service', 'trusted', 'local', 'banker'],
+          negative: ['digital-only', 'app-based', 'automation', 'AI']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'c5-credit-stretched-rebuilder',
+      name: 'Credit-Stretched Rebuilder',
+      age: '28-45',
+      segment: 'Recovering from financial setback, rebuilding credit',
+      coreMotivation: 'Rebuild financial standing while avoiding further debt',
+      keyFears: 'Unexpected fees, credit denial, falling behind on payments',
+      typicalLanguage: 'second chance, no hidden fees, credit building, financial recovery',
+      processingQuote: 'I need a bank that helps me rebuild, not one that profits from my mistakes.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['second chance', 'credit building', 'transparent fees', 'financial recovery'],
+          negative: ['premium', 'exclusive', 'high-income', 'investment']
+        },
+        selectionWeight: 0.8
+      }
+    },
+    {
+      id: 'c6-mass-affluent-planner',
+      name: 'Mass Affluent Planner',
+      age: '40-60',
+      segment: 'High income, sophisticated financial needs',
+      coreMotivation: 'Optimize wealth through integrated financial services',
+      keyFears: 'Mediocre investment performance, poor financial advice, security breaches',
+      typicalLanguage: 'wealth management, investment integration, private banking, portfolio optimization',
+      processingQuote: 'I need sophisticated tools and advice that match my financial complexity.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['wealth', 'investment', 'private banking', 'sophisticated', 'integration'],
+          negative: ['basic', 'simple', 'one-size-fits-all']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'c7-gig-economy-juggler',
+      name: 'Gig Economy Juggler',
+      age: '25-40',
+      segment: 'Multiple income streams, freelance/contractor',
+      coreMotivation: 'Manage irregular income across multiple platforms efficiently',
+      keyFears: 'Cash flow gaps, complex tax reporting, platform payment delays',
+      typicalLanguage: 'multiple income streams, gig payments, cash flow, instant access',
+      processingQuote: 'I need banking that works with my unpredictable income from multiple sources.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank'],
+        targetAudiences: ['retail-customers', 'business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['gig economy', 'multiple income', 'instant access', 'freelance', 'cash flow'],
+          negative: ['traditional employment', 'stable salary', 'long-term planning']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'c8-retired-security-seeker',
+      name: 'Retired Security Seeker',
+      age: '62+',
+      segment: 'Retired, focused on security and preservation',
+      coreMotivation: 'Preserve wealth with maximum security and minimal risk',
+      keyFears: 'Fraud, investment losses, complex digital systems, outliving savings',
+      typicalLanguage: 'safe and secure, FDIC insured, established bank, fraud protection',
+      processingQuote: 'I want banking with people I can trust and security I can understand.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['suburban', 'rural'],
+        contentSignals: {
+          positive: ['security', 'FDIC', 'established', 'trusted', 'safe', 'protection'],
+          negative: ['digital-first', 'innovation', 'disruption', 'new technology']
+        },
+        selectionWeight: 0.95
+      }
+    }
+  ],
+
+  business: [
+    {
+      id: 's1-time-starved-solo-owner',
+      name: 'Time-Starved Solo Owner',
+      age: '35-50',
+      business: 'Solo practice (law, accounting, consulting)',
+      coreMotivation: 'Minimize time spent on banking and administrative tasks',
+      keyFears: 'Wasted time on banking admin, missing client opportunities, cash flow gaps',
+      typicalLanguage: 'streamlined, automated, time-saving, simple setup, no hassle',
+      processingQuote: 'I need banking that takes five minutes to set up and runs itself.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'regional-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['automated', 'streamlined', 'time-saving', 'simple', 'efficient'],
+          negative: ['complex setup', 'relationship manager', 'meetings', 'paperwork']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's2-growth-oriented-founder',
+      name: 'Growth-Oriented Founder',
+      age: '28-45',
+      business: 'Scaling startup or growth company',
+      coreMotivation: 'Access capital and financial tools that scale with growth',
+      keyFears: 'Outgrowing banking capabilities, limiting growth due to financial constraints',
+      typicalLanguage: 'scalable, growth capital, lending, credit lines, cash management',
+      processingQuote: 'I need banking that grows with me and never becomes the bottleneck.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'regional-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['growth', 'scalable', 'capital', 'lending', 'expansion', 'credit lines'],
+          negative: ['traditional', 'conservative', 'small business only']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's3-family-main-street-operator',
+      name: 'Family Main Street Operator',
+      age: '45-65',
+      business: 'Family-owned local business (retail, restaurant, services)',
+      coreMotivation: 'Maintain business stability and community relationships',
+      keyFears: 'Losing local business advantages, being treated like a number',
+      typicalLanguage: 'local business, community bank, personal service, main street',
+      processingQuote: 'I want a bank that understands local business and supports our community.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['rural', 'suburban'],
+        contentSignals: {
+          positive: ['local', 'community', 'main street', 'family business', 'personal service'],
+          negative: ['digital-only', 'national', 'automated', 'impersonal']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 's4-professional-services-principal',
+      name: 'Professional Services Principal',
+      age: '40-60',
+      business: 'Professional services firm (law, accounting, consulting)',
+      coreMotivation: 'Sophisticated financial management and client trust accounts',
+      keyFears: 'Regulatory compliance issues, commingled funds, professional liability',
+      typicalLanguage: 'trust accounts, compliance, professional liability, sophisticated banking',
+      processingQuote: 'I need banking that handles professional requirements and regulatory compliance.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['professional', 'trust accounts', 'compliance', 'sophisticated', 'regulatory'],
+          negative: ['simple', 'basic', 'startup-focused', 'consumer-grade']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's5-nonprofit-steward',
+      name: 'Nonprofit Steward',
+      age: '35-55',
+      business: 'Nonprofit organization management',
+      coreMotivation: 'Maximize mission impact while ensuring financial stewardship',
+      keyFears: 'Fund mismanagement, high fees reducing mission funding, compliance issues',
+      typicalLanguage: 'mission-focused, stewardship, transparent fees, nonprofit banking',
+      processingQuote: 'We need banking that supports our mission and treats donor funds with respect.',
+      autoMatchCriteria: {
+        organizationTypes: ['credit-union', 'community-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['nonprofit', 'mission', 'stewardship', 'community', 'transparent'],
+          negative: ['profit-maximizing', 'commercial focus', 'high fees']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's6-operational-cfo',
+      name: 'Operational CFO',
+      age: '40-60',
+      business: 'Mid-market company financial management',
+      coreMotivation: 'Optimize cash management and operational efficiency',
+      keyFears: 'Operational inefficiencies, poor cash flow management, system integration issues',
+      typicalLanguage: 'cash management, operational efficiency, system integration, Treasury services',
+      processingQuote: 'I need banking that integrates seamlessly with our operational and financial systems.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['business-customers', 'bank-executives'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['cash management', 'operational', 'integration', 'treasury', 'efficiency'],
+          negative: ['simple', 'basic', 'small business', 'consumer-focused']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 's7-tech-forward-digital-seller',
+      name: 'Tech-Forward Digital Seller',
+      age: '25-40',
+      business: 'E-commerce or digital services company',
+      coreMotivation: 'Integrate banking with digital sales and payment platforms',
+      keyFears: 'Payment processing delays, platform disconnects, API limitations',
+      typicalLanguage: 'API integration, payment processing, e-commerce, platform connectivity',
+      processingQuote: 'I need banking APIs that integrate perfectly with my sales and payment platforms.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['API', 'integration', 'e-commerce', 'digital', 'platform', 'payment processing'],
+          negative: ['traditional', 'branch-based', 'manual processes', 'legacy systems']
+        },
+        selectionWeight: 0.95
+      }
+    }
+  ],
+
+  fintech: [
+    {
+      id: 'b1-bank-head-digital-transformation',
+      name: 'Bank Head of Digital Transformation',
+      age: '35-50',
+      title: 'VP Digital Banking & Innovation',
+      institution: 'Regional bank or large credit union',
+      coreMotivation: 'Drive competitive digital capabilities while managing implementation risk',
+      keyFears: 'Failed digital initiatives, falling behind competition, integration disasters',
+      typicalLanguage: 'digital transformation, customer experience, integration timeline, competitive positioning',
+      processingQuote: 'We need solutions that transform our capabilities without disrupting operations.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['digital transformation', 'integration', 'competitive', 'customer experience'],
+          negative: ['risky', 'unproven', 'complex implementation']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'b2-enterprise-cio-cto',
+      name: 'Enterprise CIO/CTO',
+      age: '45-60',
+      title: 'Chief Information/Technology Officer',
+      institution: 'Large bank or enterprise',
+      coreMotivation: 'Modernize technology infrastructure while maintaining security and compliance',
+      keyFears: 'Security breaches, system downtime, regulatory violations, integration failures',
+      typicalLanguage: 'architecture, security, scalability, compliance, infrastructure modernization',
+      processingQuote: 'Any technology must meet our security and architectural standards before consideration.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['security', 'architecture', 'scalability', 'compliance', 'infrastructure'],
+          negative: ['quick implementation', 'minimal security', 'workarounds']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b3-chief-risk-compliance',
+      name: 'Chief Risk & Compliance Officer',
+      age: '45-65',
+      title: 'Chief Risk Officer',
+      institution: 'Financial institution',
+      coreMotivation: 'Protect institution from regulatory fines and operational risks',
+      keyFears: 'Regulatory violations, data breaches, operational failures, audit findings',
+      typicalLanguage: 'regulatory compliance, risk management, audit trail, governance framework',
+      processingQuote: 'Show me comprehensive risk controls and regulatory compliance documentation.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['suburban', 'rural', 'urban'],
+        contentSignals: {
+          positive: ['compliance', 'risk management', 'regulatory', 'audit', 'governance'],
+          negative: ['fast implementation', 'minimal oversight', 'move quickly']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'b4-payments-treasury-lead',
+      name: 'Payments/Treasury Product Lead',
+      age: '35-50',
+      title: 'VP Payments & Treasury Services',
+      institution: 'Bank product management',
+      coreMotivation: 'Launch innovative payment products that drive revenue growth',
+      keyFears: 'Product launch failures, poor customer adoption, competitive displacement',
+      typicalLanguage: 'payment innovation, product roadmap, customer adoption, revenue growth',
+      processingQuote: 'We need payment solutions that differentiate our product offering and drive adoption.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['payment', 'innovation', 'product', 'customer adoption', 'revenue'],
+          negative: ['traditional', 'conservative', 'slow to market']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b5-corporate-cfo-mid-market',
+      name: 'Corporate CFO (Mid-Market)',
+      age: '40-60',
+      title: 'Chief Financial Officer',
+      institution: 'Mid-market corporation',
+      coreMotivation: 'Optimize financial operations and cash management efficiency',
+      keyFears: 'Cash flow disruptions, operational inefficiencies, poor financial controls',
+      typicalLanguage: 'cash management, operational efficiency, financial controls, treasury optimization',
+      processingQuote: 'I need financial solutions that optimize our cash flow and operational efficiency.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['cash management', 'efficiency', 'treasury', 'optimization', 'financial controls'],
+          negative: ['simple', 'basic', 'small business focused']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b6-operations-shared-services',
+      name: 'Operations/Shared Services Leader',
+      age: '40-55',
+      title: 'VP Operations',
+      institution: 'Financial services operations',
+      coreMotivation: 'Streamline operations and reduce processing costs',
+      keyFears: 'Operational disruptions, increased processing costs, workflow inefficiencies',
+      typicalLanguage: 'operational efficiency, process automation, cost reduction, workflow optimization',
+      processingQuote: 'We need solutions that streamline operations and reduce our processing overhead.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['operational', 'automation', 'efficiency', 'cost reduction', 'streamline'],
+          negative: ['manual', 'complex', 'labor intensive']
+        },
+        selectionWeight: 0.85
+      }
+    },
+    {
+      id: 'b7-procurement-vendor-management',
+      name: 'Procurement & Vendor Management',
+      age: '35-55',
+      title: 'VP Vendor Management',
+      institution: 'Financial institution procurement',
+      coreMotivation: 'Select vendors that provide value while managing institutional risk',
+      keyFears: 'Vendor failures, contract disputes, poor due diligence, budget overruns',
+      typicalLanguage: 'vendor due diligence, contract terms, risk assessment, value optimization',
+      processingQuote: 'Show me comprehensive vendor credentials and clear contract terms with measurable value.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban', 'rural'],
+        contentSignals: {
+          positive: ['vendor', 'credentials', 'due diligence', 'contract', 'value', 'risk assessment'],
+          negative: ['untested', 'startup risk', 'unclear terms']
+        },
+        selectionWeight: 0.8
+      }
+    }
+  ]
+};
+
+
+// Removed loadPersonas() function - replaced with automated selection
+
+function loadModuleContent() {
+  const moduleContent = document.getElementById('module-content');
+
+  const contentTemplates = {
+    'message-testing': `
+      <!-- No additional inputs needed - using "What You're Testing" field only -->
+    `,
+    'product-validation': `
+      <div class="form-section">
+        <h2 class="form-section-title">Product Concept</h2>
+        <div class="form-row">
+          <label class="form-label">Product Description</label>
+          <textarea class="form-textarea" placeholder="Describe your product concept, features, and pricing..."></textarea>
+        </div>
+      </div>
+    `,
+    'competitive-positioning': `
+      <div class="form-section">
+        <h2 class="form-section-title">Competitive Analysis</h2>
+        <div class="form-row">
+          <label class="form-label">Primary Competitor</label>
+          <input type="text" class="form-input" placeholder="Name of main competitor">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Secondary Competitor</label>
+          <input type="text" class="form-input" placeholder="Name of secondary competitor">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Your Positioning Statement</label>
+          <textarea class="form-textarea" placeholder="How do you currently position against competitors?"></textarea>
+        </div>
+      </div>
+    `,
+    'persona-pressure-test': `
+      <div class="form-section">
+        <h2 class="form-section-title">Existing Persona</h2>
+        <div class="form-row">
+          <label class="form-label">Persona to Test</label>
+          <textarea class="form-textarea" placeholder="Paste your existing persona description here..."></textarea>
+        </div>
+      </div>
+    `,
+    'campaign-pre-test': `
+      <div class="form-section">
+        <h2 class="form-section-title">Campaign Concept</h2>
+        <div class="form-row">
+          <label class="form-label">Campaign Description</label>
+          <textarea class="form-textarea" placeholder="Describe your campaign concept, creative direction, channels, and key messages..."></textarea>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Primary Call-to-Action</label>
+          <input type="text" class="form-input" placeholder="What action do you want customers to take?">
+        </div>
+      </div>
+    `,
+    'journey-gap-analysis': `
+      <div class="form-section">
+        <h2 class="form-section-title">Customer Journey</h2>
+        <div class="form-row">
+          <label class="form-label">Journey Steps</label>
+          <textarea class="form-textarea" placeholder="Describe the step-by-step customer journey you want to analyze..."></textarea>
+        </div>
+      </div>
+    `
+  };
+
+  moduleContent.innerHTML = contentTemplates[selectedModule] || '';
+}
+
+function nextScreen(screenId) {
+  // Hide current screen
+  document.querySelector('.screen.active').classList.remove('active');
+
+  // Show target screen
+  document.getElementById(screenId).classList.add('active');
+
+  // Load module-specific content if going to setup
+  if (screenId === 'setup-screen') {
+    loadModuleContent();
+  }
+}
+
+function previousScreen(screenId) {
+  // Hide current screen
+  document.querySelector('.screen.active').classList.remove('active');
+
+  // Show target screen
+  document.getElementById(screenId).classList.add('active');
+}
+
+function startAutomatedResearch() {
+  // Validate business parameters and email before starting
+  if (!validateBusinessParameters()) {
+    return; // Stop if validation fails
+  }
+
+  // Collect business parameters from form
+  const businessParams = {
+    organizationType: document.getElementById('organization-type').value,
+    targetAudience: document.getElementById('target-audience').value,
+    marketType: document.getElementById('market-type').value,
+    researchContent: document.getElementById('research-content').value.trim()
+  };
+
+  // Use AutomatedPersonaSelector to automatically select personas
+  const personaSelector = new AutomatedPersonaSelector();
+  const selectedResults = personaSelector.selectPersonas(businessParams);
+
+  console.log('Business params:', businessParams);
+  console.log('Selected results:', selectedResults);
+
+  // Set the selectedPersonas array with the automated selections
+  selectedPersonas = selectedResults.map(result => result.persona.id);
+
+  // Fallback if no personas selected
+  if (selectedPersonas.length === 0) {
+    console.error('No personas selected by algorithm, using fallback');
+    // Fallback to a few default personas based on segment
+    const primarySegment = personaSelector.determinePrimarySegment(businessParams);
+    const allPersonas = personaSelector.getAllPersonas();
+    const segmentPersonas = allPersonas[primarySegment] || allPersonas.fintech;
+    selectedPersonas = segmentPersonas.slice(0, 3).map(p => p.id);
+  }
+
+  console.log('Final selected personas:', selectedPersonas);
+
+  // Store selection reasoning for report generation
+  window.automatedSelectionResults = selectedResults;
+  window.businessParameters = businessParams;
+
+  // Move to progress screen
+  nextScreen('progress-screen');
+
+  // Simulate research progress with automated persona selection
+  simulateProgress();
+}
+
+function validateEmailAndUsage() {
+  const emailInput = document.querySelector('input[type="email"]');
+  const email = emailInput.value.trim();
+
+  // Check if email is provided
+  if (!email) {
+    showError('Please enter your email address.');
+    return false;
+  }
+
+  // Extract domain from email
+  const domain = email.split('@')[1]?.toLowerCase();
+
+  // Block consumer email domains
+  const blockedDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'live.com', 'msn.com',
+    'ymail.com', 'rocketmail.com', 'protonmail.com', 'tutanota.com'
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    showError('Please use your work email address. Personal email domains are not accepted.');
+    return false;
+  }
+
+  // Check usage limits for this domain
+  const currentMonth = new Date().toISOString().substring(0, 7); // YYYY-MM format
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+
+  if (currentUsage >= 3) {
+    showError(`Domain ${domain} has reached the monthly limit of 3 research sessions. Limit resets next month.`, domain);
+    return false;
+  }
+
+  // Record this usage
+  localStorage.setItem(usageKey, (currentUsage + 1).toString());
+
+  return true;
+}
+
+function validateBusinessParameters() {
+  // Validate email first
+  const emailInput = document.querySelector('input[type="email"]');
+  const email = emailInput.value.trim();
+
+  if (!email) {
+    showError('Please enter your email address.');
+    return false;
+  }
+
+  // Validate organization type
+  const orgType = document.getElementById('organization-type').value;
+  if (!orgType) {
+    showError('Please select your organization type.');
+    return false;
+  }
+
+  // Validate target audience
+  const targetAudience = document.getElementById('target-audience').value;
+  if (!targetAudience) {
+    showError('Please select your primary target audience.');
+    return false;
+  }
+
+  // Validate market type
+  const marketType = document.getElementById('market-type').value;
+  if (!marketType) {
+    showError('Please select your market characteristics.');
+    return false;
+  }
+
+  // Validate research content
+  const researchContent = document.getElementById('research-content').value.trim();
+  if (!researchContent || researchContent.length < 10) {
+    showError('Please describe what you\'re testing (minimum 10 characters).');
+    return false;
+  }
+
+  // Check email domain restrictions (keep existing logic)
+  const domain = email.split('@')[1]?.toLowerCase();
+  const blockedDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'live.com', 'msn.com',
+    'ymail.com', 'rocketmail.com', 'protonmail.com', 'tutanota.com'
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    showError('Work email required. Personal domains not accepted.');
+    return false;
+  }
+
+  // Check usage limits
+  const usageKey = `insights_usage_${domain}`;
+  const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+
+  if (currentUsage >= 3) {
+    showError(`Domain ${domain} has reached the monthly limit of 3 research sessions. Limit resets next month.`, domain);
+    return false;
+  }
+
+  // Record usage
+  localStorage.setItem(usageKey, (currentUsage + 1).toString());
+
+  return true;
+}
+
+function showError(message, domain = null) {
+  // Remove any existing error messages
+  const existingError = document.querySelector('.error-message');
+  if (existingError) {
+    existingError.remove();
+  }
+
+  // Create and show error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'error-message';
+  errorDiv.style.cssText = `
+    background: #ff4444;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
+    font-size: 14px;
+    text-align: center;
+  `;
+
+  // Add message and optional request button for usage limits
+  if (domain && message.includes('monthly limit')) {
+    errorDiv.innerHTML = `
+      <div>${message}</div>
+      <div style="margin-top: 12px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) has reached the 3-session monthly limit for BrandThnk Insights research. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--white); color: var(--black); padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
+  } else {
+    errorDiv.textContent = message;
+  }
+
+  // Insert before the action buttons
+  const actionButtons = document.querySelector('.action-buttons');
+  actionButtons.parentNode.insertBefore(errorDiv, actionButtons);
+
+  // Auto-remove after 8 seconds
+  setTimeout(() => {
+    if (errorDiv.parentNode) {
+      errorDiv.remove();
+    }
+  }, 8000);
+}
+
+function checkDomainUsage() {
+  const emailInput = document.querySelector('input[type="email"]');
+  const usageIndicator = document.getElementById('usage-indicator');
+  const email = emailInput.value.trim();
+
+  if (!email || !email.includes('@')) {
+    usageIndicator.innerHTML = '';
+    return;
+  }
+
+  const domain = email.split('@')[1]?.toLowerCase();
+
+  // Check if it's a blocked domain
+  const blockedDomains = [
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'me.com', 'mac.com', 'live.com', 'msn.com',
+    'ymail.com', 'rocketmail.com', 'protonmail.com', 'tutanota.com'
+  ];
+
+  if (blockedDomains.includes(domain)) {
+    usageIndicator.innerHTML = `<span style="color: #ff4444;">❌ Personal email domains not accepted</span>`;
+    return;
+  }
+
+  // Show current usage for this domain
+  const currentMonth = new Date().toISOString().substring(0, 7);
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  const currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+  const remaining = 3 - currentUsage;
+
+  if (remaining <= 0) {
+    usageIndicator.innerHTML = `
+      <span style="color: #ff4444;">❌ ${domain} has used all 3 sessions this month</span>
+      <div style="margin-top: 8px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) has reached the 3-session monthly limit for BrandThnk Insights research. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--black); color: var(--white); padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
+  } else if (remaining === 1) {
+    usageIndicator.innerHTML = `
+      <span style="color: #ff8800;">⚠️ ${domain} has ${remaining} session remaining this month</span>
+      <div style="margin-top: 8px;">
+        <a href="mailto:allison@brandthnk.co?subject=Request Additional Research Sessions&body=Hi Allison,%0D%0A%0D%0AOur domain (${domain}) is down to our last research session this month. We'd like to request additional sessions for our team.%0D%0A%0D%0ACompany: [Your company name]%0D%0AUse case: [Brief description of what you're researching]%0D%0AAdditional sessions needed: [Number]%0D%0A%0D%0AThanks,%0D%0A[Your name]"
+           style="display: inline-block; background: var(--yellow); color: var(--black); padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: 600;">
+          Request More Sessions
+        </a>
+      </div>
+    `;
+  } else {
+    usageIndicator.innerHTML = `<span style="color: #44aa44;">✅ ${domain} has ${remaining} sessions remaining this month</span>`;
+  }
+}
+
+// Admin function to reset usage for a domain (for debugging/overrides)
+// To use: resetDomainUsage('example.com') in browser console
+function resetDomainUsage(domain) {
+  const currentMonth = new Date().toISOString().substring(0, 7);
+  const usageKey = `research_usage_${domain}_${currentMonth}`;
+  localStorage.removeItem(usageKey);
+  console.log(`Usage reset for ${domain} in ${currentMonth}`);
+
+  // Refresh usage indicator if email matches
+  const emailInput = document.querySelector('input[type="email"]');
+  if (emailInput && emailInput.value.includes(domain)) {
+    checkDomainUsage();
+  }
+}
+
+function simulateProgress() {
+  const progressSteps = document.getElementById('progress-steps');
+  const quoteDisplay = document.getElementById('quote-display');
+
+  console.log('Starting progress simulation with personas:', selectedPersonas);
+
+  // Get authentic quotes from selected personas
+  function getPersonaQuotes() {
+    return selectedPersonas.map(personaId => {
+      // Find the persona data across all segments
+      const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+      const persona = allPersonas.find(p => p.id === personaId);
+
+      if (persona && persona.processingQuote) {
+        return {
+          text: persona.processingQuote,
+          author: persona.name,
+          context: `${persona.age ? `Age ${persona.age}` : ''}${persona.title ? ` • ${persona.title}` : ''}${persona.occupation ? ` • ${persona.occupation}` : ''}`
+        };
+      }
+
+      // Fallback for any personas without processing quotes
+      return {
+        text: "Let me think about this from my perspective...",
+        author: persona ? persona.name : "Unknown Persona",
+        context: ""
+      };
+    });
+  }
+
+  // Create progress steps based on selected personas
+  const steps = selectedPersonas.map((personaId, index) => {
+    // Find the persona to get the proper name
+    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+    const persona = allPersonas.find(p => p.id === personaId);
+    const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    return `
+      <div class="progress-step">
+        <div class="progress-circle" id="step-${index}">${index + 1}</div>
+        <div class="progress-label">${displayName}</div>
+      </div>
+    `;
+  });
+
+  steps.push(`
+    <div class="progress-step">
+      <div class="progress-circle" id="step-synthesis">S</div>
+      <div class="progress-label">Cross-Persona Synthesis</div>
+    </div>
+  `);
+
+  progressSteps.innerHTML = steps.join('');
+
+  // Get authentic quotes from selected personas
+  const personaQuotes = getPersonaQuotes();
+
+  // Simulate progress with cleaner timing
+  let currentStep = 0;
+  const totalSteps = selectedPersonas.length + 1;
+
+  function processStep() {
+    console.log(`Processing step ${currentStep} of ${totalSteps}`, {
+      currentStep,
+      totalSteps,
+      selectedPersonas: selectedPersonas.length,
+      isSynthesis: currentStep === selectedPersonas.length
+    });
+
+    // Determine if this is the synthesis step
+    const isSynthesisStep = currentStep === selectedPersonas.length;
+    const stepElement = document.getElementById(isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`);
+
+    console.log(`Step element found: ${!!stepElement}, ID: ${isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`}`);
+
+    if (stepElement) {
+      stepElement.classList.add('active');
+
+      // Update quote based on step type
+      if (isSynthesisStep) {
+        console.log('Displaying synthesis message');
+        quoteDisplay.innerHTML = `
+          <div class="quote-text">Analyzing patterns across all personas...</div>
+          <div class="quote-attribution">Cross-persona synthesis in progress</div>
+        `;
+      } else if (personaQuotes[currentStep]) {
+        console.log(`Displaying quote for persona ${currentStep}`);
+        const quote = personaQuotes[currentStep];
+        quoteDisplay.innerHTML = `
+          <div class="quote-text">"${quote.text}"</div>
+          <div class="quote-attribution">— ${quote.author}${quote.context ? ` (${quote.context})` : ''}</div>
+        `;
+      }
+    } else {
+      console.error(`Step element not found for step ${currentStep}`, {
+        isSynthesisStep,
+        expectedId: isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`
+      });
+    }
+
+    // After 2 seconds, mark as completed and move to next
+    setTimeout(() => {
+      console.log(`Completing step ${currentStep}`);
+
+      if (stepElement) {
+        stepElement.classList.remove('active');
+        stepElement.classList.add('completed');
+      }
+
+      currentStep++;
+      console.log(`Advanced to step ${currentStep}, totalSteps: ${totalSteps}`);
+
+      if (currentStep >= totalSteps) {
+        // Research is complete - generate report
+        console.log('All steps complete, generating report');
+        quoteDisplay.innerHTML = `
+          <div class="quote-text" style="color: #4CAF50; font-weight: bold;">✅ Research Complete!</div>
+          <div class="quote-attribution">Generating your executive-ready report...</div>
+        `;
+        setTimeout(() => {
+          try {
+            console.log('Calling generateReport()');
+            generateReport();
+            console.log('Moving to report screen');
+            nextScreen('report-screen');
+          } catch (error) {
+            console.error('Report generation error:', error);
+            quoteDisplay.innerHTML = `<div style="color: #f44336;">Report generation failed: ${error.message}</div>`;
+          }
+        }, 2000);
+      } else {
+        // Continue to next step
+        console.log(`Continuing to step ${currentStep}`);
+        setTimeout(() => processStep(), 500);
+      }
+    }, 2000);
+  }
+
+  // Start the process
+  processStep();
+}
+
+// Removed addMessageField() function - using single "What You're Testing" input only
+
+function generateReport() {
+  console.log('generateReport() called');
+  console.log('selectedPersonas:', selectedPersonas);
+
+  const reportContent = document.getElementById('report-content');
+  console.log('reportContent element found:', !!reportContent);
+
+  if (!reportContent) {
+    throw new Error('Report content element not found');
+  }
+
+  const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+  console.log('Total personas available:', allPersonas.length);
+
+  const interviewedPersonas = selectedPersonas.map(id => allPersonas.find(p => p.id === id)).filter(Boolean);
+  console.log('Interviewed personas found:', interviewedPersonas.length, interviewedPersonas.map(p => p.name));
+
+  const reportHTML = `
+    <div class="report-section">
+      <h3 class="report-section-title">Executive Summary</h3>
+      <p>Testing involved ${interviewedPersonas.length} distinct customer personas through simulated 11-turn interviews. Analysis reveals significant variation in messaging reception across different decision-maker types and financial attitudes.</p>
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Personas Interviewed</h3>
+      ${interviewedPersonas.map(persona => `
+        <div class="persona-profile">
+          <div class="persona-profile-header">
+            <strong>${persona.name}</strong>${persona.age ? ` (Age ${persona.age})` : ''}
+            ${persona.title ? `<div class="persona-profile-title">${persona.title}</div>` : ''}
+            ${persona.occupation ? `<div class="persona-profile-title">${persona.occupation}</div>` : ''}
+            ${persona.segment ? `<div class="persona-profile-title">${persona.segment}</div>` : ''}
+            ${persona.business ? `<div class="persona-profile-title">${persona.business}</div>` : ''}
+            ${persona.institution ? `<div class="persona-profile-title">${persona.institution}</div>` : ''}
+          </div>
+          <div class="persona-profile-details">
+            ${persona.desc ? `<p><strong>Profile:</strong> ${persona.desc}</p>` : ''}
+            <p><strong>Core motivation:</strong> ${persona.coreMotivation}</p>
+            <p><strong>Key fears:</strong> ${persona.keyFears}</p>
+            <p><strong>Communication style:</strong> ${persona.typicalLanguage}</p>
+            ${persona.processingQuote ? `<div style="margin-top: 16px; padding: 15px; background: var(--white); border-left: 3px solid var(--yellow); border-radius: 4px; font-style: italic;">
+              <div style="color: var(--gray); font-size: 12px; margin-bottom: 6px;">AUTHENTIC VOICE DURING RESEARCH:</div>
+              "${persona.processingQuote}"
+            </div>` : ''}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Research Methodology</h3>
+      <div class="methodology-content">
+        <h4 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px;">Participant Selection Process</h4>
+        <p style="margin-bottom: 16px;">Research participants were automatically selected using BrandThnk's validated persona matching algorithm. The system analyzed your organization profile and research parameters to identify optimal research participants from our library of 22 validated personas.</p>
+
+        <h4 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px;">Selection Criteria</h4>
+        <ul style="margin-left: 20px; margin-bottom: 16px;">
+          <li style="margin-bottom: 8px;"><strong>Organization Type:</strong> ${getOrganizationType()} decision-making patterns and institutional characteristics</li>
+          <li style="margin-bottom: 8px;"><strong>Target Audience:</strong> ${getTargetAudience()} behavioral profiles and communication preferences</li>
+          <li style="margin-bottom: 8px;"><strong>Market Context:</strong> ${selectedMarket.charAt(0).toUpperCase() + selectedMarket.slice(1)} market characteristics and geographic factors</li>
+          <li style="margin-bottom: 8px;"><strong>Content Analysis:</strong> Message themes, positioning approach, and communication style</li>
+        </ul>
+
+        <h4 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px;">Validation Foundation</h4>
+        <p style="margin-bottom: 16px;">Each participant represents authentic decision-making patterns derived from industry research (FDIC, Federal Reserve, J.D. Power) and behavioral insights from 30+ BrandThnk client workshops with community banks, credit unions, and fintech companies.</p>
+
+        ${generateSelectedParticipantsDetail(interviewedPersonas)}
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Key Findings</h3>
+
+      ${generateFindingsForPersonas(interviewedPersonas)}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Strategic Recommendations</h3>
+      ${generateRecommendationsForPersonas(interviewedPersonas)}
+    </div>
+
+    <div class="report-section">
+      <h3 class="report-section-title">Cross-Persona Analysis</h3>
+      <p>Analysis reveals distinct patterns across the interviewed personas:</p>
+      <ul style="margin-left: 20px;">
+        <li style="margin-bottom: 8px;"><strong>Trust factors vary significantly:</strong> ${getTrustFactorAnalysis(interviewedPersonas)}</li>
+        <li style="margin-bottom: 8px;"><strong>Decision criteria cluster around:</strong> ${getDecisionCriteriaAnalysis(interviewedPersonas)}</li>
+        <li style="margin-bottom: 8px;"><strong>Communication preferences:</strong> ${getCommunicationAnalysis(interviewedPersonas)}</li>
+      </ul>
+    </div>
+  `;
+
+  console.log('Setting report HTML content...');
+  reportContent.innerHTML = reportHTML;
+  console.log('Report generated successfully!');
+}
+
+function generateFindingsForPersonas(personas) {
+  const findings = [];
+
+  personas.forEach(persona => {
+    if (persona.typicalLanguage.includes('integrate')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Integration Concerns</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> ${persona.name} evaluates solutions through ${persona.coreMotivation.toLowerCase()}.</p>
+        </div>
+      `);
+    } else if (persona.keyFears.includes('fees') || persona.keyFears.includes('money')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Cost Sensitivity</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Fee transparency and value demonstration critical for this segment.</p>
+        </div>
+      `);
+    } else if (persona.keyFears.includes('security') || persona.keyFears.includes('fraud')) {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Security Priority</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Risk mitigation messaging essential for building trust.</p>
+        </div>
+      `);
+    } else {
+      findings.push(`
+        <div class="verdict-box">
+          <div class="verdict-title">Relationship Focus</div>
+          <p>"${persona.processingQuote}" — ${persona.name}</p>
+          <p><em>Key insight:</em> Values relationship and service quality over pure efficiency.</p>
+        </div>
+      `);
+    }
+  });
+
+  return findings.slice(0, 3).join(''); // Show top 3 findings
+}
+
+function generateRecommendationsForPersonas(personas) {
+  const recommendations = [];
+
+  const hasFintech = personas.some(p => window.PERSONAS.fintech.includes(p));
+  const hasConsumer = personas.some(p => window.PERSONAS.consumer.includes(p));
+  const hasBusiness = personas.some(p => window.PERSONAS.business.includes(p));
+
+  if (hasFintech) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For B2B buyers:</strong> Lead with integration capabilities, security credentials, and measurable ROI data rather than generic innovation messaging.</li>');
+  }
+
+  if (hasConsumer) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For consumers:</strong> Emphasize fee transparency, security measures, and clear value propositions that match their financial goals and digital comfort level.</li>');
+  }
+
+  if (hasBusiness) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For businesses:</strong> Focus on cash flow impact, time savings, and relationship support rather than purely technological features.</li>');
+  }
+
+  recommendations.push('<li style="margin-bottom: 12px;"><strong>Cross-segment:</strong> Avoid one-size-fits-all messaging. Tailor communication style and proof points to match each persona\'s decision criteria and language preferences.</li>');
+
+  return '<ol style="margin-left: 20px;">' + recommendations.join('') + '</ol>';
+}
+
+function getTrustFactorAnalysis(personas) {
+  const trustFactors = [];
+  if (personas.some(p => p.keyFears.includes('security'))) trustFactors.push('security credentials');
+  if (personas.some(p => p.coreMotivation.includes('relationship'))) trustFactors.push('relationship history');
+  if (personas.some(p => p.keyFears.includes('regulatory'))) trustFactors.push('regulatory compliance');
+  return trustFactors.length ? trustFactors.join(', ') + ' are primary trust drivers' : 'varied across personas';
+}
+
+function getDecisionCriteriaAnalysis(personas) {
+  const criteria = [];
+  if (personas.some(p => p.typicalLanguage.includes('integrate'))) criteria.push('integration capability');
+  if (personas.some(p => p.typicalLanguage.includes('fees') || p.typicalLanguage.includes('cost'))) criteria.push('cost transparency');
+  if (personas.some(p => p.coreMotivation.includes('efficiency'))) criteria.push('operational efficiency');
+  return criteria.length ? criteria.join(', ') : 'relationship quality and trust';
+}
+
+function getCommunicationAnalysis(personas) {
+  const styles = [];
+  if (personas.some(p => p.typicalLanguage.includes('data') || p.typicalLanguage.includes('ROI'))) styles.push('data-driven');
+  if (personas.some(p => p.coreMotivation.includes('relationship'))) styles.push('relationship-focused');
+  if (personas.some(p => p.typicalLanguage.includes('integrate') || p.typicalLanguage.includes('API'))) styles.push('technically detailed');
+  return styles.length ? styles.join(' and ') + ' messaging required' : 'simple, clear communication preferred';
+}
+
+function getOrganizationType() {
+  const orgTypeElement = document.getElementById('organization-type');
+  if (!orgTypeElement) return 'Financial institution';
+
+  const orgTypeMap = {
+    'community-bank': 'Community Bank',
+    'regional-bank': 'Regional Bank',
+    'credit-union': 'Credit Union',
+    'fintech': 'Fintech Company',
+    'neobank': 'Neobank/Digital Bank'
+  };
+
+  return orgTypeMap[orgTypeElement.value] || 'Financial institution';
+}
+
+function getTargetAudience() {
+  const audienceElement = document.getElementById('target-audience');
+  if (!audienceElement) return 'Banking customers';
+
+  const audienceMap = {
+    'business-customers': 'Business banking customers',
+    'retail-customers': 'Retail banking customers',
+    'bank-executives': 'Financial institution executives',
+    'fintech-buyers': 'B2B fintech buyers'
+  };
+
+  return audienceMap[audienceElement.value] || 'Banking customers';
+}
+
+function generateSelectedParticipantsDetail(interviewedPersonas) {
+  if (!interviewedPersonas || interviewedPersonas.length === 0) {
+    return '<p style="font-style: italic; color: var(--gray);">Participant selection details not available.</p>';
+  }
+
+  return `
+    <div style="background: var(--offwhite); padding: 20px; border-radius: 8px; border-left: 4px solid var(--yellow);">
+      <h5 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 14px; font-weight: 700; margin-bottom: 12px;">Selected Research Participants</h5>
+      ${interviewedPersonas.map(persona => `
+        <div style="margin-bottom: 12px; padding-bottom: 8px; ${interviewedPersonas.indexOf(persona) < interviewedPersonas.length - 1 ? 'border-bottom: 1px solid var(--light-gray);' : ''}">
+          <div style="font-weight: 600; color: var(--black);">${persona.name}</div>
+          <div style="font-size: 14px; color: var(--gray); margin-top: 4px;">
+            Selected for ${getPersonaSelectionReason(persona)}
+          </div>
+        </div>
+      `).join('')}
+      <p style="font-style: italic; color: var(--gray); font-size: 14px; margin-top: 16px; margin-bottom: 0;">
+        Each participant follows documented behavioral patterns and communication styles derived from actual customer research and institutional expertise.
+      </p>
+    </div>
+  `;
+}
+
+function getPersonaSelectionReason(persona) {
+  // Generate contextual reason based on persona characteristics and current research parameters
+  const orgType = getOrganizationType().toLowerCase();
+  const audience = getTargetAudience().toLowerCase();
+
+  if (persona.name.includes('CEO') || persona.name.includes('Executive')) {
+    return 'executive decision-making perspective and institutional strategic priorities';
+  } else if (persona.name.includes('Champion') || persona.name.includes('Technology')) {
+    return 'digital transformation focus and integration requirements';
+  } else if (persona.name.includes('Business') || persona.name.includes('Entrepreneur')) {
+    return 'small business banking needs and cash flow considerations';
+  } else if (persona.name.includes('Consumer') || persona.name.includes('Digital')) {
+    return 'retail banking expectations and digital service preferences';
+  } else if (persona.keyFears && persona.keyFears.includes('regulatory')) {
+    return 'regulatory compliance concerns and risk management perspective';
+  } else {
+    return 'relevant customer segment representation and messaging alignment';
+  }
+}
+
+function resetTool() {
+  // Reset all state
+  selectedModule = null;
+  selectedPersonas = [];
+  selectedMarket = 'na';
+  currentPersonaSegment = 'fintech';
+
+  // Reset UI
+  document.querySelectorAll('.module-card').forEach(card => card.classList.remove('selected'));
+  document.getElementById('continue-btn').disabled = true;
+
+  // Go back to first screen
+  nextScreen('module-screen');
+}
+</script>
+
+</body>
+</html>
