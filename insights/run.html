@@ -711,18 +711,18 @@
   <div id="module-screen" class="screen active">
     <div class="page-header">
       <h1 class="page-title">Choose Your Research Module</h1>
-      <p class="page-subtitle">Select the decision type you're addressing. Each module runs structured interviews with relevant personas.</p>
+      <p class="page-subtitle">Select the decision type you're addressing. Each module runs structured interviews with C-suite bank and credit union executives.</p>
     </div>
 
     <div class="modules-grid" id="modules-grid">
       <div class="module-card" data-module="message-testing">
         <h3 class="module-title">Message Testing</h3>
-        <p class="module-description">Compare taglines, positioning statements, and campaign messages to identify what resonates with audiences.</p>
+        <p class="module-description">Compare taglines, positioning statements, and campaign messages to identify what resonates with financial institution decision makers.</p>
       </div>
 
       <div class="module-card module-card-coming-soon">
         <h3 class="module-title">Competitive Positioning</h3>
-        <p class="module-description">Evaluate bank positioning versus named competitors, revealing perception gaps and switching motivators by segment.</p>
+        <p class="module-description">Evaluate fintech positioning versus competitor solutions, revealing perception gaps and selection criteria by institution size.</p>
         <div class="module-meta">Coming Soon</div>
         <div class="coming-soon-overlay">
           <span class="coming-soon-text">Coming Soon</span>
@@ -739,7 +739,7 @@
   <div id="setup-screen" class="screen">
     <div class="page-header">
       <h1 class="page-title">Set Up Your Research</h1>
-      <p class="page-subtitle">Configure your research parameters. Research participants will be automatically selected based on your organization and goals.</p>
+      <p class="page-subtitle">Configure your research parameters. C-suite participants will be automatically selected based on target institution AUM and decision context.</p>
     </div>
 
     <!-- Basic Information -->
@@ -768,53 +768,48 @@
       <!-- Content will be injected based on selected module -->
     </div>
 
-    <!-- Research Parameters -->
+    <!-- Fintech Research Parameters -->
     <div class="form-section">
-      <h2 class="form-section-title">Research Parameters</h2>
+      <h2 class="form-section-title">Fintech Research Parameters</h2>
 
-      <!-- Organization Type -->
+      <!-- Target Institution AUM -->
       <div class="form-row">
-        <label class="form-label">Organization Type</label>
-        <select id="organization-type" class="form-input">
-          <option value="">Select organization type...</option>
-          <option value="community-bank">Community Bank (Under $1B assets)</option>
-          <option value="regional-bank">Regional Bank ($1B-$50B assets)</option>
-          <option value="credit-union">Credit Union</option>
-          <option value="fintech">Fintech Company</option>
-          <option value="neobank">Neobank/Digital Bank</option>
+        <label class="form-label">Target Institution AUM</label>
+        <select id="target-aum" class="form-input">
+          <option value="">Select target institution size...</option>
+          <option value="1b-5b">Community Banks ($1B-$5B)</option>
+          <option value="5b-15b">Regional Banks ($5B-$15B)</option>
+          <option value="15b-30b">Large Regional Banks ($15B-$30B)</option>
+          <option value="1b-10b-cu">Credit Unions ($1B-$10B)</option>
+          <option value="10b-30b-cu">Large Credit Unions ($10B-$30B)</option>
         </select>
-      </div>
-
-      <!-- Target Audience -->
-      <div class="form-row">
-        <label class="form-label">Primary Target Audience</label>
-        <select id="target-audience" class="form-input">
-          <option value="">Select target audience...</option>
-          <option value="business-customers">Business Banking Customers</option>
-          <option value="retail-customers">Retail Banking Customers</option>
-          <option value="bank-executives">Financial Institution Executives</option>
-          <option value="fintech-buyers">B2B Fintech Buyers</option>
-        </select>
-      </div>
-
-      <!-- Market Characteristics -->
-      <div class="form-row">
-        <label class="form-label">Market Characteristics</label>
-        <select id="market-type" class="form-input">
-          <option value="">Select market type...</option>
-          <option value="urban">Urban Markets</option>
-          <option value="suburban">Suburban Markets</option>
-          <option value="rural">Rural Markets</option>
-          <option value="mixed">Mixed Geographic Markets</option>
-        </select>
-      </div>
-
-      <!-- Research Content -->
-      <div class="form-row">
-        <label class="form-label">What You're Testing</label>
-        <textarea id="research-content" class="form-input" rows="4" placeholder="Describe the messages, products, or concepts you want to test..."></textarea>
         <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
-          Include key messages, positioning, or product concepts you want to validate with customers.
+          Institution size drives decision-making complexity and buying committee composition.
+        </div>
+      </div>
+
+      <!-- Decision-Making Context -->
+      <div class="form-row">
+        <label class="form-label">Primary Decision Context</label>
+        <select id="decision-context" class="form-input">
+          <option value="">Select decision scenario...</option>
+          <option value="strategic">Strategic/Executive Leadership</option>
+          <option value="digital">Digital Transformation Initiative</option>
+          <option value="technical">Technology/Integration Decision</option>
+          <option value="operations">Operations/Risk Management</option>
+          <option value="committee">Multi-stakeholder Buying Committee</option>
+        </select>
+        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
+          The primary context influences which C-suite personas lead the evaluation.
+        </div>
+      </div>
+
+      <!-- Fintech Solution -->
+      <div class="form-row">
+        <label class="form-label">Your Fintech Solution</label>
+        <textarea id="fintech-solution" class="form-input" rows="4" placeholder="Describe your fintech solution, key value propositions, and target use cases for banks/credit unions..."></textarea>
+        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
+          Include your core value proposition, key features, and specific benefits for financial institutions.
         </div>
       </div>
     </div>
@@ -822,8 +817,8 @@
     <!-- Automated Research Ready Section -->
     <div class="form-section research-ready-section">
       <div class="automation-message">
-        <h3>Research Participants Automatically Selected</h3>
-        <p>Based on your organization and research parameters, we'll identify the optimal research participants from our validated persona library.</p>
+        <h3>C-Suite Decision-Makers Automatically Selected</h3>
+        <p>Based on your target institution AUM and decision context, we'll automatically select the appropriate C-suite personas from banks and credit unions in your target range.</p>
 
         <div class="validation-credentials">
           <div class="credential">
@@ -831,12 +826,30 @@
             <span class="credential-label">Client Workshops</span>
           </div>
           <div class="credential">
-            <span class="credential-number">22</span>
-            <span class="credential-label">Validated Personas</span>
+            <span class="credential-number">5</span>
+            <span class="credential-label">C-Suite Personas</span>
           </div>
           <div class="credential">
-            <span class="credential-number">Industry</span>
-            <span class="credential-label">Data Grounded</span>
+            <span class="credential-number">Fintech</span>
+            <span class="credential-label">Buyer Focused</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="buying-committee-preview">
+        <h4>Buying Committee Composition</h4>
+        <div class="committee-size-info">
+          <div class="committee-option" data-aum="1b-5b">
+            <strong>$1B-$5B:</strong> CEO + CIO + COO (2-3 people, 4-8 weeks)
+          </div>
+          <div class="committee-option" data-aum="5b-15b">
+            <strong>$5B-$15B:</strong> CEO + CDO + CIO + COO (3-4 people, 6-12 weeks)
+          </div>
+          <div class="committee-option" data-aum="15b-30b">
+            <strong>$15B-$30B:</strong> Full C-suite committee (4-5 people, 8-16 weeks)
+          </div>
+          <div class="committee-option" data-aum="cu">
+            <strong>Credit Unions:</strong> Member-focused decision process with cooperative values
           </div>
         </div>
       </div>
@@ -844,7 +857,7 @@
 
     <div class="action-buttons">
       <button class="btn btn-secondary" onclick="previousScreen('module-screen')">Back to Modules</button>
-      <button class="btn btn-primary" onclick="startAutomatedResearch()">Run Research Interviews</button>
+      <button class="btn btn-primary" onclick="startAutomatedResearch()">Run C-Suite Research</button>
     </div>
   </div>
 
@@ -897,155 +910,152 @@ let selectedMarket = 'na';
 let currentPersonaSegment = 'fintech';
 
 // AutomatedPersonaSelector Class
-class AutomatedPersonaSelector {
+class FintechPersonaSelector {
   constructor() {
     this.weights = {
-      organizationType: 0.4,    // Primary organization alignment
-      targetAudience: 0.3,      // Audience relevance
-      marketType: 0.2,          // Geographic/market fit
-      contentAnalysis: 0.1      // Message content signals
+      aumAlignment: 0.40,        // Institution size fit
+      decisionContext: 0.30,     // Buying scenario match
+      solutionRelevance: 0.20,   // Solution-persona fit
+      buyingCommittee: 0.10      // Committee composition
     };
   }
 
-  selectPersonas(businessParams) {
-    // Determine primary segment based on organization type and target audience
-    const primarySegment = this.determinePrimarySegment(businessParams);
+  selectPersonas(fintechParams) {
+    const { targetAum, decisionContext, fintechSolution } = fintechParams;
 
-    // Get all personas from the primary segment
-    const allPersonas = this.getAllPersonas();
-    const segmentPersonas = allPersonas[primarySegment];
+    // Get all C-suite personas
+    const csuitPersonas = window.PERSONAS.csuite;
 
-    // Score each persona and select top 3-4
-    const scoredPersonas = segmentPersonas.map(persona => ({
-      persona,
-      score: this.calculatePersonaScore(persona, businessParams),
-      reasoning: this.generateReasoning(persona, businessParams)
+    // AUM-based committee size logic
+    let selectedPersonas = [];
+
+    if (this.isSmallInstitution(targetAum)) {
+      // Smaller institutions: 2-3 personas, CEO-driven
+      selectedPersonas = this.getSmallInstitutionPersonas(csuitPersonas, fintechParams);
+    } else if (this.isLargeInstitution(targetAum)) {
+      // Larger institutions: 4-5 personas, committee-driven
+      selectedPersonas = this.getLargeInstitutionPersonas(csuitPersonas, fintechParams);
+    } else {
+      // Mid-size: 3-4 personas, structured evaluation
+      selectedPersonas = this.getMidSizeInstitutionPersonas(csuitPersonas, fintechParams);
+    }
+
+    return selectedPersonas.map(item => ({
+      ...item,
+      confidence: this.scoreToConfidence(item.score)
     }));
-
-    // Sort by score and return top 3-4
-    return scoredPersonas
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 4)
-      .map(item => ({
-        ...item,
-        confidence: this.scoreToConfidence(item.score)
-      }));
   }
 
-  determinePrimarySegment(params) {
-    const { organizationType, targetAudience } = params;
+  isSmallInstitution(aumRange) {
+    return aumRange === '1b-5b' || aumRange === '1b-10b-cu';
+  }
 
-    // Fintech organizations primarily target fintech buyers
-    if (organizationType === 'fintech' || organizationType === 'neobank') {
-      return targetAudience === 'fintech-buyers' ? 'fintech' : 'business';
-    }
+  isLargeInstitution(aumRange) {
+    return aumRange === '15b-30b' || aumRange === '10b-30b-cu';
+  }
 
-    // Banks and credit unions map based on target audience
-    if (organizationType === 'community-bank' || organizationType === 'credit-union' || organizationType === 'regional-bank') {
-      if (targetAudience === 'bank-executives' || targetAudience === 'fintech-buyers') {
-        return 'fintech';
-      } else if (targetAudience === 'business-customers') {
-        return 'business';
-      } else {
-        return 'consumer';
+  getSmallInstitutionPersonas(personas, params) {
+    // CEO + relevant functional leader based on decision context
+    const ceo = personas.find(p => p.id === 'ceo-strategic-decision-maker');
+    const functionalLead = this.selectFunctionalLead(personas, params.decisionContext);
+
+    return [
+      { persona: ceo, score: 0.95, reasoning: "Primary decision maker for smaller institution" },
+      { persona: functionalLead, score: 0.85, reasoning: "Key functional stakeholder" }
+    ];
+  }
+
+  getLargeInstitutionPersonas(personas, params) {
+    // Full C-suite committee for complex buying decision
+    return [
+      {
+        persona: personas.find(p => p.id === 'ceo-strategic-decision-maker'),
+        score: 0.90,
+        reasoning: "Strategic approval required"
+      },
+      {
+        persona: personas.find(p => p.id === 'cdo-digital-transformation'),
+        score: 0.88,
+        reasoning: "Digital transformation owner"
+      },
+      {
+        persona: personas.find(p => p.id === 'cio-technology-gatekeeper'),
+        score: 0.85,
+        reasoning: "Technical architecture approval"
+      },
+      {
+        persona: personas.find(p => p.id === 'coo-operations-risk'),
+        score: 0.82,
+        reasoning: "Operations and risk assessment"
       }
-    }
+    ].filter(item => item.persona);
+  }
 
-    // Default mapping based on target audience
-    switch (targetAudience) {
-      case 'fintech-buyers':
-      case 'bank-executives':
-        return 'fintech';
-      case 'business-customers':
-        return 'business';
+  getMidSizeInstitutionPersonas(personas, params) {
+    // CEO + 2-3 functional leaders based on decision context
+    const ceo = personas.find(p => p.id === 'ceo-strategic-decision-maker');
+    const primaryLead = this.selectFunctionalLead(personas, params.decisionContext);
+    const secondaryLead = this.selectSecondaryLead(personas, params.decisionContext, primaryLead.id);
+
+    const result = [
+      { persona: ceo, score: 0.92, reasoning: "Strategic decision maker" },
+      { persona: primaryLead, score: 0.87, reasoning: "Primary functional lead" },
+      { persona: secondaryLead, score: 0.80, reasoning: "Secondary stakeholder" }
+    ];
+
+    return result.filter(item => item.persona);
+  }
+
+  selectFunctionalLead(personas, decisionContext) {
+    switch (decisionContext) {
+      case 'digital':
+        return personas.find(p => p.id === 'cdo-digital-transformation');
+      case 'technical':
+        return personas.find(p => p.id === 'cio-technology-gatekeeper');
+      case 'operations':
+        return personas.find(p => p.id === 'coo-operations-risk');
+      case 'strategic':
+        return personas.find(p => p.id === 'cdo-digital-transformation');
+      case 'committee':
+        return personas.find(p => p.id === 'cdo-digital-transformation');
       default:
-        return 'consumer';
+        return personas.find(p => p.id === 'cdo-digital-transformation');
     }
   }
 
-  calculatePersonaScore(persona, params) {
-    const criteria = persona.autoMatchCriteria;
-    if (!criteria) return 0.1; // Fallback for personas without criteria
+  selectSecondaryLead(personas, decisionContext, excludeId) {
+    const options = [];
 
-    let score = 0;
-
-    // Organization type alignment
-    const orgScore = criteria.organizationTypes.includes(params.organizationType) ? 1.0 : 0.2;
-    score += orgScore * this.weights.organizationType;
-
-    // Target audience alignment
-    const audienceScore = criteria.targetAudiences.includes(params.targetAudience) ? 1.0 : 0.3;
-    score += audienceScore * this.weights.targetAudience;
-
-    // Market type alignment
-    const marketScore = criteria.marketTypes.includes(params.marketType) ? 1.0 : 0.4;
-    score += marketScore * this.weights.marketType;
-
-    // Content analysis
-    const contentScore = this.scoreContent(criteria, params.researchContent);
-    score += contentScore * this.weights.contentAnalysis;
-
-    // Apply persona-specific weight multiplier
-    score *= criteria.selectionWeight;
-
-    return Math.min(1.0, score);
-  }
-
-  scoreContent(criteria, content) {
-    if (!content || !criteria.contentSignals) return 0.5;
-
-    const contentLower = content.toLowerCase();
-    let score = 0.5; // neutral base
-
-    // Positive signals boost score
-    const positiveMatches = criteria.contentSignals.positive.filter(keyword =>
-      contentLower.includes(keyword.toLowerCase())
-    ).length;
-    score += positiveMatches * 0.15;
-
-    // Negative signals reduce score
-    const negativeMatches = criteria.contentSignals.negative.filter(keyword =>
-      contentLower.includes(keyword.toLowerCase())
-    ).length;
-    score -= negativeMatches * 0.2;
-
-    return Math.max(0, Math.min(1, score));
-  }
-
-  generateReasoning(persona, params) {
-    const criteria = persona.autoMatchCriteria;
-    const reasons = [];
-
-    if (criteria.organizationTypes.includes(params.organizationType)) {
-      reasons.push(`${params.organizationType.replace('-', ' ')} alignment`);
+    if (decisionContext === 'digital' || decisionContext === 'strategic') {
+      options.push(personas.find(p => p.id === 'cio-technology-gatekeeper'));
+      options.push(personas.find(p => p.id === 'coo-operations-risk'));
+    } else if (decisionContext === 'technical') {
+      options.push(personas.find(p => p.id === 'cdo-digital-transformation'));
+      options.push(personas.find(p => p.id === 'coo-operations-risk'));
+    } else if (decisionContext === 'operations') {
+      options.push(personas.find(p => p.id === 'cio-technology-gatekeeper'));
+      options.push(personas.find(p => p.id === 'cdo-digital-transformation'));
+    } else {
+      options.push(personas.find(p => p.id === 'cio-technology-gatekeeper'));
     }
 
-    if (criteria.marketTypes.includes(params.marketType)) {
-      reasons.push(`${params.marketType} market fit`);
-    }
-
-    if (params.researchContent && criteria.contentSignals) {
-      const contentLower = params.researchContent.toLowerCase();
-      const hasPositiveSignals = criteria.contentSignals.positive.some(keyword =>
-        contentLower.includes(keyword.toLowerCase())
-      );
-      if (hasPositiveSignals) {
-        reasons.push('content relevance');
-      }
-    }
-
-    return reasons.length ? reasons.join(', ') : 'general profile match';
+    return options.find(p => p && p.id !== excludeId) || options[0];
   }
 
   scoreToConfidence(score) {
-    if (score >= 0.8) return 'High';
-    if (score >= 0.6) return 'Medium';
+    if (score >= 0.85) return 'High';
+    if (score >= 0.75) return 'Medium';
     return 'Low';
   }
 
-  getAllPersonas() {
-    // Return the global personas object
-    return window.PERSONAS;
+  generateBuyingCommitteePreview(targetAum) {
+    if (this.isSmallInstitution(targetAum)) {
+      return "2-3 member buying team: CEO-driven decision with key functional lead";
+    } else if (this.isLargeInstitution(targetAum)) {
+      return "4-5 member buying committee: Full C-suite evaluation with consensus process";
+    } else {
+      return "3-4 member buying team: CEO plus functional leaders with structured evaluation";
+    }
   }
 }
 
@@ -1081,465 +1091,166 @@ function setupModuleSelection() {
 
 // Removed setupMarketSelection() function - replaced with dropdown in automated interface
 
-// Complete 22-Persona Library Implementation
+// C-Suite Fintech Buyer Personas for Banks & Credit Unions ($1B-$30B AUM)
 window.PERSONAS = {
-  consumer: [
+  csuite: [
     {
-      id: 'c1-mobile-first-momentum-builder',
-      name: 'Mobile-First Momentum Builder',
-      age: '24-32',
-      segment: 'Early-career professional',
-      coreMotivation: 'Build financial momentum through efficient digital tools',
-      keyFears: 'Hidden fees, wasting time, missing opportunities for growth',
-      typicalLanguage: 'get paid early, track subscriptions, instant transfers, slick UX',
-      processingQuote: 'I need tools that work as well as my other apps - fast, transparent, and always available.',
+      id: 'ceo-strategic-decision-maker',
+      name: 'Strategic Decision Maker CEO',
+      age: '52',
+      title: 'President & Chief Executive Officer',
+      institution: '$3.2B Community Bank',
+      aumRange: '$1B-$15B (primary), $15B-$30B (secondary)',
+      coreMotivation: 'Drive institutional growth while managing regulatory risk and competitive positioning',
+      keyFears: 'Failed technology investment, competitive displacement, regulatory scrutiny, board criticism',
+      typicalLanguage: 'ROI, strategic advantage, competitive differentiation, regulatory compliance, board approval',
+      processingQuote: 'I need to understand the strategic value and competitive advantage this brings to our institution, with a clear business case I can defend to my board.',
       autoMatchCriteria: {
-        organizationTypes: ['fintech', 'neobank', 'regional-bank'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['mobile', 'fast', 'instant', 'digital', 'app', 'transparent', 'outcome-oriented'],
-          negative: ['branch', 'traditional', 'corporate jargon', 'innovation claims']
+        aumRanges: ['1b-5b', '5b-15b', '15b-30b'],
+        primaryRole: ['1b-5b', '5b-15b'],
+        secondaryRole: ['15b-30b'],
+        buyingCommitteeRole: 'primary-decision-maker',
+        decisionContexts: {
+          strategic: 1.0,
+          digital: 0.8,
+          technical: 0.3,
+          operations: 0.6,
+          committee: 1.0
         },
-        selectionWeight: 0.9
+        contentSignals: {
+          positive: ['ROI', 'strategic', 'competitive', 'growth', 'market advantage', 'board', 'regulatory'],
+          negative: ['technical details', 'integration complexity', 'disrupt', 'revolutionary']
+        },
+        institutionTypes: ['community-bank', 'regional-bank', 'credit-union'],
+        selectionWeight: 0.95
       }
     },
     {
-      id: 'c2-guided-opportunity-seeker',
-      name: 'Guided Opportunity Seeker',
-      age: '18-26',
-      segment: 'Student or early-career with limited financial experience',
-      coreMotivation: 'Learn and avoid financial mistakes while building credit',
-      keyFears: 'Overdrafts, hidden fees, making wrong decisions, financial traps',
-      typicalLanguage: 'how does this work, what could go wrong, plain language, visual explainers',
-      processingQuote: 'I need to understand exactly how this works and what happens if I make a mistake.',
+      id: 'cdo-digital-transformation',
+      name: 'Digital Transformation CDO',
+      age: '41',
+      title: 'Chief Digital Officer',
+      institution: '$8.5B Regional Bank',
+      aumRange: '$5B-$30B (primary), $1B-$5B (secondary)',
+      coreMotivation: 'Deliver digital experiences that match or exceed neobank standards',
+      keyFears: 'Implementation failure, customer experience gaps, resource constraints, integration complexity',
+      typicalLanguage: 'digital transformation, customer experience, competitive positioning, time to market',
+      processingQuote: 'How quickly can we implement this to improve our customer experience and close the digital gap with our competitors?',
       autoMatchCriteria: {
-        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['suburban', 'urban', 'mixed'],
-        contentSignals: {
-          positive: ['education', 'guidance', 'plain language', 'examples', 'coach', 'learn'],
-          negative: ['complex', 'assumes knowledge', 'APR tables', 'jargon']
+        aumRanges: ['5b-15b', '15b-30b', '1b-5b'],
+        primaryRole: ['5b-15b', '15b-30b'],
+        secondaryRole: ['1b-5b'],
+        buyingCommitteeRole: 'champion-influencer',
+        decisionContexts: {
+          strategic: 0.8,
+          digital: 1.0,
+          technical: 0.7,
+          operations: 0.5,
+          committee: 0.9
         },
+        contentSignals: {
+          positive: ['digital', 'customer experience', 'innovation', 'modern', 'competitive', 'transformation'],
+          negative: ['legacy', 'traditional', 'manual processes', 'complex integration']
+        },
+        institutionTypes: ['regional-bank', 'progressive-community-bank', 'large-credit-union'],
+        selectionWeight: 0.90
+      }
+    },
+    {
+      id: 'cio-technology-gatekeeper',
+      name: 'Technology Gatekeeper CIO',
+      age: '48',
+      title: 'Chief Information Officer',
+      institution: '$12B Regional Bank',
+      aumRange: '$3B-$30B (all ranges)',
+      coreMotivation: 'Ensure technology integrates securely and reliably with existing infrastructure',
+      keyFears: 'System integration failures, security vulnerabilities, vendor dependency, performance degradation',
+      typicalLanguage: 'security framework, compliance requirements, system integration, architecture, vendor stability',
+      processingQuote: 'Any technology must meet our security and architectural standards before consideration. Show me your SOC 2 report and integration documentation.',
+      autoMatchCriteria: {
+        aumRanges: ['3b-10b', '10b-30b', '1b-3b'],
+        primaryRole: ['3b-10b', '10b-30b'],
+        secondaryRole: ['1b-3b'],
+        buyingCommitteeRole: 'technical-gatekeeper',
+        decisionContexts: {
+          strategic: 0.3,
+          digital: 0.7,
+          technical: 1.0,
+          operations: 0.9,
+          committee: 0.8
+        },
+        contentSignals: {
+          positive: ['security', 'integration', 'API', 'architecture', 'compliance', 'SOC 2', 'enterprise'],
+          negative: ['simple', 'plug-and-play', 'no technical expertise', 'cloud-only']
+        },
+        institutionTypes: ['regional-bank', 'community-bank', 'credit-union'],
         selectionWeight: 0.85
       }
     },
     {
-      id: 'c3-busy-family-optimizer',
-      name: 'Busy Family Optimizer',
-      age: '35-48',
-      segment: 'Dual-income household with children',
-      coreMotivation: 'Automate financial management to save time and reduce stress',
-      keyFears: 'Missed payments, account management complexity, data security breaches',
-      typicalLanguage: 'automate bills, time-saving, family benefits, bundled value, cash-back',
-      processingQuote: 'I need banking that saves me time and gives me predictable family benefits.',
+      id: 'cto-technical-architect',
+      name: 'Technical Architect CTO',
+      age: '39',
+      title: 'Chief Technology Officer',
+      institution: '$18B Regional Bank',
+      aumRange: '$10B-$30B (primary), $5B-$10B (secondary)',
+      coreMotivation: 'Design modern, scalable technology architecture for future innovation',
+      keyFears: 'Technical debt, vendor lock-in, talent retention issues, scaling limitations',
+      typicalLanguage: 'technology roadmap, developer experience, platform architecture, API strategy, scalability',
+      processingQuote: 'I need to understand how this fits our long-term technology roadmap and whether the platform architecture supports our innovation goals.',
       autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['suburban', 'mixed'],
-        contentSignals: {
-          positive: ['automation', 'time-saving', 'family', 'bundled', 'predictable', 'rewards'],
-          negative: ['disjointed', 'complex pricing', 'unclear data sharing']
+        aumRanges: ['10b-30b', '5b-10b'],
+        primaryRole: ['10b-30b'],
+        secondaryRole: ['5b-10b'],
+        buyingCommitteeRole: 'technical-architect',
+        decisionContexts: {
+          strategic: 0.6,
+          digital: 0.8,
+          technical: 1.0,
+          operations: 0.4,
+          committee: 0.7
         },
-        selectionWeight: 0.9
+        contentSignals: {
+          positive: ['API', 'platform', 'architecture', 'scalable', 'developer', 'microservices', 'modern'],
+          negative: ['proprietary', 'limited', 'custom integration', 'legacy', 'monolith']
+        },
+        institutionTypes: ['regional-bank', 'large-community-bank'],
+        selectionWeight: 0.80
       }
     },
     {
-      id: 'c4-relationship-first-traditionalist',
-      name: 'Relationship-First Traditionalist',
-      age: '50-68',
-      segment: 'Mid to late-career, values personal service',
-      coreMotivation: 'Maintain trusted banking relationships with personal service',
-      keyFears: 'Losing personal banker, forced into digital-only channels, service deterioration',
-      typicalLanguage: 'my banker, branch experience, personal service, tried and trusted',
-      processingQuote: 'I want to bank with people who know me and my business, not just a computer.',
+      id: 'coo-operations-risk',
+      name: 'Operations & Risk COO',
+      age: '55',
+      title: 'Chief Operating Officer',
+      institution: '$6.8B Regional Bank',
+      aumRange: '$3B-$30B (all ranges)',
+      coreMotivation: 'Maintain operational excellence while enabling beneficial technology adoption',
+      keyFears: 'Operational disruption, staff training burden, compliance gaps, customer experience degradation',
+      typicalLanguage: 'operational efficiency, implementation risk, staff training, compliance, change management',
+      processingQuote: 'How will this actually work with our current operations, and what support do you provide for training and change management?',
       autoMatchCriteria: {
-        organizationTypes: ['community-bank', 'credit-union'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['rural', 'suburban'],
-        contentSignals: {
-          positive: ['personal', 'relationship', 'service', 'trusted', 'local', 'banker'],
-          negative: ['digital-only', 'app-based', 'automation', 'AI']
+        aumRanges: ['3b-10b', '10b-30b', '1b-3b'],
+        primaryRole: ['3b-10b', '10b-30b'],
+        secondaryRole: ['1b-3b'],
+        buyingCommitteeRole: 'operations-risk-manager',
+        decisionContexts: {
+          strategic: 0.5,
+          digital: 0.4,
+          technical: 0.6,
+          operations: 1.0,
+          committee: 0.8
         },
-        selectionWeight: 0.95
-      }
-    },
-    {
-      id: 'c5-credit-stretched-rebuilder',
-      name: 'Credit-Stretched Rebuilder',
-      age: '28-45',
-      segment: 'Recovering from financial setback, rebuilding credit',
-      coreMotivation: 'Rebuild financial standing while avoiding further debt',
-      keyFears: 'Unexpected fees, credit denial, falling behind on payments',
-      typicalLanguage: 'second chance, no hidden fees, credit building, financial recovery',
-      processingQuote: 'I need a bank that helps me rebuild, not one that profits from my mistakes.',
-      autoMatchCriteria: {
-        organizationTypes: ['credit-union', 'community-bank', 'fintech'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['urban', 'suburban', 'rural'],
         contentSignals: {
-          positive: ['second chance', 'credit building', 'transparent fees', 'financial recovery'],
-          negative: ['premium', 'exclusive', 'high-income', 'investment']
+          positive: ['operations', 'efficiency', 'training', 'compliance', 'implementation', 'risk management'],
+          negative: ['revolutionary', 'disruptive', 'complex implementation', 'significant change']
         },
-        selectionWeight: 0.8
-      }
-    },
-    {
-      id: 'c6-mass-affluent-planner',
-      name: 'Mass Affluent Planner',
-      age: '40-60',
-      segment: 'High income, sophisticated financial needs',
-      coreMotivation: 'Optimize wealth through integrated financial services',
-      keyFears: 'Mediocre investment performance, poor financial advice, security breaches',
-      typicalLanguage: 'wealth management, investment integration, private banking, portfolio optimization',
-      processingQuote: 'I need sophisticated tools and advice that match my financial complexity.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'fintech'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['wealth', 'investment', 'private banking', 'sophisticated', 'integration'],
-          negative: ['basic', 'simple', 'one-size-fits-all']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 'c7-gig-economy-juggler',
-      name: 'Gig Economy Juggler',
-      age: '25-40',
-      segment: 'Multiple income streams, freelance/contractor',
-      coreMotivation: 'Manage irregular income across multiple platforms efficiently',
-      keyFears: 'Cash flow gaps, complex tax reporting, platform payment delays',
-      typicalLanguage: 'multiple income streams, gig payments, cash flow, instant access',
-      processingQuote: 'I need banking that works with my unpredictable income from multiple sources.',
-      autoMatchCriteria: {
-        organizationTypes: ['fintech', 'neobank'],
-        targetAudiences: ['retail-customers', 'business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['gig economy', 'multiple income', 'instant access', 'freelance', 'cash flow'],
-          negative: ['traditional employment', 'stable salary', 'long-term planning']
-        },
-        selectionWeight: 0.85
-      }
-    },
-    {
-      id: 'c8-retired-security-seeker',
-      name: 'Retired Security Seeker',
-      age: '62+',
-      segment: 'Retired, focused on security and preservation',
-      coreMotivation: 'Preserve wealth with maximum security and minimal risk',
-      keyFears: 'Fraud, investment losses, complex digital systems, outliving savings',
-      typicalLanguage: 'safe and secure, FDIC insured, established bank, fraud protection',
-      processingQuote: 'I want banking with people I can trust and security I can understand.',
-      autoMatchCriteria: {
-        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
-        targetAudiences: ['retail-customers'],
-        marketTypes: ['suburban', 'rural'],
-        contentSignals: {
-          positive: ['security', 'FDIC', 'established', 'trusted', 'safe', 'protection'],
-          negative: ['digital-first', 'innovation', 'disruption', 'new technology']
-        },
-        selectionWeight: 0.95
-      }
-    }
-  ],
-
-  business: [
-    {
-      id: 's1-time-starved-solo-owner',
-      name: 'Time-Starved Solo Owner',
-      age: '35-50',
-      business: 'Solo practice (law, accounting, consulting)',
-      coreMotivation: 'Minimize time spent on banking and administrative tasks',
-      keyFears: 'Wasted time on banking admin, missing client opportunities, cash flow gaps',
-      typicalLanguage: 'streamlined, automated, time-saving, simple setup, no hassle',
-      processingQuote: 'I need banking that takes five minutes to set up and runs itself.',
-      autoMatchCriteria: {
-        organizationTypes: ['fintech', 'regional-bank'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['automated', 'streamlined', 'time-saving', 'simple', 'efficient'],
-          negative: ['complex setup', 'relationship manager', 'meetings', 'paperwork']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 's2-growth-oriented-founder',
-      name: 'Growth-Oriented Founder',
-      age: '28-45',
-      business: 'Scaling startup or growth company',
-      coreMotivation: 'Access capital and financial tools that scale with growth',
-      keyFears: 'Outgrowing banking capabilities, limiting growth due to financial constraints',
-      typicalLanguage: 'scalable, growth capital, lending, credit lines, cash management',
-      processingQuote: 'I need banking that grows with me and never becomes the bottleneck.',
-      autoMatchCriteria: {
-        organizationTypes: ['fintech', 'regional-bank'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['growth', 'scalable', 'capital', 'lending', 'expansion', 'credit lines'],
-          negative: ['traditional', 'conservative', 'small business only']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 's3-family-main-street-operator',
-      name: 'Family Main Street Operator',
-      age: '45-65',
-      business: 'Family-owned local business (retail, restaurant, services)',
-      coreMotivation: 'Maintain business stability and community relationships',
-      keyFears: 'Losing local business advantages, being treated like a number',
-      typicalLanguage: 'local business, community bank, personal service, main street',
-      processingQuote: 'I want a bank that understands local business and supports our community.',
-      autoMatchCriteria: {
-        organizationTypes: ['community-bank', 'credit-union'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['rural', 'suburban'],
-        contentSignals: {
-          positive: ['local', 'community', 'main street', 'family business', 'personal service'],
-          negative: ['digital-only', 'national', 'automated', 'impersonal']
-        },
-        selectionWeight: 0.95
-      }
-    },
-    {
-      id: 's4-professional-services-principal',
-      name: 'Professional Services Principal',
-      age: '40-60',
-      business: 'Professional services firm (law, accounting, consulting)',
-      coreMotivation: 'Sophisticated financial management and client trust accounts',
-      keyFears: 'Regulatory compliance issues, commingled funds, professional liability',
-      typicalLanguage: 'trust accounts, compliance, professional liability, sophisticated banking',
-      processingQuote: 'I need banking that handles professional requirements and regulatory compliance.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'community-bank'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['professional', 'trust accounts', 'compliance', 'sophisticated', 'regulatory'],
-          negative: ['simple', 'basic', 'startup-focused', 'consumer-grade']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 's5-nonprofit-steward',
-      name: 'Nonprofit Steward',
-      age: '35-55',
-      business: 'Nonprofit organization management',
-      coreMotivation: 'Maximize mission impact while ensuring financial stewardship',
-      keyFears: 'Fund mismanagement, high fees reducing mission funding, compliance issues',
-      typicalLanguage: 'mission-focused, stewardship, transparent fees, nonprofit banking',
-      processingQuote: 'We need banking that supports our mission and treats donor funds with respect.',
-      autoMatchCriteria: {
-        organizationTypes: ['credit-union', 'community-bank'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['urban', 'suburban', 'rural'],
-        contentSignals: {
-          positive: ['nonprofit', 'mission', 'stewardship', 'community', 'transparent'],
-          negative: ['profit-maximizing', 'commercial focus', 'high fees']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 's6-operational-cfo',
-      name: 'Operational CFO',
-      age: '40-60',
-      business: 'Mid-market company financial management',
-      coreMotivation: 'Optimize cash management and operational efficiency',
-      keyFears: 'Operational inefficiencies, poor cash flow management, system integration issues',
-      typicalLanguage: 'cash management, operational efficiency, system integration, Treasury services',
-      processingQuote: 'I need banking that integrates seamlessly with our operational and financial systems.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'fintech'],
-        targetAudiences: ['business-customers', 'bank-executives'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['cash management', 'operational', 'integration', 'treasury', 'efficiency'],
-          negative: ['simple', 'basic', 'small business', 'consumer-focused']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 's7-tech-forward-digital-seller',
-      name: 'Tech-Forward Digital Seller',
-      age: '25-40',
-      business: 'E-commerce or digital services company',
-      coreMotivation: 'Integrate banking with digital sales and payment platforms',
-      keyFears: 'Payment processing delays, platform disconnects, API limitations',
-      typicalLanguage: 'API integration, payment processing, e-commerce, platform connectivity',
-      processingQuote: 'I need banking APIs that integrate perfectly with my sales and payment platforms.',
-      autoMatchCriteria: {
-        organizationTypes: ['fintech', 'neobank'],
-        targetAudiences: ['business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['API', 'integration', 'e-commerce', 'digital', 'platform', 'payment processing'],
-          negative: ['traditional', 'branch-based', 'manual processes', 'legacy systems']
-        },
-        selectionWeight: 0.95
-      }
-    }
-  ],
-
-  fintech: [
-    {
-      id: 'b1-bank-head-digital-transformation',
-      name: 'Bank Head of Digital Transformation',
-      age: '35-50',
-      title: 'VP Digital Banking & Innovation',
-      institution: 'Regional bank or large credit union',
-      coreMotivation: 'Drive competitive digital capabilities while managing implementation risk',
-      keyFears: 'Failed digital initiatives, falling behind competition, integration disasters',
-      typicalLanguage: 'digital transformation, customer experience, integration timeline, competitive positioning',
-      processingQuote: 'We need solutions that transform our capabilities without disrupting operations.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['digital transformation', 'integration', 'competitive', 'customer experience'],
-          negative: ['risky', 'unproven', 'complex implementation']
-        },
-        selectionWeight: 0.95
-      }
-    },
-    {
-      id: 'b2-enterprise-cio-cto',
-      name: 'Enterprise CIO/CTO',
-      age: '45-60',
-      title: 'Chief Information/Technology Officer',
-      institution: 'Large bank or enterprise',
-      coreMotivation: 'Modernize technology infrastructure while maintaining security and compliance',
-      keyFears: 'Security breaches, system downtime, regulatory violations, integration failures',
-      typicalLanguage: 'architecture, security, scalability, compliance, infrastructure modernization',
-      processingQuote: 'Any technology must meet our security and architectural standards before consideration.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'fintech'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['security', 'architecture', 'scalability', 'compliance', 'infrastructure'],
-          negative: ['quick implementation', 'minimal security', 'workarounds']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 'b3-chief-risk-compliance',
-      name: 'Chief Risk & Compliance Officer',
-      age: '45-65',
-      title: 'Chief Risk Officer',
-      institution: 'Financial institution',
-      coreMotivation: 'Protect institution from regulatory fines and operational risks',
-      keyFears: 'Regulatory violations, data breaches, operational failures, audit findings',
-      typicalLanguage: 'regulatory compliance, risk management, audit trail, governance framework',
-      processingQuote: 'Show me comprehensive risk controls and regulatory compliance documentation.',
-      autoMatchCriteria: {
-        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['suburban', 'rural', 'urban'],
-        contentSignals: {
-          positive: ['compliance', 'risk management', 'regulatory', 'audit', 'governance'],
-          negative: ['fast implementation', 'minimal oversight', 'move quickly']
-        },
-        selectionWeight: 0.95
-      }
-    },
-    {
-      id: 'b4-payments-treasury-lead',
-      name: 'Payments/Treasury Product Lead',
-      age: '35-50',
-      title: 'VP Payments & Treasury Services',
-      institution: 'Bank product management',
-      coreMotivation: 'Launch innovative payment products that drive revenue growth',
-      keyFears: 'Product launch failures, poor customer adoption, competitive displacement',
-      typicalLanguage: 'payment innovation, product roadmap, customer adoption, revenue growth',
-      processingQuote: 'We need payment solutions that differentiate our product offering and drive adoption.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'fintech'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['payment', 'innovation', 'product', 'customer adoption', 'revenue'],
-          negative: ['traditional', 'conservative', 'slow to market']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 'b5-corporate-cfo-mid-market',
-      name: 'Corporate CFO (Mid-Market)',
-      age: '40-60',
-      title: 'Chief Financial Officer',
-      institution: 'Mid-market corporation',
-      coreMotivation: 'Optimize financial operations and cash management efficiency',
-      keyFears: 'Cash flow disruptions, operational inefficiencies, poor financial controls',
-      typicalLanguage: 'cash management, operational efficiency, financial controls, treasury optimization',
-      processingQuote: 'I need financial solutions that optimize our cash flow and operational efficiency.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'fintech'],
-        targetAudiences: ['bank-executives', 'business-customers'],
-        marketTypes: ['urban', 'suburban'],
-        contentSignals: {
-          positive: ['cash management', 'efficiency', 'treasury', 'optimization', 'financial controls'],
-          negative: ['simple', 'basic', 'small business focused']
-        },
-        selectionWeight: 0.9
-      }
-    },
-    {
-      id: 'b6-operations-shared-services',
-      name: 'Operations/Shared Services Leader',
-      age: '40-55',
-      title: 'VP Operations',
-      institution: 'Financial services operations',
-      coreMotivation: 'Streamline operations and reduce processing costs',
-      keyFears: 'Operational disruptions, increased processing costs, workflow inefficiencies',
-      typicalLanguage: 'operational efficiency, process automation, cost reduction, workflow optimization',
-      processingQuote: 'We need solutions that streamline operations and reduce our processing overhead.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'community-bank', 'fintech'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['urban', 'suburban', 'rural'],
-        contentSignals: {
-          positive: ['operational', 'automation', 'efficiency', 'cost reduction', 'streamline'],
-          negative: ['manual', 'complex', 'labor intensive']
-        },
-        selectionWeight: 0.85
-      }
-    },
-    {
-      id: 'b7-procurement-vendor-management',
-      name: 'Procurement & Vendor Management',
-      age: '35-55',
-      title: 'VP Vendor Management',
-      institution: 'Financial institution procurement',
-      coreMotivation: 'Select vendors that provide value while managing institutional risk',
-      keyFears: 'Vendor failures, contract disputes, poor due diligence, budget overruns',
-      typicalLanguage: 'vendor due diligence, contract terms, risk assessment, value optimization',
-      processingQuote: 'Show me comprehensive vendor credentials and clear contract terms with measurable value.',
-      autoMatchCriteria: {
-        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
-        targetAudiences: ['bank-executives', 'fintech-buyers'],
-        marketTypes: ['urban', 'suburban', 'rural'],
-        contentSignals: {
-          positive: ['vendor', 'credentials', 'due diligence', 'contract', 'value', 'risk assessment'],
-          negative: ['untested', 'startup risk', 'unclear terms']
-        },
-        selectionWeight: 0.8
+        institutionTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        selectionWeight: 0.82
       }
     }
   ]
 };
-
 
 // Removed loadPersonas() function - replaced with automated selection
 
@@ -1634,44 +1345,42 @@ function previousScreen(screenId) {
 }
 
 function startAutomatedResearch() {
-  // Validate business parameters and email before starting
-  if (!validateBusinessParameters()) {
+  // Validate fintech parameters and email before starting
+  if (!validateFintechParameters()) {
     return; // Stop if validation fails
   }
 
-  // Collect business parameters from form
-  const businessParams = {
-    organizationType: document.getElementById('organization-type').value,
-    targetAudience: document.getElementById('target-audience').value,
-    marketType: document.getElementById('market-type').value,
-    researchContent: document.getElementById('research-content').value.trim()
+  // Collect fintech parameters from form
+  const fintechParams = {
+    targetAum: document.getElementById('target-aum').value,
+    decisionContext: document.getElementById('decision-context').value,
+    fintechSolution: document.getElementById('fintech-solution').value.trim()
   };
 
-  // Use AutomatedPersonaSelector to automatically select personas
-  const personaSelector = new AutomatedPersonaSelector();
-  const selectedResults = personaSelector.selectPersonas(businessParams);
+  // Use FintechPersonaSelector to automatically select C-suite personas based on AUM
+  const personaSelector = new FintechPersonaSelector();
+  const selectedResults = personaSelector.selectPersonas(fintechParams);
 
-  console.log('Business params:', businessParams);
-  console.log('Selected results:', selectedResults);
+  console.log('Fintech params:', fintechParams);
+  console.log('Selected C-suite personas:', selectedResults);
 
   // Set the selectedPersonas array with the automated selections
   selectedPersonas = selectedResults.map(result => result.persona.id);
 
-  // Fallback if no personas selected
+  // Fallback if no personas selected (should not happen with fintech-focused approach)
   if (selectedPersonas.length === 0) {
-    console.error('No personas selected by algorithm, using fallback');
-    // Fallback to a few default personas based on segment
-    const primarySegment = personaSelector.determinePrimarySegment(businessParams);
-    const allPersonas = personaSelector.getAllPersonas();
-    const segmentPersonas = allPersonas[primarySegment] || allPersonas.fintech;
-    selectedPersonas = segmentPersonas.slice(0, 3).map(p => p.id);
+    console.error('No personas selected by algorithm, using CEO fallback');
+    selectedPersonas = ['ceo-strategic-decision-maker', 'cdo-digital-transformation'];
   }
 
-  console.log('Final selected personas:', selectedPersonas);
+  console.log('Final selected C-suite personas:', selectedPersonas);
 
   // Store selection reasoning for report generation
   window.automatedSelectionResults = selectedResults;
-  window.businessParameters = businessParams;
+  window.fintechParameters = fintechParams;
+
+  // Store buying committee preview for UI
+  window.buyingCommitteePreview = personaSelector.generateBuyingCommitteePreview(fintechParams.targetAum);
 
   // Move to progress screen
   nextScreen('progress-screen');
@@ -1721,7 +1430,7 @@ function validateEmailAndUsage() {
   return true;
 }
 
-function validateBusinessParameters() {
+function validateFintechParameters() {
   // Validate email first
   const emailInput = document.querySelector('input[type="email"]');
   const email = emailInput.value.trim();
@@ -1731,31 +1440,24 @@ function validateBusinessParameters() {
     return false;
   }
 
-  // Validate organization type
-  const orgType = document.getElementById('organization-type').value;
-  if (!orgType) {
-    showError('Please select your organization type.');
+  // Validate target institution AUM
+  const targetAum = document.getElementById('target-aum').value;
+  if (!targetAum) {
+    showError('Please select your target institution AUM range.');
     return false;
   }
 
-  // Validate target audience
-  const targetAudience = document.getElementById('target-audience').value;
-  if (!targetAudience) {
-    showError('Please select your primary target audience.');
+  // Validate decision context
+  const decisionContext = document.getElementById('decision-context').value;
+  if (!decisionContext) {
+    showError('Please select the primary decision context.');
     return false;
   }
 
-  // Validate market type
-  const marketType = document.getElementById('market-type').value;
-  if (!marketType) {
-    showError('Please select your market characteristics.');
-    return false;
-  }
-
-  // Validate research content
-  const researchContent = document.getElementById('research-content').value.trim();
-  if (!researchContent || researchContent.length < 10) {
-    showError('Please describe what you\'re testing (minimum 10 characters).');
+  // Validate fintech solution description
+  const fintechSolution = document.getElementById('fintech-solution').value.trim();
+  if (!fintechSolution || fintechSolution.length < 20) {
+    showError('Please describe your fintech solution in detail (minimum 20 characters).');
     return false;
   }
 
@@ -1952,7 +1654,7 @@ function simulateProgress() {
   steps.push(`
     <div class="progress-step">
       <div class="progress-circle" id="step-synthesis">S</div>
-      <div class="progress-label">Cross-Persona Synthesis</div>
+      <div class="progress-label">C-Suite Decision Analysis</div>
     </div>
   `);
 
@@ -2072,7 +1774,7 @@ function generateReport() {
     </div>
 
     <div class="report-section">
-      <h3 class="report-section-title">Personas Interviewed</h3>
+      <h3 class="report-section-title">C-Suite Executives Interviewed</h3>
       ${interviewedPersonas.map(persona => `
         <div class="persona-profile">
           <div class="persona-profile-header">
@@ -2101,7 +1803,7 @@ function generateReport() {
       <h3 class="report-section-title">Research Methodology</h3>
       <div class="methodology-content">
         <h4 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px;">Participant Selection Process</h4>
-        <p style="margin-bottom: 16px;">Research participants were automatically selected using BrandThnk's validated persona matching algorithm. The system analyzed your organization profile and research parameters to identify optimal research participants from our library of 22 validated personas.</p>
+        <p style="margin-bottom: 16px;">C-suite research participants were automatically selected using BrandThnk's AUM-based matching algorithm. The system analyzed your target institution AUM and decision context to identify optimal buying committee composition from our library of 5 validated C-suite personas.</p>
 
         <h4 style="color: var(--black); font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; margin-bottom: 12px;">Selection Criteria</h4>
         <ul style="margin-left: 20px; margin-bottom: 16px;">
@@ -2130,7 +1832,7 @@ function generateReport() {
     </div>
 
     <div class="report-section">
-      <h3 class="report-section-title">Cross-Persona Analysis</h3>
+      <h3 class="report-section-title">C-Suite Buying Committee Analysis</h3>
       <p>Analysis reveals distinct patterns across the interviewed personas:</p>
       <ul style="margin-left: 20px;">
         <li style="margin-bottom: 8px;"><strong>Trust factors vary significantly:</strong> ${getTrustFactorAnalysis(interviewedPersonas)}</li>
