@@ -808,9 +808,6 @@
       <div class="form-row">
         <label class="form-label">Messaging to Test</label>
         <textarea id="fintech-solution" class="form-input" rows="4" placeholder="Enter the messaging, value propositions, or campaign concepts you want to test with bank and credit union executives..."></textarea>
-        <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
-          Include your core value proposition, key features, and specific benefits for financial institutions.
-        </div>
       </div>
     </div>
 
@@ -1598,9 +1595,8 @@ function simulateProgress() {
   // Get authentic quotes from selected personas
   function getPersonaQuotes() {
     return selectedPersonas.map(personaId => {
-      // Find the persona data across all segments
-      const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
-      const persona = allPersonas.find(p => p.id === personaId);
+      // Find the persona data from C-suite personas
+      const persona = window.PERSONAS.csuite.find(p => p.id === personaId);
 
       if (persona && persona.processingQuote) {
         return {
@@ -1622,8 +1618,7 @@ function simulateProgress() {
   // Create progress steps based on selected personas
   const steps = selectedPersonas.map((personaId, index) => {
     // Find the persona to get the proper name
-    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
-    const persona = allPersonas.find(p => p.id === personaId);
+    const persona = window.PERSONAS.csuite.find(p => p.id === personaId);
     const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
     return `
@@ -1744,7 +1739,7 @@ function generateReport() {
     throw new Error('Report content element not found');
   }
 
-  const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+  const allPersonas = window.PERSONAS.csuite;
   console.log('Total personas available:', allPersonas.length);
 
   const interviewedPersonas = selectedPersonas.map(id => allPersonas.find(p => p.id === id)).filter(Boolean);
@@ -1875,23 +1870,30 @@ function generateFindingsForPersonas(personas) {
 function generateRecommendationsForPersonas(personas) {
   const recommendations = [];
 
-  const hasFintech = personas.some(p => window.PERSONAS.fintech.includes(p));
-  const hasConsumer = personas.some(p => window.PERSONAS.consumer.includes(p));
-  const hasBusiness = personas.some(p => window.PERSONAS.business.includes(p));
+  // Check for specific C-suite roles
+  const hasCEO = personas.some(p => p.name && p.name.includes('CEO'));
+  const hasCDO = personas.some(p => p.name && p.name.includes('CDO'));
+  const hasCIO = personas.some(p => p.name && p.name.includes('CIO'));
+  const hasCTO = personas.some(p => p.name && p.name.includes('CTO'));
+  const hasCOO = personas.some(p => p.name && p.name.includes('COO'));
 
-  if (hasFintech) {
-    recommendations.push('<li style="margin-bottom: 12px;"><strong>For B2B buyers:</strong> Lead with integration capabilities, security credentials, and measurable ROI data rather than generic innovation messaging.</li>');
+  if (hasCEO) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For CEO stakeholders:</strong> Lead with strategic outcomes, competitive positioning, and board-ready ROI justification. Avoid technical details in initial communications.</li>');
   }
 
-  if (hasConsumer) {
-    recommendations.push('<li style="margin-bottom: 12px;"><strong>For consumers:</strong> Emphasize fee transparency, security measures, and clear value propositions that match their financial goals and digital comfort level.</li>');
+  if (hasCDO) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For CDO stakeholders:</strong> Emphasize customer experience improvements, digital transformation acceleration, and time-to-market advantages over traditional solutions.</li>');
   }
 
-  if (hasBusiness) {
-    recommendations.push('<li style="margin-bottom: 12px;"><strong>For businesses:</strong> Focus on cash flow impact, time savings, and relationship support rather than purely technological features.</li>');
+  if (hasCIO || hasCTO) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For technology leaders:</strong> Provide integration capabilities, security architecture details, scalability roadmaps, and vendor risk management frameworks.</li>');
   }
 
-  recommendations.push('<li style="margin-bottom: 12px;"><strong>Cross-segment:</strong> Avoid one-size-fits-all messaging. Tailor communication style and proof points to match each persona\'s decision criteria and language preferences.</li>');
+  if (hasCOO) {
+    recommendations.push('<li style="margin-bottom: 12px;"><strong>For COO stakeholders:</strong> Focus on operational efficiency gains, regulatory compliance support, staff training simplicity, and risk mitigation measures.</li>');
+  }
+
+  recommendations.push('<li style="margin-bottom: 12px;"><strong>Cross-stakeholder:</strong> Tailor proof points and communication depth to each C-suite role\'s decision criteria. CEOs need strategic outcomes, technology leaders need implementation details.</li>');
 
   return '<ol style="margin-left: 20px;">' + recommendations.join('') + '</ol>';
 }
