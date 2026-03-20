@@ -525,6 +525,58 @@
     max-width: 80px;
   }
 
+  .methodology-progress {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .progress-bar-container {
+    margin-bottom: 30px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background-color: var(--yellow);
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  .progress-percentage {
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 600;
+  }
+
+  .current-step-info {
+    text-align: center;
+  }
+
+  .step-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .step-description {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
   .quote-display {
     background: var(--offwhite);
     padding: 30px;
@@ -817,20 +869,6 @@
         <h3>C-Suite Decision-Makers Automatically Selected</h3>
         <p>Based on your target institution AUM and decision context, we'll automatically select the appropriate C-suite personas from banks and credit unions in your target range.</p>
 
-        <div class="validation-credentials">
-          <div class="credential">
-            <span class="credential-number">30+</span>
-            <span class="credential-label">Client Workshops</span>
-          </div>
-          <div class="credential">
-            <span class="credential-number">5</span>
-            <span class="credential-label">C-Suite Personas</span>
-          </div>
-          <div class="credential">
-            <span class="credential-number">Fintech</span>
-            <span class="credential-label">Buyer Focused</span>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -1590,140 +1628,170 @@ function simulateProgress() {
   const progressSteps = document.getElementById('progress-steps');
   const quoteDisplay = document.getElementById('quote-display');
 
-  console.log('Starting progress simulation with personas:', selectedPersonas);
+  console.log('Starting progress simulation with methodology focus');
 
-  // Get authentic quotes from selected personas
-  function getPersonaQuotes() {
-    return selectedPersonas.map(personaId => {
-      // Find the persona data from C-suite personas
-      const persona = window.PERSONAS.csuite.find(p => p.id === personaId);
+  // Define methodology steps
+  const methodologySteps = [
+    {
+      id: 'data-compilation',
+      label: 'Data Compilation',
+      description: 'Building personas from FDIC, Federal Reserve, and J.D. Power data',
+      duration: 4000
+    },
+    {
+      id: 'workshop-integration',
+      label: 'Workshop Integration',
+      description: 'Integrating insights from 30+ BrandThnk client workshops',
+      duration: 3500
+    },
+    {
+      id: 'persona-selection',
+      label: 'Persona Selection',
+      description: 'Selecting appropriate C-suite personas for your target AUM range',
+      duration: 3000
+    },
+    {
+      id: 'question-development',
+      label: 'Question Development',
+      description: 'Developing contextual interview questions based on your messaging',
+      duration: 4000
+    },
+    {
+      id: 'interview-simulation',
+      label: '11-Turn Interviews',
+      description: 'Running three-phase interviews with each selected persona',
+      duration: 5000
+    },
+    {
+      id: 'pattern-analysis',
+      label: 'Pattern Analysis',
+      description: 'Analyzing patterns to surface agreements, splits, and messaging gaps',
+      duration: 4500
+    }
+  ];
 
-      if (persona && persona.processingQuote) {
-        return {
-          text: persona.processingQuote,
-          author: persona.name,
-          context: `${persona.age ? `Age ${persona.age}` : ''}${persona.title ? ` • ${persona.title}` : ''}${persona.occupation ? ` • ${persona.occupation}` : ''}`
-        };
-      }
-
-      // Fallback for any personas without processing quotes
-      return {
-        text: "Let me think about this from my perspective...",
-        author: persona ? persona.name : "Unknown Persona",
-        context: ""
-      };
-    });
-  }
-
-  // Create progress steps based on selected personas
-  const steps = selectedPersonas.map((personaId, index) => {
-    // Find the persona to get the proper name
-    const persona = window.PERSONAS.csuite.find(p => p.id === personaId);
-    const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-
-    return `
-      <div class="progress-step">
-        <div class="progress-circle" id="step-${index}">${index + 1}</div>
-        <div class="progress-label">${displayName}</div>
+  // Create progress bar layout
+  progressSteps.innerHTML = `
+    <div class="methodology-progress">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-percentage" id="progress-percentage">0%</div>
       </div>
-    `;
-  });
-
-  steps.push(`
-    <div class="progress-step">
-      <div class="progress-circle" id="step-synthesis">S</div>
-      <div class="progress-label">C-Suite Decision Analysis</div>
+      <div class="current-step-info">
+        <div class="step-label" id="current-step-label">Initializing research...</div>
+        <div class="step-description" id="current-step-description">Preparing BrandThnk research methodology</div>
+      </div>
     </div>
-  `);
+  `;
 
-  progressSteps.innerHTML = steps.join('');
+  let currentStepIndex = 0;
+  let totalDuration = methodologySteps.reduce((sum, step) => sum + step.duration, 0);
+  let elapsedTime = 0;
 
-  // Get authentic quotes from selected personas
-  const personaQuotes = getPersonaQuotes();
+  function processMethodologyStep() {
+    if (currentStepIndex >= methodologySteps.length) {
+      // All methodology steps complete
+      document.getElementById('current-step-label').textContent = 'Research Complete';
+      document.getElementById('current-step-description').textContent = 'Generating your executive-ready report...';
+      document.getElementById('progress-percentage').textContent = '100%';
+      document.getElementById('progress-fill').style.width = '100%';
 
-  // Simulate progress with cleaner timing
-  let currentStep = 0;
-  const totalSteps = selectedPersonas.length + 1;
+      quoteDisplay.innerHTML = `
+        <div class="quote-text" style="color: #4CAF50; font-weight: bold;">✅ Methodology Complete</div>
+        <div class="quote-attribution">Your C-suite personas have provided comprehensive feedback on your messaging</div>
+      `;
 
-  function processStep() {
-    console.log(`Processing step ${currentStep} of ${totalSteps}`, {
-      currentStep,
-      totalSteps,
-      selectedPersonas: selectedPersonas.length,
-      isSynthesis: currentStep === selectedPersonas.length
-    });
-
-    // Determine if this is the synthesis step
-    const isSynthesisStep = currentStep === selectedPersonas.length;
-    const stepElement = document.getElementById(isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`);
-
-    console.log(`Step element found: ${!!stepElement}, ID: ${isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`}`);
-
-    if (stepElement) {
-      stepElement.classList.add('active');
-
-      // Update quote based on step type
-      if (isSynthesisStep) {
-        console.log('Displaying synthesis message');
-        quoteDisplay.innerHTML = `
-          <div class="quote-text">Analyzing patterns across all personas...</div>
-          <div class="quote-attribution">Cross-persona synthesis in progress</div>
-        `;
-      } else if (personaQuotes[currentStep]) {
-        console.log(`Displaying quote for persona ${currentStep}`);
-        const quote = personaQuotes[currentStep];
-        quoteDisplay.innerHTML = `
-          <div class="quote-text">"${quote.text}"</div>
-          <div class="quote-attribution">— ${quote.author}${quote.context ? ` (${quote.context})` : ''}</div>
-        `;
-      }
-    } else {
-      console.error(`Step element not found for step ${currentStep}`, {
-        isSynthesisStep,
-        expectedId: isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`
-      });
+      setTimeout(() => {
+        try {
+          console.log('Calling generateReport()');
+          generateReport();
+          console.log('Moving to report screen');
+          nextScreen('report-screen');
+        } catch (error) {
+          console.error('Report generation error:', error);
+          quoteDisplay.innerHTML = `<div style="color: #f44336;">Report generation failed: ${error.message}</div>`;
+        }
+      }, 2000);
+      return;
     }
 
-    // After 2 seconds, mark as completed and move to next
-    setTimeout(() => {
-      console.log(`Completing step ${currentStep}`);
+    const step = methodologySteps[currentStepIndex];
 
-      if (stepElement) {
-        stepElement.classList.remove('active');
-        stepElement.classList.add('completed');
-      }
+    // Update current step info
+    document.getElementById('current-step-label').textContent = step.label;
+    document.getElementById('current-step-description').textContent = step.description;
 
-      currentStep++;
-      console.log(`Advanced to step ${currentStep}, totalSteps: ${totalSteps}`);
-
-      if (currentStep >= totalSteps) {
-        // Research is complete - generate report
-        console.log('All steps complete, generating report');
-        quoteDisplay.innerHTML = `
-          <div class="quote-text" style="color: #4CAF50; font-weight: bold;">✅ Research Complete!</div>
-          <div class="quote-attribution">Generating your executive-ready report...</div>
+    // Update quote display with step-specific messaging
+    let quoteContent = '';
+    switch(step.id) {
+      case 'data-compilation':
+        quoteContent = `
+          <div class="quote-text">Accessing FDIC call report data and Federal Reserve supervisory insights...</div>
+          <div class="quote-attribution">Building institutional decision-maker profiles</div>
         `;
-        setTimeout(() => {
-          try {
-            console.log('Calling generateReport()');
-            generateReport();
-            console.log('Moving to report screen');
-            nextScreen('report-screen');
-          } catch (error) {
-            console.error('Report generation error:', error);
-            quoteDisplay.innerHTML = `<div style="color: #f44336;">Report generation failed: ${error.message}</div>`;
-          }
-        }, 2000);
-      } else {
-        // Continue to next step
-        console.log(`Continuing to step ${currentStep}`);
-        setTimeout(() => processStep(), 500);
+        break;
+      case 'workshop-integration':
+        quoteContent = `
+          <div class="quote-text">Integrating behavioral patterns from client workshops...</div>
+          <div class="quote-attribution">30+ financial institution strategy sessions analyzed</div>
+        `;
+        break;
+      case 'persona-selection':
+        quoteContent = `
+          <div class="quote-text">Matching personas to your target institution AUM range...</div>
+          <div class="quote-attribution">C-suite buying committee composition determined</div>
+        `;
+        break;
+      case 'question-development':
+        quoteContent = `
+          <div class="quote-text">Creating contextual interview questions for your messaging...</div>
+          <div class="quote-attribution">Tailoring inquiry approach to persona decision criteria</div>
+        `;
+        break;
+      case 'interview-simulation':
+        quoteContent = `
+          <div class="quote-text">Conducting structured 11-turn interviews...</div>
+          <div class="quote-attribution">Three-phase methodology: context, messaging evaluation, decision impact</div>
+        `;
+        break;
+      case 'pattern-analysis':
+        quoteContent = `
+          <div class="quote-text">Identifying consensus and divergence patterns...</div>
+          <div class="quote-attribution">Cross-persona synthesis revealing messaging optimization opportunities</div>
+        `;
+        break;
+    }
+    quoteDisplay.innerHTML = quoteContent;
+
+    // Animate progress over step duration
+    const stepStartTime = elapsedTime;
+    const startPercentage = Math.round((stepStartTime / totalDuration) * 100);
+    const endPercentage = Math.round(((stepStartTime + step.duration) / totalDuration) * 100);
+
+    let stepProgress = 0;
+    const progressInterval = setInterval(() => {
+      stepProgress += 50; // Update every 50ms
+      const stepCompletion = Math.min(stepProgress / step.duration, 1);
+      const currentPercentage = Math.round(startPercentage + (endPercentage - startPercentage) * stepCompletion);
+
+      document.getElementById('progress-percentage').textContent = currentPercentage + '%';
+      document.getElementById('progress-fill').style.width = currentPercentage + '%';
+
+      if (stepProgress >= step.duration) {
+        clearInterval(progressInterval);
+        elapsedTime += step.duration;
+        currentStepIndex++;
+
+        // Small delay before next step for readability
+        setTimeout(() => processMethodologyStep(), 300);
       }
-    }, 2000);
+    }, 50);
   }
 
-  // Start the process
-  processStep();
+  // Start the methodology process
+  setTimeout(() => processMethodologyStep(), 1000);
 }
 
 // Removed addMessageField() function - using single "What You're Testing" input only
