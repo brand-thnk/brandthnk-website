@@ -747,7 +747,7 @@
       <h2 class="form-section-title">Basic Information</h2>
       <div class="form-row">
         <label class="form-label">Company Name</label>
-        <input type="text" class="form-input" placeholder="Your bank or financial institution">
+        <input type="text" class="form-input" placeholder="Your fintech company name">
       </div>
       <div class="form-row">
         <label class="form-label">Your Name</label>
@@ -804,10 +804,10 @@
         </div>
       </div>
 
-      <!-- Fintech Solution -->
+      <!-- Messaging to Test -->
       <div class="form-row">
-        <label class="form-label">Your Fintech Solution</label>
-        <textarea id="fintech-solution" class="form-input" rows="4" placeholder="Describe your fintech solution, key value propositions, and target use cases for banks/credit unions..."></textarea>
+        <label class="form-label">Messaging to Test</label>
+        <textarea id="fintech-solution" class="form-input" rows="4" placeholder="Enter the messaging, value propositions, or campaign concepts you want to test with bank and credit union executives..."></textarea>
         <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">
           Include your core value proposition, key features, and specific benefits for financial institutions.
         </div>
@@ -836,23 +836,6 @@
         </div>
       </div>
 
-      <div class="buying-committee-preview">
-        <h4>Buying Committee Composition</h4>
-        <div class="committee-size-info">
-          <div class="committee-option" data-aum="1b-5b">
-            <strong>$1B-$5B:</strong> CEO + CIO + COO (2-3 people, 4-8 weeks)
-          </div>
-          <div class="committee-option" data-aum="5b-15b">
-            <strong>$5B-$15B:</strong> CEO + CDO + CIO + COO (3-4 people, 6-12 weeks)
-          </div>
-          <div class="committee-option" data-aum="15b-30b">
-            <strong>$15B-$30B:</strong> Full C-suite committee (4-5 people, 8-16 weeks)
-          </div>
-          <div class="committee-option" data-aum="cu">
-            <strong>Credit Unions:</strong> Member-focused decision process with cooperative values
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="action-buttons">
@@ -1457,7 +1440,7 @@ function validateFintechParameters() {
   // Validate fintech solution description
   const fintechSolution = document.getElementById('fintech-solution').value.trim();
   if (!fintechSolution || fintechSolution.length < 20) {
-    showError('Please describe your fintech solution in detail (minimum 20 characters).');
+    showError('Please provide the messaging you want to test (minimum 20 characters).');
     return false;
   }
 
