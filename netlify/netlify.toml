@@ -1,0 +1,25 @@
+[[redirects]]
+  from = "/do-portal/*"
+  to = "/client-portals/do-portal/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/hc3-portal/*"
+  to = "/client-portals/hc3-portal/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/horicon-bank-portal/*"
+  to = "/client-portals/horicon-bank-portal/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/checkalt-portal/*"
+  to = "/client-portals/checkalt-portal/:splat"
+  status = 301
+
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"

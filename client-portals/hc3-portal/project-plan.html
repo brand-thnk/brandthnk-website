@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HC3 - Project Plan | BrandThnk</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .main-content {
+      margin-bottom: 4rem;
+    }
+
+    .project-header {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .project-header h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .project-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 4px;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: var(--brandthnk-gray);
+    }
+
+    .detail-value {
+      font-weight: 500;
+    }
+
+    .week-section {
+      margin-bottom: 3rem;
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .week-header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 1.5rem;
+    }
+
+    .week-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .week-subtitle {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .week-dates {
+      color: var(--brandthnk-yellow);
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    .week-content {
+      padding: 2rem;
+    }
+
+    .objective {
+      background: var(--brandthnk-yellow);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    .objective h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .activities {
+      margin-bottom: 1.5rem;
+    }
+
+    .activities h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .activities ul {
+      margin-left: 1.5rem;
+    }
+
+    .activities li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .deliverable {
+      background: var(--brandthnk-off-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-gray);
+    }
+
+    .deliverable h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .key-info-section {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+    }
+
+    .key-info-section h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--brandthnk-yellow);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .info-block h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-yellow);
+    }
+
+    .info-block ul {
+      margin-left: 1.5rem;
+    }
+
+    .info-block li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-details {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="project-plan.html" class="nav-link active">Project Plan</a>
+        <a href="draft-website.html" class="nav-link">🎁</a>
+        <a href="deliverables.html" class="nav-link">Deliverables</a>
+        <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>HC3 <span class="brand-accent">Project Plan</span></h1>
+      <p>BrandThnk Breakthrough • 8-Week Brand & GTM Sprint</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="project-header">
+      <h2>HC3 Project Plan: BrandThnk Breakthrough</h2>
+      <p><strong>8-Week Brand & GTM Sprint</strong></p>
+
+      <div class="project-details">
+        <div class="detail-item">
+          <span class="detail-label">Client:</span>
+          <span class="detail-value">HC3</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Primary Contact:</span>
+          <span class="detail-value">Kristan Hill</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Duration:</span>
+          <span class="detail-value">8 Weeks</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Start Date:</span>
+          <span class="detail-value">March 20, 2026</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Completion:</span>
+          <span class="detail-value">May 7, 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 1-2: Deep Discovery</div>
+        <div class="week-dates">March 20-31, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Understand HC3's business DNA, audience mindset, and market context.</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Stakeholder interviews (execs, sales, product, customers)</li>
+            <li>Quick audit of existing brand, messaging, GTM plans</li>
+            <li>Identify internal blockers and external whitespace</li>
+            <li>Define goals and what "breakthrough" looks like</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Strategy Brief — distilled insights, aligned goals, and a shared lens</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 3: Positioning Lab</div>
+        <div class="week-dates">April 1-4, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Find the sharpest, clearest articulation of HC3's brand "why now."</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Messaging sprint: core narrative, proof points, and audience resonance</li>
+            <li>Clarify what HC3 is (and is not)</li>
+            <li>Build a messaging hierarchy: vision-level to campaign-ready</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Brand Positioning Map + Messaging Framework (ready to plug into GTM, content, sales enablement)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 4: Go-to-Market Model</div>
+        <div class="week-dates">April 7-11, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Build a practical and punchy GTM plan rooted in HC3's business reality.</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Select best-fit channels for traction, not noise</li>
+            <li>Align product moments with marketing moments</li>
+            <li>Define "launch-ready" and what follows it</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>90-Day GTM Activation Plan (with milestones, roles, content hooks, and external leverage points)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 5: Signal Amplification</div>
+        <div class="week-dates">April 14-18, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Get others talking about HC3 (not just HC3 talking about HC3).</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Plan for third-party distribution (media, influencers, analysts)</li>
+            <li>Outline content placement and PR strategies</li>
+            <li>Identify internal champions and external advocates</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Distribution & Advocacy Toolkit (third-party channels, media angles, customer-led stories)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 6: Strategy-to-Execution Bridge</div>
+        <div class="week-dates">April 21-25, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Turn the strategy into scalable action.</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Work with internal teams to prep activation</li>
+            <li>Set up internal documentation for handoff</li>
+            <li>Coach teams/agencies on adoption and adaptation</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Internal Playbook + Training Session</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 7: Feedback Loop Setup</div>
+        <div class="week-dates">April 28-May 2, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Ensure the strategy can flex with the market.</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>Set up measurable KPIs tied to business outcomes</li>
+            <li>Build a rhythm for reflection and course correction</li>
+            <li>Define what "working" actually looks like (and what it doesn't)</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Impact Dashboard Template (with guidance on how to read, report, and act on it)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-title">Week 8: Executive Strategy Session</div>
+        <div class="week-dates">May 5-7, 2026</div>
+      </div>
+      <div class="week-content">
+        <div class="objective">
+          <h4>Objective:</h4>
+          <p>Align leadership and energize go-forward motion.</p>
+        </div>
+
+        <div class="activities">
+          <h4>Activities:</h4>
+          <ul>
+            <li>60-90 minute working session with C-suite or GTM leaders</li>
+            <li>Present final strategy and make the case for change</li>
+            <li>Map next-phase priorities and ownership</li>
+          </ul>
+        </div>
+
+        <div class="deliverable">
+          <h4>Deliverable:</h4>
+          <p>Executive Debrief Presentation (slides + spoken walkthrough + next steps checklist)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-info-section">
+      <h2>Key Information</h2>
+
+      <div class="info-grid">
+        <div class="info-block">
+          <h3>Communication and Setup:</h3>
+          <ul>
+            <li>Weekly check-ins (90 min/week of C-level time)</li>
+            <li>Microsoft Teams for day-to-day, Email for documentation</li>
+            <li>HC3 to provide stakeholder interview list for Week 1-2</li>
+            <li>Interview mix: C-suite (Tori), frontline (Matt Engle), contrarian (Jeremiah James)</li>
+            <li>Sessions: 30 minutes each, no prep needed</li>
+          </ul>
+        </div>
+
+        <div class="info-block">
+          <h3>BrandThnk Team:</h3>
+          <ul>
+            <li>Allison Netzer (Lead Strategist)</li>
+            <li>Specialist support as needed</li>
+            <li>Compliance review</li>
+            <li>Design/production support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
