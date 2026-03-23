@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanPay Messaging Framework - CheckAlt Portal</title>
+    <meta name="description" content="Complete LoanPay messaging and positioning framework for credit union loan payment solutions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: var(--brandthnk-black);
+            background-color: var(--brandthnk-white);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--brandthnk-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--brandthnk-off-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 4rem;
+        }
+
+        .content-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--brandthnk-black);
+            border-left: 4px solid var(--brandthnk-yellow);
+            padding-left: 1rem;
+        }
+
+        .content-section h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h4 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Positioning Statement */
+        .positioning-statement {
+            background-color: var(--brandthnk-yellow);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--brandthnk-black);
+        }
+
+        .positioning-statement p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--brandthnk-black);
+        }
+
+        /* Storyline Sections */
+        .storyline {
+            background-color: var(--brandthnk-off-white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border: 2px solid var(--brandthnk-black);
+        }
+
+        .storyline h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+            margin-top: 0;
+        }
+
+        .storyline-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .storyline-section h4 {
+            color: var(--brandthnk-black);
+            margin-bottom: 0.75rem;
+            margin-top: 0;
+        }
+
+        /* Product Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background-color: var(--brandthnk-off-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .feature-card h4 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Key Context Callout */
+        .context-callout {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .context-callout h3 {
+            color: var(--brandthnk-white);
+            margin-top: 0;
+        }
+
+        .context-callout p {
+            color: var(--brandthnk-white);
+        }
+
+        /* Question Boxes */
+        .questions-box {
+            background-color: var(--brandthnk-light-gray);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .questions-box h4 {
+            margin-top: 0;
+            color: var(--brandthnk-black);
+        }
+
+        .questions-box ul {
+            margin-left: 1rem;
+        }
+
+        .questions-box li {
+            font-style: italic;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .storyline,
+            .positioning-statement,
+            .context-callout {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CheckAlt Portal</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="messaging-framework.html" class="active">Messaging Framework</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <h1>LoanPay Messaging Framework</h1>
+            <p>Complete positioning guide for credit union loan payment solutions</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Context Section -->
+        <section class="content-section">
+            <h2>Context: Why loan payments are the new pressure point</h2>
+
+            <div class="context-callout">
+                <h3>The Challenge</h3>
+                <p>Credit unions are carrying more loan risk with fewer hands on deck. Delinquencies are rising, staffing is tight, and borrowers expect simple digital ways to pay that match the rest of their financial lives.</p>
+            </div>
+
+            <p>At the same time, the portfolio mix has shifted. Indirect lending has become a major share of auto balances, yet these members are the least engaged and the least profitable. Nationally, indirect loans comprise more than half of all vehicle balances, and only around five percent of those indirect auto loan members use additional credit union products. That is a lot of loan risk with very little relationship upside.</p>
+
+            <p>On the direct side, credit unions are juggling a broad range of consumer and small business loans, often with complex payment needs. That includes mortgage and home equity with escrow, personal and auto loans, and small business term loans and lines. Members increasingly expect to manage all of these in a simple, self service way instead of mailing checks or calling the contact center.</p>
+
+            <p>Behind the scenes, many institutions are stuck with a "Frankenstack" of point solutions and file movements that no one fully understands anymore. Leaders are afraid that if they peel back the onion everything will fall apart, which makes them hesitant to modernize or change vendors.</p>
+
+            <p><strong>Loan payments sit at the crossroads of risk, relationship, and operational complexity and that is the space where LoanPay fits.</strong></p>
+        </section>
+
+        <!-- Product Snapshot -->
+        <section class="content-section">
+            <h2>Product snapshot: What LoanPay is</h2>
+
+            <p>LoanPay is a fully hosted, white label online loan payment platform that lets credit unions centralize payments across auto, mortgage, personal, and small business loans, including both direct and indirect portfolios.</p>
+
+            <h3>For borrowers, LoanPay provides a simple portal where they can:</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>Flexible Access</h4>
+                    <p>Pay as a guest or registered user</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Payment Options</h4>
+                    <p>Make one time, scheduled, or recurring payments</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Payment Control</h4>
+                    <p>Choose how much to pay (amount due, partial, principal only, fees, escrow)</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Payment Methods</h4>
+                    <p>Pay via eCheck or debit today, with text to pay and digital wallets on the roadmap</p>
+                </div>
+            </div>
+
+            <p>For the credit union, LoanPay removes manual work from staff, improves payment timeliness, and provides a modern borrower experience without requiring them to rip and replace their core or digital banking provider.</p>
+        </section>
+
+        <!-- Positioning Statement -->
+        <section class="content-section">
+            <h2>Positioning Statement</h2>
+
+            <div class="positioning-statement">
+                <p>LoanPay reduces delinquency, lightens staff burden, and modernizes the member experience.</p>
+            </div>
+
+            <p>For credit unions that need to bring loan delinquencies under control without adding headcount, LoanPay is a hosted, white label loan payment platform that turns scattered, manual payments into one member friendly, integration smart workflow across the loan portfolio.</p>
+
+            <p>Unlike basic bill pay widgets or generic online banking payment screens, LoanPay is purpose built for loan servicing, with flexible select payment options, real time or near real time posting, and proven integrations with your core.</p>
+        </section>
+
+        <!-- Key Storylines -->
+        <section class="content-section">
+            <h2>Key Storylines</h2>
+
+            <!-- Storyline 1 -->
+            <div class="storyline">
+                <h3>Storyline 1: Tackle delinquencies where risk is highest</h3>
+
+                <div class="storyline-section">
+                    <h4>Problem framing</h4>
+                    <ul>
+                        <li>Indirect auto loans are high volume but low relationship. They drive charge offs and delinquencies, and most of those members never deepen their relationship with the credit union.</li>
+                        <li>Used vehicle loans and other indirect segments are often harder to service and harder to make profitable.</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>LoanPay angle</h4>
+                    <ul>
+                        <li>Position LoanPay as the practical way to bring these segments under better control. Make it as easy as possible for indirect members to pay on time and in ways that fit their reality.</li>
+                        <li>Emphasize that LoanPay covers "no matter what loan it is" and supports all the core loan types a credit union cares about, not just one hero example.</li>
+                    </ul>
+                </div>
+
+                <div class="questions-box">
+                    <h4>Helpful questions</h4>
+                    <ul>
+                        <li>"What are you doing about your indirect members right now?"</li>
+                        <li>"How are you making it easier for them to pay you first when cash is tight?"</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>Message pivot</h4>
+                    <ul>
+                        <li>Bring indirect membership risk forward as one of the lead problems.</li>
+                        <li>Make sure examples include used auto and indirect portfolios, not only mortgage.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Storyline 2 -->
+            <div class="storyline">
+                <h3>Storyline 2: Turn complex payment options into a strength</h3>
+
+                <div class="storyline-section">
+                    <h4>Problem framing</h4>
+                    <ul>
+                        <li>Mortgage, HELOC, and some business loans have more complex payment scenarios: escrow contributions, late fees, principal versus interest, split payments, multiple loans per household.</li>
+                        <li>Many credit union digital experiences cannot support this gracefully, so staff handle exceptions by phone or in branch.</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>LoanPay angle</h4>
+                    <ul>
+                        <li>Elevate select payments as a named capability, not a hidden feature. This is language the team already uses and feels confident discussing.</li>
+                        <li>Position LoanPay as the way to make complex payments feel simple to the member while still honoring the rules the credit union needs.</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>Message pivot</h4>
+                    <ul>
+                        <li>Add a clear sub message around "Make complex loan payments feel simple" with proof points: multi loan support, escrow, fee and principal selection, partial payments, and additional payments toward balance.</li>
+                        <li>Use mortgage as the clearest hero example and state that the same flexibility extends across auto, personal, and small business loans.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Storyline 3 -->
+            <div class="storyline">
+                <h3>Storyline 3: Lead with the integration story they are already worried about</h3>
+
+                <div class="storyline-section">
+                    <h4>Problem framing</h4>
+                    <ul>
+                        <li>Many credit unions have layered payment tools, CUSOs, and custom files over the years. The result is the Frankenstack that is brittle, undocumented, and scary to touch.</li>
+                        <li>They have been burned by core integrations that take forever or never fully work. Loss reasons for LoanPay have included "we want real time" and concerns about integration complexity.</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>LoanPay angle</h4>
+                    <ul>
+                        <li><strong>Split the story by core type:</strong>
+                            <ul>
+                                <li>Friendly cores, for example Symitar and Correlation, where LoanPay can integrate quickly using well known APIs and patterns.</li>
+                                <li>Everyone else where "hollowing out the core" and running in parallel, with smart batch and file based flows, is the safer path.</li>
+                            </ul>
+                        </li>
+                        <li>Make it clear that real time is available where the core supports it and that smart batching and frequent updates close the gap elsewhere.</li>
+                        <li>Stress that this is not another point solution bolted on. LoanPay is a way to rationalize and simplify an already messy stack.</li>
+                    </ul>
+                </div>
+
+                <div class="storyline-section">
+                    <h4>Message pivot</h4>
+                    <ul>
+                        <li>Move integration and "hollowing out the core" into the top half of the positioning, not buried in implementation details.</li>
+                        <li>Use language like "friendly cores we can turn on in days" paired with "for everyone else, we run alongside your core so you do not have to untangle everything on day one."</li>
+                        <li>Add a short callout on "Fix the Frankenstack" that speaks directly to the fear of breaking existing file flows.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>

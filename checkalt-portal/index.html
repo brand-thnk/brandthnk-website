@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckAlt Project Portal - LoanPay Brand Strategy</title>
+    <meta name="description" content="CheckAlt LoanPay Brand Strategy Sprint project portal and deliverables">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: var(--brandthnk-black);
+            background-color: var(--brandthnk-white);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--brandthnk-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--brandthnk-off-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Team & Communication Section */
+        .team-section {
+            background-color: var(--brandthnk-yellow);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .team-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-contact {
+            background-color: var(--brandthnk-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 2px solid var(--brandthnk-black);
+        }
+
+        .team-contact h3 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .team-contact p {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-contact a {
+            color: var(--brandthnk-black);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .team-contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Status Grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .status-card {
+            background-color: var(--brandthnk-off-white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--brandthnk-black);
+        }
+
+        .status-card h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .status-card p {
+            color: var(--brandthnk-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-card .highlight {
+            color: var(--brandthnk-black);
+            font-weight: 700;
+        }
+
+        /* Actions Section */
+        .actions-section {
+            margin-bottom: 3rem;
+        }
+
+        .actions-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--brandthnk-off-white);
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .action-item:hover {
+            border-color: var(--brandthnk-yellow);
+            background-color: var(--brandthnk-white);
+        }
+
+        .action-item.completed {
+            opacity: 0.7;
+            background-color: var(--brandthnk-light-gray);
+        }
+
+        .action-item.completed .action-title {
+            text-decoration: line-through;
+        }
+
+        .action-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--brandthnk-black);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .action-checkbox.checked {
+            background-color: var(--brandthnk-yellow);
+        }
+
+        .action-checkbox.checked::after {
+            content: '✓';
+            color: var(--brandthnk-black);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-meta {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            margin-bottom: 3rem;
+        }
+
+        .timeline-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .timeline-item {
+            border-left: 4px solid var(--brandthnk-yellow);
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background-color: var(--brandthnk-yellow);
+            border-radius: 50%;
+            border: 2px solid var(--brandthnk-black);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timeline-date {
+            color: var(--brandthnk-gray);
+            font-size: 0.9rem;
+        }
+
+        .timeline-objective {
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-details {
+            display: none;
+            background-color: var(--brandthnk-off-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .timeline-details.expanded {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .timeline-details h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-details ul {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Resource Cards */
+        .resources-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background-color: var(--brandthnk-off-white);
+            border: 2px solid var(--brandthnk-black);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .resource-card:hover {
+            border-color: var(--brandthnk-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .resource-card-content {
+            padding: 2rem;
+        }
+
+        .resource-card h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .resource-card p {
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card .cta {
+            display: inline-block;
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card .cta:hover {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CheckAlt Portal</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="messaging-framework.html">Messaging Framework</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <h1>CheckAlt LoanPay Brand Strategy</h1>
+            <p>Brand Strategy Sprint • January 2025</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Team & Communication -->
+        <section class="team-section">
+            <h2>Team & Communication</h2>
+            <div class="team-grid">
+                <div class="team-contact">
+                    <h3>BrandThnk Team</h3>
+                    <p><strong>Allison Netzer</strong><br>
+                    Strategy Lead<br>
+                    <a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
+                </div>
+                <div class="team-contact">
+                    <h3>CheckAlt Team</h3>
+                    <p><strong>Primary Contact</strong><br>
+                    Project Lead<br>
+                    <!-- Add client contact details when available --></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Status -->
+        <div class="status-grid">
+            <div class="status-card">
+                <h3>Project Status</h3>
+                <p><span class="highlight">Completed</span></p>
+                <p>LoanPay Messaging & Positioning Guide delivered</p>
+                <p>January 2025</p>
+            </div>
+            <div class="status-card">
+                <h3>Timeline</h3>
+                <p><span class="highlight">4-week sprint</span></p>
+                <p>Brand Strategy focused engagement</p>
+                <p>Completed on schedule</p>
+            </div>
+            <div class="status-card">
+                <h3>Deliverable</h3>
+                <p><span class="highlight">Messaging Framework</span></p>
+                <p>Complete positioning guide with 3 key storylines</p>
+                <p>Ready for implementation</p>
+            </div>
+        </div>
+
+        <!-- Critical Next Actions -->
+        <section class="actions-section">
+            <h2>Critical Next Actions</h2>
+
+            <div class="action-item" data-action="review-framework">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-title">Review positioning framework with sales team</div>
+                    <div class="action-meta">Target: Q1 2025 • Owner: CheckAlt Team</div>
+                </div>
+            </div>
+
+            <div class="action-item" data-action="integrate-storylines">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-title">Integrate key storylines into sales materials</div>
+                    <div class="action-meta">Target: February 2025 • Owner: CheckAlt Marketing</div>
+                </div>
+            </div>
+
+            <div class="action-item" data-action="test-messaging">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-title">Test new messaging with target prospects</div>
+                    <div class="action-meta">Target: Q1 2025 • Owner: CheckAlt Sales</div>
+                </div>
+            </div>
+
+            <div class="action-item" data-action="update-website">
+                <div class="action-checkbox"></div>
+                <div class="action-content">
+                    <div class="action-title">Update website copy with new positioning</div>
+                    <div class="action-meta">Target: March 2025 • Owner: CheckAlt Marketing</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Timeline -->
+        <section class="timeline-section">
+            <h2>Project Timeline</h2>
+
+            <div class="timeline-item" data-timeline="discovery">
+                <div class="timeline-header">
+                    <div class="timeline-title">Discovery & Research</div>
+                    <div class="timeline-date">Week 1</div>
+                </div>
+                <div class="timeline-objective">Market analysis and competitive positioning research</div>
+                <div class="timeline-details">
+                    <h4>Objectives</h4>
+                    <p>Understand the credit union market landscape and LoanPay's competitive positioning</p>
+
+                    <h4>Key Activities</h4>
+                    <ul>
+                        <li>Market research and competitive analysis</li>
+                        <li>Product capability assessment</li>
+                        <li>Customer pain point identification</li>
+                        <li>Stakeholder interviews</li>
+                    </ul>
+
+                    <h4>Deliverable</h4>
+                    <p>Market landscape overview and positioning foundation</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-timeline="positioning">
+                <div class="timeline-header">
+                    <div class="timeline-title">Positioning Development</div>
+                    <div class="timeline-date">Week 2-3</div>
+                </div>
+                <div class="timeline-objective">Core positioning statement and messaging architecture</div>
+                <div class="timeline-details">
+                    <h4>Objectives</h4>
+                    <p>Develop clear positioning that differentiates LoanPay in the market</p>
+
+                    <h4>Key Activities</h4>
+                    <ul>
+                        <li>Positioning statement development</li>
+                        <li>Key storyline creation</li>
+                        <li>Message testing and refinement</li>
+                        <li>Client feedback integration</li>
+                    </ul>
+
+                    <h4>Deliverable</h4>
+                    <p>Core positioning framework and messaging architecture</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-timeline="framework">
+                <div class="timeline-header">
+                    <div class="timeline-title">Framework Completion</div>
+                    <div class="timeline-date">Week 4</div>
+                </div>
+                <div class="timeline-objective">Final messaging framework and implementation guidance</div>
+                <div class="timeline-details">
+                    <h4>Objectives</h4>
+                    <p>Complete messaging guide with practical implementation recommendations</p>
+
+                    <h4>Key Activities</h4>
+                    <ul>
+                        <li>Final framework documentation</li>
+                        <li>Implementation guidance</li>
+                        <li>Stakeholder presentation</li>
+                        <li>Handoff and training</li>
+                    </ul>
+
+                    <h4>Deliverable</h4>
+                    <p>LoanPay Messaging & Positioning Guide (Complete)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resource Cards -->
+        <section class="resources-section">
+            <h2>Project Resources</h2>
+            <div class="resource-grid">
+                <a href="messaging-framework.html" class="resource-card">
+                    <div class="resource-card-content">
+                        <h3>Messaging Framework</h3>
+                        <p>Complete LoanPay positioning guide with three key storylines, competitive differentiation, and implementation guidance.</p>
+                        <span class="cta">View Framework →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Action Items Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved action states
+            loadActionStates();
+
+            // Add click handlers to action items
+            document.querySelectorAll('.action-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const actionKey = this.dataset.action;
+                    const checkbox = this.querySelector('.action-checkbox');
+                    const isCompleted = this.classList.contains('completed');
+
+                    if (isCompleted) {
+                        // Uncomplete
+                        this.classList.remove('completed');
+                        checkbox.classList.remove('checked');
+                        localStorage.setItem(`checkalt_action_${actionKey}`, 'false');
+                    } else {
+                        // Complete
+                        this.classList.add('completed');
+                        checkbox.classList.add('checked');
+                        localStorage.setItem(`checkalt_action_${actionKey}`, 'true');
+                    }
+                });
+            });
+
+            // Timeline expansion functionality
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const details = this.querySelector('.timeline-details');
+                    const isExpanded = details.classList.contains('expanded');
+
+                    // Close all other timeline items
+                    document.querySelectorAll('.timeline-details').forEach(detail => {
+                        detail.classList.remove('expanded');
+                    });
+
+                    // Toggle current item
+                    if (!isExpanded) {
+                        details.classList.add('expanded');
+                    }
+                });
+            });
+        });
+
+        function loadActionStates() {
+            document.querySelectorAll('.action-item').forEach(item => {
+                const actionKey = item.dataset.action;
+                const isCompleted = localStorage.getItem(`checkalt_action_${actionKey}`) === 'true';
+
+                if (isCompleted) {
+                    item.classList.add('completed');
+                    item.querySelector('.action-checkbox').classList.add('checked');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
