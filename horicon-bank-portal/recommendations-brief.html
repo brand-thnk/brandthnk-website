@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendations Brief | Horicon Bank Portal</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+      --brandthnk-green: #2E7D32;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .main-content {
+      margin-bottom: 4rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--brandthnk-yellow);
+    }
+
+    .subsection {
+      margin-bottom: 2rem;
+    }
+
+    .subsection h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .subsection h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .executive-summary {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 3rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .highlight-box {
+      background: var(--brandthnk-yellow);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .strength-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .strength-card h4 {
+      color: var(--brandthnk-black);
+      margin-bottom: 1rem;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+    }
+
+    /* Framework cards for Keep/Change/Explore */
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .framework-card {
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .framework-header {
+      padding: 1rem;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      text-align: center;
+      color: var(--brandthnk-white);
+    }
+
+    .framework-header.keep {
+      background: var(--brandthnk-green);
+    }
+
+    .framework-header.change {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+    }
+
+    .framework-header.explore {
+      background: var(--brandthnk-black);
+    }
+
+    .framework-card .framework-header {
+      border-left: 4px solid;
+    }
+
+    .framework-card.keep .framework-header {
+      border-left-color: var(--brandthnk-green);
+    }
+
+    .framework-card.change .framework-header {
+      border-left-color: var(--brandthnk-yellow);
+    }
+
+    .framework-card.explore .framework-header {
+      border-left-color: var(--brandthnk-black);
+    }
+
+    .framework-content {
+      padding: 1.5rem;
+    }
+
+    .framework-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .framework-content li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .framework-content li:last-child {
+      border-bottom: none;
+    }
+
+    .keep-card {
+      border-left: 4px solid var(--brandthnk-green);
+      background: var(--brandthnk-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .keep-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-green);
+    }
+
+    .change-card {
+      border-left: 4px solid var(--brandthnk-yellow);
+      background: var(--brandthnk-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .change-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .explore-card {
+      border-left: 4px solid var(--brandthnk-black);
+      background: var(--brandthnk-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .explore-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .priorities-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--brandthnk-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .priorities-table th,
+    .priorities-table td {
+      padding: 1rem;
+      text-align: left;
+      border: 1px solid var(--brandthnk-light-gray);
+      font-size: 0.875rem;
+    }
+
+    .priorities-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+    }
+
+    .priorities-table tr:nth-child(even) {
+      background: var(--brandthnk-off-white);
+    }
+
+    .messaging-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .messaging-card {
+      background: var(--brandthnk-off-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .messaging-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .messaging-card p {
+      font-style: italic;
+      color: var(--brandthnk-gray);
+    }
+
+    .timeline {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .timeline-item {
+      padding: 1rem 0;
+      border-left: 3px solid var(--brandthnk-yellow);
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item strong {
+      color: var(--brandthnk-black);
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .closing-statement {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .closing-statement p {
+      margin-bottom: 1rem;
+      line-height: 1.8;
+    }
+
+    .closing-statement p:last-child {
+      margin-bottom: 0;
+      margin-top: 1.5rem;
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin: 1rem 0;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .strengths-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .framework-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .messaging-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+
+      .priorities-table {
+        font-size: 0.75rem;
+      }
+
+      .priorities-table th,
+      .priorities-table td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Horicon Bank Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-engagement-assessment.html" class="nav-link">Assessment</a>
+        <a href="persona-maturity-assessment.html" class="nav-link">Persona Maturity</a>
+        <a href="stakeholder-interviews.html" class="nav-link">Interviews</a>
+        <a href="interview-guide.html" class="nav-link">Interview Guide</a>
+        <a href="persona-explorer.html" class="nav-link">Persona Explorer</a>
+        <a href="competitive-intelligence.html" class="nav-link">Market Intel</a>
+        <a href="recommendations-brief.html" class="nav-link active">Recommendations</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>Recommendations <span class="brand-accent">Brief</span></h1>
+      <p>Keep, Change, Explore with 90-Day Priorities | March 23, 2026</p>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <div class="executive-summary">
+      <h2 class="section-header">Executive Summary</h2>
+      <p>This brief consolidates findings from the Pre-Engagement Assessment, 7 stakeholder interviews, market research, and synthesis work into a clear action plan. The recommendations are grounded in what Horicon Bank already does well and designed to work within existing tools, team capacity, and budget.</p>
+      <p>The goal: fewer priorities, deeper impact, and a frontline that can articulate why Horicon Bank matters.</p>
+    </div>
+
+    <section class="section">
+      <h2 class="section-header">Keep, Change, Explore</h2>
+
+      <div class="subsection">
+        <h3>Keep (Validated Strengths to Protect and Scale)</h3>
+        <p>Use these assets as your competitive foundation. They work. Scale them where it counts.</p>
+
+        <div class="keep-card">
+          <h4>1. "Together. Doing Good." – Universal Stakeholder Support</h4>
+          <p>Operational proof points exist (CHRE virtues, 40 hrs volunteer time, trust seminars). Works in both retail and business contexts. The narrative connects to community involvement, the 130th anniversary, and the culture.</p>
+        </div>
+
+        <div class="keep-card">
+          <h4>2. Senior Programs (Established Stewards)</h4>
+          <p>0% failure rate on Glider journeys. Trust seminars averaging 100 attendees. Estate planning and funeral trust partnerships. Minimal competition in SE Wisconsin. This is a proven, scalable program.</p>
+        </div>
+
+        <div class="keep-card">
+          <h4>3. Tech Stack Investments</h4>
+          <p>Total Expert, Alkami, AnalyzerIQ, Vertical IQ. Where deployed, performance is strong. The platform is not the problem.</p>
+        </div>
+
+        <div class="keep-card">
+          <h4>4. Nonprofit Checking Strategy</h4>
+          <p>Interest-bearing nonprofit checking is unique. Recent nonprofit brought ~$1M deposits. Board members represent HNW cross-sell opportunity.</p>
+        </div>
+
+        <div class="keep-card">
+          <h4>5. 130th Anniversary Narrative</h4>
+          <p>Using longevity as a trust signal, especially in Milwaukee expansion. "Old and new" positioning works in urban markets.</p>
+        </div>
+
+        <div class="keep-card">
+          <h4>6. My Money Youth Checking</h4>
+          <p>Auto-transition at 18, debit limit increases. Competitive response to Greenlight. Foundation for First-Generation Builders persona.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Change (Validated Gaps Requiring Action)</h3>
+        <p>These shifts are necessary to tighten strategy and improve execution readiness. They're not overhauls—they're refinements.</p>
+
+        <div class="change-card">
+          <h4>1. Retire "The Natural Choice" as Primary Position</h4>
+          <p>Keep in legacy Dodge County markets only. "The Natural Choice" requires geographic context that Milwaukee and Fox Valley don't have.</p>
+        </div>
+
+        <div class="change-card">
+          <h4>2. Consolidate 13 Segments to 4 Personas</h4>
+          <p>Move from demographic segmentation to aspiration-first personas: Established Stewards, Growing Families, First-Generation Builders, Business Owners.</p>
+        </div>
+
+        <div class="change-card">
+          <h4>3. Restructure Marketing Allocation into Budget</h4>
+          <p>Current $1.5-1.6M is allocation, not budget. 70% to events is too high. Restructure: Cash in Market (persona-driven campaigns), Brand Maintenance (cap 30%), Market Research (testing/flex).</p>
+        </div>
+
+        <div class="change-card">
+          <h4>4. Build Post-Event Nurture Sequences</h4>
+          <p>Currently missing across all programs. Events generate attendance but no systematic follow-up. Total Expert can automate this.</p>
+        </div>
+
+        <div class="change-card">
+          <h4>5. Activate Personas for Frontline</h4>
+          <p>Currently known only to senior management. Must be simplified and embedded in daily tools and conversations. Name them in language frontline uses.</p>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3>Explore (Opportunities to Validate in 90-Day Sprint)</h3>
+        <p>These are high-potential plays with early signal. Validate them in the next 90 days.</p>
+
+        <div class="explore-card">
+          <h4>1. Youth Banking as 90-Day Sprint Persona</h4>
+          <p>Two stakeholders independently named this. Product ready. 52% Gen Z choose banks on values. Themed digital banking app with financial literacy.</p>
+        </div>
+
+        <div class="explore-card">
+          <h4>2. Senior Prospect Acquisition in Milwaukee</h4>
+          <p>Current programs are retention-focused in legacy markets. Convert to prospect acquisition events in SE Wisconsin.</p>
+        </div>
+
+        <div class="explore-card">
+          <h4>3. Bank at Work 2.0</h4>
+          <p>Redesign around Business Owner persona. Lead with employee financial wellness, not product features. Coordinate consumer and commercial teams.</p>
+        </div>
+
+        <div class="explore-card">
+          <h4>4. Digital Geo-Targeting for Milwaukee</h4>
+          <p>No billboards. Limited digital ad geo-tracking. Erik: "Impressions are fine but they don't mean anything. We need links that are clicked."</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">90-Day Priorities (The Action Plan)</h2>
+      <p>Eight priorities with clear owners, timelines, and success metrics. These are the 90-day moves that compound into strategic wins.</p>
+
+      <table class="priorities-table">
+        <thead>
+          <tr>
+            <th>Priority</th>
+            <th>Owner</th>
+            <th>Timeline</th>
+            <th>Persona</th>
+            <th>Success Metric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Launch My Money youth campaign</strong></td>
+            <td>Rose + Natalie</td>
+            <td>Days 1-30</td>
+            <td>First-Gen Builders</td>
+            <td>50 new My Money accounts in 90 days</td>
+          </tr>
+          <tr>
+            <td><strong>Deploy Glider prospect journey in Total Expert for Milwaukee</strong></td>
+            <td>Danielle + Kerry</td>
+            <td>Days 1-45</td>
+            <td>Established Stewards</td>
+            <td>3 prospect acquisition events, 25 new leads</td>
+          </tr>
+          <tr>
+            <td><strong>Restructure marketing budget into 3 categories</strong></td>
+            <td>Rose + Erik</td>
+            <td>Days 1-30</td>
+            <td>All</td>
+            <td>Budget document with persona allocations</td>
+          </tr>
+          <tr>
+            <td><strong>Build post-event nurture sequence in Total Expert</strong></td>
+            <td>Danielle</td>
+            <td>Days 15-45</td>
+            <td>All</td>
+            <td>Automated follow-up for every event by day 45</td>
+          </tr>
+          <tr>
+            <td><strong>Simplify persona names and create frontline one-pagers</strong></td>
+            <td>BrandThnk + Rose</td>
+            <td>Days 1-15</td>
+            <td>All</td>
+            <td>One-pagers distributed to all branches</td>
+          </tr>
+          <tr>
+            <td><strong>Bank at Work 2.0 pitch deck with employee benefit framing</strong></td>
+            <td>Erik + Rose</td>
+            <td>Days 30-60</td>
+            <td>Business Owners</td>
+            <td>5 new Bank at Work conversations</td>
+          </tr>
+          <tr>
+            <td><strong>Website audit and mobile-first updates for younger demographics</strong></td>
+            <td>Natalie</td>
+            <td>Days 30-90</td>
+            <td>First-Gen Builders, Growing Families</td>
+            <td>Updated landing pages for 2 personas</td>
+          </tr>
+          <tr>
+            <td><strong>"Together. Doing Good." messaging spine deployed</strong></td>
+            <td>BrandThnk delivery</td>
+            <td>Days 1-30</td>
+            <td>All</td>
+            <td>Messaging document + branch talking points</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">Messaging Spine</h2>
+      <p>This is the architecture that guides near-term execution. It connects your brand position to each persona's aspirations.</p>
+
+      <div class="highlight-box" style="background: var(--brandthnk-yellow); margin-bottom: 2rem;">
+        <h3 style="font-family: 'Roboto Slab', serif; font-weight: 600; margin-bottom: 1rem;">Brand Position: Together. Doing Good.</h3>
+        <p><strong>Supporting Proof Points:</strong></p>
+        <ul style="margin-top: 1rem;">
+          <li>130 years of community banking</li>
+          <li>CHRE virtues (Capability, Honesty, Respect, Energy)</li>
+          <li>40 hours paid volunteer time for every employee</li>
+          <li>Trust services and estate planning expertise</li>
+          <li>Local decision-making, not corporate committees</li>
+        </ul>
+      </div>
+
+      <h3 style="font-family: 'Roboto Slab', serif; font-weight: 600; margin-bottom: 1.5rem;">Persona-Specific Messages</h3>
+
+      <div class="messaging-grid">
+        <div class="messaging-card">
+          <h4>Established Stewards</h4>
+          <p>"You spent decades building something. We'll help you protect it, grow it, and pass it on. Our trust team has been doing this since before most fintechs existed."</p>
+        </div>
+
+        <div class="messaging-card">
+          <h4>Growing Families</h4>
+          <p>"Between the mortgage, the kids' accounts, and the insurance, you need a bank that sees the whole picture. We're not a feature list. We're your financial partner."</p>
+        </div>
+
+        <div class="messaging-card">
+          <h4>First-Generation Builders</h4>
+          <p>"Your first real bank should be one that shares your values. We're not an app. We're a 130-year community that's still growing, just like you."</p>
+        </div>
+
+        <div class="messaging-card">
+          <h4>Business Owners</h4>
+          <p>"You need a bank that understands your business, not just your balance sheet. Together, we'll build something that works for your employees and your bottom line."</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-header">What Happens Next</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>Week of March 23:</strong> Recommendations Brief delivered (this document)
+        </div>
+        <div class="timeline-item">
+          <strong>Week of March 30:</strong> Working Session #1 with Rose and leadership. Pressure-test personas, validate priorities.
+        </div>
+        <div class="timeline-item">
+          <strong>Week of April 6:</strong> Working Session #2. Draft messaging spine review. 90-day plan refinement.
+        </div>
+        <div class="timeline-item">
+          <strong>Week of April 13:</strong> Final deliverables package. Persona one-pagers, messaging spine, 90-day activation playbook, budget restructuring template.
+        </div>
+        <div class="timeline-item">
+          <strong>April 14+:</strong> Execution begins. BrandThnk available for check-ins.
+        </div>
+      </div>
+    </section>
+
+    <div class="closing-statement">
+      <p>"The goal isn't more documentation. It's confidence in the path forward. Horicon Bank has the culture, the tools, and the team. What's been missing is focus. These recommendations provide that focus: fewer personas, clearer messaging, and a 90-day plan that turns strategy into action."</p>
+      <p>BrandThnk | Build a Growth Brand | brandthnk.co</p>
+    </div>
+  </main>
+</body>
+</html>
