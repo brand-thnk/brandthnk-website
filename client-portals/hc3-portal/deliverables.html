@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HC3 - Deliverables | BrandThnk</title>
+  <!-- Updated 2026-03-23 -->
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .resource-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    .resource-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--brandthnk-yellow);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .resource-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--brandthnk-black);
+    }
+
+    .resource-description {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    .section {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--brandthnk-black);
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="project-plan.html" class="nav-link">Project Plan</a>
+        <a href="draft-website.html" class="nav-link">🎁</a>
+        <a href="deliverables.html" class="nav-link active">Deliverables</a>
+        <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>HC3 <span class="brand-accent">Deliverables</span></h1>
+      <p>BrandThnk Breakthrough • Strategic Outputs & Analysis</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section">
+      <h2>Engagement Deliverables</h2>
+      <div class="resource-grid">
+        <a href="assets/HC3-Research-Brief.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">R</div>
+          <div class="resource-title">Research Brief</div>
+          <div class="resource-description">Intelligence requirements, market research threads, and competitive landscape analysis driving the engagement.</div>
+        </a>
+
+        <a href="assets/HC3-Strategy-Brief.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">1</div>
+          <div class="resource-title">Strategy Brief</div>
+          <div class="resource-description">Week 1-2: Deep Discovery. Current state assessment, market context, competitive landscape, and strategic hypotheses.</div>
+        </a>
+
+        <a href="assets/HC3-Brand-Positioning-Map.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">3</div>
+          <div class="resource-title">Brand Positioning Map + Messaging Framework</div>
+          <div class="resource-description">Week 3: Positioning Lab. Brand positioning statement, messaging hierarchy, and competitive differentiation matrix.</div>
+        </a>
+
+        <a href="assets/HC3-90-Day-GTM-Plan.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">4</div>
+          <div class="resource-title">90-Day GTM Activation Plan</div>
+          <div class="resource-description">Week 4: Go-to-Market Model. Channel strategy, 90-day calendar, content plan, and success metrics.</div>
+        </a>
+
+        <a href="assets/HC3-Distribution-Advocacy-Toolkit.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">5</div>
+          <div class="resource-title">Distribution & Advocacy Toolkit</div>
+          <div class="resource-description">Week 5: Signal Amplification. Media, analyst, conference, and customer advocacy strategies.</div>
+        </a>
+
+        <a href="assets/HC3-Internal-Playbook.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">6</div>
+          <div class="resource-title">Internal Playbook</div>
+          <div class="resource-description">Week 6: Strategy-to-Execution Bridge. Sales enablement, marketing activation, employee communication plan.</div>
+        </a>
+
+        <a href="assets/HC3-Impact-Dashboard.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">7</div>
+          <div class="resource-title">Impact Dashboard Template</div>
+          <div class="resource-description">Week 7: Feedback Loop Setup. KPIs, reporting cadence, course correction framework, and dashboard template.</div>
+        </a>
+
+        <a href="assets/HC3-Executive-Debrief.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">8</div>
+          <div class="resource-title">Executive Debrief Presentation</div>
+          <div class="resource-description">Week 8: Executive Strategy Session. Final positioning, strategic recommendations, and next-phase priorities.</div>
+        </a>
+
+        <div class="resource-card" style="cursor: default;">
+          <div class="resource-icon">🔍</div>
+          <div class="resource-title">Website Audit</div>
+          <div class="resource-description">Comprehensive audit of hc3.io covering visual clarity, messaging, findability, and conversion with StoryBrand SB7 analysis and priority actions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Materials Received</h2>
+      <div class="resource-grid">
+        <a href="assets/HC3_2025_CompanyOnsheet_Banks.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">📄</div>
+          <div class="resource-title">Company One-Sheet (Banks)</div>
+          <div class="resource-description">Current sales one-sheet targeting bank prospects. Reflects existing positioning and messaging.</div>
+        </a>
+
+        <a href="assets/HC3_2025_CompanyOnsheet_CreditUnions.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">📄</div>
+          <div class="resource-title">Company One-Sheet (Credit Unions)</div>
+          <div class="resource-description">Current sales one-sheet targeting credit union prospects. Reflects existing positioning and messaging.</div>
+        </a>
+
+        <a href="assets/HC3_OneSheet_CoreValues_DigitalFile.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">📄</div>
+          <div class="resource-title">Core Values</div>
+          <div class="resource-description">HC3's core values positioning document. Foundation for brand identity and culture alignment.</div>
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
