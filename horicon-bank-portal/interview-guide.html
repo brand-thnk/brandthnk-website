@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Guide | Horicon Bank Portal</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header-card {
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      border: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .header-card h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.5rem;
+    }
+
+    .header-card .subtitle {
+      font-size: 1.125rem;
+      color: var(--brandthnk-gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .header-card .date {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+    }
+
+    .content-card {
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      border: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .content-card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 1rem;
+    }
+
+    .content-card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.75rem;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-section h3 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .status-section.completed h3 {
+      color: #059669;
+    }
+
+    .status-section.remaining h3 {
+      color: #0284C7;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .status-item .icon {
+      font-weight: 700;
+    }
+
+    .status-item.completed .icon {
+      color: #059669;
+    }
+
+    .status-item.upcoming .icon {
+      color: #0284C7;
+    }
+
+    .status-item.unscheduled .icon {
+      color: #D97706;
+    }
+
+    .themes-card {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .themes-card h2 {
+      color: #1E40AF;
+      margin-bottom: 1rem;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .theme-card {
+      background: var(--brandthnk-white);
+      border: 1px solid #BFDBFE;
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .theme-card .title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.5rem;
+    }
+
+    .theme-card .content {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .protocol-step {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 6px;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .protocol-step .step-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.25rem;
+    }
+
+    .protocol-step .step-content {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+    }
+
+    .interview-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .interview-section:last-child {
+      border-bottom: none;
+    }
+
+    .interview-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .interview-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--brandthnk-white);
+    }
+
+    .interview-avatar.cassie {
+      background: #7C2D12;
+    }
+
+    .interview-avatar.stephanie {
+      background: #0F766E;
+    }
+
+    .interview-avatar.brenda {
+      background: #1E40AF;
+    }
+
+    .interview-info h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.25rem;
+    }
+
+    .interview-info .role {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+    }
+
+    .interview-badge {
+      margin-left: auto;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .interview-badge.scheduled {
+      background: #DBEAFE;
+      color: #1E40AF;
+    }
+
+    .interview-badge.unscheduled {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .interview-context {
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .interview-context.cassie {
+      background: #FDF2F8;
+      border: 1px solid #FBCFE8;
+    }
+
+    .interview-context.stephanie {
+      background: #F0FDFA;
+      border: 1px solid #99F6E4;
+    }
+
+    .interview-context.brenda {
+      background: #FEF3C7;
+      border: 1px solid #FDE68A;
+    }
+
+    .context-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.25rem;
+    }
+
+    .context-content {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    .question-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-number {
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .question-number.cassie {
+      color: #7C2D12;
+    }
+
+    .question-number.stephanie {
+      color: #0F766E;
+    }
+
+    .question-number.brenda {
+      color: #1E40AF;
+    }
+
+    .question-text {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    .listen-for {
+      background: #ECFCCB;
+      border: 1px solid #BEF264;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .listen-for .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #365314;
+      margin-bottom: 0.5rem;
+    }
+
+    .listen-for ul {
+      margin-left: 1rem;
+    }
+
+    .listen-for li {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .after-interview {
+      background: #FEFCE8;
+      border: 1px solid #FDE047;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .after-interview h3 {
+      color: #A16207;
+      margin-bottom: 0.75rem;
+    }
+
+    .capture-list {
+      margin-top: 0.75rem;
+    }
+
+    .capture-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .capture-number {
+      color: #D97706;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .synthesis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .synthesis-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 6px;
+      padding: 0.75rem;
+    }
+
+    .synthesis-card .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brandthnk-black);
+      margin-bottom: 0.25rem;
+    }
+
+    .synthesis-card .content {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+    }
+
+    .open-questions {
+      background: linear-gradient(to right, #EFF6FF, #F3E8FF);
+      border: 1px solid #BFDBFE;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .open-questions h2 {
+      margin-bottom: 1rem;
+    }
+
+    .question-open {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .question-open .number {
+      color: #0284C7;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .question-open .text {
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--brandthnk-gray);
+      margin-top: 2rem;
+      padding: 1rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .protocol-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .synthesis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 1rem;
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+
+      .interview-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .interview-badge {
+        margin-left: 0;
+      }
+
+      .protocol-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Horicon Bank Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-engagement-assessment.html" class="nav-link">Assessment</a>
+        <a href="persona-maturity-assessment.html" class="nav-link">Persona Maturity</a>
+        <a href="stakeholder-interviews.html" class="nav-link">Interviews</a>
+        <a href="synthesis-document.html" class="nav-link">Synthesis</a>
+        <a href="recommendations-brief.html" class="nav-link">Recommendations</a>
+        <a href="interview-guide.html" class="nav-link active">Interview Guide</a>
+        <a href="persona-explorer.html" class="nav-link">Persona Explorer</a>
+        <a href="competitive-intelligence.html" class="nav-link">Market Intel</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header-card">
+      <h1>Stakeholder Interview Guide</h1>
+      <div class="subtitle">Horicon Bank Validation Sprint — Remaining Interviews</div>
+      <div class="date">Updated March 19, 2026</div>
+    </div>
+
+    <!-- Interview Status Overview -->
+    <div class="content-card">
+      <h2>Interview Status</h2>
+      <div class="status-grid">
+        <div class="status-section completed">
+          <h3>Completed (5)</h3>
+          <div class="status-item completed">
+            <span class="icon">✓</span>
+            <span>Chrissy Oelke (Data Analytics) — Feb 25</span>
+          </div>
+          <div class="status-item completed">
+            <span class="icon">✓</span>
+            <span>Kerry Murphy (Customer Relations) — Mar 2</span>
+          </div>
+          <div class="status-item completed">
+            <span class="icon">✓</span>
+            <span>Danielle Schraufnagel (Total Expert) — Mar 4</span>
+          </div>
+          <div class="status-item completed">
+            <span class="icon">✓</span>
+            <span>Natalie Kollin (Marketing) — Mar 4</span>
+          </div>
+          <div class="status-item completed">
+            <span class="icon">✓</span>
+            <span>Erik W. (Business Development) — Mar 9</span>
+          </div>
+        </div>
+        <div class="status-section remaining">
+          <h3>Remaining (3)</h3>
+          <div class="status-item upcoming">
+            <span class="icon">→</span>
+            <span>Cassie Voight (Operations/Sr. Mgmt) — <strong>Mar 20</strong></span>
+          </div>
+          <div class="status-item upcoming">
+            <span class="icon">→</span>
+            <span>Stephanie K. Albers (AVP, Northern Regional Mgr) — <strong>Mar 23</strong></span>
+          </div>
+          <div class="status-item unscheduled">
+            <span class="icon">⏳</span>
+            <span>Brenda Heteberg (Regional Mgr, Southern) — <strong>Unscheduled</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Themes from Completed Interviews -->
+    <div class="themes-card">
+      <h2>Key Themes from Completed Interviews</h2>
+      <p style="margin-bottom: 1rem; color: var(--brandthnk-gray); font-size: 0.875rem;">Use these findings to sharpen the remaining conversations. The goal is to confirm, challenge, or add nuance to what we've already heard.</p>
+      <div class="themes-grid">
+        <div class="theme-card">
+          <div class="title">Acquisition vs. Retention Gap</div>
+          <div class="content">Strong cross-sell with existing customers, but struggling to get new ones in the door. Milwaukee vs. legacy markets require different playbooks. (Chrissy, Erik, Kerry)</div>
+        </div>
+        <div class="theme-card">
+          <div class="title">Persona Language Not Used Internally</div>
+          <div class="content">Frontline teams identify customers by life events and demographics, not persona names. "55 or better gets certain products." (Kerry)</div>
+        </div>
+        <div class="theme-card">
+          <div class="title">Operations Bottleneck</div>
+          <div class="content">Total Expert has few active journeys due to data backend issues. Events happen without systematic follow-up. Order-taking culture vs. proactive guidance. (Danielle, Kerry)</div>
+        </div>
+        <div class="theme-card">
+          <div class="title">Younger Demographic Gap</div>
+          <div class="content">Consensus: need improvement reaching Flourishing Families and Upwardly Mobile. Website needs modernization, Banking at Work recently modified. (Natalie, Erik)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interview Protocol -->
+    <div class="content-card">
+      <h2>Interview Protocol (30 minutes)</h2>
+      <div class="protocol-grid">
+        <div class="protocol-step">
+          <div class="step-title">1. Setup (2 min)</div>
+          <div class="step-content">Frame as draft, invite disagreement</div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-title">2. Walkthrough (15 min)</div>
+          <div class="step-content">Show 2-3 personas, watch reactions</div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-title">3. Questions (10 min)</div>
+          <div class="step-content">Role-specific questions below</div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-title">4. Close (3 min)</div>
+          <div class="step-content">"One thing to fix to reach more of [persona]?"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Interviews -->
+    <div class="content-card">
+      <h2>Upcoming Interview Prep</h2>
+
+      <!-- Cassie Voight -->
+      <div class="interview-section">
+        <div class="interview-header">
+          <div class="interview-avatar cassie">C</div>
+          <div class="interview-info">
+            <h3>Cassie Voight</h3>
+            <div class="role">Operations, Senior Management (Backline/Strategy)</div>
+          </div>
+          <div class="interview-badge scheduled">Mar 20, 9:00 AM CT</div>
+        </div>
+
+        <div class="interview-context cassie">
+          <div class="context-label">Why This Interview Matters Now</div>
+          <div class="context-content">Every completed interview has surfaced a gap between what's planned and what operations can deliver. Cassie's operations lens is the missing piece. She can tell us what's realistic vs. aspirational before we finalize recommendations.</div>
+        </div>
+
+        <div class="interview-context">
+          <div class="context-label">Personas to Focus</div>
+          <div class="context-content">All three, but prioritize operational implications and internal alignment</div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="font-size: 0.875rem; font-weight: 600; color: var(--brandthnk-black); margin-bottom: 0.5rem;">Questions (updated with interview findings):</div>
+          <div class="question-item">
+            <div class="question-number cassie">1.</div>
+            <div class="question-text">Kerry told us frontline teams don't use persona language. They identify customers by life events and demographics. From an operations standpoint, is that a problem we need to solve, or is it working well enough?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number cassie">2.</div>
+            <div class="question-text">Danielle showed us that Total Expert has very few active journeys because of data backend issues. Where does that bottleneck live, and what would it take to fix it?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number cassie">3.</div>
+            <div class="question-text">The personas assume "proactive guidance" and "relationship banking." Kerry described an order-taking culture. What would it take operationally to shift from reactive to proactive?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number cassie">4.</div>
+            <div class="question-text">Banking at Work has been modified with cash bonuses. Erik is optimistic about the next few months. From operations, what would scaling that program actually require?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number cassie">5.</div>
+            <div class="question-text">If we had to pick one persona to rally the entire organization around for the next 90 days, which would create the most alignment and the fewest operational headaches?</div>
+          </div>
+        </div>
+
+        <div class="listen-for">
+          <div class="label">What to listen for:</div>
+          <ul>
+            <li>Honest capacity assessment: what can they actually deliver in 90 days?</li>
+            <li>Whether personas are seen as marketing's thing or an org-wide operating model</li>
+            <li>Structural barriers that would prevent persona activation</li>
+            <li>Alignment or tension between operations and the marketing team's vision</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Stephanie K. Albers -->
+      <div class="interview-section">
+        <div class="interview-header">
+          <div class="interview-avatar stephanie">S</div>
+          <div class="interview-info">
+            <h3>Stephanie K. Albers</h3>
+            <div class="role">AVP, Northern Regional Manager (Frontline/Regional) — NMLS# 553102</div>
+          </div>
+          <div class="interview-badge scheduled">Mar 23, 11:30 AM CT</div>
+        </div>
+
+        <div class="interview-context stephanie">
+          <div class="context-label">Why This Interview Matters Now</div>
+          <div class="context-content">Stephanie manages the northern region, which includes the Fond du Lac area and legacy Horicon markets. Kerry covered the Milwaukee/suburban view. Brenda (southern, still unscheduled) rounds out the picture. Stephanie gives us the frontline reality for the bank's heritage footprint, where the brand is strongest and the customer base skews toward Wealthy Achievers and Midscale Matures.</div>
+        </div>
+
+        <div class="interview-context">
+          <div class="context-label">Personas to Focus</div>
+          <div class="context-content">Wealthy Achievers (core of northern branches) and Flourishing Families (growth opportunity). Test whether Upwardly Mobile/first-time workforce exists in her market at all.</div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="font-size: 0.875rem; font-weight: 600; color: var(--brandthnk-black); margin-bottom: 0.5rem;">Questions (tailored to Northern Regional Manager):</div>
+          <div class="question-item">
+            <div class="question-number stephanie">1.</div>
+            <div class="question-text">Your branches sit in the bank's original footprint. Who is your core customer today, and has that shifted in the last few years?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number stephanie">2.</div>
+            <div class="question-text">[Show persona explorer] Looking at these personas, which one best describes the majority of customers walking into your branches? What's missing or off about how we've described them?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number stephanie">3.</div>
+            <div class="question-text">Kerry told us Milwaukee branches feel very different from legacy markets. From the northern side, how would you describe the difference? Is it just demographics, or is it how people bank?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number stephanie">4.</div>
+            <div class="question-text">Natalie wants to run a 90-day campaign targeting first-time workforce. Does that persona exist in your branches? Would that campaign resonate in the northern region, or would a different focus make more sense?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number stephanie">5.</div>
+            <div class="question-text">What's your biggest competitive threat in the northern market right now? When you lose a customer, who are you losing them to and why?</div>
+          </div>
+        </div>
+
+        <div class="listen-for">
+          <div class="label">What to listen for:</div>
+          <ul>
+            <li>Whether the northern legacy market is stable, growing, or eroding</li>
+            <li>How her frontline experience compares to Kerry's Milwaukee perspective</li>
+            <li>Whether younger personas are realistic targets in the northern branches or primarily aspirational</li>
+            <li>Competitive dynamics unique to Fond du Lac/Horicon area vs. Milwaukee metro</li>
+            <li>Lending perspective (NMLS holder) on which personas drive the most loan origination</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Brenda Heteberg -->
+      <div class="interview-section">
+        <div class="interview-header">
+          <div class="interview-avatar brenda">B</div>
+          <div class="interview-info">
+            <h3>Brenda Heteberg</h3>
+            <div class="role">Regional Manager, Southern Region (Frontline/Contrarian)</div>
+          </div>
+          <div class="interview-badge unscheduled">Unscheduled — Follow Up Needed</div>
+        </div>
+
+        <div class="interview-context brenda">
+          <div class="context-label">⚠ Action Needed: Schedule This Interview</div>
+          <div class="context-content">Brenda was identified in the kickoff as a critical frontline/contrarian voice. Follow-up was flagged on Mar 11 but no date has been set. Her southern region perspective is essential before finalizing recommendations, since Kerry covered the Milwaukee/northern view.</div>
+        </div>
+
+        <div class="interview-context">
+          <div class="context-label">Relevant Personas</div>
+          <div class="context-content">Wealthy Achievers (strong in southern legacy markets), plus Flourishing Families and Upwardly Mobile to test whether younger-skewing strategies work in her region</div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="font-size: 0.875rem; font-weight: 600; color: var(--brandthnk-black); margin-bottom: 0.5rem;">Questions (updated with interview findings):</div>
+          <div class="question-item">
+            <div class="question-number brenda">1.</div>
+            <div class="question-text">Kerry described Milwaukee branches as very different from legacy markets. As regional manager for the southern branches, what does your customer base actually look like compared to what you hear about Milwaukee?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number brenda">2.</div>
+            <div class="question-text">The data says cross-sell is strong in established markets. Is that your experience? When someone opens a checking account with you, what's the typical path from there?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number brenda">3.</div>
+            <div class="question-text">Natalie is pushing a 90-day campaign targeting first-time workforce (Upwardly Mobile). Does that persona exist in your branches? Would that campaign land in the southern region?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number brenda">4.</div>
+            <div class="question-text">Senior programs like trust seminars and the Golden Free Club get good attendance in some markets. How do they perform in your region? What's actually driving traffic and retention?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-number brenda">5.</div>
+            <div class="question-text">What makes someone switch to Horicon from another bank in your market? And what's the number one reason you lose someone?</div>
+          </div>
+        </div>
+
+        <div class="listen-for">
+          <div class="label">What to listen for:</div>
+          <ul>
+            <li>Whether southern/legacy market reality matches or contradicts Milwaukee-focused insights</li>
+            <li>Specific customer stories that either validate or challenge the persona model</li>
+            <li>Disconnect between marketing messaging and frontline conversations</li>
+            <li>Whether younger personas are realistic targets in her branches or aspirational only</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- After Each Interview -->
+    <div class="content-card">
+      <h2>After Each Interview</h2>
+
+      <div class="after-interview">
+        <h3>Immediate Capture (5 minutes)</h3>
+        <div style="margin-bottom: 0.75rem; font-size: 0.875rem; color: var(--brandthnk-gray);">Write down:</div>
+        <div class="capture-list">
+          <div class="capture-item">
+            <span class="capture-number">1.</span>
+            <span style="font-size: 0.875rem; color: var(--brandthnk-gray);">What surprised you</span>
+          </div>
+          <div class="capture-item">
+            <span class="capture-number">2.</span>
+            <span style="font-size: 0.875rem; color: var(--brandthnk-gray);">What contradicted the personas</span>
+          </div>
+          <div class="capture-item">
+            <span class="capture-number">3.</span>
+            <span style="font-size: 0.875rem; color: var(--brandthnk-gray);">What validated the personas</span>
+          </div>
+          <div class="capture-item">
+            <span class="capture-number">4.</span>
+            <span style="font-size: 0.875rem; color: var(--brandthnk-gray);">One quote that sticks</span>
+          </div>
+          <div class="capture-item">
+            <span class="capture-number">5.</span>
+            <span style="font-size: 0.875rem; color: var(--brandthnk-gray);">One thing to change in the personas</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: var(--brandthnk-off-white); border-radius: 6px; padding: 1rem;">
+        <h3>Synthesis Questions</h3>
+        <div style="margin-bottom: 0.75rem; font-size: 0.875rem; color: var(--brandthnk-gray);">As you complete these final interviews, track:</div>
+        <div class="synthesis-grid">
+          <div class="synthesis-card">
+            <div class="label">Consensus</div>
+            <div class="content">What do multiple people say independently?</div>
+          </div>
+          <div class="synthesis-card">
+            <div class="label">Contradiction</div>
+            <div class="content">Where do people disagree with each other?</div>
+          </div>
+          <div class="synthesis-card">
+            <div class="label">Silence</div>
+            <div class="content">What topics generate no reaction or energy?</div>
+          </div>
+          <div class="synthesis-card">
+            <div class="label">Energy</div>
+            <div class="content">Where do people lean in and get specific?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Open Questions -->
+    <div class="open-questions">
+      <h2>Open Questions to Resolve Before Recommendations Brief</h2>
+      <div style="margin-bottom: 1rem; font-size: 0.875rem; color: var(--brandthnk-gray);">These came from the first 5 interviews and need to be addressed in the final 3.</div>
+      <div class="question-open">
+        <span class="number">1.</span>
+        <div class="text"><strong>Persona activation model:</strong> Is the goal persona-led operations (org-wide) or persona-led marketing (marketing-only)? Cassie's operations perspective should clarify this.</div>
+      </div>
+      <div class="question-open">
+        <span class="number">2.</span>
+        <div class="text"><strong>90-day campaign focus:</strong> Natalie recommends first-time workforce. Erik leans Banking at Work. Kerry wants senior expansion in Milwaukee. Which gets organizational buy-in?</div>
+      </div>
+      <div class="question-open">
+        <span class="number">3.</span>
+        <div class="text"><strong>Milwaukee vs. legacy market:</strong> Are these different enough to warrant separate strategies, or can one framework cover both? Stephanie (northern) and Brenda (southern) will give us both legacy-market perspectives to compare against Kerry's Milwaukee view.</div>
+      </div>
+      <div class="question-open">
+        <span class="number">4.</span>
+        <div class="text"><strong>Total Expert capacity:</strong> Can journeys be operationalized in 90 days, or is the data backend issue a longer-term fix? Cassie should have visibility into this.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>BrandThnk • Horicon Bank Validation Sprint • Updated March 19, 2026</p>
+    </div>
+  </div>
+</body>
+</html>
