@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliverables - CheckAlt Portal</title>
+    <meta name="description" content="Complete deliverable library for LoanPay engagement - all assets ready for use">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: var(--brandthnk-black);
+            background-color: var(--brandthnk-white);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--brandthnk-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--brandthnk-off-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background-color: var(--brandthnk-yellow);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--brandthnk-black);
+        }
+
+        /* Deliverable Card */
+        .deliverable-card {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid var(--brandthnk-black);
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-card:hover {
+            border-color: var(--brandthnk-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .deliverable-card h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .deliverable-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .deliverable-section h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--brandthnk-black);
+        }
+
+        .deliverable-section p,
+        .deliverable-section ul {
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .deliverable-section ul {
+            margin-left: 2rem;
+        }
+
+        .deliverable-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge.complete {
+            background-color: #4caf50;
+        }
+
+        .status-badge.ready {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        /* Location Badge */
+        .location-badge {
+            background-color: var(--brandthnk-white);
+            border: 1px solid var(--brandthnk-light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .download-button {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 0.5rem;
+        }
+
+        .download-button:hover {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .download-button strong {
+            font-size: 1.1rem;
+        }
+
+        .download-button span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .download-button:hover span {
+            opacity: 1;
+        }
+
+        /* Use Cases Grid */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .use-case {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .use-case h4 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .use-case p {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin: 0;
+        }
+
+        /* Access Instructions */
+        .access-section {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .access-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-white);
+        }
+
+        .access-section p {
+            color: var(--brandthnk-white);
+            margin-bottom: 1rem;
+        }
+
+        /* Supporting Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .resource-category {
+            background-color: var(--brandthnk-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .resource-category h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .resource-category ul {
+            margin-left: 1.5rem;
+        }
+
+        .resource-category li {
+            margin-bottom: 0.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .deliverable-card {
+                padding: 2rem;
+            }
+
+            .use-cases-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .access-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CheckAlt Portal</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Executive Summary</a></li>
+                <li><a href="market-intelligence.html">Market Intelligence</a></li>
+                <li><a href="priorities.html">Prioritized Motions</a></li>
+                <li><a href="messaging-framework.html">Messaging Framework</a></li>
+                <li><a href="deliverables.html" class="active">Deliverables</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <h1>Deliverables</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Deliverable 1: Messaging and Positioning Guide -->
+        <section class="deliverable-card">
+            <h2>Messaging and Positioning Guide (v0.4)</h2>
+            <div class="status-badge complete">Final</div>
+
+            <div class="deliverable-section">
+                <h3>What It Is</h3>
+                <p>Foundational positioning and messaging framework for LoanPay, refined for credit union buyers and board-level decision-makers.</p>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Contains</h3>
+                <ul>
+                    <li>Positioning statement (single, board-ready)</li>
+                    <li>Three core message pillars (delinquency reduction, operational burden reduction, member experience)</li>
+                    <li>Competitive contrast matrix (LoanPay vs. generic payment processors vs. legacy servicing)</li>
+                    <li>Audience-specific messaging for CEOs, CFOs, COOs, IT directors</li>
+                    <li>Objection response framework ("What about integration?" "We already have a vendor")</li>
+                    <li>Proof-point requirements (what customer data validates each claim)</li>
+                    <li>Talk tracks for various buyer personas</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Use Cases</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case">
+                        <h4>Sales Team Reference</h4>
+                        <p>Positioning consistency and objection handling</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Board Presentations</h4>
+                        <p>Executive-level positioning for investors</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>RFP Responses</h4>
+                        <p>Competitive differentiation and positioning</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Marketing Collateral</h4>
+                        <p>Foundation for all external communications</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Status</h3>
+                <p><strong>Final (v0.4).</strong> Ready for immediate use.</p>
+                <div class="download-section">
+                    <a href="assets/messaging-positioning-guide-v04.pdf" class="download-button" download>
+                        <strong>📄 Download PDF</strong>
+                        <span>Messaging and Positioning Guide v0.4</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverable 2: Rolling Thunder Activation Playbook -->
+        <section class="deliverable-card">
+            <h2>Rolling Thunder Activation Playbook (v2.0)</h2>
+            <div class="status-badge complete">Final</div>
+
+            <div class="deliverable-section">
+                <h3>What It Is</h3>
+                <p>Complete go-to-market activation strategy for Spring 2026 launch, organized as three pillars: Industry Advisory Board credibility, Datos research partnership, and CUSO channel focus.</p>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Contains</h3>
+                <ul>
+                    <li>Three-pillar market activation strategy overview</li>
+                    <li>Detailed 90-day runbook with timelines and owner assignments</li>
+                    <li>CUSO target list with geographic focus (Texas, Georgia, Florida) and contact data</li>
+                    <li>Industry Advisory Board design (profile mix, recruitment templates, meeting format, value exchange)</li>
+                    <li>Event strategy and conference calendar for Spring 2026</li>
+                    <li>Gifting plan and Sangita/GiftSuite integration guidance</li>
+                    <li>Sales enablement materials (talk tracks, one-pagers for each pillar)</li>
+                    <li>Success metrics and quarterly check-in framework</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Use Cases</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case">
+                        <h4>Leadership Alignment</h4>
+                        <p>Meeting agenda for activation kickoff</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>CUSO Channel Partner Sales</h4>
+                        <p>Complete relationship development process</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>IAB Recruitment</h4>
+                        <p>Outreach sequence and value proposition</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Event Planning</h4>
+                        <p>Conference strategy and execution guide</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Status</h3>
+                <p><strong>Final (v2.0).</strong> Ready for implementation.</p>
+                <div class="download-section">
+                    <a href="assets/rolling-thunder-activation-playbook-v20.pdf" class="download-button" download>
+                        <strong>📄 Download PDF</strong>
+                        <span>Rolling Thunder Activation Playbook v2.0</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverable 3: Competitive Contrast Matrix -->
+        <section class="deliverable-card">
+            <h2>Competitive Contrast Matrix</h2>
+            <div class="status-badge complete">Final</div>
+
+            <div class="deliverable-section">
+                <h3>What It Is</h3>
+                <p>Side-by-side feature and positioning comparison of LoanPay against competitive payment processors and legacy servicing solutions.</p>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Contains</h3>
+                <ul>
+                    <li>Comparison across 8-10 key differentiation dimensions (white-label, outcome focus, credit union expertise, integration, pricing, etc.)</li>
+                    <li>Claim validation and proof-point mapping for each LoanPay claim</li>
+                    <li>Differentiation anchors and why they matter to CU decision-makers</li>
+                    <li>Customer use cases that validate positioning</li>
+                    <li>Objection handling tied to competitive context</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Use Cases</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case">
+                        <h4>Sales Discovery</h4>
+                        <p>Qualification and positioning conversations</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>RFP Evaluation</h4>
+                        <p>Competitive positioning section responses</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Marketing Messaging</h4>
+                        <p>Refinement of differentiation claims</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Leadership Discussions</h4>
+                        <p>Market positioning strategy alignment</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Status</h3>
+                <p><strong>Final.</strong> Maintenance note: Update annually or as competitive landscape shifts.</p>
+                <div class="download-section">
+                    <a href="assets/competitive-contrast-matrix.pdf" class="download-button" download>
+                        <strong>📄 Download PDF</strong>
+                        <span>Competitive Contrast Matrix</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverable 4: Executive Workshop -->
+        <section class="deliverable-card">
+            <h2>Executive Workshop Facilitator Guide (90 minutes)</h2>
+            <div class="status-badge ready">Ready to Schedule</div>
+
+            <div class="deliverable-section">
+                <h3>What It Is</h3>
+                <p>Complete, ready-to-run leadership alignment workshop designed to get Jason's team and board aligned around positioning, activation strategy, and success metrics.</p>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Contains</h3>
+                <ul>
+                    <li>Full agenda (90 minutes, 3 modules: Market Context, Positioning & Messaging, Activation Strategy & Metrics)</li>
+                    <li>Participant roles and pre-work assignments (2 weeks prior to workshop)</li>
+                    <li>Complete talk tracks for facilitator</li>
+                    <li>Discussion prompts for alignment (designed to surface disagreements and resolve them in the room)</li>
+                    <li>Example success metrics dashboard and quarterly check-in cadence</li>
+                    <li>Post-workshop action planning template and ownership assignment</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Use Cases</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case">
+                        <h4>Leadership Team Alignment</h4>
+                        <p>Before external launch activities</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Board Briefing</h4>
+                        <p>Positioning review session</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Sales Team Onboarding</h4>
+                        <p>Positioning and strategy training</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Quarterly Reviews</h4>
+                        <p>Track activation progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Status</h3>
+                <p><strong>Final. Ready to schedule.</strong> Recommend 2-3 week lead time for participant pre-work.</p>
+                <p><strong>Next Step:</strong> Jason to identify date and participant list. Allison to facilitate.</p>
+                <div class="download-section">
+                    <a href="assets/executive-workshop-facilitator-guide.pdf" class="download-button" download>
+                        <strong>📄 Download PDF</strong>
+                        <span>Executive Workshop Facilitator Guide</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverable 5: Playbook Handoff Notes -->
+        <section class="deliverable-card">
+            <h2>Playbook Handoff Notes</h2>
+            <div class="status-badge complete">Final</div>
+
+            <div class="deliverable-section">
+                <h3>What It Is</h3>
+                <p>End-of-engagement documentation covering project status, asset inventory, access instructions, open items, owner assignments, and next-phase recommendations.</p>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Contains</h3>
+                <ul>
+                    <li>Engagement recap and signature items completed</li>
+                    <li>Complete asset inventory with file locations and ownership</li>
+                    <li>Access instructions for all deliverables (where they live, who has permissions)</li>
+                    <li>Decision log (key decisions made during engagement with rationale)</li>
+                    <li>Open items tracker (what's not finished, why, impact, suggested resolution)</li>
+                    <li>Owner assignments for each activation motion</li>
+                    <li>Next-phase recommendations and suggested timeline</li>
+                    <li>Contact information and escalation path</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Use Cases</h3>
+                <div class="use-cases-grid">
+                    <div class="use-case">
+                        <h4>Asset Inventory</h4>
+                        <p>Understanding what's been delivered and where</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Next Steps Clarity</h4>
+                        <p>Ownership and action planning</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Team Onboarding</h4>
+                        <p>Bringing new team members up to speed</p>
+                    </div>
+                    <div class="use-case">
+                        <h4>Project Closeout</h4>
+                        <p>Documentation for engagement completion</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverable-section">
+                <h3>Status</h3>
+                <p><strong>Final.</strong></p>
+                <div class="download-section">
+                    <a href="assets/playbook-handoff-notes.pdf" class="download-button" download>
+                        <strong>📄 Download PDF</strong>
+                        <span>Playbook Handoff Notes</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supporting Resources -->
+        <section style="margin: 4rem 0;">
+            <h2 style="font-family: 'Roboto Slab', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 2rem; color: var(--brandthnk-black);">Supporting Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>Market Intelligence</h3>
+                    <ul>
+                        <li>CUSO target list with geographic mapping</li>
+                        <li>Competitive contrast matrix with proof-point validation</li>
+                        <li>Message pillar development notes with data sources</li>
+                        <li>Claims-proof matrix for sales validation</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>Channel Assets</h3>
+                    <ul>
+                        <li>IAB recruitment templates and outreach language</li>
+                        <li>Event planning checklist and pre-event outreach sequence</li>
+                        <li>Gifting strategy and vendor integration (Sangita/GiftSuite)</li>
+                        <li>CUSO partnership agreement framework</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>Research and Data</h3>
+                    <ul>
+                        <li>NCUA delinquency data (Q4 2025)</li>
+                        <li>TransUnion delinquency forecasts (2026)</li>
+                        <li>CUNA-aligned analytics on "epicenter of credit risk"</li>
+                        <li>Credit union digital adoption benchmarks</li>
+                        <li>Consolidation and M&A activity data</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Access Instructions -->
+        <section class="access-section">
+            <h2>Access Instructions</h2>
+            <p>All deliverables are stored in <code>/Clients/CheckAlt/deliverables/</code> and linked from this page. Access is controlled through your standard access management process.</p>
+            <p><strong>For questions about usage, distribution, or updates,</strong> contact BrandThnk directly.</p>
+            <p><strong>Email:</strong> allison@brandthnk.co</p>
+        </section>
+    </main>
+</body>
+</html>

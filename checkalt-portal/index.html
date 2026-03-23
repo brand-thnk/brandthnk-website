@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CheckAlt Project Portal - LoanPay Brand Strategy</title>
-    <meta name="description" content="CheckAlt LoanPay Brand Strategy Sprint project portal and deliverables">
+    <title>CheckAlt LoanPay Portal - Executive Briefing</title>
+    <meta name="description" content="CheckAlt LoanPay Brand Strategy & Market Activation - Executive Briefing March 2026">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -75,6 +75,7 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover,
@@ -116,295 +117,68 @@
             padding: 3rem 2rem;
         }
 
-        .content-grid {
-            display: grid;
-            gap: 3rem;
+        /* Engagement Overview */
+        .overview-section {
+            background-color: var(--brandthnk-yellow);
+            padding: 2.5rem;
+            border-radius: 8px;
             margin-bottom: 3rem;
         }
 
-        /* Team & Communication Section */
-        .team-section {
-            background-color: var(--brandthnk-yellow);
+        .overview-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-item {
+            text-align: center;
+        }
+
+        .overview-item h3 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .overview-item p {
+            color: var(--brandthnk-black);
+            margin: 0;
+        }
+
+        /* Deliverables Grid */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .deliverable-card {
+            background-color: var(--brandthnk-white);
             padding: 2rem;
             border-radius: 8px;
-            margin-bottom: 3rem;
-        }
-
-        .team-section h2 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--brandthnk-black);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .team-contact {
-            background-color: var(--brandthnk-white);
-            padding: 1.5rem;
-            border-radius: 6px;
             border: 2px solid var(--brandthnk-black);
-        }
-
-        .team-contact h3 {
-            font-family: 'Roboto Slab', serif;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .team-contact p {
-            margin-bottom: 0.5rem;
-        }
-
-        .team-contact a {
-            color: var(--brandthnk-black);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .team-contact a:hover {
-            text-decoration: underline;
-        }
-
-        /* Status Grid */
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .status-card {
-            background-color: var(--brandthnk-off-white);
-            padding: 2rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--brandthnk-black);
-        }
-
-        .status-card h3 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--brandthnk-black);
-        }
-
-        .status-card p {
-            color: var(--brandthnk-gray);
-            margin-bottom: 0.5rem;
-        }
-
-        .status-card .highlight {
-            color: var(--brandthnk-black);
-            font-weight: 700;
-        }
-
-        /* Actions Section */
-        .actions-section {
-            margin-bottom: 3rem;
-        }
-
-        .actions-section h2 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--brandthnk-black);
-        }
-
-        .action-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background-color: var(--brandthnk-off-white);
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
-        .action-item:hover {
-            border-color: var(--brandthnk-yellow);
-            background-color: var(--brandthnk-white);
-        }
-
-        .action-item.completed {
-            opacity: 0.7;
-            background-color: var(--brandthnk-light-gray);
-        }
-
-        .action-item.completed .action-title {
-            text-decoration: line-through;
-        }
-
-        .action-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--brandthnk-black);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .action-checkbox.checked {
-            background-color: var(--brandthnk-yellow);
-        }
-
-        .action-checkbox.checked::after {
-            content: '✓';
-            color: var(--brandthnk-black);
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .action-content {
-            flex: 1;
-        }
-
-        .action-title {
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .action-meta {
-            font-size: 0.9rem;
-            color: var(--brandthnk-gray);
-        }
-
-        /* Timeline Section */
-        .timeline-section {
-            margin-bottom: 3rem;
-        }
-
-        .timeline-section h2 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--brandthnk-black);
-        }
-
-        .timeline-item {
-            border-left: 4px solid var(--brandthnk-yellow);
-            padding-left: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background-color: var(--brandthnk-yellow);
-            border-radius: 50%;
-            border: 2px solid var(--brandthnk-black);
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .timeline-date {
-            color: var(--brandthnk-gray);
-            font-size: 0.9rem;
-        }
-
-        .timeline-objective {
-            color: var(--brandthnk-gray);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-details {
-            display: none;
-            background-color: var(--brandthnk-off-white);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-        }
-
-        .timeline-details.expanded {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .timeline-details h4 {
-            font-family: 'Roboto Slab', serif;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-details ul {
-            margin-left: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-details li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Resource Cards */
-        .resources-section h2 {
-            font-family: 'Roboto Slab', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--brandthnk-black);
-        }
-
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .resource-card {
-            background-color: var(--brandthnk-off-white);
-            border: 2px solid var(--brandthnk-black);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .resource-card:hover {
+        .deliverable-card:hover {
             border-color: var(--brandthnk-yellow);
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .resource-card-content {
-            padding: 2rem;
-        }
-
-        .resource-card h3 {
+        .deliverable-card h3 {
             font-family: 'Roboto Slab', serif;
             font-size: 1.3rem;
             font-weight: 700;
@@ -412,25 +186,102 @@
             color: var(--brandthnk-black);
         }
 
-        .resource-card p {
+        .deliverable-card p {
             color: var(--brandthnk-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Why Now Section */
+        .why-now-section {
+            background-color: var(--brandthnk-off-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .why-now-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-callout {
+            background-color: var(--brandthnk-white);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 2px solid var(--brandthnk-black);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--brandthnk-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* What's Next Section */
+        .next-steps-section {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .next-steps-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-white);
+        }
+
+        .next-steps-section p {
+            color: var(--brandthnk-white);
             margin-bottom: 1rem;
         }
 
-        .resource-card .cta {
+        .cta-button {
             display: inline-block;
             background-color: var(--brandthnk-yellow);
             color: var(--brandthnk-black);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 1rem 2rem;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700;
+            margin-top: 1rem;
             transition: all 0.3s ease;
         }
 
-        .resource-card .cta:hover {
-            background-color: var(--brandthnk-black);
-            color: var(--brandthnk-white);
+        .cta-button:hover {
+            background-color: var(--brandthnk-white);
+            transform: translateY(-2px);
+        }
+
+        /* Section Headers */
+        .content-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
         }
 
         /* Responsive Design */
@@ -443,6 +294,7 @@
             .nav-links {
                 gap: 1rem;
                 justify-content: center;
+                font-size: 0.8rem;
             }
 
             .header h1 {
@@ -453,14 +305,14 @@
                 padding: 2rem 1rem;
             }
 
-            .team-grid {
+            .deliverables-grid,
+            .stats-grid,
+            .overview-grid {
                 grid-template-columns: 1fr;
             }
 
-            .timeline-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+            .stat-number {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -471,8 +323,11 @@
         <div class="nav-container">
             <a href="index.html" class="nav-brand">CheckAlt Portal</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="index.html" class="active">Executive Summary</a></li>
+                <li><a href="market-intelligence.html">Market Intelligence</a></li>
+                <li><a href="priorities.html">Prioritized Motions</a></li>
                 <li><a href="messaging-framework.html">Messaging Framework</a></li>
+                <li><a href="deliverables.html">Deliverables</a></li>
             </ul>
         </div>
     </nav>
@@ -480,237 +335,122 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <h1>CheckAlt LoanPay Brand Strategy</h1>
-            <p>Brand Strategy Sprint • January 2025</p>
+            <h1>CheckAlt LoanPay: Brand Strategy & Market Activation</h1>
+            <p>Executive Briefing • March 2026</p>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Team & Communication -->
-        <section class="team-section">
-            <h2>Team & Communication</h2>
-            <div class="team-grid">
-                <div class="team-contact">
-                    <h3>BrandThnk Team</h3>
-                    <p><strong>Allison Netzer</strong><br>
-                    Strategy Lead<br>
-                    <a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
+        <!-- Engagement Overview -->
+        <section class="overview-section">
+            <h2>Engagement Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-item">
+                    <h3>Engagement Period</h3>
+                    <p>November 2025 – March 2026</p>
                 </div>
-                <div class="team-contact">
-                    <h3>CheckAlt Team</h3>
-                    <p><strong>Primary Contact</strong><br>
-                    Project Lead<br>
-                    <!-- Add client contact details when available --></p>
+                <div class="overview-item">
+                    <h3>Investment</h3>
+                    <p>$17,500</p>
+                </div>
+                <div class="overview-item">
+                    <h3>Signed</h3>
+                    <p>November 17, 2025</p>
+                </div>
+            </div>
+            <p>BrandThnk completed a positioning and go-to-market activation engagement for LoanPay, CheckAlt's white-label loan payment platform for credit unions. The engagement focused on three core workstreams: developing differentiated messaging and positioning, designing a staged market activation strategy (Rolling Thunder), and preparing leadership alignment through an executive workshop.</p>
+        </section>
+
+        <!-- What Was Delivered -->
+        <section class="content-section">
+            <h2>What Was Delivered</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <h3>Messaging and Positioning Guide (v0.4)</h3>
+                    <p>• Positioning statement refined for credit union buyers</p>
+                    <p>• Three core message pillars</p>
+                    <p>• Competitive contrast matrix</p>
+                    <p>• Audience-specific messaging (CEOs, CFOs, COOs, IT)</p>
+                    <p>• Objection response framework</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Rolling Thunder Activation Playbook (v2.0)</h3>
+                    <p>• Three-pillar market activation strategy</p>
+                    <p>• Spring 2026 launch runbook</p>
+                    <p>• CUSO target list (TX, GA, FL focus)</p>
+                    <p>• Industry Advisory Board design</p>
+                    <p>• Event strategy and gifting plan</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Competitive Contrast Matrix</h3>
+                    <p>• Side-by-side comparison with generic payment processors</p>
+                    <p>• Claim validation and proof-point mapping</p>
+                    <p>• Differentiation anchors</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Executive Workshop Facilitator Guide (90 minutes)</h3>
+                    <p>• Complete agenda with 3 modules</p>
+                    <p>• Participant roles and pre-work</p>
+                    <p>• Talk tracks and discussion prompts</p>
+                    <p>• Ready to schedule with leadership team</p>
+                </div>
+
+                <div class="deliverable-card">
+                    <h3>Playbook Handoff Notes</h3>
+                    <p>• End-of-engagement status and decision log</p>
+                    <p>• Asset inventory and access instructions</p>
+                    <p>• Open items and owner assignments</p>
+                    <p>• Next-phase recommendations</p>
                 </div>
             </div>
         </section>
 
-        <!-- Project Status -->
-        <div class="status-grid">
-            <div class="status-card">
-                <h3>Project Status</h3>
-                <p><span class="highlight">Completed</span></p>
-                <p>LoanPay Messaging & Positioning Guide delivered</p>
-                <p>January 2025</p>
-            </div>
-            <div class="status-card">
-                <h3>Timeline</h3>
-                <p><span class="highlight">4-week sprint</span></p>
-                <p>Brand Strategy focused engagement</p>
-                <p>Completed on schedule</p>
-            </div>
-            <div class="status-card">
-                <h3>Deliverable</h3>
-                <p><span class="highlight">Messaging Framework</span></p>
-                <p>Complete positioning guide with 3 key storylines</p>
-                <p>Ready for implementation</p>
-            </div>
-        </div>
+        <!-- Why Now Matters -->
+        <section class="why-now-section">
+            <h2>Why Now Matters: Market Pressures Intensifying</h2>
+            <p>Credit unions are facing simultaneous pressure on delinquencies, staffing, and member expectations. The market environment strongly favors solutions that reduce friction without adding operational complexity.</p>
 
-        <!-- Critical Next Actions -->
-        <section class="actions-section">
-            <h2>Critical Next Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-callout">
+                    <div class="stat-number">1.03%</div>
+                    <div class="stat-description">Total credit union loan portfolio delinquency (Q4 2025, NCUA), up 5 basis points year-over-year. Highest level since 2013.</div>
+                </div>
 
-            <div class="action-item" data-action="review-framework">
-                <div class="action-checkbox"></div>
-                <div class="action-content">
-                    <div class="action-title">Review positioning framework with sales team</div>
-                    <div class="action-meta">Target: Q1 2025 • Owner: CheckAlt Team</div>
+                <div class="stat-callout">
+                    <div class="stat-number">1.51-1.54%</div>
+                    <div class="stat-description">60+ day auto delinquencies projected to reach by year-end 2026 (TransUnion)</div>
+                </div>
+
+                <div class="stat-callout">
+                    <div class="stat-number">23%</div>
+                    <div class="stat-description">NCUA 2026 budget projects headcount reduction (from 1,225 to 967 FTEs)</div>
+                </div>
+
+                <div class="stat-callout">
+                    <div class="stat-number">4,287</div>
+                    <div class="stat-description">CU count (Q4 2025), down from 4,455 a year earlier. Approximately 80 mergers consummated in 2025</div>
+                </div>
+
+                <div class="stat-callout">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-description">Majority of active credit union members now use digital banking regularly. Primary-relationship digital activity approaching or exceeding at advanced institutions</div>
                 </div>
             </div>
 
-            <div class="action-item" data-action="integrate-storylines">
-                <div class="action-checkbox"></div>
-                <div class="action-content">
-                    <div class="action-title">Integrate key storylines into sales materials</div>
-                    <div class="action-meta">Target: February 2025 • Owner: CheckAlt Marketing</div>
-                </div>
-            </div>
-
-            <div class="action-item" data-action="test-messaging">
-                <div class="action-checkbox"></div>
-                <div class="action-content">
-                    <div class="action-title">Test new messaging with target prospects</div>
-                    <div class="action-meta">Target: Q1 2025 • Owner: CheckAlt Sales</div>
-                </div>
-            </div>
-
-            <div class="action-item" data-action="update-website">
-                <div class="action-checkbox"></div>
-                <div class="action-content">
-                    <div class="action-title">Update website copy with new positioning</div>
-                    <div class="action-meta">Target: March 2025 • Owner: CheckAlt Marketing</div>
-                </div>
-            </div>
+            <p><strong>Credit unions are facing simultaneous pressure on delinquencies, staffing, and member expectations. The market environment strongly favors solutions that reduce friction without adding operational complexity.</strong></p>
         </section>
 
-        <!-- Project Timeline -->
-        <section class="timeline-section">
-            <h2>Project Timeline</h2>
-
-            <div class="timeline-item" data-timeline="discovery">
-                <div class="timeline-header">
-                    <div class="timeline-title">Discovery & Research</div>
-                    <div class="timeline-date">Week 1</div>
-                </div>
-                <div class="timeline-objective">Market analysis and competitive positioning research</div>
-                <div class="timeline-details">
-                    <h4>Objectives</h4>
-                    <p>Understand the credit union market landscape and LoanPay's competitive positioning</p>
-
-                    <h4>Key Activities</h4>
-                    <ul>
-                        <li>Market research and competitive analysis</li>
-                        <li>Product capability assessment</li>
-                        <li>Customer pain point identification</li>
-                        <li>Stakeholder interviews</li>
-                    </ul>
-
-                    <h4>Deliverable</h4>
-                    <p>Market landscape overview and positioning foundation</p>
-                </div>
-            </div>
-
-            <div class="timeline-item" data-timeline="positioning">
-                <div class="timeline-header">
-                    <div class="timeline-title">Positioning Development</div>
-                    <div class="timeline-date">Week 2-3</div>
-                </div>
-                <div class="timeline-objective">Core positioning statement and messaging architecture</div>
-                <div class="timeline-details">
-                    <h4>Objectives</h4>
-                    <p>Develop clear positioning that differentiates LoanPay in the market</p>
-
-                    <h4>Key Activities</h4>
-                    <ul>
-                        <li>Positioning statement development</li>
-                        <li>Key storyline creation</li>
-                        <li>Message testing and refinement</li>
-                        <li>Client feedback integration</li>
-                    </ul>
-
-                    <h4>Deliverable</h4>
-                    <p>Core positioning framework and messaging architecture</p>
-                </div>
-            </div>
-
-            <div class="timeline-item" data-timeline="framework">
-                <div class="timeline-header">
-                    <div class="timeline-title">Framework Completion</div>
-                    <div class="timeline-date">Week 4</div>
-                </div>
-                <div class="timeline-objective">Final messaging framework and implementation guidance</div>
-                <div class="timeline-details">
-                    <h4>Objectives</h4>
-                    <p>Complete messaging guide with practical implementation recommendations</p>
-
-                    <h4>Key Activities</h4>
-                    <ul>
-                        <li>Final framework documentation</li>
-                        <li>Implementation guidance</li>
-                        <li>Stakeholder presentation</li>
-                        <li>Handoff and training</li>
-                    </ul>
-
-                    <h4>Deliverable</h4>
-                    <p>LoanPay Messaging & Positioning Guide (Complete)</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Resource Cards -->
-        <section class="resources-section">
-            <h2>Project Resources</h2>
-            <div class="resource-grid">
-                <a href="messaging-framework.html" class="resource-card">
-                    <div class="resource-card-content">
-                        <h3>Messaging Framework</h3>
-                        <p>Complete LoanPay positioning guide with three key storylines, competitive differentiation, and implementation guidance.</p>
-                        <span class="cta">View Framework →</span>
-                    </div>
-                </a>
-            </div>
+        <!-- What's Next -->
+        <section class="next-steps-section">
+            <h2>What's Next</h2>
+            <p><strong>Executive Workshop:</strong> Ready to schedule within 2-3 weeks. Facilitator guide complete.</p>
+            <p><strong>Rolling Thunder Activation:</strong> Spring 2026 launch readiness confirmed. Pillar 1 (IAB) awaits shortlist approval. Pillar 2 (Datos) awaiting brief. Pillar 3 (CUSOs) on track with Catalyst contract imminent.</p>
+            <a href="priorities.html" class="cta-button">View Prioritized Motions →</a>
         </section>
     </main>
-
-    <script>
-        // Action Items Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load saved action states
-            loadActionStates();
-
-            // Add click handlers to action items
-            document.querySelectorAll('.action-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const actionKey = this.dataset.action;
-                    const checkbox = this.querySelector('.action-checkbox');
-                    const isCompleted = this.classList.contains('completed');
-
-                    if (isCompleted) {
-                        // Uncomplete
-                        this.classList.remove('completed');
-                        checkbox.classList.remove('checked');
-                        localStorage.setItem(`checkalt_action_${actionKey}`, 'false');
-                    } else {
-                        // Complete
-                        this.classList.add('completed');
-                        checkbox.classList.add('checked');
-                        localStorage.setItem(`checkalt_action_${actionKey}`, 'true');
-                    }
-                });
-            });
-
-            // Timeline expansion functionality
-            document.querySelectorAll('.timeline-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const details = this.querySelector('.timeline-details');
-                    const isExpanded = details.classList.contains('expanded');
-
-                    // Close all other timeline items
-                    document.querySelectorAll('.timeline-details').forEach(detail => {
-                        detail.classList.remove('expanded');
-                    });
-
-                    // Toggle current item
-                    if (!isExpanded) {
-                        details.classList.add('expanded');
-                    }
-                });
-            });
-        });
-
-        function loadActionStates() {
-            document.querySelectorAll('.action-item').forEach(item => {
-                const actionKey = item.dataset.action;
-                const isCompleted = localStorage.getItem(`checkalt_action_${actionKey}`) === 'true';
-
-                if (isCompleted) {
-                    item.classList.add('completed');
-                    item.querySelector('.action-checkbox').classList.add('checked');
-                }
-            });
-        }
-    </script>
 </body>
 </html>

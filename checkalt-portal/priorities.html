@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prioritized Motions - CheckAlt Portal</title>
+    <meta name="description" content="Ranked activation moves for LoanPay with resource requirements and business impact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: var(--brandthnk-black);
+            background-color: var(--brandthnk-white);
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--brandthnk-white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--brandthnk-off-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background-color: var(--brandthnk-off-white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            text-align: center;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .intro-section p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--brandthnk-black);
+        }
+
+        /* Motion Card */
+        .motion-card {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid var(--brandthnk-light-gray);
+            position: relative;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .motion-card.highest-priority {
+            border-left-color: var(--brandthnk-black);
+            background-color: var(--brandthnk-white);
+            border: 2px solid var(--brandthnk-black);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .motion-card.highest-priority h2 {
+            color: var(--brandthnk-black);
+        }
+
+        .priority-badge {
+            position: absolute;
+            top: -10px;
+            right: 2rem;
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .motion-card h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .motion-section {
+            margin-bottom: 2rem;
+        }
+
+        .motion-section h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .motion-section p,
+        .motion-section ul {
+            margin-bottom: 1rem;
+        }
+
+        .motion-section ul {
+            margin-left: 2rem;
+        }
+
+        .motion-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Impact Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .impact-stat {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .impact-number {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brandthnk-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-description {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Timeline Table */
+        .timeline-section {
+            margin: 3rem 0;
+            background-color: var(--brandthnk-off-white);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .timeline-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--brandthnk-white);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .timeline-table th,
+        .timeline-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+            vertical-align: top;
+        }
+
+        .timeline-table th {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            font-weight: 700;
+        }
+
+        .timeline-table tbody tr:hover {
+            background-color: var(--brandthnk-off-white);
+        }
+
+        /* Triage Section */
+        .triage-section {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .triage-section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-white);
+        }
+
+        .triage-section p,
+        .triage-section ul {
+            color: var(--brandthnk-white);
+            margin-bottom: 1rem;
+        }
+
+        .triage-section ul {
+            margin-left: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+                font-size: 0.8rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .motion-card {
+                padding: 2rem;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-table {
+                font-size: 0.9rem;
+            }
+
+            .timeline-table th,
+            .timeline-table td {
+                padding: 0.75rem;
+            }
+
+            .priority-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">CheckAlt Portal</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Executive Summary</a></li>
+                <li><a href="market-intelligence.html">Market Intelligence</a></li>
+                <li><a href="priorities.html" class="active">Prioritized Motions</a></li>
+                <li><a href="messaging-framework.html">Messaging Framework</a></li>
+                <li><a href="deliverables.html">Deliverables</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <h1>Prioritized Motions: Where to Start with Limited Resources</h1>
+            <p>Activation ranked by speed-to-qualified-conversations, resource requirements, and revenue potential</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Priority Sequence Overview -->
+        <section class="intro-section">
+            <h2 style="margin-bottom: 1.5rem; font-family: 'Roboto Slab', serif; font-size: 1.5rem; font-weight: 700;">Priority Sequence</h2>
+            <ul style="text-align: left; max-width: 600px; margin: 0 auto; font-size: 1rem; line-height: 1.8;">
+                <li><strong>Events + Collateral</strong> (highest ROI per effort)</li>
+                <li><strong>CUSO Channel</strong> (highest multiplier effect)</li>
+                <li><strong>Executive Workshop</strong> (prerequisite for alignment)</li>
+                <li><strong>IAB</strong> (relationship engine, takes longer to build)</li>
+                <li><strong>Datos</strong> (permanent asset but lower immediate urgency)</li>
+            </ul>
+        </section>
+
+        <!-- Motion 1: Events + Collateral -->
+        <section class="motion-card highest-priority">
+            <div class="priority-badge">HIGHEST PRIORITY</div>
+            <h2>MOTION 1: Events + Compelling Collateral</h2>
+
+            <div class="motion-section">
+                <h3>Why This Is First</h3>
+                <p>Your team is already focused here. Events create the fastest path to qualified conversations and board-level introductions. Collateral can be refreshed in 2-3 weeks. ROI is highest relative to effort.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>What's Already Ready</h3>
+                <ul>
+                    <li>Complete messaging framework (v0.4)</li>
+                    <li>3-stage Rolling Thunder event strategy (teaser, launch, follow-through)</li>
+                    <li>Talk tracks for event conversations and objection responses</li>
+                    <li>Audience-specific messaging for CEOs, CFOs, COOs, IT directors</li>
+                    <li>Gifting strategy aligned with conference schedule</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>What Still Needs Development</h3>
+                <ul>
+                    <li>Refreshed event-specific one-pagers (3-pagers branded for LoanPay)</li>
+                    <li>Teaser kit for pre-event outreach</li>
+                    <li>Executive gifting collateral (Sangita/GiftSuite integration)</li>
+                    <li>Attendee list build-out and pre-meeting coordination</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Business Impact</h3>
+                <div class="impact-grid">
+                    <div class="impact-stat">
+                        <div class="impact-number">5-15</div>
+                        <div class="impact-description">Qualified conversations per event</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">30-50%</div>
+                        <div class="impact-description">Target qualification rate</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">$50-150K</div>
+                        <div class="impact-description">ARR per deal</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">$150-675K</div>
+                        <div class="impact-description">Pipeline potential (3 events @ 40%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="motion-section">
+                <h3>Resource Requirement</h3>
+                <p><strong>Low-medium.</strong> Marketing owns collateral refresh (2-3 weeks). Sales owns event execution and list build (3-4 weeks prep per event).</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>Timeline</h3>
+                <p><strong>Week 1-2:</strong> Finalize event list and attendee priorities. Refresh collateral.<br>
+                <strong>Week 2-3:</strong> Pre-event outreach and gifting.<br>
+                <strong>Week 4-6:</strong> Event execution and follow-up cadence.</p>
+            </div>
+        </section>
+
+        <!-- Motion 2: CUSO Channel Sales -->
+        <section class="motion-card">
+            <h2>MOTION 2: CUSO Channel Sales (TX, GA, FL)</h2>
+
+            <div class="motion-section">
+                <h3>Why This Is Second</h3>
+                <p>CUSOs are the leverage channel. One signed CUSO partnership can open 5-20 credit union doors. Medium resource requirement but scalable returns.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>What's Already Ready</h3>
+                <ul>
+                    <li>Complete CUSO target list (geographic focus confirmed: TX, GA, FL)</li>
+                    <li>CUSO outreach package and value proposition</li>
+                    <li>Channel partner agreement framework</li>
+                    <li>Catalyst relationship (contract imminent)</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>What Still Needs Development</h3>
+                <ul>
+                    <li>Active CUSO shortlist finalization (filtering for operational status)</li>
+                    <li>William Mills coordination and PR strategy</li>
+                    <li>Initial outreach sequence and sequencing</li>
+                    <li>Channel partner terms and compensation model</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Business Impact</h3>
+                <div class="impact-grid">
+                    <div class="impact-stat">
+                        <div class="impact-number">5-20</div>
+                        <div class="impact-description">CU implementations per CUSO (12 months)</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">3-8</div>
+                        <div class="impact-description">Warm intros from Catalyst (first quarter)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="motion-section">
+                <h3>Key CUSO Relationships</h3>
+                <table class="timeline-table" style="margin-bottom: 1.5rem;">
+                    <thead>
+                        <tr>
+                            <th>CUSO</th>
+                            <th>State</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Catalyst</strong></td>
+                            <td>FL</td>
+                            <td>Contract imminent (March/April 2026)</td>
+                            <td>Cornerstone relationship. Sales kickoff invite pending.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Correlation</strong></td>
+                            <td>Via Catalyst</td>
+                            <td>Pending referral</td>
+                            <td>Catalyst will introduce and vouch.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CUDX</strong></td>
+                            <td>FL (Tampa)</td>
+                            <td>To evaluate</td>
+                            <td>Active player. Requires vetting on operational status.</td>
+                        </tr>
+                        <tr style="opacity: 0.6;">
+                            <td><strong>Leverage</strong></td>
+                            <td>FL</td>
+                            <td>AVOID</td>
+                            <td>Burned 3 CU partnerships in past. Relationship friction.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="motion-section">
+                <h3>Resource Requirement</h3>
+                <p><strong>Medium.</strong> Requires Jason for relationship ownership and Theresa for execution coordination. William Mills handles PR/thought leadership sequencing.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>Timeline</h3>
+                <p><strong>Week 1-2:</strong> Finalize CUSO shortlist.<br>
+                <strong>Week 2-4:</strong> Coordinate Catalyst signature and sales kickoff.<br>
+                <strong>Week 3-6:</strong> Begin secondary CUSO outreach (Correlation, CUDX).</p>
+            </div>
+        </section>
+
+        <!-- Motion 3: Industry Advisory Board -->
+        <section class="motion-card">
+            <h2>MOTION 3: Industry Advisory Board (IAB)</h2>
+
+            <div class="motion-section">
+                <h3>Why This Is Third</h3>
+                <p>Creates instant credibility with peer-operated governing body. Repeatable relationship engine that generates 2-3 warm introductions per member per quarter.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>What's Already Ready</h3>
+                <ul>
+                    <li>Full IAB design (8-12 members, profile mix, selection criteria)</li>
+                    <li>Recruitment templates and outreach language</li>
+                    <li>Meeting format and cadence (45 min per quarter + optional 1:1s)</li>
+                    <li>Value exchange framework (what members get vs. what you get)</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>What Still Needs Development</h3>
+                <ul>
+                    <li>Member shortlist finalization (targeting former CU CEOs, CROs, digital officers, league leaders)</li>
+                    <li>Outreach execution and meeting scheduling</li>
+                    <li>Compensation model decision (paid annual honorarium vs. value-exchange model)</li>
+                    <li>Q2 IAB agenda and pre-work material</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Business Impact</h3>
+                <div class="impact-grid">
+                    <div class="impact-stat">
+                        <div class="impact-number">16-36</div>
+                        <div class="impact-description">Warm intros per year (8 members @ 2-3 intros/quarter)</div>
+                    </div>
+                    <div class="impact-stat">
+                        <div class="impact-number">30-40%</div>
+                        <div class="impact-description">Warm intro conversion rate (vs 5-10% cold)</div>
+                    </div>
+                </div>
+                <ul style="margin-top: 1rem;">
+                    <li>Board members become champions in market, mention LoanPay in relevant conversations</li>
+                    <li>Research partnership with Datos can be positioned as "IAB insight validation"</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Resource Requirement</h3>
+                <p><strong>Medium.</strong> Jason owns member recruitment. Theresa handles meeting facilitation and follow-up. Allison provides ongoing advisory support.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>Timeline</h3>
+                <p><strong>Week 1-2:</strong> Shortlist finalization.<br>
+                <strong>Week 2-3:</strong> Initial outreach and recruitment.<br>
+                <strong>Week 4:</strong> First IAB meeting (if recruited).<br>
+                <strong>Ongoing:</strong> Quarterly cadence.</p>
+            </div>
+        </section>
+
+        <!-- Motion 4: Datos Research -->
+        <section class="motion-card">
+            <h2>MOTION 4: Datos Insights Research Partnership</h2>
+
+            <div class="motion-section">
+                <h3>Why This Is Fourth</h3>
+                <p>Borrowed third-party credibility. "Proof beyond our word." Research asset becomes permanent sales tool and shared conference stage opportunity.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>What's Already Ready</h3>
+                <ul>
+                    <li>Research angles defined (delinquency trends, payment behavior, ROI of modernization)</li>
+                    <li>Datos contact relationship established</li>
+                    <li>Scope outline and timeline</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>What Still Needs Development</h3>
+                <ul>
+                    <li>Theresa to brief Datos on LoanPay angles and key insights you want validated</li>
+                    <li>Scope confirmation and deliverable format (report, infographic, webinar, case studies)</li>
+                    <li>Cut-down assets for sales use (2-3 clean takeaways)</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Business Impact</h3>
+                <ul>
+                    <li>Research validates core claims around delinquency, payment behavior, staffing pressure</li>
+                    <li>Permanent asset for sales collateral</li>
+                    <li>Potential co-branded promotion (Datos + CheckAlt)</li>
+                    <li>Conference speaking opportunity or panel participation</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Resource Requirement</h3>
+                <p><strong>Low.</strong> Theresa owns the briefing. Datos owns research development. Marketing handles promotion and asset cut-down.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>Timeline</h3>
+                <p><strong>Week 1:</strong> Theresa brief to Datos.<br>
+                <strong>Week 2-3:</strong> Scope confirmation.<br>
+                <strong>Week 4-8:</strong> Datos research development (internal timeline).</p>
+            </div>
+        </section>
+
+        <!-- Motion 5: Executive Workshop -->
+        <section class="motion-card">
+            <h2>MOTION 5: Executive Workshop (90 minutes)</h2>
+
+            <div class="motion-section">
+                <h3>Why This Is Fifth</h3>
+                <p>Aligns leadership team around positioning, activation, and metrics. Prerequisite for scaling any of the above motions. Can be scheduled immediately.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>What's Already Ready</h3>
+                <ul>
+                    <li>Full facilitator guide with modules on market context, positioning, activation strategy, metrics and success measures</li>
+                    <li>Participant roles and pre-work assignments</li>
+                    <li>Complete talk tracks and discussion prompts for alignment</li>
+                    <li>Example success metrics and quarterly check-ins</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>What Still Needs Development</h3>
+                <ul>
+                    <li>Calendar a date with Jason and leadership team (recommend within 2-3 weeks)</li>
+                    <li>Pre-work material distributed and completed by participants (2 weeks prior to workshop)</li>
+                    <li>Post-workshop success metrics dashboard and tracking cadence</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Business Impact</h3>
+                <ul>
+                    <li>Leadership alignment on messaging and positioning (eliminates mixed signals in market)</li>
+                    <li>Clear ownership assignment on Rolling Thunder phases</li>
+                    <li>Shared metrics and success criteria (aligns quarterly reviews with activation progress)</li>
+                </ul>
+            </div>
+
+            <div class="motion-section">
+                <h3>Resource Requirement</h3>
+                <p><strong>Low.</strong> Scheduling only. Allison facilitates (90 min). Post-workshop follow-up owned by Jason/Theresa.</p>
+            </div>
+
+            <div class="motion-section">
+                <h3>Timeline</h3>
+                <p><strong>Immediate:</strong> Schedule within 2-3 weeks. Pre-work distributed 2 weeks prior. Workshop: 90 minutes. Post-workshop: quarterly check-in cadence.</p>
+            </div>
+        </section>
+
+        <!-- Timeline Table -->
+        <section class="timeline-section">
+            <h2>90-Day Timeline</h2>
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Weeks 1-2</th>
+                        <th>Weeks 2-4</th>
+                        <th>Weeks 4-6</th>
+                        <th>Weeks 6-8</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Motion 1: Events</strong></td>
+                        <td>Finalize list. Refresh collateral.</td>
+                        <td>Pre-event outreach. Gifting.</td>
+                        <td>Event execution.</td>
+                        <td>Follow-up and pipeline.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motion 2: CUSOs</strong></td>
+                        <td>Shortlist finalization.</td>
+                        <td>Catalyst signature.</td>
+                        <td>Secondary outreach (Correlation, CUDX).</td>
+                        <td>Relationship development.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motion 3: IAB</strong></td>
+                        <td>Shortlist finalization.</td>
+                        <td>Initial recruitment outreach.</td>
+                        <td>First IAB meeting.</td>
+                        <td>Agenda for Q2.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motion 4: Datos</strong></td>
+                        <td>Theresa brief.</td>
+                        <td>Scope confirmation.</td>
+                        <td>Research development.</td>
+                        <td>Asset cut-down.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Motion 5: Workshop</strong></td>
+                        <td>Schedule. Assign pre-work.</td>
+                        <td>Pre-work completion.</td>
+                        <td>Workshop execution.</td>
+                        <td>Metrics dashboard.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Strategic Triage -->
+        <section class="triage-section">
+            <h2>What to Do If Resources Are Limited — Strategic Triage</h2>
+
+            <p><strong>If you have bandwidth for all 5 motions:</strong> Execute in order. Stagger by 1-2 weeks. Parallel is better than sequential.</p>
+
+            <p><strong>If resources are limited, priority sequence is:</strong></p>
+            <ul>
+                <li><strong>Events + Collateral</strong> (highest ROI per effort)</li>
+                <li><strong>CUSO Channel</strong> (highest multiplier effect)</li>
+                <li><strong>Executive Workshop</strong> (prerequisite for alignment)</li>
+                <li><strong>IAB</strong> (relationship engine, takes longer to build)</li>
+                <li><strong>Datos</strong> (permanent asset but lower immediate urgency)</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
