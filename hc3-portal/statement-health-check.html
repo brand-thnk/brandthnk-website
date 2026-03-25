@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statement Health Check | HC3 Portal</title>
+  <!-- Updated 2026-03-25 -->
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+
+      --hc3-navy: #1B2A4A;
+      --hc3-teal: #2E8B8B;
+      --hc3-light-bg: #F4F6F8;
+      --hc3-amber: #D4A017;
+      --hc3-red: #C0392B;
+      --hc3-green: #27AE60;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 16px 24px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--brandthnk-black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--brandthnk-black);
+      border-bottom-color: var(--brandthnk-yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* Health Check Specific Styles */
+    .health-check-container {
+      min-height: calc(100vh - 60px);
+      background: var(--hc3-light-bg);
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .health-check-content {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hc3-badge {
+      display: inline-block;
+      background: var(--hc3-navy);
+      color: var(--brandthnk-white);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .main-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--hc3-navy);
+      margin: 0 0 16px 0;
+      line-height: 1.3;
+    }
+
+    .main-subtitle {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .results-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--hc3-navy);
+      margin: 0 0 8px 0;
+    }
+
+    .results-subtitle {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+      border: 1px solid #E0E0E0;
+    }
+
+    .intro-card {
+      margin-bottom: 24px;
+    }
+
+    .category-list h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hc3-navy);
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .category-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .category-icon {
+      font-size: 16px;
+      margin-right: 10px;
+      margin-top: 1px;
+    }
+
+    .category-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--hc3-navy);
+    }
+
+    .category-tagline {
+      font-size: 13px;
+      color: #777;
+      margin-left: 8px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--brandthnk-white);
+      background: var(--hc3-teal);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #267070;
+    }
+
+    .no-email-note {
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* Question Screen Styles */
+    .question-header {
+      margin-bottom: 24px;
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .category-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--hc3-teal);
+      letter-spacing: 0.5px;
+    }
+
+    .question-counter {
+      font-size: 13px;
+      color: #999;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--hc3-teal);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--hc3-navy);
+      margin: 0 0 24px 0;
+      line-height: 1.4;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--hc3-navy);
+      background: var(--hc3-light-bg);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      border-color: var(--hc3-teal);
+      background: #EBF5F5;
+    }
+
+    .option-btn.selected {
+      color: var(--brandthnk-white);
+      background: var(--hc3-teal);
+      border-color: var(--hc3-teal);
+    }
+
+    .back-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      color: #777;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Results Screen Styles */
+    .overall-score-card {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .score-circle {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0 auto 16px;
+    }
+
+    .score-number {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .score-max {
+      font-size: 11px;
+      color: #999;
+    }
+
+    .zone-badge {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+    }
+
+    .overall-description {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 8px auto 0;
+    }
+
+    .category-breakdown-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--hc3-navy);
+      margin-bottom: 16px;
+    }
+
+    .category-score-card {
+      background: var(--brandthnk-white);
+      border: 1px solid #E0E0E0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .category-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hc3-navy);
+    }
+
+    .category-score-info {
+      text-align: right;
+    }
+
+    .category-zone-badge {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    .category-score-text {
+      font-size: 12px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    .category-progress {
+      width: 100%;
+      height: 4px;
+      background: #E8E8E8;
+      border-radius: 2px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .category-progress-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .category-insight {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .priority-card {
+      background: var(--hc3-navy);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      margin-top: 8px;
+    }
+
+    .priority-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brandthnk-white);
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .priority-text {
+      font-size: 14px;
+      color: #B8C4D6;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .priority-highlight {
+      color: var(--brandthnk-white);
+      font-weight: bold;
+    }
+
+    .cta-card {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .cta-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--hc3-navy);
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .cta-description {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      max-width: 420px;
+      margin: 0 auto 20px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--brandthnk-white);
+      background: var(--hc3-teal);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .cta-btn:hover {
+      background: #267070;
+    }
+
+    .restart-btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      color: var(--hc3-teal);
+      background: transparent;
+      border: 1px solid var(--hc3-teal);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+      }
+
+      .nav-brand {
+        margin-bottom: 1rem;
+      }
+
+      .health-check-content {
+        padding: 20px 16px;
+      }
+
+      .main-title {
+        font-size: 24px;
+      }
+
+      .results-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="project-plan.html" class="nav-link">Project Plan</a>
+        <a href="website-audit.html" class="nav-link">Website Audit</a>
+        <a href="draft-website.html" class="nav-link">Draft Website</a>
+        <a href="deliverables.html" class="nav-link">Deliverables</a>
+        <a href="statement-health-check.html" class="nav-link active">Health Check</a>
+        <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="health-check-container">
+    <div class="health-check-content">
+
+      <!-- Intro Screen -->
+      <div id="introScreen">
+        <div class="text-center" style="margin-bottom: 40px;">
+          <div class="hc3-badge">HC3</div>
+          <h1 class="main-title">Statement Health Check</h1>
+          <p class="main-subtitle">
+            Find out where your statement operation stands today. 12 questions. Takes about 3 minutes. You'll get a
+            category-by-category breakdown with specific areas to evaluate.
+          </p>
+        </div>
+
+        <div class="card intro-card">
+          <div class="category-list">
+            <h3>What this covers:</h3>
+            <div id="categoryList"></div>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="startHealthCheck()">
+          Start the Health Check
+        </button>
+
+        <p class="no-email-note">
+          No email required. Your results appear instantly.
+        </p>
+      </div>
+
+      <!-- Question Screen -->
+      <div id="questionScreen" class="hidden">
+        <div class="question-header">
+          <div class="question-meta">
+            <span class="category-label" id="currentCategoryLabel"></span>
+            <span class="question-counter" id="questionCounter"></span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="question-text" id="questionText"></h2>
+          <div class="options-container" id="optionsContainer"></div>
+        </div>
+
+        <button id="backBtn" class="back-btn hidden" onclick="goBack()">
+          ← Previous question
+        </button>
+      </div>
+
+      <!-- Results Screen -->
+      <div id="resultsScreen" class="hidden">
+        <div class="text-center" style="margin-bottom: 32px;">
+          <div class="hc3-badge">HC3</div>
+          <h1 class="results-title">Your Results</h1>
+          <p class="results-subtitle" id="completionDate">
+            Statement Health Check — completed <span></span>
+          </p>
+        </div>
+
+        <!-- Overall Score -->
+        <div class="card overall-score-card">
+          <div class="score-circle" id="scoreCircle">
+            <span class="score-number" id="totalScore">0</span>
+            <span class="score-max" id="totalMax">of 48</span>
+          </div>
+          <div class="zone-badge" id="overallZoneBadge">Overall: Healthy</div>
+          <p class="overall-description" id="overallDescription"></p>
+        </div>
+
+        <!-- Category Scores -->
+        <h2 class="category-breakdown-title">Category Breakdown</h2>
+        <div id="categoryScores"></div>
+
+        <!-- Priority -->
+        <div class="priority-card">
+          <h3 class="priority-title">Where to start</h3>
+          <p class="priority-text" id="priorityText"></p>
+        </div>
+
+        <!-- CTA -->
+        <div class="card cta-card">
+          <h3 class="cta-title">Put your results to work</h3>
+          <p class="cta-description">
+            We'll walk through your results and benchmark your operation against similar institutions. It's an honest conversation about where you stand.
+          </p>
+          <a href="mailto:allison@brandthnk.co?subject=HC3 Statement Health Check Results - Let's Talk&body=Hi Allison,%0D%0A%0D%0AI just completed the HC3 Statement Health Check and would like to discuss my results and explore how BrandThnk can help improve our statement operations.%0D%0A%0D%0ASource: HC3 Health Check Tool%0D%0AUTM: hc3-healthcheck"
+             class="cta-btn"
+             onclick="trackCTAClick()">
+            Talk to Our Team
+          </a>
+        </div>
+
+        <div class="text-center">
+          <button class="restart-btn" onclick="restart()">
+            Retake the Health Check
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Health Check Data and Logic
+    const questions = [
+      {
+        category: "Statement Design",
+        id: "design_age",
+        question: "When was the last time your statement templates were redesigned?",
+        options: [
+          { label: "Within the last 12 months", score: 4 },
+          { label: "1 to 3 years ago", score: 3 },
+          { label: "3 to 5 years ago", score: 2 },
+          { label: "More than 5 years ago (or I'm not sure)", score: 1 },
+        ],
+      },
+      {
+        category: "Statement Design",
+        id: "design_brand",
+        question: "Do your statements reflect your current brand — logo, colors, and messaging?",
+        options: [
+          { label: "Yes, they match our current brand exactly", score: 4 },
+          { label: "Mostly, but some elements are outdated", score: 3 },
+          { label: "Our brand has changed but our statements haven't", score: 2 },
+          { label: "I'd have to check", score: 1 },
+        ],
+      },
+      {
+        category: "Statement Design",
+        id: "design_marketing",
+        question: "Are you using your statements to cross-sell products or share targeted messages?",
+        options: [
+          { label: "Yes, we run targeted marketing on statements regularly", score: 4 },
+          { label: "We include some static marketing messages", score: 3 },
+          { label: "We've talked about it but haven't started", score: 2 },
+          { label: "No, our statements are transactional only", score: 1 },
+        ],
+      },
+      {
+        category: "Digital Delivery",
+        id: "digital_adoption",
+        question: "What percentage of your account holders receive eStatements?",
+        options: [
+          { label: "More than 60%", score: 4 },
+          { label: "40% to 60%", score: 3 },
+          { label: "20% to 40%", score: 2 },
+          { label: "Under 20% (or I'm not sure)", score: 1 },
+        ],
+      },
+      {
+        category: "Digital Delivery",
+        id: "digital_enrollment",
+        question: "Can account holders enroll in eStatements on their own, without calling your team?",
+        options: [
+          { label: "Yes, fully self-service through online or mobile banking", score: 4 },
+          { label: "They can start online but may need help completing it", score: 3 },
+          { label: "It requires a call or branch visit", score: 2 },
+          { label: "I'm not sure how enrollment works today", score: 1 },
+        ],
+      },
+      {
+        category: "Digital Delivery",
+        id: "digital_speed",
+        question: "How quickly are eStatements available after cycle close?",
+        options: [
+          { label: "Same day or next business day", score: 4 },
+          { label: "2 to 3 business days", score: 3 },
+          { label: "4 to 5 business days", score: 2 },
+          { label: "More than 5 days (or I don't know)", score: 1 },
+        ],
+      },
+      {
+        category: "Print & Mail",
+        id: "print_speed",
+        question: "How many days after cycle close do printed statements reach mailboxes?",
+        options: [
+          { label: "3 to 5 business days", score: 4 },
+          { label: "5 to 7 business days", score: 3 },
+          { label: "7 to 10 business days", score: 2 },
+          { label: "More than 10 days (or I don't track this)", score: 1 },
+        ],
+      },
+      {
+        category: "Print & Mail",
+        id: "print_sla",
+        question: "Do you have visibility into your print vendor's SLA performance?",
+        options: [
+          { label: "Yes, I receive regular reporting with delivery metrics", score: 4 },
+          { label: "I get some reporting but it's not consistent", score: 3 },
+          { label: "Only when I ask for it", score: 2 },
+          { label: "No, I don't have visibility into vendor performance", score: 1 },
+        ],
+      },
+      {
+        category: "Print & Mail",
+        id: "print_continuity",
+        question: "Does your print and mail vendor have disaster recovery or business continuity capabilities?",
+        options: [
+          { label: "Yes, they have multiple certified production facilities", score: 4 },
+          { label: "They say they do, but I haven't verified it", score: 3 },
+          { label: "I'm not sure", score: 2 },
+          { label: "They operate from a single facility", score: 1 },
+        ],
+      },
+      {
+        category: "Vendor & Operations",
+        id: "vendor_count",
+        question: "How many vendors are involved in your statement operation (design, digital delivery, print, mail)?",
+        options: [
+          { label: "One vendor handles everything", score: 4 },
+          { label: "Two vendors", score: 3 },
+          { label: "Three vendors", score: 2 },
+          { label: "Four or more (or I'm not sure who handles what)", score: 1 },
+        ],
+      },
+      {
+        category: "Vendor & Operations",
+        id: "vendor_contact",
+        question: "When something goes wrong with a statement run, who do you call?",
+        options: [
+          { label: "A single point of contact who owns the full operation", score: 4 },
+          { label: "One main contact, but sometimes I get routed around", score: 3 },
+          { label: "It depends on whether the issue is print, digital, or design", score: 2 },
+          { label: "I usually have to figure out which vendor to call", score: 1 },
+        ],
+      },
+      {
+        category: "Vendor & Operations",
+        id: "vendor_cost",
+        question: "When was the last time you benchmarked your per-piece statement cost?",
+        options: [
+          { label: "Within the last 12 months", score: 4 },
+          { label: "1 to 2 years ago", score: 3 },
+          { label: "More than 2 years ago", score: 2 },
+          { label: "I don't know our per-piece cost", score: 1 },
+        ],
+      },
+    ];
+
+    const categoryDescriptions = {
+      "Statement Design": {
+        icon: "📄",
+        tagline: "How your statements look and perform as a communication tool",
+      },
+      "Digital Delivery": {
+        icon: "📱",
+        tagline: "eStatement adoption, enrollment, and delivery speed",
+      },
+      "Print & Mail": {
+        icon: "📬",
+        tagline: "Physical statement production, delivery, and vendor reliability",
+      },
+      "Vendor & Operations": {
+        icon: "⚙️",
+        tagline: "How your statement operation is structured and managed",
+      },
+    };
+
+    const categoryInsights = {
+      "Statement Design": {
+        high: "Your statement design is current and working as a communication tool. You're getting value beyond the transaction.",
+        mid: "Your statements are functional, but there's untapped potential. Outdated templates or missing marketing messages mean you're leaving engagement on the table every cycle.",
+        low: "Your statements may be creating brand confusion or missed revenue. When your most-opened document doesn't match your brand or carry a marketing message, every cycle is a wasted touchpoint.",
+      },
+      "Digital Delivery": {
+        high: "Strong eStatement adoption keeps your per-piece costs down and your account holders engaged through digital channels.",
+        mid: "Your eStatement program has room to grow. Enrollment friction or slower delivery times may be suppressing adoption. Every percentage point of adoption you gain reduces print volume and cost.",
+        low: "Low eStatement adoption means you're carrying higher print and mail costs than necessary. The gap between your adoption rate and where it should be is a direct cost issue worth quantifying.",
+      },
+      "Print & Mail": {
+        high: "Your print and mail operation is well-managed with strong vendor accountability and delivery performance.",
+        mid: "There are gaps in your visibility or vendor capabilities that could expose you during a disruption. Statements that arrive late generate support calls and erode account holder confidence.",
+        low: "Limited visibility into vendor performance and single-facility risk mean your print operation is more fragile than it needs to be. Slow delivery compounds the issue. This is worth evaluating before a disruption forces the conversation.",
+      },
+      "Vendor & Operations": {
+        high: "A consolidated operation with clear accountability and cost awareness puts you in a strong position to manage costs and quality.",
+        mid: "Multiple vendors or unclear ownership creates friction when something goes wrong. You're spending operational energy coordinating across providers that could be spent on strategy.",
+        low: "A fragmented vendor setup with unclear costs is common in statement operations, but it's costing you in both dollars and operational time. Consolidation is usually the highest-leverage move available.",
+      },
+    };
+
+    // Application State
+    let currentQuestion = -1; // -1 = intro screen
+    let answers = {};
+    let showResults = false;
+
+    // Utility Functions
+    function getZone(score, max) {
+      const pct = score / max;
+      if (pct >= 0.75) return { label: "Healthy", color: "#27AE60", bg: "#E8F5E9" };
+      if (pct >= 0.5) return { label: "At Risk", color: "#D4A017", bg: "#FFF8E1" };
+      return { label: "Needs Attention", color: "#C0392B", bg: "#FFEBEE" };
+    }
+
+    function trackEvent(eventName, data = {}) {
+      // Google Analytics 4 event tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+          event_category: 'hc3_health_check',
+          event_label: data.event_label || '',
+          value: data.value || 0,
+          client: 'hc3',
+          tool_type: 'health_check',
+          ...data
+        });
+      }
+
+      // Development logging
+      console.log('HC3 Health Check Event:', eventName, data);
+    }
+
+    function trackCTAClick() {
+      const totalScore = getTotalScore();
+      const overallZone = getOverallZone();
+      const categoryScores = getCategoryScores();
+
+      trackEvent('cta_click', {
+        event_label: 'talk_to_team',
+        value: totalScore,
+        total_score: totalScore,
+        overall_zone: overallZone.label,
+        questions_answered: Object.keys(answers).length,
+        statement_design_score: categoryScores['Statement Design']?.score || 0,
+        digital_delivery_score: categoryScores['Digital Delivery']?.score || 0,
+        print_mail_score: categoryScores['Print & Mail']?.score || 0,
+        vendor_operations_score: categoryScores['Vendor & Operations']?.score || 0
+      });
+    }
+
+    // Screen Management
+    function showScreen(screenName) {
+      document.getElementById('introScreen').classList.add('hidden');
+      document.getElementById('questionScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+
+      if (screenName) {
+        document.getElementById(screenName).classList.remove('hidden');
+      }
+    }
+
+    // Initialize the intro screen
+    function initIntroScreen() {
+      const categoryList = document.getElementById('categoryList');
+      categoryList.innerHTML = '';
+
+      Object.entries(categoryDescriptions).forEach(([categoryName, info]) => {
+        const categoryItem = document.createElement('div');
+        categoryItem.className = 'category-item';
+        categoryItem.innerHTML = `
+          <span class="category-icon">${info.icon}</span>
+          <div>
+            <span class="category-name">${categoryName}</span>
+            <span class="category-tagline">${info.tagline}</span>
+          </div>
+        `;
+        categoryList.appendChild(categoryItem);
+      });
+    }
+
+    function startHealthCheck() {
+      trackEvent('assessment_started', {
+        event_label: 'health_check_begin',
+        total_questions: questions.length
+      });
+      currentQuestion = 0;
+      answers = {};
+      showResults = false;
+      showQuestionScreen();
+    }
+
+    function showQuestionScreen() {
+      showScreen('questionScreen');
+      updateQuestionScreen();
+    }
+
+    function updateQuestionScreen() {
+      const question = questions[currentQuestion];
+      const categoryInfo = categoryDescriptions[question.category];
+
+      // Update header info
+      document.getElementById('currentCategoryLabel').innerHTML =
+        `${categoryInfo.icon} ${question.category.toUpperCase()}`;
+      document.getElementById('questionCounter').textContent =
+        `${currentQuestion + 1} of ${questions.length}`;
+
+      // Update progress bar
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById('progressFill').style.width = `${progress}%`;
+
+      // Update question
+      document.getElementById('questionText').textContent = question.question;
+
+      // Update options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option-btn';
+        button.textContent = option.label;
+
+        // Check if this option is already selected
+        if (answers[question.id] === option.score) {
+          button.classList.add('selected');
+        }
+
+        button.onclick = () => selectAnswer(question.id, option.score);
+        optionsContainer.appendChild(button);
+      });
+
+      // Show/hide back button
+      const backBtn = document.getElementById('backBtn');
+      if (currentQuestion > 0) {
+        backBtn.classList.remove('hidden');
+      } else {
+        backBtn.classList.add('hidden');
+      }
+    }
+
+    function selectAnswer(questionId, score) {
+      answers[questionId] = score;
+
+      // Update visual selection
+      const optionBtns = document.querySelectorAll('.option-btn');
+      optionBtns.forEach(btn => btn.classList.remove('selected'));
+      event.target.classList.add('selected');
+
+      trackEvent('question_answered', {
+        question_id: questionId,
+        score: score,
+        question_number: currentQuestion + 1
+      });
+
+      // Move to next question or results
+      if (currentQuestion < questions.length - 1) {
+        setTimeout(() => {
+          currentQuestion++;
+          updateQuestionScreen();
+        }, 200);
+      } else {
+        setTimeout(() => {
+          showResultsScreen();
+        }, 300);
+      }
+    }
+
+    function goBack() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        updateQuestionScreen();
+      }
+    }
+
+    function showResultsScreen() {
+      showResults = true;
+      showScreen('resultsScreen');
+      updateResultsScreen();
+      const totalScore = getTotalScore();
+      const overallZone = getOverallZone();
+      const categoryScores = getCategoryScores();
+
+      trackEvent('assessment_completed', {
+        event_label: 'health_check_finished',
+        value: totalScore,
+        total_score: totalScore,
+        overall_zone: overallZone.label,
+        questions_answered: Object.keys(answers).length,
+        statement_design_score: categoryScores['Statement Design']?.score || 0,
+        digital_delivery_score: categoryScores['Digital Delivery']?.score || 0,
+        print_mail_score: categoryScores['Print & Mail']?.score || 0,
+        vendor_operations_score: categoryScores['Vendor & Operations']?.score || 0
+      });
+    }
+
+    function getTotalScore() {
+      return Object.values(answers).reduce((sum, score) => sum + score, 0);
+    }
+
+    function getOverallZone() {
+      const totalScore = getTotalScore();
+      const totalMax = questions.length * 4; // 48 total possible points
+      return getZone(totalScore, totalMax);
+    }
+
+    function getCategoryScores() {
+      const categories = ["Statement Design", "Digital Delivery", "Print & Mail", "Vendor & Operations"];
+      const catScores = {};
+
+      categories.forEach((cat) => {
+        const catQuestions = questions.filter((q) => q.category === cat);
+        const maxScore = catQuestions.length * 4;
+        const score = catQuestions.reduce((sum, q) => sum + (answers[q.id] || 0), 0);
+        catScores[cat] = { score, maxScore };
+      });
+
+      return catScores;
+    }
+
+    function updateResultsScreen() {
+      const totalScore = getTotalScore();
+      const totalMax = questions.length * 4;
+      const overallZone = getOverallZone();
+      const overallPct = Math.round((totalScore / totalMax) * 100);
+
+      // Update completion date
+      const completionDate = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+      document.querySelector('#completionDate span').textContent = completionDate;
+
+      // Update overall score circle
+      const scoreCircle = document.getElementById('scoreCircle');
+      scoreCircle.style.borderColor = overallZone.color;
+      document.getElementById('totalScore').textContent = totalScore;
+      document.getElementById('totalScore').style.color = overallZone.color;
+      document.getElementById('totalMax').textContent = `of ${totalMax}`;
+
+      // Update overall zone badge
+      const overallBadge = document.getElementById('overallZoneBadge');
+      overallBadge.textContent = `Overall: ${overallZone.label}`;
+      overallBadge.style.color = overallZone.color;
+      overallBadge.style.backgroundColor = overallZone.bg;
+
+      // Update overall description
+      let description = '';
+      if (overallPct >= 75) {
+        description = "Your statement operation is in solid shape. The category breakdown below shows where you can still tighten things up.";
+      } else if (overallPct >= 50) {
+        description = "Your operation is functional, but there are specific areas where gaps are costing you in both dollars and account holder experience. The breakdown below identifies where.";
+      } else {
+        description = "There are meaningful gaps in your statement operation that are likely affecting cost, account holder experience, or both. The category breakdown below pinpoints the highest-priority areas.";
+      }
+      document.getElementById('overallDescription').textContent = description;
+
+      // Update category scores
+      const categoryScores = getCategoryScores();
+      const categoryScoresContainer = document.getElementById('categoryScores');
+      categoryScoresContainer.innerHTML = '';
+
+      Object.entries(categoryScores).forEach(([categoryName, catData]) => {
+        const zone = getZone(catData.score, catData.maxScore);
+        const pct = Math.round((catData.score / catData.maxScore) * 100);
+        const tier = pct >= 75 ? "high" : pct >= 50 ? "mid" : "low";
+        const insight = categoryInsights[categoryName][tier];
+        const info = categoryDescriptions[categoryName];
+
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-score-card';
+        categoryCard.style.borderLeftColor = zone.color;
+
+        categoryCard.innerHTML = `
+          <div class="category-header">
+            <div class="category-info">
+              <div class="category-title">${info.icon} ${categoryName}</div>
+              <div style="font-size: 12px; color: #666; margin-top: 2px;">${info.tagline}</div>
+            </div>
+            <div class="category-score-info">
+              <span class="category-zone-badge" style="color: ${zone.color}; background: ${zone.bg};">
+                ${zone.label}
+              </span>
+              <div class="category-score-text">${catData.score} / ${catData.maxScore}</div>
+            </div>
+          </div>
+          <div class="category-progress">
+            <div class="category-progress-fill" style="width: ${pct}%; background: ${zone.color};"></div>
+          </div>
+          <p class="category-insight">${insight}</p>
+        `;
+
+        categoryScoresContainer.appendChild(categoryCard);
+      });
+
+      // Update priority recommendation
+      const weakest = Object.entries(categoryScores).sort((a, b) =>
+        a[1].score / a[1].maxScore - b[1].score / b[1].maxScore
+      );
+      const topPriority = weakest[0][0];
+
+      document.getElementById('priorityText').innerHTML = `
+        Based on your responses, <span class="priority-highlight">${topPriority}</span> is the area with the most room to improve. That's usually the best place to focus first because improvements there tend to have downstream effects on the rest of the operation.
+      `;
+    }
+
+    function restart() {
+      trackEvent('assessment_restarted', {
+        event_label: 'health_check_restart',
+        previous_answers: Object.keys(answers).length
+      });
+      currentQuestion = -1;
+      answers = {};
+      showResults = false;
+      showScreen('introScreen');
+    }
+
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+      initIntroScreen();
+      showScreen('introScreen');
+    });
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'HC3 Statement Health Check',
+      page_location: window.location.href,
+      custom_map: {'custom_parameter_1': 'health_score'}
+    });
+
+    // Track page view for health check tool
+    gtag('event', 'page_view', {
+      page_title: 'HC3 Statement Health Check',
+      page_location: window.location.href,
+      tool_type: 'health_check',
+      client: 'hc3'
+    });
+  </script>
+</body>
+</html>
