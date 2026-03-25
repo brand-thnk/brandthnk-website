@@ -63,26 +63,30 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      list-style: none;
+      min-width: max-content;
     }
 
     .nav-link {
-      color: var(--brandthnk-black);
+      color: var(--brandthnk-gray);
       text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 16px 24px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .nav-link:hover {
-      background: var(--brandthnk-off-white);
+      color: var(--brandthnk-black);
+      background: rgba(255, 235, 59, 0.1);
     }
 
     .nav-link.active {
-      background: var(--brandthnk-yellow);
       color: var(--brandthnk-black);
-      font-weight: 600;
+      border-bottom-color: var(--brandthnk-yellow);
+      background: rgba(255, 235, 59, 0.2);
     }
 
     .header {
@@ -117,18 +121,29 @@
 
     .section {
       background: var(--brandthnk-white);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-left: 4px solid var(--brandthnk-yellow);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 20px 30px;
+      border-bottom: 3px solid var(--brandthnk-yellow);
     }
 
     .section h2 {
       font-family: 'Roboto Slab', serif;
       font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: var(--brandthnk-black);
+      margin-bottom: 0;
+      color: var(--brandthnk-white);
+    }
+
+    .section-content {
+      padding: 30px;
     }
 
     .project-status {
@@ -480,14 +495,7 @@
     }
 
     .contact-section {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
       grid-column: 1 / -1;
-      border-left: 4px solid var(--brandthnk-yellow);
-    }
-
-    .contact-section h2 {
-      color: var(--brandthnk-yellow);
     }
 
     .contact-info {
@@ -500,15 +508,16 @@
       font-family: 'Roboto Slab', serif;
       font-weight: 600;
       margin-bottom: 0.75rem;
-      color: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
     }
 
     .contact-item p {
       margin-bottom: 0.5rem;
+      color: var(--brandthnk-gray);
     }
 
     .contact-item a {
-      color: var(--brandthnk-white);
+      color: var(--brandthnk-black);
       text-decoration: none;
     }
 
@@ -583,7 +592,7 @@
         <a href="project-plan.html" class="nav-link">Project Plan</a>
         <a href="website-audit.html" class="nav-link">Website Audit</a>
         <a href="draft-website.html" class="nav-link">Draft Website</a>
-        <a href="#deliverables" class="nav-link">Deliverables</a>
+        <a href="deliverables.html" class="nav-link">Deliverables</a>
         <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
       </div>
     </div>
@@ -599,8 +608,11 @@
   <main class="container">
     <div class="dashboard-grid">
       <section class="section contact-section">
-        <h2>Team & Communication</h2>
-        <div class="contact-info">
+        <div class="section-header">
+          <h2>Team & Communication</h2>
+        </div>
+        <div class="section-content">
+          <div class="contact-info">
           <div class="contact-item">
             <h3>BrandThnk Team</h3>
             <p><strong>Allison Netzer</strong><br>Lead Strategist</p>
@@ -618,17 +630,22 @@
 
           <div class="contact-item">
             <h3>Interview Schedule</h3>
-            <p><strong>C-suite:</strong> Tori</p>
-            <p><strong>Frontline:</strong> Matt Engle</p>
-            <p><strong>Contrarian:</strong> Jeremiah James</p>
-            <p>30 minutes each, no prep needed</p>
+            <p><strong>Jason Robichaud</strong> (Knowledge & Training)<br>Thu, Mar 26 • 1:30pm EDT • <span style="color: #28a745;">✓ Confirmed</span></p>
+            <p><strong>Jeffrey Reeves</strong> (Sr. Business Development)<br>Thu, Mar 26 • 12:30pm EDT • <span style="color: #28a745;">✓ Confirmed</span></p>
+            <p><strong>Tori VanCura-Rutland</strong> (Chief Growth Officer)<br>Scheduling in progress</p>
+            <p><strong>Matt Ingle</strong> (Project Manager I)<br>Scheduling in progress</p>
+            <p style="font-size: 0.8rem; color: var(--brandthnk-gray); margin-top: 1rem;">30 minutes each, no prep needed</p>
           </div>
+        </div>
         </div>
       </section>
 
       <section class="section">
-        <h2>Project Status</h2>
-        <div class="project-status">
+        <div class="section-header">
+          <h2>Project Status</h2>
+        </div>
+        <div class="section-content">
+          <div class="project-status">
           <div class="status-item">
             <div class="status-label">Start Date</div>
             <div class="status-value">March 20, 2026</div>
@@ -655,23 +672,27 @@
             <div class="week-progress-bar"></div>
           </div>
         </div>
+        </div>
       </section>
 
       <section class="section">
-        <h2>Critical Next Actions</h2>
-        <div class="action-item" data-action="stakeholder-interviews">
+        <div class="section-header">
+          <h2>Critical Next Actions</h2>
+        </div>
+        <div class="section-content">
+          <div class="action-item" data-action="stakeholder-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Complete stakeholder interview list for Week 1-2 discovery</div>
-            <div class="action-meta">Target: March 21 • Owner: HC3 Team</div>
+            <div class="action-meta">Target: March 21 • Owner: BrandThnk</div>
           </div>
         </div>
 
         <div class="action-item" data-action="schedule-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
-            <div class="action-title">Schedule interviews with C-suite (Tori), frontline (Matt Engle), contrarian (Jeremiah James)</div>
-            <div class="action-meta">Target: March 22-28 • Owner: HC3 Team</div>
+            <div class="action-title">Schedule interviews with C-suite (Tori), frontline (Matt Ingle)</div>
+            <div class="action-meta">Target: March 22-28 • Owner: BrandThnk • In Progress</div>
           </div>
         </div>
 
@@ -698,11 +719,15 @@
             <div class="action-meta">Target: March 28 • Owner: HC3 Team</div>
           </div>
         </div>
+        </div>
       </section>
 
       <section class="section timeline-section">
-        <h2>8-Week Timeline</h2>
-        <div class="timeline">
+        <div class="section-header">
+          <h2>8-Week Timeline</h2>
+        </div>
+        <div class="section-content">
+          <div class="timeline">
           <div class="timeline-week active" data-week="1-2">
             <div>Week 1-2</div>
             <div>Discovery</div>
@@ -736,40 +761,9 @@
         <div class="phase-details" id="phase-details">
           <!-- Phase details will be inserted here dynamically -->
         </div>
-      </section>
-
-      <section class="section">
-        <h2>Discussion Topics</h2>
-
-        <div class="discussion-container">
-          <h3>Flagged for Kickoff Discussion (No Copy Changes Yet)</h3>
-          <p style="margin-bottom: 30px; color: var(--brandthnk-gray);">These items from Kristan's intake need validation before changing copy:</p>
-
-          <div class="discussion-item">
-            <div class="discussion-number">1</div>
-            <div class="discussion-content">
-              <h4><strong>"Messaging cannot outpace actual product maturity"</strong></h4>
-              <p>Review all draft website claims with HC3 team. The <code>[X]</code> placeholders are smart. Don't fill them with aspirational numbers. Confirm the "smarter statement processing" tagline aligns with what HC3 delivers today.</p>
-            </div>
-          </div>
-
-          <div class="discussion-item">
-            <div class="discussion-number">2</div>
-            <div class="discussion-content">
-              <h4><strong>"How far HC3 wants to move from Print & Mail in identity"</strong></h4>
-              <p>Kristan flagged this as needing more signal. The draft website currently balances print heritage with digital-forward positioning. Confirm this balance is right before adjusting further.</p>
-            </div>
-          </div>
-
-          <div class="discussion-item">
-            <div class="discussion-number">3</div>
-            <div class="discussion-content">
-              <h4><strong>Competitive posture</strong></h4>
-              <p>Kristan needs more signal on whether to position against legacy print vendors, digital-only players, or full-stack fintech platforms. This will affect homepage and solutions copy once decided.</p>
-            </div>
-          </div>
         </div>
       </section>
+
     </div>
 
     <div class="resource-grid">
@@ -798,64 +792,14 @@
       </a>
     </div>
 
+
     <div class="section" style="margin-bottom: 2rem;">
-      <h2>Engagement Deliverables</h2>
-      <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Strategy deliverables from the BrandThnk Breakthrough engagement. Click to view or download each PDF.</p>
-      <div class="resource-grid">
-        <a href="assets/HC3-Research-Brief.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">R</div>
-          <div class="resource-title">Research Brief</div>
-          <div class="resource-description">Intelligence requirements, market research threads, and competitive landscape analysis driving the engagement.</div>
-        </a>
-
-        <a href="assets/HC3-Strategy-Brief.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">1</div>
-          <div class="resource-title">Strategy Brief</div>
-          <div class="resource-description">Week 1-2: Deep Discovery. Current state assessment, market context, competitive landscape, and strategic hypotheses.</div>
-        </a>
-
-        <a href="assets/HC3-Brand-Positioning-Map.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">3</div>
-          <div class="resource-title">Brand Positioning Map + Messaging Framework</div>
-          <div class="resource-description">Week 3: Positioning Lab. Brand positioning statement, messaging hierarchy, and competitive differentiation matrix.</div>
-        </a>
-
-        <a href="assets/HC3-90-Day-GTM-Plan.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">4</div>
-          <div class="resource-title">90-Day GTM Activation Plan</div>
-          <div class="resource-description">Week 4: Go-to-Market Model. Channel strategy, 90-day calendar, content plan, and success metrics.</div>
-        </a>
-
-        <a href="assets/HC3-Distribution-Advocacy-Toolkit.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">5</div>
-          <div class="resource-title">Distribution & Advocacy Toolkit</div>
-          <div class="resource-description">Week 5: Signal Amplification. Media, analyst, conference, and customer advocacy strategies.</div>
-        </a>
-
-        <a href="assets/HC3-Internal-Playbook.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">6</div>
-          <div class="resource-title">Internal Playbook</div>
-          <div class="resource-description">Week 6: Strategy-to-Execution Bridge. Sales enablement, marketing activation, employee communication plan.</div>
-        </a>
-
-        <a href="assets/HC3-Impact-Dashboard.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">7</div>
-          <div class="resource-title">Impact Dashboard Template</div>
-          <div class="resource-description">Week 7: Feedback Loop Setup. KPIs, reporting cadence, course correction framework, and dashboard template.</div>
-        </a>
-
-        <a href="assets/HC3-Executive-Debrief.pdf" target="_blank" class="resource-card">
-          <div class="resource-icon" style="background: var(--brandthnk-black); color: var(--brandthnk-yellow);">8</div>
-          <div class="resource-title">Executive Debrief Presentation</div>
-          <div class="resource-description">Week 8: Executive Strategy Session. Final positioning, strategic recommendations, and next-phase priorities.</div>
-        </a>
+      <div class="section-header">
+        <h2>Materials Received</h2>
       </div>
-    </div>
-
-    <div class="section" style="margin-bottom: 2rem;">
-      <h2>Materials Received</h2>
-      <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Current brand assets provided by HC3. These are the materials BrandThnk is working from as we develop the new positioning.</p>
-      <div class="resource-grid">
+      <div class="section-content">
+        <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Current brand assets provided by HC3. These are the materials BrandThnk is working from as we develop the new positioning.</p>
+        <div class="resource-grid">
         <a href="assets/HC3_2025_CompanyOnsheet_Banks.pdf" target="_blank" class="resource-card">
           <div class="resource-icon">📄</div>
           <div class="resource-title">Company One-Sheet (Banks)</div>
@@ -873,6 +817,7 @@
           <div class="resource-title">Core Values</div>
           <div class="resource-description">HC3's core values positioning document. Foundation for brand identity and culture alignment.</div>
         </a>
+        </div>
       </div>
     </div>
   </main>
