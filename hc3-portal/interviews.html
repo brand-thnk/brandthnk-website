@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interviews - HC3 BrandThnk Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--brandthnk-black);
+            background-color: var(--brandthnk-off-white);
+        }
+
+        .nav-bar {
+            background-color: var(--brandthnk-black);
+            border-bottom: 2px solid var(--brandthnk-yellow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 235, 59, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+            border-bottom: 3px solid var(--brandthnk-black);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--brandthnk-black), #333);
+            color: var(--brandthnk-white);
+            padding: 4rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--brandthnk-yellow);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            background: var(--brandthnk-white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--brandthnk-yellow);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .section h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .interview-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .interview-card {
+            background: var(--brandthnk-white);
+            border: 1px solid var(--brandthnk-light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .interview-card.confirmed {
+            border-left: 4px solid #4CAF50;
+        }
+
+        .interview-card.pending {
+            border-left: 4px solid #FF9800;
+        }
+
+        .interview-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .interview-status.confirmed {
+            background: #E8F5E8;
+            color: #2E7D2E;
+        }
+
+        .interview-status.pending {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .interview-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .interview-subtitle {
+            font-size: 0.875rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .interview-meta {
+            font-size: 0.75rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .question-section {
+            margin-bottom: 2rem;
+        }
+
+        .question-section h4 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .questions-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .questions-list li {
+            background: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--brandthnk-yellow);
+        }
+
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--brandthnk-black);
+        }
+
+        .question-context {
+            font-size: 0.8125rem;
+            color: var(--brandthnk-gray);
+            font-style: italic;
+        }
+
+        .download-section {
+            background: var(--brandthnk-off-white);
+            border: 1px solid var(--brandthnk-light-gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        .collapsible {
+            background: var(--brandthnk-off-white);
+            border: 1px solid var(--brandthnk-light-gray);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .collapsible-header {
+            background: var(--brandthnk-white);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+            transition: background-color 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: var(--brandthnk-off-white);
+        }
+
+        .collapsible-content {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .collapsible.active .collapsible-content {
+            display: block;
+        }
+
+        .collapsible-toggle {
+            font-size: 1.25rem;
+            color: var(--brandthnk-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible.active .collapsible-toggle {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 1024px) {
+            .interview-schedule {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.75rem;
+            }
+
+            .nav-link {
+                font-size: 0.6875rem;
+                padding: 0.75rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .interview-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">HC3 Portal</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="project-plan.html" class="nav-link">Project Plan</a>
+                <a href="website-audit.html" class="nav-link">Website Audit</a>
+                <a href="draft-website.html" class="nav-link">Draft Website</a>
+                <a href="statement-health-check.html" class="nav-link">Health Check</a>
+                <a href="interviews.html" class="nav-link active">Interviews</a>
+                <a href="deliverables.html" class="nav-link">Deliverables</a>
+                <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>HC3 Interviews</h1>
+        <p>Week 1-2 Deep Discovery: Stakeholder Interview Guide</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Download Section -->
+        <div class="download-section">
+            <h3>Complete Interview Guide</h3>
+            <p style="margin-bottom: 1rem;">Download the full detailed interview guide with context, methodology, and post-interview synthesis framework.</p>
+            <a href="../HC3-Detailed-Interview-Guide.md" class="download-button" download>Download Full Guide</a>
+        </div>
+
+        <!-- Interview Schedule -->
+        <div class="section">
+            <h2>Interview Schedule</h2>
+            <div class="interview-schedule">
+                <div class="interview-card confirmed">
+                    <div class="interview-status confirmed">Confirmed</div>
+                    <div class="interview-title">Track 1: Executive Perspective</div>
+                    <div class="interview-subtitle">Tori VanCura-Rutland, Chief Growth Officer</div>
+                    <div class="interview-meta">
+                        <strong>Duration:</strong> 30 minutes<br>
+                        <strong>Focus:</strong> Market positioning, strategic vision, competitive landscape<br>
+                        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/victoria-vancura-rutland/" target="_blank" rel="noopener">View Profile</a>
+                    </div>
+                </div>
+
+                <div class="interview-card confirmed">
+                    <div class="interview-status confirmed">Confirmed</div>
+                    <div class="interview-title">Track 2: Frontline Operations</div>
+                    <div class="interview-subtitle">Matt Engle, Project Manager I</div>
+                    <div class="interview-meta">
+                        <strong>Duration:</strong> 30 minutes<br>
+                        <strong>Focus:</strong> Sales messaging, client needs, operational challenges<br>
+                        <strong>Role:</strong> Frontline/Sales Operations Perspective
+                    </div>
+                </div>
+
+                <div class="interview-card confirmed">
+                    <div class="interview-status confirmed">Confirmed</div>
+                    <div class="interview-title">Track 3: Strategic/Contrarian</div>
+                    <div class="interview-subtitle">Jeremiah James, Chief Product Officer</div>
+                    <div class="interview-meta">
+                        <strong>Duration:</strong> 30 minutes<br>
+                        <strong>Focus:</strong> Strategic gaps, unvalidated assumptions, competitive threats<br>
+                        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jeremiah-james-87725030/" target="_blank" rel="noopener">View Profile</a>
+                    </div>
+                </div>
+
+                <div class="interview-card pending">
+                    <div class="interview-status pending">Pending</div>
+                    <div class="interview-title">Track 4: Customer Perspective</div>
+                    <div class="interview-subtitle">3-5 HC3 Customers (TBD)</div>
+                    <div class="interview-meta">
+                        <strong>Duration:</strong> 30 minutes each<br>
+                        <strong>Focus:</strong> Initial problems, value realization, improvement areas<br>
+                        <strong>Mix:</strong> New, tenured, and churned customers
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interview Questions by Track -->
+        <div class="collapsible">
+            <div class="collapsible-header">
+                <h3>Track 1: Executive Questions (Tori VanCura-Rutland)</h3>
+                <span class="collapsible-toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="question-section">
+                    <ul class="questions-list">
+                        <li>
+                            <div class="question-text">Market Reality Check</div>
+                            <div class="question-context">"You've been driving growth in a market where HC3 is known primarily as a 'statement company.' Can you walk me through a recent prospect conversation where you had to explain why HC3 is more than just statements? What language resonated, and where did you lose them?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Competitive Battlefield</div>
+                            <div class="question-context">"When you're going head-to-head with companies like Doxim or Messagepoint, what's the one thing you wish prospects understood about HC3 that they consistently miss? Give me a specific example of a deal you should have won but didn't - what was the deciding factor?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Growth Ceiling</div>
+                            <div class="question-context">"Looking at your current partnerships and BD pipeline, what's the biggest barrier preventing HC3 from growing faster? Is it market perception, product gaps, pricing, or something else? Where do you see the ceiling, and what would it take to break through it?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">AI Positioning Opportunity</div>
+                            <div class="question-context">"There's a lot of talk about AI backlash creating opportunities for 'efficiency without risk' solutions. From your conversations with FI prospects, how real is this anxiety, and how could HC3 capitalize on it without sounding like we're fear-mongering?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">18-Month Vision</div>
+                            <div class="question-context">"Kristan mentioned wanting HC3 to be seen as the company that 'solves what the core cannot.' If that positioning works perfectly, what does your typical sales conversation look like 18 months from now? How do prospects describe HC3 to their boards?"</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible">
+            <div class="collapsible-header">
+                <h3>Track 2: Frontline Questions (Matt Engle)</h3>
+                <span class="collapsible-toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="question-section">
+                    <ul class="questions-list">
+                        <li>
+                            <div class="question-text">Client Reality</div>
+                            <div class="question-context">"When you're managing projects for existing clients, what do they actually say HC3 does best? Not the marketing speak, but the real language they use when describing HC3 to their own teams or other FIs?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Implementation Pain Points</div>
+                            <div class="question-context">"What's the most common thing that goes wrong or gets complicated during HC3 implementations? Where do clients get frustrated, and how does that reflect on their perception of what HC3 is capable of?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Competitive Comparison</div>
+                            <div class="question-context">"You see how clients talk about HC3 versus other vendors they've worked with. When clients compare HC3 to competitors, what do they consistently say we do better or worse? Give me specific examples."</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Sales Support Gap</div>
+                            <div class="question-context">"When the sales team is trying to position HC3's capabilities, what information or materials do they need that don't exist yet? What questions do prospects ask that are hard to answer with current materials?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Client Success Stories</div>
+                            <div class="question-context">"Tell me about a client where HC3 truly solved a problem that went beyond statements - where we actually delivered on 'operational efficiency.' What was the situation, and how did the client describe the value afterward?"</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible">
+            <div class="collapsible-header">
+                <h3>Track 3: Strategic Questions (Jeremiah James)</h3>
+                <span class="collapsible-toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="question-section">
+                    <ul class="questions-list">
+                        <li>
+                            <div class="question-text">Product-Market Reality</div>
+                            <div class="question-context">"From a product perspective, where is HC3 actually ahead of the market, and where are we behind? What capabilities do we claim that aren't quite ready, and what capabilities do we have that we're underselling?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Acquisition Integration</div>
+                            <div class="question-context">"You came to HC3 through the Automail/DOC acquisition. What assumptions about the market or HC3's positioning turned out to be wrong once you got inside? What surprised you about how clients actually use HC3 versus how we think they use it?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Strategic Blind Spots</div>
+                            <div class="question-context">"If you had to identify the one strategic assumption that leadership is most attached to but might be wrong about, what would it be? Where do you see gaps between HC3's strategic vision and market reality?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Technology Risk</div>
+                            <div class="question-context">"With your security background, how do you see the AI/automation discussion playing out in financial services? Are FIs really backing away from AI solutions, or is that wishful thinking? What's the real technology anxiety you're hearing from clients?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Competitive Threats</div>
+                            <div class="question-context">"Looking at the roadmaps and market moves, who should HC3 be most worried about over the next 18 months? Not just the obvious competitors, but the companies that could redefine what 'customer communication management' means for FIs?"</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapsible">
+            <div class="collapsible-header">
+                <h3>Track 4: Customer Questions (TBD Customers)</h3>
+                <span class="collapsible-toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <div class="question-section">
+                    <h4>Customer Mix Needed:</h4>
+                    <ul style="margin-bottom: 2rem; padding-left: 1.5rem;">
+                        <li>2-3 established clients (2+ years)</li>
+                        <li>1-2 newer clients (6-18 months)</li>
+                        <li>1 churned/lost client (if available)</li>
+                        <li>Mix of community banks and credit unions</li>
+                        <li>Range of asset sizes ($200M - $5B)</li>
+                    </ul>
+
+                    <ul class="questions-list">
+                        <li>
+                            <div class="question-text">Original Problem</div>
+                            <div class="question-context">"Think back to when you first started looking for a solution like HC3. What was the specific problem or frustration that made you start shopping around? How did you describe the need internally?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Vendor Evaluation</div>
+                            <div class="question-context">"When you were comparing options, what made HC3 stand out? What were the other vendors saying that HC3 said differently? How did you justify the choice to your board/leadership?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Unexpected Value</div>
+                            <div class="question-context">"Since implementing HC3, what's been the most surprising benefit - something you didn't expect when you signed the contract? Conversely, what did you think would be a big benefit that turned out not to matter as much?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Current Description</div>
+                            <div class="question-context">"If another FI asked you to describe what HC3 does for you, how would you explain it? What words would you use? How is that different from how you would have described them before working with them?"</div>
+                        </li>
+                        <li>
+                            <div class="question-text">Improvement Areas</div>
+                            <div class="question-context">"Where does HC3 fall short of your expectations or needs? What do you wish they offered or did differently? If HC3 asked you what one thing they should improve, what would it be?"</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Context -->
+        <div class="section">
+            <h2>Project Context</h2>
+            <p><strong>Engagement:</strong> HC3 BrandThnk Breakthrough (8-Week Sprint)</p>
+            <p><strong>Timeline:</strong> March 20 - May 7, 2026</p>
+            <p><strong>Investment:</strong> $25,000</p>
+            <p><strong>Current Phase:</strong> Week 1-2 Deep Discovery</p>
+
+            <h3 style="margin-top: 1.5rem;">Core Positioning Challenge</h3>
+            <p style="margin-bottom: 1rem;">HC3 is currently known as a "statement company" (clear but limiting) and wants to expand perception around digital offerings while maintaining credibility with community banks and credit unions.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background: var(--brandthnk-off-white); padding: 1rem; border-radius: 8px;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Current Position:</h4>
+                    <p style="font-size: 0.8125rem;">"We make bank statements"</p>
+                </div>
+                <div style="background: var(--brandthnk-yellow); padding: 1rem; border-radius: 8px;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Desired Position:</h4>
+                    <p style="font-size: 0.8125rem;">"Operational efficiency with less risk" + "We solve what the core cannot"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Collapsible functionality
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const collapsible = header.parentElement;
+                collapsible.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
