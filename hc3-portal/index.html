@@ -545,92 +545,6 @@
       }
     }
 
-    /* Health Check Hero Section */
-    .health-check-hero {
-      background: linear-gradient(135deg, var(--brandthnk-yellow) 0%, #FFD54F 100%);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border: 2px solid var(--brandthnk-black);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-    }
-
-    .health-check-content {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .health-check-icon {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-yellow);
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .health-check-text {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .health-check-text h2 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
-      margin-bottom: 0.75rem;
-    }
-
-    .health-check-text p {
-      color: var(--brandthnk-black);
-      margin-bottom: 0.5rem;
-      line-height: 1.5;
-    }
-
-    .health-check-meta {
-      font-size: 0.875rem;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
-    .health-check-cta {
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .health-check-btn {
-      display: inline-block;
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.125rem;
-      transition: all 0.2s ease;
-      border: 2px solid var(--brandthnk-black);
-    }
-
-    .health-check-btn:hover {
-      background: var(--brandthnk-white);
-      color: var(--brandthnk-black);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .health-check-note {
-      margin-top: 0.5rem;
-      font-size: 0.75rem;
-      color: var(--brandthnk-black);
-      opacity: 0.7;
-      margin-bottom: 0;
-    }
 
     @media (max-width: 768px) {
       .container, .nav-container {
@@ -665,19 +579,6 @@
         margin-bottom: 1rem;
       }
 
-      .health-check-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .health-check-text {
-        min-width: auto;
-      }
-
-      .health-check-text h2 {
-        font-size: 1.5rem;
-      }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -709,25 +610,6 @@
   </header>
 
   <main class="container">
-    <!-- Featured Health Check CTA -->
-    <section class="health-check-hero">
-      <div class="health-check-content">
-        <div class="health-check-icon">
-          <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-        </div>
-        <div class="health-check-text">
-          <h2>HC3 Statement Health Check</h2>
-          <p>Take our 12-question diagnostic to assess your statement operation health and identify improvement opportunities. Results include personalized insights and strategic recommendations.</p>
-          <p class="health-check-meta">⏱️ 3-5 minutes • 📊 Instant results • 💡 Actionable insights</p>
-        </div>
-        <div class="health-check-cta">
-          <a href="statement-health-check.html" class="health-check-btn">Start Health Check</a>
-          <p class="health-check-note">Free diagnostic tool • No signup required</p>
-        </div>
-      </div>
-    </section>
 
     <div class="dashboard-grid">
       <section class="section contact-section">
