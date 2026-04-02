@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyst Relations Program - Digital Onboarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--black);
+    }
+
+    .header .subtitle {
+      font-size: 18px;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 25px 35px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    .section-content {
+      padding: 35px;
+    }
+
+    h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--black);
+    }
+
+    h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--black);
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+
+    .template-box {
+      background: var(--offwhite);
+      border-left: 4px solid var(--yellow);
+      padding: 25px;
+      margin: 20px 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .template-box h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--black);
+    }
+
+    .template-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--black);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .analyst-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 25px 0;
+    }
+
+    .analyst-card {
+      background: var(--offwhite);
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      padding: 20px;
+    }
+
+    .analyst-name {
+      font-family: 'Roboto Slab', serif;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .analyst-firm {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .analyst-focus {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    .timeline-item {
+      background: var(--white);
+      border-left: 3px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .timeline-month {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--black);
+    }
+
+    .timeline-activity {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 25px 0;
+    }
+
+    .metric-card {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .action-item {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
+      border: 1px solid var(--light-gray);
+    }
+
+    .action-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .action-description {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .header h1 {
+        font-size: 36px;
+      }
+
+      .analyst-grid,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Analyst Relations Program</h1>
+      <p class="subtitle">Digital Onboarding • Monthly Update Template & Strategic Framework</p>
+    </div>
+
+    <!-- PROGRAM OVERVIEW -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Program Overview</h2>
+        <p class="section-subtitle">Strategic framework for analyst relationship building</p>
+      </div>
+      <div class="section-content">
+        <h2>Objective</h2>
+        <p>Establish Digital Onboarding as a recognized thought leader in digital banking engagement and lifecycle orchestration through systematic analyst relationship building and strategic communication.</p>
+
+        <h2>Core Strategy</h2>
+        <p>Build credibility with key fintech and banking analysts through regular, value-driven updates that position DO's data-driven approach and executive expertise ahead of major announcements or market opportunities.</p>
+
+        <h2>Success Metrics</h2>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">12+</div>
+            <div class="metric-label">Target Analyst Relationships</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">75%</div>
+            <div class="metric-label">Response Rate Goal</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">6+</div>
+            <div class="metric-label">Briefings per Year</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3+</div>
+            <div class="metric-label">Research Mentions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARGET ANALYST LIST -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Target Analyst List</h2>
+        <p class="section-subtitle">Key relationships to build and maintain</p>
+      </div>
+      <div class="section-content">
+        <p>Strategic analyst targets across fintech, banking technology, and digital transformation practices:</p>
+
+        <div class="analyst-grid">
+          <div class="analyst-card">
+            <div class="analyst-name">Ron Shevlin</div>
+            <div class="analyst-firm">Cornerstone Advisors</div>
+            <div class="analyst-focus">Digital banking, fintech trends, bank technology strategy</div>
+          </div>
+          <div class="analyst-card">
+            <div class="analyst-name">Jim Marous</div>
+            <div class="analyst-firm">Digital Bank Report</div>
+            <div class="analyst-focus">Digital transformation, customer experience, banking innovation</div>
+          </div>
+          <div class="analyst-card">
+            <div class="analyst-name">Brett King</div>
+            <div class="analyst-firm">Moven</div>
+            <div class="analyst-focus">Banking innovation, digital engagement, fintech strategy</div>
+          </div>
+          <div class="analyst-card">
+            <div class="analyst-name">Alex Johnson</div>
+            <div class="analyst-firm">Fintech Takes</div>
+            <div class="analyst-focus">Fintech analysis, banking technology, industry trends</div>
+          </div>
+          <div class="analyst-card">
+            <div class="analyst-name">Jason Henrichs</div>
+            <div class="analyst-firm">Alloy Labs</div>
+            <div class="analyst-focus">Community banking innovation, fintech partnerships</div>
+          </div>
+          <div class="analyst-card">
+            <div class="analyst-name">Peter Wannemacher</div>
+            <div class="analyst-firm">Forrester Research</div>
+            <div class="analyst-focus">Digital banking platforms, customer experience technology</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTHLY UPDATE TEMPLATE -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Monthly Update Template</h2>
+        <p class="section-subtitle">Structured communication framework for analyst outreach</p>
+      </div>
+      <div class="section-content">
+        <p>Use this template for monthly analyst updates, customizing content based on recipient focus areas and recent interactions:</p>
+
+        <div class="template-box">
+          <h4>Subject Line Formula</h4>
+          <p class="template-text">"Digital Onboarding Update: [Key Development/Topic] + Q&A Opportunity"</p>
+          <p class="template-text">Examples: "Digital Onboarding Update: Channel Orchestration Insights + Q&A" or "Digital Onboarding Update: New Partnership Momentum + Executive Access"</p>
+        </div>
+
+        <div class="template-box">
+          <h4>Email Template Structure</h4>
+          <p class="template-text"><strong>Opening (Relationship Building):</strong><br>
+          "Hi [Name], hope you're well. Wanted to share some updates from Digital Onboarding that align with your recent research on [specific analyst focus area]."</p>
+
+          <p class="template-text"><strong>Business Updates (2-3 bullet points):</strong><br>
+          • Partnership/integration updates (without specifics if embargoed)<br>
+          • Customer traction signals or use case evolution<br>
+          • Product development or capability expansion</p>
+
+          <p class="template-text"><strong>Industry Insight (1 substantive point):</strong><br>
+          "From our client conversations, we're seeing [specific trend/pattern] around [relevant topic]. This aligns with your thesis on [analyst's recent content]."</p>
+
+          <p class="template-text"><strong>Thought Leadership Signal:</strong><br>
+          Brief mention of executive content, speaking, or expertise areas (Nate's orchestration insights, data-driven engagement approaches)</p>
+
+          <p class="template-text"><strong>Soft CTA:</strong><br>
+          "Happy to schedule a brief call if you'd like to dig into any of these trends or have questions about our approach to [relevant topic]."</p>
+
+          <p class="template-text"><strong>Professional Close:</strong><br>
+          "Best regards,<br>[Sender Name]<br>[Title], Digital Onboarding<br>[Direct contact info]"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGAGEMENT CALENDAR -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Annual Engagement Calendar</h2>
+        <p class="section-subtitle">Strategic touchpoint planning across the year</p>
+      </div>
+      <div class="section-content">
+        <p>Structured calendar approach to maintain consistent analyst relationships while aligning with business milestones:</p>
+
+        <div class="timeline-item">
+          <div class="timeline-month">January</div>
+          <div class="timeline-activity">Year-ahead briefings, industry prediction sharing, executive availability confirmation</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">February</div>
+          <div class="timeline-activity">Q4 results context, partnership pipeline updates, thought leadership content seeding</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">March</div>
+          <div class="timeline-activity">Conference season prep, speaking opportunity coordination, analyst event attendance</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">April</div>
+          <div class="timeline-activity">Q1 momentum sharing, customer case study development, research participation offers</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">May</div>
+          <div class="timeline-activity">Mid-year strategic updates, analyst day planning, competitive positioning refinement</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">June</div>
+          <div class="timeline-activity">Summer conference circuit preparation, analyst advisory participation</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">July</div>
+          <div class="timeline-activity">H1 results preview, strategic initiative updates, executive accessibility</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">August</div>
+          <div class="timeline-activity">Fall planning coordination, analyst research collaboration opportunities</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">September</div>
+          <div class="timeline-activity">Q3 momentum communication, fall conference speaking coordination</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">October</div>
+          <div class="timeline-activity">Year-end preview sharing, relationship maintenance, advisory opportunities</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">November</div>
+          <div class="timeline-activity">Q4 business updates, next year strategic preview, analyst holiday coordination</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-month">December</div>
+          <div class="timeline-activity">Year-end gratitude, Q1 planning coordination, relationship maintenance</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTION CHECKLIST -->
+    <div class="section">
+      <div class="section-header">
+        <h2 class="section-title">Monthly Execution Checklist</h2>
+        <p class="section-subtitle">Systematic approach to analyst relationship management</p>
+      </div>
+      <div class="section-content">
+        <h2>Pre-Update Preparation</h2>
+        <div class="action-item">
+          <div class="action-title">Review Analyst Recent Content</div>
+          <div class="action-description">Check target analysts' recent reports, social posts, and commentary to identify connection points and relevant themes for personalization.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Compile Business Updates</div>
+          <div class="action-description">Gather partnership news, customer traction signals, product developments, and executive content/speaking activities from the past month.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Identify Industry Insights</div>
+          <div class="action-description">Extract 1-2 substantive trends or patterns from client conversations that provide unique market perspective to share with analysts.</div>
+        </div>
+
+        <h2>Update Execution</h2>
+        <div class="action-item">
+          <div class="action-title">Personalize Each Email</div>
+          <div class="action-description">Customize the template for each analyst based on their focus areas, recent research, and previous interactions with Digital Onboarding.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Time Distribution Strategically</div>
+          <div class="action-description">Send updates on Tuesday-Thursday, mid-morning to maximize open rates. Avoid Mondays, Fridays, and major industry event days.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Track Responses and Engagement</div>
+          <div class="action-description">Log analyst responses, meeting requests, and follow-up opportunities in CRM for relationship building tracking and future reference.</div>
+        </div>
+
+        <h2>Follow-Up Management</h2>
+        <div class="action-item">
+          <div class="action-title">Schedule Requested Calls</div>
+          <div class="action-description">Promptly schedule any analyst calls or briefings requested, involving appropriate DO executives based on discussion topics.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Provide Additional Resources</div>
+          <div class="action-description">Share relevant case studies, executive interviews, or strategic documents when analysts express interest in deeper information.</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Update Relationship Database</div>
+          <div class="action-description">Record interactions, preferences, and future opportunity notes for each analyst to inform subsequent outreach and relationship building.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
