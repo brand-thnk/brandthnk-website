@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library | BrandThnk</title>
+<meta name="description" content="Sharpen your thinking. Essential tools for fintech and bank brand strategy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .mobile-menu-toggle.active span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 160px 60px 120px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    color: var(--black);
+    letter-spacing: -1px;
+  }
+
+  .page-description {
+    font-size: 20px;
+    color: var(--gray);
+    max-width: 640px;
+    margin: 0 auto;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .section {
+    margin-bottom: 120px;
+  }
+
+  .section:last-child { margin-bottom: 0; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--black);
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .section-count {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .content-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--light-gray);
+    gap: 40px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .content-item:first-child {
+    border-top: 0;
+  }
+
+  .content-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .content-type {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: inline-block;
+  }
+
+  .content-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--black);
+    transition: color 0.2s;
+  }
+
+  .content-title a {
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .content-title a:hover {
+    color: var(--gray);
+  }
+
+  .content-description {
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 620px;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .content-download {
+    font-size: 13px;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    margin-top: 12px;
+    font-weight: 500;
+    transition: gap 0.2s;
+  }
+
+  .content-download:hover { gap: 14px; }
+  .content-download::after { content: '→'; }
+
+  .content-item.featured {
+    background: var(--yellow);
+    padding: 40px 36px;
+    margin-bottom: 0;
+    border-bottom: none;
+    border-top: none;
+  }
+
+  .content-item.featured .content-type { color: rgba(0,0,0,0.5); }
+  .content-item.featured .content-description { color: rgba(0,0,0,0.7); }
+  .content-item.featured .content-download {
+    border-top-color: rgba(0,0,0,0.15);
+  }
+
+  .featured-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--yellow);
+    padding: 4px 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-cta {
+    background: var(--black);
+    border-radius: 0;
+    padding: 80px 60px;
+    text-align: center;
+    margin-top: 140px;
+  }
+
+  .newsletter-cta h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 36px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.3;
+    line-height: 1.15;
+    letter-spacing: -1px;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--white); color: var(--black); }
+
+  .btn-black {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-black:hover { background: var(--white); color: var(--black); }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 40px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-eyebrow { animation: fadeUp 0.6s ease both; }
+  .page-title { animation: fadeUp 0.6s 0.1s ease both; }
+  .page-description { animation: fadeUp 0.6s 0.2s ease both; }
+
+  .section-title { animation: fadeUp 0.6s ease both; }
+  .section-description { animation: fadeUp 0.6s 0.1s ease both; }
+
+  .content-card {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .content-card:nth-child(1) { animation-delay: 0.1s; }
+  .content-card:nth-child(2) { animation-delay: 0.2s; }
+  .content-card:nth-child(3) { animation-delay: 0.3s; }
+  .content-card:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Briefing Signup */
+  .briefing-signup {
+    background: var(--black);
+    padding: 60px 40px;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .briefing-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .briefing-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .briefing-description {
+    color: var(--offwhite);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-briefing {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 32px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-briefing:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  @media (max-width: 900px) {
+    nav {
+      padding: 18px 24px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-menu-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      flex-direction: column;
+      padding: 20px 24px;
+      gap: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active { display: flex; }
+
+    .nav-links li { width: 100%; }
+
+    .nav-links a {
+      display: block;
+      padding: 12px 0;
+      font-size: 16px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-links a:last-child { border-bottom: none; }
+
+    .container { padding: 140px 24px 80px; }
+    .content-item {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 24px 0;
+    }
+    .newsletter-cta { padding: 60px 24px; }
+
+    .page-header { margin-bottom: 80px; }
+    .section { margin-bottom: 80px; }
+    .section-header { margin-bottom: 40px; }
+
+    .briefing-signup {
+      padding: 50px 24px;
+      margin-top: 60px;
+    }
+
+    .briefing-title {
+      font-size: 24px;
+    }
+
+    .briefing-description {
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/library/" class="active">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="page-header">
+    <p class="page-eyebrow">Our Toolkit</p>
+    <h1 class="page-title">Sharpen your thinking.</h1>
+  </div>
+
+  <div class="content-list">
+    <div class="content-item featured">
+      <div class="content-item-body">
+        <span class="featured-label">Signature Framework</span>
+        <span class="content-type">Framework</span>
+        <h3 class="content-title"><a href="/library/box-edge.html">Box-Edge Framework</a></h3>
+        <p class="content-description">A two-part positioning model that clarifies your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge). The starting point for most BrandThnk engagements.</p>
+        <a href="/library/box-edge.html" class="content-download">Read</a>
+      </div>
+    </div>
+
+    <div class="content-item">
+      <div class="content-item-body">
+        <span class="content-type">Framework</span>
+        <h3 class="content-title"><a href="/library/reframe-vs-rebrand.html">Reframe vs. Rebrand</a></h3>
+        <p class="content-description">A diagnostic tool that prevents clients from investing in visual identity when their real problem is story clarity. Use it before you approve any brand budget.</p>
+        <a href="/library/reframe-vs-rebrand.html" class="content-download">Read</a>
+      </div>
+    </div>
+
+    <div class="content-item">
+      <div class="content-item-body">
+        <span class="content-type">Diagnostic</span>
+        <h3 class="content-title"><a href="/assets/BrandThnk-Signal-Test.pdf" target="_blank">The Signal Test</a></h3>
+        <p class="content-description">Five quick tests that tell you whether your brand is generating signal or noise. A diagnostic for busy brands that haven't broken through yet.</p>
+        <a href="/assets/BrandThnk-Signal-Test.pdf" download class="content-download">Download PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="briefing-signup">
+    <div class="briefing-content">
+      <div class="briefing-text">
+        <h2 class="briefing-title">The BrandThnk Briefing</h2>
+        <p class="briefing-description">Join 2,000+ bank and fintech leaders who get sharp thinking on brand, positioning, and growth.</p>
+      </div>
+      <a href="https://brandthnk-briefing-from-allison-netzer.beehiiv.com/" class="btn-briefing">Subscribe to the Briefing</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileMenuToggle && navLinks) {
+    mobileMenuToggle.addEventListener('click', function() {
+      // Toggle active class on both button and nav links
+      mobileMenuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking nav links
+    navLinks.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav')) {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>

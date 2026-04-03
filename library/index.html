@@ -3,599 +3,1600 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library | BrandThnk</title>
-<meta name="description" content="Sharpen your thinking. Essential tools for fintech and bank brand strategy.">
+<title>Brand Diagnostic Toolkit | BrandThnk</title>
+<meta name="description" content="The tools we use to diagnose, challenge, and confirm brand direction. Work through them. Walk away with a diagnosis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #000000;
-    --white: #FFFFFF;
-    --yellow: #FFEB3B;
-    --offwhite: #F5F5F5;
-    --gray: #666666;
-    --light-gray: #CCCCCC;
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --yellow: #FFEB3B;
+  --offwhite: #F5F5F5;
+  --gray: #666666;
+  --light-gray: #E0E0E0;
+  --font-heading: 'Roboto Slab', serif;
+  --font-body: 'Roboto Mono', monospace;
+  --sidebar-w: 280px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+::selection { background: var(--yellow); color: var(--black); }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOP NAV ── */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--black);
+}
+
+.nav-wordmark {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 22px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover { background: var(--yellow); color: var(--black); }
+
+/* ── MOBILE TOGGLE ── */
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--light-gray);
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── LAYOUT ── */
+.app {
+  display: flex;
+  margin-top: 57px;
+  min-height: calc(100vh - 57px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 57px;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--offwhite);
+  border-right: 1px solid var(--light-gray);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 32px 24px 24px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.sidebar-header h2 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.sidebar-header p {
+  font-size: 12px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 24px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item:hover { background: rgba(0,0,0,0.03); }
+
+.nav-item.active {
+  background: var(--white);
+  border-left-color: var(--yellow);
+}
+
+.nav-item.completed .nav-step {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.nav-step {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.nav-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-item-subtitle {
+  font-size: 11px;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+.sidebar-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn-download-all {
+  width: 100%;
+  padding: 14px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-download-all:hover { background: var(--yellow); color: var(--black); }
+
+.btn-download-all:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-download-all:disabled:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.download-note {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: calc(100vh - 57px);
+}
+
+.panel {
+  display: none;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 48px 100px;
+}
+
+.panel.active { display: block; }
+
+.panel-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.panel-lead {
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+/* ── SHARED COMPONENTS ── */
+h2.section-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 56px;
+  margin-bottom: 20px;
+}
+
+h2.section-title:first-of-type { margin-top: 0; }
+
+.question-block {
+  margin-bottom: 32px;
+  padding: 28px;
+  background: var(--offwhite);
+  border-left: 3px solid var(--light-gray);
+  transition: border-color 0.2s;
+}
+
+.question-block.answered { border-left-color: var(--yellow); }
+
+.question-text {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.question-context {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-option {
+  padding: 10px 24px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-option:hover { background: var(--offwhite); }
+
+.btn-option.selected {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-option.selected-yes {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+/* Score Display */
+.score-display {
+  margin: 40px 0;
+  padding: 32px;
+  background: var(--black);
+  color: var(--white);
+}
+
+.score-number {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.score-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.score-verdict {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Input fields */
+.text-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid var(--light-gray);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+  background: var(--white);
+  transition: border-color 0.2s;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+.text-input::placeholder { color: #BBB; }
+
+.input-hint {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+.input-counter {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-counter .good { color: #2E7D32; }
+.input-counter .warn { color: #E65100; }
+
+/* Formula cards */
+.formula-card {
+  margin: 32px 0;
+  padding: 32px;
+  border: 2px solid var(--black);
+}
+
+.formula-card.box-card { background: var(--yellow); }
+.formula-card.edge-card { background: var(--white); }
+
+.formula-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.formula-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.formula-template {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(0,0,0,0.04);
+  border-left: 3px solid var(--black);
+}
+
+.edge-card .formula-template { background: var(--offwhite); }
+
+/* Scoring table */
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+}
+
+.score-table th {
+  background: var(--black);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.score-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.score-table td:first-child { font-weight: 700; }
+
+.score-table .total-row {
+  background: var(--yellow);
+  font-weight: 700;
+}
+
+.score-input {
+  width: 56px;
+  padding: 8px;
+  border: 2px solid var(--light-gray);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.score-input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+/* Checklist */
+.checklist {
+  margin: 24px 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--offwhite);
+  cursor: pointer;
+}
+
+.checklist-item:last-child { border-bottom: none; }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.15s;
+  font-size: 14px;
+}
+
+.checklist-item.checked .check-box {
+  background: var(--yellow);
+}
+
+.checklist-label {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Navigation buttons */
+.panel-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn-nav {
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-next {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-next:hover { background: var(--yellow); color: var(--black); }
+
+.btn-prev {
+  background: none;
+  color: var(--gray);
+  border: 1px solid var(--light-gray);
+}
+
+.btn-prev:hover { color: var(--black); border-color: var(--black); }
+
+.btn-download-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--offwhite);
+  border: 1px solid var(--light-gray);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.btn-download-tool:hover {
+  background: var(--yellow);
+  border-color: var(--black);
+}
+
+/* ── INTRO PANEL ── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 40px 0;
+}
+
+.intro-tool {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--light-gray);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.intro-tool:hover { padding-left: 12px; }
+
+.intro-tool:last-child { border-bottom: none; }
+
+.intro-tool-step {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.intro-tool-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.intro-tool-desc {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ── RESULTS PANEL ── */
+.result-section {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.result-section:last-of-type { border-bottom: none; }
+
+.result-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.result-tool-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.result-score-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--yellow);
+  font-weight: 700;
+}
+
+.result-detail {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.result-input-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.result-input-value {
+  font-size: 14px;
+  padding: 12px 16px;
+  background: var(--offwhite);
+  border-left: 3px solid var(--yellow);
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+}
+
+.empty-state {
+  color: var(--gray);
+  font-style: italic;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .sidebar-toggle { display: block; }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .sidebar.open { transform: translateX(0); }
 
-  html { scroll-behavior: smooth; }
+  .main { margin-left: 0; }
 
-  body {
-    font-family: 'Roboto Mono', monospace;
-    background: var(--white);
-    color: var(--black);
-    font-size: 17px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  .panel { padding: 40px 24px 80px; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--light-gray);
-  }
+  .top-nav { padding: 14px 20px; }
 
-  .nav-logo {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--black);
-    text-decoration: none;
-  }
+  .nav-label { display: none; }
 
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
+  .btn-group { flex-direction: column; }
 
-  .nav-links a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--gray);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .score-table td, .score-table th { padding: 10px 12px; font-size: 13px; }
+}
 
-  .nav-links a:hover, .nav-links a.active { color: var(--black); }
-
-  .nav-cta {
-    background: var(--black);
-    color: var(--white) !important;
-    padding: 10px 22px;
-    border-radius: 0;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
-
-  /* Mobile Menu Toggle */
-  .mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .mobile-menu-toggle span {
-    width: 22px;
-    height: 2px;
-    background: var(--black);
-    transition: all 0.3s ease;
-    transform-origin: center;
-  }
-
-  .mobile-menu-toggle.active span:first-child {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-toggle.active span:last-child {
-    transform: rotate(-45deg) translate(7px, -6px);
-  }
-
-  /* MAIN */
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 160px 60px 120px;
-  }
-
-  .page-header {
-    text-align: center;
-    margin-bottom: 100px;
-  }
-
-  .page-eyebrow {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 24px;
-  }
-
-  .page-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(48px, 6vw, 72px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 32px;
-    color: var(--black);
-    letter-spacing: -1px;
-  }
-
-  .page-description {
-    font-size: 20px;
-    color: var(--gray);
-    max-width: 640px;
-    margin: 0 auto;
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  .section {
-    margin-bottom: 120px;
-  }
-
-  .section:last-child { margin-bottom: 0; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 24px;
-    margin-bottom: 48px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--black);
-  }
-
-  .section-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 3vw, 36px);
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-  }
-
-  .section-count {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  .content-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .content-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--light-gray);
-    gap: 40px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s;
-    position: relative;
-  }
-
-  .content-item:first-child {
-    border-top: 0;
-  }
-
-  .content-item-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .content-type {
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gray);
-    display: inline-block;
-  }
-
-  .content-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(20px, 2.5vw, 26px);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--black);
-    transition: color 0.2s;
-  }
-
-  .content-title a {
-    color: var(--black);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .content-title a:hover {
-    color: var(--gray);
-  }
-
-  .content-description {
-    font-size: 15px;
-    color: var(--gray);
-    max-width: 620px;
-    line-height: 1.6;
-    margin-top: 4px;
-  }
-
-  .content-download {
-    font-size: 13px;
-    color: var(--black);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    margin-top: 12px;
-    font-weight: 500;
-    transition: gap 0.2s;
-  }
-
-  .content-download:hover { gap: 14px; }
-  .content-download::after { content: '→'; }
-
-  .content-item.featured {
-    background: var(--yellow);
-    padding: 40px 36px;
-    margin-bottom: 0;
-    border-bottom: none;
-    border-top: none;
-  }
-
-  .content-item.featured .content-type { color: rgba(0,0,0,0.5); }
-  .content-item.featured .content-description { color: rgba(0,0,0,0.7); }
-  .content-item.featured .content-download {
-    border-top-color: rgba(0,0,0,0.15);
-  }
-
-  .featured-label {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: var(--black);
-    color: var(--yellow);
-    padding: 4px 10px;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-
-  .newsletter-cta {
-    background: var(--black);
-    border-radius: 0;
-    padding: 80px 60px;
-    text-align: center;
-    margin-top: 140px;
-  }
-
-  .newsletter-cta h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 36px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.3;
-    line-height: 1.15;
-    letter-spacing: -1px;
-  }
-
-  .btn-primary {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 15px 32px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-primary:hover { background: var(--white); color: var(--black); }
-
-  .btn-black {
-    background: var(--black);
-    color: var(--white);
-    padding: 16px 40px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-black:hover { background: var(--white); color: var(--black); }
-
-  .btn-yellow {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 16px 40px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-yellow:hover { background: var(--white); color: var(--black); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .page-eyebrow { animation: fadeUp 0.6s ease both; }
-  .page-title { animation: fadeUp 0.6s 0.1s ease both; }
-  .page-description { animation: fadeUp 0.6s 0.2s ease both; }
-
-  .section-title { animation: fadeUp 0.6s ease both; }
-  .section-description { animation: fadeUp 0.6s 0.1s ease both; }
-
-  .content-card {
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .content-card:nth-child(1) { animation-delay: 0.1s; }
-  .content-card:nth-child(2) { animation-delay: 0.2s; }
-  .content-card:nth-child(3) { animation-delay: 0.3s; }
-  .content-card:nth-child(4) { animation-delay: 0.4s; }
-
-  /* Briefing Signup */
-  .briefing-signup {
-    background: var(--black);
-    padding: 60px 40px;
-    text-align: center;
-    margin-top: 80px;
-  }
-
-  .briefing-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .briefing-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
-  .briefing-description {
-    color: var(--offwhite);
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 32px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .btn-briefing {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 16px 32px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-briefing:hover {
-    background: var(--white);
-    color: var(--black);
-  }
-
-  @media (max-width: 900px) {
-    nav {
-      padding: 18px 24px;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mobile-menu-toggle { display: flex; }
-
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      border-top: 1px solid var(--light-gray);
-      flex-direction: column;
-      padding: 20px 24px;
-      gap: 16px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-links.active { display: flex; }
-
-    .nav-links li { width: 100%; }
-
-    .nav-links a {
-      display: block;
-      padding: 12px 0;
-      font-size: 16px;
-      border-bottom: 1px solid var(--light-gray);
-    }
-
-    .nav-links a:last-child { border-bottom: none; }
-
-    .container { padding: 140px 24px 80px; }
-    .content-item {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding: 24px 0;
-    }
-    .newsletter-cta { padding: 60px 24px; }
-
-    .page-header { margin-bottom: 80px; }
-    .section { margin-bottom: 80px; }
-    .section-header { margin-bottom: 40px; }
-
-    .briefing-signup {
-      padding: 50px 24px;
-      margin-top: 60px;
-    }
-
-    .briefing-title {
-      font-size: 24px;
-    }
-
-    .briefing-description {
-      font-size: 15px;
-    }
-  }
+@media (max-width: 600px) {
+  .panel-title { font-size: 28px; }
+  .formula-card { padding: 24px; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">BrandThnk</a>
-  <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="/#offers">Explore Services</a></li>
-    <li><a href="/library/" class="active">Use the Tools</a></li>
-    <li><a href="/book/">Read the Book</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
-  </ul>
-</nav>
-
-<!-- MAIN -->
-<div class="container">
-  <div class="page-header">
-    <p class="page-eyebrow">Our Toolkit</p>
-    <h1 class="page-title">Sharpen your thinking.</h1>
+<!-- TOP NAV -->
+<header class="top-nav">
+  <a href="/" class="nav-wordmark">BrandThnk</a>
+  <div class="nav-right">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">Menu</button>
+    <span class="nav-label">Brand Diagnostic Toolkit</span>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta" target="_blank">Book a Call</a>
   </div>
+</header>
 
-  <div class="content-list">
-    <div class="content-item featured">
-      <div class="content-item-body">
-        <span class="featured-label">Signature Framework</span>
-        <span class="content-type">Framework</span>
-        <h3 class="content-title"><a href="/library/box-edge.html">Box-Edge Framework</a></h3>
-        <p class="content-description">A two-part positioning model that clarifies your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge). The starting point for most BrandThnk engagements.</p>
-        <a href="/library/box-edge.html" class="content-download">Read</a>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Diagnostic Toolkit</h2>
+      <p>The tools we use to diagnose, challenge, and confirm direction.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-panel="intro" onclick="showPanel('intro')">
+        <div class="nav-step">i</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Start Here</div>
+          <div class="nav-item-subtitle">How this works</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-panel="signal" onclick="showPanel('signal')">
+        <div class="nav-step">1</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">The Signal Test</div>
+          <div class="nav-item-subtitle">Signal or noise?</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-panel="reframe" onclick="showPanel('reframe')">
+        <div class="nav-step">2</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Reframe vs. Rebrand</div>
+          <div class="nav-item-subtitle">What actually needs fixing?</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-panel="boxedge" onclick="showPanel('boxedge')">
+        <div class="nav-step">3</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Box-Edge Workshop</div>
+          <div class="nav-item-subtitle">Write your positioning</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-panel="results" onclick="showPanel('results')">
+        <div class="nav-step">R</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Your Results</div>
+          <div class="nav-item-subtitle">Combined diagnosis</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-download-all" id="downloadAll" onclick="downloadCombined()">
+        Download Full Report
+      </button>
+      <div class="download-note">Complete at least one tool</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- ════ INTRO ════ -->
+    <div class="panel active" id="panel-intro">
+      <p class="panel-eyebrow">Brand Diagnostic Toolkit</p>
+      <h1 class="panel-title">Three tools. One diagnosis.</h1>
+      <p class="panel-lead">These are the same tools we use at BrandThnk to diagnose, challenge, and confirm brand direction with clients. Work through them at your own pace. Download your inputs and outcomes when you're done.</p>
+
+      <div class="intro-grid">
+        <div class="intro-tool" onclick="showPanel('signal')">
+          <div class="intro-tool-step">Tool 01</div>
+          <div class="intro-tool-title">The Signal Test</div>
+          <div class="intro-tool-desc">Five questions that tell you whether your brand is generating signal or noise. Takes 2 minutes. Produces a clear read on where the breakdown is happening.</div>
+        </div>
+        <div class="intro-tool" onclick="showPanel('reframe')">
+          <div class="intro-tool-step">Tool 02</div>
+          <div class="intro-tool-title">Reframe vs. Rebrand</div>
+          <div class="intro-tool-desc">Most brands that think they need a rebrand actually need a reframe. Score four dimensions, test your message, and find out which path is right.</div>
+        </div>
+        <div class="intro-tool" onclick="showPanel('boxedge')">
+          <div class="intro-tool-step">Tool 03</div>
+          <div class="intro-tool-title">Box-Edge Workshop</div>
+          <div class="intro-tool-desc">Write your positioning using the framework that starts most BrandThnk engagements. Define your category (Box) and your difference (Edge).</div>
+        </div>
+      </div>
+
+      <div class="panel-nav" style="justify-content: flex-end;">
+        <button class="btn-nav btn-next" onclick="showPanel('signal')">Start the Signal Test</button>
       </div>
     </div>
 
-    <div class="content-item">
-      <div class="content-item-body">
-        <span class="content-type">Framework</span>
-        <h3 class="content-title"><a href="/library/reframe-vs-rebrand.html">Reframe vs. Rebrand</a></h3>
-        <p class="content-description">A diagnostic tool that prevents clients from investing in visual identity when their real problem is story clarity. Use it before you approve any brand budget.</p>
-        <a href="/library/reframe-vs-rebrand.html" class="content-download">Read</a>
+    <!-- ════ TOOL 1: SIGNAL TEST ════ -->
+    <div class="panel" id="panel-signal">
+      <p class="panel-eyebrow">Tool 01 of 03</p>
+      <h1 class="panel-title">The Signal Test</h1>
+      <p class="panel-lead">Your brand is either generating signal or noise. Signal creates pull. Noise creates activity that looks like progress but doesn't convert. Five questions. Honest answers only.</p>
+
+      <div id="signal-questions">
+        <div class="question-block" data-q="s1">
+          <div class="question-text">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</div>
+          <div class="question-context">This tests distinctiveness. If your content, ads, and collateral are interchangeable with a competitor's, your brand isn't doing its job.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s1','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s1','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s1','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s2">
+          <div class="question-text">Can your sales team explain what makes you different without reading from a deck or a script?</div>
+          <div class="question-context">If the brand lives in a PDF but not in the conversation, you have a message that doesn't travel. The real test is the hallway explanation.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s2','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s2','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s2','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s3">
+          <div class="question-text">Do prospects compare you to the right competitors?</div>
+          <div class="question-context">If your market puts you in the wrong category or compares you to companies you don't consider competitors, your Box is broken. They can't evaluate your Edge until the Box is clear.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s3','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s3','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s3','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s4">
+          <div class="question-text">Does your marketing generate inbound conversations, not just impressions?</div>
+          <div class="question-context">Impressions are activity. Conversations are signal. If your marketing is generating views but not qualified interest, the brand isn't converting attention to pull.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s4','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s4','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s4','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s5">
+          <div class="question-text">If five employees independently described what your company does, would you get the same answer?</div>
+          <div class="question-context">Internal alignment is the canary. If the leadership team can't agree on what the company stands for, no amount of external messaging will land consistently.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s5','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s5','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s5','unsure',this)">Not sure</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-display" id="signal-result" style="display:none;">
+        <div class="score-number" id="signal-score">0/5</div>
+        <div class="score-label">Signal Strength</div>
+        <div class="score-verdict" id="signal-verdict"></div>
+      </div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('intro')">Back</button>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <button class="btn-download-tool" onclick="downloadTool('signal')">Download</button>
+          <button class="btn-nav btn-next" onclick="showPanel('reframe')">Next: Reframe vs. Rebrand</button>
+        </div>
       </div>
     </div>
 
-    <div class="content-item">
-      <div class="content-item-body">
-        <span class="content-type">Diagnostic</span>
-        <h3 class="content-title"><a href="/assets/BrandThnk-Signal-Test.pdf" target="_blank">The Signal Test</a></h3>
-        <p class="content-description">Five quick tests that tell you whether your brand is generating signal or noise. A diagnostic for busy brands that haven't broken through yet.</p>
-        <a href="/assets/BrandThnk-Signal-Test.pdf" download class="content-download">Download PDF</a>
-      </div>
-    </div>
-  </div>
+    <!-- ════ TOOL 2: REFRAME VS. REBRAND ════ -->
+    <div class="panel" id="panel-reframe">
+      <p class="panel-eyebrow">Tool 02 of 03</p>
+      <h1 class="panel-title">Reframe vs. Rebrand</h1>
+      <p class="panel-lead">Most financial brands that think they need a rebrand actually need a reframe. A rebrand changes the package. A reframe changes the story. Score your brand across four dimensions to find out which you actually need.</p>
 
-  <div class="briefing-signup">
-    <div class="briefing-content">
-      <div class="briefing-text">
-        <h2 class="briefing-title">The BrandThnk Briefing</h2>
-        <p class="briefing-description">Join 2,000+ bank and fintech leaders who get sharp thinking on brand, positioning, and growth.</p>
+      <h2 class="section-title">Brand Diagnostic Score</h2>
+      <p>Rate each area 1 to 5. Be honest, not aspirational.</p>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>The real question</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Market Position</td>
+            <td>Do you own a clear, defensible position?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rf-position" oninput="updateReframeScore()"></td>
+          </tr>
+          <tr>
+            <td>Brand Promise</td>
+            <td>Can you say what makes you different in one sentence?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rf-promise" oninput="updateReframeScore()"></td>
+          </tr>
+          <tr>
+            <td>Message Clarity</td>
+            <td>Do customers understand what you stand for?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rf-clarity" oninput="updateReframeScore()"></td>
+          </tr>
+          <tr>
+            <td>Visual Identity</td>
+            <td>Does your look reflect who you are today?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rf-visual" oninput="updateReframeScore()"></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2"><strong>Total</strong></td>
+            <td><strong id="rf-total">--</strong> / 20</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="score-display" id="reframe-result" style="display:none;">
+        <div class="score-number" id="reframe-score-display">0</div>
+        <div class="score-label" id="reframe-rec-label">Recommendation</div>
+        <div class="score-verdict" id="reframe-verdict"></div>
       </div>
-      <a href="https://brandthnk-briefing-from-allison-netzer.beehiiv.com/" class="btn-briefing">Subscribe to the Briefing</a>
+
+      <h2 class="section-title">The One-Breath Test</h2>
+      <p>Can you explain your brand difference in one breath?</p>
+
+      <div style="margin: 24px 0;">
+        <textarea class="text-input" rows="3" id="breath-input"
+          placeholder="We help [target audience] [achieve what outcome] by [how you're different]..."
+          oninput="updateBreathCount()"></textarea>
+        <div class="input-counter">
+          <span id="breath-count">0 words</span>
+          <span id="breath-feedback"></span>
+        </div>
+        <div class="input-hint">If it takes more than 25 words, your message needs work. If you can't fill the sentence, your positioning needs work.</div>
+      </div>
+
+      <h2 class="section-title">Brand Proof Checklist</h2>
+      <p>Check each statement that's true for your brand today. Not aspirational. Today.</p>
+
+      <div class="checklist" id="proof-checklist">
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="checklist-label">New customers mention our specific difference when they choose us</div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="checklist-label">Our frontline staff can explain our brand promise without training</div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="checklist-label">We turn down opportunities that don't fit our brand</div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="checklist-label">Our marketing drives leads, not just awareness</div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="checklist-label">We can name three things we deliberately don't do</div>
+        </div>
+      </div>
+
+      <div id="proof-result" style="display:none; margin-top:20px; padding:16px; background:var(--offwhite); border-left:3px solid var(--yellow);">
+        <span id="proof-verdict"></span>
+      </div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('signal')">Back</button>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <button class="btn-download-tool" onclick="downloadTool('reframe')">Download</button>
+          <button class="btn-nav btn-next" onclick="showPanel('boxedge')">Next: Box-Edge Workshop</button>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <!-- ════ TOOL 3: BOX-EDGE WORKSHOP ════ -->
+    <div class="panel" id="panel-boxedge">
+      <p class="panel-eyebrow">Tool 03 of 03</p>
+      <h1 class="panel-title">Box-Edge Workshop</h1>
+      <p class="panel-lead">If they can't box you, they won't buy you. Your brain is a pattern-recognition machine. When a prospect encounters your brand, it asks one question first: what drawer do you belong in? If the answer doesn't come fast, they move on. Define your category (Box), then sharpen your difference (Edge).</p>
+
+      <div class="formula-card box-card">
+        <div class="formula-label">Part 1</div>
+        <div class="formula-title">The Box: Category Clarity</div>
+        <div class="formula-template">We're a [category] for [segment].</div>
+        <p style="font-size:13px; margin-bottom:16px;">Use words real people use. Not internal shorthand. Not invented categories. The words your buyer would say.</p>
+        <textarea class="text-input" rows="2" id="box-input"
+          placeholder="We're a _______ for _______."
+          oninput="updateBoxEdge()"></textarea>
+        <div class="input-hint">Can a stranger categorize you in five seconds? That's your Box.</div>
+      </div>
+
+      <div class="formula-card edge-card">
+        <div class="formula-label">Part 2</div>
+        <div class="formula-title">The Edge: Differentiation</div>
+        <div class="formula-template">Unlike [status quo], we [mechanism] so you can [outcome], [proof].</div>
+        <p style="font-size:13px; margin-bottom:16px;">The Edge assumes the Box is already working. If you're writing an Edge before the Box is clear, you're sharpening the wrong thing.</p>
+        <textarea class="text-input" rows="3" id="edge-input"
+          placeholder="Unlike _______, we _______ so you can _______."
+          oninput="updateBoxEdge()"></textarea>
+        <div class="input-hint">Once categorized, can a prospect articulate your difference in ten seconds?</div>
+      </div>
+
+      <h2 class="section-title">The Two-Sentence Test</h2>
+      <p>Say your Box and Edge together, out loud. If it takes more than one breath, simplify. If you need to explain it before it lands, the work isn't done.</p>
+
+      <div id="two-sentence-display" style="margin:24px 0; padding:24px; background:var(--offwhite); border-left:3px solid var(--yellow); min-height:60px;">
+        <span class="empty-state">Your Box and Edge will appear here as you write them above.</span>
+      </div>
+      <div class="input-counter" id="two-sentence-counter" style="display:none;">
+        <span id="combined-count">0 words</span>
+        <span id="combined-feedback"></span>
+      </div>
+
+      <h2 class="section-title">Diagnostic Check</h2>
+      <p>Use these to confirm you're starting in the right place.</p>
+
+      <div id="boxedge-questions">
+        <div class="question-block" data-q="be1">
+          <div class="question-text">If you asked five employees what you do, would you get five different answers?</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerBoxEdge('be1','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerBoxEdge('be1','no',this)">No</button>
+          </div>
+        </div>
+        <div class="question-block" data-q="be2">
+          <div class="question-text">Do prospects frequently compare you to the wrong competitors?</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerBoxEdge('be2','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerBoxEdge('be2','no',this)">No</button>
+          </div>
+        </div>
+        <div class="question-block" data-q="be3">
+          <div class="question-text">Is your sales cycle longer because prospects need the category explained before the value can land?</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerBoxEdge('be3','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerBoxEdge('be3','no',this)">No</button>
+          </div>
+        </div>
+        <div class="question-block" data-q="be4">
+          <div class="question-text">Could someone identify your marketing without your logo on it?</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerBoxEdge('be4','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerBoxEdge('be4','no',this)">No</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-display" id="boxedge-result" style="display:none;">
+        <div class="score-number" id="boxedge-score">0/4</div>
+        <div class="score-label">Box Clarity Signals</div>
+        <div class="score-verdict" id="boxedge-verdict"></div>
+      </div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('reframe')">Back</button>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <button class="btn-download-tool" onclick="downloadTool('boxedge')">Download</button>
+          <button class="btn-nav btn-next" onclick="showPanel('results')">View Your Results</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ RESULTS ════ -->
+    <div class="panel" id="panel-results">
+      <p class="panel-eyebrow">Your Diagnosis</p>
+      <h1 class="panel-title">Brand Diagnostic Summary</h1>
+      <p class="panel-lead">Here's what we found across all three tools. This is the same read we'd give a client after a discovery session. Use it to decide what to fix first.</p>
+
+      <div id="results-content">
+        <!-- Populated dynamically -->
+      </div>
+
+      <div style="margin-top:48px; padding:32px; background:var(--black); color:var(--white); text-align:center;">
+        <div style="font-family:var(--font-heading); font-size:22px; font-weight:700; margin-bottom:12px;">Want to talk through what this means?</div>
+        <p style="color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:24px;">A 30-minute call is enough to find out what's actually broken and whether we're the right people to fix it.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta" target="_blank" style="display:inline-block; padding:14px 32px; font-size:14px;">Book a Call</a>
+      </div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('boxedge')">Back</button>
+        <button class="btn-download-tool" onclick="downloadCombined()" style="background:var(--yellow); border-color:var(--black);">Download Full Report</button>
+      </div>
+    </div>
+
+  </main>
 </div>
 
 <script>
-// Mobile menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
+// ── STATE ──
+const state = {
+  signal: {},
+  reframe: { position: null, promise: null, clarity: null, visual: null },
+  breath: '',
+  proofChecks: [false, false, false, false, false],
+  boxInput: '',
+  edgeInput: '',
+  boxedge: {},
+  completedTools: new Set()
+};
 
-  if (mobileMenuToggle && navLinks) {
-    mobileMenuToggle.addEventListener('click', function() {
-      // Toggle active class on both button and nav links
-      mobileMenuToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
+// ── NAVIGATION ──
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector('.nav-item[data-panel="' + id + '"]').classList.add('active');
+
+  if (id === 'results') renderResults();
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+
+  // Scroll to top of main
+  window.scrollTo(0, 0);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function markCompleted(tool) {
+  state.completedTools.add(tool);
+  const navItem = document.querySelector('.nav-item[data-panel="' + tool + '"]');
+  if (navItem) navItem.classList.add('completed');
+  updateDownloadAll();
+}
+
+function updateDownloadAll() {
+  const btn = document.getElementById('downloadAll');
+  btn.disabled = state.completedTools.size === 0;
+}
+
+// ── TOOL 1: SIGNAL TEST ──
+function answerSignal(q, val, btn) {
+  state.signal[q] = val;
+  const block = btn.closest('.question-block');
+  block.classList.add('answered');
+  block.querySelectorAll('.btn-option').forEach(b => {
+    b.classList.remove('selected', 'selected-yes');
+  });
+  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
+
+  const answered = Object.keys(state.signal).length;
+  if (answered === 5) {
+    const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
+    const unsures = Object.values(state.signal).filter(v => v === 'unsure').length;
+    const nos = Object.values(state.signal).filter(v => v === 'no').length;
+
+    document.getElementById('signal-score').textContent = yeses + '/5';
+    let verdict = '';
+    if (yeses >= 4) {
+      verdict = 'Strong signal. Your brand is doing its job on the fundamentals. The opportunity is in sharpening the Edge, not rebuilding the foundation.';
+    } else if (yeses >= 2) {
+      verdict = 'Mixed signal. Some parts of your brand are working, others are creating noise. The ' + nos + ' "no" answer' + (nos !== 1 ? 's' : '') + ' point to where the breakdown is happening. That\'s where to focus.';
+    } else {
+      verdict = 'Mostly noise. Your brand isn\'t converting effort to pull. This is usually a story problem, not a marketing problem. More volume won\'t fix it. Clarity will.';
+    }
+    if (unsures > 0) {
+      verdict += ' The ' + unsures + ' "not sure" response' + (unsures !== 1 ? 's' : '') + ' matter too. Uncertainty about your own brand is itself a signal.';
+    }
+    document.getElementById('signal-verdict').textContent = verdict;
+    document.getElementById('signal-result').style.display = 'block';
+    markCompleted('signal');
+  }
+}
+
+// ── TOOL 2: REFRAME VS. REBRAND ──
+function updateReframeScore() {
+  const ids = ['rf-position', 'rf-promise', 'rf-clarity', 'rf-visual'];
+  let total = 0;
+  let filled = 0;
+
+  ids.forEach(id => {
+    const val = parseInt(document.getElementById(id).value);
+    if (!isNaN(val) && val >= 1 && val <= 5) {
+      total += val;
+      filled++;
+      state.reframe[id.replace('rf-', '')] = val;
+    }
+  });
+
+  document.getElementById('rf-total').textContent = filled === 4 ? total : '--';
+
+  if (filled === 4) {
+    let rec = '', label = '';
+    if (total >= 16) {
+      label = 'Minor Optimizations';
+      rec = 'Your brand is strong across all dimensions. Focus on fine-tuning execution and consistency. No major repositioning needed.';
+    } else if (total >= 12) {
+      label = 'Strategic Reframe';
+      rec = 'Solid fundamentals, unclear positioning. A strategic reframe can sharpen your message and improve conversion without starting over. Focus on message clarity and competitive positioning.';
+    } else if (total >= 8) {
+      label = 'Comprehensive Reframe';
+      rec = 'Multiple areas need work. A thorough reframe addressing positioning, messaging, and visual alignment will give you the foundation for growth. Start here before jumping to a full rebrand.';
+    } else {
+      label = 'Full Rebrand Consideration';
+      rec = 'Your brand foundation needs significant work. Before committing to a full rebrand, validate whether the core business model and market position are sound. Sometimes a comprehensive reframe achieves rebrand-level results.';
+    }
+
+    document.getElementById('reframe-score-display').textContent = total + '/20';
+    document.getElementById('reframe-rec-label').textContent = label;
+    document.getElementById('reframe-verdict').textContent = rec;
+    document.getElementById('reframe-result').style.display = 'block';
+    markCompleted('reframe');
+  }
+}
+
+function updateBreathCount() {
+  const text = document.getElementById('breath-input').value.trim();
+  state.breath = text;
+  const count = text === '' ? 0 : text.split(/\s+/).length;
+  document.getElementById('breath-count').textContent = count + ' word' + (count !== 1 ? 's' : '');
+
+  const fb = document.getElementById('breath-feedback');
+  if (count === 0) { fb.textContent = ''; fb.className = ''; }
+  else if (count <= 25) { fb.textContent = 'Good length for one breath'; fb.className = 'good'; }
+  else { fb.textContent = 'Too long. Simplify.'; fb.className = 'warn'; }
+}
+
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  const isChecked = item.classList.contains('checked');
+  const box = item.querySelector('.check-box');
+  box.textContent = isChecked ? '\u2713' : '';
+
+  const items = document.querySelectorAll('#proof-checklist .checklist-item');
+  let count = 0;
+  items.forEach((it, i) => {
+    state.proofChecks[i] = it.classList.contains('checked');
+    if (state.proofChecks[i]) count++;
+  });
+
+  const result = document.getElementById('proof-result');
+  const verdict = document.getElementById('proof-verdict');
+  if (count === 0) {
+    result.style.display = 'none';
+  } else {
+    result.style.display = 'block';
+    if (count >= 4) {
+      verdict.textContent = count + '/5 checked. Strong brand foundation. Your brand is doing work, not just existing.';
+    } else if (count >= 2) {
+      verdict.textContent = count + '/5 checked. Decent foundation with gaps. The unchecked items are where the story breaks down.';
+    } else {
+      verdict.textContent = count + '/5 checked. Brand needs work. The gaps here usually point to a clarity problem, not a marketing problem.';
+    }
+  }
+}
+
+// ── TOOL 3: BOX-EDGE ──
+function updateBoxEdge() {
+  state.boxInput = document.getElementById('box-input').value;
+  state.edgeInput = document.getElementById('edge-input').value;
+
+  const display = document.getElementById('two-sentence-display');
+  const counter = document.getElementById('two-sentence-counter');
+
+  if (state.boxInput.trim() || state.edgeInput.trim()) {
+    let html = '';
+    if (state.boxInput.trim()) html += '<strong style="display:block;margin-bottom:8px;">Box:</strong> ' + escapeHtml(state.boxInput.trim());
+    if (state.boxInput.trim() && state.edgeInput.trim()) html += '<br><br>';
+    if (state.edgeInput.trim()) html += '<strong style="display:block;margin-bottom:8px;">Edge:</strong> ' + escapeHtml(state.edgeInput.trim());
+    display.innerHTML = html;
+    counter.style.display = 'flex';
+
+    const combined = (state.boxInput.trim() + ' ' + state.edgeInput.trim()).trim();
+    const wordCount = combined.split(/\s+/).length;
+    document.getElementById('combined-count').textContent = wordCount + ' words combined';
+    const fb = document.getElementById('combined-feedback');
+    if (wordCount <= 30) { fb.textContent = 'Tight. Good.'; fb.className = 'good'; }
+    else if (wordCount <= 50) { fb.textContent = 'Getting long. Can you cut?'; fb.className = 'warn'; }
+    else { fb.textContent = 'Too long for one breath.'; fb.className = 'warn'; }
+  } else {
+    display.innerHTML = '<span class="empty-state">Your Box and Edge will appear here as you write them above.</span>';
+    counter.style.display = 'none';
+  }
+}
+
+function answerBoxEdge(q, val, btn) {
+  state.boxedge[q] = val;
+  const block = btn.closest('.question-block');
+  block.classList.add('answered');
+  block.querySelectorAll('.btn-option').forEach(b => {
+    b.classList.remove('selected', 'selected-yes');
+  });
+  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
+
+  const answered = Object.keys(state.boxedge).length;
+  if (answered === 4) {
+    // For Box-Edge diagnostic, "yes" to q1-3 = problem, "yes" to q4 = good
+    // Remap: q1 yes=bad, q2 yes=bad, q3 yes=bad, q4 yes=good
+    const problemSignals =
+      (state.boxedge.be1 === 'yes' ? 1 : 0) +
+      (state.boxedge.be2 === 'yes' ? 1 : 0) +
+      (state.boxedge.be3 === 'yes' ? 1 : 0) +
+      (state.boxedge.be4 === 'no' ? 1 : 0);
+
+    document.getElementById('boxedge-score').textContent = problemSignals + '/4';
+    let verdict = '';
+    if (problemSignals >= 3) {
+      verdict = 'Your Box is the problem. The category isn\'t clear, which means prospects never get to evaluating your Edge. Start with the Box exercise above. The disagreement between stakeholders is the most useful diagnostic you can run.';
+    } else if (problemSignals >= 1) {
+      verdict = 'Some Box clarity issues. Your category is partially working but has gaps. The ' + problemSignals + ' signal' + (problemSignals !== 1 ? 's' : '') + ' above point to where. Use the Box-Edge statements you wrote to pressure-test internally.';
+    } else {
+      verdict = 'Your Box is clear. Prospects know what you are. Focus on sharpening the Edge. The difference needs to be as crisp as the category.';
+    }
+    document.getElementById('boxedge-verdict').textContent = verdict;
+    document.getElementById('boxedge-result').style.display = 'block';
+
+    if (state.boxInput.trim() || state.edgeInput.trim()) {
+      markCompleted('boxedge');
+    }
+  }
+
+  if ((state.boxInput.trim() || state.edgeInput.trim()) && Object.keys(state.boxedge).length === 4) {
+    markCompleted('boxedge');
+  }
+}
+
+// ── RESULTS ──
+function renderResults() {
+  const container = document.getElementById('results-content');
+  let html = '';
+
+  // Signal Test
+  if (state.completedTools.has('signal')) {
+    const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
+    html += '<div class="result-section">';
+    html += '<div class="result-header"><span class="result-tool-name">The Signal Test</span><span class="result-score-badge">' + yeses + '/5 Signal</span></div>';
+    html += '<p class="result-detail">' + document.getElementById('signal-verdict').textContent + '</p>';
+
+    const questions = {
+      s1: 'Logo removal test (distinctiveness)',
+      s2: 'Sales articulation (message travel)',
+      s3: 'Competitor comparison (category clarity)',
+      s4: 'Inbound conversations (pull vs. activity)',
+      s5: 'Internal alignment (five-employee test)'
+    };
+    Object.keys(state.signal).forEach(k => {
+      html += '<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px;font-size:13px;">';
+      const icon = state.signal[k] === 'yes' ? '\u2713' : state.signal[k] === 'no' ? '\u2717' : '?';
+      const color = state.signal[k] === 'yes' ? '#2E7D32' : state.signal[k] === 'no' ? '#C62828' : 'var(--gray)';
+      html += '<span style="color:' + color + ';font-weight:700;width:16px;">' + icon + '</span>';
+      html += '<span>' + questions[k] + ': <strong>' + state.signal[k] + '</strong></span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  // Reframe vs. Rebrand
+  if (state.completedTools.has('reframe')) {
+    const total = (state.reframe.position || 0) + (state.reframe.promise || 0) + (state.reframe.clarity || 0) + (state.reframe.visual || 0);
+    const recLabel = document.getElementById('reframe-rec-label').textContent;
+    html += '<div class="result-section">';
+    html += '<div class="result-header"><span class="result-tool-name">Reframe vs. Rebrand</span><span class="result-score-badge">' + total + '/20 ' + recLabel + '</span></div>';
+    html += '<p class="result-detail">' + document.getElementById('reframe-verdict').textContent + '</p>';
+
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">';
+    const dims = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
+    Object.keys(dims).forEach(k => {
+      const v = state.reframe[k] || '--';
+      html += '<div style="padding:12px;background:var(--offwhite);font-size:13px;"><strong>' + dims[k] + ':</strong> ' + v + '/5</div>';
+    });
+    html += '</div>';
+
+    if (state.breath) {
+      html += '<div class="result-input-label">One-Breath Statement</div>';
+      html += '<div class="result-input-value">' + escapeHtml(state.breath) + '</div>';
+    }
+
+    const proofCount = state.proofChecks.filter(Boolean).length;
+    if (proofCount > 0) {
+      html += '<div style="font-size:13px;margin-top:12px;">Brand Proof: <strong>' + proofCount + '/5</strong> checked</div>';
+    }
+    html += '</div>';
+  }
+
+  // Box-Edge
+  if (state.completedTools.has('boxedge')) {
+    const problemSignals = Object.keys(state.boxedge).length === 4 ? document.getElementById('boxedge-score').textContent : '--';
+    html += '<div class="result-section">';
+    html += '<div class="result-header"><span class="result-tool-name">Box-Edge Workshop</span><span class="result-score-badge">' + problemSignals + ' Issues</span></div>';
+
+    if (document.getElementById('boxedge-verdict').textContent) {
+      html += '<p class="result-detail">' + document.getElementById('boxedge-verdict').textContent + '</p>';
+    }
+
+    if (state.boxInput.trim()) {
+      html += '<div class="result-input-label">Your Box</div>';
+      html += '<div class="result-input-value">' + escapeHtml(state.boxInput.trim()) + '</div>';
+    }
+    if (state.edgeInput.trim()) {
+      html += '<div class="result-input-label">Your Edge</div>';
+      html += '<div class="result-input-value">' + escapeHtml(state.edgeInput.trim()) + '</div>';
+    }
+    html += '</div>';
+  }
+
+  if (state.completedTools.size === 0) {
+    html = '<div style="text-align:center;padding:60px 0;color:var(--gray);"><p>Complete at least one tool to see your results here.</p></div>';
+  }
+
+  container.innerHTML = html;
+}
+
+// ── DOWNLOADS ──
+function generateToolText(tool) {
+  let text = '';
+  const line = '────────────────────────────────────────\n';
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  if (tool === 'signal') {
+    text += 'THE SIGNAL TEST | BrandThnk Diagnostic\n';
+    text += line;
+    text += 'Date: ' + date + '\n\n';
+
+    const questions = {
+      s1: 'If you removed your logo from everything you published in the last 90 days, would anyone know it was you?',
+      s2: 'Can your sales team explain what makes you different without reading from a deck?',
+      s3: 'Do prospects compare you to the right competitors?',
+      s4: 'Does your marketing generate inbound conversations, not just impressions?',
+      s5: 'If five employees independently described what your company does, would you get the same answer?'
+    };
+
+    Object.keys(questions).forEach((k, i) => {
+      text += (i + 1) + '. ' + questions[k] + '\n';
+      text += '   Answer: ' + (state.signal[k] || 'Not answered') + '\n\n';
     });
 
-    // Close menu when clicking nav links
-    navLinks.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        mobileMenuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
-    });
+    if (document.getElementById('signal-verdict').textContent) {
+      text += 'DIAGNOSIS\n' + line;
+      const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
+      text += 'Signal Strength: ' + yeses + '/5\n';
+      text += document.getElementById('signal-verdict').textContent + '\n';
+    }
+  }
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('nav')) {
-        mobileMenuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
+  if (tool === 'reframe') {
+    text += 'REFRAME VS. REBRAND | BrandThnk Diagnostic\n';
+    text += line;
+    text += 'Date: ' + date + '\n\n';
+
+    text += 'BRAND DIAGNOSTIC SCORE\n';
+    const dims = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
+    let total = 0;
+    Object.keys(dims).forEach(k => {
+      const v = state.reframe[k];
+      text += '  ' + dims[k] + ': ' + (v || '--') + '/5\n';
+      total += (v || 0);
+    });
+    text += '  Total: ' + total + '/20\n\n';
+
+    if (document.getElementById('reframe-verdict').textContent) {
+      text += 'Recommendation: ' + document.getElementById('reframe-rec-label').textContent + '\n';
+      text += document.getElementById('reframe-verdict').textContent + '\n\n';
+    }
+
+    if (state.breath) {
+      text += 'ONE-BREATH STATEMENT\n';
+      text += '"' + state.breath + '"\n';
+      const wc = state.breath.split(/\s+/).length;
+      text += '(' + wc + ' words)\n\n';
+    }
+
+    const proofCount = state.proofChecks.filter(Boolean).length;
+    text += 'BRAND PROOF CHECKLIST: ' + proofCount + '/5\n';
+    const proofLabels = [
+      'New customers mention our specific difference',
+      'Frontline staff can explain brand promise without training',
+      'We turn down opportunities that don\'t fit',
+      'Marketing drives leads, not just awareness',
+      'We can name three things we deliberately don\'t do'
+    ];
+    proofLabels.forEach((label, i) => {
+      text += '  [' + (state.proofChecks[i] ? 'X' : ' ') + '] ' + label + '\n';
     });
   }
-});
+
+  if (tool === 'boxedge') {
+    text += 'BOX-EDGE WORKSHOP | BrandThnk Diagnostic\n';
+    text += line;
+    text += 'Date: ' + date + '\n\n';
+
+    text += 'YOUR BOX (Category Clarity)\n';
+    text += (state.boxInput.trim() || 'Not completed') + '\n\n';
+
+    text += 'YOUR EDGE (Differentiation)\n';
+    text += (state.edgeInput.trim() || 'Not completed') + '\n\n';
+
+    if (Object.keys(state.boxedge).length > 0) {
+      text += 'DIAGNOSTIC CHECK\n';
+      const beQ = {
+        be1: 'Five employees, five answers?',
+        be2: 'Prospects compare to wrong competitors?',
+        be3: 'Sales cycle extended by category explanation?',
+        be4: 'Marketing identifiable without logo?'
+      };
+      Object.keys(beQ).forEach(k => {
+        text += '  ' + beQ[k] + ' ' + (state.boxedge[k] || '--') + '\n';
+      });
+
+      if (document.getElementById('boxedge-verdict').textContent) {
+        text += '\nDIAGNOSIS\n';
+        text += document.getElementById('boxedge-verdict').textContent + '\n';
+      }
+    }
+  }
+
+  text += '\n' + line;
+  text += 'BrandThnk | brandthnk.co\n';
+  text += 'Book a call: calendar.app.google/ZoWdHFueshr6LQs17\n';
+
+  return text;
+}
+
+function downloadTool(tool) {
+  const text = generateToolText(tool);
+  const names = { signal: 'Signal-Test', reframe: 'Reframe-vs-Rebrand', boxedge: 'Box-Edge-Workshop' };
+  downloadFile(text, 'BrandThnk-' + names[tool] + '-Diagnostic.txt');
+}
+
+function downloadCombined() {
+  let text = '';
+  const line = '════════════════════════════════════════\n';
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  text += 'BRAND DIAGNOSTIC REPORT\n';
+  text += 'BrandThnk Toolkit Results\n';
+  text += line;
+  text += 'Generated: ' + date + '\n\n\n';
+
+  if (state.completedTools.has('signal')) {
+    text += generateToolText('signal') + '\n\n';
+  }
+  if (state.completedTools.has('reframe')) {
+    text += generateToolText('reframe') + '\n\n';
+  }
+  if (state.completedTools.has('boxedge')) {
+    text += generateToolText('boxedge') + '\n\n';
+  }
+
+  text += line;
+  text += 'WHAT TO DO NEXT\n';
+  text += line + '\n';
+  text += 'If the Signal Test showed mostly noise, start there. Clarity\n';
+  text += 'before volume. Fix the story before adding more marketing.\n\n';
+  text += 'If Reframe vs. Rebrand pointed to a reframe, don\'t spend\n';
+  text += 'money on new visuals until the positioning is sharp.\n\n';
+  text += 'If the Box-Edge Workshop revealed disagreement, that\'s\n';
+  text += 'not a problem. That\'s exactly where the real work starts.\n\n';
+  text += 'Want to talk through what this means for your brand?\n';
+  text += 'Book a call: calendar.app.google/ZoWdHFueshr6LQs17\n\n';
+  text += line;
+  text += 'BrandThnk | brandthnk.co\n';
+
+  downloadFile(text, 'BrandThnk-Brand-Diagnostic-Report.txt');
+}
+
+function downloadFile(text, filename) {
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
 </script>
 
 </body>
