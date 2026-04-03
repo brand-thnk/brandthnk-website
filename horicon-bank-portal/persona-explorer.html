@@ -873,216 +873,169 @@
     const { useState } = React;
 
     const PersonaExplorer = () => {
-      const [selectedPersona, setSelectedPersona] = useState('wealthy-achievers');
+      const [selectedPersona, setSelectedPersona] = useState('established-stewards');
       const [activeTab, setActiveTab] = useState('overview');
 
       const personas = {
-        'wealthy-achievers': {
-          name: 'Wealthy Achievers',
-          code: 'M2',
+        'established-stewards': {
+          name: 'Established Stewards',
+          aspiration: 'Protect and transfer what they\'ve built.',
+          mapsFrom: 'Wealthy Achievers + Gliders + Empty Nesters',
           ageRange: '55-74',
-          tagline: 'Established affluence, seeking legacy and control',
           priority: 'High',
-          color: '#2C5F7C',
-          segment: {
-            code: '10',
-            name: 'Leasing Luxury',
-            description: 'Affluent segment within Wealthy Achievers with high deposit potential'
-          },
-          overview: {
-            size: 'Significant current customer base',
-            opportunity: 'High deposit growth potential, especially in southeast Wisconsin',
-            behavioral: 'Strong cross-sell adoption once acquired, high checking penetration'
-          },
-          validated: {
-            confirmed: [
-              'Data confirms segment exists and matches wealthy achievers profile (Chrissy)',
-              'Strong with established customers in legacy markets (Erik, Kerry)',
-              'Trust department connection validated for this age group (Erik)',
-              'Responds to educational vs sales approach (confirmed by glider program performance)'
-            ],
-            challenged: [
-              'Milwaukee market seniors are different demographic - more diverse, access to more services, many not originally from area (Kerry)',
-              'Acquisition still struggles even in strong segment areas (Chrissy)',
-              'Not currently using "persona" language at all - identify by life events instead (Kerry)'
-            ]
-          },
-          stakeholderQuotes: [
-            { person: 'Erik', role: 'Business Development', quote: 'Business clients with trust department in the 55-74 age group - that\'s our sweet spot right now' },
-            { person: 'Kerry', role: 'Customer Relations', quote: 'Milwaukee seniors are different. More diversity, more access to services. Many retirees not originally from the area. We have to balance education, trips, social connection across very different markets.' },
-            { person: 'Chrissy', role: 'Data Analytics', quote: 'The personas match what we\'re seeing in the data for existing customers. But there\'s a gap - we\'re not clear on new acquisition vs existing customer growth strategy.' }
-          ],
-          performanceData: [
-            { metric: 'Glider Journey (55+)', value: '0% failure rate', source: 'Danielle - Total Expert metrics' },
-            { metric: 'E-statement Conversion', value: '56%', source: 'Danielle - Total Expert metrics' },
-            { metric: 'Senior Seminar Attendance', value: '100 avg attendees', source: 'Pre-engagement assessment' },
-            { metric: 'Cross-sell Performance', value: 'Strong in established markets', source: 'Chrissy - data analysis' }
-          ],
-          operationalReality: [
-            'Frontline doesn\'t use persona language - they identify by demographics and life events: "55 or better gets certain products" (Kerry)',
-            'Trust seminars working but limited reach in Milwaukee/Fox Valley markets (Erik)',
-            'Different senior demographics between Milwaukee and legacy markets require different approaches (Kerry)',
-            'Strong community presence but weak at proactive sales (Kerry)'
-          ],
+          color: '#004777',
+          overview: 'Horicon\'s strongest existing segment. High deposit balances, strong cross-sell adoption, and trust services as a competitive advantage. Trust seminars convert at high rates and the Glider journey in Total Expert has a 0% failure rate.',
           goals: [
-            'Preserve and transfer wealth to next generation',
+            'Preserve and transfer wealth to the next generation',
             'Access trusted expertise for estate planning and trust services',
             'Simplify complex financial lives without losing control',
-            'Support community causes aligned with values',
-            'Maintain financial independence through retirement'
+            'Maintain financial independence through retirement',
+            'Support community causes aligned with their values'
           ],
           frustrations: [
             'Banks that treat them as transactions, not relationships',
-            'Generic advice that doesn\'t account for their specific situation',
-            'Confusion about new technology vs old processes (Kerry: "unhappy customers primarily confused about new money transfer methods vs old")',
-            'Feeling pressured to adopt digital when they prefer personal service',
-            'Difficulty finding advisors who actually understand their goals'
+            'Generic advice that doesn\'t account for their situation',
+            'Pressure to adopt digital when they prefer personal service',
+            'Confusion about new technology vs. familiar processes',
+            'Difficulty finding advisors who understand their goals'
           ],
-          recommendations: [
-            'Kerry\'s 2026 focus: Expand senior customers in Milwaukee County through senior center symposiums, bingo sponsorship, assisted living partnerships',
-            'Consider dedicated Golden Free Club Facebook page for exclusive senior content (Kerry)',
-            'Scale trust seminar model into underserved southeast Wisconsin market (pre-engagement)',
-            'Separate Milwaukee senior strategy from legacy market approach due to demographic differences (Kerry)'
-          ]
+          howToSpot: [
+            'Asking about estate planning, trusts, or wealth transfer',
+            'Referencing adult children or grandchildren\'s finances',
+            'Consolidating accounts after life transition (retirement, downsizing)',
+            'Attending trust seminars or senior events',
+            'Existing high-balance checking or savings relationships'
+          ],
+          whatToSay: 'You spent decades building something. We\'ll help you protect it, grow it, and pass it on. Our trust team has been doing this for 130 years, and they\'ll work with your attorney and CPA to make sure your plan actually works.',
+          products: ['Trust and estate planning services', 'Glider checking', 'CD laddering', 'Golden Free Club', 'Funeral trust partnerships'],
+          keyData: [
+            { label: 'Glider Journey', value: '0% failure rate, highest engagement of any segment' },
+            { label: 'Trust Seminars', value: '100 avg attendees, proven conversion' },
+            { label: 'Opportunity', value: 'Expand prospect acquisition into Milwaukee/SE Wisconsin' }
+          ],
+          quote: 'Dodge County is rural, simple lifestyle preferences, multi-generational values. Milwaukee is different senior demographics, more diversity, requires a different approach.',
+          quoteAttribution: 'Kerry Murphy, Customer Relations (19 years)',
+          pdfDownload: 'downloads/Horicon-Bank-Persona-Established-Stewards.pdf'
         },
-        'flourishing-families': {
-          name: 'Flourishing Families',
-          code: 'F1',
+        'growing-families': {
+          name: 'Growing Families',
+          aspiration: 'Build a stable foundation while managing competing demands.',
+          mapsFrom: 'Flourishing Families + School Daze segment',
           ageRange: '35-54',
-          tagline: 'Peak earning, peak complexity, seeking guidance',
           priority: 'High',
-          color: '#C17C3B',
-          segment: {
-            code: '14',
-            name: 'School Daze',
-            description: 'Families managing education expenses alongside home, career growth'
-          },
-          overview: {
-            size: 'Growing opportunity in suburban Milwaukee markets',
-            opportunity: 'High lifetime value, mortgage entry point, Bank at Work potential',
-            behavioral: 'Digitally fluent, time-starved, multi-product households'
-          },
-          validated: {
-            confirmed: [
-              'Geographic targeting tools exist for people moving to Milwaukee (Natalie)',
-              'Mortgage is strong product, though not top-of-mind for buyers (Kerry)',
-              'Banking at Work program exists and targets their employers (Erik, Danielle)',
-              'Strong cross-sell potential once acquired (Chrissy)'
-            ],
-            challenged: [
-              'Natalie identifies this as needing improvement - lacking content/products that appeal',
-              'Website not optimized for this demographic - audit planned for modernization (Natalie)',
-              'Banking at Work initially struggled with traction - recently modified with cash bonuses (Erik)',
-              'Not reaching them during home purchase journey despite mortgage strength (Kerry)',
-              'Hard to reach - don\'t visit branches (Natalie)'
-            ]
-          },
-          stakeholderQuotes: [
-            { person: 'Natalie', role: 'Marketing', quote: 'Flourishing families and upwardly mobile - we need improvement there. We\'re lacking content and products that appeal to the younger generation.' },
-            { person: 'Erik', role: 'Business Development', quote: 'Banking at work initially struggled. No real benefit for current customers. We modified it to include cash bonuses and perks for employee signups. I\'m confident about the next 2-3 months.' },
-            { person: 'Kerry', role: 'Customer Relations', quote: 'We\'re the best bank for mortgages but we\'re not top-of-mind for home buyers. Even friends and acquaintances don\'t think of Horicon when they\'re financing a home.' }
-          ],
-          performanceData: [
-            { metric: 'Banking at Work', value: 'Modified program, pilot phase', source: 'Erik - recent changes' },
-            { metric: 'Website Audit', value: 'Planned for modernization', source: 'Natalie - upcoming initiative' },
-            { metric: 'Digital Ads Performance', value: 'Strong in Milwaukee/Wawatosa', source: 'Natalie' }
-          ],
-          operationalReality: [
-            'Banking hours don\'t match their life - work 8-5, bank 9-4 (inferred from Kerry\'s comments)',
-            'Transaction volume down, but service complexity up - branches handle problems not routine (Kerry)',
-            'Need mobile-first approach for this segment (Natalie)',
-            'Event-heavy focus without follow-up playbooks or systematic post-event nurturing (Danielle)'
-          ],
+          color: '#C4843C',
+          overview: 'Peak earning, peak complexity. Juggling mortgages, education costs, career growth, and retirement planning. Strong lifetime value and multi-product household potential, especially through mortgage as an entry point.',
           goals: [
-            'Balance competing priorities: home, education, retirement',
+            'Balance competing priorities: home, education, retirement savings',
             'Find banking that works with their schedule, not against it',
             'Get proactive guidance without feeling sold to',
             'Support kids\' financial education and first accounts',
-            'Align banking with values (community, local, sustainability)'
+            'Align banking with values like community and local investment'
           ],
           frustrations: [
-            'Banking hours that don\'t match their life',
-            'Having to chase down answers across multiple channels',
+            'Banking hours that don\'t match their life (work 8-5, bank 9-4)',
+            'Having to chase answers across multiple channels',
             'Advisors who push products instead of listening',
             'Complexity of managing household finances across accounts',
-            'Order-taking culture vs anticipating future needs (Kerry insight)'
+            'Guilt about not optimizing finances while juggling everything'
           ],
-          recommendations: [
-            'Prioritize Banking at Work with improved incentives - cash bonuses working better (Erik)',
-            'Website modernization for younger demographics critical (Natalie)',
-            'Develop post-event nurturing playbooks (Danielle)',
-            'Create mobile-first content and journeys (Natalie)'
-          ]
+          howToSpot: [
+            'Applying for a mortgage or refinancing',
+            'Opening children\'s savings or My Money accounts',
+            'Asking about education savings options or 529 plans',
+            'Employer connected through Bank at Work program',
+            'Visiting branches on weekends or using ITM/digital heavily'
+          ],
+          whatToSay: 'Between the mortgage, the kids\' accounts, and the insurance, you need a bank that sees the whole picture. We\'re not going to sell you something you don\'t need. We\'re going to help you build a plan that grows with your family.',
+          products: ['Mortgage and home equity lending', 'My Money youth checking (for their kids)', 'Personal checking with digital tools', 'Education savings and 529 referrals', 'Bank at Work employee benefits'],
+          keyData: [
+            { label: 'Entry Point', value: 'Mortgage is the primary acquisition trigger' },
+            { label: 'Digital', value: 'Expect mobile-first banking and ITM convenience' },
+            { label: 'Cross-sell', value: 'Strong multi-product adoption once acquired' }
+          ],
+          quote: 'Flourishing Families and Upwardly Mobile need work. Website requires updates for younger demographics. Mobile-first approach is critical.',
+          quoteAttribution: 'Natalie Kollin, Marketing',
+          pdfDownload: 'downloads/Horicon-Bank-Persona-Growing-Families.pdf'
         },
-        'upwardly-mobile': {
-          name: 'Upwardly Mobile / First-Time Workforce',
-          code: 'Y1',
-          ageRange: '25-44',
-          tagline: 'Building foundation, seeking modern banking that enables growth',
-          priority: 'High',
-          color: '#5B8BA0',
-          segment: {
-            code: '19',
-            name: 'Fiscal Rookies',
-            description: 'Early-career professionals establishing financial foundation'
-          },
-          overview: {
-            size: 'Smaller current base, identified as 90-day campaign priority',
-            opportunity: 'Future lifetime value, digital-first expectations, acquisition at young age = long-term retention',
-            behavioral: 'Digital-native, low initial balances, high growth trajectory, hard to reach'
-          },
-          validated: {
-            confirmed: [
-              'Natalie recommends first-time workforce as 90-day campaign focus',
-              'Major life moment with high growth potential (Natalie)',
-              'Hard to reach - don\'t visit branches (Natalie)',
-              'Digital-first strategy required (Natalie)',
-              'Can be reached through employers via Banking at Work (Erik)'
-            ],
-            challenged: [
-              'Current focus skews heavily toward older customers (Natalie)',
-              'Very low acquisition in this segment currently',
-              'No specific content or products tailored to this demographic (Natalie)',
-              'Minimal brand awareness among this age group (Erik: people surprised we have Milwaukee branches)'
-            ]
-          },
-          stakeholderQuotes: [
-            { person: 'Natalie', role: 'Marketing', quote: 'First-time workforce is my recommendation for a 90-day campaign. It\'s a major life moment with high growth potential. If you acquire customers at a young age, they stay - it\'s difficult to switch banks later. But they\'re hard to reach because they don\'t visit branches.' },
-            { person: 'Natalie', role: 'Marketing', quote: 'Proposed approach: digital-first with an event concept - food truck plus ITM demonstration. Showcase digital capabilities while maintaining the bank connection.' },
-            { person: 'Erik', role: 'Business Development', quote: 'People are surprised we have Milwaukee branches. We\'re still building brand awareness. Only 3 years in the Milwaukee market, 130 years as a bank.' }
-          ],
-          performanceData: [
-            { metric: '90-Day Priority', value: 'Recommended by Marketing', source: 'Natalie' },
-            { metric: 'Current Performance', value: 'Needs improvement', source: 'Natalie' },
-            { metric: 'Brand Awareness', value: 'Low in Milwaukee market', source: 'Erik' }
-          ],
-          operationalReality: [
-            'Digital ads performing well but focus on impressions not clicks/conversions (Erik)',
-            'No billboards in Milwaukee market for brand building (Erik)',
-            'Events planned without systematic follow-up (Danielle)',
-            'Website complexity issues for online banking (Kerry)'
-          ],
+        'first-generation-builders': {
+          name: 'First-Generation Builders',
+          aspiration: 'Get real financial footing and make smart first decisions.',
+          mapsFrom: 'Upwardly Mobile + Fiscal Rookies + Youth (My Money)',
+          ageRange: '16-44',
+          priority: 'High (90-Day Sprint)',
+          color: '#628374',
+          overview: 'The growth engine. Spans from youth banking (My Money) through early-career professionals. Lower current balances but highest future lifetime value. My Money auto-transitions at 18 with no re-signup friction.',
           goals: [
-            'Establish credit and build financial foundation',
-            'Find banking that doesn\'t penalize them for starting out',
-            'Access modern tools (mobile, instant transfers, budgeting)',
-            'Get guidance without condescension',
-            'Align with brands that reflect their values'
+            'Establish credit and build a real financial foundation',
+            'Find a bank that doesn\'t penalize them for starting out',
+            'Access modern tools: mobile, instant transfers, budgeting',
+            'Get financial guidance without condescension',
+            'Align with a brand that reflects their values'
           ],
           frustrations: [
-            'Banks that feel like their parents\' generation',
+            'Minimum balance requirements that feel punitive',
             'Being treated like they don\'t matter because balances are small',
+            'Banks that feel like their parents\' generation',
             'Hidden fees and outdated technology',
-            'Lack of educational resources that aren\'t patronizing',
-            'Confusion about new vs old banking processes (Kerry)'
+            'Lack of financial education that isn\'t patronizing'
           ],
-          recommendations: [
-            'Natalie\'s campaign concept: Food truck + ITM demonstration events to showcase digital capabilities',
-            'Prioritize digital-first strategy (Natalie)',
-            'Geographic targeting for people moving to Milwaukee (Natalie)',
-            'Banking at Work as employer connection point (Erik)',
-            'Develop youth checking e-statement journey (Danielle: ready to launch, awaiting approval)'
-          ]
+          howToSpot: [
+            'Opening a first checking or savings account',
+            'My Money account holders approaching age 18 transition',
+            'Asking about credit building or first-time homebuyer programs',
+            'Arriving through Bank at Work employer connection',
+            'High mobile/digital engagement, low branch visits'
+          ],
+          whatToSay: 'Your first real bank should be one that shares your values. We\'re not an app. We\'re a 130-year community bank that believes doing good is good banking. Start here, and we\'ll grow with you.',
+          products: ['My Money youth checking (auto-transition at 18)', 'Natural Choice Checking', 'Savings automation tools', 'First-time homebuyer mortgage programs', 'Bank at Work employee checking ($500 bonus)'],
+          keyData: [
+            { label: '90-Day Goal', value: '50 new My Money accounts in 90 days' },
+            { label: 'Gen Z Insight', value: '52% choose banks based on values alignment' },
+            { label: 'Retention', value: 'My Money auto-transitions at 18, zero re-signup friction' }
+          ],
+          quote: 'Our opportunity comes in youth. My 16-year-old daughter knows zero about banking and I work for a bank. Greenlight is pulling money out of our accounts.',
+          quoteAttribution: 'Cassie Voight, Operations VP (23 years)',
+          pdfDownload: 'downloads/Horicon-Bank-Persona-First-Generation-Builders.pdf'
+        },
+        'business-owners': {
+          name: 'Business Owners',
+          aspiration: 'Grow the business without outgrowing the bank.',
+          mapsFrom: 'Commercial Banking + Professional Services + Manufacturing + CRE',
+          ageRange: 'Varies',
+          priority: 'High',
+          color: '#004B51',
+          overview: 'The missing persona. Horicon is a significant commercial bank, but the persona framework previously focused only on retail. Bank at Work creates a bridge from commercial to consumer relationships.',
+          goals: [
+            'Find a bank that understands their industry, not just their balance',
+            'Manage cash flow and operations efficiently with TM solutions',
+            'Access working capital for growth without bureaucracy',
+            'Provide competitive employee benefits to attract talent',
+            'Consolidate business and personal banking with one trusted partner'
+          ],
+          frustrations: [
+            'Banks that don\'t understand their business model or industry cycles',
+            'One-size-fits-all treasury management that doesn\'t fit',
+            'Slow or unresponsive relationship managers',
+            'Employee banking programs that are complicated to administer',
+            'Being treated like a transaction instead of a strategic relationship'
+          ],
+          howToSpot: [
+            'Existing commercial loan customer without deposit relationship',
+            'Business owner asking about employee benefit programs',
+            'Professional services firm (CPA, attorney) as center of influence',
+            'Manufacturing or CRE client discussing growth or expansion',
+            'Nonprofit leader inquiring about interest-bearing checking'
+          ],
+          whatToSay: 'You need a bank that understands your business, not just your balance sheet. Together, we\'ll build the financial foundation that lets you focus on growth, your employees, and your community.',
+          products: ['Treasury management solutions', 'Commercial lending and lines of credit', 'Bank at Work employee benefit program', 'Business owner personal wealth and trust', 'Nonprofit interest-bearing checking (unique product)'],
+          keyData: [
+            { label: 'Bank at Work', value: '$500 checking bonus + $300 off mortgage for employees' },
+            { label: 'Nonprofit Win', value: 'Recent nonprofit brought ~$1M deposits + board members' },
+            { label: 'COI Strategy', value: 'CPAs and attorneys as referral partners for trust services' }
+          ],
+          quote: 'We\'re a pretty big business bank, a commercial bank. Shouldn\'t there be some focus on those business owners? It was like they were missing.',
+          quoteAttribution: 'Cassie Voight, Operations VP (23 years)',
+          pdfDownload: 'downloads/Horicon-Bank-Persona-Business-Owners.pdf'
         }
       };
 
@@ -1095,15 +1048,15 @@
             <div className="header-container">
               <div className="header-left">
                 <h1>Horicon Bank Customer Personas</h1>
-                <div className="header-subtitle">Updated with stakeholder interview insights — March 2026</div>
+                <div className="header-subtitle">Finalized with 7 stakeholder interview insights — April 2026</div>
                 <div className="header-badges">
                   <div className="header-badge">
                     <span className="icon">✓</span>
-                    <span>5 of 8 stakeholder interviews completed</span>
+                    <span>7 stakeholder interviews completed</span>
                   </div>
                   <div className="header-badge info">
-                    <span className="icon">💬</span>
-                    <span>Real quotes & validation data integrated</span>
+                    <span className="icon">📄</span>
+                    <span>Personas finalized & one-pagers ready</span>
                   </div>
                 </div>
               </div>
@@ -1131,19 +1084,15 @@
                     <span>Erik W. (Business Development) — Mar 9</span>
                   </div>
                 </div>
-                <div className="header-section-title">Upcoming</div>
+                <div className="header-section-title">Additional Completed</div>
                 <div className="interview-list">
-                  <div className="interview-item upcoming">
-                    <span className="icon">○</span>
+                  <div className="interview-item completed">
+                    <span className="icon">✓</span>
                     <span>Cassie Voight (Operations/Sr. Mgmt) — Mar 20</span>
                   </div>
-                  <div className="interview-item upcoming">
-                    <span className="icon">○</span>
-                    <span>Stephanie K. Albers (AVP, Northern Regional Mgr) — Mar 23</span>
-                  </div>
-                  <div className="interview-item unscheduled">
-                    <span className="icon">⏳</span>
-                    <span>Brenda Heteberg (Regional Mgr, Southern) — Unscheduled</span>
+                  <div className="interview-item completed">
+                    <span className="icon">✓</span>
+                    <span>Rose Petitte (SVP, Marketing & Trust) — Mar 23</span>
                   </div>
                 </div>
               </div>
@@ -1169,19 +1118,8 @@
                         <div className="persona-name">{persona.name}</div>
                         <div className="persona-priority"></div>
                       </div>
-                      <div className="persona-meta">{persona.code} • Ages {persona.ageRange}</div>
-                      {persona.validated && (
-                        <div className="persona-badges">
-                          <span className="persona-badge confirmed">
-                            <span>✓</span>
-                            <span>{persona.validated.confirmed.length}</span>
-                          </span>
-                          <span className="persona-badge challenged">
-                            <span>✗</span>
-                            <span>{persona.validated.challenged.length}</span>
-                          </span>
-                        </div>
-                      )}
+                      <div className="persona-meta">{persona.mapsFrom} • Ages {persona.ageRange}</div>
+                      <div className="persona-priority-badge">{persona.priority}</div>
                     </button>
                   ))}
                 </div>
@@ -1210,19 +1148,17 @@
                   </div>
                 </div>
 
-                {/* Overview Cards */}
-                <div className="overview-grid">
-                  <div className="overview-card size">
-                    <div className="overview-label">Market Size</div>
-                    <div className="overview-content">{currentPersona.overview.size}</div>
+                {/* Overview Card */}
+                <div className="overview-section">
+                  <div className="overview-card">
+                    <div className="overview-label">Overview</div>
+                    <div className="overview-content">{currentPersona.overview}</div>
                   </div>
-                  <div className="overview-card opportunity">
-                    <div className="overview-label">Opportunity</div>
-                    <div className="overview-content">{currentPersona.overview.opportunity}</div>
-                  </div>
-                  <div className="overview-card behavioral">
-                    <div className="overview-label">Behavioral</div>
-                    <div className="overview-content">{currentPersona.overview.behavioral}</div>
+                  <div className="download-section">
+                    <a href={currentPersona.pdfDownload} download className="download-btn">
+                      <span className="icon">📄</span>
+                      Download One-Pager (PDF)
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1232,9 +1168,9 @@
                 <div className="tabs-nav">
                   {[
                     { key: 'overview', label: 'Goals & Frustrations' },
-                    { key: 'validation', label: 'Interview Validation' },
-                    { key: 'quotes', label: 'Stakeholder Quotes' },
-                    { key: 'recommendations', label: 'Next Steps' }
+                    { key: 'practical', label: 'How to Spot & What to Say' },
+                    { key: 'products', label: 'Products & Key Data' },
+                    { key: 'quote', label: 'Stakeholder Quote' }
                   ].map((tab) => (
                     <button
                       key={tab.key}
@@ -1281,130 +1217,89 @@
                         </div>
                       </div>
 
-                      {/* Operational Reality */}
-                      {currentPersona.operationalReality && (
-                        <div className="section">
-                          <div className="section-header reality">
-                            <span className="icon">⚠</span>
-                            <h3>Operational Reality (from interviews)</h3>
-                          </div>
-                          <div className="item-list">
-                            {currentPersona.operationalReality.map((item, idx) => (
-                              <div key={idx} className="item reality">
-                                <span className="icon">›</span>
-                                <div className="item-text">{item}</div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </div>
                   )}
 
-                  {activeTab === 'validation' && currentPersona.validated && (
+                  {activeTab === 'practical' && (
                     <div>
-                      {/* Confirmed */}
+                      {/* How to Spot */}
                       <div className="section">
-                        <div className="section-header confirmed">
-                          <span className="icon">✓</span>
-                          <h3>Confirmed by Interviews</h3>
+                        <div className="section-header spot">
+                          <span className="icon">👁</span>
+                          <h3>How to Spot This Persona</h3>
                         </div>
                         <div className="item-list">
-                          {currentPersona.validated.confirmed.map((item, idx) => (
-                            <div key={idx} className="item confirmed">
-                              <span className="icon">✓</span>
+                          {currentPersona.howToSpot.map((item, idx) => (
+                            <div key={idx} className="item spot">
+                              <span className="icon">›</span>
                               <div className="item-text">{item}</div>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      {/* Challenged */}
+                      {/* What to Say */}
                       <div className="section">
-                        <div className="section-header challenged">
-                          <span className="icon">✗</span>
-                          <h3>Challenged by Interviews</h3>
+                        <div className="section-header messaging">
+                          <span className="icon">💬</span>
+                          <h3>What to Say (Messaging Hook)</h3>
+                        </div>
+                        <div className="messaging-box">
+                          <div className="messaging-text">{currentPersona.whatToSay}</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 'products' && (
+                    <div>
+                      {/* Products */}
+                      <div className="section">
+                        <div className="section-header products">
+                          <span className="icon">🏦</span>
+                          <h3>Recommended Products & Services</h3>
                         </div>
                         <div className="item-list">
-                          {currentPersona.validated.challenged.map((item, idx) => (
-                            <div key={idx} className="item challenged">
-                              <span className="icon">✗</span>
-                              <div className="item-text">{item}</div>
+                          {currentPersona.products.map((product, idx) => (
+                            <div key={idx} className="item products">
+                              <span className="icon">›</span>
+                              <div className="item-text">{product}</div>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      {/* Performance Data */}
-                      {currentPersona.performanceData && (
-                        <div className="section">
-                          <h3>Performance Data</h3>
-                          <div className="data-table">
-                            <table>
-                              <thead>
-                                <tr>
-                                  <th>Metric</th>
-                                  <th>Value</th>
-                                  <th>Source</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {currentPersona.performanceData.map((item, idx) => (
-                                  <tr key={idx}>
-                                    <td className="metric">{item.metric}</td>
-                                    <td className="value">{item.value}</td>
-                                    <td className="source">{item.source}</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
-                          </div>
+                      {/* Key Data */}
+                      <div className="section">
+                        <div className="section-header data">
+                          <span className="icon">📊</span>
+                          <h3>Key Data & Insights</h3>
                         </div>
-                      )}
-                    </div>
-                  )}
-
-                  {activeTab === 'quotes' && currentPersona.stakeholderQuotes && (
-                    <div>
-                      <div className="quote-note">
-                        <div className="note-text">
-                          <strong>Note:</strong> These are direct quotes from stakeholder interviews conducted February-March 2026. They represent frontline experience, operational reality, and strategic perspectives from across the organization.
-                        </div>
-                      </div>
-                      {currentPersona.stakeholderQuotes.map((item, idx) => (
-                        <div key={idx} className="quote-card">
-                          <div className="quote-header">
-                            <div className="quote-avatar">{item.person[0]}</div>
-                            <div className="quote-content">
-                              <div className="quote-attribution">
-                                <span className="quote-person">{item.person}</span>
-                                <span>•</span>
-                                <span className="quote-role">{item.role}</span>
-                              </div>
-                              <div className="quote-text">
-                                <span className="quote-mark">"</span>
-                                <p>{item.quote}</p>
-                              </div>
+                        <div className="data-grid">
+                          {currentPersona.keyData.map((data, idx) => (
+                            <div key={idx} className="data-card">
+                              <div className="data-label">{data.label}</div>
+                              <div className="data-value">{data.value}</div>
                             </div>
-                          </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
                     </div>
                   )}
 
-                  {activeTab === 'recommendations' && currentPersona.recommendations && (
+                  {activeTab === 'quote' && (
                     <div>
-                      <div className="recommendations-note">
-                        <div className="note-text">
-                          <strong>These recommendations come directly from stakeholder interviews.</strong> They reflect what people closest to the work believe would make the biggest impact for this persona.
+                      <div className="quote-section">
+                        <div className="quote-card">
+                          <div className="quote-text">
+                            <span className="quote-mark">"</span>
+                            <p>{currentPersona.quote}</p>
+                          </div>
+                          <div className="quote-attribution">
+                            <span className="quote-person">{currentPersona.quoteAttribution}</span>
+                          </div>
                         </div>
                       </div>
-                      {currentPersona.recommendations.map((rec, idx) => (
-                        <div key={idx} className="recommendation-item">
-                          <div className="recommendation-number">{idx + 1}</div>
-                          <div className="recommendation-text">{rec}</div>
-                        </div>
-                      ))}
                     </div>
                   )}
                 </div>
