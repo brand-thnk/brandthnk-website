@@ -137,6 +137,29 @@
     line-height: 1.0;
     color: var(--black);
     margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headline-line {
+    display: block;
+    margin-bottom: -4px;
+    animation: fadeUpStagger 0.8s ease both;
+  }
+
+  .headline-line:nth-child(1) { animation-delay: 0.1s; }
+  .headline-line:nth-child(2) { animation-delay: 0.2s; }
+  .headline-line:nth-child(3) { animation-delay: 0.3s; }
+
+  .headline-emphasis {
+    color: transparent;
+    background: linear-gradient(135deg, var(--yellow) 0%, #FFD700 50%, var(--yellow) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-style: italic;
+    transform: translateX(20px);
+    text-shadow: 2px 4px 12px rgba(255, 235, 59, 0.3);
   }
 
   .hero-headline .neq {
@@ -833,6 +856,11 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @keyframes fadeUpStagger {
+    from { opacity: 0; transform: translateY(32px) translateX(20px); }
+    to { opacity: 1; transform: translateY(0) translateX(0); }
+  }
+
   .hero-eyebrow { animation: fadeUp 0.6s ease both; }
   .hero-headline { animation: fadeUp 0.6s 0.1s ease both; }
   .hero-subhead { animation: fadeUp 0.6s 0.2s ease both; }
@@ -920,7 +948,11 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
-    <h1 class="hero-headline">Be the One That Breaks Through</h1>
+    <h1 class="hero-headline">
+      <span class="headline-line">Be the One</span>
+      <span class="headline-line">That Breaks</span>
+      <span class="headline-line headline-emphasis">Through</span>
+    </h1>
     <p class="hero-subhead">There is nothing more frustrating than when campaigns are live, content is flowing, the team is on it, and the market <em>still</em> misses the point.</p>
     <div class="hero-ctas">
       <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Call</a>
