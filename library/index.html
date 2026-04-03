@@ -21,6 +21,23 @@
   --sidebar-w: 280px;
 }
 
+/* Keyframe Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes button-press {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.btn-pulse {
+  animation: pulse 0.3s ease-out;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ::selection { background: var(--yellow); color: var(--black); }
@@ -94,6 +111,19 @@ body {
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
+  transition: all 0.2s ease-out;
+  border-radius: 2px;
+}
+
+.sidebar-toggle:hover {
+  border-color: var(--black);
+  background: var(--offwhite);
+  transform: translateY(-1px);
+}
+
+.sidebar-toggle:active {
+  transform: translateY(0);
+  background: var(--light-gray);
 }
 
 /* ── LAYOUT ── */
@@ -212,19 +242,35 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-download-all:hover { background: var(--yellow); color: var(--black); }
+.btn-download-all:hover {
+  background: var(--yellow);
+  color: var(--black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn-download-all:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
 .btn-download-all:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-download-all:disabled:hover {
   background: var(--black);
   color: var(--white);
+  transform: none;
+  box-shadow: none;
 }
 
 .download-note {
@@ -324,20 +370,35 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s ease-out;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-option:hover { background: var(--offwhite); }
+.btn-option:hover {
+  background: var(--offwhite);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-option:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
 .btn-option.selected {
   background: var(--black);
   color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .btn-option.selected-yes {
   background: var(--yellow);
   color: var(--black);
   border-color: var(--black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,235,59,0.4);
 }
 
 /* Score Display */
@@ -521,11 +582,19 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 700;
+  transition: all 0.2s ease-out;
+  border-radius: 2px;
 }
 
 .score-input:focus {
   outline: none;
   border-color: var(--black);
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+.score-input:hover {
+  border-color: var(--gray);
 }
 
 /* Checklist */
@@ -582,9 +651,15 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-nav:active {
+  transform: scale(0.98);
 }
 
 .btn-next {
@@ -592,7 +667,17 @@ h2.section-title:first-of-type { margin-top: 0; }
   color: var(--white);
 }
 
-.btn-next:hover { background: var(--yellow); color: var(--black); }
+.btn-next:hover {
+  background: var(--yellow);
+  color: var(--black);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.btn-next:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
 
 .btn-prev {
   background: none;
@@ -600,7 +685,17 @@ h2.section-title:first-of-type { margin-top: 0; }
   border: 1px solid var(--light-gray);
 }
 
-.btn-prev:hover { color: var(--black); border-color: var(--black); }
+.btn-prev:hover {
+  color: var(--black);
+  border-color: var(--black);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.btn-prev:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
 
 .btn-download-tool {
   display: inline-flex;
@@ -613,14 +708,23 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s ease-out;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-download-tool:hover {
   background: var(--yellow);
   border-color: var(--black);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,235,59,0.3);
+}
+
+.btn-download-tool:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(255,235,59,0.3);
 }
 
 /* ── INTRO PANEL ── */
@@ -635,10 +739,24 @@ h2.section-title:first-of-type { margin-top: 0; }
   padding: 28px 0;
   border-bottom: 1px solid var(--light-gray);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
-.intro-tool:hover { padding-left: 12px; }
+.intro-tool:hover {
+  padding-left: 20px;
+  background: var(--offwhite);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.intro-tool:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
 
 .intro-tool:last-child { border-bottom: none; }
 
@@ -1542,6 +1660,24 @@ function renderResults() {
 
   container.innerHTML = html;
 }
+
+// ── BUTTON MICRO-INTERACTIONS ──
+function addButtonPulse(element) {
+  element.classList.add('btn-pulse');
+  setTimeout(() => {
+    element.classList.remove('btn-pulse');
+  }, 300);
+}
+
+// Add pulse animation to all button clicks
+document.addEventListener('DOMContentLoaded', () => {
+  // Add pulse to all buttons with btn- classes
+  document.addEventListener('click', (e) => {
+    if (e.target.matches('.btn-option, .btn-nav, .btn-download-tool, .btn-download-all, .sidebar-toggle')) {
+      addButtonPulse(e.target);
+    }
+  });
+});
 
 // ── DOWNLOADS ──
 function generateToolText(tool) {
