@@ -38,6 +38,33 @@
   animation: pulse 0.3s ease-out;
 }
 
+/* Progress Indicators */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--light-gray);
+  margin: 24px 0 40px 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.question-counter {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ::selection { background: var(--yellow); color: var(--black); }
@@ -338,10 +365,32 @@ h2.section-title:first-of-type { margin-top: 0; }
   padding: 28px;
   background: var(--offwhite);
   border-left: 3px solid var(--light-gray);
-  transition: border-color 0.2s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.3;
+  transform: translateY(20px);
+  pointer-events: none;
 }
 
-.question-block.answered { border-left-color: var(--yellow); }
+.question-block.current {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  border-left-color: var(--black);
+  background: var(--white);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.question-block.answered {
+  opacity: 0.7;
+  transform: translateY(0);
+  border-left-color: var(--yellow);
+  pointer-events: none;
+  background: var(--offwhite);
+}
+
+.question-block.answered .question-text {
+  color: var(--gray);
+}
 
 .question-text {
   font-size: 15px;
@@ -979,6 +1028,11 @@ h2.section-title:first-of-type { margin-top: 0; }
       <h1 class="panel-title">The Signal Test</h1>
       <p class="panel-lead">Your brand is either generating signal or noise. Signal creates pull. Noise creates activity that looks like progress but doesn't convert. Five questions. Honest answers only.</p>
 
+      <div class="question-counter" id="signal-counter">Question 1 of 5</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="signal-progress"></div>
+      </div>
+
       <div id="signal-questions">
         <div class="question-block" data-q="s1">
           <div class="question-text">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</div>
@@ -1188,6 +1242,11 @@ h2.section-title:first-of-type { margin-top: 0; }
       <h2 class="section-title">Diagnostic Check</h2>
       <p>Use these to confirm you're starting in the right place.</p>
 
+      <div class="question-counter" id="boxedge-counter">Question 1 of 4</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="boxedge-progress"></div>
+      </div>
+
       <div id="boxedge-questions">
         <div class="question-block" data-q="be1">
           <div class="question-text">If you asked five employees what you do, would you get five different answers?</div>
@@ -1343,6 +1402,13 @@ function showPanel(id) {
 
   if (id === 'results') renderResults();
 
+  // Initialize progressive question flow for applicable tools
+  if (id === 'signal') {
+    setTimeout(() => initializeQuestionFlow('signal', 5), 100);
+  } else if (id === 'boxedge') {
+    setTimeout(() => initializeQuestionFlow('boxedge', 4), 100);
+  }
+
   // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
 
@@ -1375,6 +1441,11 @@ function answerSignal(q, val, btn) {
     b.classList.remove('selected', 'selected-yes');
   });
   btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
+
+  // Advance to next question after short delay
+  setTimeout(() => {
+    advanceToNextQuestion('signal', 5);
+  }, 600);
 
   const answered = Object.keys(state.signal).length;
   if (answered === 5) {
@@ -1531,6 +1602,11 @@ function answerBoxEdge(q, val, btn) {
   });
   btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
 
+  // Advance to next question after short delay
+  setTimeout(() => {
+    advanceToNextQuestion('boxedge', 4);
+  }, 600);
+
   const answered = Object.keys(state.boxedge).length;
   if (answered === 4) {
     // For Box-Edge diagnostic, "yes" to q1-3 = problem, "yes" to q4 = good
@@ -1659,6 +1735,62 @@ function renderResults() {
   }
 
   container.innerHTML = html;
+}
+
+// ── QUESTION FLOW ──
+function initializeQuestionFlow(toolName, questionCount) {
+  const container = document.getElementById(`${toolName}-questions`);
+  const questions = container.querySelectorAll('.question-block');
+
+  // Hide all questions initially except the first
+  questions.forEach((q, index) => {
+    if (index === 0) {
+      q.classList.add('current');
+    } else {
+      q.classList.remove('current');
+    }
+  });
+
+  updateProgress(toolName, 0, questionCount);
+}
+
+function advanceToNextQuestion(toolName, questionCount) {
+  const container = document.getElementById(`${toolName}-questions`);
+  const questions = container.querySelectorAll('.question-block');
+  const currentQuestion = container.querySelector('.question-block.current');
+  const currentIndex = Array.from(questions).indexOf(currentQuestion);
+  const nextIndex = currentIndex + 1;
+
+  // Mark current as answered and move to next
+  if (currentQuestion) {
+    currentQuestion.classList.remove('current');
+  }
+
+  if (nextIndex < questions.length) {
+    // Show next question
+    setTimeout(() => {
+      questions[nextIndex].classList.add('current');
+    }, 300);
+
+    updateProgress(toolName, nextIndex + 1, questionCount);
+  } else {
+    // All questions answered
+    updateProgress(toolName, questionCount, questionCount);
+  }
+}
+
+function updateProgress(toolName, current, total) {
+  const counter = document.getElementById(`${toolName}-counter`);
+  const progress = document.getElementById(`${toolName}-progress`);
+
+  if (counter) {
+    counter.textContent = `Question ${Math.min(current + 1, total)} of ${total}`;
+  }
+
+  if (progress) {
+    const percentage = (current / total) * 100;
+    progress.style.width = `${percentage}%`;
+  }
 }
 
 // ── BUTTON MICRO-INTERACTIONS ──
