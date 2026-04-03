@@ -72,41 +72,97 @@
 
   .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
 
+  .hero-section {
+    background: linear-gradient(135deg, var(--black) 0%, #333333 100%);
+    color: var(--white);
+    padding: 80px 0;
+    margin-bottom: 80px;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 16px;
+  }
+
   .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 60px 40px 100px;
+    padding: 0 40px 100px;
   }
 
   .page-title {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(32px, 5vw, 48px);
+    font-size: clamp(42px, 6vw, 64px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 60px;
-    color: var(--black);
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .page-subtitle {
+    font-size: 20px;
+    color: var(--offwhite);
+    margin-bottom: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
   }
 
   .content-section {
-    margin-bottom: 50px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 60px;
+    padding: 48px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.2s ease;
   }
 
-  .content-section:last-of-type { border-bottom: none; }
+  .content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-color: var(--yellow);
+  }
+
+  .content-section:last-of-type {
+    border-bottom: 1px solid var(--light-gray);
+    background: var(--offwhite);
+  }
 
   .section-title {
     font-family: 'Roboto Slab', serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     color: var(--black);
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    width: 40px;
+    height: 3px;
+    background: var(--yellow);
+    display: block;
+    margin-top: 12px;
   }
 
   .content-section p {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--gray);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     line-height: 1.7;
   }
 
@@ -116,19 +172,45 @@
 
   blockquote {
     font-family: 'Roboto Slab', serif;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
     line-height: 1.4;
     color: var(--black);
-    padding-left: 28px;
+    padding: 32px 40px;
     border-left: 4px solid var(--yellow);
-    margin: 32px 0;
+    margin: 40px 0;
     font-style: italic;
+    background: var(--offwhite);
+    border-radius: 0 8px 8px 0;
+    position: relative;
+  }
+
+  blockquote::before {
+    content: '"';
+    font-size: 64px;
+    color: var(--yellow);
+    position: absolute;
+    left: -8px;
+    top: -10px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
   }
 
   .cta-closing {
     text-align: center;
-    padding: 60px 0 0;
+    padding: 60px 48px;
+    background: var(--black);
+    border-radius: 8px;
+    margin-top: 40px;
+  }
+
+  .cta-closing p {
+    color: var(--offwhite) !important;
+    margin-top: 20px;
+  }
+
+  .cta-closing a {
+    color: var(--yellow) !important;
   }
 
   .btn-yellow {
@@ -187,16 +269,23 @@
 <nav>
   <a href="/" class="nav-logo">BrandThnk</a>
   <ul class="nav-links">
-    <li><a href="/#offers">Work With Us</a></li>
-    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/library/">Use the Tools</a></li>
     <li><a href="/book/">Read the Book</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
   </ul>
 </nav>
 
+<div class="hero-section">
+  <div class="hero-content">
+    <p class="hero-eyebrow">About BrandThnk</p>
+    <h1 class="page-title">About</h1>
+    <p class="page-subtitle">The resource, advisor and thought partner I didn't have at the beginning of my marketing career.</p>
+  </div>
+</div>
+
 <div class="container">
-  <h1 class="page-title">About</h1>
 
   <div class="content-section">
     <h2 class="section-title">The problem this work solves.</h2>
@@ -207,20 +296,19 @@
   <div class="content-section">
     <h2 class="section-title">What it takes to close the gap.</h2>
     <p>Brand clarity in financial services requires more than marketing expertise. It requires understanding how a sales conversation breaks down when the brand isn't sharp, how a leadership team loses confidence in its own positioning, and how a company with a genuinely superior product still loses the deal to a competitor with a cleaner narrative.</p>
-    <p>That knowledge comes from being accountable for revenue in environments where brand failure had a direct cost.</p>
   </div>
 
   <div class="content-section">
     <h2 class="section-title">How I got here.</h2>
-    <p>I spent the first half of my career in sales, including 13 years at Dell across markets, countries, and channels, carrying a quota and managing teams who had to close deals with whatever the marketing gave them. When the brand was clear, the job was hard but executable. When it wasn't, every conversation started from scratch.</p>
-    <p>I moved into marketing without any experience in it, which meant I had to figure out what worked rather than what the playbook said. Twenty-five years across sales floors, boardrooms, and international markets produces a different kind of pattern recognition than formal training.</p>
+    <p>The first half of my career was sales, including 13 years at Dell across markets, countries, and channels, carrying a quota and managing teams who had to close deals with whatever the marketing gave them. When the brand was clear, the job was hard but executable. When it wasn't, every conversation started from scratch.</p>
+    <p>After burning out in the field, I moved into marketing without any experience, which meant figuring what worked rather than what the playbook said. Luckily, twenty-five years across sales floors, boardrooms, and international markets produces a deeper kind of pattern recognition than formal training.</p>
     <p>I founded BrandThnk to be the resource, advisor and thought partner I didn't have at the beginning of my marketing career but was lucky enough to gain from the people and stories around me.</p>
   </div>
 
   <div class="content-section">
     <h2 class="section-title">What you can expect.</h2>
     <p>You leave with a clearer read on what's wrong and a set of decisions you can act on, whether that's next week's leadership meeting, a board presentation, or a rebrand.</p>
-    <blockquote>"Allison didn't show us a road we've never considered. She gave us the confidence to take the one we've been avoiding."</blockquote>
+    <blockquote>"Allison is a brand therapist. She didn't show us a road we've never considered, but gave us the confidence to take the one we've been avoiding."</blockquote>
   </div>
 
   <div class="content-section">
@@ -230,7 +318,7 @@
   </div>
 
   <div class="cta-closing">
-    <a href="/#how" class="btn-yellow">Get in Touch</a>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Get in Touch</a>
     <p style="margin-top: 20px; color: var(--gray);">or email me at <a href="mailto:allison@brandthnk.co" style="color: var(--black);">allison@brandthnk.co</a></p>
   </div>
 </div>
