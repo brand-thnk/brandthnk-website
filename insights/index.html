@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrandThnk Insights | AI-Powered Banking Research Platform</title>
+<title>BrandThnk Insights | Proprietary Competitive Research for Financial Services</title>
+<meta name="description" content="See what your competitors are actually doing in digital banking, onboarding, and analytics. Proprietary research from BrandThnk, built for fintech and FI leaders.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,7 +20,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -80,16 +80,55 @@
 
   .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
 
-  /* HERO SECTION */
+  /* MOBILE NAV */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--black);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* HERO */
   .hero {
-    padding: 140px 60px 80px;
-    background: var(--white);
+    padding: 160px 60px 100px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
   }
 
-  .hero-content {
-    max-width: 900px;
-    margin: 0 auto;
+  .hero-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 24px;
   }
 
   .hero h1 {
@@ -97,23 +136,24 @@
     font-size: clamp(32px, 5vw, 52px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 24px;
-    color: var(--black);
+    margin-bottom: 28px;
+    color: var(--white);
   }
 
   .hero p {
     font-size: 20px;
-    color: var(--gray);
-    margin-bottom: 40px;
-    line-height: 1.4;
+    color: #CCCCCC;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto 40px;
   }
 
   .hero-cta {
     display: inline-flex;
     gap: 20px;
-    margin-top: 20px;
   }
 
+  /* BUTTONS */
   .btn {
     display: inline-block;
     padding: 16px 32px;
@@ -127,29 +167,43 @@
   }
 
   .btn-primary {
-    background: var(--black);
-    color: var(--white);
-  }
-
-  .btn-primary:hover {
     background: var(--yellow);
     color: var(--black);
     border-color: var(--yellow);
   }
 
-  .btn-secondary {
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  .btn-outline-light {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+  }
+
+  .btn-outline-light:hover {
     background: var(--white);
     color: var(--black);
   }
 
-  .btn-secondary:hover {
+  .btn-dark {
     background: var(--black);
     color: var(--white);
+    border-color: var(--black);
+  }
+
+  .btn-dark:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
   }
 
   /* SECTIONS */
   .section {
-    padding: 80px 60px;
+    padding: 100px 60px;
   }
 
   .section-alt {
@@ -161,11 +215,20 @@
     margin: 0 auto;
   }
 
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
   .section-title {
     font-family: 'Roboto Slab', serif;
     font-size: 36px;
     font-weight: 700;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
     color: var(--black);
     position: relative;
     padding-bottom: 16px;
@@ -181,245 +244,305 @@
     background: var(--yellow);
   }
 
-  .section-content {
+  .section-subtitle {
     font-size: 18px;
-    line-height: 1.6;
-    color: var(--black);
+    color: var(--gray);
+    line-height: 1.5;
+    max-width: 700px;
+    margin-bottom: 48px;
   }
 
-  .section-content p {
-    margin-bottom: 20px;
+  /* DASHBOARD CARDS */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
   }
 
-  /* PROBLEM SECTION - DISTINCT STYLING */
-  .problem-section {
-    background: var(--black);
-    color: var(--white);
-    padding: 140px 60px 100px;
+  .dashboard-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 36px 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
     position: relative;
-    margin-top: 80px;
-  }
-
-  .problem-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: var(--yellow);
-  }
-
-  .problem-container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .problem-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .problem-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    margin-bottom: 40px;
-    color: var(--yellow);
-    position: relative;
-  }
-
-  .problem-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: var(--yellow);
-  }
-
-  .problem-text {
-    font-size: 20px;
-    line-height: 1.7;
-    color: var(--white);
-  }
-
-  .problem-text p {
-    margin-bottom: 24px;
-  }
-
-  .problem-text p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* HOW IT WORKS - SEAMLESS FLOW */
-  .process-flow {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    margin-top: 40px;
-    position: relative;
   }
 
-  .flow-step {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding: 25px 30px;
-    background: var(--card-bg);
-    border: 1px solid var(--light-gray);
-    border-left: 4px solid var(--yellow);
-    transition: all 0.3s ease;
-  }
-
-  .flow-step:hover {
+  .dashboard-card:hover {
     border-color: var(--black);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
   }
 
-  .flow-icon {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--yellow) 0%, #FFD54F 100%);
-    border-radius: 8px;
+  .dashboard-card.coming-soon {
+    opacity: 0.7;
+  }
+
+  .card-status {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .card-status.live {
+    color: #2E7D32;
+  }
+
+  .card-status.soon {
+    color: var(--gray);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--yellow);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .card-title {
     font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-    color: var(--black);
-    flex-shrink: 0;
-  }
-
-  .flow-content {
-    flex: 1;
-  }
-
-  .flow-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--black);
-  }
-
-  .flow-description {
-    color: var(--gray);
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .flow-note {
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
-    background: var(--offwhite);
-    border-radius: 8px;
-  }
-
-  .flow-note-text {
-    font-style: italic;
-    color: var(--gray);
-    font-size: 16px;
-  }
-
-  /* PERSONAS & MODULES */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-  }
-
-  .feature-card {
-    background: var(--white);
-    border: 1px solid var(--light-gray);
-    padding: 30px;
-    transition: border-color 0.2s, box-shadow 0.2s, border-left-color 0.2s, transform 0.2s;
-    position: relative;
-  }
-
-  .feature-card:hover {
-    border-color: var(--black);
-    border-left-color: var(--yellow);
-    border-left-width: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-
-  .feature-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 12px;
     color: var(--black);
   }
 
-  .feature-description {
+  .card-description {
     color: var(--gray);
-    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex: 1;
   }
 
-  .feature-meta {
+  .card-metrics {
+    font-size: 13px;
+    color: var(--gray);
+    border-top: 1px solid var(--light-gray);
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  .card-metrics span {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .card-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .card-link:hover {
+    color: var(--gray);
+  }
+
+  /* WHAT YOU GET */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .offer-item {
+    padding: 32px;
+    border-left: 4px solid var(--yellow);
+    background: var(--white);
+  }
+
+  .offer-item h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .offer-item p {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    padding: 100px 60px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .form-layout {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .form-copy h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .form-copy p {
+    font-size: 18px;
+    color: #CCCCCC;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .form-copy .form-note {
+    font-size: 14px;
+    color: #999;
+    margin-top: 24px;
+  }
+
+  .form-container {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 36px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    transition: border-color 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #888;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--yellow);
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23FFEB3B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .form-group select option {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--yellow);
+    color: var(--black);
+    border: 2px solid var(--yellow);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover {
+    background: var(--white);
+    border-color: var(--white);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    text-align: center;
     font-size: 14px;
     color: var(--gray);
-    font-weight: 500;
+    border-top: 1px solid var(--light-gray);
   }
 
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--gray);
+  }
 
   /* MOBILE */
   @media (max-width: 768px) {
-    nav {
-      padding: 20px 24px;
-    }
-
-    .nav-links {
-      display: none;
-    }
-
-    .hero {
-      padding: 120px 24px 60px;
-    }
-
-    .section {
-      padding: 60px 24px;
-    }
-
-    .problem-section {
-      padding: 80px 24px;
-    }
-
-    .problem-text {
-      font-size: 18px;
-    }
-
-    .process-flow {
-      gap: 20px;
-    }
-
-    .flow-step {
-      flex-direction: column;
-      text-align: center;
-      gap: 15px;
-    }
-
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-cta {
-      flex-direction: column;
-      align-items: center;
-    }
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .hero { padding: 120px 24px 60px; }
+    .hero p { font-size: 18px; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .section { padding: 60px 24px; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .form-section { padding: 60px 24px; }
+    .form-layout { grid-template-columns: 1fr; gap: 40px; }
+    .footer { padding: 30px 24px; }
   }
 </style>
 </head>
 
 <body>
+
 <nav>
   <a href="/" class="nav-logo">BrandThnk</a>
   <ul class="nav-links">
@@ -430,70 +553,162 @@
     <li><a href="/about">About</a></li>
     <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
   </ul>
+  <button class="mobile-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 
-<!-- THE PROBLEM - FIRST SECTION -->
-<section class="problem-section">
-  <div class="problem-container">
-    <div class="problem-content">
-      <h2 class="problem-title">The Problem You Already Know</h2>
-      <div class="problem-text">
-        <p>You've got some new messaging to get in market, but you have no idea whether your customers will care.</p>
-        <p>Traditional research takes 6-12 weeks and costs $50,000 or more.</p>
-        <p>So, you skip the research and launch with fingers crossed, but when messaging misses, it doesn't just underperform. It adds to the noise your customers are already tuning out.</p>
-      </div>
-      <div class="hero-cta" style="margin-top: 40px; justify-content: center;">
-        <a href="/insights/run" class="btn btn-primary" style="background: var(--yellow); color: var(--black); border-color: var(--yellow);">Start Free Research Session</a>
-        <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-label">BrandThnk Insights</p>
+    <h1>See what your competitors are actually doing.</h1>
+    <p>Proprietary competitive research across digital banking, analytics, and onboarding. Built from real data. Updated continuously. No guesswork.</p>
+    <div class="hero-cta">
+      <a href="#request" class="btn btn-primary">Request Your Research Sample</a>
+      <a href="#dashboards" class="btn btn-outline-light">View the Research</a>
     </div>
   </div>
 </section>
 
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how-it-works">
+<!-- RESEARCH DASHBOARDS -->
+<section class="section" id="dashboards">
   <div class="container">
-    <h2 class="section-title">How It Works</h2>
-    <div class="process-flow">
-      <div class="flow-step">
-        <div class="flow-icon">1</div>
-        <div class="flow-content">
-          <h3 class="flow-title">Tell us what you're testing</h3>
-          <p class="flow-description">We dynamically build the personas from FDIC, Federal Reserve, J.D Power, industry research and 30+ BrandThnk workshops.</p>
+    <p class="section-label">Proprietary Research</p>
+    <h2 class="section-title">Three research tracks. One question: what are they doing that you're not?</h2>
+    <p class="section-subtitle">Each dashboard tracks real competitor activity across financial services. The data is anonymized, the patterns are not.</p>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <span class="card-status live">Live</span>
+        <div class="card-icon">&#9632;</div>
+        <h3 class="card-title">Digital Banking</h3>
+        <p class="card-description">How financial institutions present, position, and sell their digital banking products. Feature comparisons, messaging patterns, and UX benchmarks across competitors.</p>
+        <div class="card-metrics">
+          <span>Competitive positioning analysis</span>
+          <span>Feature and messaging tracking</span>
+          <span>Updated continuously</span>
         </div>
+        <a href="https://digitalbanking.brandthnkinsights.com" class="card-link" target="_blank" rel="noopener">View dashboard &#8594;</a>
       </div>
 
-      <div class="flow-step">
-        <div class="flow-icon">2</div>
-        <div class="flow-content">
-          <h3 class="flow-title">We run the interviews</h3>
-          <p class="flow-description">Each persona participates in an 11-turn, three-phase interview. The system analyzes patterns across all personas to surface where customers agree, where they split, and what your messaging is missing.</p>
+      <div class="dashboard-card">
+        <span class="card-status live">Live</span>
+        <div class="card-icon">&#9650;</div>
+        <h3 class="card-title">Bank Analytics</h3>
+        <p class="card-description">How banks and fintechs use data and analytics to drive decisions. Tracks product capabilities, go-to-market language, and competitive differentiation across the analytics space.</p>
+        <div class="card-metrics">
+          <span>Go-to-market tracking</span>
+          <span>Capability comparisons</span>
+          <span>Updated continuously</span>
         </div>
+        <a href="https://bankanalytics.brandthnkinsights.com" class="card-link" target="_blank" rel="noopener">View dashboard &#8594;</a>
       </div>
 
-      <div class="flow-step">
-        <div class="flow-icon">3</div>
-        <div class="flow-content">
-          <h3 class="flow-title">You walk in with data</h3>
-          <p class="flow-description">You receive an executive-ready document with direct quotes from simulated customer interviews and actionable recommendations tied to your specific messaging.</p>
+      <div class="dashboard-card coming-soon">
+        <span class="card-status soon">Coming Soon</span>
+        <div class="card-icon">&#9679;</div>
+        <h3 class="card-title">Onboarding &amp; Account Opening</h3>
+        <p class="card-description">The onboarding experience from first click to funded account. Tracks friction points, competitive speed, and the language institutions use to convert applicants.</p>
+        <div class="card-metrics">
+          <span>Onboarding flow analysis</span>
+          <span>Conversion language tracking</span>
+          <span>Launching Q2 2026</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 
-
-<!-- CTA SECTION -->
+<!-- WHAT YOU GET -->
 <section class="section section-alt">
-  <div class="container" style="text-align: center;">
-    <h2 class="section-title">Ready to test your ideas?</h2>
-    <a href="/insights/run" class="btn btn-primary">Start Free Research Session</a>
+  <div class="container">
+    <p class="section-label">The Offer</p>
+    <h2 class="section-title">Request a custom research sample. No charge.</h2>
+    <p class="section-subtitle">Tell us your competitive set and area of focus. We will run a sample of our proprietary research on your competitors and deliver a custom snapshot you can use immediately.</p>
+
+    <div class="offer-grid">
+      <div class="offer-item">
+        <h3>Your competitors, specifically</h3>
+        <p>Name the companies or market segment you care about. We research them, not a generic category.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Real signals, not summaries</h3>
+        <p>Positioning language, feature comparisons, go-to-market moves. The things your team needs to see to make better decisions.</p>
+      </div>
+      <div class="offer-item">
+        <h3>30-day competitive snapshot</h3>
+        <p>A focused window into what your competitors did, said, and shipped in the last 30 days. Enough to act on.</p>
+      </div>
+      <div class="offer-item">
+        <h3>Delivered in days, not months</h3>
+        <p>Traditional competitive research takes 6-12 weeks. You will have a usable deliverable within a week of your request.</p>
+      </div>
+    </div>
   </div>
 </section>
+
+
+<!-- LEAD CAPTURE FORM -->
+<section class="form-section" id="request">
+  <div class="form-layout">
+    <div class="form-copy">
+      <h2>Get your custom competitive research sample.</h2>
+      <p>We will run our proprietary research methodology against your competitive set and deliver a sample you can share with your team.</p>
+      <p>No sales call required. No strings. We want you to see what this research looks like applied to your market.</p>
+      <p class="form-note">We typically deliver within 5-7 business days of your request.</p>
+    </div>
+
+    <div class="form-container">
+      <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New BrandThnk Insights Research Request">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Your company" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="focus">Area of Focus</label>
+          <select id="focus" name="focus_area" required>
+            <option value="" disabled selected>Select a research area</option>
+            <option value="digital-banking">Digital Banking</option>
+            <option value="bank-analytics">Bank Analytics</option>
+            <option value="onboarding">Onboarding &amp; Account Opening</option>
+            <option value="other">Other / Multiple</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="competitors">Competitors or Market Segment</label>
+          <textarea id="competitors" name="competitors" rows="3" placeholder="Name 2-5 competitors or describe the segment you want researched"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Request Your Research Sample</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 BrandThnk. <a href="/">Home</a> &middot; <a href="/library/">Toolkit</a> &middot; <a href="/about">About</a> &middot; <a href="https://calendar.app.google/ZoWdHFueshr6LQs17">Book a Call</a></p>
+</footer>
 
 </body>
 </html>

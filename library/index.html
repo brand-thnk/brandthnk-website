@@ -346,30 +346,66 @@ h2.section-title:first-of-type { margin-top: 0; }
   padding: 32px;
   background: var(--black);
   color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.score-gauge {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.score-gauge svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-gauge circle {
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.score-gauge .score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--yellow);
+  text-align: center;
+  line-height: 1;
+}
+
+.score-content {
+  flex: 1;
 }
 
 .score-number {
   font-family: var(--font-heading);
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 700;
   color: var(--yellow);
   line-height: 1;
+  margin-bottom: 8px;
 }
 
 .score-label {
   font-size: 13px;
   color: rgba(255,255,255,0.6);
-  margin-top: 8px;
+  margin-bottom: 16px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .score-verdict {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.15);
   font-size: 15px;
   line-height: 1.7;
+  color: rgba(255,255,255,0.9);
 }
 
 /* Input fields */
@@ -878,9 +914,7 @@ h2.section-title:first-of-type { margin-top: 0; }
       </div>
 
       <div class="score-display" id="signal-result" style="display:none;">
-        <div class="score-number" id="signal-score">0/5</div>
-        <div class="score-label">Signal Strength</div>
-        <div class="score-verdict" id="signal-verdict"></div>
+        <!-- Score gauge will be generated dynamically -->
       </div>
 
       <div class="panel-nav">
@@ -938,9 +972,7 @@ h2.section-title:first-of-type { margin-top: 0; }
       </table>
 
       <div class="score-display" id="reframe-result" style="display:none;">
-        <div class="score-number" id="reframe-score-display">0</div>
-        <div class="score-label" id="reframe-rec-label">Recommendation</div>
-        <div class="score-verdict" id="reframe-verdict"></div>
+        <!-- Score gauge will be generated dynamically -->
       </div>
 
       <h2 class="section-title">The One-Breath Test</h2>
@@ -1070,9 +1102,7 @@ h2.section-title:first-of-type { margin-top: 0; }
       </div>
 
       <div class="score-display" id="boxedge-result" style="display:none;">
-        <div class="score-number" id="boxedge-score">0/4</div>
-        <div class="score-label">Box Clarity Signals</div>
-        <div class="score-verdict" id="boxedge-verdict"></div>
+        <!-- Score gauge will be generated dynamically -->
       </div>
 
       <div class="panel-nav">
@@ -1121,6 +1151,69 @@ const state = {
   boxedge: {},
   completedTools: new Set()
 };
+
+// ── SCORE GAUGE UTILITIES ──
+function createScoreGauge(score, maxScore, containerId, label) {
+  const percentage = (score / maxScore) * 100;
+  const circumference = 2 * Math.PI * 45; // radius = 45
+  const dashOffset = circumference - (circumference * percentage / 100);
+
+  const gauge = `
+    <div class="score-gauge">
+      <svg viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="45" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
+        <circle cx="60" cy="60" r="45" fill="none" stroke="var(--yellow)" stroke-width="8"
+                stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}"
+                stroke-linecap="round" class="progress-ring"/>
+      </svg>
+      <div class="score-text">${score}/${maxScore}</div>
+    </div>
+    <div class="score-content">
+      <div class="score-number" id="${containerId}-number">${score}</div>
+      <div class="score-label">${label}</div>
+      <div class="score-verdict" id="${containerId}-verdict"></div>
+    </div>`;
+
+  const container = document.getElementById(containerId);
+  container.innerHTML = gauge;
+
+  // Animate the progress ring
+  setTimeout(() => {
+    const ring = container.querySelector('.progress-ring');
+    ring.style.strokeDashoffset = dashOffset;
+
+    // Animate the score number
+    animateScore(score, container.querySelector(`#${containerId}-number`), 1500);
+  }, 100);
+}
+
+function animateScore(targetScore, element, duration = 1000) {
+  const startScore = 0;
+  const startTime = Date.now();
+
+  function updateScore() {
+    const elapsed = Date.now() - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Use easing function for smooth animation
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    const currentScore = Math.floor(startScore + (targetScore - startScore) * easeProgress);
+
+    if (element.textContent.includes('/')) {
+      const parts = element.textContent.split('/');
+      parts[0] = currentScore;
+      element.textContent = parts.join('/');
+    } else {
+      element.textContent = currentScore;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(updateScore);
+    }
+  }
+
+  requestAnimationFrame(updateScore);
+}
 
 // ── NAVIGATION ──
 function showPanel(id) {
@@ -1171,7 +1264,6 @@ function answerSignal(q, val, btn) {
     const unsures = Object.values(state.signal).filter(v => v === 'unsure').length;
     const nos = Object.values(state.signal).filter(v => v === 'no').length;
 
-    document.getElementById('signal-score').textContent = yeses + '/5';
     let verdict = '';
     if (yeses >= 4) {
       verdict = 'Strong signal. Your brand is doing its job on the fundamentals. The opportunity is in sharpening the Edge, not rebuilding the foundation.';
@@ -1183,8 +1275,15 @@ function answerSignal(q, val, btn) {
     if (unsures > 0) {
       verdict += ' The ' + unsures + ' "not sure" response' + (unsures !== 1 ? 's' : '') + ' matter too. Uncertainty about your own brand is itself a signal.';
     }
-    document.getElementById('signal-verdict').textContent = verdict;
+
+    // Show the result panel and create animated score gauge
     document.getElementById('signal-result').style.display = 'block';
+    createScoreGauge(yeses, 5, 'signal-result', 'Signal Strength');
+
+    // Add verdict after a delay to let the animation complete
+    setTimeout(() => {
+      document.getElementById('signal-result-verdict').textContent = verdict;
+    }, 800);
     markCompleted('signal');
   }
 }
@@ -1222,10 +1321,15 @@ function updateReframeScore() {
       rec = 'Your brand foundation needs significant work. Before committing to a full rebrand, validate whether the core business model and market position are sound. Sometimes a comprehensive reframe achieves rebrand-level results.';
     }
 
-    document.getElementById('reframe-score-display').textContent = total + '/20';
-    document.getElementById('reframe-rec-label').textContent = label;
-    document.getElementById('reframe-verdict').textContent = rec;
+    // Show the result panel and create animated score gauge
     document.getElementById('reframe-result').style.display = 'block';
+    createScoreGauge(total, 20, 'reframe-result', label);
+
+    // Add verdict after a delay to let the animation complete
+    setTimeout(() => {
+      document.getElementById('reframe-result-verdict').textContent = rec;
+    }, 800);
+
     markCompleted('reframe');
   }
 }
@@ -1319,17 +1423,27 @@ function answerBoxEdge(q, val, btn) {
       (state.boxedge.be3 === 'yes' ? 1 : 0) +
       (state.boxedge.be4 === 'no' ? 1 : 0);
 
-    document.getElementById('boxedge-score').textContent = problemSignals + '/4';
     let verdict = '';
+    let label = '';
     if (problemSignals >= 3) {
       verdict = 'Your Box is the problem. The category isn\'t clear, which means prospects never get to evaluating your Edge. Start with the Box exercise above. The disagreement between stakeholders is the most useful diagnostic you can run.';
+      label = 'Box Needs Work';
     } else if (problemSignals >= 1) {
       verdict = 'Some Box clarity issues. Your category is partially working but has gaps. The ' + problemSignals + ' signal' + (problemSignals !== 1 ? 's' : '') + ' above point to where. Use the Box-Edge statements you wrote to pressure-test internally.';
+      label = 'Box Clarity Issues';
     } else {
       verdict = 'Your Box is clear. Prospects know what you are. Focus on sharpening the Edge. The difference needs to be as crisp as the category.';
+      label = 'Box is Clear';
     }
-    document.getElementById('boxedge-verdict').textContent = verdict;
+
+    // Show the result panel and create animated score gauge
     document.getElementById('boxedge-result').style.display = 'block';
+    createScoreGauge(problemSignals, 4, 'boxedge-result', label);
+
+    // Add verdict after a delay to let the animation complete
+    setTimeout(() => {
+      document.getElementById('boxedge-result-verdict').textContent = verdict;
+    }, 800);
 
     if (state.boxInput.trim() || state.edgeInput.trim()) {
       markCompleted('boxedge');
@@ -1401,12 +1515,14 @@ function renderResults() {
 
   // Box-Edge
   if (state.completedTools.has('boxedge')) {
-    const problemSignals = Object.keys(state.boxedge).length === 4 ? document.getElementById('boxedge-score').textContent : '--';
+    const problemSignals = Object.keys(state.boxedge).length === 4 ?
+      ((state.boxedge.be1 === 'yes' ? 1 : 0) + (state.boxedge.be2 === 'yes' ? 1 : 0) + (state.boxedge.be3 === 'yes' ? 1 : 0) + (state.boxedge.be4 === 'no' ? 1 : 0)) + '/4' :
+      '--';
     html += '<div class="result-section">';
     html += '<div class="result-header"><span class="result-tool-name">Box-Edge Workshop</span><span class="result-score-badge">' + problemSignals + ' Issues</span></div>';
 
-    if (document.getElementById('boxedge-verdict').textContent) {
-      html += '<p class="result-detail">' + document.getElementById('boxedge-verdict').textContent + '</p>';
+    if (document.getElementById('boxedge-result-verdict') && document.getElementById('boxedge-result-verdict').textContent) {
+      html += '<p class="result-detail">' + document.getElementById('boxedge-result-verdict').textContent + '</p>';
     }
 
     if (state.boxInput.trim()) {
@@ -1523,9 +1639,9 @@ function generateToolText(tool) {
         text += '  ' + beQ[k] + ' ' + (state.boxedge[k] || '--') + '\n';
       });
 
-      if (document.getElementById('boxedge-verdict').textContent) {
+      if (document.getElementById('boxedge-result-verdict') && document.getElementById('boxedge-result-verdict').textContent) {
         text += '\nDIAGNOSIS\n';
-        text += document.getElementById('boxedge-verdict').textContent + '\n';
+        text += document.getElementById('boxedge-result-verdict').textContent + '\n';
       }
     }
   }
