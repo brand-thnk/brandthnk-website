@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Box-Edge Framework — BrandThnk</title>
-    <meta name="description" content="A two-part positioning model that clarifies your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge).">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #000000;
-            --white: #FFFFFF;
-            --yellow: #FFEB3B;
-            --offwhite: #F5F5F5;
-            --font-heading: 'Roboto Slab', serif;
-            --font-body: 'Roboto Mono', monospace;
-        }
+    <title>Box-Edge Framework | BrandThnk</title>
+    <meta name="description" content="If they can't box you, they won't buy you. This framework gives you both: a category your market can place, and a difference worth buying once they do.">
 
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -25,116 +17,157 @@
         }
 
         body {
-            font-family: var(--font-body);
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #000;
+            background-color: #fff;
         }
 
-        ::selection {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        a {
-            color: var(--black);
-        }
-
-        /* Navigation */
-        .site-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 16px 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--white);
-            border-bottom: 1px solid var(--black);
-        }
-
-        .nav-wordmark {
-            font-family: var(--font-heading);
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        .nav-back {
-            font-family: var(--font-body);
-            font-size: 14px;
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        .nav-back:hover {
-            text-decoration: underline;
-            text-decoration-color: var(--yellow);
-            text-underline-offset: 4px;
-        }
-
-        /* Main Content */
-        .framework-page {
-            max-width: 900px;
+        .container {
+            max-width: 720px;
             margin: 0 auto;
-            padding: 140px 40px 100px;
+            padding: 40px 20px;
         }
 
-        .framework-domain {
-            font-family: var(--font-body);
+        .domain-tag {
+            font-family: 'Roboto Mono', monospace;
             font-size: 12px;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--black);
+            color: #000;
             opacity: 0.5;
             margin-bottom: 16px;
         }
 
-        .framework-title {
-            font-family: var(--font-heading);
-            font-size: clamp(36px, 5vw, 56px);
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
             font-weight: 700;
-            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             line-height: 1.1;
             margin-bottom: 24px;
         }
 
-        .framework-tagline {
-            font-family: var(--font-body);
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 65ch;
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 48px;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
             margin-bottom: 48px;
             padding-bottom: 48px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333;
         }
 
-        /* Section Styling */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            color: #000;
+        }
+
+        /* Section spacing */
         .section {
             margin-bottom: 64px;
         }
 
-        .section-heading {
-            font-family: var(--font-heading);
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        /* Framework Cards */
+        .framework-cards {
+            margin: 40px 0;
+        }
+
+        .framework-card {
             margin-bottom: 24px;
+            border-radius: 8px;
+            position: relative;
         }
 
-        .section p {
-            font-size: 16px;
+        .box-card {
+            background-color: #FFEB3B;
+            color: #000;
+            padding: 32px;
+            border: 2px solid #000;
+        }
+
+        .edge-card {
+            background-color: #fff;
+            color: #000;
+            padding: 32px;
+            border: 2px solid #000;
+        }
+
+        .card-header {
             margin-bottom: 20px;
-            max-width: 70ch;
         }
 
-        .section strong {
+        .part-label {
+            font-family: 'Roboto Slab', serif;
+            font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .part-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .part-subtitle {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .formula {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 16px;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #000;
+        }
+
+        .edge-card .formula {
+            background-color: #F5F5F5;
+            white-space: pre-line;
+        }
+
+        .connector {
+            height: 24px;
+            width: 1px;
+            background-color: #E5E5E5;
+            margin: 0 auto;
+        }
+
+        /* Highlight boxes */
+        .highlight-box {
+            background-color: #F5F5F5;
+            padding: 28px;
+            margin: 32px 0;
+            border-left: 4px solid #FFEB3B;
         }
 
         /* Lists */
@@ -143,6 +176,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin: 20px 0;
         }
 
         .applies-list li {
@@ -158,74 +192,11 @@
             top: 10px;
             width: 10px;
             height: 3px;
-            background: var(--yellow);
+            background: #FFEB3B;
         }
 
         .applies-list.not-applies li::before {
             background: rgba(0, 0, 0, 0.2);
-        }
-
-        /* Formula Blocks */
-        .formula-block {
-            background: var(--black);
-            color: var(--white);
-            padding: 28px 32px;
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.9;
-            margin: 24px 0 32px;
-            border-radius: 3px;
-        }
-
-        .formula-block .label {
-            color: var(--yellow);
-            font-weight: 700;
-        }
-
-        /* Part Cards */
-        .part-card {
-            border: 2px solid var(--black);
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        .part-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .part-number {
-            font-family: var(--font-heading);
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--yellow);
-            background: var(--black);
-            padding: 8px 16px;
-        }
-
-        .part-name {
-            font-family: var(--font-heading);
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .part-subtitle {
-            font-family: var(--font-body);
-            font-size: 14px;
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-        .part-content p {
-            font-size: 15px;
-            margin-bottom: 16px;
-        }
-
-        .part-content p:last-child {
-            margin-bottom: 0;
         }
 
         /* Deploy Steps */
@@ -234,12 +205,13 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 32px;
+            margin: 20px 0;
         }
 
         .deploy-steps li {
             font-size: 15px;
-            padding-left: 48px;
+            padding-left: 60px;
             position: relative;
         }
 
@@ -249,37 +221,92 @@
             position: absolute;
             left: 0;
             top: -2px;
-            font-family: var(--font-heading);
+            font-family: 'Roboto Slab', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFEB3B;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .step-title {
+            display: block;
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            font-size: 18px;
+            border-left: 4px solid #FFEB3B;
+            padding-left: 20px;
+            margin: 32px 0;
+            font-style: normal;
+        }
+
+        /* Case Studies */
+        .case-study {
+            margin: 30px 0;
+            padding: 28px;
+            background-color: #fff;
+            border: 1px solid #E5E5E5;
+            border-radius: 8px;
+        }
+
+        .case-study-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .case-labels {
+            margin: 20px 0;
+        }
+
+        .case-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .case-statement {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* Common Mistakes */
+        .mistake-list {
+            counter-reset: mistake;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .mistake-list li {
+            margin-bottom: 24px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .mistake-list li::before {
+            counter-increment: mistake;
+            content: counter(mistake);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-family: 'Roboto Slab', serif;
             font-size: 24px;
             font-weight: 700;
-            color: var(--yellow);
+            color: #FFEB3B;
+            text-shadow: 1px 1px 0 #000;
         }
 
-        .deploy-steps li strong {
-            display: block;
-            font-family: var(--font-heading);
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        /* Callout */
-        .callout {
-            background: var(--offwhite);
-            border-left: 4px solid var(--yellow);
-            padding: 24px 28px;
-            margin: 32px 0;
-        }
-
-        .callout-title {
-            font-family: var(--font-heading);
-            font-size: 16px;
+        .mistake-title {
             font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .callout p {
-            font-size: 15px;
-            margin-bottom: 0;
+            margin-bottom: 8px;
         }
 
         /* Diagnostic Questions */
@@ -288,7 +315,8 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
+            margin: 20px 0;
         }
 
         .diagnostic-list li {
@@ -302,250 +330,318 @@
             content: counter(question) ".";
             position: absolute;
             left: 0;
-            font-family: var(--font-heading);
+            font-family: 'Roboto Slab', serif;
             font-weight: 700;
         }
 
-        /* Examples */
-        .example-block {
-            background: var(--offwhite);
-            padding: 28px;
-            margin-bottom: 20px;
+        .diagnostic-conclusion {
+            font-size: 14px;
+            color: #666;
+            margin-top: 16px;
         }
 
-        .example-title {
-            font-family: var(--font-heading);
-            font-size: 18px;
+        /* CTA Section */
+        .cta-section {
+            margin: 64px 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 16px 32px;
+            text-decoration: none;
             font-weight: 700;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            transition: transform 0.2s;
             margin-bottom: 16px;
         }
 
-        .example-label {
-            font-family: var(--font-heading);
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-note {
             font-size: 14px;
-            font-weight: 700;
-            color: var(--yellow);
-            background: var(--black);
-            display: inline-block;
-            padding: 4px 10px;
-            margin-bottom: 8px;
+            color: #666;
         }
 
-        .example-text {
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        /* Footer */
-        .framework-footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-back {
-            font-family: var(--font-body);
-            font-size: 14px;
-            color: var(--black);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-
-        .footer-back:hover {
-            text-decoration-color: var(--yellow);
-        }
-
-        .footer-brand {
-            font-family: var(--font-heading);
-            font-size: 14px;
-            font-weight: 700;
-            color: rgba(0, 0, 0, 0.4);
-        }
-
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .site-nav {
-                padding: 16px 24px;
+            .container {
+                padding: 20px 15px;
             }
 
-            .framework-page {
-                padding: 120px 24px 60px;
+            h1 {
+                font-size: 2rem;
             }
 
-            .part-card {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .framework-card {
                 padding: 24px;
             }
 
-            .formula-block {
-                padding: 20px 24px;
-                font-size: 14px;
-            }
-        }
-
-        /* Print */
-        @media print {
-            .site-nav {
-                display: none;
+            .deploy-steps li::before {
+                font-size: 36px;
             }
 
-            .framework-page {
-                padding: 0;
+            .deploy-steps li {
+                padding-left: 50px;
             }
 
-            .part-card {
-                page-break-inside: avoid;
+            .pull-quote {
+                font-size: 16px;
+            }
+
+            .case-study {
+                padding: 20px;
             }
         }
     </style>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <a href="../library/" class="back-link">← Back to Library</a>
 
-    <nav class="site-nav">
-        <a href="../index.html" class="nav-wordmark">BrandThnk</a>
-        <a href="/library/" class="nav-back">&larr; Back to Our Toolkit</a>
-    </nav>
+        <div class="domain-tag">Positioning</div>
 
-    <main class="framework-page">
-        <div class="framework-domain">Positioning</div>
-        <h1 class="framework-title">Box-Edge Framework</h1>
-        <p class="framework-tagline">A two-part positioning model that clarifies your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge).</p>
+        <header>
+            <h1>Box-Edge Framework</h1>
+            <p class="lead">If they can't box you, they won't buy you. This framework gives you both: a category your market can place, and a difference worth buying once they do.</p>
+        </header>
 
-        <!-- When This Applies -->
         <section class="section">
-            <h2 class="section-heading">When This Applies</h2>
+            <h2>Why This Comes First</h2>
+            <p>Your brain is a pattern-recognition machine. When a prospect encounters your brand, their brain asks one question before anything else: what drawer do you belong in? If the answer doesn't come quickly and cleanly, they don't work harder to figure you out. They move on.</p>
+
+            <p>Most financial brands lead with differentiation before the category is clear. That's backwards. Brains can't evaluate your Edge until they've filed your Box. The sequence is the strategy.</p>
+        </section>
+
+        <section class="section">
+            <h2>When to Use This</h2>
+            <p>You're in the right place if:</p>
             <ul class="applies-list">
-                <li>Prospects consistently describe you incorrectly</li>
-                <li>Sales spends first 10 minutes explaining what you do</li>
+                <li>Prospects consistently describe you incorrectly or compare you to the wrong competitors</li>
+                <li>Sales spends the first ten minutes of every call explaining what you do rather than why you're better</li>
                 <li>Messaging varies across teams and channels</li>
-                <li>New positioning work or messaging refresh needed</li>
-                <li>Training sales and frontline teams on story</li>
+                <li>You're doing new positioning work or a messaging refresh</li>
+                <li>You're training sales or frontline teams on the brand</li>
             </ul>
-        </section>
 
-        <section class="section">
-            <h2 class="section-heading">When This Does NOT Apply</h2>
+            <p style="margin-top: 30px;">This framework does not apply if:</p>
             <ul class="applies-list not-applies">
-                <li>Story is clear but execution is inconsistent (that's a governance problem)</li>
-                <li>Visual identity is genuinely broken (that's a rebrand problem, after story is sharp)</li>
-                <li>Category doesn't exist yet (may need category creation work first)</li>
+                <li>The brand is clear but execution is inconsistent across teams (that's a governance problem)</li>
+                <li>Visual identity is genuinely broken (that's a rebrand problem, and only after the brand is sharp)</li>
+                <li>Your category doesn't exist yet and needs to be created before it can be claimed</li>
             </ul>
         </section>
 
-        <!-- The Framework -->
         <section class="section">
-            <h2 class="section-heading">The Framework</h2>
-            <p>A mindset for messaging and activation, not a new tagline.</p>
+            <h2>The Framework</h2>
 
-            <div class="part-card">
-                <div class="part-header">
-                    <span class="part-number">Part 1</span>
-                    <div>
-                        <div class="part-name">The Box</div>
-                        <div class="part-subtitle">Category Clarity</div>
+            <div class="framework-cards">
+                <div class="framework-card box-card">
+                    <div class="card-header">
+                        <div class="part-label">Part 1</div>
+                        <div class="part-title">The Box — Category Clarity</div>
                     </div>
-                </div>
-                <div class="part-content">
+
                     <p><strong>Prompt:</strong> What category would a current customer place you in?</p>
-                    <div class="formula-block">
-                        <span class="label">Formula:</span><br>
-                        We're a [category] for [segment].
-                    </div>
-                    <p><strong>Key Principle:</strong> Use words real people use. Don't use bank speak. Don't invent categories.</p>
-                    <p>The Box answers: "What drawer do you belong in?" Get this wrong and you're fighting for attention in the wrong room.</p>
-                </div>
-            </div>
 
-            <div class="part-card">
-                <div class="part-header">
-                    <span class="part-number">Part 2</span>
-                    <div>
-                        <div class="part-name">The Edge</div>
-                        <div class="part-subtitle">Differentiation</div>
+                    <div class="formula">
+                        <strong>Formula:</strong> We're a [category] for [segment].
                     </div>
+
+                    <p>Use words real people use. Don't use internal shorthand. Don't invent categories that don't exist in your buyer's vocabulary.</p>
+
+                    <p>Stop and test your own positioning right now: can a stranger categorize you in five seconds? That's your Box. If the answer is no, you're asking brains to work too hard, and tired brains don't buy.</p>
                 </div>
-                <div class="part-content">
-                    <p><strong>Prompt:</strong> Once you're in the right box, what makes you <strong>better</strong> (not just different)?</p>
-                    <div class="formula-block">
-                        <span class="label">Formula:</span><br><br>
-                        Unlike [status quo],<br>
-                        we [mechanism]<br>
-                        so you can [outcome],<br>
-                        [proof].
+
+                <div class="connector"></div>
+
+                <div class="framework-card edge-card">
+                    <div class="card-header">
+                        <div class="part-label">Part 2</div>
+                        <div class="part-title">The Edge — Differentiation</div>
                     </div>
-                    <p>The Edge answers: "Once I know what you are, why should I care?" This is where deals are won or lost.</p>
+
+                    <p><strong>Prompt:</strong> Once you're in the right Box, what makes you better, not just different?</p>
+
+                    <div class="formula">
+<strong>Formula:</strong>
+Unlike [status quo],
+we [mechanism]
+so you can [outcome],
+[proof].
+                    </div>
+
+                    <p>Once categorized, can a prospect articulate your difference in ten seconds? That's your Edge. The Edge assumes the Box is already working. If you're writing an Edge before the Box is clear, you're sharpening the wrong thing.</p>
                 </div>
             </div>
         </section>
 
-        <!-- How to Deploy -->
         <section class="section">
-            <h2 class="section-heading">How to Deploy</h2>
+            <h2>What Happens When You Skip the Box</h2>
+
+            <div class="highlight-box">
+                <p>A fintech launches with: "We're revolutionizing how money moves."</p>
+
+                <p>Okay, but what are you? A payment processor? A banking platform? A crypto wallet? A remittance service?</p>
+
+                <p>Prospects spend mental energy trying to categorize you. While they're working to figure out your Box, they never get to evaluating your Edge. You lost them at "revolutionizing."</p>
+
+                <p>A competitor says: "We're a payment processor for global e-commerce with one-click integration and same-day settlement."</p>
+
+                <p>Clear. Fast. Done. The revolutionary fintech gets points for ambition. The clear competitor gets the contract.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>How to Deploy</h2>
+
             <ol class="deploy-steps">
                 <li>
-                    <strong>Workshop the Box first</strong>
-                    Get 5+ stakeholders to independently complete "We're a ___ for ___"
+                    <span class="step-title">Workshop the Box first.</span>
+                    Get five or more stakeholders to independently complete "We're a ___ for ___." Do not share answers before everyone has written theirs.
                 </li>
                 <li>
-                    <strong>Name the disagreement</strong>
-                    Divergence here is diagnostic; don't skip to consensus
+                    <span class="step-title">Name the disagreement.</span>
+                    Divergence here is diagnostic. Don't skip to consensus. The places where people disagree reveal where the category is genuinely unclear, and that's exactly what needs to be resolved before anything else.
                 </li>
                 <li>
-                    <strong>Sharpen the Edge</strong>
-                    Complete the "Unlike... we... so you can... [proof]" formula
+                    <span class="step-title">Sharpen the Edge.</span>
+                    Complete the "Unlike... we... so you can... [proof]" formula once the Box is locked.
                 </li>
                 <li>
-                    <strong>Run the 2-Sentence Test</strong>
-                    Say both sentences aloud; if it takes more than one breath, simplify
+                    <span class="step-title">Run the Two-Sentence Test.</span>
+                    Say both sentences aloud. If it takes more than one breath, simplify. If you need to explain the sentence before it lands, the work isn't done.
                 </li>
                 <li>
-                    <strong>Validate externally</strong>
-                    Test with 3-5 customers or prospects before codifying
+                    <span class="step-title">Test externally.</span>
+                    Test with three to five customers or prospects before locking it in. You're looking for recognition, not approval. If they nod but can't repeat it back, it's not sharp enough.
                 </li>
             </ol>
+
+            <div class="pull-quote">
+                Divergence here is diagnostic. Don't skip to consensus.
+            </div>
         </section>
 
-        <!-- Diagnostic Questions -->
         <section class="section">
-            <h2 class="section-heading">Diagnostic Questions</h2>
-            <p>Use these to determine if Box-Edge is the right starting point:</p>
+            <h2>Diagnostic Questions</h2>
+
+            <p>Use these to confirm you're starting in the right place:</p>
+
             <ol class="diagnostic-list">
-                <li>If you asked 5 employees what you do, would you get 5 different answers?</li>
+                <li>If you asked five employees what you do, would you get five different answers?</li>
                 <li>Do prospects frequently compare you to the wrong competitors?</li>
-                <li>Is your sales cycle longer because of explanation overhead?</li>
-                <li>When you removed your logo from marketing, could anyone tell it's you?</li>
+                <li>Is your sales cycle longer because prospects need the category explained before the value can land?</li>
+                <li>When you removed your logo from your marketing, could anyone identify it as yours?</li>
             </ol>
-            <div class="callout">
-                <p>If yes to 2+ of these, start here.</p>
-            </div>
+
+            <p class="diagnostic-conclusion">If yes to two or more, the Box is the problem. Start there.</p>
         </section>
 
-        <!-- Examples -->
         <section class="section">
-            <h2 class="section-heading">Examples</h2>
+            <h2>What This Looks Like in Practice</h2>
 
-            <div class="example-block">
-                <div class="example-title">BrandThnk Application</div>
-                <div class="example-label">Box</div>
-                <p class="example-text">We're a boutique consultancy for fintechs and financial institutions.</p>
-                <br>
-                <div class="example-label">Edge</div>
-                <p class="example-text">Unlike traditional agencies, we combine sharper strategy with a proven playbook that builds growth brands without the distraction of full rebrands.</p>
+            <div class="case-study">
+                <div class="case-study-title">Monit (Fintech)</div>
+                <p>When Steve Dow founded Monit, he could have positioned it as "a revolutionary AI platform that transcends traditional banking categories." Many fintech founders do exactly that.</p>
+
+                <p>Instead, he was explicit: "We're an SMB intelligence platform." Clear Box. Easy mental file.</p>
+
+                <p>Then came the Edge: Monit unifies intelligence across three distinct value lanes that typically exist in separate silos, creating clarity for business owners, deeper insights for bankers, and better product development for banks. Competitors serve one lane. Monit connects all three.</p>
+
+                <p>Box first, Edge second. The positioning wasn't just messaging. It dictated infrastructure requirements. You can't promise to unify three silos without actually building the technology that connects them.</p>
             </div>
 
-            <div class="example-block">
-                <div class="example-title">Digital Brand Positioning (Field Pattern)</div>
-                <p class="example-text">Across three digital brand projects, the same threshold appeared: incrementality kicked in when marketing spend hit 20-22% of total budget, typically in year three. The pattern: start with a tight Box, then expand based on data. The Edge should stay sharp even as the Box widens.</p>
+            <div class="case-study">
+                <div class="case-study-title">Nuuvia (Youth Banking Platform for Community FIs)</div>
+                <p>Nuuvia entered a market dominated by Greenlight, GoHenry, and Step, fintechs with slick apps, aggressive marketing, and millions in venture funding. These companies had convinced parents that youth banking meant colorful debit cards and financial education games. Meanwhile, they were quietly siphoning deposits, card revenue, and data away from traditional financial institutions.</p>
+
+                <p>Nuuvia could have positioned itself as "fintech-lite." Safe. Predictable. Forgettable. Instead they leaned into the contradiction.</p>
+
+                <div class="case-labels">
+                    <div class="case-label">Box:</div>
+                    <div class="case-statement">We're a youth banking platform</div>
+
+                    <div class="case-label">Edge:</div>
+                    <div class="case-statement">...that keeps everything in-house for community financial institutions</div>
+                </div>
+
+                <p>That Edge created immediate differentiation. Parents got all the features of fintech apps without sending their child's financial data to a third party. Community FIs finally had a way to compete in youth banking without sacrificing their core advantages: trust, local presence, and ownership of the relationship.</p>
+
+                <p>The positioning tension: "We're as tech-forward as any fintech, but we keep everything in-house for you." Not fintech OR traditional bank. Fintech innovation WITH traditional bank values.</p>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-title">Valley Bank and Coast Central Credit Union</div>
+                <p>Valley Bank serves the cannabis industry. For years, they positioned themselves vaguely as "serving underbanked industries" because they worried explicit cannabis association would limit them.</p>
+
+                <p>The counterintuitive move: they leaned into it. "We're the cannabis bank." Clear category. Immediate recognition. By owning the category explicitly, they became the obvious choice for cannabis businesses, which built authority that extended to adjacent industries.</p>
+
+                <p>Coast Central Credit Union faced a similar choice. Instead of positioning vaguely as "community banking," they leaned into geographic specificity: "We're the Central Coast credit union." Not trying to be relevant everywhere. Just owning the specific geography where they actually operate.</p>
+
+                <p>In both cases, the counterintuitive move was embracing category specificity rather than avoiding it.</p>
+            </div>
+
+            <div class="case-study">
+                <div class="case-study-title">BrandThnk Application</div>
+                <div class="case-labels">
+                    <div class="case-label">Box:</div>
+                    <div class="case-statement">I'm a brand strategy consultancy for fintechs and financial institutions.</div>
+
+                    <div class="case-label">Edge:</div>
+                    <div class="case-statement">Unlike traditional agencies, I come from inside the org, which means I can identify where the brand breaks down in actual sales conversations, not just in the deck, so you get a position that travels from the boardroom to the front line.</div>
+                </div>
             </div>
         </section>
 
-        <footer class="framework-footer">
-            <a href="/library/" class="footer-back">&larr; Back to Our Toolkit</a>
-            <div class="footer-brand">BrandThnk</div>
-        </footer>
-    </main>
+        <section class="section">
+            <h2>Three Common Mistakes</h2>
 
+            <ol class="mistake-list">
+                <li>
+                    <div class="mistake-title">The Category Avoider</div>
+                    <p><strong>Symptoms:</strong> positioning that says "We transcend traditional categories" or "We're not just another bank."</p>
+                    <p><strong>What's actually happening:</strong> you think avoiding the category makes you special. Your prospects think you're confusing.</p>
+                </li>
+                <li>
+                    <div class="mistake-title">The Commodity Differentiator</div>
+                    <p><strong>Symptoms:</strong> your Edge is "better service," "more features," or "lower rates."</p>
+                    <p><strong>What's actually happening:</strong> you've differentiated on dimensions everyone else also claims. That's not an Edge. That's table stakes dressed as strategy.</p>
+                </li>
+                <li>
+                    <div class="mistake-title">The Backwards Positioner</div>
+                    <p><strong>Symptoms:</strong> your website leads with "revolutionary," "innovative," or "game-changing" before explaining what category you're in.</p>
+                    <p><strong>What's actually happening:</strong> you're asking tired brains to figure out your Box while you're trying to sell your Edge. They give up before you get to the good part.</p>
+                </li>
+            </ol>
+
+            <p>If your positioning could describe three different types of companies, you don't have positioning. You have adjectives.</p>
+        </section>
+
+        <section class="section">
+            <p>If the Box exercise produces five different answers from five stakeholders, that's not a failure. That's the most useful diagnostic you could have run. It shows you exactly where to start.</p>
+
+            <p>If you want help working through what the disagreement means and what to do with it, that's a conversation worth having.</p>
+        </section>
+
+        <div class="cta-section">
+            <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="cta-button" target="_blank">Start the Conversation</a>
+            <p class="cta-note">If the Box exercise produced five different answers, that's not a failure. That's where the work starts.</p>
+        </div>
+    </div>
 </body>
 </html>
