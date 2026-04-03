@@ -2061,8 +2061,8 @@ document.addEventListener('touchmove', (e) => {
   const deltaX = Math.abs(touch.clientX - touchStartX);
   const deltaY = Math.abs(touch.clientY - touchStartY);
 
-  // If horizontal movement is greater than vertical, it might be a swipe
-  if (deltaX > deltaY && deltaX > 20) {
+  // Only prevent scrolling if it's clearly a horizontal swipe with significant movement
+  if (deltaX > deltaY && deltaX > 30 && deltaX > deltaY * 2) {
     isSwipeGesture = true;
     // Prevent default scrolling during horizontal swipe
     e.preventDefault();
