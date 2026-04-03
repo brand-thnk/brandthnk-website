@@ -324,6 +324,28 @@
             border-left: 3px solid var(--yellow);
         }
 
+        .action-card.completed {
+            background: var(--light-gray);
+            opacity: 0.7;
+            border-left: 3px solid var(--gray);
+        }
+
+        .action-card.completed h4 {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+
+        .action-card.completed::after {
+            content: "✓ COMPLETED";
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gray);
+            letter-spacing: 1px;
+            float: right;
+            margin-top: -20px;
+        }
+
         /* TABS */
         .tab-nav {
             display: flex;
@@ -398,13 +420,13 @@
                     <div class="timing">Owner: Jen Packard | Deadline: March 30</div>
                 </div>
 
-                <div class="action-card immediate">
+                <div class="action-card immediate completed">
                     <h4>Pitch CU 2.0 Podcast</h4>
                     <p>Pitch Nate for Kirk Drake's "Fintech Friday" or "Mastermind" podcast. Lead with Segmint/Alkami story and "Before You Deploy AI, Connect Your Data" thesis.</p>
                     <div class="timing">Owner: BrandThnk | Deadline: April 7</div>
                 </div>
 
-                <div class="action-card immediate">
+                <div class="action-card immediate completed">
                     <h4>Draft BankThink Submission</h4>
                     <p>Draft "Before You Buy AI, Fix Your Data" for American Banker BankThink. Target May publication. Submit to Victoria Finkle per BankThink guidelines.</p>
                     <div class="timing">Owner: BrandThnk + Nate | Deadline: April 15</div>
