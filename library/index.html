@@ -750,7 +750,7 @@ h2.section-title:first-of-type { margin-top: 0; }
         <div class="nav-step">1</div>
         <div class="nav-item-text">
           <div class="nav-item-title">The Signal Test</div>
-          <div class="nav-item-subtitle">Signal or noise?</div>
+          <div class="nav-item-subtitle">Is your brand working?</div>
         </div>
       </div>
 
@@ -800,7 +800,7 @@ h2.section-title:first-of-type { margin-top: 0; }
         <div class="intro-tool" onclick="showPanel('signal')">
           <div class="intro-tool-step">Tool 01</div>
           <div class="intro-tool-title">The Signal Test</div>
-          <div class="intro-tool-desc">Five questions that tell you whether your brand is generating signal or noise. Takes 2 minutes. Produces a clear read on where the breakdown is happening.</div>
+          <div class="intro-tool-desc">Six questions that tell you whether your brand is creating pull or just creating activity. Takes 2 minutes. Produces a clear read on what's actually working.</div>
         </div>
         <div class="intro-tool" onclick="showPanel('reframe')">
           <div class="intro-tool-step">Tool 02</div>
@@ -823,7 +823,7 @@ h2.section-title:first-of-type { margin-top: 0; }
     <div class="panel" id="panel-signal">
       <p class="panel-eyebrow">Tool 01 of 03</p>
       <h1 class="panel-title">The Signal Test</h1>
-      <p class="panel-lead">Your brand is either generating signal or noise. Signal creates pull. Noise creates activity that looks like progress but doesn't convert. Five questions. Honest answers only.</p>
+      <p class="panel-lead">Your brand is either creating pull or just creating activity. Pull converts. Activity looks like progress but doesn't. Six questions. Honest answers only.</p>
 
       <div id="signal-questions">
         <div class="question-block" data-q="s1">
@@ -873,6 +873,16 @@ h2.section-title:first-of-type { margin-top: 0; }
             <button class="btn-option" onclick="answerSignal('s5','yes',this)">Yes</button>
             <button class="btn-option" onclick="answerSignal('s5','no',this)">No</button>
             <button class="btn-option" onclick="answerSignal('s5','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s6">
+          <div class="question-text">Is your sales cycle longer because prospects need the category explained before the value can land?</div>
+          <div class="question-context">If you're spending half your sales conversation explaining what you are before you get to why you're different, your Box is broken. Category confusion kills conversion.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSignal('s6','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSignal('s6','no',this)">No</button>
+            <button class="btn-option" onclick="answerSignal('s6','unsure',this)">Not sure</button>
           </div>
         </div>
       </div>
@@ -943,50 +953,6 @@ h2.section-title:first-of-type { margin-top: 0; }
         <div class="score-verdict" id="reframe-verdict"></div>
       </div>
 
-      <h2 class="section-title">The One-Breath Test</h2>
-      <p>Can you explain your brand difference in one breath?</p>
-
-      <div style="margin: 24px 0;">
-        <textarea class="text-input" rows="3" id="breath-input"
-          placeholder="We help [target audience] [achieve what outcome] by [how you're different]..."
-          oninput="updateBreathCount()"></textarea>
-        <div class="input-counter">
-          <span id="breath-count">0 words</span>
-          <span id="breath-feedback"></span>
-        </div>
-        <div class="input-hint">If it takes more than 25 words, your message needs work. If you can't fill the sentence, your positioning needs work.</div>
-      </div>
-
-      <h2 class="section-title">Brand Proof Checklist</h2>
-      <p>Check each statement that's true for your brand today. Not aspirational. Today.</p>
-
-      <div class="checklist" id="proof-checklist">
-        <div class="checklist-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="checklist-label">New customers mention our specific difference when they choose us</div>
-        </div>
-        <div class="checklist-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="checklist-label">Our frontline staff can explain our brand promise without training</div>
-        </div>
-        <div class="checklist-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="checklist-label">We turn down opportunities that don't fit our brand</div>
-        </div>
-        <div class="checklist-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="checklist-label">Our marketing drives leads, not just awareness</div>
-        </div>
-        <div class="checklist-item" onclick="toggleCheck(this)">
-          <div class="check-box"></div>
-          <div class="checklist-label">We can name three things we deliberately don't do</div>
-        </div>
-      </div>
-
-      <div id="proof-result" style="display:none; margin-top:20px; padding:16px; background:var(--offwhite); border-left:3px solid var(--yellow);">
-        <span id="proof-verdict"></span>
-      </div>
-
       <div class="panel-nav">
         <button class="btn-nav btn-prev" onclick="showPanel('signal')">Back</button>
         <div style="display:flex;gap:12px;align-items:center;">
@@ -1035,45 +1001,6 @@ h2.section-title:first-of-type { margin-top: 0; }
         <span id="combined-feedback"></span>
       </div>
 
-      <h2 class="section-title">Diagnostic Check</h2>
-      <p>Use these to confirm you're starting in the right place.</p>
-
-      <div id="boxedge-questions">
-        <div class="question-block" data-q="be1">
-          <div class="question-text">If you asked five employees what you do, would you get five different answers?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be1','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be1','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be2">
-          <div class="question-text">Do prospects frequently compare you to the wrong competitors?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be2','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be2','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be3">
-          <div class="question-text">Is your sales cycle longer because prospects need the category explained before the value can land?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be3','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be3','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be4">
-          <div class="question-text">Could someone identify your marketing without your logo on it?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be4','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be4','no',this)">No</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="score-display" id="boxedge-result" style="display:none;">
-        <div class="score-number" id="boxedge-score">0/4</div>
-        <div class="score-label">Box Clarity Signals</div>
-        <div class="score-verdict" id="boxedge-verdict"></div>
-      </div>
 
       <div class="panel-nav">
         <button class="btn-nav btn-prev" onclick="showPanel('reframe')">Back</button>
@@ -1114,12 +1041,15 @@ h2.section-title:first-of-type { margin-top: 0; }
 const state = {
   signal: {},
   reframe: { position: null, promise: null, clarity: null, visual: null },
-  breath: '',
-  proofChecks: [false, false, false, false, false],
   boxInput: '',
   edgeInput: '',
   boxedge: {},
-  completedTools: new Set()
+  completedTools: new Set(),
+  // Store verdicts in state so downloads don't depend on DOM elements
+  signalVerdict: '',
+  reframeVerdict: '',
+  reframeLabel: '',
+  boxedgeVerdict: ''
 };
 
 // ── NAVIGATION ──
@@ -1166,23 +1096,26 @@ function answerSignal(q, val, btn) {
   btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
 
   const answered = Object.keys(state.signal).length;
-  if (answered === 5) {
+  if (answered === 6) {
     const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
     const unsures = Object.values(state.signal).filter(v => v === 'unsure').length;
     const nos = Object.values(state.signal).filter(v => v === 'no').length;
 
     document.getElementById('signal-score').textContent = yeses + '/5';
     let verdict = '';
-    if (yeses >= 4) {
+    if (yeses >= 5) {
       verdict = 'Strong signal. Your brand is doing its job on the fundamentals. The opportunity is in sharpening the Edge, not rebuilding the foundation.';
-    } else if (yeses >= 2) {
-      verdict = 'Mixed signal. Some parts of your brand are working, others are creating noise. The ' + nos + ' "no" answer' + (nos !== 1 ? 's' : '') + ' point to where the breakdown is happening. That\'s where to focus.';
+    } else if (yeses >= 3) {
+      verdict = 'Mixed. Some parts of your brand are working, others aren\'t converting. The ' + nos + ' "no" answer' + (nos !== 1 ? 's' : '') + ' tell you exactly where to focus.';
     } else {
-      verdict = 'Mostly noise. Your brand isn\'t converting effort to pull. This is usually a story problem, not a marketing problem. More volume won\'t fix it. Clarity will.';
+      verdict = 'Your brand isn\'t converting effort to pull. This is usually a story problem, not a marketing problem. More volume won\'t fix it. Clarity will.';
     }
     if (unsures > 0) {
       verdict += ' The ' + unsures + ' "not sure" response' + (unsures !== 1 ? 's' : '') + ' matter too. Uncertainty about your own brand is itself a signal.';
     }
+
+    state.signalVerdict = verdict;
+
     document.getElementById('signal-verdict').textContent = verdict;
     document.getElementById('signal-result').style.display = 'block';
     markCompleted('signal');
@@ -1223,51 +1156,13 @@ function updateReframeScore() {
     }
 
     document.getElementById('reframe-score-display').textContent = total + '/20';
+    state.reframeVerdict = rec;
+    state.reframeLabel = label;
+
     document.getElementById('reframe-rec-label').textContent = label;
     document.getElementById('reframe-verdict').textContent = rec;
     document.getElementById('reframe-result').style.display = 'block';
     markCompleted('reframe');
-  }
-}
-
-function updateBreathCount() {
-  const text = document.getElementById('breath-input').value.trim();
-  state.breath = text;
-  const count = text === '' ? 0 : text.split(/\s+/).length;
-  document.getElementById('breath-count').textContent = count + ' word' + (count !== 1 ? 's' : '');
-
-  const fb = document.getElementById('breath-feedback');
-  if (count === 0) { fb.textContent = ''; fb.className = ''; }
-  else if (count <= 25) { fb.textContent = 'Good length for one breath'; fb.className = 'good'; }
-  else { fb.textContent = 'Too long. Simplify.'; fb.className = 'warn'; }
-}
-
-function toggleCheck(item) {
-  item.classList.toggle('checked');
-  const isChecked = item.classList.contains('checked');
-  const box = item.querySelector('.check-box');
-  box.textContent = isChecked ? '\u2713' : '';
-
-  const items = document.querySelectorAll('#proof-checklist .checklist-item');
-  let count = 0;
-  items.forEach((it, i) => {
-    state.proofChecks[i] = it.classList.contains('checked');
-    if (state.proofChecks[i]) count++;
-  });
-
-  const result = document.getElementById('proof-result');
-  const verdict = document.getElementById('proof-verdict');
-  if (count === 0) {
-    result.style.display = 'none';
-  } else {
-    result.style.display = 'block';
-    if (count >= 4) {
-      verdict.textContent = count + '/5 checked. Strong brand foundation. Your brand is doing work, not just existing.';
-    } else if (count >= 2) {
-      verdict.textContent = count + '/5 checked. Decent foundation with gaps. The unchecked items are where the story breaks down.';
-    } else {
-      verdict.textContent = count + '/5 checked. Brand needs work. The gaps here usually point to a clarity problem, not a marketing problem.';
-    }
   }
 }
 
@@ -1294,52 +1189,17 @@ function updateBoxEdge() {
     if (wordCount <= 30) { fb.textContent = 'Tight. Good.'; fb.className = 'good'; }
     else if (wordCount <= 50) { fb.textContent = 'Getting long. Can you cut?'; fb.className = 'warn'; }
     else { fb.textContent = 'Too long for one breath.'; fb.className = 'warn'; }
+
+    // Mark as completed if both Box and Edge have content
+    if (state.boxInput.trim() && state.edgeInput.trim()) {
+      markCompleted('boxedge');
+    }
   } else {
     display.innerHTML = '<span class="empty-state">Your Box and Edge will appear here as you write them above.</span>';
     counter.style.display = 'none';
   }
 }
 
-function answerBoxEdge(q, val, btn) {
-  state.boxedge[q] = val;
-  const block = btn.closest('.question-block');
-  block.classList.add('answered');
-  block.querySelectorAll('.btn-option').forEach(b => {
-    b.classList.remove('selected', 'selected-yes');
-  });
-  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
-
-  const answered = Object.keys(state.boxedge).length;
-  if (answered === 4) {
-    // For Box-Edge diagnostic, "yes" to q1-3 = problem, "yes" to q4 = good
-    // Remap: q1 yes=bad, q2 yes=bad, q3 yes=bad, q4 yes=good
-    const problemSignals =
-      (state.boxedge.be1 === 'yes' ? 1 : 0) +
-      (state.boxedge.be2 === 'yes' ? 1 : 0) +
-      (state.boxedge.be3 === 'yes' ? 1 : 0) +
-      (state.boxedge.be4 === 'no' ? 1 : 0);
-
-    document.getElementById('boxedge-score').textContent = problemSignals + '/4';
-    let verdict = '';
-    if (problemSignals >= 3) {
-      verdict = 'Your Box is the problem. The category isn\'t clear, which means prospects never get to evaluating your Edge. Start with the Box exercise above. The disagreement between stakeholders is the most useful diagnostic you can run.';
-    } else if (problemSignals >= 1) {
-      verdict = 'Some Box clarity issues. Your category is partially working but has gaps. The ' + problemSignals + ' signal' + (problemSignals !== 1 ? 's' : '') + ' above point to where. Use the Box-Edge statements you wrote to pressure-test internally.';
-    } else {
-      verdict = 'Your Box is clear. Prospects know what you are. Focus on sharpening the Edge. The difference needs to be as crisp as the category.';
-    }
-    document.getElementById('boxedge-verdict').textContent = verdict;
-    document.getElementById('boxedge-result').style.display = 'block';
-
-    if (state.boxInput.trim() || state.edgeInput.trim()) {
-      markCompleted('boxedge');
-    }
-  }
-
-  if ((state.boxInput.trim() || state.edgeInput.trim()) && Object.keys(state.boxedge).length === 4) {
-    markCompleted('boxedge');
-  }
-}
 
 // ── RESULTS ──
 function renderResults() {
@@ -1351,7 +1211,7 @@ function renderResults() {
     const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
     html += '<div class="result-section">';
     html += '<div class="result-header"><span class="result-tool-name">The Signal Test</span><span class="result-score-badge">' + yeses + '/5 Signal</span></div>';
-    html += '<p class="result-detail">' + document.getElementById('signal-verdict').textContent + '</p>';
+    html += '<p class="result-detail">' + state.signalVerdict + '</p>';
 
     const questions = {
       s1: 'Logo removal test (distinctiveness)',
@@ -1374,10 +1234,10 @@ function renderResults() {
   // Reframe vs. Rebrand
   if (state.completedTools.has('reframe')) {
     const total = (state.reframe.position || 0) + (state.reframe.promise || 0) + (state.reframe.clarity || 0) + (state.reframe.visual || 0);
-    const recLabel = document.getElementById('reframe-rec-label').textContent;
+    const recLabel = state.reframeLabel;
     html += '<div class="result-section">';
     html += '<div class="result-header"><span class="result-tool-name">Reframe vs. Rebrand</span><span class="result-score-badge">' + total + '/20 ' + recLabel + '</span></div>';
-    html += '<p class="result-detail">' + document.getElementById('reframe-verdict').textContent + '</p>';
+    html += '<p class="result-detail">' + state.reframeVerdict + '</p>';
 
     html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">';
     const dims = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
@@ -1387,27 +1247,15 @@ function renderResults() {
     });
     html += '</div>';
 
-    if (state.breath) {
-      html += '<div class="result-input-label">One-Breath Statement</div>';
-      html += '<div class="result-input-value">' + escapeHtml(state.breath) + '</div>';
-    }
 
-    const proofCount = state.proofChecks.filter(Boolean).length;
-    if (proofCount > 0) {
-      html += '<div style="font-size:13px;margin-top:12px;">Brand Proof: <strong>' + proofCount + '/5</strong> checked</div>';
-    }
     html += '</div>';
   }
 
   // Box-Edge
   if (state.completedTools.has('boxedge')) {
-    const problemSignals = Object.keys(state.boxedge).length === 4 ? document.getElementById('boxedge-score').textContent : '--';
     html += '<div class="result-section">';
-    html += '<div class="result-header"><span class="result-tool-name">Box-Edge Workshop</span><span class="result-score-badge">' + problemSignals + ' Issues</span></div>';
-
-    if (document.getElementById('boxedge-verdict').textContent) {
-      html += '<p class="result-detail">' + document.getElementById('boxedge-verdict').textContent + '</p>';
-    }
+    html += '<div class="result-header"><span class="result-tool-name">Box-Edge Workshop</span><span class="result-score-badge">Completed</span></div>';
+    html += '<p class="result-detail">Your brand positioning framework to clarify category (Box) and differentiation (Edge).</p>';
 
     if (state.boxInput.trim()) {
       html += '<div class="result-input-label">Your Box</div>';
@@ -1443,7 +1291,8 @@ function generateToolText(tool) {
       s2: 'Can your sales team explain what makes you different without reading from a deck?',
       s3: 'Do prospects compare you to the right competitors?',
       s4: 'Does your marketing generate inbound conversations, not just impressions?',
-      s5: 'If five employees independently described what your company does, would you get the same answer?'
+      s5: 'If five employees independently described what your company does, would you get the same answer?',
+      s6: 'Is your sales cycle longer because prospects need the category explained before the value can land?'
     };
 
     Object.keys(questions).forEach((k, i) => {
@@ -1451,11 +1300,11 @@ function generateToolText(tool) {
       text += '   Answer: ' + (state.signal[k] || 'Not answered') + '\n\n';
     });
 
-    if (document.getElementById('signal-verdict').textContent) {
+    if (state.signalVerdict) {
       text += 'DIAGNOSIS\n' + line;
       const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
-      text += 'Signal Strength: ' + yeses + '/5\n';
-      text += document.getElementById('signal-verdict').textContent + '\n';
+      text += 'Signal Strength: ' + yeses + '/6\n';
+      text += state.signalVerdict + '\n';
     }
   }
 
@@ -1474,31 +1323,13 @@ function generateToolText(tool) {
     });
     text += '  Total: ' + total + '/20\n\n';
 
-    if (document.getElementById('reframe-verdict').textContent) {
-      text += 'Recommendation: ' + document.getElementById('reframe-rec-label').textContent + '\n';
-      text += document.getElementById('reframe-verdict').textContent + '\n\n';
+    if (state.reframeVerdict) {
+      text += 'Recommendation: ' + state.reframeLabel + '\n';
+      text += state.reframeVerdict + '\n\n';
     }
 
-    if (state.breath) {
-      text += 'ONE-BREATH STATEMENT\n';
-      text += '"' + state.breath + '"\n';
-      const wc = state.breath.split(/\s+/).length;
-      text += '(' + wc + ' words)\n\n';
-    }
-
-    const proofCount = state.proofChecks.filter(Boolean).length;
-    text += 'BRAND PROOF CHECKLIST: ' + proofCount + '/5\n';
-    const proofLabels = [
-      'New customers mention our specific difference',
-      'Frontline staff can explain brand promise without training',
-      'We turn down opportunities that don\'t fit',
-      'Marketing drives leads, not just awareness',
-      'We can name three things we deliberately don\'t do'
-    ];
-    proofLabels.forEach((label, i) => {
-      text += '  [' + (state.proofChecks[i] ? 'X' : ' ') + '] ' + label + '\n';
-    });
-  }
+    
+      }
 
   if (tool === 'boxedge') {
     text += 'BOX-EDGE WORKSHOP | BrandThnk Diagnostic\n';
@@ -1511,23 +1342,6 @@ function generateToolText(tool) {
     text += 'YOUR EDGE (Differentiation)\n';
     text += (state.edgeInput.trim() || 'Not completed') + '\n\n';
 
-    if (Object.keys(state.boxedge).length > 0) {
-      text += 'DIAGNOSTIC CHECK\n';
-      const beQ = {
-        be1: 'Five employees, five answers?',
-        be2: 'Prospects compare to wrong competitors?',
-        be3: 'Sales cycle extended by category explanation?',
-        be4: 'Marketing identifiable without logo?'
-      };
-      Object.keys(beQ).forEach(k => {
-        text += '  ' + beQ[k] + ' ' + (state.boxedge[k] || '--') + '\n';
-      });
-
-      if (document.getElementById('boxedge-verdict').textContent) {
-        text += '\nDIAGNOSIS\n';
-        text += document.getElementById('boxedge-verdict').textContent + '\n';
-      }
-    }
   }
 
   text += '\n' + line;
@@ -1566,7 +1380,7 @@ function downloadCombined() {
   text += line;
   text += 'WHAT TO DO NEXT\n';
   text += line + '\n';
-  text += 'If the Signal Test showed mostly noise, start there. Clarity\n';
+  text += 'If the Signal Test showed mostly activity without pull, start there. Clarity\n';
   text += 'before volume. Fix the story before adding more marketing.\n\n';
   text += 'If Reframe vs. Rebrand pointed to a reframe, don\'t spend\n';
   text += 'money on new visuals until the positioning is sharp.\n\n';
