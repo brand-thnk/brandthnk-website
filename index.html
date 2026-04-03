@@ -450,6 +450,48 @@
     color: rgba(0,0,0,0.25);
   }
 
+  .plan-stats-visual {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .plan-stats-visual:hover {
+    background: var(--offwhite);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .stat-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--light-gray);
+    margin: 8px 0;
+  }
+
   .plan-outcome {
     margin-top: 48px;
     padding: 32px;
@@ -969,10 +1011,16 @@
       <div class="plan-title">Build a plan tied to your situation.</div>
       <p class="plan-body">You leave with prioritized fixes, clear stops and starts, and a plan written around your actual constraints, not a generic framework you have to adapt on your own or recommendations that are beyond your ability to execute.</p>
     </div>
-    <div class="plan-step plan-step-highlight">
-      <div class="plan-number">04</div>
-      <div class="plan-title">50+ fintech and bank brands have used this approach to stop spinning and start growing.</div>
-      <p class="plan-body"><strong>2,000+</strong> bank and fintech leaders in the BrandThnk community.</p>
+    <div class="plan-step plan-stats-visual">
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <p class="stat-label">fintech and bank brands<br>have used this approach<br>to stop spinning and start growing</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-number">2,000+</div>
+        <p class="stat-label">bank and fintech leaders<br>in the BrandThnk community</p>
+      </div>
     </div>
   </div>
 </section>
