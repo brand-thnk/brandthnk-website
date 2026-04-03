@@ -223,13 +223,13 @@
     margin-top: 20px;
   }
 
-  .cta-closing a {
+  .cta-closing a:not(.btn-yellow) {
     color: var(--yellow) !important;
   }
 
   .btn-yellow {
     background: var(--yellow);
-    color: var(--black);
+    color: var(--black) !important;
     padding: 15px 32px;
     font-size: 15px;
     font-weight: 500;
@@ -248,7 +248,7 @@
 
   .btn-yellow:hover {
     background: var(--black);
-    color: var(--white);
+    color: var(--white) !important;
     text-decoration: none;
   }
 
