@@ -65,6 +65,59 @@
   font-weight: 700;
 }
 
+/* Mobile Swipe Indicators */
+.swipe-indicator {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  z-index: 1000;
+  font-family: var(--font-body);
+  pointer-events: none;
+}
+
+.swipe-area {
+  position: relative;
+  touch-action: pan-y;
+}
+
+.swipe-area.swiping {
+  touch-action: none;
+}
+
+/* Mobile Swipe Hints */
+.mobile-hint {
+  display: none;
+  text-align: center;
+  font-size: 11px;
+  color: var(--gray);
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--offwhite);
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 900px) {
+  .swipe-indicator {
+    display: block;
+  }
+
+  .mobile-hint {
+    display: block;
+  }
+
+  .panel-title {
+    margin-bottom: 16px;
+  }
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ::selection { background: var(--yellow); color: var(--black); }
@@ -991,7 +1044,7 @@ h2.section-title:first-of-type { margin-top: 0; }
   </aside>
 
   <!-- MAIN CONTENT -->
-  <main class="main">
+  <main class="main swipe-area">
 
     <!-- ════ INTRO ════ -->
     <div class="panel active" id="panel-intro">
@@ -1032,6 +1085,8 @@ h2.section-title:first-of-type { margin-top: 0; }
       <div class="progress-bar">
         <div class="progress-fill" id="signal-progress"></div>
       </div>
+
+      <div class="mobile-hint">👆 Tap to answer • 👈👉 Swipe to navigate</div>
 
       <div id="signal-questions">
         <div class="question-block" data-q="s1">
@@ -1247,6 +1302,8 @@ h2.section-title:first-of-type { margin-top: 0; }
         <div class="progress-fill" id="boxedge-progress"></div>
       </div>
 
+      <div class="mobile-hint">👆 Tap to answer • 👈👉 Swipe to navigate</div>
+
       <div id="boxedge-questions">
         <div class="question-block" data-q="be1">
           <div class="question-text">If you asked five employees what you do, would you get five different answers?</div>
@@ -1315,6 +1372,9 @@ h2.section-title:first-of-type { margin-top: 0; }
 
   </main>
 </div>
+
+<!-- Mobile swipe indicator -->
+<div id="swipe-indicator" class="swipe-indicator"></div>
 
 <script>
 // ── STATE ──
@@ -1810,6 +1870,232 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ── MOBILE SWIPE NAVIGATION ──
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+let isSwipeGesture = false;
+
+const swipeThreshold = 50; // Minimum distance for a swipe
+const swipeAngleThreshold = 30; // Maximum angle deviation from horizontal (degrees)
+
+function showSwipeIndicator(text) {
+  const indicator = document.getElementById('swipe-indicator');
+  indicator.textContent = text;
+  indicator.style.display = 'block';
+  indicator.style.opacity = '1';
+}
+
+function hideSwipeIndicator() {
+  const indicator = document.getElementById('swipe-indicator');
+  indicator.style.opacity = '0';
+  setTimeout(() => {
+    indicator.style.display = 'none';
+  }, 200);
+}
+
+function getActivePanel() {
+  const activePanel = document.querySelector('.panel.active');
+  return activePanel ? activePanel.id.replace('panel-', '') : null;
+}
+
+function getCurrentQuestionIndex(toolName) {
+  const container = document.getElementById(`${toolName}-questions`);
+  if (!container) return -1;
+
+  const questions = container.querySelectorAll('.question-block');
+  const currentQuestion = container.querySelector('.question-block.current');
+  return currentQuestion ? Array.from(questions).indexOf(currentQuestion) : -1;
+}
+
+function canNavigateToNextQuestion(toolName) {
+  const currentIndex = getCurrentQuestionIndex(toolName);
+  const container = document.getElementById(`${toolName}-questions`);
+  const questions = container.querySelectorAll('.question-block');
+
+  return currentIndex >= 0 && currentIndex < questions.length - 1;
+}
+
+function canNavigateToPrevQuestion(toolName) {
+  const currentIndex = getCurrentQuestionIndex(toolName);
+  return currentIndex > 0;
+}
+
+function navigateToNextQuestion(toolName) {
+  const container = document.getElementById(`${toolName}-questions`);
+  const questions = container.querySelectorAll('.question-block');
+  const currentQuestion = container.querySelector('.question-block.current');
+  const currentIndex = Array.from(questions).indexOf(currentQuestion);
+  const nextIndex = currentIndex + 1;
+
+  if (nextIndex < questions.length) {
+    currentQuestion.classList.remove('current');
+    questions[nextIndex].classList.add('current');
+
+    const questionCount = toolName === 'signal' ? 5 : 4;
+    updateProgress(toolName, nextIndex + 1, questionCount);
+
+    showSwipeIndicator(`Question ${nextIndex + 1} of ${questionCount}`);
+    setTimeout(hideSwipeIndicator, 1500);
+    return true;
+  }
+  return false;
+}
+
+function navigateToPrevQuestion(toolName) {
+  const container = document.getElementById(`${toolName}-questions`);
+  const questions = container.querySelectorAll('.question-block');
+  const currentQuestion = container.querySelector('.question-block.current');
+  const currentIndex = Array.from(questions).indexOf(currentQuestion);
+  const prevIndex = currentIndex - 1;
+
+  if (prevIndex >= 0) {
+    currentQuestion.classList.remove('current');
+    // Remove answered state from previous question to allow re-answering
+    questions[prevIndex].classList.remove('answered');
+    questions[prevIndex].classList.add('current');
+
+    const questionCount = toolName === 'signal' ? 5 : 4;
+    updateProgress(toolName, prevIndex + 1, questionCount);
+
+    showSwipeIndicator(`Question ${prevIndex + 1} of ${questionCount}`);
+    setTimeout(hideSwipeIndicator, 1500);
+    return true;
+  }
+  return false;
+}
+
+function getNextPanel() {
+  const panels = ['intro', 'signal', 'reframe', 'boxedge', 'results'];
+  const current = getActivePanel();
+  const currentIndex = panels.indexOf(current);
+
+  return currentIndex >= 0 && currentIndex < panels.length - 1 ? panels[currentIndex + 1] : null;
+}
+
+function getPrevPanel() {
+  const panels = ['intro', 'signal', 'reframe', 'boxedge', 'results'];
+  const current = getActivePanel();
+  const currentIndex = panels.indexOf(current);
+
+  return currentIndex > 0 ? panels[currentIndex - 1] : null;
+}
+
+function handleSwipeRight() {
+  const activePanel = getActivePanel();
+
+  // Try to navigate to previous question first
+  if (activePanel === 'signal' && canNavigateToPrevQuestion('signal')) {
+    return navigateToPrevQuestion('signal');
+  } else if (activePanel === 'boxedge' && canNavigateToPrevQuestion('boxedge')) {
+    return navigateToPrevQuestion('boxedge');
+  }
+
+  // Otherwise navigate to previous panel
+  const prevPanel = getPrevPanel();
+  if (prevPanel) {
+    showPanel(prevPanel);
+    showSwipeIndicator(`← ${getPanelTitle(prevPanel)}`);
+    setTimeout(hideSwipeIndicator, 1500);
+    return true;
+  }
+
+  // Show feedback when at the beginning
+  showSwipeIndicator('← Start of toolkit');
+  setTimeout(hideSwipeIndicator, 1000);
+  return false;
+}
+
+function handleSwipeLeft() {
+  const activePanel = getActivePanel();
+
+  // Try to navigate to next question first
+  if (activePanel === 'signal' && canNavigateToNextQuestion('signal')) {
+    return navigateToNextQuestion('signal');
+  } else if (activePanel === 'boxedge' && canNavigateToNextQuestion('boxedge')) {
+    return navigateToNextQuestion('boxedge');
+  }
+
+  // Otherwise navigate to next panel
+  const nextPanel = getNextPanel();
+  if (nextPanel) {
+    showPanel(nextPanel);
+    showSwipeIndicator(`${getPanelTitle(nextPanel)} →`);
+    setTimeout(hideSwipeIndicator, 1500);
+    return true;
+  }
+
+  // Show feedback when at the end
+  showSwipeIndicator('End of toolkit →');
+  setTimeout(hideSwipeIndicator, 1000);
+  return false;
+}
+
+function getPanelTitle(panelId) {
+  const titles = {
+    intro: 'Start',
+    signal: 'Signal Test',
+    reframe: 'Reframe vs. Rebrand',
+    boxedge: 'Box-Edge Workshop',
+    results: 'Your Results'
+  };
+  return titles[panelId] || '';
+}
+
+// Touch event handlers
+document.addEventListener('touchstart', (e) => {
+  if (!window.matchMedia('(max-width: 900px)').matches) return;
+
+  const touch = e.touches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+  isSwipeGesture = false;
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+  if (!window.matchMedia('(max-width: 900px)').matches) return;
+
+  const touch = e.touches[0];
+  const deltaX = Math.abs(touch.clientX - touchStartX);
+  const deltaY = Math.abs(touch.clientY - touchStartY);
+
+  // If horizontal movement is greater than vertical, it might be a swipe
+  if (deltaX > deltaY && deltaX > 20) {
+    isSwipeGesture = true;
+    // Prevent default scrolling during horizontal swipe
+    e.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener('touchend', (e) => {
+  if (!window.matchMedia('(max-width: 900px)').matches) return;
+
+  const touch = e.changedTouches[0];
+  touchEndX = touch.clientX;
+  touchEndY = touch.clientY;
+
+  const deltaX = touchEndX - touchStartX;
+  const deltaY = touchEndY - touchStartY;
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+  // Calculate swipe angle
+  const angle = Math.abs(Math.atan2(deltaY, deltaX) * 180 / Math.PI);
+  const isHorizontal = angle < swipeAngleThreshold || angle > (180 - swipeAngleThreshold);
+
+  if (isSwipeGesture && distance > swipeThreshold && isHorizontal) {
+    if (deltaX > 0) {
+      // Swipe right
+      handleSwipeRight();
+    } else {
+      // Swipe left
+      handleSwipeLeft();
+    }
+  }
+
+  isSwipeGesture = false;
+}, { passive: true });
 
 // ── DOWNLOADS ──
 function generateToolText(tool) {

@@ -806,42 +806,39 @@
     </div>
 
     <div class="form-container">
-      <!-- Replace YOUR_FORM_ID with your actual Formspree form ID -->
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div data-fs-success style="display:none; padding: 24px; text-align: center;">
+        <p style="font-family: 'Roboto Slab', serif; font-size: 22px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">We got it.</p>
+        <p style="color: #CCC; font-size: 15px;">Expect your custom research sample within 5-7 business days.</p>
+      </div>
+      <div data-fs-error style="color: #FF8A65; font-size: 14px; margin-bottom: 16px;"></div>
+      <form id="insights-form">
         <input type="hidden" name="_subject" value="New BrandThnk Insights Research Request">
 
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <input type="text" id="name" name="name" placeholder="Your name" required data-fs-field>
+          <span data-fs-error="name" style="color: #FF8A65; font-size: 13px;"></span>
         </div>
 
         <div class="form-group">
           <label for="company">Company</label>
-          <input type="text" id="company" name="company" placeholder="Your company" required>
+          <input type="text" id="company" name="company" placeholder="Your company" required data-fs-field>
+          <span data-fs-error="company" style="color: #FF8A65; font-size: 13px;"></span>
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required data-fs-field>
+          <span data-fs-error="email" style="color: #FF8A65; font-size: 13px;"></span>
         </div>
 
         <div class="form-group">
-          <label for="focus">Area of Focus</label>
-          <select id="focus" name="focus_area" required>
-            <option value="" disabled selected>Select a research area</option>
-            <option value="digital-banking">Digital Banking</option>
-            <option value="bank-analytics">Bank Analytics</option>
-            <option value="onboarding">Onboarding &amp; Account Opening</option>
-            <option value="other">Other / Multiple</option>
-          </select>
+          <label for="competitors">Competitors</label>
+          <textarea id="competitors" name="competitors" rows="3" placeholder="Name 2-5 competitors you want researched" data-fs-field></textarea>
+          <span data-fs-error="competitors" style="color: #FF8A65; font-size: 13px;"></span>
         </div>
 
-        <div class="form-group">
-          <label for="competitors">Competitors or Market Segment</label>
-          <textarea id="competitors" name="competitors" rows="3" placeholder="Name 2-5 competitors or describe the segment you want researched"></textarea>
-        </div>
-
-        <button type="submit" class="form-submit">Request Your Free Research Sample</button>
+        <button type="submit" class="form-submit" data-fs-submit-btn>Request Your Free Research Sample</button>
       </form>
     </div>
   </div>
