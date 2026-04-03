@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Force deployment 2026-04-02 v2 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | BrandThnk</title>
@@ -83,10 +84,7 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 0 40px;
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 60px;
-    align-items: center;
+    text-align: left;
   }
 
   .hero-text {
@@ -225,16 +223,16 @@
     margin-top: 20px;
   }
 
-  .cta-closing a {
+  .cta-closing a:not(.btn-yellow) {
     color: var(--yellow) !important;
   }
 
   .btn-yellow {
     background: var(--yellow);
-    color: var(--black);
+    color: var(--black) !important;
     padding: 15px 32px;
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
     border: none;
     border-radius: 0;
     cursor: pointer;
@@ -242,9 +240,17 @@
     display: inline-block;
     transition: all 0.2s;
     font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
-  .btn-yellow:hover { background: var(--black); color: var(--white); }
+  .btn-yellow:hover {
+    background: var(--black);
+    color: var(--white) !important;
+    text-decoration: none;
+  }
 
   footer {
     border-top: 2px solid var(--light-gray);
@@ -279,21 +285,20 @@
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 40px 24px; }
 
     .hero-content {
-      grid-template-columns: 1fr;
-      gap: 40px;
       text-align: center;
     }
 
-    .hero-text {
+    .content-section div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
       text-align: center;
-      order: 2;
     }
 
-    .hero-headshot {
-      order: 1;
+    .content-section img[src*="headshot"] {
       justify-self: center;
-      width: 160px;
-      height: 160px;
+      margin: 0 auto;
+      width: 160px !important;
+      height: 160px !important;
     }
 
     .content-section {
@@ -318,11 +323,9 @@
 <div class="hero-section">
   <div class="hero-content">
     <div class="hero-text">
-      <p class="hero-eyebrow">About BrandThnk</p>
+      <p class="hero-eyebrow">BrandThnk</p>
       <h1 class="page-title">About</h1>
-      <p class="page-subtitle">The resource, advisor and thought partner I didn't have at the beginning of my marketing career.</p>
     </div>
-    <img src="/assets/headshot.jpeg" alt="Allison Netzer" class="hero-headshot">
   </div>
 </div>
 
@@ -340,10 +343,15 @@
   </div>
 
   <div class="content-section">
-    <h2 class="section-title">How I got here.</h2>
-    <p>The first half of my career was sales, including 13 years at Dell across markets, countries, and channels, carrying a quota and managing teams who had to close deals with whatever the marketing gave them. When the brand was clear, the job was hard but executable. When it wasn't, every conversation started from scratch.</p>
-    <p>After burning out in the field, I moved into marketing without any experience, which meant figuring what worked rather than what the playbook said. Luckily, twenty-five years across sales floors, boardrooms, and international markets produces a deeper kind of pattern recognition than formal training.</p>
-    <p>I founded BrandThnk to be the resource, advisor and thought partner I didn't have at the beginning of my marketing career but was lucky enough to gain from the people and stories around me.</p>
+    <div style="display: grid; grid-template-columns: 1fr 200px; gap: 40px; align-items: start; margin-bottom: 40px;">
+      <div>
+        <h2 class="section-title">How I got here.</h2>
+        <p>The first half of my career was sales, including 13 years at Dell across markets, countries, and channels, carrying a quota and managing teams who had to close deals with whatever the marketing gave them. When the brand was clear, the job was hard but executable. When it wasn't, every conversation started from scratch.</p>
+        <p>After burning out in the field, I moved into marketing without any experience, which meant figuring what worked rather than what the playbook said. Luckily, twenty-five years across sales floors, boardrooms, and international markets produces a deeper kind of pattern recognition than formal training.</p>
+        <p>I founded BrandThnk to be the resource, advisor and thought partner I didn't have at the beginning of my marketing career but was lucky enough to gain from the people and stories around me.</p>
+      </div>
+      <img src="/assets/headshot.jpeg" alt="Allison Netzer" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid var(--yellow); box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+    </div>
   </div>
 
   <div class="content-section">
