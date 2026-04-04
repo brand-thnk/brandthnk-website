@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Cache bust: 2024-04-04-17:22 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -846,7 +847,7 @@
           <div class="section-header">
             <h2 class="section-title">Today's Schedule</h2>
             <p class="section-subtitle" id="calendar-date">Loading calendar...</p>
-            <button class="refresh-calendar-btn" onclick="updateTodaysSchedule()">📝 Update Today</button>
+            <button class="refresh-calendar-btn" onclick="updateTodaysSchedule()" style="background: var(--yellow); color: var(--black); border: none; padding: 8px 16px; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-weight: 600; font-size: 12px; cursor: pointer;">📝 Update Today</button>
           </div>
           <div class="section-content" id="calendar-events">
             <div class="loading-state">
@@ -1267,6 +1268,7 @@
     let selectedEvent = null;
 
     function loadCalendarEvents() {
+      console.log('loadCalendarEvents called - new version');
       const dateElement = document.getElementById('calendar-date');
       const today = new Date();
       dateElement.textContent = today.toLocaleDateString('en-US', {
@@ -1621,37 +1623,7 @@ Just copy/paste from Apple Calendar or type manually:`);
       prepContainer.innerHTML = html;
     }
 
-    function showMockCalendarEvents() {
-      const mockEvents = [
-        {
-          summary: "Q2 Strategy Review with Leadership Team",
-          start: { dateTime: new Date(Date.now() + 2*60*60*1000).toISOString() }, // 2 hours from now
-          end: { dateTime: new Date(Date.now() + 3*60*60*1000).toISOString() },
-          attendees: [
-            { displayName: "Sarah Chen", email: "sarah.chen@company.com" },
-            { displayName: "Mike Rodriguez", email: "mike.r@company.com" }
-          ],
-          location: "Conference Room A"
-        },
-        {
-          summary: "Client Check-in: Regional Bank",
-          start: { dateTime: new Date(Date.now() + 4*60*60*1000).toISOString() }, // 4 hours from now
-          end: { dateTime: new Date(Date.now() + 5*60*60*1000).toISOString() },
-          attendees: [
-            { displayName: "Jennifer Park", email: "j.park@regionalbank.com" }
-          ]
-        },
-        {
-          summary: "Book Research Session",
-          start: { dateTime: new Date(Date.now() + 6*60*60*1000).toISOString() }, // 6 hours from now
-          end: { dateTime: new Date(Date.now() + 8*60*60*1000).toISOString() },
-          attendees: []
-        }
-      ];
-
-      todaysEvents = mockEvents;
-      displayCalendarEvents(mockEvents);
-    }
+    // Mock function removed - using manual input instead
   </script>
 </body>
 </html>
