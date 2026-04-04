@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand Diagnostic Toolkit | BrandThnk</title>
-<meta name="description" content="The tools we use to diagnose, challenge, and confirm brand direction. Work through them. Walk away with a diagnosis.">
+<title>Brand Diagnostic | BrandThnk</title>
+<meta name="description" content="One diagnostic. Three phases. A clear read on whether your brand is working, where it's weak, and how to write the position that fixes it.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -18,108 +19,10 @@
   --light-gray: #E0E0E0;
   --font-heading: 'Roboto Slab', serif;
   --font-body: 'Roboto Mono', monospace;
-  --sidebar-w: 280px;
-}
-
-/* Keyframe Animations */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-@keyframes button-press {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.98); }
-  100% { transform: scale(1); }
-}
-
-.btn-pulse {
-  animation: pulse 0.3s ease-out;
-}
-
-/* Progress Indicators */
-.progress-bar {
-  width: 100%;
-  height: 4px;
-  background: var(--light-gray);
-  margin: 24px 0 40px 0;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--yellow);
-  width: 0%;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
-}
-
-.question-counter {
-  font-size: 11px;
-  color: var(--gray);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  font-weight: 700;
-}
-
-/* Mobile Swipe Indicators */
-.swipe-indicator {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.8);
-  color: var(--white);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  z-index: 1000;
-  font-family: var(--font-body);
-  pointer-events: none;
-}
-
-.swipe-area {
-  position: relative;
-  touch-action: pan-y;
-}
-
-.swipe-area.swiping {
-  touch-action: none;
-}
-
-/* Mobile Swipe Hints */
-.mobile-hint {
-  display: none;
-  text-align: center;
-  font-size: 11px;
-  color: var(--gray);
-  margin-top: 24px;
-  padding: 12px;
-  background: var(--offwhite);
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-}
-
-@media (max-width: 900px) {
-  .swipe-indicator {
-    display: block;
-  }
-
-  .mobile-hint {
-    display: block;
-  }
-
-  .panel-title {
-    margin-bottom: 16px;
-  }
+  --sidebar-w: 260px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 ::selection { background: var(--yellow); color: var(--black); }
 
 body {
@@ -191,19 +94,7 @@ body {
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: all 0.2s ease-out;
   border-radius: 2px;
-}
-
-.sidebar-toggle:hover {
-  border-color: var(--black);
-  background: var(--offwhite);
-  transform: translateY(-1px);
-}
-
-.sidebar-toggle:active {
-  transform: translateY(0);
-  background: var(--light-gray);
 }
 
 /* ── LAYOUT ── */
@@ -229,33 +120,33 @@ body {
 }
 
 .sidebar-header {
-  padding: 32px 24px 24px;
+  padding: 28px 20px 20px;
   border-bottom: 1px solid var(--light-gray);
 }
 
 .sidebar-header h2 {
   font-family: var(--font-heading);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .sidebar-header p {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--gray);
   line-height: 1.5;
 }
 
 .sidebar-nav {
   flex: 1;
-  padding: 16px 0;
+  padding: 12px 0;
 }
 
 .nav-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 14px 24px;
+  gap: 12px;
+  padding: 12px 20px;
   cursor: pointer;
   border-left: 3px solid transparent;
   transition: all 0.15s;
@@ -264,99 +155,54 @@ body {
 }
 
 .nav-item:hover { background: rgba(0,0,0,0.03); }
-
-.nav-item.active {
-  background: var(--white);
-  border-left-color: var(--yellow);
-}
-
-.nav-item.completed .nav-step {
-  background: var(--yellow);
-  color: var(--black);
-}
+.nav-item.active { background: var(--white); border-left-color: var(--yellow); }
+.nav-item.completed .nav-step { background: var(--yellow); color: var(--black); }
 
 .nav-step {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border: 2px solid var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   flex-shrink: 0;
   margin-top: 1px;
 }
 
-.nav-item-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.nav-item-title {
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.nav-item-subtitle {
-  font-size: 11px;
-  color: var(--gray);
-  line-height: 1.4;
-}
+.nav-item-text { display: flex; flex-direction: column; gap: 2px; }
+.nav-item-title { font-size: 12px; font-weight: 700; }
+.nav-item-subtitle { font-size: 10px; color: var(--gray); line-height: 1.4; }
 
 .sidebar-footer {
-  padding: 20px 24px;
+  padding: 16px 20px;
   border-top: 1px solid var(--light-gray);
 }
 
 .btn-download-all {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   background: var(--black);
   color: var(--white);
   border: none;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s;
 }
 
-.btn-download-all:hover {
-  background: var(--yellow);
-  color: var(--black);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.btn-download-all:active {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.btn-download-all:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.btn-download-all:disabled:hover {
-  background: var(--black);
-  color: var(--white);
-  transform: none;
-  box-shadow: none;
-}
+.btn-download-all:hover { background: var(--yellow); color: var(--black); }
+.btn-download-all:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-download-all:disabled:hover { background: var(--black); color: var(--white); }
 
 .download-note {
   font-size: 10px;
   color: var(--gray);
-  margin-top: 8px;
+  margin-top: 6px;
   text-align: center;
 }
 
@@ -394,7 +240,7 @@ body {
 }
 
 .panel-lead {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray);
   line-height: 1.7;
   margin-bottom: 48px;
@@ -402,25 +248,51 @@ body {
   border-bottom: 1px solid var(--light-gray);
 }
 
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--light-gray);
+  margin: 16px 0 32px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.question-counter {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 /* ── SHARED COMPONENTS ── */
 h2.section-title {
   font-family: var(--font-heading);
   font-size: 22px;
   font-weight: 700;
-  margin-top: 56px;
+  margin-top: 48px;
   margin-bottom: 20px;
 }
 
 h2.section-title:first-of-type { margin-top: 0; }
 
 .question-block {
-  margin-bottom: 32px;
-  padding: 28px;
+  margin-bottom: 24px;
+  padding: 24px;
   background: var(--offwhite);
   border-left: 3px solid var(--light-gray);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.3;
-  transform: translateY(20px);
+  transform: translateY(12px);
   pointer-events: none;
 }
 
@@ -434,21 +306,17 @@ h2.section-title:first-of-type { margin-top: 0; }
 }
 
 .question-block.answered {
-  opacity: 0.7;
+  opacity: 0.6;
   transform: translateY(0);
   border-left-color: var(--yellow);
   pointer-events: none;
   background: var(--offwhite);
 }
 
-.question-block.answered .question-text {
-  color: var(--gray);
-}
-
 .question-text {
   font-size: 15px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   line-height: 1.5;
 }
 
@@ -473,35 +341,11 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease-out;
-  position: relative;
-  overflow: hidden;
 }
 
-.btn-option:hover {
-  background: var(--offwhite);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.btn-option:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.btn-option.selected {
-  background: var(--black);
-  color: var(--white);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-.btn-option.selected-yes {
-  background: var(--yellow);
-  color: var(--black);
-  border-color: var(--black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255,235,59,0.4);
-}
+.btn-option:hover { background: var(--offwhite); transform: translateY(-1px); }
+.btn-option.selected { background: var(--black); color: var(--white); }
+.btn-option.selected-yes { background: var(--yellow); color: var(--black); border-color: var(--black); }
 
 /* Score Display */
 .score-display {
@@ -516,8 +360,8 @@ h2.section-title:first-of-type { margin-top: 0; }
 
 .score-gauge {
   flex-shrink: 0;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   position: relative;
 }
 
@@ -535,22 +379,20 @@ h2.section-title:first-of-type { margin-top: 0; }
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%);
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--yellow);
   text-align: center;
   line-height: 1;
 }
 
-.score-content {
-  flex: 1;
-}
+.score-content { flex: 1; }
 
 .score-number {
   font-family: var(--font-heading);
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 700;
   color: var(--yellow);
   line-height: 1;
@@ -558,15 +400,15 @@ h2.section-title:first-of-type { margin-top: 0; }
 }
 
 .score-label {
-  font-size: 13px;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .score-verdict {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.7;
   color: rgba(255,255,255,0.9);
 }
@@ -584,11 +426,7 @@ h2.section-title:first-of-type { margin-top: 0; }
   transition: border-color 0.2s;
 }
 
-.text-input:focus {
-  outline: none;
-  border-color: var(--black);
-}
-
+.text-input:focus { outline: none; border-color: var(--black); }
 .text-input::placeholder { color: #BBB; }
 
 .input-hint {
@@ -610,8 +448,8 @@ h2.section-title:first-of-type { margin-top: 0; }
 
 /* Formula cards */
 .formula-card {
-  margin: 32px 0;
-  padding: 32px;
+  margin: 28px 0;
+  padding: 28px;
   border: 2px solid var(--black);
 }
 
@@ -628,16 +466,16 @@ h2.section-title:first-of-type { margin-top: 0; }
 
 .formula-title {
   font-family: var(--font-heading);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .formula-template {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--gray);
-  margin-bottom: 20px;
-  padding: 16px;
+  margin-bottom: 16px;
+  padding: 14px;
   background: rgba(0,0,0,0.04);
   border-left: 3px solid var(--black);
 }
@@ -656,7 +494,7 @@ h2.section-title:first-of-type { margin-top: 0; }
   color: var(--white);
   padding: 12px 16px;
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -665,7 +503,7 @@ h2.section-title:first-of-type { margin-top: 0; }
 .score-table td {
   padding: 14px 16px;
   border-bottom: 1px solid var(--light-gray);
-  font-size: 14px;
+  font-size: 13px;
   vertical-align: top;
 }
 
@@ -684,58 +522,11 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 700;
-  transition: all 0.2s ease-out;
+  transition: all 0.2s;
   border-radius: 2px;
 }
 
-.score-input:focus {
-  outline: none;
-  border-color: var(--black);
-  transform: scale(1.05);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-}
-
-.score-input:hover {
-  border-color: var(--gray);
-}
-
-/* Checklist */
-.checklist {
-  margin: 24px 0;
-}
-
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--offwhite);
-  cursor: pointer;
-}
-
-.checklist-item:last-child { border-bottom: none; }
-
-.check-box {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-  transition: all 0.15s;
-  font-size: 14px;
-}
-
-.checklist-item.checked .check-box {
-  background: var(--yellow);
-}
-
-.checklist-label {
-  font-size: 14px;
-  line-height: 1.5;
-}
+.score-input:focus { outline: none; border-color: var(--black); }
 
 /* Navigation buttons */
 .panel-nav {
@@ -753,81 +544,16 @@ h2.section-title:first-of-type { margin-top: 0; }
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s;
   text-decoration: none;
   border: none;
-  position: relative;
-  overflow: hidden;
 }
 
-.btn-nav:active {
-  transform: scale(0.98);
-}
+.btn-next { background: var(--black); color: var(--white); }
+.btn-next:hover { background: var(--yellow); color: var(--black); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
 
-.btn-next {
-  background: var(--black);
-  color: var(--white);
-}
-
-.btn-next:hover {
-  background: var(--yellow);
-  color: var(--black);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-.btn-next:active {
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-}
-
-.btn-prev {
-  background: none;
-  color: var(--gray);
-  border: 1px solid var(--light-gray);
-}
-
-.btn-prev:hover {
-  color: var(--black);
-  border-color: var(--black);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.btn-prev:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.btn-download-tool {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: var(--offwhite);
-  border: 1px solid var(--light-gray);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease-out;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-download-tool:hover {
-  background: var(--yellow);
-  border-color: var(--black);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255,235,59,0.3);
-}
-
-.btn-download-tool:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(255,235,59,0.3);
-}
+.btn-prev { background: none; color: var(--gray); border: 1px solid var(--light-gray); }
+.btn-prev:hover { color: var(--black); border-color: var(--black); }
 
 /* ── INTRO PANEL ── */
 .intro-grid {
@@ -837,56 +563,45 @@ h2.section-title:first-of-type { margin-top: 0; }
   margin: 40px 0;
 }
 
-.intro-tool {
-  padding: 28px 0;
+.intro-phase {
+  padding: 24px 0;
   border-bottom: 1px solid var(--light-gray);
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s;
   border-radius: 4px;
   margin: 0 -12px;
   padding-left: 12px;
   padding-right: 12px;
 }
 
-.intro-tool:hover {
-  padding-left: 20px;
-  background: var(--offwhite);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
+.intro-phase:hover { padding-left: 20px; background: var(--offwhite); }
+.intro-phase:last-child { border-bottom: none; }
 
-.intro-tool:active {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.intro-tool:last-child { border-bottom: none; }
-
-.intro-tool-step {
+.intro-phase-step {
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--gray);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.intro-tool-title {
+.intro-phase-title {
   font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
-.intro-tool-desc {
-  font-size: 14px;
+.intro-phase-desc {
+  font-size: 13px;
   color: var(--gray);
   line-height: 1.6;
 }
 
 /* ── RESULTS PANEL ── */
 .result-section {
-  margin-bottom: 48px;
-  padding-bottom: 48px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
   border-bottom: 1px solid var(--light-gray);
 }
 
@@ -896,10 +611,10 @@ h2.section-title:first-of-type { margin-top: 0; }
   display: flex;
   align-items: baseline;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.result-tool-name {
+.result-phase-name {
   font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 700;
@@ -937,38 +652,63 @@ h2.section-title:first-of-type { margin-top: 0; }
   white-space: pre-wrap;
 }
 
-.empty-state {
-  color: var(--gray);
-  font-style: italic;
+.empty-state { color: var(--gray); font-style: italic; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  margin: 48px 0 0;
+  padding: 48px 32px;
+  background: var(--yellow);
+  text-align: center;
 }
+
+.cta-section h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  font-size: 14px;
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-section a {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 36px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+
+.cta-section a:hover { transform: translateY(-2px); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .sidebar-toggle { display: block; }
-
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
-  }
-
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
   .sidebar.open { transform: translateX(0); }
-
   .main { margin-left: 0; }
-
   .panel { padding: 40px 24px 80px; }
-
   .top-nav { padding: 14px 20px; }
-
   .nav-label { display: none; }
-
   .btn-group { flex-direction: column; }
-
-  .score-table td, .score-table th { padding: 10px 12px; font-size: 13px; }
+  .score-display { flex-direction: column; text-align: center; }
+  .score-table td, .score-table th { padding: 10px 12px; font-size: 12px; }
 }
 
 @media (max-width: 600px) {
-  .panel-title { font-size: 28px; }
-  .formula-card { padding: 24px; }
+  .panel-title { font-size: 26px; }
+  .formula-card { padding: 20px; }
 }
 </style>
 </head>
@@ -979,7 +719,7 @@ h2.section-title:first-of-type { margin-top: 0; }
   <a href="/" class="nav-wordmark">BrandThnk</a>
   <div class="nav-right">
     <button class="sidebar-toggle" onclick="toggleSidebar()">Menu</button>
-    <span class="nav-label">Brand Diagnostic Toolkit</span>
+    <span class="nav-label">Brand Diagnostic</span>
     <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta" target="_blank">Book a Call</a>
   </div>
 </header>
@@ -989,8 +729,8 @@ h2.section-title:first-of-type { margin-top: 0; }
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h2>Diagnostic Toolkit</h2>
-      <p>The tools we use to diagnose, challenge, and confirm direction.</p>
+      <h2>Brand Diagnostic</h2>
+      <p>One diagnostic. Three phases. A clear read on your brand.</p>
     </div>
 
     <nav class="sidebar-nav">
@@ -1002,175 +742,156 @@ h2.section-title:first-of-type { margin-top: 0; }
         </div>
       </div>
 
-      <div class="nav-item" data-panel="signal" onclick="showPanel('signal')">
+      <div class="nav-item" data-panel="symptoms" onclick="showPanel('symptoms')">
         <div class="nav-step">1</div>
         <div class="nav-item-text">
-          <div class="nav-item-title">The Signal Test</div>
-          <div class="nav-item-subtitle">Is your brand working?</div>
+          <div class="nav-item-title">Symptoms</div>
+          <div class="nav-item-subtitle">Is your brand creating pull?</div>
         </div>
       </div>
 
-      <div class="nav-item" data-panel="reframe" onclick="showPanel('reframe')">
+      <div class="nav-item" data-panel="rootcause" onclick="showPanel('rootcause')">
         <div class="nav-step">2</div>
         <div class="nav-item-text">
-          <div class="nav-item-title">Reframe vs. Rebrand</div>
-          <div class="nav-item-subtitle">What actually needs fixing?</div>
+          <div class="nav-item-title">Root Cause</div>
+          <div class="nav-item-subtitle">Where is it weak?</div>
         </div>
       </div>
 
-      <div class="nav-item" data-panel="boxedge" onclick="showPanel('boxedge')">
+      <div class="nav-item" data-panel="position" onclick="showPanel('position')">
         <div class="nav-step">3</div>
         <div class="nav-item-text">
-          <div class="nav-item-title">Box-Edge Workshop</div>
-          <div class="nav-item-subtitle">Write your positioning</div>
+          <div class="nav-item-title">Position</div>
+          <div class="nav-item-subtitle">Write it down</div>
         </div>
       </div>
 
-      <div class="nav-item" data-panel="results" onclick="showPanel('results')">
-        <div class="nav-step">R</div>
+      <div class="nav-item" data-panel="diagnosis" onclick="showPanel('diagnosis')">
+        <div class="nav-step">Dx</div>
         <div class="nav-item-text">
-          <div class="nav-item-title">Your Results</div>
-          <div class="nav-item-subtitle">Combined diagnosis</div>
+          <div class="nav-item-title">Your Diagnosis</div>
+          <div class="nav-item-subtitle">Combined results</div>
         </div>
       </div>
     </nav>
 
     <div class="sidebar-footer">
-      <button class="btn-download-all" id="downloadAll" onclick="downloadCombined()">
-        Download Full Report
+      <button class="btn-download-all" id="downloadAll" onclick="downloadReport()" disabled>
+        Download Report
       </button>
-      <div class="download-note">Complete at least one tool</div>
+      <div class="download-note">Complete Phase 1 to enable</div>
     </div>
   </aside>
 
   <!-- MAIN CONTENT -->
-  <main class="main swipe-area">
+  <main class="main">
 
     <!-- ════ INTRO ════ -->
     <div class="panel active" id="panel-intro">
-      <p class="panel-eyebrow">Brand Diagnostic Toolkit</p>
-      <h1 class="panel-title">Three tools. One diagnosis.</h1>
-      <p class="panel-lead">These are the same tools we use at BrandThnk to diagnose, challenge, and confirm brand direction with clients. Work through them at your own pace. Download your inputs and outcomes when you're done.</p>
+      <p class="panel-eyebrow">Brand Diagnostic</p>
+      <h1 class="panel-title">Find out what's actually working.</h1>
+      <p class="panel-lead">This is the same diagnostic we run at the start of every BrandThnk engagement. Three phases, each building on the last. Five minutes of honest answers tells you whether your brand is creating pull or just creating activity.</p>
 
       <div class="intro-grid">
-        <div class="intro-tool" onclick="showPanel('signal')">
-          <div class="intro-tool-step">Tool 01</div>
-          <div class="intro-tool-title">The Signal Test</div>
-          <div class="intro-tool-desc">Six questions that tell you whether your brand is creating pull or just creating activity. Takes 2 minutes. Produces a clear read on what's actually working.</div>
+        <div class="intro-phase" onclick="showPanel('symptoms')">
+          <div class="intro-phase-step">Phase 1</div>
+          <div class="intro-phase-title">Is your brand creating pull?</div>
+          <div class="intro-phase-desc">Five yes-or-no questions that separate signal from activity. You will know within two minutes whether your brand is creating pull or just spending money.</div>
         </div>
-        <div class="intro-tool" onclick="showPanel('reframe')">
-          <div class="intro-tool-step">Tool 02</div>
-          <div class="intro-tool-title">Reframe vs. Rebrand</div>
-          <div class="intro-tool-desc">Most brands that think they need a rebrand actually need a reframe. Score four dimensions, test your message, and find out which path is right.</div>
+        <div class="intro-phase" onclick="showPanel('rootcause')">
+          <div class="intro-phase-step">Phase 2</div>
+          <div class="intro-phase-title">Where is it weak?</div>
+          <div class="intro-phase-desc">Score four dimensions of brand health. The scores tell you whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</div>
         </div>
-        <div class="intro-tool" onclick="showPanel('boxedge')">
-          <div class="intro-tool-step">Tool 03</div>
-          <div class="intro-tool-title">Box-Edge Workshop</div>
-          <div class="intro-tool-desc">Write your positioning using the framework that starts most BrandThnk engagements. Define your category (Box) and your difference (Edge).</div>
+        <div class="intro-phase" onclick="showPanel('position')">
+          <div class="intro-phase-step">Phase 3</div>
+          <div class="intro-phase-title">Write your position.</div>
+          <div class="intro-phase-desc">Use the Box-Edge framework to draft your category (what you are) and your difference (why it matters).</div>
         </div>
       </div>
 
       <div class="panel-nav" style="justify-content: flex-end;">
-        <button class="btn-nav btn-next" onclick="showPanel('signal')">Start the Signal Test</button>
+        <button class="btn-nav btn-next" onclick="showPanel('symptoms')">Start the Diagnostic</button>
       </div>
     </div>
 
-    <!-- ════ TOOL 1: SIGNAL TEST ════ -->
-    <div class="panel" id="panel-signal">
-      <p class="panel-eyebrow">Tool 01 of 03</p>
-      <h1 class="panel-title">The Signal Test</h1>
-      <p class="panel-lead">Your brand is either creating pull or just creating activity. Pull converts. Activity looks like progress but doesn't. Six questions. Honest answers only.</p>
+    <!-- ════ PHASE 1: SYMPTOMS ════ -->
+    <div class="panel" id="panel-symptoms">
+      <p class="panel-eyebrow">Phase 1 of 3</p>
+      <h1 class="panel-title">Is your brand creating pull?</h1>
+      <p class="panel-lead">Pull converts. Activity looks like progress but costs you time and money without moving the number that matters. Answer five yes-or-no questions honestly.</p>
 
-      <div class="question-counter" id="signal-counter">Question 1 of 5</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="signal-progress"></div>
-      </div>
+      <div class="question-counter" id="symptom-counter">Question 1 of 5</div>
+      <div class="progress-bar"><div class="progress-fill" id="symptom-progress"></div></div>
 
-      <div class="mobile-hint">👆 Tap to answer • 👈👉 Swipe to navigate</div>
-
-      <div id="signal-questions">
-        <div class="question-block" data-q="s1">
+      <div id="symptom-questions">
+        <div class="question-block current" data-q="s1">
           <div class="question-text">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</div>
-          <div class="question-context">This tests distinctiveness. If your content, ads, and collateral are interchangeable with a competitor's, your brand isn't doing its job.</div>
+          <div class="question-context">This tests distinctiveness. If your content and collateral are interchangeable with a competitor's, your brand is not doing its job.</div>
           <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s1','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s1','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s1','unsure',this)">Not sure</button>
+            <button class="btn-option" onclick="answerSymptom('s1','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s1','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s1','unsure',this)">Not sure</button>
           </div>
         </div>
 
         <div class="question-block" data-q="s2">
-          <div class="question-text">Can your sales team explain what makes you different without reading from a deck or a script?</div>
-          <div class="question-context">If the brand lives in a PDF but not in the conversation, you have a message that doesn't travel. The real test is the hallway explanation.</div>
+          <div class="question-text">Can your sales team explain what makes you different without a deck or a script?</div>
+          <div class="question-context">If the brand lives in a PDF but not in the hallway, your message is stuck in the slide deck. The real test is the unscripted explanation.</div>
           <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s2','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s2','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s2','unsure',this)">Not sure</button>
+            <button class="btn-option" onclick="answerSymptom('s2','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s2','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s2','unsure',this)">Not sure</button>
           </div>
         </div>
 
         <div class="question-block" data-q="s3">
           <div class="question-text">Do prospects compare you to the right competitors?</div>
-          <div class="question-context">If your market puts you in the wrong category or compares you to companies you don't consider competitors, your Box is broken. They can't evaluate your Edge until the Box is clear.</div>
+          <div class="question-context">When your market puts you in the wrong category, they cannot evaluate your difference. Category confusion kills conversion before the conversation starts.</div>
           <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s3','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s3','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s3','unsure',this)">Not sure</button>
+            <button class="btn-option" onclick="answerSymptom('s3','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s3','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s3','unsure',this)">Not sure</button>
           </div>
         </div>
 
         <div class="question-block" data-q="s4">
           <div class="question-text">Does your marketing generate inbound conversations, not just impressions?</div>
-          <div class="question-context">Impressions are activity. Conversations are signal. If your marketing is generating views but not qualified interest, the brand isn't converting attention to pull.</div>
+          <div class="question-context">Impressions measure reach. Conversations measure pull. If you are getting views but not inbound interest, the brand is not working.</div>
           <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s4','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s4','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s4','unsure',this)">Not sure</button>
+            <button class="btn-option" onclick="answerSymptom('s4','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s4','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s4','unsure',this)">Not sure</button>
           </div>
         </div>
 
         <div class="question-block" data-q="s5">
           <div class="question-text">If five employees independently described what your company does, would you get the same answer?</div>
-          <div class="question-context">Internal alignment is the canary. If the leadership team can't agree on what the company stands for, no amount of external messaging will land consistently.</div>
+          <div class="question-context">Internal alignment is the first signal. If your leadership team cannot agree on what the company does, your salespeople will tell different stories.</div>
           <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s5','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s5','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s5','unsure',this)">Not sure</button>
-          </div>
-        </div>
-
-        <div class="question-block" data-q="s6">
-          <div class="question-text">Is your sales cycle longer because prospects need the category explained before the value can land?</div>
-          <div class="question-context">If you're spending half your sales conversation explaining what you are before you get to why you're different, your Box is broken. Category confusion kills conversion.</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerSignal('s6','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSignal('s6','no',this)">No</button>
-            <button class="btn-option" onclick="answerSignal('s6','unsure',this)">Not sure</button>
+            <button class="btn-option" onclick="answerSymptom('s5','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s5','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s5','unsure',this)">Not sure</button>
           </div>
         </div>
       </div>
 
-      <div class="score-display" id="signal-result" style="display:none;">
-        <!-- Score gauge will be generated dynamically -->
-      </div>
+      <div class="score-display" id="symptom-result" style="display:none;"></div>
 
       <div class="panel-nav">
         <button class="btn-nav btn-prev" onclick="showPanel('intro')">Back</button>
-        <div style="display:flex;gap:12px;align-items:center;">
-          <button class="btn-download-tool" onclick="downloadTool('signal')">Download</button>
-          <button class="btn-nav btn-next" onclick="showPanel('reframe')">Next: Reframe vs. Rebrand</button>
-        </div>
+        <button class="btn-nav btn-next" onclick="showPanel('rootcause')">Next: Root Cause</button>
       </div>
     </div>
 
-    <!-- ════ TOOL 2: REFRAME VS. REBRAND ════ -->
-    <div class="panel" id="panel-reframe">
-      <p class="panel-eyebrow">Tool 02 of 03</p>
-      <h1 class="panel-title">Reframe vs. Rebrand</h1>
-      <p class="panel-lead">Most financial brands that think they need a rebrand actually need a reframe. A rebrand changes the package. A reframe changes the story. Score your brand across four dimensions to find out which you actually need.</p>
+    <!-- ════ PHASE 2: ROOT CAUSE ════ -->
+    <div class="panel" id="panel-rootcause">
+      <p class="panel-eyebrow">Phase 2 of 3</p>
+      <h1 class="panel-title">Where is it weak?</h1>
+      <p class="panel-lead">Phase 1 told you whether your brand is working. This phase tells you why. Score four dimensions honestly. The total determines whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</p>
 
-      <h2 class="section-title">Brand Diagnostic Score</h2>
-      <p>Rate each area 1 to 5. Be honest, not aspirational.</p>
+      <h2 class="section-title">Brand Health Score</h2>
+      <p style="margin-bottom:20px;font-size:14px;color:var(--gray);">Rate each area 1 to 5. Score where you are, not where you want to be.</p>
 
       <table class="score-table">
         <thead>
@@ -1184,265 +905,172 @@ h2.section-title:first-of-type { margin-top: 0; }
           <tr>
             <td>Market Position</td>
             <td>Do you own a clear, defensible position?</td>
-            <td><input type="number" class="score-input" min="1" max="5" id="rf-position" oninput="updateReframeScore()"></td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-position" oninput="updateRootCause()"></td>
           </tr>
           <tr>
             <td>Brand Promise</td>
             <td>Can you say what makes you different in one sentence?</td>
-            <td><input type="number" class="score-input" min="1" max="5" id="rf-promise" oninput="updateReframeScore()"></td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-promise" oninput="updateRootCause()"></td>
           </tr>
           <tr>
             <td>Message Clarity</td>
             <td>Do customers understand what you stand for?</td>
-            <td><input type="number" class="score-input" min="1" max="5" id="rf-clarity" oninput="updateReframeScore()"></td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-clarity" oninput="updateRootCause()"></td>
           </tr>
           <tr>
             <td>Visual Identity</td>
             <td>Does your look reflect who you are today?</td>
-            <td><input type="number" class="score-input" min="1" max="5" id="rf-visual" oninput="updateReframeScore()"></td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-visual" oninput="updateRootCause()"></td>
           </tr>
           <tr class="total-row">
             <td colspan="2"><strong>Total</strong></td>
-            <td><strong id="rf-total">--</strong> / 20</td>
+            <td><strong id="rc-total">0</strong>/20</td>
           </tr>
         </tbody>
       </table>
 
-      <div class="score-display" id="reframe-result" style="display:none;">
-        <!-- Score gauge will be generated dynamically -->
-      </div>
-
+      <div class="score-display" id="rootcause-result" style="display:none;"></div>
 
       <div class="panel-nav">
-        <button class="btn-nav btn-prev" onclick="showPanel('signal')">Back</button>
-        <div style="display:flex;gap:12px;align-items:center;">
-          <button class="btn-download-tool" onclick="downloadTool('reframe')">Download</button>
-          <button class="btn-nav btn-next" onclick="showPanel('boxedge')">Next: Box-Edge Workshop</button>
-        </div>
+        <button class="btn-nav btn-prev" onclick="showPanel('symptoms')">Back</button>
+        <button class="btn-nav btn-next" onclick="showPanel('position')">Next: Write Your Position</button>
       </div>
     </div>
 
-    <!-- ════ TOOL 3: BOX-EDGE WORKSHOP ════ -->
-    <div class="panel" id="panel-boxedge">
-      <p class="panel-eyebrow">Tool 03 of 03</p>
-      <h1 class="panel-title">Box-Edge Workshop</h1>
-      <p class="panel-lead">If they can't box you, they won't buy you. Your brain is a pattern-recognition machine. When a prospect encounters your brand, it asks one question first: what drawer do you belong in? If the answer doesn't come fast, they move on. Define your category (Box), then sharpen your difference (Edge).</p>
+    <!-- ════ PHASE 3: POSITION ════ -->
+    <div class="panel" id="panel-position">
+      <p class="panel-eyebrow">Phase 3 of 3</p>
+      <h1 class="panel-title">Write your position.</h1>
+      <p class="panel-lead">This is the Box-Edge framework. It forces clarity on two things every brand needs: what category you own and what makes you better in that category. If you cannot fill both formulas, that is your diagnosis.</p>
 
       <div class="formula-card box-card">
-        <div class="formula-label">Part 1</div>
-        <div class="formula-title">The Box: Category Clarity</div>
-        <div class="formula-template">We're a [category] for [segment].</div>
-        <p style="font-size:13px; margin-bottom:16px;">Use words real people use. Not internal shorthand. Not invented categories. The words your buyer would say.</p>
-        <textarea class="text-input" rows="2" id="box-input"
-          placeholder="We're a _______ for _______."
-          oninput="updateBoxEdge()"></textarea>
-        <div class="input-hint">Can a stranger categorize you in five seconds? That's your Box.</div>
+        <div class="formula-label">The Box</div>
+        <div class="formula-title">What category do you own?</div>
+        <div class="formula-template">"We are a [category] for [specific segment]."</div>
+        <p style="font-size:13px;color:rgba(0,0,0,0.7);margin-bottom:16px;">If your market cannot place you in a category, they cannot evaluate your difference. Start with the Box.</p>
+        <textarea class="text-input" id="box-input" rows="3" placeholder="We are a [category] for [specific segment]..." oninput="updateBoxEdge()"></textarea>
+        <div class="input-counter">
+          <span id="box-count">0 words</span>
+          <span id="box-feedback"></span>
+        </div>
       </div>
 
       <div class="formula-card edge-card">
-        <div class="formula-label">Part 2</div>
-        <div class="formula-title">The Edge: Differentiation</div>
-        <div class="formula-template">Unlike [status quo], we [mechanism] so you can [outcome], [proof].</div>
-        <p style="font-size:13px; margin-bottom:16px;">The Edge assumes the Box is already working. If you're writing an Edge before the Box is clear, you're sharpening the wrong thing.</p>
-        <textarea class="text-input" rows="3" id="edge-input"
-          placeholder="Unlike _______, we _______ so you can _______."
-          oninput="updateBoxEdge()"></textarea>
-        <div class="input-hint">Once categorized, can a prospect articulate your difference in ten seconds?</div>
-      </div>
-
-      <h2 class="section-title">The Two-Sentence Test</h2>
-      <p>Say your Box and Edge together, out loud. If it takes more than one breath, simplify. If you need to explain it before it lands, the work isn't done.</p>
-
-      <div id="two-sentence-display" style="margin:24px 0; padding:24px; background:var(--offwhite); border-left:3px solid var(--yellow); min-height:60px;">
-        <span class="empty-state">Your Box and Edge will appear here as you write them above.</span>
-      </div>
-      <div class="input-counter" id="two-sentence-counter" style="display:none;">
-        <span id="combined-count">0 words</span>
-        <span id="combined-feedback"></span>
-      </div>
-
-      <h2 class="section-title">Diagnostic Check</h2>
-      <p>Use these to confirm you're starting in the right place.</p>
-
-      <div class="question-counter" id="boxedge-counter">Question 1 of 4</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="boxedge-progress"></div>
-      </div>
-
-      <div class="mobile-hint">👆 Tap to answer • 👈👉 Swipe to navigate</div>
-
-      <div id="boxedge-questions">
-        <div class="question-block" data-q="be1">
-          <div class="question-text">If you asked five employees what you do, would you get five different answers?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be1','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be1','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be2">
-          <div class="question-text">Do prospects frequently compare you to the wrong competitors?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be2','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be2','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be3">
-          <div class="question-text">Is your sales cycle longer because prospects need the category explained before the value can land?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be3','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be3','no',this)">No</button>
-          </div>
-        </div>
-        <div class="question-block" data-q="be4">
-          <div class="question-text">Could someone identify your marketing without your logo on it?</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerBoxEdge('be4','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerBoxEdge('be4','no',this)">No</button>
-          </div>
+        <div class="formula-label">The Edge</div>
+        <div class="formula-title">What is your actual difference?</div>
+        <div class="formula-template">"Unlike [status quo], we [mechanism] so you can [outcome]."</div>
+        <p style="font-size:13px;color:var(--gray);margin-bottom:16px;">The Edge is not a feature list. It is the single thing you do differently that produces a result your market cares about. One sentence. No hedging.</p>
+        <textarea class="text-input" id="edge-input" rows="3" placeholder="Unlike [status quo], we [mechanism] so you can [outcome]..." oninput="updateBoxEdge()"></textarea>
+        <div class="input-counter">
+          <span id="edge-count">0 words</span>
+          <span id="edge-feedback"></span>
         </div>
       </div>
 
-      <div class="score-display" id="boxedge-result" style="display:none;">
-        <!-- Score gauge will be generated dynamically -->
+      <div id="position-feedback" style="display:none; margin-top:32px; padding:24px; background:var(--offwhite); border-left:3px solid var(--yellow);">
+        <p style="font-weight:700; margin-bottom:8px; font-size:14px;">Position check</p>
+        <p id="position-feedback-text" style="font-size:13px; color:var(--gray); line-height:1.7;"></p>
       </div>
 
       <div class="panel-nav">
-        <button class="btn-nav btn-prev" onclick="showPanel('reframe')">Back</button>
-        <div style="display:flex;gap:12px;align-items:center;">
-          <button class="btn-download-tool" onclick="downloadTool('boxedge')">Download</button>
-          <button class="btn-nav btn-next" onclick="showPanel('results')">View Your Results</button>
-        </div>
+        <button class="btn-nav btn-prev" onclick="showPanel('rootcause')">Back</button>
+        <button class="btn-nav btn-next" onclick="showPanel('diagnosis')">See Your Diagnosis</button>
       </div>
     </div>
 
-    <!-- ════ RESULTS ════ -->
-    <div class="panel" id="panel-results">
+    <!-- ════ DIAGNOSIS ════ -->
+    <div class="panel" id="panel-diagnosis">
       <p class="panel-eyebrow">Your Diagnosis</p>
-      <h1 class="panel-title">Brand Diagnostic Summary</h1>
-      <p class="panel-lead">Here's what we found across all three tools. This is the same read we'd give a client after a discovery session. Use it to decide what to fix first.</p>
+      <h1 class="panel-title">Here is what we found.</h1>
+      <p class="panel-lead">This is a summary of your answers across all three phases. Download the full report to share with your team or bring to a call.</p>
 
-      <div id="results-content">
-        <!-- Populated dynamically -->
+      <!-- Phase 1 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 1: Symptoms</div>
+          <div class="result-score-badge" id="dx-symptom-badge">--</div>
+        </div>
+        <p class="result-detail" id="dx-symptom-verdict">Complete Phase 1 to see results.</p>
+        <div id="dx-symptom-answers"></div>
       </div>
 
-      <div style="margin-top:48px; padding:32px; background:var(--black); color:var(--white); text-align:center;">
-        <div style="font-family:var(--font-heading); font-size:22px; font-weight:700; margin-bottom:12px;">Want to talk through what this means?</div>
-        <p style="color:rgba(255,255,255,0.6); font-size:14px; margin-bottom:24px;">A 30-minute call is enough to find out what's actually broken and whether we're the right people to fix it.</p>
-        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta" target="_blank" style="display:inline-block; padding:14px 32px; font-size:14px;">Book a Call</a>
+      <!-- Phase 2 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 2: Root Cause</div>
+          <div class="result-score-badge" id="dx-rootcause-badge">--</div>
+        </div>
+        <p class="result-detail" id="dx-rootcause-verdict">Complete Phase 2 to see results.</p>
+        <div id="dx-rootcause-scores"></div>
       </div>
 
-      <div class="panel-nav">
-        <button class="btn-nav btn-prev" onclick="showPanel('boxedge')">Back</button>
-        <button class="btn-download-tool" onclick="downloadCombined()" style="background:var(--yellow); border-color:var(--black);">Download Full Report</button>
+      <!-- Phase 3 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 3: Position</div>
+        </div>
+        <div id="dx-position-content">
+          <p class="result-detail empty-state">Complete Phase 3 to see results.</p>
+        </div>
+      </div>
+
+      <!-- Where to Focus -->
+      <div class="result-section" id="dx-focus-section" style="display:none;">
+        <div class="result-header">
+          <div class="result-phase-name">Where to Focus First</div>
+        </div>
+        <p class="result-detail" id="dx-focus-text"></p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h2>Now you know. What are you going to do about it?</h2>
+        <p>You know what is working and what is not. A 30-minute call is enough to confirm this diagnosis and decide what to fix first.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" target="_blank">Book a Call</a>
+      </div>
+
+      <div class="panel-nav" style="margin-top:40px;">
+        <button class="btn-nav btn-prev" onclick="showPanel('position')">Back</button>
+        <button class="btn-nav btn-next" onclick="downloadReport()" style="background:var(--yellow);color:var(--black);">Download Full Report</button>
       </div>
     </div>
 
   </main>
 </div>
 
-<!-- Mobile swipe indicator -->
-<div id="swipe-indicator" class="swipe-indicator"></div>
-
 <script>
-// ── STATE ──
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
 const state = {
-  signal: {},
-  reframe: { position: null, promise: null, clarity: null, visual: null },
-  boxInput: '',
-  edgeInput: '',
-  boxedge: {},
-  completedTools: new Set(),
-  // Store verdicts in state so downloads don't depend on DOM elements
-  signalVerdict: '',
-  reframeVerdict: '',
-  reframeLabel: '',
-  boxedgeVerdict: ''
+  symptoms: {},
+  symptomVerdict: '',
+  symptomScore: 0,
+  rootCause: { position: 0, promise: 0, clarity: 0, visual: 0 },
+  rootCauseTotal: 0,
+  rootCauseVerdict: '',
+  rootCauseLabel: '',
+  boxText: '',
+  edgeText: '',
+  positionVerdict: '',
+  completedPhases: new Set()
 };
 
-// ── SCORE GAUGE UTILITIES ──
-function createScoreGauge(score, maxScore, containerId, label) {
-  const percentage = (score / maxScore) * 100;
-  const circumference = 2 * Math.PI * 45; // radius = 45
-  const dashOffset = circumference - (circumference * percentage / 100);
-
-  const gauge = `
-    <div class="score-gauge">
-      <svg viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="45" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
-        <circle cx="60" cy="60" r="45" fill="none" stroke="var(--yellow)" stroke-width="8"
-                stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}"
-                stroke-linecap="round" class="progress-ring"/>
-      </svg>
-      <div class="score-text">${score}/${maxScore}</div>
-    </div>
-    <div class="score-content">
-      <div class="score-number" id="${containerId}-number">${score}</div>
-      <div class="score-label">${label}</div>
-      <div class="score-verdict" id="${containerId}-verdict"></div>
-    </div>`;
-
-  const container = document.getElementById(containerId);
-  container.innerHTML = gauge;
-
-  // Animate the progress ring
-  setTimeout(() => {
-    const ring = container.querySelector('.progress-ring');
-    ring.style.strokeDashoffset = dashOffset;
-
-    // Animate the score number
-    animateScore(score, container.querySelector(`#${containerId}-number`), 1500);
-  }, 100);
-}
-
-function animateScore(targetScore, element, duration = 1000) {
-  const startScore = 0;
-  const startTime = Date.now();
-
-  function updateScore() {
-    const elapsed = Date.now() - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-
-    // Use easing function for smooth animation
-    const easeProgress = 1 - Math.pow(1 - progress, 3);
-    const currentScore = Math.floor(startScore + (targetScore - startScore) * easeProgress);
-
-    if (element.textContent.includes('/')) {
-      const parts = element.textContent.split('/');
-      parts[0] = currentScore;
-      element.textContent = parts.join('/');
-    } else {
-      element.textContent = currentScore;
-    }
-
-    if (progress < 1) {
-      requestAnimationFrame(updateScore);
-    }
-  }
-
-  requestAnimationFrame(updateScore);
-}
-
-// ── NAVIGATION ──
+// ══════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════
 function showPanel(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
 
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelector('.nav-item[data-panel="' + id + '"]').classList.add('active');
+  const navItem = document.querySelector('.nav-item[data-panel="' + id + '"]');
+  if (navItem) navItem.classList.add('active');
 
-  if (id === 'results') renderResults();
-
-  // Initialize progressive question flow for applicable tools
-  if (id === 'signal') {
-    setTimeout(() => initializeQuestionFlow('signal', 5), 100);
-  } else if (id === 'boxedge') {
-    setTimeout(() => initializeQuestionFlow('boxedge', 4), 100);
-  }
+  if (id === 'diagnosis') renderDiagnosis();
 
   // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
-
-  // Scroll to top of main
   window.scrollTo(0, 0);
 }
 
@@ -1450,727 +1078,516 @@ function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
 }
 
-function markCompleted(tool) {
-  state.completedTools.add(tool);
-  const navItem = document.querySelector('.nav-item[data-panel="' + tool + '"]');
+function markPhaseComplete(phase) {
+  state.completedPhases.add(phase);
+  const navItem = document.querySelector('.nav-item[data-panel="' + phase + '"]');
   if (navItem) navItem.classList.add('completed');
-  updateDownloadAll();
-}
 
-function updateDownloadAll() {
-  const btn = document.getElementById('downloadAll');
-  btn.disabled = state.completedTools.size === 0;
-}
-
-// ── TOOL 1: SIGNAL TEST ──
-function answerSignal(q, val, btn) {
-  state.signal[q] = val;
-  const block = btn.closest('.question-block');
-  block.classList.add('answered');
-  block.querySelectorAll('.btn-option').forEach(b => {
-    b.classList.remove('selected', 'selected-yes');
-  });
-  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
-
-  // Advance to next question after short delay
-  setTimeout(() => {
-    advanceToNextQuestion('signal', 5);
-  }, 600);
-
-  const answered = Object.keys(state.signal).length;
-  if (answered === 6) {
-    const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
-    const unsures = Object.values(state.signal).filter(v => v === 'unsure').length;
-    const nos = Object.values(state.signal).filter(v => v === 'no').length;
-
-    let verdict = '';
-    if (yeses >= 5) {
-      verdict = 'Strong signal. Your brand is doing its job on the fundamentals. The opportunity is in sharpening the Edge, not rebuilding the foundation.';
-    } else if (yeses >= 3) {
-      verdict = 'Mixed. Some parts of your brand are working, others aren\'t converting. The ' + nos + ' "no" answer' + (nos !== 1 ? 's' : '') + ' tell you exactly where to focus.';
-    } else {
-      verdict = 'Your brand isn\'t converting effort to pull. This is usually a story problem, not a marketing problem. More volume won\'t fix it. Clarity will.';
-    }
-    if (unsures > 0) {
-      verdict += ' The ' + unsures + ' "not sure" response' + (unsures !== 1 ? 's' : '') + ' matter too. Uncertainty about your own brand is itself a signal.';
-    }
-
-    // Show the result panel and create animated score gauge
-    document.getElementById('signal-result').style.display = 'block';
-    createScoreGauge(yeses, 5, 'signal-result', 'Signal Strength');
-
-    // Add verdict after a delay to let the animation complete
-    setTimeout(() => {
-      document.getElementById('signal-result-verdict').textContent = verdict;
-    }, 800);
-    markCompleted('signal');
+  // Enable download button once Phase 1 is done
+  if (state.completedPhases.size > 0) {
+    document.getElementById('downloadAll').disabled = false;
   }
 }
 
-// ── TOOL 2: REFRAME VS. REBRAND ──
-function updateReframeScore() {
-  const ids = ['rf-position', 'rf-promise', 'rf-clarity', 'rf-visual'];
+// ══════════════════════════════════════
+// PHASE 1: SYMPTOMS
+// ══════════════════════════════════════
+function answerSymptom(qId, answer, btn) {
+  state.symptoms[qId] = answer;
+
+  // Update button states
+  const block = btn.closest('.question-block');
+  block.querySelectorAll('.btn-option').forEach(b => {
+    b.classList.remove('selected', 'selected-yes');
+  });
+  btn.classList.add(answer === 'yes' ? 'selected-yes' : 'selected');
+
+  // Advance to next question
+  block.classList.remove('current');
+  block.classList.add('answered');
+
+  const allBlocks = document.querySelectorAll('#symptom-questions .question-block');
+  const answeredCount = Object.keys(state.symptoms).length;
+
+  // Update progress
+  document.getElementById('symptom-progress').style.width = (answeredCount / 5 * 100) + '%';
+  document.getElementById('symptom-counter').textContent = 'Question ' + Math.min(answeredCount + 1, 5) + ' of 5';
+
+  // Activate next question
+  if (answeredCount < allBlocks.length) {
+    allBlocks[answeredCount].classList.add('current');
+  }
+
+  // Show results when all answered
+  if (answeredCount === 5) {
+    showSymptomResult();
+    markPhaseComplete('symptoms');
+  }
+}
+
+function showSymptomResult() {
+  const yesCount = Object.values(state.symptoms).filter(a => a === 'yes').length;
+  const noCount = Object.values(state.symptoms).filter(a => a === 'no').length;
+  state.symptomScore = yesCount;
+
+  let verdict = '';
+  if (yesCount >= 4) {
+    verdict = 'Your brand is producing signal. The fundamentals are working. Phase 2 will tell you whether to optimize or leave it alone.';
+  } else if (yesCount >= 2) {
+    verdict = 'Mixed signal. Your brand is working in some areas but not others. Phase 2 will identify where the foundation is weak.';
+  } else {
+    verdict = 'Low signal. Your brand is generating activity but not pull. The problem is likely structural, not tactical. Phase 2 will confirm.';
+  }
+  state.symptomVerdict = verdict;
+
+  const container = document.getElementById('symptom-result');
+  container.style.display = 'flex';
+  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(yesCount, 5) + '<div class="score-text">' + yesCount + '/5</div></div>' +
+    '<div class="score-content"><div class="score-number">' + yesCount + '/5</div><div class="score-label">Signal Strength</div><div class="score-verdict">' + verdict + '</div></div>';
+}
+
+// ══════════════════════════════════════
+// PHASE 2: ROOT CAUSE
+// ══════════════════════════════════════
+function updateRootCause() {
+  const fields = ['position', 'promise', 'clarity', 'visual'];
   let total = 0;
   let filled = 0;
 
-  ids.forEach(id => {
-    const val = parseInt(document.getElementById(id).value);
+  fields.forEach(f => {
+    const val = parseInt(document.getElementById('rc-' + f).value);
     if (!isNaN(val) && val >= 1 && val <= 5) {
+      state.rootCause[f] = val;
       total += val;
       filled++;
-      state.reframe[id.replace('rf-', '')] = val;
     }
   });
 
-  document.getElementById('rf-total').textContent = filled === 4 ? total : '--';
+  state.rootCauseTotal = total;
+  document.getElementById('rc-total').textContent = total;
 
   if (filled === 4) {
-    let rec = '', label = '';
-    if (total >= 16) {
-      label = 'Minor Optimizations';
-      rec = 'Your brand is strong across all dimensions. Focus on fine-tuning execution and consistency. No major repositioning needed.';
-    } else if (total >= 12) {
-      label = 'Strategic Reframe';
-      rec = 'Solid fundamentals, unclear positioning. A strategic reframe can sharpen your message and improve conversion without starting over. Focus on message clarity and competitive positioning.';
-    } else if (total >= 8) {
-      label = 'Comprehensive Reframe';
-      rec = 'Multiple areas need work. A thorough reframe addressing positioning, messaging, and visual alignment will give you the foundation for growth. Start here before jumping to a full rebrand.';
-    } else {
-      label = 'Full Rebrand Consideration';
-      rec = 'Your brand foundation needs significant work. Before committing to a full rebrand, validate whether the core business model and market position are sound. Sometimes a comprehensive reframe achieves rebrand-level results.';
-    }
-
-    // Show the result panel and create animated score gauge
-    document.getElementById('reframe-result').style.display = 'block';
-    createScoreGauge(total, 20, 'reframe-result', label);
-
-    // Add verdict after a delay to let the animation complete
-    setTimeout(() => {
-      document.getElementById('reframe-result-verdict').textContent = rec;
-    }, 800);
-
-    markCompleted('reframe');
-  }
-}
-
-
-// ── TOOL 3: BOX-EDGE ──
-function updateBoxEdge() {
-  state.boxInput = document.getElementById('box-input').value;
-  state.edgeInput = document.getElementById('edge-input').value;
-
-  const display = document.getElementById('two-sentence-display');
-  const counter = document.getElementById('two-sentence-counter');
-
-  if (state.boxInput.trim() || state.edgeInput.trim()) {
-    let html = '';
-    if (state.boxInput.trim()) html += '<strong style="display:block;margin-bottom:8px;">Box:</strong> ' + escapeHtml(state.boxInput.trim());
-    if (state.boxInput.trim() && state.edgeInput.trim()) html += '<br><br>';
-    if (state.edgeInput.trim()) html += '<strong style="display:block;margin-bottom:8px;">Edge:</strong> ' + escapeHtml(state.edgeInput.trim());
-    display.innerHTML = html;
-    counter.style.display = 'flex';
-
-    const combined = (state.boxInput.trim() + ' ' + state.edgeInput.trim()).trim();
-    const wordCount = combined.split(/\s+/).length;
-    document.getElementById('combined-count').textContent = wordCount + ' words combined';
-    const fb = document.getElementById('combined-feedback');
-    if (wordCount <= 30) { fb.textContent = 'Tight. Good.'; fb.className = 'good'; }
-    else if (wordCount <= 50) { fb.textContent = 'Getting long. Can you cut?'; fb.className = 'warn'; }
-    else { fb.textContent = 'Too long for one breath.'; fb.className = 'warn'; }
+    showRootCauseResult(total);
+    markPhaseComplete('rootcause');
   } else {
-    display.innerHTML = '<span class="empty-state">Your Box and Edge will appear here as you write them above.</span>';
-    counter.style.display = 'none';
+    document.getElementById('rootcause-result').style.display = 'none';
   }
 }
 
-function answerBoxEdge(q, val, btn) {
-  state.boxedge[q] = val;
-  const block = btn.closest('.question-block');
-  block.classList.add('answered');
-  block.querySelectorAll('.btn-option').forEach(b => {
-    b.classList.remove('selected', 'selected-yes');
-  });
-  btn.classList.add(val === 'yes' ? 'selected-yes' : 'selected');
+function showRootCauseResult(score) {
+  let verdict = '';
+  let label = '';
 
-  // Advance to next question after short delay
-  setTimeout(() => {
-    advanceToNextQuestion('boxedge', 4);
-  }, 600);
-
-  const answered = Object.keys(state.boxedge).length;
-  if (answered === 4) {
-    // For Box-Edge diagnostic, "yes" to q1-3 = problem, "yes" to q4 = good
-    // Remap: q1 yes=bad, q2 yes=bad, q3 yes=bad, q4 yes=good
-    const problemSignals =
-      (state.boxedge.be1 === 'yes' ? 1 : 0) +
-      (state.boxedge.be2 === 'yes' ? 1 : 0) +
-      (state.boxedge.be3 === 'yes' ? 1 : 0) +
-      (state.boxedge.be4 === 'no' ? 1 : 0);
-
-    let verdict = '';
-    let label = '';
-    if (problemSignals >= 3) {
-      verdict = 'Your Box is the problem. The category isn\'t clear, which means prospects never get to evaluating your Edge. Start with the Box exercise above. The disagreement between stakeholders is the most useful diagnostic you can run.';
-      label = 'Box Needs Work';
-    } else if (problemSignals >= 1) {
-      verdict = 'Some Box clarity issues. Your category is partially working but has gaps. The ' + problemSignals + ' signal' + (problemSignals !== 1 ? 's' : '') + ' above point to where. Use the Box-Edge statements you wrote to pressure-test internally.';
-      label = 'Box Clarity Issues';
-    } else {
-      verdict = 'Your Box is clear. Prospects know what you are. Focus on sharpening the Edge. The difference needs to be as crisp as the category.';
-      label = 'Box is Clear';
-    }
-
-    // Show the result panel and create animated score gauge
-    document.getElementById('boxedge-result').style.display = 'block';
-    createScoreGauge(problemSignals, 4, 'boxedge-result', label);
-
-    // Add verdict after a delay to let the animation complete
-    setTimeout(() => {
-      document.getElementById('boxedge-result-verdict').textContent = verdict;
-    }, 800);
-
-    if (state.boxInput.trim() || state.edgeInput.trim()) {
-      markCompleted('boxedge');
-    }
+  if (score >= 16) {
+    label = 'Minor Adjustments';
+    verdict = 'Your brand foundation is solid. Focus on consistent execution and small refinements. No major structural changes needed.';
+  } else if (score >= 12) {
+    label = 'Strategic Reframe';
+    verdict = 'Your fundamentals are sound but your positioning needs sharpening. A reframe fixes the story without starting over. Focus on message clarity and competitive positioning.';
+  } else if (score >= 8) {
+    label = 'Comprehensive Reframe';
+    verdict = 'Multiple dimensions need work. A thorough reframe addressing positioning, messaging, and visual alignment will build the foundation for growth. Do this before considering a full rebrand.';
+  } else {
+    label = 'Rebrand Consideration';
+    verdict = 'Your brand foundation needs significant rebuilding. Before committing to a full rebrand, validate whether the core business model and market position are sound. Sometimes a comprehensive reframe produces rebrand-level results at a fraction of the cost.';
   }
 
-  if ((state.boxInput.trim() || state.edgeInput.trim()) && Object.keys(state.boxedge).length === 4) {
-    markCompleted('boxedge');
+  state.rootCauseVerdict = verdict;
+  state.rootCauseLabel = label;
+
+  const container = document.getElementById('rootcause-result');
+  container.style.display = 'flex';
+  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(score, 20) + '<div class="score-text">' + score + '/20</div></div>' +
+    '<div class="score-content"><div class="score-number">' + label + '</div><div class="score-label">Score: ' + score + '/20</div><div class="score-verdict">' + verdict + '</div></div>';
+}
+
+// ══════════════════════════════════════
+// PHASE 3: POSITION
+// ══════════════════════════════════════
+function updateBoxEdge() {
+  const boxVal = document.getElementById('box-input').value.trim();
+  const edgeVal = document.getElementById('edge-input').value.trim();
+  state.boxText = boxVal;
+  state.edgeText = edgeVal;
+
+  // Word counts
+  const boxWords = boxVal ? boxVal.split(/\s+/).length : 0;
+  const edgeWords = edgeVal ? edgeVal.split(/\s+/).length : 0;
+
+  document.getElementById('box-count').textContent = boxWords + ' words';
+  document.getElementById('edge-count').textContent = edgeWords + ' words';
+
+  // Box feedback
+  const boxFb = document.getElementById('box-feedback');
+  if (boxWords === 0) boxFb.textContent = '';
+  else if (boxWords <= 15) { boxFb.textContent = 'Good length'; boxFb.className = 'good'; }
+  else { boxFb.textContent = 'Try tightening'; boxFb.className = 'warn'; }
+
+  // Edge feedback
+  const edgeFb = document.getElementById('edge-feedback');
+  if (edgeWords === 0) edgeFb.textContent = '';
+  else if (edgeWords <= 25) { edgeFb.textContent = 'Good length'; edgeFb.className = 'good'; }
+  else { edgeFb.textContent = 'Try tightening'; edgeFb.className = 'warn'; }
+
+  // Position feedback
+  const feedbackBox = document.getElementById('position-feedback');
+  const feedbackText = document.getElementById('position-feedback-text');
+
+  if (boxVal && edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You have both a Box and an Edge. Read them together out loud. If a prospect hears this for the first time, do they understand what you are and why it matters in under 10 seconds?';
+    feedbackText.textContent = state.positionVerdict;
+    markPhaseComplete('position');
+  } else if (boxVal && !edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You have a category but no stated difference. This is common and it is exactly where most positioning work starts. The Box without an Edge means prospects can place you but have no reason to choose you.';
+    feedbackText.textContent = state.positionVerdict;
+  } else if (!boxVal && edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You wrote a difference but no category. Your market cannot evaluate your Edge until they know your Box. Category first, always.';
+    feedbackText.textContent = state.positionVerdict;
+  } else {
+    feedbackBox.style.display = 'none';
+    state.positionVerdict = '';
   }
 }
 
-// ── RESULTS ──
-function renderResults() {
-  const container = document.getElementById('results-content');
-  let html = '';
+// ══════════════════════════════════════
+// DIAGNOSIS PANEL
+// ══════════════════════════════════════
+function renderDiagnosis() {
+  // Phase 1
+  const symBadge = document.getElementById('dx-symptom-badge');
+  const symVerdict = document.getElementById('dx-symptom-verdict');
+  const symAnswers = document.getElementById('dx-symptom-answers');
 
-  // Signal Test
-  if (state.completedTools.has('signal')) {
-    const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
-    html += '<div class="result-section">';
-    html += '<div class="result-header"><span class="result-tool-name">The Signal Test</span><span class="result-score-badge">' + yeses + '/6 Signal</span></div>';
-    html += '<p class="result-detail">' + document.getElementById('signal-verdict').textContent + '</p>';
+  if (Object.keys(state.symptoms).length === 5) {
+    symBadge.textContent = state.symptomScore + '/5 Signal';
+    symVerdict.textContent = state.symptomVerdict;
 
-    const questions = {
-      s1: 'Logo removal test (distinctiveness)',
-      s2: 'Sales articulation (message travel)',
-      s3: 'Competitor comparison (category clarity)',
-      s4: 'Inbound conversations (pull vs. activity)',
+    const qLabels = {
+      s1: 'Distinctiveness (logo test)',
+      s2: 'Message portability (sales team test)',
+      s3: 'Category placement (competitor test)',
+      s4: 'Pull vs. activity (inbound test)',
       s5: 'Internal alignment (five-employee test)'
     };
-    Object.keys(state.signal).forEach(k => {
-      html += '<div style="display:flex;gap:12px;align-items:center;margin-bottom:8px;font-size:13px;">';
-      const icon = state.signal[k] === 'yes' ? '\u2713' : state.signal[k] === 'no' ? '\u2717' : '?';
-      const color = state.signal[k] === 'yes' ? '#2E7D32' : state.signal[k] === 'no' ? '#C62828' : 'var(--gray)';
-      html += '<span style="color:' + color + ';font-weight:700;width:16px;">' + icon + '</span>';
-      html += '<span>' + questions[k] + ': <strong>' + state.signal[k] + '</strong></span>';
-      html += '</div>';
+
+    let answersHtml = '';
+    Object.keys(state.symptoms).forEach(k => {
+      const answer = state.symptoms[k];
+      const icon = answer === 'yes' ? '&#10003;' : answer === 'no' ? '&#10007;' : '?';
+      answersHtml += '<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:8px;font-size:13px;">' +
+        '<span style="font-weight:700;width:20px;color:' + (answer === 'yes' ? '#2E7D32' : answer === 'no' ? '#C62828' : 'var(--gray)') + ';">' + icon + '</span>' +
+        '<span>' + qLabels[k] + '</span></div>';
     });
-    html += '</div>';
-  }
-
-  // Reframe vs. Rebrand
-  if (state.completedTools.has('reframe')) {
-    const total = (state.reframe.position || 0) + (state.reframe.promise || 0) + (state.reframe.clarity || 0) + (state.reframe.visual || 0);
-    const recLabel = document.getElementById('reframe-rec-label').textContent;
-    html += '<div class="result-section">';
-    html += '<div class="result-header"><span class="result-tool-name">Reframe vs. Rebrand</span><span class="result-score-badge">' + total + '/20 ' + recLabel + '</span></div>';
-    html += '<p class="result-detail">' + document.getElementById('reframe-verdict').textContent + '</p>';
-
-    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">';
-    const dims = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
-    Object.keys(dims).forEach(k => {
-      const v = state.reframe[k] || '--';
-      html += '<div style="padding:12px;background:var(--offwhite);font-size:13px;"><strong>' + dims[k] + ':</strong> ' + v + '/5</div>';
-    });
-    html += '</div>';
-
-    html += '</div>';
-  }
-
-  // Box-Edge
-  if (state.completedTools.has('boxedge')) {
-    const problemSignals = Object.keys(state.boxedge).length === 4 ?
-      ((state.boxedge.be1 === 'yes' ? 1 : 0) + (state.boxedge.be2 === 'yes' ? 1 : 0) + (state.boxedge.be3 === 'yes' ? 1 : 0) + (state.boxedge.be4 === 'no' ? 1 : 0)) + '/4' :
-      '--';
-    html += '<div class="result-section">';
-    html += '<div class="result-header"><span class="result-tool-name">Box-Edge Workshop</span><span class="result-score-badge">' + problemSignals + ' Issues</span></div>';
-
-    if (document.getElementById('boxedge-result-verdict') && document.getElementById('boxedge-result-verdict').textContent) {
-      html += '<p class="result-detail">' + document.getElementById('boxedge-result-verdict').textContent + '</p>';
-    }
-
-    if (state.boxInput.trim()) {
-      html += '<div class="result-input-label">Your Box</div>';
-      html += '<div class="result-input-value">' + escapeHtml(state.boxInput.trim()) + '</div>';
-    }
-    if (state.edgeInput.trim()) {
-      html += '<div class="result-input-label">Your Edge</div>';
-      html += '<div class="result-input-value">' + escapeHtml(state.edgeInput.trim()) + '</div>';
-    }
-    html += '</div>';
-  }
-
-  if (state.completedTools.size === 0) {
-    html = '<div style="text-align:center;padding:60px 0;color:var(--gray);"><p>Complete at least one tool to see your results here.</p></div>';
-  }
-
-  container.innerHTML = html;
-}
-
-// ── QUESTION FLOW ──
-function initializeQuestionFlow(toolName, questionCount) {
-  const container = document.getElementById(`${toolName}-questions`);
-  const questions = container.querySelectorAll('.question-block');
-
-  // Hide all questions initially except the first
-  questions.forEach((q, index) => {
-    if (index === 0) {
-      q.classList.add('current');
-    } else {
-      q.classList.remove('current');
-    }
-  });
-
-  updateProgress(toolName, 0, questionCount);
-}
-
-function advanceToNextQuestion(toolName, questionCount) {
-  const container = document.getElementById(`${toolName}-questions`);
-  const questions = container.querySelectorAll('.question-block');
-  const currentQuestion = container.querySelector('.question-block.current');
-  const currentIndex = Array.from(questions).indexOf(currentQuestion);
-  const nextIndex = currentIndex + 1;
-
-  // Mark current as answered and move to next
-  if (currentQuestion) {
-    currentQuestion.classList.remove('current');
-  }
-
-  if (nextIndex < questions.length) {
-    // Show next question
-    setTimeout(() => {
-      questions[nextIndex].classList.add('current');
-    }, 300);
-
-    updateProgress(toolName, nextIndex + 1, questionCount);
+    symAnswers.innerHTML = answersHtml;
   } else {
-    // All questions answered
-    updateProgress(toolName, questionCount, questionCount);
-  }
-}
-
-function updateProgress(toolName, current, total) {
-  const counter = document.getElementById(`${toolName}-counter`);
-  const progress = document.getElementById(`${toolName}-progress`);
-
-  if (counter) {
-    counter.textContent = `Question ${Math.min(current + 1, total)} of ${total}`;
+    symBadge.textContent = '--';
+    symVerdict.textContent = 'Complete Phase 1 to see results.';
+    symAnswers.innerHTML = '';
   }
 
-  if (progress) {
-    const percentage = (current / total) * 100;
-    progress.style.width = `${percentage}%`;
+  // Phase 2
+  const rcBadge = document.getElementById('dx-rootcause-badge');
+  const rcVerdict = document.getElementById('dx-rootcause-verdict');
+  const rcScores = document.getElementById('dx-rootcause-scores');
+
+  if (state.rootCauseTotal > 0 && state.rootCauseLabel) {
+    rcBadge.textContent = state.rootCauseTotal + '/20';
+    rcVerdict.textContent = state.rootCauseVerdict;
+
+    const dims = ['position', 'promise', 'clarity', 'visual'];
+    const dimLabels = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
+
+    let scoresHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">';
+    dims.forEach(d => {
+      const val = state.rootCause[d] || 0;
+      const barWidth = (val / 5 * 100);
+      scoresHtml += '<div style="font-size:13px;"><div style="font-weight:700;margin-bottom:4px;">' + dimLabels[d] + ': ' + val + '/5</div>' +
+        '<div style="height:4px;background:var(--light-gray);border-radius:2px;"><div style="height:100%;width:' + barWidth + '%;background:' + (val >= 4 ? '#2E7D32' : val >= 3 ? 'var(--yellow)' : '#C62828') + ';border-radius:2px;"></div></div></div>';
+    });
+    scoresHtml += '</div>';
+    rcScores.innerHTML = scoresHtml;
+  } else {
+    rcBadge.textContent = '--';
+    rcVerdict.textContent = 'Complete Phase 2 to see results.';
+    rcScores.innerHTML = '';
   }
-}
 
-// ── BUTTON MICRO-INTERACTIONS ──
-function addButtonPulse(element) {
-  element.classList.add('btn-pulse');
-  setTimeout(() => {
-    element.classList.remove('btn-pulse');
-  }, 300);
-}
-
-// Add pulse animation to all button clicks
-document.addEventListener('DOMContentLoaded', () => {
-  // Add pulse to all buttons with btn- classes
-  document.addEventListener('click', (e) => {
-    if (e.target.matches('.btn-option, .btn-nav, .btn-download-tool, .btn-download-all, .sidebar-toggle')) {
-      addButtonPulse(e.target);
+  // Phase 3
+  const posContent = document.getElementById('dx-position-content');
+  if (state.boxText || state.edgeText) {
+    let posHtml = '';
+    if (state.boxText) {
+      posHtml += '<div class="result-input-label">Your Box (Category)</div><div class="result-input-value">' + escapeHtml(state.boxText) + '</div>';
     }
-  });
-});
-
-// ── MOBILE SWIPE NAVIGATION ──
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-let isSwipeGesture = false;
-
-const swipeThreshold = 50; // Minimum distance for a swipe
-const swipeAngleThreshold = 30; // Maximum angle deviation from horizontal (degrees)
-
-function showSwipeIndicator(text) {
-  const indicator = document.getElementById('swipe-indicator');
-  indicator.textContent = text;
-  indicator.style.display = 'block';
-  indicator.style.opacity = '1';
-}
-
-function hideSwipeIndicator() {
-  const indicator = document.getElementById('swipe-indicator');
-  indicator.style.opacity = '0';
-  setTimeout(() => {
-    indicator.style.display = 'none';
-  }, 200);
-}
-
-function getActivePanel() {
-  const activePanel = document.querySelector('.panel.active');
-  return activePanel ? activePanel.id.replace('panel-', '') : null;
-}
-
-function getCurrentQuestionIndex(toolName) {
-  const container = document.getElementById(`${toolName}-questions`);
-  if (!container) return -1;
-
-  const questions = container.querySelectorAll('.question-block');
-  const currentQuestion = container.querySelector('.question-block.current');
-  return currentQuestion ? Array.from(questions).indexOf(currentQuestion) : -1;
-}
-
-function canNavigateToNextQuestion(toolName) {
-  const currentIndex = getCurrentQuestionIndex(toolName);
-  const container = document.getElementById(`${toolName}-questions`);
-  const questions = container.querySelectorAll('.question-block');
-
-  return currentIndex >= 0 && currentIndex < questions.length - 1;
-}
-
-function canNavigateToPrevQuestion(toolName) {
-  const currentIndex = getCurrentQuestionIndex(toolName);
-  return currentIndex > 0;
-}
-
-function navigateToNextQuestion(toolName) {
-  const container = document.getElementById(`${toolName}-questions`);
-  const questions = container.querySelectorAll('.question-block');
-  const currentQuestion = container.querySelector('.question-block.current');
-  const currentIndex = Array.from(questions).indexOf(currentQuestion);
-  const nextIndex = currentIndex + 1;
-
-  if (nextIndex < questions.length) {
-    currentQuestion.classList.remove('current');
-    questions[nextIndex].classList.add('current');
-
-    const questionCount = toolName === 'signal' ? 5 : 4;
-    updateProgress(toolName, nextIndex + 1, questionCount);
-
-    showSwipeIndicator(`Question ${nextIndex + 1} of ${questionCount}`);
-    setTimeout(hideSwipeIndicator, 1500);
-    return true;
-  }
-  return false;
-}
-
-function navigateToPrevQuestion(toolName) {
-  const container = document.getElementById(`${toolName}-questions`);
-  const questions = container.querySelectorAll('.question-block');
-  const currentQuestion = container.querySelector('.question-block.current');
-  const currentIndex = Array.from(questions).indexOf(currentQuestion);
-  const prevIndex = currentIndex - 1;
-
-  if (prevIndex >= 0) {
-    currentQuestion.classList.remove('current');
-    // Remove answered state from previous question to allow re-answering
-    questions[prevIndex].classList.remove('answered');
-    questions[prevIndex].classList.add('current');
-
-    const questionCount = toolName === 'signal' ? 5 : 4;
-    updateProgress(toolName, prevIndex + 1, questionCount);
-
-    showSwipeIndicator(`Question ${prevIndex + 1} of ${questionCount}`);
-    setTimeout(hideSwipeIndicator, 1500);
-    return true;
-  }
-  return false;
-}
-
-function getNextPanel() {
-  const panels = ['intro', 'signal', 'reframe', 'boxedge', 'results'];
-  const current = getActivePanel();
-  const currentIndex = panels.indexOf(current);
-
-  return currentIndex >= 0 && currentIndex < panels.length - 1 ? panels[currentIndex + 1] : null;
-}
-
-function getPrevPanel() {
-  const panels = ['intro', 'signal', 'reframe', 'boxedge', 'results'];
-  const current = getActivePanel();
-  const currentIndex = panels.indexOf(current);
-
-  return currentIndex > 0 ? panels[currentIndex - 1] : null;
-}
-
-function handleSwipeRight() {
-  const activePanel = getActivePanel();
-
-  // Try to navigate to previous question first
-  if (activePanel === 'signal' && canNavigateToPrevQuestion('signal')) {
-    return navigateToPrevQuestion('signal');
-  } else if (activePanel === 'boxedge' && canNavigateToPrevQuestion('boxedge')) {
-    return navigateToPrevQuestion('boxedge');
+    if (state.edgeText) {
+      posHtml += '<div class="result-input-label">Your Edge (Difference)</div><div class="result-input-value">' + escapeHtml(state.edgeText) + '</div>';
+    }
+    if (state.positionVerdict) {
+      posHtml += '<p class="result-detail" style="margin-top:12px;">' + state.positionVerdict + '</p>';
+    }
+    posContent.innerHTML = posHtml;
+  } else {
+    posContent.innerHTML = '<p class="result-detail empty-state">Complete Phase 3 to see results.</p>';
   }
 
-  // Otherwise navigate to previous panel
-  const prevPanel = getPrevPanel();
-  if (prevPanel) {
-    showPanel(prevPanel);
-    showSwipeIndicator(`← ${getPanelTitle(prevPanel)}`);
-    setTimeout(hideSwipeIndicator, 1500);
-    return true;
-  }
-
-  // Show feedback when at the beginning
-  showSwipeIndicator('← Start of toolkit');
-  setTimeout(hideSwipeIndicator, 1000);
-  return false;
+  // Where to Focus
+  renderFocusSection();
 }
 
-function handleSwipeLeft() {
-  const activePanel = getActivePanel();
+function renderFocusSection() {
+  const section = document.getElementById('dx-focus-section');
+  const text = document.getElementById('dx-focus-text');
 
-  // Try to navigate to next question first
-  if (activePanel === 'signal' && canNavigateToNextQuestion('signal')) {
-    return navigateToNextQuestion('signal');
-  } else if (activePanel === 'boxedge' && canNavigateToNextQuestion('boxedge')) {
-    return navigateToNextQuestion('boxedge');
+  if (state.completedPhases.size < 2) {
+    section.style.display = 'none';
+    return;
   }
 
-  // Otherwise navigate to next panel
-  const nextPanel = getNextPanel();
-  if (nextPanel) {
-    showPanel(nextPanel);
-    showSwipeIndicator(`${getPanelTitle(nextPanel)} →`);
-    setTimeout(hideSwipeIndicator, 1500);
-    return true;
+  section.style.display = 'block';
+  let focusItems = [];
+
+  // Derive focus areas from scores
+  if (state.symptomScore <= 2) {
+    focusItems.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
   }
 
-  // Show feedback when at the end
-  showSwipeIndicator('End of toolkit →');
-  setTimeout(hideSwipeIndicator, 1000);
-  return false;
-}
-
-function getPanelTitle(panelId) {
-  const titles = {
-    intro: 'Start',
-    signal: 'Signal Test',
-    reframe: 'Reframe vs. Rebrand',
-    boxedge: 'Box-Edge Workshop',
-    results: 'Your Results'
-  };
-  return titles[panelId] || '';
-}
-
-// Touch event handlers
-document.addEventListener('touchstart', (e) => {
-  if (!window.matchMedia('(max-width: 900px)').matches) return;
-
-  const touch = e.touches[0];
-  touchStartX = touch.clientX;
-  touchStartY = touch.clientY;
-  isSwipeGesture = false;
-}, { passive: true });
-
-document.addEventListener('touchmove', (e) => {
-  if (!window.matchMedia('(max-width: 900px)').matches) return;
-
-  const touch = e.touches[0];
-  const deltaX = Math.abs(touch.clientX - touchStartX);
-  const deltaY = Math.abs(touch.clientY - touchStartY);
-
-  // Only prevent scrolling if it's clearly a horizontal swipe with significant movement
-  if (deltaX > deltaY && deltaX > 30 && deltaX > deltaY * 2) {
-    isSwipeGesture = true;
-    // Prevent default scrolling during horizontal swipe
-    e.preventDefault();
+  if (state.rootCause.position && state.rootCause.position <= 2) {
+    focusItems.push('Market position scored lowest. Your market does not know where to place you. Define your Box before working on anything else.');
   }
-}, { passive: false });
 
-document.addEventListener('touchend', (e) => {
-  if (!window.matchMedia('(max-width: 900px)').matches) return;
+  if (state.rootCause.promise && state.rootCause.promise <= 2) {
+    focusItems.push('Brand promise scored lowest. You cannot articulate what makes you different in one sentence. This is the root cause of most conversion problems.');
+  }
 
-  const touch = e.changedTouches[0];
-  touchEndX = touch.clientX;
-  touchEndY = touch.clientY;
+  if (state.rootCause.clarity && state.rootCause.clarity <= 2) {
+    focusItems.push('Message clarity scored lowest. Your team knows the story but your market does not. The problem is translation, not substance.');
+  }
 
-  const deltaX = touchEndX - touchStartX;
-  const deltaY = touchEndY - touchStartY;
-  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  if (!state.boxText && state.completedPhases.has('position')) {
+    focusItems.push('You could not fill in the Box formula. Category clarity comes before differentiation. Start here.');
+  }
 
-  // Calculate swipe angle
-  const angle = Math.abs(Math.atan2(deltaY, deltaX) * 180 / Math.PI);
-  const isHorizontal = angle < swipeAngleThreshold || angle > (180 - swipeAngleThreshold);
+  if (state.boxText && !state.edgeText && state.completedPhases.has('position')) {
+    focusItems.push('You have a Box but no Edge. Your market can place you but has no reason to choose you over the next option.');
+  }
 
-  if (isSwipeGesture && distance > swipeThreshold && isHorizontal) {
-    if (deltaX > 0) {
-      // Swipe right
-      handleSwipeRight();
+  if (focusItems.length === 0) {
+    if (state.symptomScore >= 4 && state.rootCauseTotal >= 16) {
+      focusItems.push('Your brand foundation is strong. The work now is consistency and execution, not strategy. Protect what is working before optimizing what is not.');
     } else {
-      // Swipe left
-      handleSwipeLeft();
+      focusItems.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
     }
   }
 
-  isSwipeGesture = false;
-}, { passive: true });
+  text.innerHTML = focusItems.join('<br><br>');
+}
 
-// ── DOWNLOADS ──
-function generateToolText(tool) {
-  let text = '';
-  const line = '────────────────────────────────────────\n';
-  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+// ══════════════════════════════════════
+// DOWNLOAD REPORT
+// ══════════════════════════════════════
+function downloadReport() {
+  const lines = [];
+  const divider = '========================================';
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-  if (tool === 'signal') {
-    text += 'THE SIGNAL TEST | BrandThnk Diagnostic\n';
-    text += line;
-    text += 'Date: ' + date + '\n\n';
+  lines.push('BRANDTHNK BRAND DIAGNOSTIC');
+  lines.push('Generated ' + today);
+  lines.push(divider);
+  lines.push('');
 
-    const questions = {
-      s1: 'If you removed your logo from everything you published in the last 90 days, would anyone know it was you?',
-      s2: 'Can your sales team explain what makes you different without reading from a deck?',
-      s3: 'Do prospects compare you to the right competitors?',
-      s4: 'Does your marketing generate inbound conversations, not just impressions?',
-      s5: 'If five employees independently described what your company does, would you get the same answer?',
-      s6: 'Is your sales cycle longer because prospects need the category explained before the value can land?'
+  // WHAT WE FOUND
+  lines.push('WHAT WE FOUND');
+  lines.push('----------------------------------------');
+
+  if (Object.keys(state.symptoms).length === 5) {
+    lines.push('');
+    lines.push('Signal Strength: ' + state.symptomScore + '/5');
+    lines.push('');
+    lines.push(state.symptomVerdict);
+    lines.push('');
+
+    const qTexts = {
+      s1: 'Logo removed, still recognizable?',
+      s2: 'Sales team explains without a deck?',
+      s3: 'Prospects compare to right competitors?',
+      s4: 'Marketing drives conversations, not just impressions?',
+      s5: 'Five employees give the same answer?'
     };
 
-    Object.keys(questions).forEach((k, i) => {
-      text += (i + 1) + '. ' + questions[k] + '\n';
-      text += '   Answer: ' + (state.signal[k] || 'Not answered') + '\n\n';
+    Object.keys(state.symptoms).forEach(k => {
+      lines.push('  [' + state.symptoms[k].toUpperCase() + '] ' + qTexts[k]);
     });
+  } else {
+    lines.push('Phase 1 not completed.');
+  }
 
-    if (document.getElementById('signal-verdict').textContent) {
-      text += 'DIAGNOSIS\n' + line;
-      const yeses = Object.values(state.signal).filter(v => v === 'yes').length;
-      text += 'Signal Strength: ' + yeses + '/6\n';
-      text += document.getElementById('signal-verdict').textContent + '\n';
+  lines.push('');
+  lines.push(divider);
+  lines.push('');
+
+  // YOUR SCORES
+  lines.push('YOUR SCORES');
+  lines.push('----------------------------------------');
+
+  if (state.rootCauseTotal > 0 && state.rootCauseLabel) {
+    lines.push('');
+    lines.push('Total: ' + state.rootCauseTotal + '/20 | Recommendation: ' + state.rootCauseLabel);
+    lines.push('');
+    lines.push('  Market Position:  ' + (state.rootCause.position || '-') + '/5');
+    lines.push('  Brand Promise:    ' + (state.rootCause.promise || '-') + '/5');
+    lines.push('  Message Clarity:  ' + (state.rootCause.clarity || '-') + '/5');
+    lines.push('  Visual Identity:  ' + (state.rootCause.visual || '-') + '/5');
+    lines.push('');
+    lines.push(state.rootCauseVerdict);
+  } else {
+    lines.push('Phase 2 not completed.');
+  }
+
+  lines.push('');
+  lines.push(divider);
+  lines.push('');
+
+  // YOUR POSITIONING
+  lines.push('YOUR POSITIONING');
+  lines.push('----------------------------------------');
+
+  if (state.boxText || state.edgeText) {
+    if (state.boxText) {
+      lines.push('');
+      lines.push('Box (Category):');
+      lines.push('  ' + state.boxText);
     }
-  }
-
-  if (tool === 'reframe') {
-    text += 'REFRAME VS. REBRAND | BrandThnk Diagnostic\n';
-    text += line;
-    text += 'Date: ' + date + '\n\n';
-
-    text += 'BRAND DIAGNOSTIC SCORE\n';
-    const dims = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
-    let total = 0;
-    Object.keys(dims).forEach(k => {
-      const v = state.reframe[k];
-      text += '  ' + dims[k] + ': ' + (v || '--') + '/5\n';
-      total += (v || 0);
-    });
-    text += '  Total: ' + total + '/20\n\n';
-
-    if (document.getElementById('reframe-verdict').textContent) {
-      text += 'Recommendation: ' + document.getElementById('reframe-rec-label').textContent + '\n';
-      text += document.getElementById('reframe-verdict').textContent + '\n\n';
+    if (state.edgeText) {
+      lines.push('');
+      lines.push('Edge (Difference):');
+      lines.push('  ' + state.edgeText);
     }
-
-  }
-
-  if (tool === 'boxedge') {
-    text += 'BOX-EDGE WORKSHOP | BrandThnk Diagnostic\n';
-    text += line;
-    text += 'Date: ' + date + '\n\n';
-
-    text += 'YOUR BOX (Category Clarity)\n';
-    text += (state.boxInput.trim() || 'Not completed') + '\n\n';
-
-    text += 'YOUR EDGE (Differentiation)\n';
-    text += (state.edgeInput.trim() || 'Not completed') + '\n\n';
-
-    if (Object.keys(state.boxedge).length > 0) {
-      text += 'DIAGNOSTIC CHECK\n';
-      const beQ = {
-        be1: 'Five employees, five answers?',
-        be2: 'Prospects compare to wrong competitors?',
-        be3: 'Sales cycle extended by category explanation?',
-        be4: 'Marketing identifiable without logo?'
-      };
-      Object.keys(beQ).forEach(k => {
-        text += '  ' + beQ[k] + ' ' + (state.boxedge[k] || '--') + '\n';
-      });
-
-      if (document.getElementById('boxedge-result-verdict') && document.getElementById('boxedge-result-verdict').textContent) {
-        text += '\nDIAGNOSIS\n';
-        text += document.getElementById('boxedge-result-verdict').textContent + '\n';
-      }
+    if (state.positionVerdict) {
+      lines.push('');
+      lines.push(state.positionVerdict);
     }
+  } else {
+    lines.push('Phase 3 not completed.');
   }
 
-  text += '\n' + line;
-  text += 'BrandThnk | brandthnk.co\n';
-  text += 'Book a call: calendar.app.google/ZoWdHFueshr6LQs17\n';
+  lines.push('');
+  lines.push(divider);
+  lines.push('');
 
-  return text;
-}
+  // WHERE TO FOCUS FIRST
+  lines.push('WHERE TO FOCUS FIRST');
+  lines.push('----------------------------------------');
+  lines.push('');
 
-function downloadTool(tool) {
-  const text = generateToolText(tool);
-  const names = { signal: 'Signal-Test', reframe: 'Reframe-vs-Rebrand', boxedge: 'Box-Edge-Workshop' };
-  downloadFile(text, 'BrandThnk-' + names[tool] + '-Diagnostic.txt');
-}
+  let focusItems = buildFocusItems();
+  focusItems.forEach(item => {
+    lines.push('> ' + item);
+    lines.push('');
+  });
 
-function downloadCombined() {
-  let text = '';
-  const line = '════════════════════════════════════════\n';
-  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  lines.push(divider);
+  lines.push('');
 
-  text += 'BRAND DIAGNOSTIC REPORT\n';
-  text += 'BrandThnk Toolkit Results\n';
-  text += line;
-  text += 'Generated: ' + date + '\n\n\n';
+  // WHAT HAPPENS IF YOU WAIT
+  lines.push('WHAT HAPPENS IF YOU WAIT');
+  lines.push('----------------------------------------');
+  lines.push('');
+  lines.push('Market windows close. The longer your brand generates activity');
+  lines.push('instead of pull, the harder it is to claim the position you should own.');
+  lines.push('Competitors with weaker products win because they are clearer.');
+  lines.push('Clarity is a compounding advantage. Delay is a compounding cost.');
 
-  if (state.completedTools.has('signal')) {
-    text += generateToolText('signal') + '\n\n';
-  }
-  if (state.completedTools.has('reframe')) {
-    text += generateToolText('reframe') + '\n\n';
-  }
-  if (state.completedTools.has('boxedge')) {
-    text += generateToolText('boxedge') + '\n\n';
-  }
+  lines.push('');
+  lines.push(divider);
+  lines.push('');
 
-  text += line;
-  text += 'WHAT TO DO NEXT\n';
-  text += line + '\n';
-  text += 'If the Signal Test showed mostly noise, start there. Clarity\n';
-  text += 'before volume. Fix the story before adding more marketing.\n\n';
-  text += 'If Reframe vs. Rebrand pointed to a reframe, don\'t spend\n';
-  text += 'money on new visuals until the positioning is sharp.\n\n';
-  text += 'If the Box-Edge Workshop revealed disagreement, that\'s\n';
-  text += 'not a problem. That\'s exactly where the real work starts.\n\n';
-  text += 'Want to talk through what this means for your brand?\n';
-  text += 'Book a call: calendar.app.google/ZoWdHFueshr6LQs17\n\n';
-  text += line;
-  text += 'BrandThnk | brandthnk.co\n';
+  // NEXT STEP
+  lines.push('NEXT STEP');
+  lines.push('----------------------------------------');
+  lines.push('');
+  lines.push('A 30-minute call is enough to confirm this diagnosis');
+  lines.push('and map the first move.');
+  lines.push('');
+  lines.push('Book a call: https://calendar.app.google/ZoWdHFueshr6LQs17');
+  lines.push('');
+  lines.push(divider);
+  lines.push('');
+  lines.push('brandthnk.co');
 
-  downloadFile(text, 'BrandThnk-Brand-Diagnostic-Report.txt');
-}
-
-function downloadFile(text, filename) {
-  const blob = new Blob([text], { type: 'text/plain' });
+  // Generate file
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
+  a.download = 'BrandThnk-Diagnostic-Report.txt';
   a.click();
-  document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
 
-function escapeHtml(str) {
+function buildFocusItems() {
+  let items = [];
+
+  if (state.symptomScore <= 2 && Object.keys(state.symptoms).length === 5) {
+    items.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
+  }
+
+  if (state.rootCause.position && state.rootCause.position <= 2) {
+    items.push('Market position scored lowest. Your market does not know where to place you. Define your category before working on anything else.');
+  }
+
+  if (state.rootCause.promise && state.rootCause.promise <= 2) {
+    items.push('Brand promise scored lowest. You cannot articulate what makes you different in one sentence. This is the root cause of most conversion problems.');
+  }
+
+  if (state.rootCause.clarity && state.rootCause.clarity <= 2) {
+    items.push('Message clarity scored lowest. Your team knows the story but your market does not. The problem is translation, not substance.');
+  }
+
+  if (!state.boxText && state.completedPhases.has('position')) {
+    items.push('You could not fill in the Box formula. Category clarity comes before differentiation. Start here.');
+  }
+
+  if (state.boxText && !state.edgeText && state.completedPhases.has('position')) {
+    items.push('You have a category but no stated difference. Your market can place you but has no reason to choose you.');
+  }
+
+  if (items.length === 0) {
+    if (state.symptomScore >= 4 && state.rootCauseTotal >= 16) {
+      items.push('Your brand foundation is strong. The work now is consistency and execution, not strategy.');
+    } else {
+      items.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
+    }
+  }
+
+  return items;
+}
+
+// ══════════════════════════════════════
+// UTILITIES
+// ══════════════════════════════════════
+function createGaugeSVG(value, max) {
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  const pct = value / max;
+  const offset = circumference * (1 - pct);
+
+  return '<svg viewBox="0 0 100 100">' +
+    '<circle cx="50" cy="50" r="' + radius + '" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="6"/>' +
+    '<circle cx="50" cy="50" r="' + radius + '" fill="none" stroke="#FFEB3B" stroke-width="6" stroke-linecap="round" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/>' +
+    '</svg>';
+}
+
+function escapeHtml(text) {
   const div = document.createElement('div');
-  div.textContent = str;
+  div.textContent = text;
   return div.innerHTML;
 }
-</script>
 
+// Initialize first question as current
+document.querySelector('#symptom-questions .question-block').classList.add('current');
+</script>
 </body>
 </html>
