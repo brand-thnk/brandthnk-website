@@ -38,7 +38,8 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({
         success: true,
         events: events,
-        message: `Found ${events.length} BrandThnk calendar events`
+        message: `Found ${events.length} BrandThnk calendar events`,
+        debug: debugInfo // Show which account and calendars we can access
       })
     };
 
@@ -72,14 +73,17 @@ async function fetchGoogleCalendarEvents(timeMin, timeMax, calendarIds) {
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
   // First, let's see which account we're authenticated as and what calendars are available
+  let debugInfo = {};
   try {
     const calendarList = await calendar.calendarList.list();
-    console.log('Authenticated account calendars:', calendarList.data.items?.map(cal => ({
+    debugInfo.calendars = calendarList.data.items?.map(cal => ({
       id: cal.id,
       summary: cal.summary,
       primary: cal.primary
-    })));
+    }));
+    console.log('Authenticated account calendars:', debugInfo.calendars);
   } catch (error) {
+    debugInfo.error = error.message;
     console.log('Error listing calendars:', error.message);
   }
 
