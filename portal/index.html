@@ -332,6 +332,129 @@
       color: var(--black);
     }
 
+    /* LINKEDIN NOTIFICATIONS */
+    .linkedin-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      position: relative;
+      border-left: 4px solid #0077B5;
+    }
+
+    .linkedin-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .linkedin-item.handled {
+      opacity: 0.6;
+      border-left-color: var(--gray);
+    }
+
+    .linkedin-type {
+      display: inline-block;
+      background: #0077B5;
+      color: var(--white);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .linkedin-type.comment { background: #0077B5; }
+    .linkedin-type.dm { background: #7B68EE; }
+    .linkedin-type.mention { background: #FF6B35; }
+    .linkedin-type.connection { background: #28A745; }
+    .linkedin-type.reaction { background: #FFC107; color: var(--black); }
+
+    .linkedin-content {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .linkedin-person {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .linkedin-meta {
+      font-size: 12px;
+      color: var(--gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .linkedin-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .linkedin-link {
+      background: var(--yellow);
+      color: var(--black);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .linkedin-link:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .mark-handled {
+      background: none;
+      border: 1px solid var(--light-gray);
+      color: var(--gray);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mark-handled:hover {
+      background: var(--light-gray);
+    }
+
+    .refresh-linkedin {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .refresh-linkedin:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .loading {
+      text-align: center;
+      color: var(--gray);
+      font-style: italic;
+      padding: 20px;
+    }
+
     /* ADD ITEM BUTTON */
     .add-item-btn {
       background: var(--yellow);
@@ -400,6 +523,7 @@
     <div class="nav-container">
       <ul class="nav-tabs">
         <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-activity', this)">LinkedIn Activity</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-operations', this)">Client Operations</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('product-development', this)">Product Development</a></li>
@@ -538,6 +662,24 @@
               <span class="pipeline-value">$12,000</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN ACTIVITY SECTION -->
+    <div id="linkedin-activity-section" class="content-section" style="display: none;">
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">LinkedIn Activity</h2>
+          <p class="section-subtitle">DMs, comments, mentions, and notifications requiring action</p>
+        </div>
+        <div class="section-content">
+          <div id="linkedin-notifications">
+            <div class="loading">
+              Click "Refresh LinkedIn Activity" to check for notifications...
+            </div>
+          </div>
+          <button class="refresh-linkedin" onclick="refreshLinkedInActivity()">🔄 Refresh LinkedIn Activity</button>
         </div>
       </div>
     </div>
@@ -755,6 +897,161 @@
 
     // Load whiteboard on page load
     // document.addEventListener('DOMContentLoaded', loadWhiteboard);
+
+    // ══════════════════════════════════════
+    // LINKEDIN ACTIVITY FUNCTIONS
+    // ══════════════════════════════════════
+
+    async function refreshLinkedInActivity() {
+      const container = document.getElementById('linkedin-notifications');
+      container.innerHTML = '<div class="loading">🔄 Checking Gmail for LinkedIn notifications...</div>';
+
+      try {
+        // Query Gmail for LinkedIn notification emails from the last 7 days
+        const response = await fetch('/portal/linkedin-notifications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: 'from:noreply@linkedin.com OR from:messages-noreply@linkedin.com OR from:notifications-noreply@linkedin.com newer_than:7d',
+            max_results: 20,
+            include_body: true
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          displayLinkedInNotifications(data.notifications);
+        } else {
+          container.innerHTML = '<div class="loading">⚠️ Could not fetch LinkedIn notifications. ' + (data.error || 'Unknown error') + '</div>';
+        }
+      } catch (error) {
+        console.error('Error fetching LinkedIn notifications:', error);
+        container.innerHTML = '<div class="loading">⚠️ Error connecting to Gmail. Make sure Gmail integration is working.</div>';
+      }
+    }
+
+    function displayLinkedInNotifications(notifications) {
+      const container = document.getElementById('linkedin-notifications');
+
+      if (!notifications || notifications.length === 0) {
+        container.innerHTML = '<div class="loading">✅ No new LinkedIn notifications found in the last 7 days.</div>';
+        return;
+      }
+
+      // Get handled notifications from localStorage
+      const handledIds = JSON.parse(localStorage.getItem('handled-linkedin-notifications') || '[]');
+
+      let html = '';
+      notifications.forEach(notification => {
+        const isHandled = handledIds.includes(notification.id);
+        const handledClass = isHandled ? ' handled' : '';
+
+        html += `
+          <div class="linkedin-item${handledClass}" data-notification-id="${notification.id}">
+            <div class="linkedin-type ${notification.type}">${notification.typeLabel}</div>
+            <div class="linkedin-content">
+              <span class="linkedin-person">${notification.person}</span> ${notification.action}
+            </div>
+            <div class="linkedin-meta">
+              <span>${notification.timeAgo}</span>
+            </div>
+            <div class="linkedin-actions">
+              <a href="${notification.link}" target="_blank" class="linkedin-link" onclick="markAsViewed('${notification.id}')">
+                ${notification.actionText}
+              </a>
+              ${!isHandled ? `<button class="mark-handled" onclick="markAsHandled('${notification.id}')">Mark Handled</button>` : ''}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function markAsHandled(notificationId) {
+      const handledIds = JSON.parse(localStorage.getItem('handled-linkedin-notifications') || '[]');
+      if (!handledIds.includes(notificationId)) {
+        handledIds.push(notificationId);
+        localStorage.setItem('handled-linkedin-notifications', JSON.stringify(handledIds));
+      }
+
+      const element = document.querySelector(`[data-notification-id="${notificationId}"]`);
+      if (element) {
+        element.classList.add('handled');
+        const button = element.querySelector('.mark-handled');
+        if (button) button.remove();
+      }
+    }
+
+    function markAsViewed(notificationId) {
+      // Auto-mark as handled when user clicks the LinkedIn link
+      setTimeout(() => markAsHandled(notificationId), 1000);
+    }
+
+    // Mock function for development - replace with actual Gmail integration
+    function getMockLinkedInNotifications() {
+      return [
+        {
+          id: 'msg_1',
+          type: 'comment',
+          typeLabel: 'Comment',
+          person: 'Sarah Miller',
+          action: 'commented on your post about financial service brand positioning',
+          timeAgo: '2 hours ago',
+          link: 'https://linkedin.com/feed/update/activity:123456',
+          actionText: 'View Comment'
+        },
+        {
+          id: 'msg_2',
+          type: 'dm',
+          typeLabel: 'DM',
+          person: 'Kevin Rodriguez',
+          action: 'sent you a message about potential collaboration',
+          timeAgo: '4 hours ago',
+          link: 'https://linkedin.com/messaging/thread/abc123',
+          actionText: 'Reply'
+        },
+        {
+          id: 'msg_3',
+          type: 'mention',
+          typeLabel: 'Mention',
+          person: 'Jennifer Park',
+          action: 'mentioned you in a post about community bank marketing',
+          timeAgo: '1 day ago',
+          link: 'https://linkedin.com/feed/update/activity:789012',
+          actionText: 'View Post'
+        },
+        {
+          id: 'msg_4',
+          type: 'connection',
+          typeLabel: 'Connection',
+          person: 'Marcus Thompson',
+          action: 'wants to connect (Chief Marketing Officer at Regional Credit Union)',
+          timeAgo: '2 days ago',
+          link: 'https://linkedin.com/mynetwork/invitation-manager',
+          actionText: 'Accept/Decline'
+        }
+      ];
+    }
+
+    // For development - use mock data if Gmail integration isn't available
+    async function refreshLinkedInActivityFallback() {
+      const container = document.getElementById('linkedin-notifications');
+      container.innerHTML = '<div class="loading">🔄 Loading LinkedIn activity...</div>';
+
+      setTimeout(() => {
+        const mockNotifications = getMockLinkedInNotifications();
+        displayLinkedInNotifications(mockNotifications);
+      }, 1000);
+    }
+
+    // Use mock data for now - replace refreshLinkedInActivity with actual Gmail integration once ready
+    function refreshLinkedInActivity() {
+      refreshLinkedInActivityFallback();
+    }
   </script>
 </body>
 </html>
