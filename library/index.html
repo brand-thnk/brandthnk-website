@@ -790,13 +790,13 @@ h2.section-title:first-of-type { margin-top: 0; }
     <div class="panel active" id="panel-intro">
       <p class="panel-eyebrow">Brand Diagnostic</p>
       <h1 class="panel-title">Find out what's actually working.</h1>
-      <p class="panel-lead">This is the same diagnostic we run at the start of every BrandThnk engagement. Three phases, each building on the last. Five minutes of honest answers tells you whether your brand is creating pull or just creating activity.</p>
+      <p class="panel-lead">This is the diagnostic we run at the start of every BrandThnk engagement, and it takes about 10 minutes. At the end you'll get a comprehensive read-out.</p>
 
       <div class="intro-grid">
         <div class="intro-phase" onclick="showPanel('symptoms')">
           <div class="intro-phase-step">Phase 1</div>
           <div class="intro-phase-title">Is your brand creating pull?</div>
-          <div class="intro-phase-desc">Five yes-or-no questions that separate signal from activity. You will know within two minutes whether your brand is creating pull or just spending money.</div>
+          <div class="intro-phase-desc">Four yes-or-no questions that separate signal from activity.</div>
         </div>
         <div class="intro-phase" onclick="showPanel('rootcause')">
           <div class="intro-phase-step">Phase 2</div>
@@ -819,15 +819,15 @@ h2.section-title:first-of-type { margin-top: 0; }
     <div class="panel" id="panel-symptoms">
       <p class="panel-eyebrow">Phase 1 of 3</p>
       <h1 class="panel-title">Is your brand creating pull?</h1>
-      <p class="panel-lead">Pull converts. Activity looks like progress but costs you time and money without moving the number that matters. Answer five yes-or-no questions honestly.</p>
+      <p class="panel-lead">Answer four yes-or-no questions honestly.</p>
 
-      <div class="question-counter" id="symptom-counter">Question 1 of 5</div>
+      <div class="question-counter" id="symptom-counter">Question 1 of 4</div>
       <div class="progress-bar"><div class="progress-fill" id="symptom-progress"></div></div>
 
       <div id="symptom-questions">
         <div class="question-block current" data-q="s1">
           <div class="question-text">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</div>
-          <div class="question-context">This tests distinctiveness. If your content and collateral are interchangeable with a competitor's, your brand is not doing its job.</div>
+          <div class="question-context">If your content and collateral are interchangeable with a competitor's, your brand is not doing its job.</div>
           <div class="btn-group">
             <button class="btn-option" onclick="answerSymptom('s1','yes',this)">Yes</button>
             <button class="btn-option" onclick="answerSymptom('s1','no',this)">No</button>
@@ -837,7 +837,7 @@ h2.section-title:first-of-type { margin-top: 0; }
 
         <div class="question-block" data-q="s2">
           <div class="question-text">Can your sales team explain what makes you different without a deck or a script?</div>
-          <div class="question-context">If the brand lives in a PDF but not in the hallway, your message is stuck in the slide deck. The real test is the unscripted explanation.</div>
+          <div class="question-context">The real test of a brand is the unscripted explanation.</div>
           <div class="btn-group">
             <button class="btn-option" onclick="answerSymptom('s2','yes',this)">Yes</button>
             <button class="btn-option" onclick="answerSymptom('s2','no',this)">No</button>
@@ -847,7 +847,7 @@ h2.section-title:first-of-type { margin-top: 0; }
 
         <div class="question-block" data-q="s3">
           <div class="question-text">Do prospects compare you to the right competitors?</div>
-          <div class="question-context">When your market puts you in the wrong category, they cannot evaluate your difference. Category confusion kills conversion before the conversation starts.</div>
+          <div class="question-context">When your market puts you in the wrong category, they cannot evaluate your difference.</div>
           <div class="btn-group">
             <button class="btn-option" onclick="answerSymptom('s3','yes',this)">Yes</button>
             <button class="btn-option" onclick="answerSymptom('s3','no',this)">No</button>
@@ -856,22 +856,12 @@ h2.section-title:first-of-type { margin-top: 0; }
         </div>
 
         <div class="question-block" data-q="s4">
-          <div class="question-text">Does your marketing generate inbound conversations, not just impressions?</div>
-          <div class="question-context">Impressions measure reach. Conversations measure pull. If you are getting views but not inbound interest, the brand is not working.</div>
+          <div class="question-text">If five employees independently described what your company does, would you get the same answer?</div>
+          <div class="question-context">Internal alignment impacts external execution more than spend.</div>
           <div class="btn-group">
             <button class="btn-option" onclick="answerSymptom('s4','yes',this)">Yes</button>
             <button class="btn-option" onclick="answerSymptom('s4','no',this)">No</button>
             <button class="btn-option" onclick="answerSymptom('s4','unsure',this)">Not sure</button>
-          </div>
-        </div>
-
-        <div class="question-block" data-q="s5">
-          <div class="question-text">If five employees independently described what your company does, would you get the same answer?</div>
-          <div class="question-context">Internal alignment is the first signal. If your leadership team cannot agree on what the company does, your salespeople will tell different stories.</div>
-          <div class="btn-group">
-            <button class="btn-option" onclick="answerSymptom('s5','yes',this)">Yes</button>
-            <button class="btn-option" onclick="answerSymptom('s5','no',this)">No</button>
-            <button class="btn-option" onclick="answerSymptom('s5','unsure',this)">Not sure</button>
           </div>
         </div>
       </div>
@@ -888,10 +878,9 @@ h2.section-title:first-of-type { margin-top: 0; }
     <div class="panel" id="panel-rootcause">
       <p class="panel-eyebrow">Phase 2 of 3</p>
       <h1 class="panel-title">Where is it weak?</h1>
-      <p class="panel-lead">Phase 1 told you whether your brand is working. This phase tells you why. Score four dimensions honestly. The total determines whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</p>
+      <p class="panel-lead">Score your brand on where it is today. The total determines whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</p>
 
-      <h2 class="section-title">Brand Health Score</h2>
-      <p style="margin-bottom:20px;font-size:14px;color:var(--gray);">Rate each area 1 to 5. Score where you are, not where you want to be.</p>
+      <p style="margin-bottom:20px;font-size:14px;color:var(--gray);">Rate each area 1 to 5 with 1 being "not at all" and 5 being "absolutely"</p>
 
       <table class="score-table">
         <thead>
@@ -941,7 +930,7 @@ h2.section-title:first-of-type { margin-top: 0; }
     <div class="panel" id="panel-position">
       <p class="panel-eyebrow">Phase 3 of 3</p>
       <h1 class="panel-title">Write your position.</h1>
-      <p class="panel-lead">This is the Box-Edge framework. It forces clarity on two things every brand needs: what category you own and what makes you better in that category. If you cannot fill both formulas, that is your diagnosis.</p>
+      <p class="panel-lead">This is the Box-Edge framework. It forces clarity on two things every brand needs: what category you own and what makes you better in that category.</p>
 
       <div class="formula-card box-card">
         <div class="formula-label">The Box</div>
@@ -1022,16 +1011,16 @@ h2.section-title:first-of-type { margin-top: 0; }
         <p class="result-detail" id="dx-focus-text"></p>
       </div>
 
-      <!-- CTA -->
-      <div class="cta-section">
-        <h2>Now you know. What are you going to do about it?</h2>
-        <p>You know what is working and what is not. A 30-minute call is enough to confirm this diagnosis and decide what to fix first.</p>
-        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" target="_blank">Book a Call</a>
-      </div>
-
       <div class="panel-nav" style="margin-top:40px;">
         <button class="btn-nav btn-prev" onclick="showPanel('position')">Back</button>
         <button class="btn-nav btn-next" onclick="downloadReport()" style="background:var(--yellow);color:var(--black);">Download Full Report</button>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section" style="background:var(--black);margin-top:48px;">
+        <h2 style="color:var(--white);">Now you know.<br>What are you going to do about it?</h2>
+        <p style="color:rgba(255,255,255,0.8);">A 30-minute call is enough to confirm this diagnosis and decide what to fix first.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" target="_blank" style="background:var(--yellow);color:var(--black);">Book a Call</a>
       </div>
     </div>
 
@@ -1110,8 +1099,8 @@ function answerSymptom(qId, answer, btn) {
   const answeredCount = Object.keys(state.symptoms).length;
 
   // Update progress
-  document.getElementById('symptom-progress').style.width = (answeredCount / 5 * 100) + '%';
-  document.getElementById('symptom-counter').textContent = 'Question ' + Math.min(answeredCount + 1, 5) + ' of 5';
+  document.getElementById('symptom-progress').style.width = (answeredCount / 4 * 100) + '%';
+  document.getElementById('symptom-counter').textContent = 'Question ' + Math.min(answeredCount + 1, 4) + ' of 4';
 
   // Activate next question
   if (answeredCount < allBlocks.length) {
@@ -1119,7 +1108,7 @@ function answerSymptom(qId, answer, btn) {
   }
 
   // Show results when all answered
-  if (answeredCount === 5) {
+  if (answeredCount === 4) {
     showSymptomResult();
     markPhaseComplete('symptoms');
   }
@@ -1131,7 +1120,7 @@ function showSymptomResult() {
   state.symptomScore = yesCount;
 
   let verdict = '';
-  if (yesCount >= 4) {
+  if (yesCount >= 3) {
     verdict = 'Your brand is producing signal. The fundamentals are working. Phase 2 will tell you whether to optimize or leave it alone.';
   } else if (yesCount >= 2) {
     verdict = 'Mixed signal. Your brand is working in some areas but not others. Phase 2 will identify where the foundation is weak.';
@@ -1142,8 +1131,8 @@ function showSymptomResult() {
 
   const container = document.getElementById('symptom-result');
   container.style.display = 'flex';
-  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(yesCount, 5) + '<div class="score-text">' + yesCount + '/5</div></div>' +
-    '<div class="score-content"><div class="score-number">' + yesCount + '/5</div><div class="score-label">Signal Strength</div><div class="score-verdict">' + verdict + '</div></div>';
+  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(yesCount, 4) + '<div class="score-text">' + yesCount + '/4</div></div>' +
+    '<div class="score-content"><div class="score-number">' + yesCount + '/4</div><div class="score-label">Signal Strength</div><div class="score-verdict">' + verdict + '</div></div>';
 }
 
 // ══════════════════════════════════════
@@ -1261,16 +1250,15 @@ function renderDiagnosis() {
   const symVerdict = document.getElementById('dx-symptom-verdict');
   const symAnswers = document.getElementById('dx-symptom-answers');
 
-  if (Object.keys(state.symptoms).length === 5) {
-    symBadge.textContent = state.symptomScore + '/5 Signal';
+  if (Object.keys(state.symptoms).length === 4) {
+    symBadge.textContent = state.symptomScore + '/4 Signal';
     symVerdict.textContent = state.symptomVerdict;
 
     const qLabels = {
       s1: 'Distinctiveness (logo test)',
       s2: 'Message portability (sales team test)',
       s3: 'Category placement (competitor test)',
-      s4: 'Pull vs. activity (inbound test)',
-      s5: 'Internal alignment (five-employee test)'
+      s4: 'Internal alignment (five-employee test)'
     };
 
     let answersHtml = '';
@@ -1350,7 +1338,7 @@ function renderFocusSection() {
   let focusItems = [];
 
   // Derive focus areas from scores
-  if (state.symptomScore <= 2) {
+  if (state.symptomScore <= 1) {
     focusItems.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
   }
 
@@ -1375,7 +1363,7 @@ function renderFocusSection() {
   }
 
   if (focusItems.length === 0) {
-    if (state.symptomScore >= 4 && state.rootCauseTotal >= 16) {
+    if (state.symptomScore >= 3 && state.rootCauseTotal >= 16) {
       focusItems.push('Your brand foundation is strong. The work now is consistency and execution, not strategy. Protect what is working before optimizing what is not.');
     } else {
       focusItems.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
@@ -1402,9 +1390,9 @@ function downloadReport() {
   lines.push('WHAT WE FOUND');
   lines.push('----------------------------------------');
 
-  if (Object.keys(state.symptoms).length === 5) {
+  if (Object.keys(state.symptoms).length === 4) {
     lines.push('');
-    lines.push('Signal Strength: ' + state.symptomScore + '/5');
+    lines.push('Signal Strength: ' + state.symptomScore + '/4');
     lines.push('');
     lines.push(state.symptomVerdict);
     lines.push('');
@@ -1413,8 +1401,7 @@ function downloadReport() {
       s1: 'Logo removed, still recognizable?',
       s2: 'Sales team explains without a deck?',
       s3: 'Prospects compare to right competitors?',
-      s4: 'Marketing drives conversations, not just impressions?',
-      s5: 'Five employees give the same answer?'
+      s4: 'Five employees give the same answer?'
     };
 
     Object.keys(state.symptoms).forEach(k => {
@@ -1530,7 +1517,7 @@ function downloadReport() {
 function buildFocusItems() {
   let items = [];
 
-  if (state.symptomScore <= 2 && Object.keys(state.symptoms).length === 5) {
+  if (state.symptomScore <= 1 && Object.keys(state.symptoms).length === 4) {
     items.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
   }
 
@@ -1555,7 +1542,7 @@ function buildFocusItems() {
   }
 
   if (items.length === 0) {
-    if (state.symptomScore >= 4 && state.rootCauseTotal >= 16) {
+    if (state.symptomScore >= 3 && state.rootCauseTotal >= 16) {
       items.push('Your brand foundation is strong. The work now is consistency and execution, not strategy.');
     } else {
       items.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
