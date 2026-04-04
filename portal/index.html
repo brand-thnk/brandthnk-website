@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2024-04-04-17:22 -->
+<!-- Cache bust: 2024-04-04-17:45 - Cleaned up, removed LinkedIn Activity and calendar functions -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -149,23 +149,6 @@
       align-items: center;
     }
 
-    .refresh-calendar-btn {
-      background: var(--yellow);
-      color: var(--black);
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 600;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .refresh-calendar-btn:hover {
-      background: var(--white);
-      color: var(--black);
-    }
 
     .section-title {
       font-family: 'Roboto Slab', serif;
@@ -354,128 +337,6 @@
       color: var(--black);
     }
 
-    /* LINKEDIN NOTIFICATIONS */
-    .linkedin-item {
-      background: var(--white);
-      border: 1px solid var(--light-gray);
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 6px;
-      position: relative;
-      border-left: 4px solid #0077B5;
-    }
-
-    .linkedin-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .linkedin-item.handled {
-      opacity: 0.6;
-      border-left-color: var(--gray);
-    }
-
-    .linkedin-type {
-      display: inline-block;
-      background: #0077B5;
-      color: var(--white);
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-    }
-
-    .linkedin-type.comment { background: #0077B5; }
-    .linkedin-type.dm { background: #7B68EE; }
-    .linkedin-type.mention { background: #FF6B35; }
-    .linkedin-type.connection { background: #28A745; }
-    .linkedin-type.reaction { background: #FFC107; color: var(--black); }
-
-    .linkedin-content {
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .linkedin-person {
-      font-weight: 600;
-      color: var(--black);
-    }
-
-    .linkedin-meta {
-      font-size: 12px;
-      color: var(--gray);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .linkedin-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .linkedin-link {
-      background: var(--yellow);
-      color: var(--black);
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-
-    .linkedin-link:hover {
-      background: var(--black);
-      color: var(--white);
-    }
-
-    .mark-handled {
-      background: none;
-      border: 1px solid var(--light-gray);
-      color: var(--gray);
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .mark-handled:hover {
-      background: var(--light-gray);
-    }
-
-    .refresh-linkedin {
-      background: var(--black);
-      color: var(--white);
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      font-family: 'Roboto Mono', monospace;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .refresh-linkedin:hover {
-      background: var(--yellow);
-      color: var(--black);
-    }
-
-    .loading {
-      text-align: center;
-      color: var(--gray);
-      font-style: italic;
-      padding: 20px;
-    }
 
     /* ADD ITEM BUTTON */
     .add-item-btn {
@@ -699,9 +560,6 @@
         gap: 12px;
       }
 
-      .refresh-calendar-btn {
-        align-self: flex-end;
-      }
     }
   </style>
 </head>
@@ -726,7 +584,6 @@
       <ul class="nav-tabs">
         <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard', this)">Dashboard</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('meeting-prep', this)">Meeting Prep</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('linkedin-activity', this)">LinkedIn Activity</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-operations', this)">Client Operations</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('product-development', this)">Product Development</a></li>
@@ -905,23 +762,6 @@
       </div>
     </div>
 
-    <!-- LINKEDIN ACTIVITY SECTION -->
-    <div id="linkedin-activity-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
-        <div class="section-header">
-          <h2 class="section-title">LinkedIn Activity</h2>
-          <p class="section-subtitle">DMs, comments, mentions, and notifications requiring action</p>
-        </div>
-        <div class="section-content">
-          <div id="linkedin-notifications">
-            <div class="loading">
-              Click "Refresh LinkedIn Activity" to check for notifications...
-            </div>
-          </div>
-          <button class="refresh-linkedin" onclick="refreshLinkedInActivity()">🔄 Refresh LinkedIn Activity</button>
-        </div>
-      </div>
-    </div>
 
     <!-- PLACEHOLDER SECTIONS (Hidden by default) -->
     <div id="client-operations-section" class="content-section" style="display: none;">
@@ -1047,9 +887,7 @@
       }
 
       // Load section-specific data
-      if (sectionName === 'linkedin-activity') {
-        refreshLinkedInActivity();
-      }
+      // (No special loading needed for current sections)
 
       // Update last updated time
       const now = new Date();
@@ -1142,306 +980,7 @@
     // Load whiteboard on page load
     // document.addEventListener('DOMContentLoaded', loadWhiteboard);
 
-    // ══════════════════════════════════════
-    // LINKEDIN ACTIVITY FUNCTIONS
-    // ══════════════════════════════════════
 
-    async function refreshLinkedInActivity() {
-      const container = document.getElementById('linkedin-notifications');
-      container.innerHTML = '<div class="loading">🔄 Checking Gmail for LinkedIn notifications...</div>';
-
-      try {
-        // Call our Netlify function to get LinkedIn notifications from your Gmail
-        const response = await fetch('/.netlify/functions/linkedin-notifications', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          displayLinkedInNotifications(data.notifications);
-        } else {
-          container.innerHTML = '<div class="loading">⚠️ Could not fetch LinkedIn notifications. ' + (data.error || 'Unknown error') + '</div>';
-        }
-      } catch (error) {
-        console.error('Error fetching LinkedIn notifications:', error);
-        container.innerHTML = '<div class="loading">⚠️ Error connecting to Gmail. Make sure LinkedIn email notifications are enabled.</div>';
-      }
-    }
-
-    function displayLinkedInNotifications(notifications) {
-      const container = document.getElementById('linkedin-notifications');
-
-      if (!notifications || notifications.length === 0) {
-        container.innerHTML = '<div class="loading">✅ No new LinkedIn notifications found in the last 7 days.</div>';
-        return;
-      }
-
-      // Get handled notifications from localStorage
-      const handledIds = JSON.parse(localStorage.getItem('handled-linkedin-notifications') || '[]');
-
-      let html = '';
-      notifications.forEach(notification => {
-        const isHandled = handledIds.includes(notification.id);
-        const handledClass = isHandled ? ' handled' : '';
-
-        html += `
-          <div class="linkedin-item${handledClass}" data-notification-id="${notification.id}">
-            <div class="linkedin-type ${notification.type}">${notification.typeLabel}</div>
-            <div class="linkedin-content">
-              <span class="linkedin-person">${notification.person}</span> ${notification.action}
-            </div>
-            <div class="linkedin-meta">
-              <span>${notification.timeAgo}</span>
-            </div>
-            <div class="linkedin-actions">
-              <a href="${notification.link}" target="_blank" class="linkedin-link" onclick="markAsViewed('${notification.id}')">
-                ${notification.actionText}
-              </a>
-              ${!isHandled ? `<button class="mark-handled" onclick="markAsHandled('${notification.id}')">Mark Handled</button>` : ''}
-            </div>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function markAsHandled(notificationId) {
-      const handledIds = JSON.parse(localStorage.getItem('handled-linkedin-notifications') || '[]');
-      if (!handledIds.includes(notificationId)) {
-        handledIds.push(notificationId);
-        localStorage.setItem('handled-linkedin-notifications', JSON.stringify(handledIds));
-      }
-
-      const element = document.querySelector(`[data-notification-id="${notificationId}"]`);
-      if (element) {
-        element.classList.add('handled');
-        const button = element.querySelector('.mark-handled');
-        if (button) button.remove();
-      }
-    }
-
-    function markAsViewed(notificationId) {
-      // Auto-mark as handled when user clicks the LinkedIn link
-      setTimeout(() => markAsHandled(notificationId), 1000);
-    }
-
-    // Mock function for development - replace with actual Gmail integration
-    function getMockLinkedInNotifications() {
-      return [
-        {
-          id: 'msg_1',
-          type: 'comment',
-          typeLabel: 'Comment',
-          person: 'Sarah Miller',
-          action: 'commented on your post about financial service brand positioning',
-          timeAgo: '2 hours ago',
-          link: 'https://linkedin.com/feed/update/activity:123456',
-          actionText: 'View Comment'
-        },
-        {
-          id: 'msg_2',
-          type: 'dm',
-          typeLabel: 'DM',
-          person: 'Kevin Rodriguez',
-          action: 'sent you a message about potential collaboration',
-          timeAgo: '4 hours ago',
-          link: 'https://linkedin.com/messaging/thread/abc123',
-          actionText: 'Reply'
-        },
-        {
-          id: 'msg_3',
-          type: 'mention',
-          typeLabel: 'Mention',
-          person: 'Jennifer Park',
-          action: 'mentioned you in a post about community bank marketing',
-          timeAgo: '1 day ago',
-          link: 'https://linkedin.com/feed/update/activity:789012',
-          actionText: 'View Post'
-        },
-        {
-          id: 'msg_4',
-          type: 'connection',
-          typeLabel: 'Connection',
-          person: 'Marcus Thompson',
-          action: 'wants to connect (Chief Marketing Officer at Regional Credit Union)',
-          timeAgo: '2 days ago',
-          link: 'https://linkedin.com/mynetwork/invitation-manager',
-          actionText: 'Accept/Decline'
-        }
-      ];
-    }
-
-    // Clean up handled notifications older than 30 days
-    function cleanupHandledNotifications() {
-      const handledIds = JSON.parse(localStorage.getItem('handled-linkedin-notifications') || '[]');
-      const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
-
-      // For now, just keep all handled IDs (we'd need timestamps to clean up properly)
-      // TODO: Add timestamps to handled notifications for automatic cleanup
-    }
-
-    // ══════════════════════════════════════
-    // CALENDAR FUNCTIONS
-    // ══════════════════════════════════════
-
-    let todaysEvents = [];
-    let selectedEvent = null;
-
-    async function loadCalendarEvents() {
-      console.log('loadCalendarEvents called - Google Calendar API version');
-      const container = document.getElementById('calendar-events');
-      const dateElement = document.getElementById('calendar-date');
-
-      // Show loading state
-      container.innerHTML = `
-        <div class="loading-state">
-          <div class="loading-spinner"></div>
-          <p>Loading BrandThnk calendar events...</p>
-        </div>
-      `;
-
-      try {
-        const today = new Date();
-        dateElement.textContent = today.toLocaleDateString('en-US', {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        });
-
-        // Get today's date range
-        const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const todayEnd = new Date(todayStart.getTime() + 24*60*60*1000);
-
-        // Call Google Calendar API
-        const response = await fetch('/.netlify/functions/get-calendar-events', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            timeMin: todayStart.toISOString(),
-            timeMax: todayEnd.toISOString(),
-            calendarIds: ['primary'] // BrandThnk calendar
-          })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          todaysEvents = data.events || [];
-          displayCalendarEvents(todaysEvents);
-        } else {
-          throw new Error(data.message || 'Failed to load calendar events');
-        }
-
-      } catch (error) {
-        console.error('Error loading calendar events:', error);
-        container.innerHTML = `
-          <div class="loading-state">
-            <p>⚠️ Could not load BrandThnk calendar events.</p>
-            <p>Error: ${error.message}</p>
-            <p class="schedule-hint">You may need to re-authorize with calendar permissions.</p>
-          </div>
-        `;
-      }
-    }
-
-    // Manual input functions removed - using Google Calendar API instead
-
-    function displayCalendarEvents(events) {
-      const container = document.getElementById('calendar-events');
-
-      if (!events || events.length === 0) {
-        container.innerHTML = `
-          <div class="loading-state">
-            <p>📅 No meetings scheduled for today.</p>
-          </div>
-        `;
-        return;
-      }
-
-      let html = '';
-      events.forEach((event, index) => {
-        const startTime = new Date(event.start.dateTime || event.start.date);
-        const endTime = new Date(event.end.dateTime || event.end.date);
-        const timeStr = event.start.dateTime ?
-          `${startTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit'})} - ${endTime.toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit'})}` :
-          'All day';
-
-        const attendees = event.attendees ?
-          event.attendees.filter(a => !a.self).map(a => a.displayName || a.email).join(', ') :
-          'No attendees';
-
-        html += `
-          <div class="calendar-event" data-event-index="${index}" onclick="selectEvent(${index})">
-            <div class="event-time">${timeStr}</div>
-            <div class="event-title">${event.summary || 'Untitled Event'}</div>
-            <div class="event-attendees">👥 ${attendees}</div>
-            ${event.location ? `<div class="event-location">📍 ${event.location}</div>` : ''}
-            <button class="prep-button" onclick="prepForMeeting(${index}); event.stopPropagation();">
-              🔍 Prep
-            </button>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function selectEvent(index) {
-      // Remove previous selection
-      document.querySelectorAll('.calendar-event').forEach(el => {
-        el.classList.remove('selected');
-      });
-
-      // Select current event
-      const eventElement = document.querySelector(`[data-event-index="${index}"]`);
-      if (eventElement) {
-        eventElement.classList.add('selected');
-        selectedEvent = todaysEvents[index];
-      }
-    }
-
-    async function prepForMeeting(eventIndex) {
-      const event = todaysEvents[eventIndex];
-      if (!event) return;
-
-      const prepContainer = document.getElementById('meeting-prep');
-      prepContainer.innerHTML = `
-        <div class="loading-state">
-          <div class="loading-spinner"></div>
-          <p>Gathering context for "${event.summary}"...</p>
-        </div>
-      `;
-
-      // Select the event
-      selectEvent(eventIndex);
-
-      try {
-        // Extract attendee emails for context gathering
-        const attendeeEmails = event.attendees ?
-          event.attendees.filter(a => !a.self).map(a => a.email) : [];
-
-        // Gather context from multiple sources
-        const contextData = await gatherMeetingContext(attendeeEmails, event.summary);
-
-        displayMeetingPrep(event, contextData);
-
-      } catch (error) {
-        console.error('Error gathering meeting context:', error);
-        prepContainer.innerHTML = `
-          <div class="prep-prompt">
-            <p>⚠️ Error gathering context. Try again or prepare manually.</p>
-          </div>
-        `;
-      }
-    }
 
     async function gatherMeetingContext(attendeeEmails, meetingTitle) {
       const context = {
@@ -1508,77 +1047,6 @@
       ];
     }
 
-    function displayMeetingPrep(event, context) {
-      const prepContainer = document.getElementById('meeting-prep');
-
-      let html = `
-        <div class="prep-results">
-          <h3>Prep for: ${event.summary}</h3>
-      `;
-
-      // Recent Emails
-      if (context.emails.length > 0) {
-        html += `
-          <div class="prep-section">
-            <h4>📧 Recent Emails (${context.emails.length})</h4>
-        `;
-        context.emails.slice(0, 3).forEach(email => {
-          html += `
-            <div class="prep-item">
-              <strong>${email.subject}</strong><br>
-              ${email.snippet}
-              <div class="prep-item-meta">From: ${email.from} • ${email.date}</div>
-            </div>
-          `;
-        });
-        html += '</div>';
-      } else {
-        html += `
-          <div class="prep-section">
-            <h4>📧 Recent Emails</h4>
-            <p>No recent emails found with attendees.</p>
-          </div>
-        `;
-      }
-
-      // Granola Recordings
-      if (context.granolaRecordings.length > 0) {
-        html += `
-          <div class="prep-section">
-            <h4>🎙️ Previous Meetings</h4>
-        `;
-        context.granolaRecordings.forEach(recording => {
-          html += `
-            <div class="prep-item">
-              <strong>${recording.title}</strong><br>
-              ${recording.keyPoints}
-              <div class="prep-item-meta">${recording.date} • ${recording.duration}</div>
-            </div>
-          `;
-        });
-        html += '</div>';
-      }
-
-      // LinkedIn Profiles
-      if (context.linkedInProfiles.length > 0) {
-        html += `
-          <div class="prep-section">
-            <h4>🔗 LinkedIn Research</h4>
-        `;
-        context.linkedInProfiles.forEach(profile => {
-          html += `
-            <div class="prep-item">
-              <strong>${profile.name}</strong> (${profile.email})<br>
-              <a href="${profile.searchUrl}" target="_blank">Search on LinkedIn →</a>
-            </div>
-          `;
-        });
-        html += '</div>';
-      }
-
-      html += '</div>';
-      prepContainer.innerHTML = html;
-    }
 
     // ══════════════════════════════════════
     // SIMPLE MEETING PREP FUNCTIONS
