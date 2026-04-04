@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
 <style>
 :root {
   --black: #000000;
@@ -1377,141 +1378,301 @@ function renderFocusSection() {
 // DOWNLOAD REPORT
 // ══════════════════════════════════════
 function downloadReport() {
-  const lines = [];
-  const divider = '========================================';
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pw = 210, ph = 297;
+  const ml = 24, mr = 24, contentW = pw - ml - mr;
+  const black = [0, 0, 0], white = [255, 255, 255], yellow = [255, 235, 59], gray = [102, 102, 102];
   const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  let y = 0;
 
-  lines.push('BRANDTHNK BRAND DIAGNOSTIC');
-  lines.push('Generated ' + today);
-  lines.push(divider);
-  lines.push('');
+  function checkPage(needed) {
+    if (y + needed > ph - 24) { doc.addPage(); y = 24; }
+  }
 
-  // WHAT WE FOUND
-  lines.push('WHAT WE FOUND');
-  lines.push('----------------------------------------');
+  function sectionTitle(text) {
+    checkPage(20);
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+    doc.text(text.toUpperCase(), ml, y);
+    y += 2;
+    doc.setDrawColor(...yellow);
+    doc.setLineWidth(1.2);
+    doc.line(ml, y, ml + 36, y);
+    y += 8;
+  }
+
+  function bodyText(text, opts = {}) {
+    const fontSize = opts.bold ? 10 : 9.5;
+    doc.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+    doc.setFontSize(fontSize);
+    doc.setTextColor(...(opts.color || black));
+    const lines = doc.splitTextToSize(text, opts.width || contentW);
+    checkPage(lines.length * 4.5 + 2);
+    doc.text(lines, opts.x || ml, y);
+    y += lines.length * 4.5;
+    return lines.length;
+  }
+
+  function drawScoreBar(x, barY, value, maxVal, barW) {
+    doc.setFillColor(230, 230, 230);
+    doc.roundedRect(x, barY, barW, 3, 1.5, 1.5, 'F');
+    const fillW = (value / maxVal) * barW;
+    if (value >= 4) doc.setFillColor(46, 125, 50);
+    else if (value >= 3) doc.setFillColor(...yellow);
+    else doc.setFillColor(198, 40, 40);
+    doc.roundedRect(x, barY, Math.max(fillW, 3), 3, 1.5, 1.5, 'F');
+  }
+
+  // ── COVER HEADER ──
+  doc.setFillColor(...black);
+  doc.rect(0, 0, pw, 72, 'F');
+
+  // Yellow accent bar
+  doc.setFillColor(...yellow);
+  doc.rect(0, 72, pw, 3, 'F');
+
+  // Wordmark
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(28);
+  doc.setTextColor(...white);
+  doc.text('BrandThnk', ml, 30);
+
+  // Title
+  doc.setFontSize(14);
+  doc.setTextColor(...yellow);
+  doc.text('Brand Diagnostic Report', ml, 42);
+
+  // Date
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Generated ' + today, ml, 54);
+
+  // URL
+  doc.text('brandthnk.co/library', ml, 62);
+
+  y = 90;
+
+  // ── PHASE 1: SIGNAL STRENGTH ──
+  sectionTitle('Phase 1: Signal Strength');
 
   if (Object.keys(state.symptoms).length === 4) {
-    lines.push('');
-    lines.push('Signal Strength: ' + state.symptomScore + '/4');
-    lines.push('');
-    lines.push(state.symptomVerdict);
-    lines.push('');
+    // Score callout box
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(ml, y - 2, contentW, 18, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(32);
+    doc.setTextColor(...black);
+    doc.text(state.symptomScore + '/4', ml + 8, y + 11);
 
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+    doc.text('SIGNAL STRENGTH', ml + 38, y + 5);
+
+    // Verdict inline
+    doc.setFontSize(8.5);
+    const vLines = doc.splitTextToSize(state.symptomVerdict, contentW - 46);
+    doc.text(vLines.slice(0, 2), ml + 38, y + 11);
+    y += 24;
+
+    // Question results
     const qTexts = {
-      s1: 'Logo removed, still recognizable?',
-      s2: 'Sales team explains without a deck?',
-      s3: 'Prospects compare to right competitors?',
-      s4: 'Five employees give the same answer?'
+      s1: 'Distinctiveness (logo test)',
+      s2: 'Message portability (sales team test)',
+      s3: 'Category placement (competitor test)',
+      s4: 'Internal alignment (five-employee test)'
     };
 
     Object.keys(state.symptoms).forEach(k => {
-      lines.push('  [' + state.symptoms[k].toUpperCase() + '] ' + qTexts[k]);
+      checkPage(7);
+      const answer = state.symptoms[k];
+      const icon = answer === 'yes' ? 'YES' : answer === 'no' ? 'NO' : '???';
+      const iconColor = answer === 'yes' ? [46, 125, 50] : answer === 'no' ? [198, 40, 40] : gray;
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...iconColor);
+      doc.text(icon, ml + 2, y);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(...black);
+      doc.text(qTexts[k], ml + 18, y);
+      y += 6;
     });
+
+    y += 4;
   } else {
-    lines.push('Phase 1 not completed.');
+    bodyText('Phase 1 not completed.', { color: gray });
+    y += 4;
   }
 
-  lines.push('');
-  lines.push(divider);
-  lines.push('');
-
-  // YOUR SCORES
-  lines.push('YOUR SCORES');
-  lines.push('----------------------------------------');
+  // ── PHASE 2: ROOT CAUSE ──
+  sectionTitle('Phase 2: Root Cause');
 
   if (state.rootCauseTotal > 0 && state.rootCauseLabel) {
-    lines.push('');
-    lines.push('Total: ' + state.rootCauseTotal + '/20 | Recommendation: ' + state.rootCauseLabel);
-    lines.push('');
-    lines.push('  Market Position:  ' + (state.rootCause.position || '-') + '/5');
-    lines.push('  Brand Promise:    ' + (state.rootCause.promise || '-') + '/5');
-    lines.push('  Message Clarity:  ' + (state.rootCause.clarity || '-') + '/5');
-    lines.push('  Visual Identity:  ' + (state.rootCause.visual || '-') + '/5');
-    lines.push('');
-    lines.push(state.rootCauseVerdict);
+    // Score + label
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(ml, y - 2, contentW, 14, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.setTextColor(...black);
+    doc.text(state.rootCauseTotal + '/20', ml + 8, y + 8);
+
+    doc.setFillColor(...yellow);
+    doc.roundedRect(ml + 42, y, 48, 7, 1, 1, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...black);
+    doc.text(state.rootCauseLabel.toUpperCase(), ml + 44, y + 5);
+    y += 20;
+
+    // Dimension bars
+    const dims = [
+      { key: 'position', label: 'Market Position' },
+      { key: 'promise', label: 'Brand Promise' },
+      { key: 'clarity', label: 'Message Clarity' },
+      { key: 'visual', label: 'Visual Identity' }
+    ];
+
+    dims.forEach(d => {
+      checkPage(10);
+      const val = state.rootCause[d.key] || 0;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(...black);
+      doc.text(d.label, ml, y);
+
+      doc.setFont('helvetica', 'bold');
+      doc.text(val + '/5', ml + 52, y);
+
+      drawScoreBar(ml + 62, y - 2.5, val, 5, contentW - 62);
+      y += 8;
+    });
+
+    y += 4;
+    bodyText(state.rootCauseVerdict, { color: gray });
+    y += 4;
   } else {
-    lines.push('Phase 2 not completed.');
+    bodyText('Phase 2 not completed.', { color: gray });
+    y += 4;
   }
 
-  lines.push('');
-  lines.push(divider);
-  lines.push('');
-
-  // YOUR POSITIONING
-  lines.push('YOUR POSITIONING');
-  lines.push('----------------------------------------');
+  // ── PHASE 3: POSITION ──
+  sectionTitle('Phase 3: Your Position');
 
   if (state.boxText || state.edgeText) {
     if (state.boxText) {
-      lines.push('');
-      lines.push('Box (Category):');
-      lines.push('  ' + state.boxText);
+      checkPage(24);
+      // Box card
+      doc.setFillColor(...yellow);
+      const boxLines = doc.splitTextToSize(state.boxText, contentW - 16);
+      const boxH = Math.max(boxLines.length * 4.5 + 14, 18);
+      doc.roundedRect(ml, y, contentW, boxH, 2, 2, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...black);
+      doc.text('THE BOX (CATEGORY)', ml + 6, y + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.text(boxLines, ml + 6, y + 13);
+      y += boxH + 6;
     }
+
     if (state.edgeText) {
-      lines.push('');
-      lines.push('Edge (Difference):');
-      lines.push('  ' + state.edgeText);
+      checkPage(24);
+      // Edge card
+      doc.setDrawColor(...black);
+      doc.setLineWidth(0.5);
+      const edgeLines = doc.splitTextToSize(state.edgeText, contentW - 16);
+      const edgeH = Math.max(edgeLines.length * 4.5 + 14, 18);
+      doc.roundedRect(ml, y, contentW, edgeH, 2, 2, 'S');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...black);
+      doc.text('THE EDGE (DIFFERENCE)', ml + 6, y + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.text(edgeLines, ml + 6, y + 13);
+      y += edgeH + 6;
     }
+
     if (state.positionVerdict) {
-      lines.push('');
-      lines.push(state.positionVerdict);
+      y += 2;
+      bodyText(state.positionVerdict, { color: gray });
     }
+    y += 4;
   } else {
-    lines.push('Phase 3 not completed.');
+    bodyText('Phase 3 not completed.', { color: gray });
+    y += 4;
   }
 
-  lines.push('');
-  lines.push(divider);
-  lines.push('');
-
-  // WHERE TO FOCUS FIRST
-  lines.push('WHERE TO FOCUS FIRST');
-  lines.push('----------------------------------------');
-  lines.push('');
+  // ── WHERE TO FOCUS FIRST ──
+  sectionTitle('Where to Focus First');
 
   let focusItems = buildFocusItems();
   focusItems.forEach(item => {
-    lines.push('> ' + item);
-    lines.push('');
+    checkPage(16);
+    doc.setFillColor(245, 245, 245);
+    const focusLines = doc.splitTextToSize(item, contentW - 14);
+    const focusH = focusLines.length * 4.5 + 6;
+    doc.roundedRect(ml, y - 2, contentW, focusH, 2, 2, 'F');
+
+    // Yellow left accent
+    doc.setFillColor(...yellow);
+    doc.rect(ml, y - 2, 2.5, focusH, 'F');
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...black);
+    doc.text(focusLines, ml + 8, y + 3);
+    y += focusH + 4;
   });
 
-  lines.push(divider);
-  lines.push('');
+  // ── WHAT HAPPENS IF YOU WAIT ──
+  sectionTitle('What Happens If You Wait');
+  bodyText('Market windows close. The longer your brand generates activity instead of pull, the harder it is to claim the position you should own. Competitors with weaker products win because they are clearer. Clarity is a compounding advantage. Delay is a compounding cost.', { color: gray });
 
-  // WHAT HAPPENS IF YOU WAIT
-  lines.push('WHAT HAPPENS IF YOU WAIT');
-  lines.push('----------------------------------------');
-  lines.push('');
-  lines.push('Market windows close. The longer your brand generates activity');
-  lines.push('instead of pull, the harder it is to claim the position you should own.');
-  lines.push('Competitors with weaker products win because they are clearer.');
-  lines.push('Clarity is a compounding advantage. Delay is a compounding cost.');
+  // ── CTA FOOTER ──
+  checkPage(40);
+  y += 8;
+  doc.setFillColor(...black);
+  doc.roundedRect(ml, y, contentW, 34, 2, 2, 'F');
 
-  lines.push('');
-  lines.push(divider);
-  lines.push('');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(...white);
+  doc.text('Now you know.', ml + 10, y + 12);
 
-  // NEXT STEP
-  lines.push('NEXT STEP');
-  lines.push('----------------------------------------');
-  lines.push('');
-  lines.push('A 30-minute call is enough to confirm this diagnosis');
-  lines.push('and map the first move.');
-  lines.push('');
-  lines.push('Book a call: https://calendar.app.google/ZoWdHFueshr6LQs17');
-  lines.push('');
-  lines.push(divider);
-  lines.push('');
-  lines.push('brandthnk.co');
+  doc.setFontSize(10);
+  doc.setTextColor(...yellow);
+  doc.text('What are you going to do about it?', ml + 10, y + 20);
 
-  // Generate file
-  const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'BrandThnk-Diagnostic-Report.txt';
-  a.click();
-  URL.revokeObjectURL(url);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Book a 30-minute call: calendar.app.google/ZoWdHFueshr6LQs17', ml + 10, y + 28);
+
+  // Page footer
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(...gray);
+    doc.text('brandthnk.co', ml, ph - 10);
+    doc.text('Brand Diagnostic Report', pw - mr - 42, ph - 10);
+  }
+
+  doc.save('BrandThnk-Diagnostic-Report.pdf');
 }
 
 function buildFocusItems() {
