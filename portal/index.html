@@ -143,6 +143,27 @@
       color: var(--white);
       padding: 20px 30px;
       border-bottom: 3px solid var(--yellow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .refresh-calendar-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .refresh-calendar-btn:hover {
+      background: var(--white);
+      color: var(--black);
     }
 
     .section-title {
@@ -577,6 +598,13 @@
       padding: 0;
     }
 
+    .schedule-hint {
+      color: var(--gray);
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 8px;
+    }
+
     .prep-results {
       border-top: 1px solid var(--light-gray);
       margin-top: 20px;
@@ -632,6 +660,16 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .refresh-calendar-btn {
+        align-self: flex-end;
       }
     }
   </style>
@@ -808,11 +846,12 @@
           <div class="section-header">
             <h2 class="section-title">Today's Schedule</h2>
             <p class="section-subtitle" id="calendar-date">Loading calendar...</p>
+            <button class="refresh-calendar-btn" onclick="updateTodaysSchedule()">📝 Update Today</button>
           </div>
           <div class="section-content" id="calendar-events">
             <div class="loading-state">
-              <div class="loading-spinner"></div>
-              <p>Loading calendar events...</p>
+              <p>📅 Click "Update Today" to add today's meetings from Apple Calendar</p>
+              <p class="schedule-hint">Copy meetings from Apple Calendar and paste them here for smart prep functionality</p>
             </div>
           </div>
         </div>
@@ -1227,57 +1266,133 @@
     let todaysEvents = [];
     let selectedEvent = null;
 
-    async function loadCalendarEvents() {
-      const container = document.getElementById('calendar-events');
+    function loadCalendarEvents() {
       const dateElement = document.getElementById('calendar-date');
+      const today = new Date();
+      dateElement.textContent = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
 
-      try {
-        const today = new Date();
-        dateElement.textContent = today.toLocaleDateString('en-US', {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        });
-
-        // Get today's date in YYYY-MM-DD format for the API
-        const todayStr = today.toISOString().split('T')[0];
-        const tomorrowStr = new Date(today.getTime() + 24*60*60*1000).toISOString().split('T')[0];
-
-        // Call the Google Calendar API through Netlify function
-        const response = await fetch('/.netlify/functions/get-calendar-events', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            timeMin: todayStr + 'T00:00:00',
-            timeMax: tomorrowStr + 'T00:00:00',
-            calendarIds: ['primary'] // Start with primary calendar
-          })
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch calendar events');
-        }
-
-        const data = await response.json();
-        todaysEvents = data.events || [];
-
+      // Load saved events for today
+      const savedEvents = loadTodaysEvents();
+      if (savedEvents && savedEvents.length > 0) {
+        todaysEvents = savedEvents;
         displayCalendarEvents(todaysEvents);
-
-      } catch (error) {
-        console.error('Error loading calendar events:', error);
+      } else {
+        // Show empty state
+        const container = document.getElementById('calendar-events');
         container.innerHTML = `
           <div class="loading-state">
-            <p>⚠️ Could not load calendar events.</p>
-            <p>Using mock data for demonstration.</p>
+            <p>📅 No meetings added for today</p>
+            <p class="schedule-hint">Click "Update Today" to add meetings from your Apple Calendar</p>
           </div>
         `;
-
-        // Show mock events for demonstration
-        showMockCalendarEvents();
       }
+    }
+
+    function updateTodaysSchedule() {
+      const scheduleText = prompt(`Add today's meetings (one per line):
+
+Format examples:
+9:00 AM - Meeting with Sarah Chen (sarah@company.com)
+2:00 PM - 3:30 PM - Client call: Regional Bank (jennifer@bank.com, david@bank.com)
+4:00 PM - Book research session
+
+Just copy/paste from Apple Calendar or type manually:`);
+
+      if (scheduleText && scheduleText.trim()) {
+        const events = parseScheduleText(scheduleText.trim());
+        if (events.length > 0) {
+          todaysEvents = events;
+          saveTodaysEvents(events);
+          displayCalendarEvents(events);
+        }
+      }
+    }
+
+    function parseScheduleText(text) {
+      const lines = text.split('\n').filter(line => line.trim());
+      const events = [];
+
+      lines.forEach((line, index) => {
+        try {
+          // Try to parse the line into an event
+          const event = parseEventLine(line.trim(), index);
+          if (event) {
+            events.push(event);
+          }
+        } catch (error) {
+          console.warn('Could not parse line:', line);
+        }
+      });
+
+      return events;
+    }
+
+    function parseEventLine(line, index) {
+      // Simple parsing - can be enhanced
+      const timePattern = /(\d{1,2}:\d{2}\s*(AM|PM)?)/gi;
+      const emailPattern = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+
+      const times = line.match(timePattern) || [];
+      const emails = line.match(emailPattern) || [];
+
+      // Extract title (everything before first parenthesis or email)
+      let title = line;
+      if (times.length > 0) {
+        title = title.replace(timePattern, '').trim();
+      }
+      title = title.replace(/\([^)]*\)/g, '').trim(); // Remove parentheses
+      title = title.replace(emailPattern, '').trim(); // Remove emails
+      title = title.replace(/^-\s*/, '').trim(); // Remove leading dash
+
+      // Create start/end times (simplified)
+      const now = new Date();
+      const startTime = times[0] ? parseTime(times[0]) : new Date(now.getTime() + index * 60 * 60 * 1000);
+      const endTime = times[1] ? parseTime(times[1]) : new Date(startTime.getTime() + 60 * 60 * 1000);
+
+      const attendees = emails.map(email => ({
+        email: email,
+        displayName: email.split('@')[0].replace('.', ' ')
+      }));
+
+      return {
+        id: `manual_${index}_${Date.now()}`,
+        summary: title || 'Untitled Meeting',
+        start: { dateTime: startTime.toISOString() },
+        end: { dateTime: endTime.toISOString() },
+        attendees: attendees
+      };
+    }
+
+    function parseTime(timeStr) {
+      const today = new Date();
+      const [time, period] = timeStr.split(/\s+/);
+      let [hours, minutes] = time.split(':').map(Number);
+
+      if (period && period.toUpperCase() === 'PM' && hours !== 12) {
+        hours += 12;
+      } else if (period && period.toUpperCase() === 'AM' && hours === 12) {
+        hours = 0;
+      }
+
+      return new Date(today.getFullYear(), today.getMonth(), today.getDate(), hours, minutes || 0);
+    }
+
+    function saveTodaysEvents(events) {
+      const today = new Date().toISOString().split('T')[0];
+      const storageKey = `calendar-events-${today}`;
+      localStorage.setItem(storageKey, JSON.stringify(events));
+    }
+
+    function loadTodaysEvents() {
+      const today = new Date().toISOString().split('T')[0];
+      const storageKey = `calendar-events-${today}`;
+      const saved = localStorage.getItem(storageKey);
+      return saved ? JSON.parse(saved) : null;
     }
 
     function displayCalendarEvents(events) {
