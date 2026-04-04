@@ -71,6 +71,18 @@ async function fetchGoogleCalendarEvents(timeMin, timeMax, calendarIds) {
 
   const calendar = google.calendar({ version: 'v3', auth: oauth2Client });
 
+  // First, let's see which account we're authenticated as and what calendars are available
+  try {
+    const calendarList = await calendar.calendarList.list();
+    console.log('Authenticated account calendars:', calendarList.data.items?.map(cal => ({
+      id: cal.id,
+      summary: cal.summary,
+      primary: cal.primary
+    })));
+  } catch (error) {
+    console.log('Error listing calendars:', error.message);
+  }
+
   const events = [];
 
   for (const calendarId of calendarIds) {

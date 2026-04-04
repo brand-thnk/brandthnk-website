@@ -8,7 +8,8 @@
     "build": "echo 'No build step needed for static site'"
   },
   "dependencies": {
-    "googleapis": "^126.0.1"
+    "googleapis": "^126.0.1",
+    "open": "^8.4.0"
   },
   "devDependencies": {},
   "author": "BrandThnk",
