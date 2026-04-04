@@ -494,7 +494,8 @@
   <nav class="portal-nav">
     <div class="nav-container">
       <ul class="nav-tabs">
-        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('morning-briefing', this)">Morning Briefing</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('dashboard', this)">Dashboard</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('tools', this)">Tools</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-operations', this)">Client Operations</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
@@ -508,8 +509,24 @@
 
   <!-- MAIN CONTENT -->
   <main class="portal-content">
+
+    <!-- MORNING BRIEFING SECTION -->
+    <div id="morning-briefing-section" class="content-section">
+      <!-- MORNING-BRIEFING-START -->
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">Morning Briefing</h2>
+          <p class="section-subtitle">Runs daily at 8am — check back shortly</p>
+        </div>
+        <div class="section-content">
+          <p style="color: var(--gray); font-style: italic;">Today's briefing hasn't run yet. It will appear here automatically at 8am EST.</p>
+        </div>
+      </div>
+      <!-- MORNING-BRIEFING-END -->
+    </div>
+
     <!-- DASHBOARD SECTION -->
-    <div id="dashboard-section" class="content-section">
+    <div id="dashboard-section" class="content-section" style="display: none;">
       <!-- CRITICAL NEXT ACTIONS -->
       <div class="dashboard-section critical-actions">
         <div class="section-header">
