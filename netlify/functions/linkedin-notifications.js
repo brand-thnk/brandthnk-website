@@ -91,22 +91,31 @@ function parseLinkedInEmail(email) {
   let actionText = 'View on LinkedIn';
 
   // Parse different LinkedIn notification types
-  if (subject.includes('commented on')) {
+  if (subject.includes('commented on') || subject.includes('left a comment') || subject.includes('replied to your comment')) {
     type = 'comment';
     typeLabel = 'Comment';
     actionText = 'View Comment';
 
-    // Extract person name from subject like "John Smith commented on your post"
-    const match = subject.match(/^(.+?)\s+commented on/);
+    // Extract person name from various comment formats
+    let match = subject.match(/^(.+?)\s+commented on/);
+    if (!match) match = subject.match(/^(.+?)\s+left a comment/);
+    if (!match) match = subject.match(/^(.+?)\s+replied to your comment/);
     if (match) person = match[1];
-    action = 'commented on your post';
 
-  } else if (subject.includes('sent you a message') || subject.includes('messaged you')) {
+    if (subject.includes('replied to your comment')) {
+      action = 'replied to your comment';
+    } else {
+      action = 'commented on your post';
+    }
+
+  } else if (subject.includes('sent you a message') || subject.includes('messaged you') || subject.includes('You have a message from') || subject.includes('new message')) {
     type = 'dm';
     typeLabel = 'DM';
     actionText = 'Reply';
 
-    const match = subject.match(/^(.+?)\s+(?:sent you a message|messaged you)/);
+    let match = subject.match(/^(.+?)\s+(?:sent you a message|messaged you)/);
+    if (!match) match = subject.match(/You have a message from (.+?)(?:\s|$)/);
+    if (!match) match = subject.match(/new message from (.+?)(?:\s|$)/);
     if (match) person = match[1];
     action = 'sent you a message';
 
@@ -128,14 +137,43 @@ function parseLinkedInEmail(email) {
     if (match) person = match[1];
     action = 'wants to connect';
 
-  } else if (subject.includes('liked your') || subject.includes('reacted to')) {
+  } else if (subject.includes('liked your') || subject.includes('reacted to') || subject.includes('loves your')) {
     type = 'reaction';
     typeLabel = 'Reaction';
     actionText = 'View Post';
 
-    const match = subject.match(/^(.+?)\s+(?:liked|reacted to)/);
+    let match = subject.match(/^(.+?)\s+(?:liked|reacted to|loves)/);
     if (match) person = match[1];
-    action = 'reacted to your post';
+
+    if (subject.includes('loves your')) {
+      action = 'loves your post';
+    } else if (subject.includes('reacted to')) {
+      action = 'reacted to your post';
+    } else {
+      action = 'liked your post';
+    }
+
+  } else if (subject.includes('shared your post') || subject.includes('reposted your')) {
+    type = 'share';
+    typeLabel = 'Share';
+    actionText = 'View Share';
+
+    const match = subject.match(/^(.+?)\s+(?:shared|reposted)/);
+    if (match) person = match[1];
+    action = 'shared your post';
+
+  } else if (subject.includes('started following you') || subject.includes('is now following')) {
+    type = 'follow';
+    typeLabel = 'Follow';
+    actionText = 'View Profile';
+
+    const match = subject.match(/^(.+?)\s+(?:started following|is now following)/);
+    if (match) person = match[1];
+    action = 'started following you';
+
+  } else {
+    // Log unrecognized patterns for debugging
+    console.log('Unrecognized LinkedIn notification pattern:', subject);
   }
 
   // Extract LinkedIn URL from email body
@@ -186,11 +224,13 @@ async function queryGmailForLinkedInNotifications() {
 
   const response = await gmail.users.messages.list({
     userId: 'me',
-    q: 'from:noreply@linkedin.com OR from:messages-noreply@linkedin.com newer_than:7d',
-    maxResults: 20
+    q: 'from:noreply@linkedin.com OR from:messages-noreply@linkedin.com OR from:invitations-noreply@linkedin.com newer_than:7d',
+    maxResults: 30
   });
 
   const notifications = [];
+  console.log(`Found ${response.data.messages?.length || 0} LinkedIn emails to process`);
+
   for (const message of response.data.messages || []) {
     try {
       const email = await gmail.users.messages.get({
@@ -198,16 +238,22 @@ async function queryGmailForLinkedInNotifications() {
         id: message.id
       });
 
+      const subject = getEmailHeader(email.data, 'Subject');
+      console.log(`Processing email: "${subject}"`);
+
       const notification = parseLinkedInEmail({
         id: email.data.id,
-        subject: getEmailHeader(email.data, 'Subject'),
+        subject: subject,
         body: getEmailBody(email.data),
         date: getEmailHeader(email.data, 'Date')
       });
 
       // Only include if we successfully parsed it as a LinkedIn notification
       if (notification.type !== 'unknown') {
+        console.log(`✓ Parsed as ${notification.type}: ${notification.person} - ${notification.action}`);
         notifications.push(notification);
+      } else {
+        console.log(`✗ Could not parse notification type for: "${subject}"`);
       }
     } catch (error) {
       console.error('Error processing email:', message.id, error.message);
