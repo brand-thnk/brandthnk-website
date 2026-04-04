@@ -1,0 +1,16 @@
+{
+  "name": "brandthnk-website",
+  "version": "1.0.0",
+  "description": "BrandThnk website with serverless functions",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step needed for static site'"
+  },
+  "dependencies": {
+    "googleapis": "^126.0.1"
+  },
+  "devDependencies": {},
+  "author": "BrandThnk",
+  "license": "MIT"
+}
