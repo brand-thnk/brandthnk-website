@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- Cache bust: 2024-04-04-18:00 - Populated Tools tab with actual bookmarks -->
-<html lang="en">
+<!-- Cache bust: 2026-04-04-v4 - Portal daily refresh: calendar, Gmail, Granola, TASKS.md sync -->
+<html lang="en" data-refreshed="2026-04-04T20:31:34">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -233,6 +233,32 @@
       color: var(--white);
     }
 
+    .action-dismiss {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: 1px solid var(--light-gray);
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 18px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+
+    .action-dismiss:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+
     /* WHITEBOARD */
     .whiteboard {
       margin-bottom: 40px;
@@ -436,6 +462,46 @@
       opacity: 0.8;
     }
 
+    /* REFRESH BUTTON */
+    .refresh-btn {
+      background: rgba(255, 235, 59, 0.2);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .refresh-icon {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .refresh-meta {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    /* CHECKLIST LINK STYLE */
+    .checklist-link {
+      color: var(--yellow);
+      text-decoration: underline;
+    }
+
+    .checklist-link:hover {
+      color: var(--white);
+    }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .portal-content {
@@ -486,6 +552,7 @@
       <div class="portal-meta">
         <div class="current-time" id="currentTime"></div>
         <div>Last updated: <span id="lastUpdated">Just now</span></div>
+        <div style="margin-top: 4px;">Intelligence: <span id="intelligenceRefresh" style="color: var(--yellow);">Apr 4, 2026 · 8:31pm ET</span></div>
       </div>
     </div>
   </header>
@@ -497,12 +564,11 @@
         <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('morning-briefing', this)">Morning Briefing</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('dashboard', this)">Dashboard</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('tools', this)">Tools</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-operations', this)">Client Operations</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-work', this)">Client Work</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('product-development', this)">Product Development</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('thought-leadership', this)">Thought Leadership</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('business-intelligence', this)">Business Intelligence</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('operations-hub', this)">Operations Hub</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('website', this)">Website</a></li>
       </ul>
     </div>
   </nav>
@@ -651,130 +717,284 @@
 
     <!-- DASHBOARD SECTION -->
     <div id="dashboard-section" class="content-section" style="display: none;">
-      <!-- CRITICAL NEXT ACTIONS -->
-      <div class="dashboard-section critical-actions">
+
+      <!-- 1. THIS WEEK'S DEADLINES -->
+      <div class="dashboard-section critical-actions" style="margin-bottom: 40px;">
         <div class="section-header">
-          <h2 class="section-title">Critical Next Actions</h2>
-          <p class="section-subtitle">High-priority items across all strategic areas</p>
+          <div>
+            <h2 class="section-title">This Week's Deadlines</h2>
+            <p class="section-subtitle">April 6 - 10, 2026</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="deadlines-refresh-time"></div>
+          </div>
         </div>
-        <div class="section-content">
-          <div class="action-item">
-            <div class="action-title">Complete Q2 2026 Focal roadmap</div>
-            <div class="action-description">Finalize feature priorities for Focal competitive intelligence platform based on client feedback and market analysis.</div>
+        <div class="section-content" id="deadlines-container">
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Unblock Gusto payroll for Monday Apr 6</div>
+            <div class="action-description">Vicki forwarded the alert Thursday. Monday payroll needs to be unblocked before then. Confirm tonight or action directly.</div>
             <div class="action-meta">
-              <span>Owner: Allison | Deadline: April 15</span>
-              <span class="action-status">In Progress</span>
+              <span>BrandThnk Ops | Due: Sunday Apr 5</span>
+              <span class="action-status">Urgent</span>
             </div>
           </div>
 
-          <div class="action-item">
-            <div class="action-title">Publish "Brand as Operating System in AI Era" briefing</div>
-            <div class="action-description">Complete draft, run anti-slop audit, generate newsletter version, and deploy to website.</div>
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3: Jeremiah James (CPO) check-in</div>
+            <div class="action-description">30-minute check-in with HC3 CPO. Part of Week 3 Positioning Lab interview sprint. Kristan Hill also invited.</div>
             <div class="action-meta">
-              <span>Owner: Allison | Target: This week</span>
-              <span class="action-status">Ready</span>
+              <span>Client: HC3 | Tue Apr 7, 8:00am EDT</span>
+              <span class="action-status">Scheduled</span>
             </div>
           </div>
 
-          <div class="action-item">
-            <div class="action-title">Close Forward Bank BrandThnk Breakthrough Q2</div>
-            <div class="action-description">Follow up on proposal submitted March 28, confirm start date and kick-off logistics.</div>
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Forward Bank weekly session with Jennifer</div>
+            <div class="action-description">Renewal discussion in process ($1,500/mo). Confirm Q2 start date, kick-off logistics, and Microsoft Copilot integration angle.</div>
             <div class="action-meta">
-              <span>Owner: Allison | Target: April 8</span>
-              <span class="action-status">Ready</span>
+              <span>Client: Forward Bank | Tue Apr 7, 2:30pm EDT</span>
+              <span class="action-status">Scheduled</span>
             </div>
           </div>
 
-          <div class="action-item">
-            <div class="action-title">Review and update book promotion strategy</div>
-            <div class="action-description">Analyze Q1 sales data and refine promotion approach for remainder of 2026.</div>
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3 Interview: Andrew Campbell</div>
+            <div class="action-description">Stakeholder interview for HC3 brand positioning work. Part of the interview sprint to complete this week before synthesis.</div>
             <div class="action-meta">
-              <span>Owner: Allison | Target: April 30</span>
-              <span class="action-status">Blocked</span>
+              <span>Client: HC3 | Tue Apr 7, 4:00pm EDT</span>
+              <span class="action-status">Scheduled</span>
             </div>
           </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3 Client Interview: MVB Bank stakeholder</div>
+            <div class="action-description">Confirmed client-side stakeholder interview for HC3 brand positioning research. Completing the external reference round.</div>
+            <div class="action-meta">
+              <span>Client: HC3 | Wed Apr 8, 11:30am EDT</span>
+              <span class="action-status">Confirmed</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Eric/Collective exploratory call</div>
+            <div class="action-description">Exploratory call with Eric at Rival (eric@wearerival.com). May connect to Signal Events discussion and BrandThnk content strategy work.</div>
+            <div class="action-meta">
+              <span>Pipeline | Wed Apr 8, 2:00pm EDT</span>
+              <span class="action-status">Scheduled</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Signal Events call with Sangita</div>
+            <div class="action-description">Call with Sangita from Gift Suite (sangita@giftsuite.com). Follow-up from email thread — Signal Events concept discussion.</div>
+            <div class="action-meta">
+              <span>Pipeline | Wed Apr 8, 3:00pm EDT</span>
+              <span class="action-status">Scheduled</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Horicon Bank: Robert Traylor interview</div>
+            <div class="action-description">BrandThnk stakeholder interview. Rose Pospyhalla optionally invited. Part of final Horicon interview sprint this week.</div>
+            <div class="action-meta">
+              <span>Client: Horicon Bank | Wed Apr 8, 4:00pm EDT</span>
+              <span class="action-status">Confirmed</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Horicon Bank: Amy Banaszak interview</div>
+            <div class="action-description">Confirmed Zoom interview. Persona/stakeholder validation round. Completing the Horicon interview sprint before synthesis working session.</div>
+            <div class="action-meta">
+              <span>Client: Horicon Bank | Thu Apr 9, 10:30am EDT (Zoom)</span>
+              <span class="action-status">Confirmed</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Horicon Bank: Fred Schwertfeger interview</div>
+            <div class="action-description">BrandThnk stakeholder interview. Final interview in the Horicon series. After this, schedule synthesis Working Session 1 with Rose.</div>
+            <div class="action-meta">
+              <span>Client: Horicon Bank | Thu Apr 9, 1:30pm EDT</span>
+              <span class="action-status">Confirmed</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3 weekly check-in with Kristan Hill</div>
+            <div class="action-description">Weekly cadence call. Review interview sprint progress, confirm synthesis timeline, discuss Brand Positioning Map delivery date.</div>
+            <div class="action-meta">
+              <span>Client: HC3 | Fri Apr 10, 9:30am EDT</span>
+              <span class="action-status">Recurring</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Check client invoice payments</div>
+            <div class="action-description">Recurring weekly check. Horicon $11,250 deposit invoice still flagged. CheckAlt scope finalization and payment timing still open.</div>
+            <div class="action-meta">
+              <span>BrandThnk Ops | Fri Apr 10, 2:30pm EDT</span>
+              <span class="action-status">Recurring</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Weekly Wrap: client updates, portal updates, calendar look-ahead</div>
+            <div class="action-description">Client update emails, Gumroad pull for Alana, Rocket Money review, client portal updates, calendar look-ahead + time blocking, MLT review.</div>
+            <div class="action-meta">
+              <span>BrandThnk Ops | Fri Apr 10, 4:00pm EDT</span>
+              <span class="action-status">Recurring</span>
+            </div>
+          </div>
+
+          <button class="add-item-btn" onclick="addDashboardItem('deadlines')">+ Add Deadline</button>
         </div>
       </div>
 
-      <div class="dashboard-grid">
-        <!-- WHITEBOARD -->
-        <div class="dashboard-section whiteboard">
-          <div class="section-header">
-            <h2 class="section-title">Whiteboard</h2>
-            <p class="section-subtitle">Quick notes and strategic thoughts</p>
+      <!-- 2. THIS WEEK'S FOCUS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">This Week's Focus</h2>
+            <p class="section-subtitle">April 6 - 10, 2026</p>
           </div>
-          <div class="section-content">
-            <div id="whiteboard-items">
-              <div class="whiteboard-item">
-                <button class="whiteboard-item-delete" onclick="this.parentElement.remove()">×</button>
-                <div class="whiteboard-item-content">Consider creating a "Brand Due Diligence" framework for M&A scenarios - lots of fintech consolidation happening</div>
-                <div class="whiteboard-item-meta">Added Apr 4, 2026 at 2:15 PM</div>
-              </div>
-              <div class="whiteboard-item">
-                <button class="whiteboard-item-delete" onclick="this.parentElement.remove()">×</button>
-                <div class="whiteboard-item-content">Focal competitive analysis for credit union core providers - significant market opportunity</div>
-                <div class="whiteboard-item-meta">Added Apr 3, 2026 at 10:30 AM</div>
-              </div>
-            </div>
-            <button class="add-item-btn" onclick="addWhiteboardItem()">+ Add Note</button>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="focus-refresh-time"></div>
           </div>
         </div>
-
-        <!-- THIS WEEK FOCUS -->
-        <div class="dashboard-section">
-          <div class="section-header">
-            <h2 class="section-title">This Week Focus</h2>
-            <p class="section-subtitle">April 1-7, 2026</p>
+        <div class="section-content" id="focus-container">
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">HC3: Complete interview sprint + deliver Positioning Map</div>
+            <div class="focus-description">3 interviews this week: Jeremiah James (Tue 8am), Andrew Campbell (Tue 4pm), MVB Bank client (Wed 11:30am). Weekly check-in with Kristan Fri 9:30am. Deliver Brand Positioning Map + Messaging Framework. Website redesign draft on Lovable with real copy.</div>
           </div>
-          <div class="section-content">
-            <div class="focus-item">
-              <div class="focus-title">Complete library diagnostic optimization</div>
-              <div class="focus-description">Finalize copy improvements and test user flow</div>
-            </div>
-            <div class="focus-item">
-              <div class="focus-title">Focal product positioning refinement</div>
-              <div class="focus-description">Update messaging across insights page and marketing</div>
-            </div>
-            <div class="focus-item">
-              <div class="focus-title">Client proposal review cycle</div>
-              <div class="focus-description">Forward Bank, Horicon Bank follow-ups</div>
-            </div>
-            <div class="focus-item">
-              <div class="focus-title">Content calendar planning</div>
-              <div class="focus-description">Briefing topics through May, LinkedIn series</div>
-            </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Horicon Bank: Final interview sprint + schedule synthesis</div>
+            <div class="focus-description">3 interviews this week: Robert Traylor (Wed 4pm), Amy Banaszak (Thu 10:30am), Fred Schwertfeger (Thu 1:30pm). After these complete, schedule Working Session 1 with Rose. Persona one-pagers ready for review.</div>
           </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Forward Bank: Lock in Q2 renewal</div>
+            <div class="focus-description">Weekly session Tue 2:30pm with Jennifer. Renewal at $1,500/mo in process. Confirm start date, kick-off logistics, and Microsoft Copilot integration angle. Month 1 foundation research → Month 2 strategy → Month 3 implementation.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Digital Onboarding: Website audit before marketing activation</div>
+            <div class="focus-description">30% organic traffic decline flagged. Navigation problems, high bounce rate on "Let's Talk" page. Fix the leaky bucket before increasing spend. $15K website proposal sent. Scope kickoff with Jen + Adam still pending — follow up this week.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Pipeline: Eric/Collective + Signal Events calls Wednesday</div>
+            <div class="focus-description">Two back-to-back Wed calls: Eric Cook at Rival (2pm) on Signal Events concept + content strategy, then Sangita at Gift Suite (3pm). Eric building a post on "humble pie and hindsight" — follow-up opportunity for BrandThnk collaboration.</div>
+          </div>
+          <button class="add-item-btn" onclick="addDashboardItem('focus')">+ Add Focus Area</button>
         </div>
       </div>
 
-      <!-- PIPELINE OVERVIEW -->
-      <div class="dashboard-section">
+      <!-- 3. PIPELINE OVERVIEW -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
         <div class="section-header">
-          <h2 class="section-title">Pipeline Overview</h2>
-          <p class="section-subtitle">Active prospects and opportunities</p>
+          <div>
+            <h2 class="section-title">Pipeline Overview</h2>
+            <p class="section-subtitle">Active prospects and opportunities</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="pipeline-refresh-time"></div>
+          </div>
         </div>
-        <div class="section-content">
-          <div class="pipeline-item">
-            <div class="pipeline-title">Forward Bank - BrandThnk Breakthrough</div>
+        <div class="section-content" id="pipeline-container">
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Forward Bank - Q2 Renewal</div>
             <div class="pipeline-meta">
-              <span>Stage: Proposal Submitted</span>
-              <span class="pipeline-value">$25,000</span>
+              <span>Stage: In Process — weekly session Tue Apr 7</span>
+              <span class="pipeline-value">$1,500/mo</span>
             </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-title">Regional Credit Union - Brand Audit</div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Digital Onboarding - Website</div>
             <div class="pipeline-meta">
-              <span>Stage: Discovery Call Scheduled</span>
+              <span>Stage: Proposal Sent — awaiting Jen + Adam kickoff</span>
               <span class="pipeline-value">$15,000</span>
             </div>
           </div>
-          <div class="pipeline-item">
-            <div class="pipeline-title">Fintech Startup - Positioning Sprint</div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">HC3 - Website (Lovable)</div>
             <div class="pipeline-meta">
-              <span>Stage: Initial Contact</span>
-              <span class="pipeline-value">$12,000</span>
+              <span>Stage: Potential Proposal — brand work in flight</span>
+              <span class="pipeline-value">~$15,000</span>
             </div>
           </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">CheckAlt - Go-to-Market Strategy</div>
+            <div class="pipeline-meta">
+              <span>Stage: Scope Finalization (10-14 days)</span>
+              <span class="pipeline-value">$17,500 est.</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Eric/Collective (Rival) - Exploratory</div>
+            <div class="pipeline-meta">
+              <span>Stage: First Call — Wed Apr 8, 2:00pm EDT</span>
+              <span class="pipeline-value">TBD</span>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addDashboardItem('pipeline')">+ Add Pipeline Item</button>
+        </div>
+      </div>
+
+      <!-- 4. WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Whiteboard</h2>
+            <p class="section-subtitle">Strategic threads and open questions</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="whiteboard-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content">
+          <div id="whiteboard-items">
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">HC3 messaging anchor surfaced this week: "We meet you where you are, to understand where you can go — with accountability beyond the technology." This is the brand sentence. Positioning shift from statement company → operational efficiency company is locked. Website copy should lead with this when Lovable draft goes live.</div>
+              <div class="whiteboard-item-meta">Source: Granola - HC3 strategy sessions</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Eric Cook (Signal Events, Wed Apr 8) is building a post on "humble pie and hindsight" — same territory as the Assumption Audit. Follow up post-call. Collaboration opportunity. His feedback loop = BrandThnk content signal.</div>
+              <div class="whiteboard-item-meta">Source: Email thread + Calendar Apr 8</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Book buyer outreach strategy still parked in Someday. Gumroad list + segment + draft approach = main biz dev driver 2026. TASKS.md has it flagged. Weekly Wrap Fri is the only forcing function right now — needs a commit date to move.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday)</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addWhiteboardItem()">+ Add Note</button>
         </div>
       </div>
     </div>
@@ -873,6 +1093,11 @@
                   <div class="bookmark-description">Digital product sales platform</div>
                   <div class="bookmark-url">gumroad.com</div>
                 </a>
+                <a href="https://formspree.io" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Formspree</div>
+                  <div class="bookmark-description">Form backend and lead capture</div>
+                  <div class="bookmark-url">formspree.io</div>
+                </a>
               </div>
             </div>
 
@@ -901,6 +1126,11 @@
                   <div class="bookmark-title">CheckAlt Portal</div>
                   <div class="bookmark-description">CheckAlt client portal</div>
                   <div class="bookmark-url">brandthnk.co/checkalt-portal/</div>
+                </a>
+                <a href="https://calendar.google.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">BrandThnk Calendar</div>
+                  <div class="bookmark-description">Schedule, meetings, and time blocks</div>
+                  <div class="bookmark-url">calendar.google.com</div>
                 </a>
               </div>
             </div>
@@ -949,74 +1179,251 @@
     </div>
 
     <!-- PLACEHOLDER SECTIONS (Hidden by default) -->
-    <div id="client-operations-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
+    <div id="client-work-section" class="content-section" style="display: none;">
+
+      <!-- CLIENT PORTALS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
         <div class="section-header">
-          <h2 class="section-title">Client Operations</h2>
-          <p class="section-subtitle">Active engagements, pipeline, and relationship management</p>
+          <h2 class="section-title">Client Portals</h2>
+          <p class="section-subtitle">Quick access to all active client portals</p>
         </div>
         <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Client Operations dashboard coming soon...</p>
+          <div class="tools-grid">
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">Active Clients</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://brandthnk.co/do-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">DO Portal</div>
+                  <div class="bookmark-description">Digital Onboarding client portal</div>
+                  <div class="bookmark-url">brandthnk.co/do-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/hc3-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">HC3 Portal</div>
+                  <div class="bookmark-description">HC3 client engagement portal</div>
+                  <div class="bookmark-url">brandthnk.co/hc3-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/horicon-bank-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Horicon Portal</div>
+                  <div class="bookmark-description">Horicon Bank client portal</div>
+                  <div class="bookmark-url">brandthnk.co/horicon-bank-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/checkalt-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">CheckAlt Portal</div>
+                  <div class="bookmark-description">CheckAlt client portal</div>
+                  <div class="bookmark-url">brandthnk.co/checkalt-portal/</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- CLIENT OPS WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <h2 class="section-title">Whiteboard</h2>
+          <p class="section-subtitle">Client notes, follow-ups, and strategic thoughts</p>
+        </div>
+        <div class="section-content">
+          <div id="client-ops-whiteboard-items">
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Follow up with Forward Bank on renewal timeline and Q2 kick-off logistics</div>
+              <div class="whiteboard-item-meta">Added Apr 4, 2026 at 2:00 PM</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+              <div class="whiteboard-item-content">HC3 website proposal - scope and pricing draft needed</div>
+              <div class="whiteboard-item-meta">Added Apr 4, 2026 at 2:00 PM</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addClientOpsWhiteboardItem()">+ Add Note</button>
+        </div>
+      </div>
+
     </div>
 
     <div id="content-engine-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
+      <div class="dashboard-section whiteboard">
         <div class="section-header">
-          <h2 class="section-title">Content Engine</h2>
-          <p class="section-subtitle">Briefings, LinkedIn, newsletters, and thought leadership content</p>
+          <div>
+            <h2 class="section-title">Content Engine</h2>
+            <p class="section-subtitle">Briefings, LinkedIn, newsletters, and thought leadership content</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="content-refresh-time"></div>
+          </div>
         </div>
         <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Content Engine dashboard coming soon...</p>
+          <div id="content-engine-whiteboard-items">
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">"If They Can't Box You, They Can't Buy You"</div>
+              <div class="whiteboard-item-content">LinkedIn post or Briefing on category clarity before differentiation. Comes up across Backbase and HC3 work. The positioning concept that applies broadly to fintech marketing: you need a box before you can break out of one.</div>
+              <div class="whiteboard-item-meta">Source: Granola - Backbase strategy sessions</div>
+            </div>
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">"The Assumption Trap" Briefing</div>
+              <div class="whiteboard-item-content">From Eric Cook podcast: how assumptions calcify thinking with limited data and heavy filters. The biggest competitor isn't other fintechs. It's assuming you understand your market. Eric's building a post on it too. Collaboration opportunity.</div>
+              <div class="whiteboard-item-meta">Source: Granola - Eric Cook podcast + Email thread Apr 4</div>
+            </div>
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">"Mediocre Thing Consistently > Amazing Thing Once"</div>
+              <div class="whiteboard-item-content">LinkedIn post on execution discipline. This framework from Narmi discussions resonated across multiple client conversations. Connects to Pain > Promise > Proof: 90% of failed campaigns start with proof instead of pain.</div>
+              <div class="whiteboard-item-meta">Source: Granola - Narmi discussions + client pattern</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addContentEngineItem()">+ Add Content Idea</button>
         </div>
       </div>
     </div>
 
     <div id="product-development-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
-        <div class="section-header">
-          <h2 class="section-title">Product Development</h2>
-          <p class="section-subtitle">Focal roadmap, diagnostic tools, and technology infrastructure</p>
-        </div>
-        <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Product Development dashboard coming soon...</p>
-        </div>
-      </div>
-    </div>
 
-    <div id="thought-leadership-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
+      <!-- TOOLS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
         <div class="section-header">
-          <h2 class="section-title">Thought Leadership</h2>
-          <p class="section-subtitle">Speaking, book strategy, media opportunities, and industry positioning</p>
+          <div>
+            <h2 class="section-title">Product Development</h2>
+            <p class="section-subtitle">Focal roadmap, diagnostic tools, and technology infrastructure</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="product-refresh-time"></div>
+          </div>
         </div>
         <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Thought Leadership dashboard coming soon...</p>
+          <div class="tools-grid">
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">Tools</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://brandthnk.co/therapy/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Brand Therapy</div>
+                  <div class="bookmark-description">Interactive brand diagnostic tool</div>
+                  <div class="bookmark-url">brandthnk.co/therapy/</div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="business-intelligence-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
+      <!-- WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
         <div class="section-header">
-          <h2 class="section-title">Business Intelligence</h2>
-          <p class="section-subtitle">Financial metrics, market research, and strategic planning</p>
+          <h2 class="section-title">Whiteboard</h2>
+          <p class="section-subtitle">Product ideas, tool improvements, and build priorities</p>
         </div>
         <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Business Intelligence dashboard coming soon...</p>
+          <div id="product-dev-whiteboard-items">
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">Refine Assumption Audit tool (brandthnk.co/tools/assumption-audit.html). Parked in TASKS.md but the concept keeps surfacing in client conversations. Worth a v2 pass.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md</div>
+            </div>
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">Forward Bank QA agent concept. Parked Feb 19. Could be a repeatable tool for other clients if the pattern holds.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday)</div>
+            </div>
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">IP hierarchy document: how do the frameworks layer? Which is the "front door"? Needed before scaling the library or Focal positioning.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday)</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addProductDevItem()">+ Add Note</button>
         </div>
       </div>
+
     </div>
 
     <div id="operations-hub-section" class="content-section" style="display: none;">
       <div class="dashboard-section">
         <div class="section-header">
           <h2 class="section-title">Operations Hub</h2>
-          <p class="section-subtitle">Administrative tasks, vendor management, and knowledge base</p>
+          <p class="section-subtitle">Friday Checklist and recurring operations</p>
         </div>
         <div class="section-content">
-          <p style="color: var(--gray); font-style: italic;">Operations Hub dashboard coming soon...</p>
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--yellow); padding-bottom: 10px;">Friday Checklist</h3>
+          <div id="friday-checklist">
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">1. Client update emails (live write)</div>
+              <div class="action-description">Write and send weekly update emails to all active clients. Do this first while context is fresh.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">2. Gumroad pull for Alana</div>
+              <div class="action-description">Pull weekly sales data and send to Alana for book order reconciliation.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://gumroad.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Gumroad</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">3. Rocket Money Review</div>
+              <div class="action-description">Review subscriptions, flag any changes, check for unnecessary charges.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://rocketmoney.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Rocket Money</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">4. Client Portal Updates</div>
+              <div class="action-description">Update all client portals with current status, deliverables, and next steps from the week.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">5. Calendar Look Ahead + Time Blocking</div>
+              <div class="action-description">Review next week's calendar. Block time for deep work, client prep, and deliverables.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://calendar.google.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Calendar</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">6. MLT Review</div>
+              <div class="action-description">Review MLT status, Backbase updates, and any pending CTN deliverables.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addFridayItem()">+ Add Checklist Item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBSITE TAB -->
+    <div id="website-section" class="content-section" style="display: none;">
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">Website</h2>
+          <p class="section-subtitle">BrandThnk.co</p>
+        </div>
+        <div class="section-content" style="text-align: center; padding: 40px 30px;">
+          <p style="font-size: 16px; color: var(--gray); margin-bottom: 24px;">View and manage the live BrandThnk website.</p>
+          <a href="https://brandthnk.co" target="_blank" class="add-item-btn" style="display: inline-block; text-decoration: none; width: auto; padding: 16px 40px;">Open BrandThnk.co →</a>
         </div>
       </div>
     </div>
@@ -1162,11 +1569,251 @@
       }
     }
 
-    // Load whiteboard on page load
-    // document.addEventListener('DOMContentLoaded', loadWhiteboard);
+    // Dismiss any dashboard item (deadlines, focus, pipeline)
+    function dismissItem(btn) {
+      const item = btn.closest('.action-item, .focus-item, .pipeline-item, .whiteboard-item');
+      if (!item) return;
 
+      // Remove the item completely
+      item.remove();
+      saveDashboardState();
+    }
 
+    // Add items to any dashboard section
+    function addDashboardItem(section) {
+      const prompts = {
+        deadlines: 'Add deadline (title):',
+        focus: 'Add focus area (title):',
+        pipeline: 'Add pipeline item (title):'
+      };
+      const title = prompt(prompts[section] || 'Add item:');
+      if (!title || !title.trim()) return;
 
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById(section + '-container');
+      if (!container) return;
+      const addBtn = container.querySelector('.add-item-btn');
+
+      if (section === 'deadlines') {
+        const newItem = document.createElement('div');
+        newItem.className = 'action-item';
+        newItem.dataset.section = 'deadlines';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+          <div class="action-title">${title.trim()}</div>
+          <div class="action-description">${desc.trim()}</div>
+          <div class="action-meta">
+            <span>Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+            <span class="action-status">New</span>
+          </div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      } else if (section === 'focus') {
+        const newItem = document.createElement('div');
+        newItem.className = 'focus-item';
+        newItem.dataset.section = 'focus';
+        newItem.style.position = 'relative';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+          <div class="focus-title">${title.trim()}</div>
+          <div class="focus-description">${desc.trim()}</div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      } else if (section === 'pipeline') {
+        const value = prompt('Value (e.g. $15,000):') || 'TBD';
+        const newItem = document.createElement('div');
+        newItem.className = 'pipeline-item';
+        newItem.dataset.section = 'pipeline';
+        newItem.style.position = 'relative';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+          <div class="pipeline-title">${title.trim()}</div>
+          <div class="pipeline-meta">
+            <span>Stage: ${desc.trim() || 'New'}</span>
+            <span class="pipeline-value">${value.trim()}</span>
+          </div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      }
+      saveDashboardState();
+    }
+
+    // Persist dashboard dismissed state
+    function saveDashboardState() {
+      const state = {};
+      ['deadlines', 'focus', 'pipeline'].forEach(section => {
+        state[section] = [];
+        document.querySelectorAll(`[data-section="${section}"]`).forEach((item, i) => {
+          if (item.classList.contains('dismissed')) state[section].push(i);
+        });
+      });
+      localStorage.setItem('brandthnk-dashboard-state', JSON.stringify(state));
+    }
+
+    function loadDashboardState() {
+      const saved = localStorage.getItem('brandthnk-dashboard-state');
+      if (saved) {
+        const state = JSON.parse(saved);
+        Object.keys(state).forEach(section => {
+          document.querySelectorAll(`[data-section="${section}"]`).forEach((item, i) => {
+            if (state[section].includes(i)) {
+              item.classList.add('dismissed');
+              item.style.opacity = '0.4';
+              item.style.borderLeftColor = '#4CAF50';
+              const title = item.querySelector('.action-title, .focus-title, .pipeline-title');
+              if (title) title.style.textDecoration = 'line-through';
+              const status = item.querySelector('.action-status');
+              if (status) {
+                item.dataset.originalStatus = status.textContent;
+                status.textContent = 'Done';
+                status.style.background = '#4CAF50';
+                status.style.color = '#fff';
+              }
+            }
+          });
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDashboardState);
+
+    // Client Ops Whiteboard
+    function addClientOpsWhiteboardItem() {
+      const content = prompt('Add client ops note:');
+      if (content && content.trim()) {
+        const container = document.getElementById('client-ops-whiteboard-items');
+        const newItem = document.createElement('div');
+        newItem.className = 'whiteboard-item';
+        newItem.innerHTML = `
+          <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+          <div class="whiteboard-item-content">${content.trim()}</div>
+          <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
+        `;
+        container.appendChild(newItem);
+        saveClientOpsWhiteboard();
+      }
+    }
+
+    function saveClientOpsWhiteboard() {
+      const items = [];
+      document.querySelectorAll('#client-ops-whiteboard-items .whiteboard-item').forEach(item => {
+        const content = item.querySelector('.whiteboard-item-content').textContent;
+        const meta = item.querySelector('.whiteboard-item-meta').textContent;
+        items.push({content, meta});
+      });
+      localStorage.setItem('brandthnk-client-ops-whiteboard', JSON.stringify(items));
+    }
+
+    function loadClientOpsWhiteboard() {
+      const saved = localStorage.getItem('brandthnk-client-ops-whiteboard');
+      if (saved) {
+        const items = JSON.parse(saved);
+        const container = document.getElementById('client-ops-whiteboard-items');
+        container.innerHTML = '';
+        items.forEach(item => {
+          const newItem = document.createElement('div');
+          newItem.className = 'whiteboard-item';
+          newItem.innerHTML = `
+            <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+            <div class="whiteboard-item-content">${item.content}</div>
+            <div class="whiteboard-item-meta">${item.meta}</div>
+          `;
+          container.appendChild(newItem);
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadClientOpsWhiteboard);
+
+    // Content Engine Whiteboard
+    function addContentEngineItem() {
+      const title = prompt('Content idea title:');
+      if (!title || !title.trim()) return;
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById('content-engine-whiteboard-items');
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.dataset.section = 'content-engine';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+        <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">${title.trim()}</div>
+        <div class="whiteboard-item-content">${desc.trim()}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Product Dev Whiteboard
+    function addProductDevItem() {
+      const content = prompt('Product development note:');
+      if (!content || !content.trim()) return;
+      const container = document.getElementById('product-dev-whiteboard-items');
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.dataset.section = 'product-dev';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+        <div class="whiteboard-item-content">${content.trim()}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Friday Checklist
+    function addFridayItem() {
+      const title = prompt('Add checklist item:');
+      if (!title || !title.trim()) return;
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById('friday-checklist');
+      const addBtn = container.parentElement.querySelector('.add-item-btn');
+      const newItem = document.createElement('div');
+      newItem.className = 'action-item';
+      newItem.dataset.section = 'friday';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+        <div class="action-title">${title.trim()}</div>
+        <div class="action-description">${desc.trim()}</div>
+        <div class="action-meta">
+          <span>Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+          <span class="action-status">To Do</span>
+        </div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Reset Friday checklist each week
+    function resetFridayChecklist() {
+      document.querySelectorAll('[data-section="friday"]').forEach(item => {
+        item.classList.remove('dismissed');
+        item.style.opacity = '';
+        item.style.borderLeftColor = '';
+        const title = item.querySelector('.action-title');
+        if (title) title.style.textDecoration = '';
+        const status = item.querySelector('.action-status');
+        if (status) {
+          status.textContent = 'To Do';
+          status.style.background = '';
+          status.style.color = '';
+        }
+      });
+      localStorage.removeItem('brandthnk-friday-state');
+    }
+
+    // Refresh timestamps - populated by the refresh-portal skill
+    // The skill writes data-refreshed attributes to the HTML before deploy
+    function setRefreshTimestamps() {
+      const refreshDate = document.documentElement.getAttribute('data-refreshed') || '2026-04-04T16:00:00';
+      const d = new Date(refreshDate);
+      const formatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      const ids = ['deadlines-refresh-time', 'focus-refresh-time', 'pipeline-refresh-time', 'whiteboard-refresh-time', 'content-refresh-time', 'product-refresh-time'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = formatted;
+      });
+      const globalEl = document.getElementById('intelligenceRefresh');
+      if (globalEl) globalEl.textContent = formatted;
+    }
+    document.addEventListener('DOMContentLoaded', setRefreshTimestamps);
 
 
   </script>
