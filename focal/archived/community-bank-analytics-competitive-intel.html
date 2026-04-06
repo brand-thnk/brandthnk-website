@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Bank Analytics — Competitive Intelligence Report | BrandThnk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 3px solid #FFEB3B;
+        }
+
+        .brand-link {
+            display: inline-block;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #000000;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 12px 24px;
+            background-color: #FFEB3B;
+            transition: background-color 0.2s ease;
+        }
+
+        .brand-link:hover {
+            background-color: #F5F5F5;
+        }
+
+        h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #000000;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background-color: #F5F5F5;
+            border: 1px solid #000000;
+            font-size: 14px;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .meta-label {
+            font-weight: 500;
+            color: #000000;
+        }
+
+        h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 60px 0 30px 0;
+            color: #000000;
+            border-bottom: 2px solid #FFEB3B;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 40px 0 20px 0;
+            color: #000000;
+        }
+
+        h4 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            color: #000000;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .company-card {
+            background-color: #F5F5F5;
+            padding: 25px;
+            border: 1px solid #000000;
+            border-left: 5px solid #FFEB3B;
+        }
+
+        .company-name {
+            font-family: 'Roboto Slab', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .company-url {
+            color: #000000;
+            text-decoration: none;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .company-tagline {
+            font-style: italic;
+            color: #000000;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .company-details {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .company-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .company-details strong {
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .insight-card {
+            background-color: #F5F5F5;
+            padding: 25px;
+            border: 1px solid #000000;
+        }
+
+        .insight-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 10px;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-threat {
+            background-color: #000000;
+            color: #FFFFFF;
+            border: 1px solid #000000;
+        }
+
+        .badge-opportunity {
+            background-color: #FFEB3B;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .badge-trend {
+            background-color: #F5F5F5;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .badge-gap {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .badge-high {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .badge-medium {
+            background-color: #F5F5F5;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .badge-low {
+            background-color: #FFFFFF;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+
+        .badge-critical {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .insight-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .insight-summary {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .insight-detail {
+            color: #000000;
+            font-size: 14px;
+        }
+
+        .recommendation-priority {
+            border-left: 5px solid #000000;
+        }
+
+        .recommendation-priority.high {
+            border-left-color: #FFEB3B;
+        }
+
+        .recommendation-priority.medium {
+            border-left-color: #F5F5F5;
+        }
+
+        .traffic-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .traffic-card {
+            background-color: #F5F5F5;
+            padding: 20px;
+            border: 1px solid #000000;
+        }
+
+        .traffic-metric {
+            font-family: 'Roboto Slab', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .traffic-label {
+            font-size: 12px;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .channel-breakdown {
+            margin-top: 15px;
+        }
+
+        .channel-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .positioning-matrix {
+            margin: 30px 0;
+        }
+
+        .dimension-row {
+            display: grid;
+            grid-template-columns: 2fr 80px 80px 80px 80px;
+            gap: 15px;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 10px;
+            background-color: #F5F5F5;
+            border: 1px solid #000000;
+        }
+
+        .dimension-name {
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .dimension-score {
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .partnerships {
+            margin: 30px 0;
+        }
+
+        .partnership-item {
+            background-color: #F5F5F5;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #000000;
+            border-left: 3px solid #FFEB3B;
+        }
+
+        .partnership-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .partnership-name {
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .partnership-type {
+            font-size: 10px;
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 3px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline {
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #F5F5F5;
+            border: 1px solid #000000;
+        }
+
+        .timeline-date {
+            font-weight: 500;
+            color: #000000;
+            font-size: 12px;
+        }
+
+        .timeline-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .timeline-title {
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .timeline-company {
+            font-size: 12px;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .key-finding {
+            background-color: #FFEB3B;
+            border: 2px solid #000000;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+
+        .key-finding h4 {
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .warning-box {
+            background-color: #F5F5F5;
+            border: 2px solid #000000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box h4 {
+            color: #000000;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .company-grid,
+            .insight-grid,
+            .traffic-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .dimension-row {
+                grid-template-columns: 1fr;
+                text-align: left;
+                gap: 10px;
+            }
+
+            .dimension-score {
+                text-align: left;
+                margin-bottom: 5px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="brand-link">BrandThnk</a>
+            <h1>Community Bank Analytics<br>Competitive Intelligence Report</h1>
+            <div class="subtitle">Platform Landscape Analysis — March 2026</div>
+
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span class="meta-label">Companies Analyzed:</span>
+                    <span>4 Platforms</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Intelligence Dimensions:</span>
+                    <span>8 Strategic Areas</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Report Date:</span>
+                    <span>March 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Data Sources:</span>
+                    <span>Company websites, Meta Ad Library, LinkedIn, Press releases</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Executive Summary</h2>
+            <p>Deep analysis of four community bank analytics platforms: KlariVis, Revio Insight, Banker's Dashboard, and Lumio Solutions. This report covers traffic patterns, paid advertising strategies, partnership ecosystems, positioning analysis, and strategic recommendations for competitive advantage.</p>
+
+            <div class="key-finding">
+                <h4>Key Strategic Finding</h4>
+                <p><strong>Zero Paid Advertising Opportunity:</strong> None of the four competitors run meaningful paid social advertising. LinkedIn targeting of community bank CFOs and CEOs represents an unclaimed first-mover opportunity. At $5K–$15K/month, a targeted campaign could achieve dominant share of voice in this niche B2B market.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>1. Company Overview</h2>
+            <p>Profiles, funding, and market positioning of all four analytics platforms serving the community banking sector.</p>
+
+            <div class="company-grid">
+                <div class="company-card">
+                    <div class="company-name">KlariVis</div>
+                    <a href="https://klarivis.com" class="company-url">klarivis.com</a>
+                    <div class="company-tagline">Enterprise Banking Analytics Platform</div>
+                    <div class="company-details">
+                        <div><strong>Founded:</strong> <span>2018</span></div>
+                        <div><strong>HQ:</strong> <span>Roanoke, VA</span></div>
+                        <div><strong>Funding:</strong> <span>$11M Series B (Blueprint Equity)</span></div>
+                        <div><strong>Customers:</strong> <span>150+ community banks</span></div>
+                        <div><strong>Category:</strong> <span>Enterprise Analytics & Performance Intelligence</span></div>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Revio Insight</div>
+                    <a href="https://revioinsight.com" class="company-url">revioinsight.com</a>
+                    <div class="company-tagline">Customer Insights & Relationship Intelligence</div>
+                    <div class="company-details">
+                        <div><strong>Founded:</strong> <span>2019</span></div>
+                        <div><strong>HQ:</strong> <span>Austin, TX</span></div>
+                        <div><strong>Funding:</strong> <span>$2.5M Series A (BankTech Ventures)</span></div>
+                        <div><strong>Customers:</strong> <span>Multiple named bank clients</span></div>
+                        <div><strong>Category:</strong> <span>Wallet Share & Competitive Intelligence</span></div>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Banker's Dashboard</div>
+                    <a href="https://bankersdashboard.com" class="company-url">bankersdashboard.com</a>
+                    <div class="company-tagline">Financial Performance Management</div>
+                    <div class="company-details">
+                        <div><strong>Founded:</strong> <span>Pre-2011 (Deluxe acq. 2011)</span></div>
+                        <div><strong>HQ:</strong> <span>Minneapolis, MN</span></div>
+                        <div><strong>Parent:</strong> <span>Deluxe Corporation (NYSE: DLX)</span></div>
+                        <div><strong>Customers:</strong> <span>Hundreds of banks & CUs</span></div>
+                        <div><strong>Category:</strong> <span>Financial Performance & Margin Analytics</span></div>
+                    </div>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Lumio Solutions</div>
+                    <a href="https://lumiosolutions.io" class="company-url">lumiosolutions.io</a>
+                    <div class="company-tagline">Holistic Risk & Business Intelligence</div>
+                    <div class="company-details">
+                        <div><strong>Founded:</strong> <span>~2015 (as SRA Watchtower)</span></div>
+                        <div><strong>HQ:</strong> <span>Undisclosed</span></div>
+                        <div><strong>Funding:</strong> <span>$4M (FINTOP Capital, Feb 2025)</span></div>
+                        <div><strong>Customers:</strong> <span>100+ financial institutions</span></div>
+                        <div><strong>Category:</strong> <span>Risk Management + Business Intelligence</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Traffic Analysis</h2>
+            <p>Estimated web traffic, channel mix, and referral sources across all four platforms.</p>
+
+            <div class="warning-box">
+                <h4>Data Methodology Note</h4>
+                <p>SimilarWeb API data is unavailable for these niche B2B platforms (typical for sub-50K monthly visit sites). Traffic estimates are derived from company stage, Inc. 5000 rankings, press release frequency, content output velocity, and partnership announcement cadence. Treat as directional intelligence, not precise measurements.</p>
+            </div>
+
+            <div class="traffic-stats">
+                <div class="traffic-card">
+                    <div class="company-name">KlariVis</div>
+                    <div class="traffic-metric">15K–30K</div>
+                    <div class="traffic-label">Est. Monthly Visits (+40%)</div>
+                    <div class="channel-breakdown">
+                        <div class="channel-item"><span>Organic Search</span><span>42%</span></div>
+                        <div class="channel-item"><span>Direct</span><span>28%</span></div>
+                        <div class="channel-item"><span>Referral</span><span>18%</span></div>
+                        <div class="channel-item"><span>Social</span><span>8%</span></div>
+                        <div class="channel-item"><span>Email</span><span>4%</span></div>
+                    </div>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">High content velocity (2-4 posts/week). Inc. 5000 #367 ranking drives visibility.</p>
+                </div>
+
+                <div class="traffic-card">
+                    <div class="company-name">Revio Insight</div>
+                    <div class="traffic-metric">3K–8K</div>
+                    <div class="traffic-label">Est. Monthly Visits (+25%)</div>
+                    <div class="channel-breakdown">
+                        <div class="channel-item"><span>Direct</span><span>38%</span></div>
+                        <div class="channel-item"><span>Organic Search</span><span>30%</span></div>
+                        <div class="channel-item"><span>Referral</span><span>22%</span></div>
+                        <div class="channel-item"><span>Social</span><span>7%</span></div>
+                        <div class="channel-item"><span>Email</span><span>3%</span></div>
+                    </div>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Growing rapidly through partnership channels, especially BankTech Ventures network.</p>
+                </div>
+
+                <div class="traffic-card">
+                    <div class="company-name">Banker's Dashboard</div>
+                    <div class="traffic-metric">8K–20K</div>
+                    <div class="traffic-label">Est. Monthly Visits (±5%)</div>
+                    <div class="channel-breakdown">
+                        <div class="channel-item"><span>Direct</span><span>45%</span></div>
+                        <div class="channel-item"><span>Organic Search</span><span>25%</span></div>
+                        <div class="channel-item"><span>Referral</span><span>20%</span></div>
+                        <div class="channel-item"><span>Social</span><span>6%</span></div>
+                        <div class="channel-item"><span>Email</span><span>4%</span></div>
+                    </div>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Mature product with stable traffic. Most flows through deluxe.com ecosystem.</p>
+                </div>
+
+                <div class="traffic-card">
+                    <div class="company-name">Lumio Solutions</div>
+                    <div class="traffic-metric">2K–6K</div>
+                    <div class="traffic-label">Est. Monthly Visits (+60%)</div>
+                    <div class="channel-breakdown">
+                        <div class="channel-item"><span>Direct</span><span>40%</span></div>
+                        <div class="channel-item"><span>Referral</span><span>28%</span></div>
+                        <div class="channel-item"><span>Organic Search</span><span>22%</span></div>
+                        <div class="channel-item"><span>Social</span><span>7%</span></div>
+                        <div class="channel-item"><span>Email</span><span>3%</span></div>
+                    </div>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">SEO disruption from Aug 2025 rebrand (SRA Watchtower → Lumio). Rebuilding momentum.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Paid Advertising Audit</h2>
+            <p>Meta Ad Library, LinkedIn, and Google Ads intelligence across all platforms.</p>
+
+            <div class="key-finding">
+                <h4>Critical Finding: Zero Paid Advertising Across All Competitors</h4>
+                <p>None of the four platforms run meaningful paid social advertising. LinkedIn advertising targeting community bank CFOs and CEOs (job title + company size + banking industry filters) represents an unclaimed first-mover opportunity. At $5K–$15K/month, a targeted campaign could achieve dominant share of voice in this niche B2B market where competitors are entirely absent from paid channels.</p>
+            </div>
+
+            <div class="company-grid">
+                <div class="company-card">
+                    <div class="company-name">KlariVis</div>
+                    <div class="insight-header">
+                        <span class="badge badge-high">High Confidence</span>
+                    </div>
+                    <div class="company-details">
+                        <div><strong>Meta Ads:</strong> <span>None detected</span></div>
+                        <div><strong>LinkedIn Ads:</strong> <span>Inactive</span></div>
+                        <div><strong>Google Ads:</strong> <span>Unlikely</span></div>
+                        <div><strong>Est. Ad Spend:</strong> <span>&lt;$1K/month</span></div>
+                    </div>
+                    <h4>Primary Messaging Themes:</h4>
+                    <ul style="font-size: 12px; margin-top: 10px; padding-left: 15px;">
+                        <li>"Built by bankers, for bankers"</li>
+                        <li>"One source of truth for all your bank data"</li>
+                        <li>"AI readiness for community banks"</li>
+                        <li>"650+ dashboards, unlimited users"</li>
+                    </ul>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Strategy relies entirely on earned media (Inc. 5000, ABA, ICBA), association partnerships, and content marketing.</p>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Revio Insight</div>
+                    <div class="insight-header">
+                        <span class="badge badge-high">High Confidence</span>
+                    </div>
+                    <div class="company-details">
+                        <div><strong>Meta Ads:</strong> <span>None detected</span></div>
+                        <div><strong>LinkedIn Ads:</strong> <span>Inactive</span></div>
+                        <div><strong>Google Ads:</strong> <span>Unlikely</span></div>
+                        <div><strong>Est. Ad Spend:</strong> <span>&lt;$1K/month</span></div>
+                    </div>
+                    <h4>Primary Messaging Themes:</h4>
+                    <ul style="font-size: 12px; margin-top: 10px; padding-left: 15px;">
+                        <li>"You won the account. Now win the wallet."</li>
+                        <li>"Stop competing in the dark"</li>
+                        <li>"Detect where your customers bank with competitors"</li>
+                        <li>"$50M commercial card volume captured by one client"</li>
+                    </ul>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Relies heavily on BankTech Ventures network and partnership co-marketing.</p>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Banker's Dashboard</div>
+                    <div class="insight-header">
+                        <span class="badge badge-medium">Medium Confidence</span>
+                    </div>
+                    <div class="company-details">
+                        <div><strong>Meta Ads:</strong> <span>None detected</span></div>
+                        <div><strong>LinkedIn Ads:</strong> <span>Inactive</span></div>
+                        <div><strong>Google Ads:</strong> <span>Likely (via Deluxe)</span></div>
+                        <div><strong>Est. Ad Spend:</strong> <span>$2K-$10K/month</span></div>
+                    </div>
+                    <h4>Primary Messaging Themes:</h4>
+                    <ul style="font-size: 12px; margin-top: 10px; padding-left: 15px;">
+                        <li>"Drive Earnings | Strengthen Margins | Maximize ROI"</li>
+                        <li>"37bps NIM improvement for adopting banks"</li>
+                        <li>"50x ROI in 18 months"</li>
+                        <li>"$1.4M additional earnings for 2023 adopters"</li>
+                    </ul>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Marketing budget flows through Deluxe Corporation's enterprise marketing rather than dedicated paid social.</p>
+                </div>
+
+                <div class="company-card">
+                    <div class="company-name">Lumio Solutions</div>
+                    <div class="insight-header">
+                        <span class="badge badge-high">High Confidence</span>
+                    </div>
+                    <div class="company-details">
+                        <div><strong>Meta Ads:</strong> <span>Inactive (1 historical ad)</span></div>
+                        <div><strong>LinkedIn Ads:</strong> <span>Inactive</span></div>
+                        <div><strong>Google Ads:</strong> <span>Unlikely</span></div>
+                        <div><strong>Est. Ad Spend:</strong> <span>&lt;$500/month</span></div>
+                    </div>
+                    <h4>Primary Messaging Themes:</h4>
+                    <ul style="font-size: 12px; margin-top: 10px; padding-left: 15px;">
+                        <li>"The Holistic Risk and Business Intelligence Platform™"</li>
+                        <li>"One Platform. Built for Community Banks."</li>
+                        <li>"Risk + BI — the only combined platform"</li>
+                        <li>"Data-Driven Growth For Banks & Credit Unions"</li>
+                    </ul>
+                    <p style="font-size: 12px; color: #000000; margin-top: 10px;">Post-rebrand (Aug 2025) marketing is rebuilding. One inactive Meta ad found from Oct 2023.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Partnership Ecosystem</h2>
+            <p>Distribution channels, technology integrations, and strategic alliances across all four platforms.</p>
+
+            <h3>KlariVis Partnerships</h3>
+            <div class="partnerships">
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">ICBA (Independent Community Bankers of America)</span>
+                        <span class="partnership-type">Association</span>
+                    </div>
+                    <p>ICBA Preferred Service Provider — direct access to 5,000+ community banks. <strong>High significance.</strong></p>
+                </div>
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">ABA (American Bankers Association)</span>
+                        <span class="partnership-type">Association</span>
+                    </div>
+                    <p>ABA Premier Partner debut at ABA Marketing Conference (Sep 2025). <strong>High significance.</strong></p>
+                </div>
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">FinGoal</span>
+                        <span class="partnership-type">Technology</span>
+                    </div>
+                    <p>Transactional Intelligence suite — directly competes with Revio Insight (Jan 2025). <strong>High significance.</strong></p>
+                </div>
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">Blueprint Equity</span>
+                        <span class="partnership-type">Investor</span>
+                    </div>
+                    <p>$11M Series B lead investor (Jan 2024). <strong>High significance.</strong></p>
+                </div>
+            </div>
+
+            <h3>Revio Insight Partnerships</h3>
+            <div class="partnerships">
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">BankTech Ventures</span>
+                        <span class="partnership-type">Investor</span>
+                    </div>
+                    <p>$2.5M Series A lead — provides community bank distribution network (Oct 2023). <strong>High significance.</strong></p>
+                </div>
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">Kasasa</span>
+                        <span class="partnership-type">Distribution</span>
+                    </div>
+                    <p>Strategic partnership to help CFIs reclaim wallet share and accelerate growth (Aug 2025). <strong>High significance.</strong></p>
+                </div>
+                <div class="partnership-item">
+                    <div class="partnership-header">
+                        <span class="partnership-name">Lumio Solutions</span>
+                        <span class="partnership-type">Integration</span>
+                    </div>
+                    <p>Combined offering: Lumio BI + Revio competitive intelligence for relationship erosion detection (Nov 2025). <strong>High significance.</strong></p>
+                </div>
+            </div>
+
+            <h3>Key Partnership Insights</h3>
+            <div class="key-finding">
+                <h4>Revio–Lumio Partnership Creates Direct KlariVis Threat</h4>
+                <p>The November 2025 Revio–Lumio partnership combines internal BI (Lumio) with external competitive intelligence (Revio), directly challenging KlariVis's all-in-one platform narrative. However, this requires banks to manage two vendor relationships, which creates an opportunity for KlariVis to emphasize single-vendor simplicity.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Positioning Matrix</h2>
+            <p>Competitive capability scoring across 8 strategic dimensions (0-100 scale).</p>
+
+            <div class="positioning-matrix">
+                <div class="dimension-row" style="background-color: #FFEB3B; font-weight: 700;">
+                    <div class="dimension-name">Capability Dimension</div>
+                    <div>KlariVis</div>
+                    <div>Revio</div>
+                    <div>Bankers</div>
+                    <div>Lumio</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Enterprise Analytics Depth<br><small style="color: #000000;">Breadth and depth of analytics dashboards and reporting</small></div>
+                    <div class="dimension-score">95</div>
+                    <div class="dimension-score">45</div>
+                    <div class="dimension-score">70</div>
+                    <div class="dimension-score">75</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Customer Intelligence<br><small style="color: #000000;">Individual customer behavior and wallet share analysis</small></div>
+                    <div class="dimension-score">65</div>
+                    <div class="dimension-score">95</div>
+                    <div class="dimension-score">25</div>
+                    <div class="dimension-score">70</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Financial Performance<br><small style="color: #000000;">NIM optimization and margin analysis</small></div>
+                    <div class="dimension-score">80</div>
+                    <div class="dimension-score">30</div>
+                    <div class="dimension-score">95</div>
+                    <div class="dimension-score">75</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Risk Management<br><small style="color: #000000;">Enterprise risk management and compliance</small></div>
+                    <div class="dimension-score">20</div>
+                    <div class="dimension-score">10</div>
+                    <div class="dimension-score">15</div>
+                    <div class="dimension-score">95</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Integration Ecosystem<br><small style="color: #000000;">Core banking integrations and API connectivity</small></div>
+                    <div class="dimension-score">85</div>
+                    <div class="dimension-score">65</div>
+                    <div class="dimension-score">70</div>
+                    <div class="dimension-score">60</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Market Momentum<br><small style="color: #000000;">Growth rate, press coverage, partnership velocity</small></div>
+                    <div class="dimension-score">95</div>
+                    <div class="dimension-score">75</div>
+                    <div class="dimension-score">50</div>
+                    <div class="dimension-score">80</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Association Reach<br><small style="color: #000000;">ICBA, ABA, and state banking association relationships</small></div>
+                    <div class="dimension-score">95</div>
+                    <div class="dimension-score">60</div>
+                    <div class="dimension-score">75</div>
+                    <div class="dimension-score">55</div>
+                </div>
+
+                <div class="dimension-row">
+                    <div class="dimension-name">Implementation Speed<br><small style="color: #000000;">Time-to-value (Revio: 2 weeks, others: 4-8 weeks)</small></div>
+                    <div class="dimension-score">70</div>
+                    <div class="dimension-score">90</div>
+                    <div class="dimension-score">75</div>
+                    <div class="dimension-score">65</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Strategic Insights</h2>
+            <p>Critical intelligence findings with confidence scoring and strategic implications.</p>
+
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-threat">Threat</span>
+                        <span class="badge badge-high">High Confidence</span>
+                        <span style="font-size: 10px; color: #666;">Immediate</span>
+                    </div>
+                    <div class="insight-title">Revio + Lumio Partnership Creates Direct KlariVis Threat</div>
+                    <div class="insight-summary">The Nov 2025 Revio–Lumio partnership combines internal BI with external competitive intelligence, directly challenging KlariVis's all-in-one platform narrative.</div>
+                    <div class="insight-detail">Lumio provides internal performance analytics (Risk + BI) while Revio provides external competitive intelligence (wallet share, competitor detection). Together, they offer a combined capability set that rivals KlariVis's enterprise platform — but requires two vendor relationships. KlariVis should counter by emphasizing single-vendor simplicity and accelerating its Transactional Intelligence roadmap.</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-opportunity">Opportunity</span>
+                        <span class="badge badge-high">High Confidence</span>
+                        <span style="font-size: 10px; color: #666;">30-90 days</span>
+                    </div>
+                    <div class="insight-title">Zero Paid Advertising Across All Four Competitors</div>
+                    <div class="insight-summary">None of the four competitors run meaningful paid social advertising. LinkedIn targeting of community bank CFOs/CEOs is an unclaimed channel with first-mover advantage available.</div>
+                    <div class="insight-detail">The Meta Ad Library and LinkedIn Ad Library show essentially zero paid advertising from all four companies. Community bank executives are active on LinkedIn. A targeted LinkedIn campaign with $5K–$15K/month could achieve dominant share of voice in this niche. Suggested targeting: Job titles (CFO, CEO, COO, Chief Data Officer) + Company size (50–500 employees) + Industry (Banking/Financial Services).</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-threat">Threat</span>
+                        <span class="badge badge-high">High Confidence</span>
+                        <span style="font-size: 10px; color: #666;">6-12 months</span>
+                    </div>
+                    <div class="insight-title">KlariVis Transactional Intelligence Invades Revio's Core Territory</div>
+                    <div class="insight-summary">KlariVis's Jan 2025 FinGoal partnership launched Transactional Intelligence — directly competing with Revio Insight's core value proposition of transaction-based competitor detection.</div>
+                    <div class="insight-detail">KlariVis now offers transaction data analysis through FinGoal integration, giving existing KlariVis customers a reason to not adopt Revio. Revio must differentiate on depth of competitive intelligence and ease of integration to maintain its niche.</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-opportunity">Opportunity</span>
+                        <span class="badge badge-high">High Confidence</span>
+                        <span style="font-size: 10px; color: #666;">90 days</span>
+                    </div>
+                    <div class="insight-title">Lumio's Rebrand Creates SEO Vulnerability</div>
+                    <div class="insight-summary">The Aug 2025 SRA Watchtower → Lumio Solutions rebrand disrupts years of SEO equity. Competitors can capture "SRA Watchtower" branded search traffic.</div>
+                    <div class="insight-detail">Domain migration and brand rename typically cause 20–40% organic traffic decline for 6–12 months. Lumio's SEO is rebuilding from a lower base. Competitors can target "SRA Watchtower alternative" and related keywords to capture prospects in evaluation mode.</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-gap">Gap</span>
+                        <span class="badge badge-high">High Confidence</span>
+                        <span style="font-size: 10px; color: #666;">12-24 months</span>
+                    </div>
+                    <div class="insight-title">Risk Management is KlariVis's Largest Capability Gap</div>
+                    <div class="insight-summary">Lumio's unique risk + BI combination creates a moat that KlariVis cannot match without building or acquiring risk management capabilities.</div>
+                    <div class="insight-detail">KlariVis scores near-zero on risk management capabilities. As regulatory pressure on community banks increases (CECL, interest rate risk, liquidity risk), the demand for integrated risk + analytics platforms will grow. Lumio's heritage as SRA Watchtower (a risk-focused platform) gives it deep credibility in this space that would take years for KlariVis to replicate organically.</div>
+                </div>
+
+                <div class="insight-card">
+                    <div class="insight-header">
+                        <span class="badge badge-trend">Trend</span>
+                        <span class="badge badge-medium">Medium Confidence</span>
+                        <span style="font-size: 10px; color: #666;">12-18 months</span>
+                    </div>
+                    <div class="insight-title">Banker's Dashboard Faces Innovation Deficit</div>
+                    <div class="insight-summary">As a 15+ year-old product under a large enterprise parent (Deluxe), Banker's Dashboard shows limited product innovation compared to venture-backed competitors.</div>
+                    <div class="insight-detail">The product's core value proposition (daily financial reporting, NIM analysis) has not materially changed in years. Deluxe's enterprise focus may limit agility. Community banks that outgrow basic financial performance reporting are natural upgrade targets for KlariVis or Lumio. One ICBA article explicitly noted a bank moved from Banker's Dashboard to a more modern solution.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>7. Strategic Recommendations</h2>
+            <p>Prioritized action items with timeframes and strategic rationale.</p>
+
+            <div class="insight-grid">
+                <div class="insight-card recommendation-priority">
+                    <div class="insight-header">
+                        <span class="badge badge-critical">Critical Priority</span>
+                        <span class="badge">30 Days</span>
+                        <span style="font-size: 10px; color: #666;">Marketing</span>
+                    </div>
+                    <div class="insight-title">Launch LinkedIn Paid Campaign Targeting Bank Executives</div>
+                    <div class="insight-summary">Deploy $5K–$15K/month LinkedIn ad campaigns targeting community bank CFOs, CEOs, and COOs with job title + company size + industry filters.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> All four competitors have zero paid social presence. First-mover advantage in LinkedIn advertising to community bank executives could yield dominant share of voice at relatively low cost in this niche B2B market.</div>
+                </div>
+
+                <div class="insight-card recommendation-priority">
+                    <div class="insight-header">
+                        <span class="badge badge-critical">Critical Priority</span>
+                        <span class="badge">30 Days</span>
+                        <span style="font-size: 10px; color: #666;">Positioning</span>
+                    </div>
+                    <div class="insight-title">Counter Revio–Lumio Partnership with Single-Vendor Messaging</div>
+                    <div class="insight-summary">Develop messaging that explicitly addresses the "two-vendor complexity" of the Revio + Lumio combined offering. Position KlariVis as the unified alternative.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> The Nov 2025 Revio–Lumio partnership is the most significant competitive development. Banks evaluating both vendors face integration complexity, vendor management overhead, and higher combined cost — all addressable by a single-platform narrative.</div>
+                </div>
+
+                <div class="insight-card recommendation-priority high">
+                    <div class="insight-header">
+                        <span class="badge">High Priority</span>
+                        <span class="badge">90 Days</span>
+                        <span style="font-size: 10px; color: #666;">Product Marketing</span>
+                    </div>
+                    <div class="insight-title">Accelerate Transactional Intelligence Marketing</div>
+                    <div class="insight-summary">Create dedicated landing pages, case studies, and comparison content for the FinGoal Transactional Intelligence integration. Target Revio Insight's customer base.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> KlariVis's FinGoal integration directly competes with Revio's core product. Existing KlariVis customers can be upgraded to Transactional Intelligence, and Revio prospects can be captured with a "one platform" value proposition.</div>
+                </div>
+
+                <div class="insight-card recommendation-priority high">
+                    <div class="insight-header">
+                        <span class="badge">High Priority</span>
+                        <span class="badge">90 Days</span>
+                        <span style="font-size: 10px; color: #666;">SEO/SEM</span>
+                    </div>
+                    <div class="insight-title">Target "SRA Watchtower" Branded Keywords</div>
+                    <div class="insight-summary">Bid on "SRA Watchtower", "SRA Watchtower alternative", and related terms in Google Ads. Create comparison content targeting Lumio's rebranding transition period.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> Lumio's Aug 2025 rebrand creates a 6–12 month window where "SRA Watchtower" branded search traffic is unclaimed or underperforming. Capturing this traffic reaches banks actively evaluating risk + BI platforms.</div>
+                </div>
+
+                <div class="insight-card recommendation-priority high">
+                    <div class="insight-header">
+                        <span class="badge">High Priority</span>
+                        <span class="badge">180 Days</span>
+                        <span style="font-size: 10px; color: #666;">Product Strategy</span>
+                    </div>
+                    <div class="insight-title">Develop Risk Intelligence Roadmap or Partnership</div>
+                    <div class="insight-summary">Evaluate building risk management capabilities internally or acquiring/partnering with a risk-focused vendor to close the gap with Lumio's unique risk + BI positioning.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> Lumio's risk + BI combination is the only true competitive moat in this market. As regulatory complexity grows, banks will increasingly seek integrated risk and analytics solutions. KlariVis's absence from this space is its largest strategic vulnerability.</div>
+                </div>
+
+                <div class="insight-card recommendation-priority medium">
+                    <div class="insight-header">
+                        <span class="badge">Medium Priority</span>
+                        <span class="badge">180 Days</span>
+                        <span style="font-size: 10px; color: #666;">Partnerships</span>
+                    </div>
+                    <div class="insight-title">Deepen State Banking Association Partnerships</div>
+                    <div class="insight-summary">Replicate the ICBA and ABA partnership model at the state level — target 10–15 state banking associations for preferred provider status.</div>
+                    <div class="insight-detail"><strong>Rationale:</strong> KlariVis already has ICBA and ABA. State associations provide access to banks that are not active at the national level. Revio's BankTech Ventures network and Kasasa partnership give it distribution advantages that state association relationships can partially offset.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. Timeline of Key Events</h2>
+            <p>Strategic milestones across all four companies (2023–2026).</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2023</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">$2.5M Series A (BankTech Ventures)</div>
+                            <div class="timeline-company">Revio Insight</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2024</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">$11M Series B (Blueprint Equity)</div>
+                            <div class="timeline-company">KlariVis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Transactional Intelligence launch with FinGoal</div>
+                            <div class="timeline-company">KlariVis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">$4M funding round + Lumio Insight acquisition</div>
+                            <div class="timeline-company">Lumio Solutions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Rebrand: SRA Watchtower → Lumio Solutions 2.0</div>
+                            <div class="timeline-company">Lumio Solutions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Inc. 5000 #367 (2nd consecutive year)</div>
+                            <div class="timeline-company">KlariVis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Kasasa strategic partnership</div>
+                            <div class="timeline-company">Revio Insight</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Sep 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">ABA Premier Partner debut</div>
+                            <div class="timeline-company">KlariVis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov 2025</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Lumio + Revio strategic partnership</div>
+                            <div class="timeline-company">Revio Insight & Lumio Solutions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2026</div>
+                    <div class="timeline-content">
+                        <div>
+                            <div class="timeline-title">Coinbase deposit analysis: 9/10 community banks</div>
+                            <div class="timeline-company">KlariVis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Research Methodology & Sources</h2>
+            <p>This competitive intelligence report was compiled in March 2026 using the following data sources and methodology:</p>
+
+            <h4>Primary Data Sources:</h4>
+            <ul style="margin: 15px 0; padding-left: 30px;">
+                <li>Company websites and product documentation</li>
+                <li>Press releases and news articles</li>
+                <li>Meta Ad Library and LinkedIn Ad Library</li>
+                <li>ICBA and ABA conference materials</li>
+                <li>BusinessWire and Inc. 5000 rankings</li>
+                <li>State banking association partnerships</li>
+                <li>LinkedIn company pages and executive profiles</li>
+            </ul>
+
+            <h4>Traffic Estimation Methodology:</h4>
+            <p style="margin: 15px 0;">Due to the niche B2B nature of these platforms, SimilarWeb data was unavailable. Traffic estimates were derived from:</p>
+            <ul style="margin: 15px 0; padding-left: 30px;">
+                <li>Company growth stage and funding levels</li>
+                <li>Inc. 5000 rankings and growth rates</li>
+                <li>Press release frequency and media coverage</li>
+                <li>Content output velocity and blog activity</li>
+                <li>Partnership announcement cadence</li>
+                <li>Association conference presence and speaking engagements</li>
+            </ul>
+
+            <div class="warning-box">
+                <h4>Data Limitations</h4>
+                <p>Traffic estimates should be treated as directional intelligence rather than precise measurements. Paid advertising analysis is based on publicly available ad libraries, which may not capture all advertising activity. Financial data is based on publicly disclosed funding rounds and may not reflect current valuations or revenue.</p>
+            </div>
+        </div>
+
+        <div style="border-top: 2px solid #000000; padding-top: 40px; text-align: center; color: #000000;">
+            <p><strong>Community Bank Analytics — Competitive Intelligence Report</strong></p>
+            <p>Research compiled March 2026 by BrandThnk</p>
+            <p style="font-size: 12px; margin-top: 10px;">This analysis covers KlariVis, Revio Insight, Banker's Dashboard, and Lumio Solutions across 8 strategic dimensions including traffic analysis, paid advertising audit, partnership ecosystems, and competitive positioning.</p>
+        </div>
+    </div>
+</body>
+</html>

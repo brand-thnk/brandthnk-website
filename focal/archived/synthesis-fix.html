@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthesis Fix - BrandThnk Insights</title>
+<style>
+  body {
+    font-family: 'Roboto Mono', monospace;
+    margin: 40px;
+    line-height: 1.6;
+    background: #F5F5F5;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+  }
+  .test-section {
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  button {
+    padding: 12px 24px;
+    background: #FFEB3B;
+    color: #000;
+    border: 2px solid #000;
+    cursor: pointer;
+    margin: 10px 5px;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  button:hover { background: #000; color: #FFEB3B; }
+  .debug-output {
+    background: #000;
+    color: #FFEB3B;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .progress-area {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .progress-step {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .progress-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  .progress-step.active .progress-circle {
+    background: #FFEB3B;
+    color: #000;
+  }
+  .progress-step.completed .progress-circle {
+    background: #4CAF50;
+    color: white;
+  }
+  .quote-display {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    min-height: 80px;
+  }
+  .form-section {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .form-row {
+    margin: 15px 0;
+  }
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .form-input, .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🔧 Synthesis Fix Test - BrandThnk Insights</h1>
+
+  <!-- Mock Business Parameters -->
+  <div class="test-section">
+    <h3>1. Business Parameters (Mock)</h3>
+    <div class="form-section">
+      <div class="form-row">
+        <label class="form-label">Organization Type</label>
+        <select id="organization-type" class="form-select">
+          <option value="fintech">Fintech Company</option>
+          <option value="regional-bank">Regional Bank</option>
+          <option value="community-bank">Community Bank</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Target Audience</label>
+        <select id="target-audience" class="form-select">
+          <option value="bank-executives">Financial Institution Executives</option>
+          <option value="business-customers">Business Banking Customers</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Market Type</label>
+        <select id="market-type" class="form-select">
+          <option value="urban">Urban Markets</option>
+          <option value="suburban">Suburban Markets</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Test Controls -->
+  <div class="test-section">
+    <h3>2. Test Controls</h3>
+    <button onclick="runAutomatedSelection()">Test Persona Selection</button>
+    <button onclick="runProgressSimulation()">Test Progress Simulation</button>
+    <button onclick="runCompleteFlow()">Run Complete Test Flow</button>
+    <button onclick="clearOutput()">Clear Output</button>
+  </div>
+
+  <!-- Debug Output -->
+  <div class="test-section">
+    <h3>3. Debug Output</h3>
+    <div id="debug-output" class="debug-output">Ready for testing...\n</div>
+  </div>
+
+  <!-- Progress Visualization -->
+  <div class="test-section">
+    <h3>4. Progress Visualization</h3>
+    <div class="progress-area">
+      <div id="progress-steps"></div>
+      <div id="quote-display" class="quote-display">Quotes will appear here...</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Comprehensive fix for synthesis step issue
+
+// Mock personas for testing (minimal version of the 22-persona library)
+window.PERSONAS = {
+  consumer: [
+    { id: 'c1-mobile-first-momentum-builder', name: 'Mobile-First Momentum Builder', processingQuote: 'I need tools that work as well as my other apps - fast and transparent.' },
+    { id: 'c2-guided-opportunity-seeker', name: 'Guided Opportunity Seeker', processingQuote: 'I need to understand exactly how this works and what happens if I make a mistake.' }
+  ],
+  business: [
+    { id: 's1-time-starved-solo-owner', name: 'Time-Starved Solo Owner', processingQuote: 'I need banking that takes five minutes to set up and runs itself.' },
+    { id: 's2-growth-oriented-founder', name: 'Growth-Oriented Founder', processingQuote: 'I need banking that grows with me and never becomes the bottleneck.' }
+  ],
+  fintech: [
+    { id: 'b1-bank-head-digital-transformation', name: 'Bank Head of Digital Transformation', processingQuote: 'We need solutions that transform our capabilities without disrupting operations.' },
+    { id: 'b2-enterprise-cio-cto', name: 'Enterprise CIO/CTO', processingQuote: 'Any technology must meet our security and architectural standards before consideration.' }
+  ]
+};
+
+// Enhanced logging system
+const debugOutput = document.getElementById('debug-output');
+const originalLog = console.log;
+const originalError = console.error;
+
+function logToDebug(level, ...args) {
+  const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+  const message = `[${timestamp}] ${level.toUpperCase()}: ${args.map(arg =>
+    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+  ).join(' ')}`;
+
+  debugOutput.textContent += message + '\n';
+  debugOutput.scrollTop = debugOutput.scrollHeight;
+}
+
+console.log = (...args) => {
+  originalLog(...args);
+  logToDebug('log', ...args);
+};
+
+console.error = (...args) => {
+  originalError(...args);
+  logToDebug('error', ...args);
+};
+
+function clearOutput() {
+  debugOutput.textContent = 'Output cleared...\n';
+}
+
+// Enhanced AutomatedPersonaSelector
+class AutomatedPersonaSelector {
+  constructor() {
+    this.weights = {
+      organizationType: 0.4,
+      targetAudience: 0.3,
+      marketType: 0.2,
+      contentAnalysis: 0.1
+    };
+  }
+
+  selectPersonas(businessParams) {
+    console.log('AutomatedPersonaSelector.selectPersonas called with:', businessParams);
+
+    const primarySegment = this.determinePrimarySegment(businessParams);
+    console.log('Primary segment determined:', primarySegment);
+
+    const allPersonas = this.getAllPersonas();
+    const segmentPersonas = allPersonas[primarySegment] || allPersonas.fintech;
+
+    console.log(`Found ${segmentPersonas.length} personas in ${primarySegment} segment`);
+
+    // Return top 3 personas with mock scoring
+    const results = segmentPersonas.slice(0, 3).map((persona, index) => ({
+      persona: persona,
+      score: 0.9 - (index * 0.1),
+      reasoning: `Selected for ${primarySegment} segment alignment`,
+      confidence: index === 0 ? 'high' : index === 1 ? 'medium' : 'low'
+    }));
+
+    console.log('Selection results:', results);
+    return results;
+  }
+
+  determinePrimarySegment(businessParams) {
+    if (businessParams.organizationType === 'fintech' || businessParams.targetAudience === 'fintech-buyers') {
+      return 'fintech';
+    }
+    if (businessParams.targetAudience === 'business-customers') {
+      return 'business';
+    }
+    return 'consumer';
+  }
+
+  getAllPersonas() {
+    return window.PERSONAS;
+  }
+}
+
+// Global variables for testing
+let selectedPersonas = [];
+let automatedSelectionResults = [];
+let businessParameters = {};
+
+// Test functions
+function runAutomatedSelection() {
+  console.log('=== TESTING AUTOMATED SELECTION ===');
+
+  // Get form values
+  businessParameters = {
+    organizationType: document.getElementById('organization-type').value,
+    targetAudience: document.getElementById('target-audience').value,
+    marketType: document.getElementById('market-type').value,
+    researchContent: 'Test API platform for digital transformation'
+  };
+
+  console.log('Business parameters:', businessParameters);
+
+  // Run selection
+  const personaSelector = new AutomatedPersonaSelector();
+  automatedSelectionResults = personaSelector.selectPersonas(businessParameters);
+
+  selectedPersonas = automatedSelectionResults.map(result => result.persona.id);
+
+  console.log('Selected personas:', selectedPersonas);
+  console.log('Selection complete!');
+}
+
+function runProgressSimulation() {
+  console.log('=== TESTING PROGRESS SIMULATION ===');
+
+  if (selectedPersonas.length === 0) {
+    console.log('No personas selected, running selection first...');
+    runAutomatedSelection();
+  }
+
+  // Test the fixed progress simulation
+  simulateProgressFixed();
+}
+
+function runCompleteFlow() {
+  console.log('=== RUNNING COMPLETE TEST FLOW ===');
+  clearOutput();
+  runAutomatedSelection();
+  setTimeout(() => {
+    runProgressSimulation();
+  }, 1000);
+}
+
+// FIXED Progress Simulation Function
+function simulateProgressFixed() {
+  const progressSteps = document.getElementById('progress-steps');
+  const quoteDisplay = document.getElementById('quote-display');
+
+  console.log('Starting FIXED progress simulation with personas:', selectedPersonas);
+
+  // Get authentic quotes from selected personas
+  function getPersonaQuotes() {
+    return selectedPersonas.map(personaId => {
+      const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+      const persona = allPersonas.find(p => p.id === personaId);
+
+      if (persona && persona.processingQuote) {
+        return {
+          text: persona.processingQuote,
+          author: persona.name,
+          context: `Research Participant`
+        };
+      }
+
+      return {
+        text: "Let me analyze this from my perspective...",
+        author: persona ? persona.name : "Unknown Persona",
+        context: ""
+      };
+    });
+  }
+
+  // Create progress steps based on selected personas
+  const steps = selectedPersonas.map((personaId, index) => {
+    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+    const persona = allPersonas.find(p => p.id === personaId);
+    const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+    return `
+      <div class="progress-step" id="step-container-${index}">
+        <div class="progress-circle" id="step-${index}">${index + 1}</div>
+        <div class="progress-label">${displayName}</div>
+      </div>
+    `;
+  });
+
+  // Add synthesis step
+  steps.push(`
+    <div class="progress-step" id="step-container-synthesis">
+      <div class="progress-circle" id="step-synthesis">S</div>
+      <div class="progress-label">Cross-Persona Synthesis</div>
+    </div>
+  `);
+
+  progressSteps.innerHTML = steps.join('');
+
+  // Get authentic quotes from selected personas
+  const personaQuotes = getPersonaQuotes();
+
+  // Progress simulation with FIXED logic
+  let currentStep = 0;
+  const totalSteps = selectedPersonas.length + 1; // personas + synthesis
+
+  console.log(`Starting progress: ${selectedPersonas.length} personas + 1 synthesis = ${totalSteps} total steps`);
+
+  function processStepFixed() {
+    console.log(`=== PROCESSING STEP ${currentStep} of ${totalSteps} ===`);
+    console.log('Step details:', {
+      currentStep,
+      totalSteps,
+      selectedPersonasCount: selectedPersonas.length,
+      isSynthesisStep: currentStep === selectedPersonas.length,
+      isComplete: currentStep >= totalSteps
+    });
+
+    // CRITICAL FIX: Determine if this is the synthesis step
+    const isSynthesisStep = currentStep === selectedPersonas.length;
+    const stepElementId = isSynthesisStep ? 'step-synthesis' : `step-${currentStep}`;
+    const stepElement = document.getElementById(stepElementId);
+
+    console.log(`Looking for element: ${stepElementId}, found: ${!!stepElement}`);
+
+    if (stepElement) {
+      stepElement.classList.add('active');
+      console.log(`Marked step ${stepElementId} as active`);
+
+      // Update quote based on step type
+      if (isSynthesisStep) {
+        console.log('*** SYNTHESIS STEP - Displaying synthesis message ***');
+        quoteDisplay.innerHTML = `
+          <div style="font-style: italic; color: #666;">"Analyzing patterns across all personas..."</div>
+          <div style="margin-top: 10px; font-weight: bold;">Cross-persona synthesis in progress</div>
+        `;
+      } else if (personaQuotes[currentStep]) {
+        console.log(`Displaying quote for persona ${currentStep}: ${personaQuotes[currentStep].author}`);
+        const quote = personaQuotes[currentStep];
+        quoteDisplay.innerHTML = `
+          <div style="font-style: italic; color: #333;">"${quote.text}"</div>
+          <div style="margin-top: 10px; font-weight: bold;">— ${quote.author}</div>
+        `;
+      }
+    } else {
+      console.error(`CRITICAL ERROR: Step element not found for step ${currentStep}`, {
+        isSynthesisStep,
+        expectedId: stepElementId,
+        availableElements: Array.from(document.querySelectorAll('[id^="step-"]')).map(el => el.id)
+      });
+    }
+
+    // CRITICAL FIX: Use setTimeout to ensure completion logic runs
+    setTimeout(() => {
+      console.log(`=== COMPLETING STEP ${currentStep} ===`);
+
+      if (stepElement) {
+        stepElement.classList.remove('active');
+        stepElement.classList.add('completed');
+        console.log(`Marked step ${stepElementId} as completed`);
+      }
+
+      // ADVANCE TO NEXT STEP
+      currentStep++;
+      console.log(`Advanced currentStep to ${currentStep}, totalSteps: ${totalSteps}`);
+
+      // CRITICAL FIX: Check completion condition
+      if (currentStep >= totalSteps) {
+        console.log('*** RESEARCH COMPLETE - GENERATING REPORT ***');
+        quoteDisplay.innerHTML = `
+          <div style="color: #4CAF50; font-weight: bold;">✅ Research Complete!</div>
+          <div>Report generation would start now...</div>
+        `;
+        console.log('=== TEST COMPLETED SUCCESSFULLY ===');
+      } else {
+        console.log(`Continuing to next step: ${currentStep}`);
+        setTimeout(() => processStepFixed(), 500);
+      }
+    }, 2000); // 2 second delay per step
+  }
+
+  // Start the process
+  processStepFixed();
+}
+
+// Initialize
+window.onload = function() {
+  console.log('Synthesis fix test page loaded');
+  console.log('Available test functions: runAutomatedSelection(), runProgressSimulation(), runCompleteFlow()');
+}
+
+</script>
+
+</body>
+</html>

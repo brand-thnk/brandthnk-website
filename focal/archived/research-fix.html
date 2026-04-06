@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fixed Research System</title>
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --green: #4CAF50;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 40px;
+  }
+
+  .screen {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .form-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: var(--yellow);
+    color: var(--black);
+    margin: 10px 10px 10px 0;
+  }
+
+  .btn:hover {
+    background: var(--black);
+    color: var(--yellow);
+  }
+
+  .progress-container {
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .progress-steps {
+    margin: 40px 0;
+  }
+
+  .progress-step {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+
+  .progress-step.active {
+    background: #e8f5e8;
+    border-color: var(--green);
+  }
+
+  .progress-step.completed {
+    background: var(--offwhite);
+    border-color: var(--gray);
+  }
+
+  .progress-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+  }
+
+  .progress-step.active .progress-circle {
+    background: var(--green);
+    color: white;
+  }
+
+  .progress-step.completed .progress-circle {
+    background: var(--gray);
+    color: white;
+  }
+
+  .quote-display {
+    margin: 30px 0;
+    padding: 20px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    min-height: 100px;
+    background: var(--offwhite);
+    font-style: italic;
+  }
+
+  .error {
+    color: #f44336;
+    background: #ffebee;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border: 1px solid #ffcdd2;
+  }
+
+  .success {
+    color: var(--green);
+    background: #e8f5e8;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border: 1px solid #c8e6c9;
+  }
+
+  .debug-info {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-family: monospace;
+    font-size: 14px;
+    border: 1px solid #ddd;
+  }
+</style>
+</head>
+<body>
+
+<!-- SETUP SCREEN -->
+<div id="setup-screen" class="screen active">
+  <h1>Fixed Research System Test</h1>
+
+  <div class="form-section">
+    <h2 style="margin-bottom: 15px;">Research Parameters</h2>
+
+    <div style="margin-bottom: 20px;">
+      <label class="form-label">Email Address</label>
+      <input type="email" class="form-input" value="test@brandthnk.co" placeholder="Enter your business email">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label class="form-label">Organization Type</label>
+      <select id="organization-type" class="form-input">
+        <option value="">Select organization type...</option>
+        <option value="community-bank">Community Bank (Under $1B assets)</option>
+        <option value="regional-bank">Regional Bank ($1B-$50B assets)</option>
+        <option value="credit-union">Credit Union</option>
+        <option value="fintech" selected>Fintech Company</option>
+        <option value="neobank">Neobank/Digital Bank</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label class="form-label">Target Audience</label>
+      <select id="target-audience" class="form-input">
+        <option value="">Select target audience...</option>
+        <option value="business-customers">Business Banking Customers</option>
+        <option value="retail-customers">Retail Banking Customers</option>
+        <option value="bank-executives" selected>Financial Institution Executives</option>
+        <option value="fintech-buyers">B2B Fintech Buyers</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label class="form-label">Market Characteristics</label>
+      <select id="market-type" class="form-input">
+        <option value="">Select market type...</option>
+        <option value="urban" selected>Urban Markets</option>
+        <option value="suburban">Suburban Markets</option>
+        <option value="rural">Rural Markets</option>
+        <option value="mixed">Mixed Geographic Markets</option>
+        <option value="na">N/A (For fintech companies)</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label class="form-label">What You're Testing</label>
+      <textarea id="research-content" class="form-textarea" placeholder="Describe the messages, products, or concepts you want to test...">Our API platform enables banks to integrate advanced payment processing and real-time fraud detection while maintaining regulatory compliance.</textarea>
+    </div>
+
+    <button class="btn" onclick="startFixedResearch()">Run Fixed Research System</button>
+
+    <div id="setup-messages"></div>
+  </div>
+
+  <div class="debug-info" id="debug-info" style="display:none;">
+    <strong>Debug Information:</strong>
+    <div id="debug-content"></div>
+  </div>
+</div>
+
+<!-- PROGRESS SCREEN -->
+<div id="progress-screen" class="screen">
+  <div class="progress-container">
+    <h1>Running Research Interviews</h1>
+    <p>Interviewing selected personas and analyzing responses...</p>
+
+    <div class="progress-steps" id="progress-steps"></div>
+
+    <div class="quote-display" id="quote-display">
+      <div>Starting research interviews...</div>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT SCREEN -->
+<div id="report-screen" class="screen">
+  <h1>Research Complete!</h1>
+  <div class="success">
+    ✅ Research completed successfully with enhanced 22-persona system
+  </div>
+  <div id="report-content">
+    <p>Report generation would happen here with the new methodology section.</p>
+  </div>
+  <button class="btn" onclick="resetTest()">Run Another Test</button>
+</div>
+
+<script>
+// Robust persona library for testing
+window.PERSONAS = {
+  fintech: [
+    {
+      id: 'b1-bank-head-digital-transformation',
+      name: 'Bank Head of Digital Transformation',
+      age: '35-50',
+      title: 'VP Digital Banking & Innovation',
+      coreMotivation: 'Drive competitive digital capabilities while managing implementation risk',
+      keyFears: 'Failed digital initiatives, falling behind competition, integration disasters',
+      processingQuote: 'We need solutions that transform our capabilities without disrupting operations.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'community-bank', 'credit-union'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['digital transformation', 'integration', 'competitive', 'customer experience'],
+          negative: ['risky', 'unproven', 'complex implementation']
+        },
+        selectionWeight: 0.95
+      }
+    },
+    {
+      id: 'b2-enterprise-cio-cto',
+      name: 'Enterprise CIO/CTO',
+      age: '45-60',
+      title: 'Chief Information/Technology Officer',
+      coreMotivation: 'Modernize technology infrastructure while maintaining security and compliance',
+      keyFears: 'Security breaches, system downtime, regulatory violations, integration failures',
+      processingQuote: 'Any technology must meet our security and architectural standards before consideration.',
+      autoMatchCriteria: {
+        organizationTypes: ['regional-bank', 'fintech'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['security', 'architecture', 'scalability', 'compliance', 'infrastructure'],
+          negative: ['quick implementation', 'minimal security', 'workarounds']
+        },
+        selectionWeight: 0.9
+      }
+    },
+    {
+      id: 'b3-chief-risk-compliance',
+      name: 'Chief Risk & Compliance Officer',
+      age: '45-65',
+      title: 'Chief Risk Officer',
+      coreMotivation: 'Protect institution from regulatory fines and operational risks',
+      keyFears: 'Regulatory violations, data breaches, operational failures, audit findings',
+      processingQuote: 'Show me comprehensive risk controls and regulatory compliance documentation.',
+      autoMatchCriteria: {
+        organizationTypes: ['community-bank', 'credit-union', 'regional-bank'],
+        targetAudiences: ['bank-executives', 'fintech-buyers'],
+        marketTypes: ['suburban', 'rural', 'urban'],
+        contentSignals: {
+          positive: ['compliance', 'risk management', 'regulatory', 'audit', 'governance'],
+          negative: ['fast implementation', 'minimal oversight', 'move quickly']
+        },
+        selectionWeight: 0.95
+      }
+    }
+  ],
+  consumer: [
+    {
+      id: 'c1-mobile-first-momentum-builder',
+      name: 'Mobile-First Momentum Builder',
+      age: '24-32',
+      coreMotivation: 'Build financial momentum through efficient digital tools',
+      keyFears: 'Hidden fees, wasting time, missing opportunities for growth',
+      processingQuote: 'I need tools that work as well as my other apps - fast, transparent, and always available.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'neobank', 'regional-bank'],
+        targetAudiences: ['retail-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['mobile', 'fast', 'instant', 'digital', 'app', 'transparent'],
+          negative: ['branch', 'traditional', 'corporate jargon']
+        },
+        selectionWeight: 0.9
+      }
+    }
+  ],
+  business: [
+    {
+      id: 's1-time-starved-solo-owner',
+      name: 'Time-Starved Solo Owner',
+      age: '35-50',
+      coreMotivation: 'Minimize time spent on banking and administrative tasks',
+      keyFears: 'Wasted time on banking admin, missing client opportunities, cash flow gaps',
+      processingQuote: 'I need banking that takes five minutes to set up and runs itself.',
+      autoMatchCriteria: {
+        organizationTypes: ['fintech', 'regional-bank'],
+        targetAudiences: ['business-customers'],
+        marketTypes: ['urban', 'suburban'],
+        contentSignals: {
+          positive: ['automated', 'streamlined', 'time-saving', 'simple', 'efficient'],
+          negative: ['complex setup', 'relationship manager', 'meetings']
+        },
+        selectionWeight: 0.9
+      }
+    }
+  ]
+};
+
+// Robust AutomatedPersonaSelector
+class AutomatedPersonaSelector {
+  constructor() {
+    this.weights = {
+      organizationType: 0.4,
+      targetAudience: 0.3,
+      marketType: 0.2,
+      contentAnalysis: 0.1
+    };
+  }
+
+  selectPersonas(businessParams) {
+    console.log('🔍 Selecting personas with params:', businessParams);
+
+    try {
+      const primarySegment = this.determinePrimarySegment(businessParams);
+      console.log('📊 Primary segment determined:', primarySegment);
+
+      const allPersonas = this.getAllPersonas();
+      const segmentPersonas = allPersonas[primarySegment];
+
+      if (!segmentPersonas || segmentPersonas.length === 0) {
+        console.warn('⚠️ No personas found for segment, using fallback');
+        return this.getFallbackPersonas(allPersonas);
+      }
+
+      // Score personas
+      const scoredPersonas = segmentPersonas.map(persona => ({
+        persona,
+        score: this.calculatePersonaScore(persona, businessParams),
+        reasoning: this.generateReasoning(persona, businessParams)
+      }));
+
+      // Sort by score and return top 3
+      const results = scoredPersonas
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+        .map(item => ({
+          ...item,
+          confidence: this.scoreToConfidence(item.score)
+        }));
+
+      console.log('✅ Selected personas:', results.map(r => r.persona.name));
+      return results;
+
+    } catch (error) {
+      console.error('❌ Error in persona selection:', error);
+      return this.getFallbackPersonas(this.getAllPersonas());
+    }
+  }
+
+  getFallbackPersonas(allPersonas) {
+    // Return a mix from different segments as fallback
+    const fallback = [
+      ...allPersonas.fintech.slice(0, 1),
+      ...allPersonas.consumer.slice(0, 1),
+      ...allPersonas.business.slice(0, 1)
+    ].map(persona => ({
+      persona,
+      score: 0.7,
+      reasoning: 'Fallback selection',
+      confidence: 'medium'
+    }));
+
+    console.log('🔄 Using fallback personas:', fallback.map(f => f.persona.name));
+    return fallback;
+  }
+
+  determinePrimarySegment(businessParams) {
+    if (businessParams.organizationType === 'fintech' ||
+        businessParams.organizationType === 'neobank' ||
+        businessParams.targetAudience === 'fintech-buyers') {
+      return 'fintech';
+    }
+
+    if (businessParams.targetAudience === 'business-customers') {
+      return 'business';
+    }
+
+    return 'consumer';
+  }
+
+  calculatePersonaScore(persona, businessParams) {
+    if (!persona.autoMatchCriteria) return 0.5;
+
+    let score = 0;
+
+    // Organization type match
+    if (persona.autoMatchCriteria.organizationTypes.includes(businessParams.organizationType)) {
+      score += this.weights.organizationType;
+    }
+
+    // Target audience match
+    if (persona.autoMatchCriteria.targetAudiences.includes(businessParams.targetAudience)) {
+      score += this.weights.targetAudience;
+    }
+
+    // Market type match
+    if (persona.autoMatchCriteria.marketTypes.includes(businessParams.marketType)) {
+      score += this.weights.marketType;
+    }
+
+    // Content analysis
+    if (businessParams.researchContent && persona.autoMatchCriteria.contentSignals) {
+      const content = businessParams.researchContent.toLowerCase();
+      const positiveMatches = persona.autoMatchCriteria.contentSignals.positive.filter(signal =>
+        content.includes(signal.toLowerCase())
+      ).length;
+
+      if (positiveMatches > 0) {
+        score += this.weights.contentAnalysis * (positiveMatches * 0.3);
+      }
+    }
+
+    return Math.min(1, score * (persona.autoMatchCriteria.selectionWeight || 1));
+  }
+
+  generateReasoning(persona, businessParams) {
+    const reasons = [];
+
+    if (persona.autoMatchCriteria.organizationTypes.includes(businessParams.organizationType)) {
+      reasons.push(`${businessParams.organizationType} expertise`);
+    }
+
+    if (persona.autoMatchCriteria.targetAudiences.includes(businessParams.targetAudience)) {
+      reasons.push(`${businessParams.targetAudience} perspective`);
+    }
+
+    return reasons.length > 0 ? reasons.join(' and ') : 'general segment alignment';
+  }
+
+  scoreToConfidence(score) {
+    if (score >= 0.8) return 'high';
+    if (score >= 0.6) return 'medium';
+    return 'low';
+  }
+
+  getAllPersonas() {
+    return window.PERSONAS;
+  }
+}
+
+// Global variables
+let selectedPersonas = [];
+let currentStep = 0;
+let progressInterval;
+
+function nextScreen(screenId) {
+  document.querySelector('.screen.active').classList.remove('active');
+  document.getElementById(screenId).classList.add('active');
+}
+
+function showMessage(message, type = 'info') {
+  const messagesDiv = document.getElementById('setup-messages');
+  const messageDiv = document.createElement('div');
+  messageDiv.className = type === 'error' ? 'error' : 'success';
+  messageDiv.textContent = message;
+  messagesDiv.appendChild(messageDiv);
+
+  setTimeout(() => messageDiv.remove(), 5000);
+}
+
+function showDebugInfo(info) {
+  const debugDiv = document.getElementById('debug-info');
+  const contentDiv = document.getElementById('debug-content');
+
+  debugDiv.style.display = 'block';
+  contentDiv.innerHTML += `<div>${info}</div>`;
+}
+
+function startFixedResearch() {
+  console.log('🚀 Starting fixed research system');
+
+  // Clear previous messages
+  document.getElementById('setup-messages').innerHTML = '';
+  document.getElementById('debug-info').style.display = 'none';
+  document.getElementById('debug-content').innerHTML = '';
+
+  try {
+    // Collect parameters
+    const businessParams = {
+      organizationType: document.getElementById('organization-type').value,
+      targetAudience: document.getElementById('target-audience').value,
+      marketType: document.getElementById('market-type').value,
+      researchContent: document.getElementById('research-content').value.trim()
+    };
+
+    showDebugInfo(`Business params: ${JSON.stringify(businessParams, null, 2)}`);
+
+    // Validate required fields
+    if (!businessParams.organizationType || !businessParams.targetAudience) {
+      showMessage('Please select organization type and target audience', 'error');
+      return;
+    }
+
+    // Select personas
+    const personaSelector = new AutomatedPersonaSelector();
+    const selectedResults = personaSelector.selectPersonas(businessParams);
+
+    if (!selectedResults || selectedResults.length === 0) {
+      showMessage('No personas selected - system error', 'error');
+      showDebugInfo('ERROR: No personas returned from selector');
+      return;
+    }
+
+    selectedPersonas = selectedResults.map(result => result.persona.id);
+
+    showDebugInfo(`Selected personas: ${selectedPersonas.join(', ')}`);
+    showDebugInfo(`Selection details: ${JSON.stringify(selectedResults.map(r => ({ name: r.persona.name, score: r.score, confidence: r.confidence })), null, 2)}`);
+
+    if (selectedPersonas.length === 0) {
+      showMessage('Failed to set selected personas array', 'error');
+      return;
+    }
+
+    showMessage(`✅ Selected ${selectedPersonas.length} personas successfully`, 'success');
+
+    // Move to progress screen
+    setTimeout(() => {
+      nextScreen('progress-screen');
+      startProgressSimulation();
+    }, 2000);
+
+  } catch (error) {
+    console.error('❌ Error in startFixedResearch:', error);
+    showMessage(`System error: ${error.message}`, 'error');
+    showDebugInfo(`ERROR: ${error.message}\nStack: ${error.stack}`);
+  }
+}
+
+function startProgressSimulation() {
+  console.log('🎬 Starting progress simulation');
+
+  try {
+    const progressSteps = document.getElementById('progress-steps');
+    const quoteDisplay = document.getElementById('quote-display');
+
+    if (!progressSteps || !quoteDisplay) {
+      throw new Error('Missing progress elements');
+    }
+
+    if (selectedPersonas.length === 0) {
+      throw new Error('No personas to simulate');
+    }
+
+    // Create progress steps
+    const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+
+    const steps = selectedPersonas.map((personaId, index) => {
+      const persona = allPersonas.find(p => p.id === personaId);
+      const displayName = persona ? persona.name : personaId.replace(/[-_]/g, ' ');
+
+      return `
+        <div class="progress-step" id="step-${index}">
+          <div class="progress-circle">${index + 1}</div>
+          <div class="progress-label">${displayName}</div>
+        </div>
+      `;
+    });
+
+    steps.push(`
+      <div class="progress-step" id="step-synthesis">
+        <div class="progress-circle">S</div>
+        <div class="progress-label">Cross-Persona Synthesis</div>
+      </div>
+    `);
+
+    progressSteps.innerHTML = steps.join('');
+
+    // Start processing steps
+    currentStep = 0;
+    processNextStep();
+
+  } catch (error) {
+    console.error('❌ Error starting progress simulation:', error);
+    document.getElementById('quote-display').innerHTML = `<div class="error">Error: ${error.message}</div>`;
+  }
+}
+
+function processNextStep() {
+  const totalSteps = selectedPersonas.length + 1; // +1 for synthesis
+
+  console.log(`📝 Processing step ${currentStep + 1} of ${totalSteps}`);
+
+  try {
+    // Mark current step as active
+    const stepId = currentStep === selectedPersonas.length ? 'step-synthesis' : `step-${currentStep}`;
+    const stepElement = document.getElementById(stepId);
+
+    if (!stepElement) {
+      throw new Error(`Step element not found: ${stepId}`);
+    }
+
+    stepElement.classList.add('active');
+
+    // Update quote display
+    const quoteDisplay = document.getElementById('quote-display');
+
+    if (currentStep < selectedPersonas.length) {
+      // Show persona quote
+      const allPersonas = [...window.PERSONAS.fintech, ...window.PERSONAS.consumer, ...window.PERSONAS.business];
+      const persona = allPersonas.find(p => p.id === selectedPersonas[currentStep]);
+
+      if (persona) {
+        quoteDisplay.innerHTML = `
+          <div style="font-style: italic; font-size: 18px; margin-bottom: 10px;">
+            "${persona.processingQuote}"
+          </div>
+          <div style="font-weight: bold; color: var(--gray);">
+            — ${persona.name}
+          </div>
+        `;
+      }
+    } else {
+      // Show synthesis message
+      quoteDisplay.innerHTML = `
+        <div style="font-size: 18px; margin-bottom: 10px;">
+          Analyzing patterns across all personas...
+        </div>
+        <div style="font-weight: bold; color: var(--gray);">
+          Cross-persona synthesis in progress
+        </div>
+      `;
+    }
+
+    // After 2.5 seconds, complete this step and move to next
+    setTimeout(() => {
+      stepElement.classList.remove('active');
+      stepElement.classList.add('completed');
+
+      currentStep++;
+
+      if (currentStep >= totalSteps) {
+        // Research complete
+        console.log('🎉 Research simulation complete');
+        quoteDisplay.innerHTML = `
+          <div style="color: var(--green); font-weight: bold; font-size: 18px;">
+            ✅ Research Complete!
+          </div>
+          <div>Analysis finished successfully</div>
+        `;
+
+        setTimeout(() => {
+          nextScreen('report-screen');
+        }, 2000);
+      } else {
+        // Continue to next step
+        setTimeout(() => processNextStep(), 300);
+      }
+    }, 2500);
+
+  } catch (error) {
+    console.error('❌ Error in processNextStep:', error);
+    document.getElementById('quote-display').innerHTML = `<div class="error">Error: ${error.message}</div>`;
+  }
+}
+
+function resetTest() {
+  selectedPersonas = [];
+  currentStep = 0;
+  document.getElementById('setup-messages').innerHTML = '';
+  document.getElementById('debug-info').style.display = 'none';
+  nextScreen('setup-screen');
+}
+
+// Initialize
+window.onload = function() {
+  console.log('🔧 Fixed research system loaded');
+  console.log('📊 Persona library loaded:', Object.keys(window.PERSONAS));
+}
+
+</script>
+
+</body>
+</html>
