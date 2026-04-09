@@ -580,6 +580,45 @@
       }
 
     }
+
+    /* Footer Styles */
+    .portal-footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-link {
+      color: var(--brandthnk-yellow);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--brandthnk-yellow);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-link:hover {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+    }
+
+    .footer-branding {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -592,12 +631,10 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Dashboard</a>
         <a href="project-plan.html" class="nav-link">Project Plan</a>
-        <a href="website-audit.html" class="nav-link">Website Audit</a>
-        <a href="https://data-statement-flow.lovable.app" class="nav-link" target="_blank" rel="noopener">Draft Website</a>
         <a href="statement-health-check.html" class="nav-link">Health Check</a>
         <a href="interviews.html" class="nav-link">Interviews</a>
         <a href="deliverables.html" class="nav-link">Deliverables</a>
-        <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+        <a href="https://hc32.brandthnkinsights.com" class="nav-link" target="_blank">Competitive</a>
       </div>
     </div>
   </nav>
@@ -775,29 +812,9 @@
     </div>
 
     <div class="resource-grid">
-      <a href="website-audit.html" class="resource-card">
-        <div class="resource-icon">🔍</div>
-        <div class="resource-title">Website Audit</div>
-        <div class="resource-description">Comprehensive audit of hc3.io covering visual clarity, messaging, findability, and conversion with StoryBrand SB7 analysis and priority actions.</div>
-      </a>
 
-      <a href="project-plan.html" class="resource-card">
-        <div class="resource-icon">📋</div>
-        <div class="resource-title">Project Plan</div>
-        <div class="resource-description">Complete 8-week BrandThnk Breakthrough plan with objectives, activities, deliverables, and team communication structure.</div>
-      </a>
 
-      <a href="https://data-statement-flow.lovable.app" class="resource-card" target="_blank" rel="noopener">
-        <div class="resource-icon">🌐</div>
-        <div class="resource-title">Draft Website</div>
-        <div class="resource-description">Interactive prototype of HC3's new website direction, including updated messaging and conversion flow improvements.</div>
-      </a>
 
-      <a href="https://hc3.brandthnkinsights.com/" class="resource-card" target="_blank" rel="noopener">
-        <div class="resource-icon">🎯</div>
-        <div class="resource-title">Competitive Intel</div>
-        <div class="resource-description">AI-powered competitive messaging research tool configured for HC3's target market and messaging scenarios.</div>
-      </a>
     </div>
 
 
@@ -843,9 +860,26 @@
           <div class="resource-title">Pricing Proposal - Revised (First Bank & Trust)</div>
           <div class="resource-description">Revised pricing proposal document for API to MEA services targeting First Bank and Trust Company in Duncan, OK.</div>
         </a>
+
+        <a href="assets/Onesheet - AutoAVS - 2025.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">📄</div>
+          <div class="resource-title">AutoAVS One-Sheet</div>
+          <div class="resource-description">HC3's AutoAVS product overview - automated asset verification system that eliminates manual e4641 processing for financial institutions.</div>
+        </a>
         </div>
       </div>
     </div>
+
+    <footer class="portal-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://hc3.brandthnk.online" target="_blank" rel="noopener" class="footer-link">View Draft Website</a>
+        </div>
+        <div class="footer-branding">
+          HC3 Portal • BrandThnk Breakthrough
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script>

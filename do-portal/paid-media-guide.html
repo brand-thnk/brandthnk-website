@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paid Ads Playbook - Digital Onboarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .header .subtitle { font-size: 18px; color: var(--gray); }
+    .header .meta { font-size: 14px; color: var(--yellow); margin-top: 10px; }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 25px 35px;
+      border-bottom: 3px solid var(--yellow);
+    }
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .section-subtitle { font-size: 14px; color: var(--yellow); }
+    .section-content { padding: 30px 35px; }
+
+    h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 30px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--yellow);
+    }
+    h3:first-child { margin-top: 0; }
+
+    h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 20px 0 10px 0;
+    }
+
+    ul, ol { margin: 10px 0 10px 25px; }
+    li { margin-bottom: 8px; font-size: 14px; }
+
+    p { font-size: 14px; margin-bottom: 12px; }
+
+    .highlight {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 2px 6px;
+      font-weight: 600;
+    }
+
+    .ad-card {
+      background: var(--offwhite);
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .ad-card h4 { margin-top: 0; }
+
+    .keyword-tag {
+      display: inline-block;
+      background: var(--offwhite);
+      border: 1px solid var(--light-gray);
+      padding: 4px 10px;
+      margin: 4px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .campaign-label {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .schedule-day {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .schedule-task { font-size: 14px; }
+
+    .positioning-box {
+      background: var(--black);
+      color: var(--white);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .positioning-box .highlight {
+      color: var(--black);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray);
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--light-gray);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Paid Ads Playbook</h1>
+      <div class="subtitle">Digital Onboarding (digitalonboarding.com)</div>
+      <div class="meta">Prepared by BrandThnk | March 2026</div>
+    </div>
+
+    <p>Use this to run LinkedIn Ads and Google Ads for Digital Onboarding in the United States.</p>
+
+    <!-- SECTION 1: GOALS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">1. Goal, Audience, and Competitive Positioning</div>
+      </div>
+      <div class="section-content">
+        <h3>Primary Goal</h3>
+        <ul>
+          <li><strong>LinkedIn:</strong> Generate qualified leads for banks, credit unions, and fintech/core partners (demo requests, content downloads, webinar sign-ups).</li>
+          <li><strong>Google:</strong> Capture in-market searchers for "digital onboarding" and "customer engagement" solutions for financial institutions.</li>
+        </ul>
+
+        <h3>Core Audience Segments</h3>
+        <ul>
+          <li><strong>Banks:</strong> CMOs, VP/Director of Marketing, CX, Digital Banking, Product, IT.</li>
+          <li><strong>Credit unions:</strong> CEOs, Presidents, COOs, VP of Operations, VP of Digital Banking, Branch Managers.</li>
+          <li><strong>Partners:</strong> Fintechs and core banking providers (Partnerships, Product, Growth roles).</li>
+        </ul>
+
+        <h3>Competitive Positioning (from BrandThnk analysis)</h3>
+        <ul>
+          <li>Focus on <span class="highlight">digital adoption journeys that drive measurable outcomes</span> (direct deposit, eStatements, product adoption), not just "onboarding".</li>
+          <li>Emphasize:
+            <ul>
+              <li>Bank-ready, compliant journeys for financial institutions.</li>
+              <li>Light-touch integration and no heavy IT lift.</li>
+              <li>Proven lifts in adoption and engagement.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 2: LINKEDIN ADS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">2. LinkedIn Ads - Campaign Structure</div>
+      </div>
+      <div class="section-content">
+        <p><span class="campaign-label">Lead Gen - Digital Onboarding for Banks & Credit Unions</span></p>
+        <p><strong>Objective:</strong> Lead Generation (or Website Visits if you're early).</p>
+
+        <h3>Ad Set 1: Bank CMOs - Adoption & Activation</h3>
+        <h4>Audience</h4>
+        <ul>
+          <li><strong>Job titles:</strong> <span class="keyword-tag">CMO</span> <span class="keyword-tag">Marketing Director</span> <span class="keyword-tag">VP Marketing</span> <span class="keyword-tag">Head of Marketing</span></li>
+          <li><strong>Companies:</strong> Banks, financial institutions</li>
+          <li><strong>Location:</strong> United States</li>
+        </ul>
+
+        <div class="ad-card">
+          <h4>Ad 1 - Headline + Copy</h4>
+          <p><strong>Headline:</strong> Drive Digital Adoption After Account Opening</p>
+          <p><strong>Intro line:</strong> Automate onboarding journeys for new banking customers.</p>
+          <p><strong>Body:</strong> Help banks increase digital banking adoption, eStatement enrollment, and direct deposit sign-ups-all without extra staff. Use configurable campaigns and templates to keep messaging on-brand and compliant.</p>
+          <p><strong>CTA:</strong> Download engagement playbook</p>
+          <p><strong>Lead Gen Form fields:</strong> Name, Email, Company, Job Title</p>
+        </div>
+
+        <div class="ad-card">
+          <h4>Ad 2 - Headline + Copy</h4>
+          <p><strong>Headline:</strong> Turn New Account Openers into Engaged Customers</p>
+          <p><strong>Intro line:</strong> Close the gap between acquisition and activation.</p>
+          <p><strong>Body:</strong> Stop leaving new accounts dormant. Digital Onboarding helps banks personalize journeys that drive product adoption, cross-sell, and measurable engagement. Track goals like direct deposit enrollment, CD renewals, and digital channel usage.</p>
+          <p><strong>CTA:</strong> Request demo</p>
+        </div>
+
+        <h3>Ad Set 2: Credit Union Leaders - Member Engagement</h3>
+        <h4>Audience</h4>
+        <ul>
+          <li><strong>Job titles:</strong> <span class="keyword-tag">CEO</span> <span class="keyword-tag">President</span> <span class="keyword-tag">COO</span> <span class="keyword-tag">VP of Operations</span> <span class="keyword-tag">VP of Digital Banking</span> <span class="keyword-tag">Branch Manager</span></li>
+          <li><strong>Companies:</strong> Credit unions</li>
+          <li><strong>Location:</strong> United States</li>
+        </ul>
+
+        <div class="ad-card">
+          <h4>Ad 1 - Headline + Copy</h4>
+          <p><strong>Headline:</strong> Reduce Friction in Credit Union Onboarding</p>
+          <p><strong>Body:</strong> Make it easy for members to enroll in eStatements, set up direct deposit, and accept pre-approved offers-often without logging in. Digital Onboarding helps credit unions increase adoption and keep members engaged, not annoyed.</p>
+          <p><strong>CTA:</strong> Learn more</p>
+        </div>
+
+        <div class="ad-card">
+          <h4>Ad 2 - Headline + Copy</h4>
+          <p><strong>Headline:</strong> Win Back Abandoned Applicants & Drive Cross-Sell</p>
+          <p><strong>Body:</strong> Target abandoned applicants and existing members with compliant, personalized journeys for checking, savings, credit cards, loans, and more. Leverage data-driven campaigns that increase adoption while reducing manual outreach.</p>
+          <p><strong>CTA:</strong> Request case study</p>
+        </div>
+
+        <h3>Ad Set 3: Fintech & Core Partners - Embedded Adoption</h3>
+        <h4>Audience</h4>
+        <ul>
+          <li><strong>Job titles:</strong> <span class="keyword-tag">Partnerships</span> <span class="keyword-tag">Business Development</span> <span class="keyword-tag">Product Manager</span> <span class="keyword-tag">Head of Growth</span> <span class="keyword-tag">Head of Product</span></li>
+          <li><strong>Companies:</strong> Fintechs, core banking providers, banking-tech vendors</li>
+          <li><strong>Location:</strong> United States</li>
+        </ul>
+
+        <div class="ad-card">
+          <h4>Ad 1 - Headline + Copy</h4>
+          <p><strong>Headline:</strong> Embed Digital Onboarding Into Your Stack</p>
+          <p><strong>Body:</strong> Help banks and credit unions boost adoption and engagement without heavy customization. Use Digital Onboarding's APIs and integrations to add journeys for digital banking, eStatements, and direct deposit into your platform.</p>
+          <p><strong>CTA:</strong> Explore integration options</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: GOOGLE ADS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">3. Google Ads - Search Campaign</div>
+      </div>
+      <div class="section-content">
+        <p><span class="campaign-label">Search - Digital Onboarding Platform for Banks & CUs</span></p>
+        <h4>Settings</h4>
+        <ul>
+          <li>Campaign type: Search</li>
+          <li>Location: United States</li>
+          <li>Bidding: Start with <strong>Maximize Clicks</strong>; switch to <strong>Maximize Conversions</strong> once you have 15-20+ conversions/month.</li>
+          <li>Daily budget: Start at <strong>$30-$60</strong> per campaign.</li>
+        </ul>
+
+        <h3>Ad Group 1: "Bank digital onboarding"</h3>
+        <h4>Keywords (phrase + exact; add negatives like "jobs", "free")</h4>
+        <div style="margin: 10px 0;">
+          <span class="keyword-tag">"digital onboarding platform for banks"</span>
+          <span class="keyword-tag">"digital onboarding software for banks"</span>
+          <span class="keyword-tag">"bank customer onboarding platform"</span>
+          <span class="keyword-tag">"new account onboarding platform banking"</span>
+          <span class="keyword-tag">[digital onboarding platform for banks]</span>
+        </div>
+
+        <div class="ad-card">
+          <h4>RSA - Example 1 (Bank-focused)</h4>
+          <p><strong>Headlines:</strong></p>
+          <div><span class="keyword-tag">Digital Onboarding Platform for Banks</span> <span class="keyword-tag">Drive Account Adoption & Cross-Sell</span> <span class="keyword-tag">Automate Journeys for Customers</span></div>
+          <p style="margin-top: 10px;"><strong>Descriptions:</strong></p>
+          <ul>
+            <li>Help banks and credit unions increase digital banking adoption, eStatement enrollment, and direct deposit sign-ups with no heavy IT lift.</li>
+            <li>Easy-to-configure campaigns that keep messaging compliant and on-brand. Book a demo today.</li>
+          </ul>
+        </div>
+
+        <div class="ad-card">
+          <h4>RSA - Example 2</h4>
+          <p><strong>Headlines:</strong></p>
+          <div><span class="keyword-tag">Onboarding Journeys for Banks</span> <span class="keyword-tag">Increase Direct Deposit Sign-Ups</span> <span class="keyword-tag">Award-Winning Engagement Platform</span></div>
+          <p style="margin-top: 10px;"><strong>Descriptions:</strong></p>
+          <ul>
+            <li>Digital Onboarding helps financial institutions drive adoption and engagement after account opening.</li>
+            <li>See measurable lifts in direct deposit, eStatement enrollment, and product adoption.</li>
+          </ul>
+        </div>
+
+        <h3>Ad Group 2: "Credit union digital engagement"</h3>
+        <h4>Keywords</h4>
+        <div style="margin: 10px 0;">
+          <span class="keyword-tag">"digital onboarding platform for credit unions"</span>
+          <span class="keyword-tag">"credit union digital engagement platform"</span>
+          <span class="keyword-tag">"credit union customer engagement software"</span>
+          <span class="keyword-tag">"member onboarding platform credit union"</span>
+        </div>
+
+        <div class="ad-card">
+          <h4>RSA - Example 1</h4>
+          <p><strong>Headlines:</strong></p>
+          <div><span class="keyword-tag">Digital Onboarding for Credit Unions</span> <span class="keyword-tag">Boost Member Adoption & Engagement</span> <span class="keyword-tag">Easy Digital Journeys for Members</span></div>
+          <p style="margin-top: 10px;"><strong>Descriptions:</strong></p>
+          <ul>
+            <li>Help credit unions increase digital banking adoption, eStatements, and direct deposit sign-ups with automated journeys.</li>
+            <li>Use pre-built templates and data-driven campaigns to keep members engaged and reduce branch dependency.</li>
+          </ul>
+        </div>
+
+        <h3>Ad Group 3: "Fintech & core partners"</h3>
+        <h4>Keywords</h4>
+        <div style="margin: 10px 0;">
+          <span class="keyword-tag">"digital onboarding platform for fintech"</span>
+          <span class="keyword-tag">"banking customer engagement platform api"</span>
+          <span class="keyword-tag">"core banking digital onboarding solution"</span>
+          <span class="keyword-tag">"embedded onboarding platform for banks"</span>
+        </div>
+
+        <div class="ad-card">
+          <h4>RSA - Example 1</h4>
+          <p><strong>Headlines:</strong></p>
+          <div><span class="keyword-tag">Digital Onboarding for Fintechs & Cores</span> <span class="keyword-tag">Empower Your Banking Clients</span> <span class="keyword-tag">Embedded Onboarding Journeys</span></div>
+          <p style="margin-top: 10px;"><strong>Descriptions:</strong></p>
+          <ul>
+            <li>Digital Onboarding offers APIs and integrations so fintechs and core providers can embed adoption journeys into their platforms.</li>
+            <li>Help banks and credit unions boost engagement and revenue without heavy customization.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: EXTENSIONS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">4. Google Ads Extensions to Add</div>
+      </div>
+      <div class="section-content">
+        <h3>Sitelink Extensions (campaign level)</h3>
+        <div style="margin: 10px 0;">
+          <span class="keyword-tag">View Use Cases</span>
+          <span class="keyword-tag">Request Demo</span>
+          <span class="keyword-tag">Download Playbook</span>
+          <span class="keyword-tag">Customer Success Stories</span>
+        </div>
+
+        <h3>Callout Extensions</h3>
+        <div style="margin: 10px 0;">
+          <span class="keyword-tag">Boost digital banking adoption</span>
+          <span class="keyword-tag">Increase direct deposit & eStatement enrollment</span>
+          <span class="keyword-tag">Automated, data-driven journeys</span>
+          <span class="keyword-tag">Bank-ready for financial institutions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: WEEKLY ROUTINE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">5. Weekly Ad-Ops Routine</div>
+      </div>
+      <div class="section-content">
+        <div class="schedule-grid">
+          <div class="schedule-day">Monday</div>
+          <div class="schedule-task">Review LinkedIn + Google Ads performance. Pause low-CTR / high-CPC ads or keywords; adjust budgets.</div>
+          <div class="schedule-day">Wednesday</div>
+          <div class="schedule-task">Test 1-2 new ad variations (headline, image, or CTA).</div>
+          <div class="schedule-day">Friday</div>
+          <div class="schedule-task">Export lead/demo data and share with sales. Update a simple dashboard (Google Sheets or Notion) with: Leads, cost per lead, demo requests, country of origin (U.S.), and segment (bank vs. CU vs. partner).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: POSITIONING -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">6. Key Positioning Lines to Reuse</div>
+      </div>
+      <div class="section-content">
+        <div class="positioning-box">
+          <p>Digital Onboarding is a <span class="highlight">digital engagement platform for banks and credit unions</span> that automates journeys after account opening to drive adoption, cross-sell, and measurable engagement.</p>
+        </div>
+        <h4>Differentiators to reuse in ads and landing pages:</h4>
+        <ul>
+          <li>"Help banks and credit unions increase digital banking, eStatement, and direct deposit adoption."</li>
+          <li>"Configure campaigns without heavy IT lift."</li>
+          <li>"Track measurable outcomes like direct deposit enrollment and product adoption."</li>
+        </ul>
+        <p style="margin-top: 20px; font-size: 13px; color: var(--gray);">Save this as digitalonboarding-paid-ads-playbook.md and paste the LinkedIn and Google Ads sections directly into Campaign Manager and Google Ads. Adjust budgets and CTAs as you get performance data.</p>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <strong>BrandThnk</strong><br>
+      Strategic Brand Partner for Financial Institutions
+    </div>
+  </div>
+</body>
+</html>

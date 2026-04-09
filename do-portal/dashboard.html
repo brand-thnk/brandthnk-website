@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Digital Onboarding Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* PORTAL HEADER */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .portal-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .client-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+    .portal-nav {
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--light-gray);
+      overflow-x: auto;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* MAIN CONTENT */
+    .portal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .dashboard-section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 30px;
+      border-bottom: 3px solid var(--yellow);
+    }
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    .section-content {
+      padding: 30px;
+    }
+
+    /* WHITEBOARD */
+    .whiteboard {
+      margin-bottom: 40px;
+    }
+
+    .whiteboard-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .whiteboard-item-content {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .whiteboard-item-meta {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .whiteboard-item-delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .whiteboard-item-delete:hover {
+      color: var(--black);
+    }
+
+    /* CRITICAL ACTIONS */
+    .critical-actions {
+      grid-column: 1 / -1;
+      background: var(--offwhite);
+      border: 2px solid var(--light-gray);
+      margin-bottom: 0;
+    }
+
+    .action-item {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .action-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .action-description {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .action-meta {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    /* ADD ITEM BUTTON */
+    .add-item-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+    }
+
+    .add-item-btn:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .portal-content {
+        padding: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .nav-container {
+        padding: 0 20px;
+      }
+
+      .action-item {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- PORTAL HEADER -->
+  <header class="portal-header">
+    <div class="portal-header-content">
+      <h1 class="client-title">Digital Onboarding</h1>
+      <p class="portal-subtitle">BrandThnk Client Portal</p>
+    </div>
+  </header>
+
+  <!-- HORIZONTAL NAVIGATION -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="dashboard.html" class="nav-link active">Dashboard</a></li>
+        <li class="nav-tab"><a href="competitive-analysis.html" class="nav-link">Competitive Analysis</a></li>
+        <li class="nav-tab"><a href="distribution-calendar.html" class="nav-link">Distribution Calendar</a></li>
+        <li class="nav-tab"><a href="visibility-profile.html" class="nav-link">Visibility Profile</a></li>
+        <li class="nav-tab"><a href="linkedin-audit.html" class="nav-link">LinkedIn Audit</a></li>
+        <li class="nav-tab"><a href="website-audit.html" class="nav-link">Website Audit</a></li>
+        <li class="nav-tab"><a href="analyst-relations.html" class="nav-link">Analyst Relations</a></li>
+        <li class="nav-tab"><a href="paid-media-guide.html" class="nav-link">Paid Media Guide</a></li>
+        <li class="nav-tab"><a href="cu20-pitch.html" class="nav-link">CU 2.0 Pitch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="portal-content">
+    <!-- CRITICAL NEXT ACTIONS -->
+    <div class="dashboard-section critical-actions">
+      <div class="section-header">
+        <h2 class="section-title">Critical Next Actions</h2>
+        <p class="section-subtitle">Priority action items across all strategy deliverables</p>
+      </div>
+      <div class="section-content">
+        <div class="action-item">
+          <div class="action-title">CU 2.0 Provider Guide</div>
+          <div class="action-description">Contact info@cu-2.com to get DO listed in the Account Opening and Onboarding Provider Guide. Zero-effort, high-value evergreen placement.</div>
+          <div class="action-meta">Owner: DO | Deadline: March 30</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Draft first Nate's Notebook LinkedIn post</div>
+          <div class="action-description">Create inaugural post for Nate's thought leadership series based on chosen topic and voice capture insights.</div>
+          <div class="action-meta">Owner: DO | Target: week of March 30</div>
+        </div>
+
+        <div class="action-item">
+          <div class="action-title">Build analyst target list and begin monthly updates</div>
+          <div class="action-description">Compile target list of key fintech and banking analysts and initiate monthly update cadence from Nate.</div>
+          <div class="action-meta">Owner: DO | Target: April 1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHITEBOARD -->
+    <div class="dashboard-section whiteboard">
+      <div class="section-header">
+        <h2 class="section-title">Whiteboard</h2>
+        <p class="section-subtitle">Quick notes and ideas</p>
+      </div>
+      <div class="section-content">
+        <div id="whiteboard-items">
+          <!-- Whiteboard items will be added here -->
+        </div>
+        <button class="add-item-btn">+ Add Item</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Handle add item button
+    document.querySelector('.add-item-btn').addEventListener('click', function() {
+      const content = prompt('Add whiteboard item:');
+      if (content) {
+        addWhiteboardItem(content);
+      }
+    });
+
+    function addWhiteboardItem(content) {
+      const whiteboardItems = document.getElementById('whiteboard-items');
+
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.innerHTML = `
+        <button class="whiteboard-item-delete" onclick="this.parentElement.remove()">×</button>
+        <div class="whiteboard-item-content">${content}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
+      `;
+
+      whiteboardItems.appendChild(newItem);
+    }
+  </script>
+</body>
+</html>
