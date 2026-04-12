@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Onboarding - Website Audit</title>
+  <title>Website Audit - Digital Onboarding Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
       --brandthnk-black: #000000;
       --brandthnk-white: #FFFFFF;
       --brandthnk-yellow: #FFEB3B;
       --brandthnk-off-white: #F5F5F5;
       --text-gray: #333333;
-      --light-gray: #666666;
       --border-gray: #E0E0E0;
       --success-green: #4CAF50;
       --warning-orange: #FF9800;
@@ -29,6 +37,87 @@
       line-height: 1.6;
       color: var(--text-gray);
       background: var(--brandthnk-white);
+      margin: 0;
+    }
+
+    /* PORTAL HEADER */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .portal-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .client-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+    .portal-nav {
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--light-gray);
+      overflow-x: auto;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* MAIN CONTENT */
+    .portal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
     }
 
     .container {
@@ -417,14 +506,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="header">
-    <div class="container">
-      <h1>Website Audit</h1>
-      <p class="subtitle">Digital Onboarding Portal - Comprehensive Website Analysis</p>
+  <!-- PORTAL HEADER -->
+  <header class="portal-header">
+    <div class="portal-header-content">
+      <h1 class="client-title">Digital Onboarding</h1>
+      <p class="portal-subtitle">BrandThnk Client Portal</p>
     </div>
-  </div>
+  </header>
 
-  <div class="container">
+  <!-- HORIZONTAL NAVIGATION -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-tab"><a href="competitive-analysis.html" class="nav-link">Competitive Analysis</a></li>
+        <li class="nav-tab"><a href="distribution-calendar.html" class="nav-link">Distribution Calendar</a></li>
+        <li class="nav-tab"><a href="visibility-profile.html" class="nav-link">Visibility Profile</a></li>
+        <li class="nav-tab"><a href="linkedin-audit.html" class="nav-link">LinkedIn Audit</a></li>
+        <li class="nav-tab"><a href="website-audit.html" class="nav-link active">Website Audit</a></li>
+        <li class="nav-tab"><a href="analyst-relations.html" class="nav-link">Analyst Relations</a></li>
+        <li class="nav-tab"><a href="paid-media-guide.html" class="nav-link">Paid Media Guide</a></li>
+        <li class="nav-tab"><a href="cu20-pitch.html" class="nav-link">CU 2.0 Pitch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="portal-content">
+    <div class="header" style="background: var(--brandthnk-black); color: var(--brandthnk-white); padding: 40px; margin-bottom: 40px; border-bottom: 4px solid var(--brandthnk-yellow);">
+      <h1 style="margin-top: 0; border-bottom: none; padding-bottom: 0; color: var(--brandthnk-white);">Website Audit</h1>
+      <p class="subtitle" style="color: var(--brandthnk-white);">Digital Onboarding Portal - Comprehensive Website Analysis</p>
+    </div>
+
+    <div class="container">
     <!-- Audit Meta Information -->
     <div class="audit-meta">
       <div class="meta-item">
@@ -466,7 +580,7 @@
       <div class="content-block">
         <p>The site's biggest structural problem is that it positions Digital Onboarding as the hero of the story. StoryBrand's SB7 framework teaches the opposite: the customer is the hero, the brand is the guide. A community bank CMO running a four-person marketing team who just lost 15% of new accounts to dormancy should land on this homepage and immediately feel understood. Instead, they land on three rotating taglines ("Activate relationships. Deepen engagement. Amplify growth.") that could belong to any martech vendor in the country.</p>
 
-        <p>There is also a live Lorem ipsum block on the homepage awards section. That tells a prospect something about quality control.</p>
+        <p>There is also placeholder text on the homepage awards section that needs attention. That tells a prospect something about quality control.</p>
 
         <p>Two additional gaps compound the problem. First, DO's leadership team (Ted Brown, Nate Shahan, Adam Westley) is invisible on the site. The About page lists names and titles. It does not position these people as practitioners with a point of view on data-driven engagement, lifecycle orchestration, or the future of digital banking.</p>
 
@@ -544,7 +658,7 @@
 
         <p><strong>Hero section:</strong> No customer-facing language above the fold. Compare to Narmi, whose homepage leads with a specific promise to a named buyer segment. Compare to Fenergo, who leads with a compliance pain point. DO's hero section reads like a brand guidelines exercise, not a sales page.</p>
 
-        <p><strong>Lorem ipsum:</strong> There is live placeholder text on the homepage in the awards section: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..." followed by a "Button Text" CTA. This is a quality control failure visible to every visitor.</p>
+        <p><strong>Placeholder Content:</strong> There is live placeholder text on the homepage in the awards section followed by a generic "Button Text" CTA. This is a quality control failure visible to every visitor.</p>
       </div>
 
       <h3 class="subsection-header">Platform Overview Page</h3>
@@ -598,7 +712,7 @@
 
           <div class="action-item">
             <div class="action-number">S2</div>
-            <div class="action-title">Fix the Lorem ipsum and "Button Text" placeholder</div>
+            <div class="action-title">Fix the placeholder text and "Button Text" placeholder</div>
             <div class="action-description">This is live on the production site in the awards section. It signals to every visitor that the site is not maintained.</div>
             <span class="effort-badge">Trivial (30 min)</span>
           </div>
@@ -675,7 +789,7 @@
 
       <p>What it lacks is a narrative built around two things: people and data. The site should position Ted, Nate, and Adam as visible guides with a point of view on data-driven lifecycle engagement. And it should tell the data story: DO's platform connects first-party behavioral data, automates targeting across the account holder lifecycle, and orchestrates engagement through digital banking and other channels. That story does not appear anywhere on the current site.</p>
 
-      <p>StoryBrand provides the framework to tell that story without a full redesign. The priority changes: rewrite the homepage hero around the data and lifecycle problem, build profile pages for Ted, Nate, and Adam, create a transitional CTA authored by a named leader (a gated report on data-driven engagement), fix the Lorem ipsum, and add a three-step plan that names data, lifecycle, and digital banking explicitly.</p>
+      <p>StoryBrand provides the framework to tell that story without a full redesign. The priority changes: rewrite the homepage hero around the data and lifecycle problem, build profile pages for Ted, Nate, and Adam, create a transitional CTA authored by a named leader (a gated report on data-driven engagement), fix the placeholder content, and add a three-step plan that names data, lifecycle, and digital banking explicitly.</p>
 
       <div class="next-step">
         <p><strong>Recommended next step:</strong> Schedule a 90-minute working session with Jen to (1) fix the Lorem ipsum immediately, (2) draft the StoryBrand homepage hero copy centered on data-driven lifecycle engagement, (3) spec profile pages for Ted, Nate, and Adam with POV content and booking links, and (4) outline the transitional CTA (a gated benchmark report authored by Nate or Ted on data-driven digital banking engagement). Items 1 and 2 can ship within two weeks. Items 3 and 4 within four.</p>
@@ -684,8 +798,9 @@
   </div>
 
   <div class="footer">
-    <div class="container">
-      <p>BrandThnk | brandthnk.co | Confidential</p>
+      <div class="container">
+        <p>BrandThnk | brandthnk.co | Confidential</p>
+      </div>
     </div>
   </div>
 </body>
