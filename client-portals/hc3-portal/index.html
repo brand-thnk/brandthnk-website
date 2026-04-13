@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HC3 Portal | BrandThnk</title>
-  <!-- Updated 2026-03-23 -->
+  <!-- Updated 2026-03-23 15:45 -->
   <style>
     :root {
       --brandthnk-black: #000000;
@@ -63,26 +63,30 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      list-style: none;
+      min-width: max-content;
     }
 
     .nav-link {
-      color: var(--brandthnk-black);
+      color: var(--brandthnk-gray);
       text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 16px 24px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .nav-link:hover {
-      background: var(--brandthnk-off-white);
+      color: var(--brandthnk-black);
+      background: rgba(255, 235, 59, 0.1);
     }
 
     .nav-link.active {
-      background: var(--brandthnk-yellow);
       color: var(--brandthnk-black);
-      font-weight: 600;
+      border-bottom-color: var(--brandthnk-yellow);
+      background: rgba(255, 235, 59, 0.2);
     }
 
     .header {
@@ -117,18 +121,29 @@
 
     .section {
       background: var(--brandthnk-white);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-left: 4px solid var(--brandthnk-yellow);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 20px 30px;
+      border-bottom: 3px solid var(--brandthnk-yellow);
     }
 
     .section h2 {
       font-family: 'Roboto Slab', serif;
       font-size: 1.5rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: var(--brandthnk-black);
+      margin-bottom: 0;
+      color: var(--brandthnk-white);
+    }
+
+    .section-content {
+      padding: 30px;
     }
 
     .project-status {
@@ -480,14 +495,7 @@
     }
 
     .contact-section {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
       grid-column: 1 / -1;
-      border-left: 4px solid var(--brandthnk-yellow);
-    }
-
-    .contact-section h2 {
-      color: var(--brandthnk-yellow);
     }
 
     .contact-info {
@@ -500,15 +508,16 @@
       font-family: 'Roboto Slab', serif;
       font-weight: 600;
       margin-bottom: 0.75rem;
-      color: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
     }
 
     .contact-item p {
       margin-bottom: 0.5rem;
+      color: var(--brandthnk-gray);
     }
 
     .contact-item a {
-      color: var(--brandthnk-white);
+      color: var(--brandthnk-black);
       text-decoration: none;
     }
 
@@ -535,6 +544,7 @@
         font-size: 0.875rem;
       }
     }
+
 
     @media (max-width: 768px) {
       .container, .nav-container {
@@ -568,6 +578,46 @@
       .nav-brand {
         margin-bottom: 1rem;
       }
+
+    }
+
+    /* Footer Styles */
+    .portal-footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-link {
+      color: var(--brandthnk-yellow);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--brandthnk-yellow);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .footer-link:hover {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+    }
+
+    .footer-branding {
+      font-size: 0.875rem;
+      opacity: 0.8;
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -581,9 +631,10 @@
       <div class="nav-links">
         <a href="index.html" class="nav-link active">Dashboard</a>
         <a href="project-plan.html" class="nav-link">Project Plan</a>
-        <a href="https://data-statement-flow.lovable.app" class="nav-link" target="_blank" rel="noopener">🎁</a>
+        <a href="statement-health-check.html" class="nav-link">Health Check</a>
+        <a href="interviews.html" class="nav-link">Interviews</a>
         <a href="deliverables.html" class="nav-link">Deliverables</a>
-        <a href="https://hc3.brandthnkinsights.com/" class="nav-link" target="_blank" rel="noopener">Competitive Intel</a>
+        <a href="https://hc32.brandthnkinsights.com" class="nav-link" target="_blank">Competitive</a>
       </div>
     </div>
   </nav>
@@ -596,10 +647,14 @@
   </header>
 
   <main class="container">
+
     <div class="dashboard-grid">
       <section class="section contact-section">
-        <h2>Team & Communication</h2>
-        <div class="contact-info">
+        <div class="section-header">
+          <h2>Team & Communication</h2>
+        </div>
+        <div class="section-content">
+          <div class="contact-info">
           <div class="contact-item">
             <h3>BrandThnk Team</h3>
             <p><strong>Allison Netzer</strong><br>Lead Strategist</p>
@@ -617,17 +672,25 @@
 
           <div class="contact-item">
             <h3>Interview Schedule</h3>
-            <p><strong>C-suite:</strong> Tori</p>
-            <p><strong>Frontline:</strong> Matt Engle</p>
-            <p><strong>Contrarian:</strong> Jeremiah James</p>
-            <p>30 minutes each, no prep needed</p>
+            <p><strong>Jeffrey Reeves</strong> (Sr. Business Development)<br>Wed, Mar 26 • 12:30pm EDT • <span style="color: #28a745;">✓ Completed</span></p>
+            <p><strong>Jason Robichaud</strong> (Knowledge & Training)<br>Wed, Mar 26 • 1:30pm EDT • <span style="color: #28a745;">✓ Completed</span></p>
+            <p><strong>Matt Ingle</strong> (Project Manager I)<br>Thu, Mar 27 • <span style="color: #28a745;">✓ Completed</span></p>
+            <p><strong>Heather Seiler</strong> (Business Development Manager)<br>Thu, Apr 3 • 12:00pm EDT • <span style="color: #28a745;">✓ Completed</span></p>
+            <p><strong>Jeremiah James</strong> (Chief Product Officer)<br>Mon, Apr 7 • 8:00am EDT • <span style="color: #28a745;">✓ Completed</span></p>
+            <p><strong>Tori VanCura-Rutland</strong> (Chief Growth Officer)<br><span style="color: #ffc107;">📅 Scheduled</span></p>
+            <p><strong>Customer Interviews</strong> (3-5 HC3 customers)<br><span style="color: #6c757d;">Scheduling in progress</span></p>
+            <p style="font-size: 0.8rem; color: var(--brandthnk-gray); margin-top: 1rem;">30 minutes each, no prep needed • 5 of 6 leadership interviews completed</p>
           </div>
+        </div>
         </div>
       </section>
 
       <section class="section">
-        <h2>Project Status</h2>
-        <div class="project-status">
+        <div class="section-header">
+          <h2>Project Status</h2>
+        </div>
+        <div class="section-content">
+          <div class="project-status">
           <div class="status-item">
             <div class="status-label">Start Date</div>
             <div class="status-value">March 20, 2026</div>
@@ -647,30 +710,34 @@
         </div>
 
         <div class="current-week">
-          <h3>Current Phase: Deep Discovery</h3>
-          <p><strong>Week 1-2:</strong> March 20-31, 2026</p>
-          <p>Understanding HC3's business DNA, audience mindset, and market context through stakeholder interviews and brand audits.</p>
+          <h3>Current Phase: Go-to-Market Model</h3>
+          <p><strong>Week 4:</strong> April 7-11, 2026</p>
+          <p>Building a practical and punchy GTM plan rooted in HC3's business reality. Selecting best-fit channels for traction, not noise.</p>
           <div class="week-progress">
-            <div class="week-progress-bar"></div>
+            <div class="week-progress-bar" style="width: 50%;"></div>
           </div>
+        </div>
         </div>
       </section>
 
       <section class="section">
-        <h2>Critical Next Actions</h2>
-        <div class="action-item" data-action="stakeholder-interviews">
+        <div class="section-header">
+          <h2>Critical Next Actions</h2>
+        </div>
+        <div class="section-content">
+          <div class="action-item" data-action="stakeholder-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
             <div class="action-title">Complete stakeholder interview list for Week 1-2 discovery</div>
-            <div class="action-meta">Target: March 21 • Owner: HC3 Team</div>
+            <div class="action-meta">Target: March 21 • Owner: BrandThnk</div>
           </div>
         </div>
 
         <div class="action-item" data-action="schedule-interviews">
           <div class="action-checkbox"></div>
           <div class="action-content">
-            <div class="action-title">Schedule interviews with C-suite (Tori), frontline (Matt Engle), contrarian (Jeremiah James)</div>
-            <div class="action-meta">Target: March 22-28 • Owner: HC3 Team</div>
+            <div class="action-title">Schedule interviews with C-suite (Tori), frontline (Matt Ingle)</div>
+            <div class="action-meta">Target: March 22-28 • Owner: BrandThnk • In Progress</div>
           </div>
         </div>
 
@@ -697,20 +764,24 @@
             <div class="action-meta">Target: March 28 • Owner: HC3 Team</div>
           </div>
         </div>
+        </div>
       </section>
 
       <section class="section timeline-section">
-        <h2>8-Week Timeline</h2>
-        <div class="timeline">
-          <div class="timeline-week active" data-week="1-2">
+        <div class="section-header">
+          <h2>8-Week Timeline</h2>
+        </div>
+        <div class="section-content">
+          <div class="timeline">
+          <div class="timeline-week completed" data-week="1-2">
             <div>Week 1-2</div>
             <div>Discovery</div>
           </div>
-          <div class="timeline-week" data-week="3">
+          <div class="timeline-week completed" data-week="3">
             <div>Week 3</div>
             <div>Positioning</div>
           </div>
-          <div class="timeline-week" data-week="4">
+          <div class="timeline-week active" data-week="4">
             <div>Week 4</div>
             <div>GTM Model</div>
           </div>
@@ -735,16 +806,25 @@
         <div class="phase-details" id="phase-details">
           <!-- Phase details will be inserted here dynamically -->
         </div>
+        </div>
       </section>
 
     </div>
 
+    <div class="resource-grid">
+
+
+
+    </div>
 
 
     <div class="section" style="margin-bottom: 2rem;">
-      <h2>Materials Received</h2>
-      <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Current brand assets provided by HC3. These are the materials BrandThnk is working from as we develop the new positioning.</p>
-      <div class="resource-grid">
+      <div class="section-header">
+        <h2>Materials Received</h2>
+      </div>
+      <div class="section-content">
+        <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Current brand assets provided by HC3. These are the materials BrandThnk is working from as we develop the new positioning.</p>
+        <div class="resource-grid">
         <a href="assets/HC3_2025_CompanyOnsheet_Banks.pdf" target="_blank" class="resource-card">
           <div class="resource-icon">📄</div>
           <div class="resource-title">Company One-Sheet (Banks)</div>
@@ -762,8 +842,44 @@
           <div class="resource-title">Core Values</div>
           <div class="resource-description">HC3's core values positioning document. Foundation for brand identity and culture alignment.</div>
         </a>
+
+        <a href="assets/HC3 24002 Brand (8).pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">🎨</div>
+          <div class="resource-title">Brand Guidelines & Identity</div>
+          <div class="resource-description">HC3 brand standards document including visual identity, logo usage, and brand guidelines.</div>
+        </a>
+
+        <a href="assets/First Bank and Trust Company - Duncan, OK - API to MEA.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">💰</div>
+          <div class="resource-title">Pricing Proposal (First Bank & Trust)</div>
+          <div class="resource-description">Sample pricing proposal for API to MEA services targeting First Bank and Trust Company in Duncan, OK.</div>
+        </a>
+
+        <a href="assets/First Bank and Trust Company - Duncan, OK - API to MEA (1).pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">💰</div>
+          <div class="resource-title">Pricing Proposal - Revised (First Bank & Trust)</div>
+          <div class="resource-description">Revised pricing proposal document for API to MEA services targeting First Bank and Trust Company in Duncan, OK.</div>
+        </a>
+
+        <a href="assets/Onesheet - AutoAVS - 2025.pdf" target="_blank" class="resource-card">
+          <div class="resource-icon">📄</div>
+          <div class="resource-title">AutoAVS One-Sheet</div>
+          <div class="resource-description">HC3's AutoAVS product overview - automated asset verification system that eliminates manual e4641 processing for financial institutions.</div>
+        </a>
+        </div>
       </div>
     </div>
+
+    <footer class="portal-footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://hc3.brandthnk.online" target="_blank" rel="noopener" class="footer-link">View Draft Website</a>
+        </div>
+        <div class="footer-branding">
+          HC3 Portal • BrandThnk Breakthrough
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script>
@@ -970,4 +1086,4 @@
     }
   </script>
 </body>
-</html>
+</html><!-- Deployment trigger Tue Mar 24 09:18:18 EDT 2026 -->
