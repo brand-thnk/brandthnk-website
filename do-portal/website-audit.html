@@ -14,16 +14,7 @@
       --yellow: #FFEB3B;
       --offwhite: #F5F5F5;
       --gray: #666666;
-      --light-gray: #DDDDDD;
-      --brandthnk-black: #000000;
-      --brandthnk-white: #FFFFFF;
-      --brandthnk-yellow: #FFEB3B;
-      --brandthnk-off-white: #F5F5F5;
-      --text-gray: #333333;
-      --border-gray: #E0E0E0;
-      --success-green: #4CAF50;
-      --warning-orange: #FF9800;
-      --error-red: #F44336;
+      --light-gray: #CCCCCC;
     }
 
     * {
@@ -34,10 +25,16 @@
 
     body {
       font-family: 'Roboto Mono', monospace;
-      line-height: 1.6;
-      color: var(--text-gray);
-      background: var(--brandthnk-white);
-      margin: 0;
+      font-weight: 400;
+      font-size: 14px;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4, .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
     }
 
     /* PORTAL HEADER */
@@ -113,191 +110,148 @@
       background: rgba(255, 235, 59, 0.2);
     }
 
-    /* MAIN CONTENT */
+    /* LAYOUT */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px;
+    }
+
     .portal-content {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Header */
-    .header {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 30px 0;
-      margin-bottom: 40px;
-    }
-
-    .header h1 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .header .subtitle {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* Audit Meta */
-    .audit-meta {
-      background: var(--brandthnk-off-white);
-      border-left: 5px solid var(--brandthnk-yellow);
-      padding: 25px;
-      margin-bottom: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .meta-label {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--brandthnk-black);
-      margin-bottom: 5px;
-    }
-
-    .meta-value {
-      font-size: 1rem;
-      color: var(--text-gray);
-    }
-
-    /* Section Headers */
     .section {
-      margin-bottom: 50px;
+      margin-bottom: 64px;
     }
 
-    .section-header {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 25px;
-      color: var(--brandthnk-black);
-      border-bottom: 3px solid var(--brandthnk-yellow);
-      padding-bottom: 10px;
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--black);
     }
 
-    .subsection-header {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin: 30px 0 15px 0;
-      color: var(--brandthnk-black);
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 32px;
     }
 
-    /* Content Blocks */
-    .content-block {
-      background: var(--brandthnk-white);
-      border: 2px solid var(--border-gray);
-      border-radius: 8px;
-      padding: 30px;
-      margin-bottom: 30px;
+    /* CONTENT COMPONENTS */
+    .audit-card {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 32px;
+      margin-bottom: 24px;
     }
 
-    .content-block p {
-      font-size: 1rem;
-      margin-bottom: 15px;
-      line-height: 1.7;
+    .audit-card h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
     }
 
-    .content-block p:last-child {
-      margin-bottom: 0;
+    .audit-card .audit-meta {
+      font-size: 11px;
+      color: var(--gray);
+      margin-bottom: 16px;
     }
 
-    /* Executive Summary */
-    .executive-summary {
-      background: linear-gradient(135deg, var(--brandthnk-yellow) 0%, rgba(255, 235, 59, 0.1) 100%);
-      border: 2px solid var(--brandthnk-black);
-      border-radius: 8px;
-      padding: 30px;
-      margin-bottom: 40px;
+    .audit-card p {
+      font-size: 13px;
+      margin-bottom: 24px;
+      line-height: 1.8;
     }
 
-    .executive-summary h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
+    /* INSIGHT BOX */
+    .insight-box {
+      background: var(--black);
+      color: var(--white);
+      padding: 28px 32px;
+      margin-top: 24px;
+    }
+
+    .insight-box h4 {
+      font-size: 13px;
+      color: var(--yellow);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .insight-box p {
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--light-gray);
+    }
+
+    .insight-box strong {
+      color: var(--white);
+    }
+
+    /* ACTION CARDS */
+    .action-card {
+      background: var(--offwhite);
+      padding: 28px;
       margin-bottom: 20px;
     }
 
-    /* Tables */
+    .action-card h4 {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .action-card p {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .action-card.immediate {
+      border-left: 3px solid var(--yellow);
+    }
+
+    /* TABLES */
     .audit-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 25px 0;
-      background: var(--brandthnk-white);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 2px solid var(--border-gray);
+      font-size: 12px;
+      margin: 24px 0;
     }
 
     .audit-table th {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      font-family: 'Roboto Slab', serif;
-      font-weight: 600;
-      padding: 15px;
+      background: var(--black);
+      color: var(--white);
+      padding: 12px;
       text-align: left;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 11px;
     }
 
     .audit-table td {
-      padding: 15px;
-      border-bottom: 1px solid var(--border-gray);
+      padding: 12px;
+      border-bottom: 1px solid var(--light-gray);
       vertical-align: top;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .audit-table tr:last-child td {
-      border-bottom: none;
+      font-size: 11px;
     }
 
     .audit-table tr:nth-child(even) {
-      background: var(--brandthnk-off-white);
+      background: var(--offwhite);
     }
 
     .framework-element {
-      font-family: 'Roboto Slab', serif;
-      font-weight: 600;
-      color: var(--brandthnk-black);
+      font-weight: 700;
+      color: var(--black);
     }
 
-    .current-state {
-      color: var(--error-red);
-      font-weight: 600;
-    }
-
-    /* Action Lists */
-    .action-grid {
+    /* ACTION GRID */
+    .action-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      margin: 30px 0;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 32px;
     }
-
-    .action-section {
-      background: var(--brandthnk-white);
-      border: 2px solid var(--border-gray);
-      border-radius: 8px;
-      padding: 25px;
-    }
-
-    .action-section.start {
-      border-color: var(--success-green);
     }
 
     .action-section.stop {
@@ -343,106 +297,20 @@
       margin-bottom: 10px;
     }
 
-    .action-title {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--brandthnk-black);
-      margin-bottom: 10px;
+    /* SIMPLE LISTS */
+    ul, ol {
+      margin: 10px 0 10px 25px;
     }
 
-    .action-description {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 10px;
+    li {
+      margin-bottom: 8px;
+      font-size: 12px;
     }
 
-    .effort-badge {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      display: inline-block;
+    p {
+      font-size: 13px;
+      margin-bottom: 12px;
     }
-
-    /* Highlight Boxes */
-    .highlight-box {
-      background: var(--brandthnk-yellow);
-      border: 2px solid var(--brandthnk-black);
-      border-radius: 8px;
-      padding: 25px;
-      margin: 30px 0;
-    }
-
-    .highlight-box h4 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
-      margin-bottom: 15px;
-    }
-
-    .highlight-box p {
-      font-size: 1rem;
-      color: var(--brandthnk-black);
-      font-weight: 500;
-    }
-
-    /* Key Points */
-    .key-points {
-      background: var(--brandthnk-off-white);
-      border-left: 5px solid var(--brandthnk-yellow);
-      padding: 25px;
-      margin: 25px 0;
-    }
-
-    .key-points ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .key-points li {
-      position: relative;
-      padding-left: 25px;
-      margin-bottom: 10px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .key-points li:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--brandthnk-black);
-      font-weight: bold;
-    }
-
-    /* Bottom Line */
-    .bottom-line {
-      background: var(--brandthnk-black);
-      color: var(--brandthnk-white);
-      padding: 40px;
-      border-radius: 8px;
-      margin-top: 50px;
-    }
-
-    .bottom-line h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: var(--brandthnk-yellow);
-    }
-
-    .bottom-line p {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    .next-step {
       background: var(--brandthnk-yellow);
       color: var(--brandthnk-black);
       padding: 20px;
@@ -533,48 +401,26 @@
 
   <!-- MAIN CONTENT -->
   <div class="portal-content">
-    <div class="header" style="background: var(--brandthnk-black); color: var(--brandthnk-white); padding: 40px; margin-bottom: 40px; border-bottom: 4px solid var(--brandthnk-yellow);">
-      <h1 style="margin-top: 0; border-bottom: none; padding-bottom: 0; color: var(--brandthnk-white);">Website Audit</h1>
-      <p class="subtitle" style="color: var(--brandthnk-white);">Digital Onboarding Portal - Comprehensive Website Analysis</p>
-    </div>
+    <div class="section">
+      <h2 class="section-title">Website Audit</h2>
+      <div class="section-subtitle">Digital Onboarding, Inc. | Comprehensive Website Analysis | March 16, 2026</div>
 
-    <div class="container">
-    <!-- Audit Meta Information -->
-    <div class="audit-meta">
-      <div class="meta-item">
-        <div class="meta-label">Client</div>
-        <div class="meta-value">Digital Onboarding, Inc.</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Prepared by</div>
-        <div class="meta-value">BrandThnk</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Date</div>
-        <div class="meta-value">March 16, 2026</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Scope</div>
-        <div class="meta-value">Full website audit of digitalonboarding.com</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Lens</div>
-        <div class="meta-value">StoryBrand SB7 framework, competitive positioning, conversion optimization</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-label">Inputs</div>
-        <div class="meta-value">Site crawl + Fintech Competitive Intelligence Dashboard (SimilarWeb, LinkedIn Ad Library, Meta Ad Library)</div>
+      <div class="audit-card">
+        <h3>Project Overview</h3>
+        <div class="audit-meta">digitalonboarding.com | Prepared by BrandThnk</div>
+        <p><strong>Scope:</strong> Full website audit using StoryBrand SB7 framework, competitive positioning analysis, and conversion optimization assessment.</p>
+        <p><strong>Methodology:</strong> Site crawl combined with Fintech Competitive Intelligence Dashboard (SimilarWeb, LinkedIn Ad Library, Meta Ad Library).</p>
       </div>
     </div>
 
     <!-- Executive Summary -->
     <div class="section">
-      <h2 class="section-header">Executive Summary</h2>
-      <div class="executive-summary">
-        <h3>Key Findings</h3>
-        <p>digitalonboarding.com has strong product-market fit buried under weak storytelling. The site describes features clearly. It does not describe the buyer's problem at all. Every page leads with what Digital Onboarding does rather than what the buyer is struggling with. That distinction matters because it determines whether a first-time visitor stays for 10 seconds or 10 minutes.</p>
+      <h2 class="section-title">Executive Summary</h2>
 
-        <p>The competitive intelligence dashboard makes the stakes plain. DO's organic traffic declined 29.3% year-over-year. The site pulls roughly 4,179 monthly visits against nCino's 69,541. There is near-zero paid search spend while Narmi has increased theirs by 548%. Every visitor who lands on this site is disproportionately valuable, and right now the site is not converting that scarce traffic into pipeline.</p>
+      <div class="insight-box">
+        <h4>Key Findings</h4>
+        <p><strong>digitalonboarding.com has strong product-market fit buried under weak storytelling.</strong> The site describes features clearly. It does not describe the buyer's problem at all. Every page leads with what Digital Onboarding does rather than what the buyer is struggling with. That distinction matters because it determines whether a first-time visitor stays for 10 seconds or 10 minutes.</p>
+        <p style="margin-top: 12px;">The competitive intelligence dashboard makes the stakes plain. DO's organic traffic declined 29.3% year-over-year. The site pulls roughly 4,179 monthly visits against nCino's 69,541. There is near-zero paid search spend while Narmi has increased theirs by 548%. Every visitor who lands on this site is disproportionately valuable, and right now the site is not converting that scarce traffic into pipeline.</p>
       </div>
 
       <div class="content-block">
@@ -590,8 +436,10 @@
 
     <!-- StoryBrand SB7 Framework Analysis -->
     <div class="section">
-      <h2 class="section-header">StoryBrand SB7 Framework Analysis</h2>
-      <div class="content-block">
+      <h2 class="section-title">StoryBrand SB7 Framework Analysis</h2>
+      <div class="section-subtitle">Assessment of digitalonboarding.com against Donald Miller's seven-part narrative structure</div>
+
+      <div class="audit-card">
         <p>Donald Miller's StoryBrand framework maps brand messaging to a seven-part narrative structure. When a website follows this structure, visitors immediately understand three things: what is the problem, how does this company help me solve it, and what does my life look like after. When it doesn't, visitors get feature lists and jargon. Here is how DO's site performs against each element of the SB7.</p>
       </div>
 
