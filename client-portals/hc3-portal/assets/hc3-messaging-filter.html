@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC3 Messaging Copy Filter</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap');
+
+  :root {
+    --black: #000;
+    --white: #fff;
+    --yellow: #FFEB3B;
+    --off-white: #F5F5F5;
+    --gray-text: #555;
+    --gray-mid: #888;
+    --gray-light: #E0E0E0;
+    --max-w: 960px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .topnav {
+    background: var(--black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid var(--yellow);
+  }
+  .topnav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 16px var(--pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topnav .logo {
+    font-family: 'Roboto Slab', serif;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .topnav .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  .topnav .nav-links a {
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .topnav .nav-links a:hover {
+    color: var(--yellow);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--black);
+    padding: 80px var(--pad) 64px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    color: var(--white);
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-family: 'Roboto Slab', serif;
+    color: var(--gray-mid);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+  .hero .yellow-rule {
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+    margin: 0 auto 32px;
+  }
+  .hero .meta {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+  .hero .meta strong { color: var(--white); }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 64px var(--pad);
+  }
+  .section-dark {
+    background: var(--off-white);
+  }
+
+  .section-label {
+    font-size: 10px;
+    color: var(--gray-mid);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .section p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-text);
+    max-width: 680px;
+    margin-bottom: 12px;
+  }
+
+  /* ── INPUT AREA ── */
+  .input-section {
+    margin-top: 32px;
+  }
+  .input-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    color: var(--black);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .copy-input {
+    width: 100%;
+    min-height: 150px;
+    padding: 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 2px solid var(--gray-light);
+    background: var(--white);
+    color: var(--black);
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+  .copy-input:focus {
+    outline: none;
+    border-color: var(--yellow);
+  }
+  .copy-input::placeholder {
+    color: var(--gray-mid);
+  }
+
+  /* ── FILTER CARDS ── */
+  .filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .filter-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .filter-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--yellow);
+  }
+
+  .filter-header {
+    padding: 24px 32px;
+    background: var(--black);
+    color: var(--white);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .filter-header:hover {
+    background: #222;
+  }
+  .filter-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .filter-toggle {
+    font-size: 20px;
+    color: var(--yellow);
+    transition: transform 0.2s;
+  }
+  .filter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .filter-content.open {
+    max-height: 1000px;
+  }
+  .filter-content-inner {
+    padding: 32px;
+  }
+
+  .filter-item {
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: var(--off-white);
+    border-left: 3px solid var(--yellow);
+  }
+  .filter-item:last-child {
+    margin-bottom: 0;
+  }
+  .filter-item-label {
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .filter-item-text {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.6;
+  }
+
+  .competitive-item {
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background: var(--off-white);
+    border-left: 3px solid var(--yellow);
+  }
+  .competitive-item:last-child {
+    margin-bottom: 0;
+  }
+  .competitive-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .competitive-text {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.6;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist-section {
+    margin-top: 32px;
+    padding: 32px;
+    background: var(--black);
+    color: var(--white);
+    border-left: 4px solid var(--yellow);
+  }
+  .checklist-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .checklist-intro {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .checklist-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  .checklist-text {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--black);
+    padding: 32px var(--pad);
+    text-align: center;
+    border-top: 4px solid var(--yellow);
+  }
+  .site-footer .f-brand {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .site-footer .f-meta {
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    :root { --pad: 24px; }
+    .hero h1 { font-size: 28px; }
+    .topnav .nav-links { gap: 12px; }
+    .topnav .nav-links a { font-size: 9px; }
+    .filter-content-inner { padding: 24px; }
+    .checklist-section { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── STICKY NAV ── -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="logo">HC3 Messaging Filter</span>
+    <div class="nav-links">
+      <a onclick="scrollTo_('input-section')">Input Copy</a>
+      <a onclick="scrollTo_('filters')">Filters</a>
+      <a onclick="scrollTo_('checklist')">Checklist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <h1>Messaging Copy Filter</h1>
+  <div class="subtitle">Test your HC3 copy against three positioning filters</div>
+  <div class="yellow-rule"></div>
+  <div class="meta">
+    <strong>Purpose:</strong> Validate messaging consistency with HC3 brand positioning<br>
+    April 2026 | Confidential | Prepared by BrandThnk
+  </div>
+</section>
+
+<!-- ── INPUT SECTION ── -->
+<div id="input-section" class="section">
+  <div class="section-label">Draft Copy</div>
+  <h2>Paste Your Copy Here</h2>
+  <p>Enter the messaging, copy, or content you want to test against HC3's positioning filters. This could be website copy, email content, sales materials, or any customer-facing text.</p>
+
+  <div class="input-section">
+    <div class="input-label">Copy to Test</div>
+    <textarea class="copy-input" placeholder="Paste your draft copy here...&#10;&#10;Examples:&#10;• Website homepage copy&#10;• Email newsletter content&#10;• Sales presentation text&#10;• Product descriptions&#10;• Campaign messaging&#10;&#10;The tool will help you check if the copy aligns with HC3's positioning."></textarea>
+  </div>
+</div>
+
+<!-- ── FILTERS ── -->
+<div id="filters" class="section-dark">
+  <div class="section">
+    <div class="section-label">Positioning Filters</div>
+    <h2>Three Filter Tests</h2>
+    <p>Click each filter to expand and see the specific criteria your copy should align with. Use these as reference while evaluating your draft copy above.</p>
+
+    <div class="filter-grid">
+      <!-- Filter 1: Is/Is Not -->
+      <div class="filter-card">
+        <div class="filter-header" onclick="toggleFilter('filter1')">
+          <div class="filter-title">Filter 1: Is / Is Not</div>
+          <div class="filter-toggle" id="filter1-toggle">+</div>
+        </div>
+        <div class="filter-content" id="filter1-content">
+          <div class="filter-content-inner">
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS</div>
+              <div class="filter-item-text">An operational partner you trust with your most sensitive customer communications</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS NOT</div>
+              <div class="filter-item-text">A technology vendor selling features on a comparison chart</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS</div>
+              <div class="filter-item-text">A specialist in the work your core system was not built to do</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS NOT</div>
+              <div class="filter-item-text">An enterprise platform that looks identical in the demo and diverges in year two</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS</div>
+              <div class="filter-item-text">The team that takes ownership when something goes wrong and tells you before you have to ask</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">HC3 IS NOT</div>
+              <div class="filter-item-text">The vendor you manage through support tickets and SLA reports</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter 2: Three Positioning Filters -->
+      <div class="filter-card">
+        <div class="filter-header" onclick="toggleFilter('filter2')">
+          <div class="filter-title">Filter 2: Three Positioning Filters</div>
+          <div class="filter-toggle" id="filter2-toggle">+</div>
+        </div>
+        <div class="filter-content" id="filter2-content">
+          <div class="filter-content-inner">
+            <div class="filter-item">
+              <div class="filter-item-label">Positioning Filter 1</div>
+              <div class="filter-item-text">HC3 is a family-owned company that runs inside your operations, not a platform trying to replace the core.</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">Positioning Filter 2</div>
+              <div class="filter-item-text">HC3 starts from where clients are today and adds capability without forcing a migration.</div>
+            </div>
+            <div class="filter-item">
+              <div class="filter-item-label">Positioning Filter 3</div>
+              <div class="filter-item-text">When HC3 runs your customer communications, executive teams stop discussing them at quarterly reviews.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter 3: Competitive Tier Check -->
+      <div class="filter-card">
+        <div class="filter-header" onclick="toggleFilter('filter3')">
+          <div class="filter-title">Filter 3: Competitive Tier Check</div>
+          <div class="filter-toggle" id="filter3-toggle">+</div>
+        </div>
+        <div class="filter-content" id="filter3-content">
+          <div class="filter-content-inner">
+            <div class="competitive-item">
+              <div class="competitive-label">vs. Core-Bundled (Jack Henry, Fiserv)</div>
+              <div class="competitive-text">"Your core runs accounts. HC3 runs the communications those accounts depend on."</div>
+            </div>
+            <div class="competitive-item">
+              <div class="competitive-label">vs. Enterprise CCM (Doxim)</div>
+              <div class="competitive-text">"The demo is identical. Ask what year two looks like."</div>
+            </div>
+            <div class="competitive-item">
+              <div class="competitive-label">vs. Peer Specialists (PrintMail, InfoImage)</div>
+              <div class="competitive-text">"Everyone in this category runs statements. Ask what else they run."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CHECKLIST ── -->
+<div id="checklist" class="section">
+  <div class="checklist-section">
+    <div class="checklist-title">Does This Copy Pass?</div>
+    <div class="checklist-intro">Use this checklist to manually evaluate your draft copy against each filter. Check each box if your copy aligns with that specific criterion.</div>
+
+    <div class="checklist-items">
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check1">
+        <label for="check1" class="checklist-text"><strong>Is/Is Not Test:</strong> Copy positions HC3 as an operational partner, not a technology vendor</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check2">
+        <label for="check2" class="checklist-text"><strong>Is/Is Not Test:</strong> Copy emphasizes specialization in beyond-core work, not platform replacement</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check3">
+        <label for="check3" class="checklist-text"><strong>Is/Is Not Test:</strong> Copy highlights proactive ownership, not reactive vendor management</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check4">
+        <label for="check4" class="checklist-text"><strong>Family-Owned Operations:</strong> Copy reflects running inside operations vs. replacing core systems</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check5">
+        <label for="check5" class="checklist-text"><strong>Migration-Free Growth:</strong> Copy emphasizes building on current state, not forcing change</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check6">
+        <label for="check6" class="checklist-text"><strong>Executive Confidence:</strong> Copy suggests seamless operations that reduce management overhead</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check7">
+        <label for="check7" class="checklist-text"><strong>Core-Bundled Differentiation:</strong> Copy distinguishes communications expertise from account management</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check8">
+        <label for="check8" class="checklist-text"><strong>Enterprise CCM Differentiation:</strong> Copy addresses long-term delivery vs. demo promises</label>
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" class="checklist-checkbox" id="check9">
+        <label for="check9" class="checklist-text"><strong>Peer Specialist Differentiation:</strong> Copy highlights comprehensive capabilities beyond statements</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="f-brand">BrandThnk</div>
+  <div class="f-meta">HC3 Messaging Copy Filter | April 2026 | Confidential</div>
+</footer>
+
+<script>
+/* ── FILTER INTERACTIONS ── */
+function toggleFilter(filterId) {
+  const content = document.getElementById(filterId + '-content');
+  const toggle = document.getElementById(filterId + '-toggle');
+
+  if (content.classList.contains('open')) {
+    content.classList.remove('open');
+    toggle.textContent = '+';
+  } else {
+    // Close all other filters
+    const allContents = document.querySelectorAll('.filter-content');
+    const allToggles = document.querySelectorAll('.filter-toggle');
+
+    allContents.forEach(c => c.classList.remove('open'));
+    allToggles.forEach(t => t.textContent = '+');
+
+    // Open selected filter
+    content.classList.add('open');
+    toggle.textContent = '−';
+  }
+}
+
+/* ── SMOOTH SCROLLING ── */
+function scrollTo_(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ── NAV HIGHLIGHTING ── */
+const sections = ['input-section', 'filters', 'checklist'];
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 100) current = id;
+  });
+  navLinks.forEach(a => {
+    const onclick = a.getAttribute('onclick');
+    if (onclick && onclick.includes(current)) {
+      a.style.color = 'var(--yellow)';
+    } else {
+      a.style.color = 'var(--gray-mid)';
+    }
+  });
+});
+
+/* ── LOCAL STORAGE FOR CHECKLIST ── */
+document.addEventListener('DOMContentLoaded', function() {
+  // Load saved checkbox states
+  const checkboxes = document.querySelectorAll('.checklist-checkbox');
+  checkboxes.forEach(checkbox => {
+    const saved = localStorage.getItem('hc3-filter-' + checkbox.id);
+    if (saved === 'true') {
+      checkbox.checked = true;
+    }
+
+    // Save state on change
+    checkbox.addEventListener('change', function() {
+      localStorage.setItem('hc3-filter-' + checkbox.id, checkbox.checked);
+    });
+  });
+
+  // Load saved copy text
+  const copyInput = document.querySelector('.copy-input');
+  const savedCopy = localStorage.getItem('hc3-filter-copy');
+  if (savedCopy) {
+    copyInput.value = savedCopy;
+  }
+
+  // Save copy text on input
+  copyInput.addEventListener('input', function() {
+    localStorage.setItem('hc3-filter-copy', copyInput.value);
+  });
+});
+</script>
+</body>
+</html>
