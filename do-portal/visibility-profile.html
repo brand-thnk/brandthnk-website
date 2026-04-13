@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nate Shahan - Visibility Profile | BrandThnk</title>
+    <title>Visibility Profile - Digital Onboarding Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --gray: #666666;
+            --light-gray: #DDDDDD;
             --brandthnk-black: #000000;
             --brandthnk-white: #FFFFFF;
             --brandthnk-yellow: #FFEB3B;
             --brandthnk-off-white: #F5F5F5;
             --text-gray: #333333;
-            --light-gray: #666666;
             --border-gray: #E0E0E0;
         }
 
@@ -27,9 +35,86 @@
             color: var(--text-gray);
             background: var(--brandthnk-white);
             margin: 0;
-            padding: 40px 20px;
+        }
+
+        /* PORTAL HEADER */
+        .portal-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 30px 0;
+            border-bottom: 4px solid var(--yellow);
+        }
+
+        .portal-header-content {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .client-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .portal-subtitle {
+            font-size: 14px;
+            color: var(--yellow);
+            font-weight: 400;
+        }
+
+        /* HORIZONTAL NAVIGATION */
+        .portal-nav {
+            background: var(--offwhite);
+            border-bottom: 1px solid var(--light-gray);
+            overflow-x: auto;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            min-width: max-content;
+        }
+
+        .nav-tab {
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--black);
+            background: rgba(255, 235, 59, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--black);
+            border-bottom-color: var(--yellow);
+            background: rgba(255, 235, 59, 0.2);
+        }
+
+        /* MAIN CONTENT */
+        .portal-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -291,12 +376,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <h1>Nate Shahan</h1>
-        <p class="subtitle">Chief Product Officer, Digital Onboarding</p>
-        <p class="subtitle">Visibility Profile, Thought Leadership Strategy & Productization Plan</p>
-        <p class="prepared-by">Prepared by BrandThnk | March 2026</p>
-    </div>
+    <!-- PORTAL HEADER -->
+    <header class="portal-header">
+        <div class="portal-header-content">
+            <h1 class="client-title">Digital Onboarding</h1>
+            <p class="portal-subtitle">BrandThnk Client Portal</p>
+        </div>
+    </header>
+
+    <!-- HORIZONTAL NAVIGATION -->
+    <nav class="portal-nav">
+        <div class="nav-container">
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li class="nav-tab"><a href="competitive-analysis.html" class="nav-link">Competitive Analysis</a></li>
+                <li class="nav-tab"><a href="distribution-calendar.html" class="nav-link">Distribution Calendar</a></li>
+                <li class="nav-tab"><a href="visibility-profile.html" class="nav-link active">Visibility Profile</a></li>
+                <li class="nav-tab"><a href="linkedin-audit.html" class="nav-link">LinkedIn Audit</a></li>
+                <li class="nav-tab"><a href="website-audit.html" class="nav-link">Website Audit</a></li>
+                <li class="nav-tab"><a href="analyst-relations.html" class="nav-link">Analyst Relations</a></li>
+                <li class="nav-tab"><a href="paid-media-guide.html" class="nav-link">Paid Media Guide</a></li>
+                <li class="nav-tab"><a href="cu20-pitch.html" class="nav-link">CU 2.0 Pitch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="portal-content">
+        <div class="header" style="background: var(--brandthnk-black); color: var(--brandthnk-white); padding: 40px; margin-bottom: 40px; border-bottom: 4px solid var(--brandthnk-yellow);">
+            <h1 style="margin-top: 0; border-bottom: none; padding-bottom: 0; color: var(--brandthnk-white);">Nate Shahan</h1>
+            <p class="subtitle">Chief Product Officer, Digital Onboarding</p>
+            <p class="subtitle">Visibility Profile, Thought Leadership Strategy & Productization Plan</p>
+            <p class="prepared-by">Prepared by BrandThnk | March 2026</p>
+        </div>
 
     <h2>Executive Summary</h2>
     <p>Nate Shahan's appointment as Chief Product Officer at Digital Onboarding is an underused asset. The press release got limited traction (one trade listing, no earned media), but Nate's background (co-founded Segmint, built patented data products for FIs, $135.5M exit to Alkami) makes him one of the most credible product voices in the digital banking engagement space.</p>
@@ -561,8 +673,9 @@
         <li>Finovate: Segmint archives</li>
     </ul>
 
-    <div class="footer">
-        <p>© 2026 BrandThnk | <a href="https://brandthnk.co">brandthnk.co</a></p>
+        <div class="footer">
+            <p>© 2026 BrandThnk | <a href="https://brandthnk.co">brandthnk.co</a></p>
+        </div>
     </div>
 </body>
 </html>

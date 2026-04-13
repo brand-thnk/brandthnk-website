@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandThnk Insights | Proprietary Competitive Research for Financial Services</title>
+<meta name="description" content="See what your competitors are actually doing in digital banking, onboarding, and analytics. Proprietary research from BrandThnk, built for fintech and FI leaders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* MOBILE NAV */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--black);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 100px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: #CCCCCC;
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 20px;
+  }
+
+  .product-name {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 4px 12px 2px;
+    margin: 0 8px;
+    font-weight: 700;
+    border-radius: 2px;
+    position: relative;
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+
+  .product-name::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--yellow), var(--white), var(--yellow));
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-name:hover::before {
+    opacity: 0.6;
+  }
+
+  @keyframes subtle-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 rgba(255, 235, 59, 0);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 8px rgba(255, 235, 59, 0.3);
+    }
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+  }
+
+  .btn-outline-light {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+  }
+
+  .btn-outline-light:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+  }
+
+  .btn-dark:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 100px 60px;
+  }
+
+  .section-alt {
+    background: var(--offwhite);
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .section-subtitle {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.5;
+    max-width: 700px;
+    margin-bottom: 48px;
+  }
+
+  /* DASHBOARD CARDS */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+  }
+
+  .dashboard-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 36px 28px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboard-card:hover {
+    border-color: var(--black);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+
+  .dashboard-card.coming-soon {
+    opacity: 0.7;
+  }
+
+  .card-status {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .card-status.live {
+    color: #2E7D32;
+  }
+
+  .card-status.soon {
+    color: var(--gray);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .card-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .card-description {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  .card-metrics {
+    font-size: 13px;
+    color: var(--gray);
+    border-top: 1px solid var(--light-gray);
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  .card-metrics span {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .card-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .card-link:hover {
+    color: var(--gray);
+  }
+
+  /* WHAT YOU GET */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .offer-item {
+    padding: 32px;
+    border-left: 4px solid var(--yellow);
+    background: var(--white);
+  }
+
+  .offer-item h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .offer-item p {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* FORM SECTION */
+  .form-section {
+    padding: 100px 60px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .form-layout {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .form-copy h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .form-copy p {
+    font-size: 18px;
+    color: #CCCCCC;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .form-copy .form-note {
+    font-size: 14px;
+    color: #999;
+    margin-top: 24px;
+  }
+
+  .form-container {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 36px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    transition: border-color 0.2s;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #888;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--yellow);
+  }
+
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23FFEB3B' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  .form-group select option {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--yellow);
+    color: var(--black);
+    border: 2px solid var(--yellow);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover {
+    background: var(--white);
+    border-color: var(--white);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gray);
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--gray);
+  }
+
+  /* METHODOLOGY */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 48px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .method-step {
+    padding: 28px 24px;
+    border-right: 1px solid var(--light-gray);
+    position: relative;
+  }
+
+  .method-step:last-child {
+    border-right: none;
+  }
+
+  .method-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .method-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .method-detail {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  .method-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 100px 60px;
+    position: relative;
+  }
+
+  .method-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .method-section .section-label {
+    color: var(--yellow);
+  }
+
+  .method-section .section-title {
+    color: var(--white);
+  }
+
+  .method-section .section-title::after {
+    background: var(--yellow);
+  }
+
+  .method-section .section-subtitle {
+    color: #CCCCCC;
+  }
+
+  .trust-bar {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .trust-item {
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .trust-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .trust-label.high { color: #66BB6A; }
+  .trust-label.medium { color: var(--yellow); }
+  .trust-label.low { color: #FF8A65; }
+
+  .trust-detail {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .hero { padding: 120px 24px 60px; }
+    .hero p { font-size: 18px; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .section { padding: 60px 24px; }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .method-grid { grid-template-columns: 1fr; }
+    .method-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .method-step:last-child { border-bottom: none; }
+    .method-section { padding: 60px 24px; }
+    .trust-bar { grid-template-columns: 1fr; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .form-section { padding: 60px 24px; }
+    .form-layout { grid-template-columns: 1fr; gap: 40px; }
+    .footer { padding: 30px 24px; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Work With Us</a></li>
+    <li><a href="/library/">Our Toolkit</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/focal/" class="active">Meet Focal</a></li>
+    <li><a href="/litmus/">Meet Litmus</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+  <button class="mobile-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-label">Introducing <span class="product-name">Focal</span>, Powered by BrandThnk</p>
+    <h1>See what your competitors are actually doing (and spending).</h1>
+    <div class="hero-cta">
+      <a href="#request" class="btn btn-primary">See What You're Missing</a>
+      <a href="#dashboards" class="btn btn-outline-light">View the Research</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- THE PROBLEM -->
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+    <p class="section-label">The Blind Spot</p>
+    <h2 class="section-title">It's hard to make brand decisions without the full picture. Focal fixes that.</h2>
+    <p style="font-size: 18px; color: var(--gray); line-height: 1.6;">Your competitors are repositioning, shifting spend, and testing new messages. Focal gives you a structured intelligence picture to quickly respond -- it's the research infrastructure we built because nothing else did this job well enough for our clients.</p>
+  </div>
+</section>
+
+
+<!-- HOW THE RESEARCH WORKS -->
+<section class="method-section">
+  <div class="container">
+    <p class="section-label">How Focal Works</p>
+    <h2 class="section-title">Five phases. Every finding scored by confidence level.</h2>
+    <p class="section-subtitle">This is not a generic AI summary or a secondhand aggregation. Each Focal dashboard follows a structured 11-step workflow combining automated data collection, manual ad research, and strategic synthesis.</p>
+
+    <div class="method-grid">
+      <div class="method-step">
+        <div class="method-number">01</div>
+        <div class="method-name">Web Traffic Analysis</div>
+        <div class="method-detail">12-month traffic data across desktop and mobile. Flags organic drops greater than 15%, paid spend shifts, and new referral sources driving 5%+ of traffic.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-number">02</div>
+        <div class="method-name">Paid Ads Intelligence</div>
+        <div class="method-detail">Manual research across Meta and LinkedIn ad libraries. Documents creative type, hooks, CTAs, and messaging shifts detected in the last 30-90 days.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-number">03</div>
+        <div class="method-name">Referral &amp; Partnership Mapping</div>
+        <div class="method-detail">Identifies new referral sources, high-volume traffic partners, and partnership signals categorized as integration, co-marketing, or affiliate.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-number">04</div>
+        <div class="method-name">Strategic Synthesis</div>
+        <div class="method-detail">All data synthesized into nine analytical outputs including positioning scores, strategy matrices, pitch angles scored by confidence, and a prioritized playbook.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-number">05</div>
+        <div class="method-name">Interactive Dashboard</div>
+        <div class="method-detail">Ten-section dashboard with executive summary, company profiles, traffic trends, ad intel, and a playbook of quick wins (30-60 days) and long-term plays (12-18 months).</div>
+      </div>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-label high">High Confidence</div>
+        <div class="trust-detail">Public company filings, earnings calls, audited financials, official press releases</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-label medium">Medium Confidence</div>
+        <div class="trust-detail">Credit rating reports, third-party revenue estimates, analyst firm research (IDC, Gartner, Datos Insights)</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-label low">Acknowledged Limitations</div>
+        <div class="trust-detail">Web traffic estimates are directional, not audited. Ad libraries are incomplete for B2B. Win/loss data is absent. Every dashboard says so explicitly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RESEARCH DASHBOARDS -->
+<section class="section section-alt" id="dashboards">
+  <div class="container">
+    <p class="section-label">See It In Action</p>
+    <h2 class="section-title">See the depth before you request your own.</h2>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <span class="card-status live">Sample</span>
+        <div class="card-icon">&#9632;</div>
+        <h3 class="card-title">Digital Banking</h3>
+        <p class="card-description">How financial institutions position and sell their digital banking products. Feature comparisons and messaging patterns across competitors.</p>
+        <div class="card-metrics">
+          <span>Competitive positioning analysis</span>
+          <span>Feature and messaging tracking</span>
+        </div>
+        <a href="https://db.brandthnkinsights.com/" class="card-link" target="_blank" rel="noopener">Explore sample &#8594;</a>
+      </div>
+
+      <div class="dashboard-card">
+        <span class="card-status live">Sample</span>
+        <div class="card-icon">&#9650;</div>
+        <h3 class="card-title">Bank Analytics</h3>
+        <p class="card-description">How banks and fintechs use data and analytics to drive decisions. Tracks product capabilities and competitive differentiation across the analytics space.</p>
+        <div class="card-metrics">
+          <span>Go-to-market tracking</span>
+          <span>Capability comparisons</span>
+        </div>
+        <a href="https://bankanalytics.brandthnkinsights.com" class="card-link" target="_blank" rel="noopener">Explore sample &#8594;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- THE OFFER + FORM -->
+<section class="form-section" id="request">
+  <div class="form-layout">
+    <div class="form-copy">
+      <p class="section-label" style="color: var(--yellow);">How We Can Help</p>
+      <h2>Request a custom research sample. No charge.</h2>
+      <p>The market picks the brand it understands fastest. The longer you operate without this picture, the harder the position is to claim. Your custom sample is ready in 5–7 business days.</p>
+    </div>
+
+    <div class="form-container">
+      <div data-fs-success style="display:none; padding: 24px; text-align: center;">
+        <p style="font-family: 'Roboto Slab', serif; font-size: 22px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">We got it.</p>
+        <p style="color: #CCC; font-size: 15px;">Expect your custom research sample within 5-7 business days.</p>
+      </div>
+      <div data-fs-error style="color: #FF8A65; font-size: 14px; margin-bottom: 16px;"></div>
+      <form id="insights-form">
+        <input type="hidden" name="_subject" value="New BrandThnk Insights Research Request">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required data-fs-field>
+          <span data-fs-error="name" style="color: #FF8A65; font-size: 13px;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Your company" required data-fs-field>
+          <span data-fs-error="company" style="color: #FF8A65; font-size: 13px;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required data-fs-field>
+          <span data-fs-error="email" style="color: #FF8A65; font-size: 13px;"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="competitors">Competitors</label>
+          <textarea id="competitors" name="competitors" rows="3" placeholder="Name 2-5 competitors you want researched" data-fs-field></textarea>
+          <span data-fs-error="competitors" style="color: #FF8A65; font-size: 13px;"></span>
+        </div>
+
+        <button type="submit" class="form-submit" data-fs-submit-btn>See What You're Missing</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 BrandThnk. <a href="/">Home</a> &middot; <a href="/library/">Toolkit</a> &middot; <a href="/about">About</a> &middot; <a href="https://calendar.app.google/ZoWdHFueshr6LQs17">Book a Call</a></p>
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#insights-form', formId: 'xqegyyrq' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>

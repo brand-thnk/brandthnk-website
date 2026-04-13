@@ -3,41 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Onboarding - Competitive Research</title>
+  <title>Competitive Analysis - Digital Onboarding Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body, html {
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      height: 100vh;
       overflow: hidden;
+    }
+
+    /* PORTAL HEADER */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .portal-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .client-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+    .portal-nav {
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--light-gray);
+      overflow-x: auto;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* CONTENT CONTAINER */
+    .content-container {
+      height: calc(100vh - 140px); /* Adjust for header and nav height */
+      position: relative;
     }
 
     .redirect-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background: #f5f5f5;
-      font-family: 'Roboto Mono', monospace;
+      height: 100%;
+      background: var(--offwhite);
     }
 
     .redirect-message {
       text-align: center;
       padding: 40px;
-      background: white;
+      background: var(--white);
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .loading-text {
       font-size: 18px;
-      color: #666;
+      color: var(--gray);
       margin-bottom: 20px;
     }
 
     .spinner {
       border: 4px solid #f3f3f3;
-      border-top: 4px solid #FFEB3B;
+      border-top: 4px solid var(--yellow);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -52,23 +150,59 @@
 
     .research-frame {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       border: none;
     }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 20px;
+      }
+
+      .portal-header-content {
+        padding: 0 20px;
+      }
+    }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="redirect-container" id="loading">
-    <div class="redirect-message">
-      <div class="loading-text">Loading competitive research platform...</div>
-      <div class="spinner"></div>
+  <!-- PORTAL HEADER -->
+  <header class="portal-header">
+    <div class="portal-header-content">
+      <h1 class="client-title">Digital Onboarding</h1>
+      <p class="portal-subtitle">BrandThnk Client Portal</p>
     </div>
-  </div>
+  </header>
 
-  <iframe id="researchFrame" class="research-frame" style="display: none;" src="https://do2.brandthnkinsights.com/"></iframe>
+  <!-- HORIZONTAL NAVIGATION -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-tab"><a href="competitive-analysis.html" class="nav-link active">Competitive Analysis</a></li>
+        <li class="nav-tab"><a href="distribution-calendar.html" class="nav-link">Distribution Calendar</a></li>
+        <li class="nav-tab"><a href="visibility-profile.html" class="nav-link">Visibility Profile</a></li>
+        <li class="nav-tab"><a href="linkedin-audit.html" class="nav-link">LinkedIn Audit</a></li>
+        <li class="nav-tab"><a href="website-audit.html" class="nav-link">Website Audit</a></li>
+        <li class="nav-tab"><a href="analyst-relations.html" class="nav-link">Analyst Relations</a></li>
+        <li class="nav-tab"><a href="paid-media-guide.html" class="nav-link">Paid Media Guide</a></li>
+        <li class="nav-tab"><a href="cu20-pitch.html" class="nav-link">CU 2.0 Pitch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="content-container">
+    <div class="redirect-container" id="loading">
+      <div class="redirect-message">
+        <div class="loading-text">Loading competitive research platform...</div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <iframe id="researchFrame" class="research-frame" style="display: none;" src="https://do2.brandthnkinsights.com/"></iframe>
+  </div>
 
   <script>
     // Show loading for 2 seconds, then display the iframe

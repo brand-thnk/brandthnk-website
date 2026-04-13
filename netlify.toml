@@ -15,3 +15,9 @@
 
 [context.deploy-preview]
   publish = "."
+
+# Redirects
+[[redirects]]
+  from = "/insights/*"
+  to = "/focal/:splat"
+  status = 301

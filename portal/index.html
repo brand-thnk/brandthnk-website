@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<!-- Cache bust: 2026-04-10-v1 - Portal daily refresh: calendar, Gmail, Granola, TASKS.md sync -->
+<html lang="en" data-refreshed="2026-04-10T09:00:00">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrandThnk Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* PORTAL HEADER */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 30px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .portal-header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .client-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portal-subtitle {
+      font-size: 14px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    .portal-meta {
+      text-align: right;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .current-time {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    /* HORIZONTAL NAVIGATION */
+    .portal-nav {
+      background: var(--offwhite);
+      border-bottom: 1px solid var(--light-gray);
+      overflow-x: auto;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+    }
+
+    .nav-tab {
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    /* MAIN CONTENT */
+    .portal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .dashboard-section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 30px;
+      border-bottom: 3px solid var(--yellow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--yellow);
+      font-weight: 400;
+    }
+
+    .section-content {
+      padding: 30px;
+    }
+
+    /* CRITICAL ACTIONS */
+    .critical-actions {
+      grid-column: 1 / -1;
+      background: var(--offwhite);
+      border: 2px solid var(--light-gray);
+      margin-bottom: 40px;
+    }
+
+    .action-item {
+      background: var(--white);
+      border-left: 4px solid var(--yellow);
+      padding: 20px;
+      margin-bottom: 16px;
+      border-radius: 0 6px 6px 0;
+      position: relative;
+    }
+
+    .action-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .action-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .action-description {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .action-meta {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-status {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .action-status.completed {
+      background: #4CAF50;
+      color: var(--white);
+    }
+
+    .action-status.blocked {
+      background: #F44336;
+      color: var(--white);
+    }
+
+    .action-dismiss {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: 1px solid var(--light-gray);
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 18px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+
+    .action-dismiss:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+
+    /* WHITEBOARD */
+    .whiteboard {
+      margin-bottom: 40px;
+    }
+
+    .whiteboard-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .whiteboard-item-content {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 8px;
+      padding-right: 25px;
+    }
+
+    .whiteboard-item-meta {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .whiteboard-item-delete {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 16px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .whiteboard-item-delete:hover {
+      color: var(--black);
+    }
+
+    /* FOCUS ITEMS */
+    .focus-item {
+      background: var(--offwhite);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border-left: 4px solid var(--black);
+    }
+
+    .focus-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .focus-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .focus-description {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* PIPELINE ITEMS */
+    .pipeline-item {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+    }
+
+    .pipeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .pipeline-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .pipeline-meta {
+      font-size: 12px;
+      color: var(--gray);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pipeline-value {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+
+    /* ADD ITEM BUTTON */
+    .add-item-btn {
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .add-item-btn:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+
+    /* TOOLS SECTION */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .bookmark-category {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .category-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 16px 20px;
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .category-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .bookmark-list {
+      padding: 20px;
+    }
+
+    .bookmark-item {
+      display: block;
+      color: var(--black);
+      text-decoration: none;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border: 1px solid var(--light-gray);
+      border-radius: 6px;
+      transition: all 0.2s;
+      border-left: 4px solid var(--yellow);
+    }
+
+    .bookmark-item:hover {
+      background: var(--offwhite);
+      border-left-color: var(--black);
+      transform: translateX(2px);
+    }
+
+    .bookmark-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .bookmark-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: var(--black);
+    }
+
+    .bookmark-description {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    .bookmark-url {
+      font-size: 11px;
+      color: var(--gray);
+      font-family: 'Roboto Mono', monospace;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    /* REFRESH BUTTON */
+    .refresh-btn {
+      background: rgba(255, 235, 59, 0.2);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .refresh-icon {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .refresh-meta {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    /* CHECKLIST LINK STYLE */
+    .checklist-link {
+      color: var(--yellow);
+      text-decoration: underline;
+    }
+
+    .checklist-link:hover {
+      color: var(--white);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .portal-content {
+        padding: 20px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .nav-container {
+        padding: 0 20px;
+      }
+
+      .action-item {
+        padding: 15px;
+      }
+
+      .portal-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <!-- PORTAL HEADER -->
+  <header class="portal-header">
+    <div class="portal-header-content">
+      <div>
+        <h1 class="client-title">BrandThnk Command Center</h1>
+        <p class="portal-subtitle">Strategic Operations Portal</p>
+      </div>
+      <div class="portal-meta">
+        <div class="current-time" id="currentTime"></div>
+        <div>Last updated: <span id="lastUpdated">Just now</span></div>
+        <div style="margin-top: 4px;">Intelligence: <span id="intelligenceRefresh" style="color: var(--yellow);">Apr 10, 2026 · 9:00am ET</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HORIZONTAL NAVIGATION -->
+  <nav class="portal-nav">
+    <div class="nav-container">
+      <ul class="nav-tabs">
+        <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('morning-briefing', this)">Morning Briefing</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('tools', this)">Tools</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-work', this)">Client Work</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('product-development', this)">Product Development</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('operations-hub', this)">Friday</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('website', this)">Website</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="portal-content">
+
+    <!-- MORNING BRIEFING SECTION -->
+    <div id="morning-briefing-section" class="content-section">
+      <!-- MORNING-BRIEFING-START -->
+
+<!-- Generated: April 12, 2026 at 08:09 AM -->
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 24px; font-weight: 700; color: #000000; margin-bottom: 4px;">Sunday, April 12, 2026</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #666666;">Financial Brand Forum — Las Vegas</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">Calendar</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #000000; line-height: 1.8;">
+    <div style="margin-bottom: 8px;"><strong>All Day</strong> — Financial Brand Forum (Out of Office through April 14)</div>
+    <div style="background: #F5F5F5; padding: 12px; margin-top: 8px;">
+      <strong>Tonight:</strong> VIP Happy Hour — Baccarat Lounge, Aria Resort<br>
+      <span style="color: #666666;">5:00 – 6:30 PM PT &nbsp;|&nbsp; Host: Will Bernstein</span><br>
+      <span style="color: #666666;">Attendee list available via Will's email.</span>
+    </div>
+    <div style="background: #F5F5F5; padding: 12px; margin-top: 8px;">
+      <strong>Also invited:</strong> Forum VIP Happy Hour (second event)<br>
+      <span style="color: #666666;">8:00 – 9:30 PM ET &nbsp;|&nbsp; Invited by Will Bernstein via Google Calendar</span>
+    </div>
+  </div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">Meeting Prep — VIP Happy Hour</div>
+  <div style="background: #F5F5F5; padding: 16px; margin-bottom: 12px; font-family: 'Roboto Mono', monospace; font-size: 13px; color: #000000; line-height: 1.8;">
+    <div style="margin-bottom: 8px;"><strong>Who:</strong> Will Bernstein (CRO, The Financial Brand) + VIP attendee list</div>
+    <div style="margin-bottom: 8px;"><strong>Where:</strong> Baccarat Lounge, Aria Resort & Casino — confirmed via email from Will</div>
+    <div style="margin-bottom: 8px;"><strong>Context:</strong> Financial Brand Forum is a prime networking window. You have an Aria reservation confirmed (Confirmation #982149085).</div>
+    <div><strong>Opportunity:</strong> This is a room full of FI decision-makers. Active threads to warm up: Bank Without a Building pilot (Skyward CU interested), HC3 rebrand positioning, Horicon Bank engagement.</div>
+  </div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">Client Focus</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #000000; line-height: 1.8;">
+    <div style="margin-bottom: 16px;">
+      <strong style="font-size: 14px;">HC3</strong><br>
+      House of Brands architecture validated (Orchestrate, Secure, Simplify, Scale). Auto ABS = "HC3 Verified" under Secure pillar. M&amp;A rebrand strategy confirmed: clean break, no transition. Customer interviews starting next week — include a previously fired client. Standalone interview with Thomas/Griffin to schedule. You owe Brandwatch login access and tweaks per Kristen's feedback.
+    </div>
+    <div style="margin-bottom: 16px;">
+      <strong style="font-size: 14px;">Horicon Bank</strong><br>
+      Three stakeholder interviews completed this week (Robert Traylor, Amy, Fred Schwertfeger). Key signals: customer profitability measurement unsolved, contrarian boomer + Gen Z focus, tech investments underperforming. Fred interview had audio issues — follow up via email. CJ rescheduling Stephanie Albers interview (offered Apr 17, Apr 21 times). Aggie Tuxhorn at Skyward CU sent available dates for Bank Without a Building workshop — needs reply.
+    </div>
+    <div>
+      <strong style="font-size: 14px;">Signal / Sangita Verma</strong><br>
+      Sangita seeking 1–2 case study clients (free service, hard costs only). You owe LinkedIn intros for Jorge Garcia and email intro for Kelsey Weaver. Share Forward Bank project plan. Monthly guest content for Swag Rules newsletter.
+    </div>
+  </div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">Email: Needs Attention</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #000000; line-height: 1.8;">
+    <div style="background: #F5F5F5; padding: 12px; margin-bottom: 8px;">
+      <strong>Aggie Tuxhorn (Skyward CU)</strong> — Bank Without a Building Workshop<br>
+      <span style="color: #666666;">Sent available dates: Apr 28 AM, Apr 30 AM, May 5 AM, May 12 PM, May 13 AM. Needs your pick. UNREAD.</span>
+    </div>
+    <div style="background: #F5F5F5; padding: 12px; margin-bottom: 8px;">
+      <strong>CJ Graham</strong> — Calendar conflicts flagged<br>
+      <span style="color: #666666;">Apr 17: Weekly check-in with Kristan Hill overlaps CREW C-Level Cohort. CJ asks whether to treat CREW as flexible. Needs your preference reply.</span>
+    </div>
+    <div style="background: #F5F5F5; padding: 12px; margin-bottom: 8px;">
+      <strong>GitHub</strong> — Personal access token "bb" expiring<br>
+      <span style="color: #666666;">Token with repo scope expires ~today. Regenerate at github.com/settings/tokens if still needed.</span>
+    </div>
+    <div style="background: #F5F5F5; padding: 12px; margin-bottom: 8px;">
+      <strong>Cody Hill (MVB Bank)</strong> — Reschedule meeting<br>
+      <span style="color: #666666;">You apologized for missing (ER visit) and asked for this week's availability. Awaiting his reply.</span>
+    </div>
+    <div style="background: #F5F5F5; padding: 12px; margin-bottom: 8px;">
+      <strong>Superhuman Reminders (x3)</strong><br>
+      <span style="color: #666666;">1) Brand voice update — "make this update" reminder. 2) Google Cloud Free Trial — 30 days left, upgrade decision needed. 3) Lovable Labs receipt — review/file.</span>
+    </div>
+  </div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">BrandThnk Operations</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #000000; line-height: 1.8;">
+    <strong>Rocket Money</strong> — Newsletter only ("What the NFL & April have in common"). No unexpected charges or invoice alerts flagged.<br><br>
+    <strong>Formspree</strong> — No new Insights Tool submissions or delivery errors.<br><br>
+    <strong>Lovable</strong> — Your project hit 100 visitors. Lovable Labs receipt resurfaced via Superhuman reminder — confirm if subscription is still needed.<br><br>
+    <strong>GitHub</strong> — Access token "bb" expiring. Regenerate if it powers any BrandThnk deploys or automations.
+  </div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #DDDDDD; padding: 24px; margin-bottom: 16px; border-radius: 0;">
+  <div style="font-family: 'Roboto Slab', serif; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; border-left: 4px solid #FFEB3B; padding-left: 12px; margin-bottom: 16px; color: #000000;">Noise Filtered</div>
+  <div style="font-family: 'Roboto Mono', monospace; font-size: 13px; color: #666666; line-height: 1.8;">
+    Every newsletter, AI with ALLIE (x2), The Rundown, LinkedIn notifications, Yelp (x2), Lowes Foods, Zack Holland Substack, American Express promo, Neal Shulman cold outreach.
+  </div>
+</div>
+
+<div style="font-family: 'Roboto Mono', monospace; font-size: 11px; color: #666666; margin-top: 24px; text-align: right;">
+  Generated April 12, 2026 at 08:09 AM by BrandThnk Morning Briefing
+</div>
+
+<!-- MORNING-BRIEFING-END -->
+    </div>
+
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboard-section" class="content-section" style="display: none;">
+
+      <!-- 1. THIS WEEK'S DEADLINES -->
+      <div class="dashboard-section critical-actions" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">This Week's Deadlines</h2>
+            <p class="section-subtitle">April 6 - 10, 2026</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="deadlines-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content" id="deadlines-container">
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3 weekly check-in with Kristan Hill — raise Tommy &amp; Griffin visibility</div>
+            <div class="action-description">Close out the interview sprint. Surface the Tommy and Griffin visibility concern — propose adding them to bi-weekly check-ins and schedule individual interviews. Confirm synthesis timeline and positioning framework options delivery date. Walk Kristan through portal progress snapshots (her internal reporting ask).</div>
+            <div class="action-meta">
+              <span>Client: HC3 | Today Fri Apr 10, 9:30am EDT</span>
+              <span class="action-status">Today</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">HC3 Client Interview (MVB Bank — Kristy Hill)</div>
+            <div class="action-description">External customer reference interview. Part of the final external round before HC3 positioning synthesis. Probe the trust/accountability narrative and how "short discovery, long recovery" shows up in practice. Capture any specific outcome proof points — Kristan still owes 3–5 specific examples.</div>
+            <div class="action-meta">
+              <span>Client: HC3 | Today Fri Apr 10, 11:30am EDT</span>
+              <span class="action-status">Today</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Horicon Virtual Interview — Stephanie Albers</div>
+            <div class="action-description">Stephanie Albers interview closes the Horicon stakeholder round (Brenda still TBD). Focus on youth banking, first-time workforce, and Milwaukee market penetration gaps. After this, hold synthesis until Rose returns Apr 13 — then schedule Working Session 1.</div>
+            <div class="action-meta">
+              <span>Client: Horicon Bank | Today Fri Apr 10, 12:30pm EDT</span>
+              <span class="action-status">Today</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Check client invoice payments — Horicon $11,250 deposit still open</div>
+            <div class="action-description">Recurring weekly finance check. Horicon deposit confirmation remains the top open item. Confirm Forward Bank Invoice #1023 ($1,500 due 4/26) is in the system. Flag anything aging past 30 days for Weekly Wrap escalation.</div>
+            <div class="action-meta">
+              <span>BrandThnk Ops | Today Fri Apr 10, 2:30pm EDT</span>
+              <span class="action-status">Recurring</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Weekly Wrap: client updates, portal updates, MLT review, set Someday commit dates</div>
+            <div class="action-description">Full wrap agenda: client update emails (live write), Gumroad pull for Alana, Rocket Money review, client portal updates, calendar look-ahead + time blocking, MLT review. Non-negotiable this week: set commit dates for Book Buyer Outreach and IP Hierarchy — both have been sitting in Someday too long.</div>
+            <div class="action-meta">
+              <span>BrandThnk Ops | Today Fri Apr 10, 4:30pm EDT</span>
+              <span class="action-status">Recurring</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Signal Events: LinkedIn intro for Jorge Garcia + email intro for Kelsey Weaver</div>
+            <div class="action-description">Carryover action from the Apr 8 Signal Events call with Sangita. Send both intros today and share the Forward Bank project plan / strategic work so Sangita has context for her follow-ups. Do not let this slip into next week.</div>
+            <div class="action-meta">
+              <span>Pipeline: Signal Events | Action Needed — this week</span>
+              <span class="action-status blocked">Urgent</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">CheckAlt: send regular check-in to maintain relationship rhythm</div>
+            <div class="action-description">Theresa still owes a Jason 1:1 on the workshop. Events remain the fastest time-to-revenue path for Q2. Send a warm check-in today — keep the thread open without pushing. Note: headcount business case is an open thread Theresa asked for help on.</div>
+            <div class="action-meta">
+              <span>Client: CheckAlt | This week</span>
+              <span class="action-status">Action Needed</span>
+            </div>
+          </div>
+
+          <div class="action-item" data-section="deadlines">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+            <div class="action-title">Digital Onboarding: second escalation — book the kickoff or go upstream</div>
+            <div class="action-description">Jen + Adam still unresponsive since 3/10 second ping. Contract is signed at $15,000. This is the last soft attempt — if no response by end of week, escalate to leadership. Stalled work is not free work.</div>
+            <div class="action-meta">
+              <span>Client: Digital Onboarding | This week</span>
+              <span class="action-status blocked">Escalate</span>
+            </div>
+          </div>
+
+          <button class="add-item-btn" onclick="addDashboardItem('deadlines')">+ Add Deadline</button>
+        </div>
+      </div>
+
+      <!-- 2. THIS WEEK'S FOCUS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">This Week's Focus</h2>
+            <p class="section-subtitle">April 6 - 10, 2026</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="focus-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content" id="focus-container">
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">HC3: Close the interview sprint today — synthesis is the next deliverable</div>
+            <div class="focus-description">Two interviews today (Kristan check-in 9:30am, MVB Bank 11:30am) close the external reference round. Cross-interview synthesis is the next major deliverable: Matt Ingle + Jeremiah James + Amy B + Robert Traylor + Fred Schwertfeger + MVB. Output: 3 positioning framework options for leadership review. Core themes converging — pain-first, accountability beyond the technology, trust business vs. statement business.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Horicon Bank: Validation sprint complete — hold synthesis until Rose returns Apr 13</div>
+            <div class="focus-description">7 of 7 stakeholder interviews complete (Fred Schwertfeger closed Apr 9, Stephanie Albers today). Persona one-pagers delivered and awaiting review. Robert Traylor surfaced the bookend strategy signal (Boomers + Gen Z both want traditional channels) — do not lose this in the rollup. Youth banking + first-time workforce flagged as the top 90-day campaign focus. Schedule Working Session 1 with Rose the week of Apr 13.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Digital Onboarding: escalate the stalled kickoff — do not carry this into next week</div>
+            <div class="focus-description">Jen + Adam unresponsive since 3/10 second ping. Engagement is contracted at $15,000. Send the final soft attempt today. If no reply by end of day, go upstream to leadership on Monday. CU 2.0 Provider Guide listing, LinkedIn post, and analyst relations targeting all sit behind this kickoff.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Content production: 2 LinkedIn posts + newsletter draft via live writing workflow</div>
+            <div class="focus-description">First LinkedIn angle is earned and ready: "What I learned from pitching a half-day workshop to 11 community bank leaders in one morning" (Bank Without a Building outreach fired Apr 8). Second post: bookend strategy POV from Robert Traylor's Horicon interview. Newsletter draft via /ship skill. Two posts is the weekly rhythm target — protect it.</div>
+          </div>
+          <div class="focus-item" data-section="focus" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="focus-title">Financial Brand Forum 2026 — app downloaded, biz dev target list needed before Forum</div>
+            <div class="focus-description">BrandThnk is a sponsor. Forum mobile app reminder received Apr 9. VIP Happy Hour invite accepted. Bank Without a Building workshop is the biz dev vehicle at Forum — walk in with a target list of 10–15 priority conversations, not a catch-all pitch. Pain-first positioning language should carry the room.</div>
+          </div>
+          <button class="add-item-btn" onclick="addDashboardItem('focus')">+ Add Focus Area</button>
+        </div>
+      </div>
+
+      <!-- 3. PIPELINE OVERVIEW -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Pipeline Overview</h2>
+            <p class="section-subtitle">Active prospects and opportunities</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="pipeline-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content" id="pipeline-container">
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">HC3 — Positioning Lab (Active)</div>
+            <div class="pipeline-meta">
+              <span>Stage: Interview sprint closing today (Kristan 9:30am, MVB Bank 11:30am). Synthesis + 3 positioning framework options is the next deliverable. Trust business vs. statement business narrative is converging across stakeholders. Website overhaul proposal follows once positioning locks. M&amp;A prep Q4 2026.</span>
+              <span class="pipeline-value">Active + ~$15,000 ext.</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Horicon Bank — Validation Sprint Complete</div>
+            <div class="pipeline-meta">
+              <span>Stage: 7 of 7 stakeholder interviews complete. Stephanie Albers today closes the round. Persona one-pagers delivered and awaiting review. Working Session 1 schedules after Rose returns Apr 13. Bookend strategy (Boomers + Gen Z) is the standout POV signal. Milwaukee expansion remains the strategic growth driver. Deposit invoice $11,250 still open.</span>
+              <span class="pipeline-value">Active · $11,250 open</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Forward Bank — Q2 Retainer (Active)</div>
+            <div class="pipeline-meta">
+              <span>Stage: In process. Box Edge messaging deployed across channels. Geofencing in Northwoods/Lake City above industry average — switching to CD messaging. Love letters concept moving toward commercial lenders. Cabin owner / generational wealth angle emerging. Jennifer presenting brand guidelines to staff next week. Invoice #1023 ($1,500) due 4/26.</span>
+              <span class="pipeline-value">$1,500/mo · inv. due 4/26</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Digital Onboarding — Website + Marketing Activation (Stalled)</div>
+            <div class="pipeline-meta">
+              <span>Stage: Kickoff still pending. Jen + Adam unresponsive since 3/10 second ping. Contract signed at $15,000. Final soft attempt today — escalate to leadership Monday if no reply. Website fixes remain Priority #1 before any marketing activation (nav, form friction, micro-CTAs). Productizing Nate as the data-story face is the parked biz dev angle.</span>
+              <span class="pipeline-value">$15,000 contracted</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">CheckAlt — Executive Workshop + Rolling Thunder</div>
+            <div class="pipeline-meta">
+              <span>Stage: Workshop scheduling still pending Jason approval. Theresa to raise in Monday 1:1. Events remain fastest Q2 revenue path. Credit union go-to-market (CUSO vs. direct) is an open strategic decision. LoanPay needs market proof in 4–5 months. Theresa also needs a business case for additional FTE (headcount approved).</span>
+              <span class="pipeline-value">$17,500 est.</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Bank Without a Building — Workshop Pilot</div>
+            <div class="pipeline-meta">
+              <span>Stage: Outreach active. 11+ FI contacts reached Apr 8. Jeff (one early responder) affirmed clarity and stakeholder alignment — good qualification signal. Financial Brand Forum 2026 is the primary amplifier. Targeting 2–3 pilot FIs. Content arc (before / during / after) starts with this week's LinkedIn post.</span>
+              <span class="pipeline-value">TBD per FI</span>
+            </div>
+          </div>
+          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
+            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+            <div class="pipeline-title">Eric / Collective — Post-Call Exploratory</div>
+            <div class="pipeline-meta">
+              <span>Stage: Call completed Apr 8. Content strategy collaboration angle around Assumption Audit tool and "humble pie + hindsight" content. Eric is building a post on the topic — potential co-creation. Next: determine if there is a defined engagement or referral path. Decide direction during Weekly Wrap today.</span>
+              <span class="pipeline-value">TBD</span>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addDashboardItem('pipeline')">+ Add Pipeline Item</button>
+        </div>
+      </div>
+
+      <!-- 4. WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Whiteboard</h2>
+            <p class="section-subtitle">Strategic threads and open questions</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="whiteboard-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content">
+          <div id="whiteboard-items">
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">HC3 synthesis has to make a recommendation, not a menu. Three positioning framework options is the deliverable — but the document cannot hedge. Trust business vs. statement business is the convergence point across every stakeholder. "Short discovery, long recovery" is the operational principle. Pain-first over capability-first. This is a messaging architecture decision, not a tagline exercise. Pick a direction, defend it, and frame the other two as fallback logic.</div>
+              <div class="whiteboard-item-meta">Source: Granola — HC3 stakeholder interviews + Kristan Hill sessions (Apr 9–10)</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Bookend strategy is a BrandThnk POV, not just a Horicon insight. Robert Traylor surfaced the core contradiction: Boomers and Gen Z — the two fastest-growing segments in community banking — both prefer traditional channels over digital-only. That runs counter to the dominant fintech narrative. Write it as a LinkedIn post this week, then decide if it earns a Briefing. The Horicon persona work is the source material — do not lose this in the rollup.</div>
+              <div class="whiteboard-item-meta">Source: Granola — Robert Traylor / Horicon Bank interview (Apr 8) + persona sprint</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Book buyer outreach + IP hierarchy document are both still in Someday with no commit date. Both are 2026 biz dev priorities. Gumroad list is the front door for book buyer outreach. IP hierarchy is needed before scaling the library (which framework is the entry point, which is advanced). Neither should survive past Q2 without a calendar block. Set commit dates at Weekly Wrap today — this is a calendar conversation, not a someday conversation.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday) + Granola strategic threads (Apr 10)</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addWhiteboardItem()">+ Add Note</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLS SECTION -->
+    <div id="tools-section" class="content-section" style="display: none;">
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">Tools & Resources</h2>
+          <p class="section-subtitle">Quick access to frequently used tools and bookmarked sites</p>
+        </div>
+        <div class="section-content">
+          <div class="tools-grid">
+
+            <!-- AI & Design Tools -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">🤖 AI & Design Tools</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://lovart.ai" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Lovart</div>
+                  <div class="bookmark-description">AI art generation and creative tools</div>
+                  <div class="bookmark-url">lovart.ai</div>
+                </a>
+                <a href="https://lovable.dev" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Lovable</div>
+                  <div class="bookmark-description">AI-powered development platform</div>
+                  <div class="bookmark-url">lovable.dev</div>
+                </a>
+                <a href="https://manus.im/app" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Manus</div>
+                  <div class="bookmark-description">AI writing and content creation tool</div>
+                  <div class="bookmark-url">manus.im/app</div>
+                </a>
+                <a href="https://perplexity.ai" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Perplexity</div>
+                  <div class="bookmark-description">AI-powered research and search engine</div>
+                  <div class="bookmark-url">perplexity.ai</div>
+                </a>
+                <a href="https://variant.ai" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Variant</div>
+                  <div class="bookmark-description">Design and development consultancy</div>
+                  <div class="bookmark-url">variant.ai</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Finance & Banking -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">🏦 Finance & Banking</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://bankofamerica.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Bank of America</div>
+                  <div class="bookmark-description">Business banking and financial services</div>
+                  <div class="bookmark-url">bankofamerica.com</div>
+                </a>
+                <a href="https://bluevine.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Bluevine</div>
+                  <div class="bookmark-description">Business banking and lending platform</div>
+                  <div class="bookmark-url">bluevine.com</div>
+                </a>
+                <a href="https://gusto.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Gusto</div>
+                  <div class="bookmark-description">Payroll, benefits, and HR platform</div>
+                  <div class="bookmark-url">gusto.com</div>
+                </a>
+                <a href="https://rocketmoney.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Rocket Money</div>
+                  <div class="bookmark-description">Personal finance and subscription management</div>
+                  <div class="bookmark-url">rocketmoney.com</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Development & Analytics -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">⚡ Development & Analytics</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://app.netlify.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Netlify</div>
+                  <div class="bookmark-description">Website deployment and hosting platform</div>
+                  <div class="bookmark-url">app.netlify.com</div>
+                </a>
+                <a href="https://lulu.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Lulu.com</div>
+                  <div class="bookmark-description">Print-on-demand publishing platform</div>
+                  <div class="bookmark-url">lulu.com</div>
+                </a>
+                <a href="https://gumroad.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Gumroad</div>
+                  <div class="bookmark-description">Digital product sales platform</div>
+                  <div class="bookmark-url">gumroad.com</div>
+                </a>
+                <a href="https://formspree.io" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Formspree</div>
+                  <div class="bookmark-description">Form backend and lead capture</div>
+                  <div class="bookmark-url">formspree.io</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Business & Operations -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">💼 Business & Operations</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://brandthnk.co/do-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">DO Portal</div>
+                  <div class="bookmark-description">Digital Onboarding client portal</div>
+                  <div class="bookmark-url">brandthnk.co/do-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/hc3-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">HC3 Portal</div>
+                  <div class="bookmark-description">HC3 client engagement portal</div>
+                  <div class="bookmark-url">brandthnk.co/hc3-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/horicon-bank-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Horicon Portal</div>
+                  <div class="bookmark-description">Horicon Bank client portal</div>
+                  <div class="bookmark-url">brandthnk.co/horicon-bank-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/checkalt-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">CheckAlt Portal</div>
+                  <div class="bookmark-description">CheckAlt client portal</div>
+                  <div class="bookmark-url">brandthnk.co/checkalt-portal/</div>
+                </a>
+                <a href="https://calendar.google.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">BrandThnk Calendar</div>
+                  <div class="bookmark-description">Schedule, meetings, and time blocks</div>
+                  <div class="bookmark-url">calendar.google.com</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Research & Content -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">📚 Research & Content</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://drive.google.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Google Drive</div>
+                  <div class="bookmark-description">Document storage and collaboration</div>
+                  <div class="bookmark-url">drive.google.com</div>
+                </a>
+                <a href="https://read.amazon.com/notebook?ref=yb_nh_rw" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Kindle Notes</div>
+                  <div class="bookmark-description">Amazon Kindle highlights and notes</div>
+                  <div class="bookmark-url">read.amazon.com/notebook</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Social & Marketing -->
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">📱 Social & Marketing</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://linkedin.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">LinkedIn</div>
+                  <div class="bookmark-description">Professional networking and thought leadership</div>
+                  <div class="bookmark-url">linkedin.com</div>
+                </a>
+                <a href="https://beehiiv.com" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Beehiiv</div>
+                  <div class="bookmark-description">Newsletter creation and distribution</div>
+                  <div class="bookmark-url">beehiiv.com</div>
+                </a>
+                <a href="https://www.linkedin-makeover.com/linkedin-text-formatter/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">LinkedIn Text Formatter</div>
+                  <div class="bookmark-description">Format LinkedIn posts with bold, italic, and special characters</div>
+                  <div class="bookmark-url">linkedin-makeover.com</div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER SECTIONS (Hidden by default) -->
+    <div id="client-work-section" class="content-section" style="display: none;">
+
+      <!-- CLIENT PORTALS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <h2 class="section-title">Client Portals</h2>
+          <p class="section-subtitle">Quick access to all active client portals</p>
+        </div>
+        <div class="section-content">
+          <div class="tools-grid">
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">Active Clients</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://brandthnk.co/do-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">DO Portal</div>
+                  <div class="bookmark-description">Digital Onboarding client portal</div>
+                  <div class="bookmark-url">brandthnk.co/do-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/hc3-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">HC3 Portal</div>
+                  <div class="bookmark-description">HC3 client engagement portal</div>
+                  <div class="bookmark-url">brandthnk.co/hc3-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/horicon-bank-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Horicon Portal</div>
+                  <div class="bookmark-description">Horicon Bank client portal</div>
+                  <div class="bookmark-url">brandthnk.co/horicon-bank-portal/</div>
+                </a>
+                <a href="https://brandthnk.co/checkalt-portal/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">CheckAlt Portal</div>
+                  <div class="bookmark-description">CheckAlt client portal</div>
+                  <div class="bookmark-url">brandthnk.co/checkalt-portal/</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENT OPS WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <h2 class="section-title">Whiteboard</h2>
+          <p class="section-subtitle">Client notes, follow-ups, and strategic thoughts</p>
+        </div>
+        <div class="section-content">
+          <div id="client-ops-whiteboard-items">
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+              <div class="whiteboard-item-content">Follow up with Forward Bank on renewal timeline and Q2 kick-off logistics</div>
+              <div class="whiteboard-item-meta">Added Apr 4, 2026 at 2:00 PM</div>
+            </div>
+            <div class="whiteboard-item">
+              <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+              <div class="whiteboard-item-content">HC3 website proposal - scope and pricing draft needed</div>
+              <div class="whiteboard-item-meta">Added Apr 4, 2026 at 2:00 PM</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addClientOpsWhiteboardItem()">+ Add Note</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="content-engine-section" class="content-section" style="display: none;">
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Content Engine</h2>
+            <p class="section-subtitle">Briefings, LinkedIn, newsletters, and thought leadership content</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="content-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content">
+          <div id="content-engine-whiteboard-items">
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">Bank Without a Building content arc — this week's first LinkedIn post</div>
+              <div class="whiteboard-item-content">Outreach fired Apr 8 to 11+ FIs. Content arc: before (why the concept), during (what you learn pitching it), after (pilot results). First post this week: "What I learned from pitching a half-day workshop to 11 community bank leaders in one morning." Personal profile only — thought leadership, not promotion. Jeff already wrote back affirming clarity — pull one clean quote without naming him. Publish via /write skill.</div>
+              <div class="whiteboard-item-meta">Source: Gmail — BwB outreach (Apr 8) + TASKS.md content production</div>
+            </div>
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">Bookend strategy POV — this week's second LinkedIn post, then newsletter candidate</div>
+              <div class="whiteboard-item-content">From the Robert Traylor / Horicon interview. The two generations community banks should be fighting hardest for — Boomers and Gen Z — both prefer traditional channels. Headline test: "The two generations your digital strategy is losing." LinkedIn post first. If it lands, expand into the next BrandThnk Briefing. Anchor it in the Horicon persona work without naming the client.</div>
+              <div class="whiteboard-item-meta">Source: Granola — Robert Traylor / Horicon Bank interview (Apr 8)</div>
+            </div>
+            <div class="whiteboard-item" data-section="content-engine">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">HC3 "trust business" briefing — Briefing candidate, not a LinkedIn post</div>
+              <div class="whiteboard-item-content">Stakeholders have converged on: HC3 is in the trust business, not the statement business. "Short discovery, long recovery" is the operational principle. Accountability beyond the technology is the message. This is richer than a LinkedIn post — it is a BrandThnk Briefing candidate. Working title: "Why your fintech vendor is selling you the wrong thing." Write from HC3 synthesis after the interview sprint closes today. De-identify carefully.</div>
+              <div class="whiteboard-item-meta">Source: Granola — HC3 stakeholder interviews, multiple sessions (Apr 9–10)</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addContentEngineItem()">+ Add Content Idea</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="product-development-section" class="content-section" style="display: none;">
+
+      <!-- TOOLS -->
+      <div class="dashboard-section" style="margin-bottom: 40px;">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Product Development</h2>
+            <p class="section-subtitle">Focal roadmap, diagnostic tools, and technology infrastructure</p>
+          </div>
+          <div>
+            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
+            <div class="refresh-meta" id="product-refresh-time"></div>
+          </div>
+        </div>
+        <div class="section-content">
+          <div class="tools-grid">
+            <div class="bookmark-category">
+              <div class="category-header">
+                <h3 class="category-title">Tools</h3>
+              </div>
+              <div class="bookmark-list">
+                <a href="https://brandthnk.co/therapy/" target="_blank" class="bookmark-item">
+                  <div class="bookmark-title">Brand Therapy</div>
+                  <div class="bookmark-description">Interactive brand diagnostic tool</div>
+                  <div class="bookmark-url">brandthnk.co/therapy/</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHITEBOARD -->
+      <div class="dashboard-section whiteboard">
+        <div class="section-header">
+          <h2 class="section-title">Whiteboard</h2>
+          <p class="section-subtitle">Product ideas, tool improvements, and build priorities</p>
+        </div>
+        <div class="section-content">
+          <div id="product-dev-whiteboard-items">
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">Insights Tool — the pricing signal is strong enough to act on. Beta reviewer (Apr 7): "I could see the value in a subscription type model to purchase and test and iterate messaging. Quicker and more efficient than traditional market research." That is not a feature request, it is a pricing validation. Document the exact language — it becomes the pricing page testimonial. Next step: define the subscription tier shape (seat-based, FI-based, or usage-based) and draft a v0 pricing grid before Forum.</div>
+              <div class="whiteboard-item-meta">Source: Gmail — Insights function review feedback (Apr 7)</div>
+            </div>
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">IP hierarchy document — the front door candidate is now obvious. Pain → Promise → Proof runs through HC3 (accountability/trust narrative), Forward Bank (love letters = promise to community), and CheckAlt (pain clarity shortens the sales cycle). "Box first, differentiate second" is the workshop anchor. Before scaling the library, map how the frameworks layer — which is entry-level, which is advanced. Build this alongside the HC3 synthesis sprint. Set the commit date at Weekly Wrap today.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday) + Granola cross-client patterns (Apr 10)</div>
+            </div>
+            <div class="whiteboard-item" data-section="product-dev">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+              <div class="whiteboard-item-content">HC3 case study methodology — document it before the engagement closes. Trust business positioning, pain-first framework application, stakeholder synthesis process (12 interviews → 3 framework options → recommendation) is a reusable operating model, not just one deliverable. Publish-or-kill test can be a one-pager decision checklist built from the same sprint. Forward Bank QA agent remains parked — revisit after Q2 planning.</div>
+              <div class="whiteboard-item-meta">Source: TASKS.md (Someday) + HC3 case study prep item (Apr 10)</div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addProductDevItem()">+ Add Note</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="operations-hub-section" class="content-section" style="display: none;">
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">Friday</h2>
+          <p class="section-subtitle">Friday Checklist and recurring operations</p>
+        </div>
+        <div class="section-content">
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid var(--yellow); padding-bottom: 10px;">Friday Checklist</h3>
+          <div id="friday-checklist">
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">1. Client update emails (live write)</div>
+              <div class="action-description">Write and send weekly update emails to all active clients. Do this first while context is fresh.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">2. Gumroad pull for Alana</div>
+              <div class="action-description">Pull weekly sales data and send to Alana for book order reconciliation.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://gumroad.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Gumroad</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">3. Rocket Money Review</div>
+              <div class="action-description">Review subscriptions, flag any changes, check for unnecessary charges.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://rocketmoney.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Rocket Money</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">4. Client Portal Updates</div>
+              <div class="action-description">Update all client portals with current status, deliverables, and next steps from the week.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">5. Calendar Look Ahead + Time Blocking</div>
+              <div class="action-description">Review next week's calendar. Block time for deep work, client prep, and deliverables.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://calendar.google.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Calendar</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">6. MLT Review</div>
+              <div class="action-description">Review MLT status, Backbase updates, and any pending CTN deliverables.</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">7. Review Newsletter Signups</div>
+              <div class="action-description">Check new Beehiiv subscribers, review growth trends, and identify any notable signups or engagement patterns.</div>
+              <div class="action-meta">
+                <span>Weekly | <a href="https://app.beehiiv.com" target="_blank" style="color: var(--yellow); text-decoration: underline;">Open Beehiiv</a></span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+            <div class="action-item" data-section="friday">
+              <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+              <div class="action-title">8. Live Write LinkedIn and BrandThnk briefing</div>
+              <div class="action-description">Live Write LinkedIn and BrandThnk briefing for this coming week</div>
+              <div class="action-meta">
+                <span>Weekly | Every Friday</span>
+                <span class="action-status">To Do</span>
+              </div>
+            </div>
+          </div>
+          <button class="add-item-btn" onclick="addFridayItem()">+ Add Checklist Item</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEBSITE TAB -->
+    <div id="website-section" class="content-section" style="display: none;">
+      <div class="dashboard-section">
+        <div class="section-header">
+          <h2 class="section-title">Website</h2>
+          <p class="section-subtitle">BrandThnk.co</p>
+        </div>
+        <div class="section-content" style="text-align: center; padding: 40px 30px;">
+          <p style="font-size: 16px; color: var(--gray); margin-bottom: 24px;">View and manage the live BrandThnk website.</p>
+          <a href="https://brandthnk.co" target="_blank" class="add-item-btn" style="display: inline-block; text-decoration: none; width: auto; padding: 16px 40px;">Open BrandThnk.co →</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Update current time
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      document.getElementById('currentTime').textContent = timeString;
+    }
+
+    // Update time immediately and then every minute
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    function showSection(sectionName, clickedElement = null) {
+      // Hide all content sections
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      // Show target section
+      const targetSection = document.getElementById(sectionName + '-section');
+      if (targetSection) {
+        targetSection.style.display = 'block';
+      }
+
+      // Update active nav link
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Find and activate the clicked nav link
+      if (clickedElement) {
+        clickedElement.classList.add('active');
+      } else {
+        // Fallback: find by section name
+        const targetLink = document.querySelector(`[onclick*="${sectionName}"]`);
+        if (targetLink) {
+          targetLink.classList.add('active');
+        }
+      }
+
+      // Load section-specific data
+      // (No special loading needed for current sections)
+
+      // Update last updated time
+      const now = new Date();
+      document.getElementById('lastUpdated').textContent = now.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+    }
+
+    function addWhiteboardItem() {
+      const content = prompt('Add whiteboard note:');
+      if (content && content.trim()) {
+        const whiteboardItems = document.getElementById('whiteboard-items');
+
+        const newItem = document.createElement('div');
+        newItem.className = 'whiteboard-item';
+        newItem.innerHTML = `
+          <button class="whiteboard-item-delete" onclick="this.parentElement.remove()">×</button>
+          <div class="whiteboard-item-content">${content.trim()}</div>
+          <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
+        `;
+
+        whiteboardItems.insertBefore(newItem, whiteboardItems.lastElementChild);
+      }
+    }
+
+    // Save whiteboard to localStorage
+    function saveWhiteboard() {
+      const items = [];
+      document.querySelectorAll('.whiteboard-item').forEach(item => {
+        const content = item.querySelector('.whiteboard-item-content').textContent;
+        const meta = item.querySelector('.whiteboard-item-meta').textContent;
+        items.push({content, meta});
+      });
+      localStorage.setItem('brandthnk-whiteboard', JSON.stringify(items));
+    }
+
+    // Load whiteboard from localStorage
+    function loadWhiteboard() {
+      const saved = localStorage.getItem('brandthnk-whiteboard');
+      if (saved) {
+        const items = JSON.parse(saved);
+        const whiteboardContainer = document.getElementById('whiteboard-items');
+
+        // Clear existing items
+        whiteboardContainer.innerHTML = '';
+
+        items.forEach(item => {
+          const newItem = document.createElement('div');
+          newItem.className = 'whiteboard-item';
+          newItem.innerHTML = `
+            <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+            <div class="whiteboard-item-content">${item.content}</div>
+            <div class="whiteboard-item-meta">${item.meta}</div>
+          `;
+          whiteboardContainer.appendChild(newItem);
+        });
+
+        // Add the button back
+        const addButton = document.createElement('button');
+        addButton.className = 'add-item-btn';
+        addButton.textContent = '+ Add Note';
+        addButton.onclick = addWhiteboardItem;
+        whiteboardContainer.appendChild(addButton);
+      }
+    }
+
+    // Enhanced addWhiteboardItem with save
+    function addWhiteboardItem() {
+      const content = prompt('Add whiteboard note:');
+      if (content && content.trim()) {
+        const whiteboardItems = document.getElementById('whiteboard-items');
+
+        const newItem = document.createElement('div');
+        newItem.className = 'whiteboard-item';
+        newItem.innerHTML = `
+          <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
+          <div class="whiteboard-item-content">${content.trim()}</div>
+          <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
+        `;
+
+        // Insert before the add button
+        const addButton = whiteboardItems.querySelector('.add-item-btn');
+        whiteboardItems.insertBefore(newItem, addButton);
+
+        saveWhiteboard();
+      }
+    }
+
+    // Dismiss any dashboard item (deadlines, focus, pipeline)
+    function dismissItem(btn) {
+      const item = btn.closest('.action-item, .focus-item, .pipeline-item, .whiteboard-item');
+      if (!item) return;
+
+      // Remove the item completely
+      item.remove();
+      saveDashboardState();
+    }
+
+    // Add items to any dashboard section
+    function addDashboardItem(section) {
+      const prompts = {
+        deadlines: 'Add deadline (title):',
+        focus: 'Add focus area (title):',
+        pipeline: 'Add pipeline item (title):'
+      };
+      const title = prompt(prompts[section] || 'Add item:');
+      if (!title || !title.trim()) return;
+
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById(section + '-container');
+      if (!container) return;
+      const addBtn = container.querySelector('.add-item-btn');
+
+      if (section === 'deadlines') {
+        const newItem = document.createElement('div');
+        newItem.className = 'action-item';
+        newItem.dataset.section = 'deadlines';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+          <div class="action-title">${title.trim()}</div>
+          <div class="action-description">${desc.trim()}</div>
+          <div class="action-meta">
+            <span>Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+            <span class="action-status">New</span>
+          </div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      } else if (section === 'focus') {
+        const newItem = document.createElement('div');
+        newItem.className = 'focus-item';
+        newItem.dataset.section = 'focus';
+        newItem.style.position = 'relative';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+          <div class="focus-title">${title.trim()}</div>
+          <div class="focus-description">${desc.trim()}</div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      } else if (section === 'pipeline') {
+        const value = prompt('Value (e.g. $15,000):') || 'TBD';
+        const newItem = document.createElement('div');
+        newItem.className = 'pipeline-item';
+        newItem.dataset.section = 'pipeline';
+        newItem.style.position = 'relative';
+        newItem.innerHTML = `
+          <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
+          <div class="pipeline-title">${title.trim()}</div>
+          <div class="pipeline-meta">
+            <span>Stage: ${desc.trim() || 'New'}</span>
+            <span class="pipeline-value">${value.trim()}</span>
+          </div>
+        `;
+        container.insertBefore(newItem, addBtn);
+      }
+      saveDashboardState();
+    }
+
+    // Persist dashboard dismissed state
+    function saveDashboardState() {
+      const state = {};
+      ['deadlines', 'focus', 'pipeline'].forEach(section => {
+        state[section] = [];
+        document.querySelectorAll(`[data-section="${section}"]`).forEach((item, i) => {
+          if (item.classList.contains('dismissed')) state[section].push(i);
+        });
+      });
+      localStorage.setItem('brandthnk-dashboard-state', JSON.stringify(state));
+    }
+
+    function loadDashboardState() {
+      const saved = localStorage.getItem('brandthnk-dashboard-state');
+      if (saved) {
+        const state = JSON.parse(saved);
+        Object.keys(state).forEach(section => {
+          document.querySelectorAll(`[data-section="${section}"]`).forEach((item, i) => {
+            if (state[section].includes(i)) {
+              item.classList.add('dismissed');
+              item.style.opacity = '0.4';
+              item.style.borderLeftColor = '#4CAF50';
+              const title = item.querySelector('.action-title, .focus-title, .pipeline-title');
+              if (title) title.style.textDecoration = 'line-through';
+              const status = item.querySelector('.action-status');
+              if (status) {
+                item.dataset.originalStatus = status.textContent;
+                status.textContent = 'Done';
+                status.style.background = '#4CAF50';
+                status.style.color = '#fff';
+              }
+            }
+          });
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDashboardState);
+
+    // Client Ops Whiteboard
+    function addClientOpsWhiteboardItem() {
+      const content = prompt('Add client ops note:');
+      if (content && content.trim()) {
+        const container = document.getElementById('client-ops-whiteboard-items');
+        const newItem = document.createElement('div');
+        newItem.className = 'whiteboard-item';
+        newItem.innerHTML = `
+          <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+          <div class="whiteboard-item-content">${content.trim()}</div>
+          <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} at ${new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</div>
+        `;
+        container.appendChild(newItem);
+        saveClientOpsWhiteboard();
+      }
+    }
+
+    function saveClientOpsWhiteboard() {
+      const items = [];
+      document.querySelectorAll('#client-ops-whiteboard-items .whiteboard-item').forEach(item => {
+        const content = item.querySelector('.whiteboard-item-content').textContent;
+        const meta = item.querySelector('.whiteboard-item-meta').textContent;
+        items.push({content, meta});
+      });
+      localStorage.setItem('brandthnk-client-ops-whiteboard', JSON.stringify(items));
+    }
+
+    function loadClientOpsWhiteboard() {
+      const saved = localStorage.getItem('brandthnk-client-ops-whiteboard');
+      if (saved) {
+        const items = JSON.parse(saved);
+        const container = document.getElementById('client-ops-whiteboard-items');
+        container.innerHTML = '';
+        items.forEach(item => {
+          const newItem = document.createElement('div');
+          newItem.className = 'whiteboard-item';
+          newItem.innerHTML = `
+            <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveClientOpsWhiteboard();">×</button>
+            <div class="whiteboard-item-content">${item.content}</div>
+            <div class="whiteboard-item-meta">${item.meta}</div>
+          `;
+          container.appendChild(newItem);
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadClientOpsWhiteboard);
+
+    // Content Engine Whiteboard
+    function addContentEngineItem() {
+      const title = prompt('Content idea title:');
+      if (!title || !title.trim()) return;
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById('content-engine-whiteboard-items');
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.dataset.section = 'content-engine';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+        <div class="whiteboard-item-content" style="font-weight: 600; margin-bottom: 4px;">${title.trim()}</div>
+        <div class="whiteboard-item-content">${desc.trim()}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Product Dev Whiteboard
+    function addProductDevItem() {
+      const content = prompt('Product development note:');
+      if (!content || !content.trim()) return;
+      const container = document.getElementById('product-dev-whiteboard-items');
+      const newItem = document.createElement('div');
+      newItem.className = 'whiteboard-item';
+      newItem.dataset.section = 'product-dev';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 10px; right: 10px;">×</button>
+        <div class="whiteboard-item-content">${content.trim()}</div>
+        <div class="whiteboard-item-meta">Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Friday Checklist
+    function addFridayItem() {
+      const title = prompt('Add checklist item:');
+      if (!title || !title.trim()) return;
+      const desc = prompt('Description (optional):') || '';
+      const container = document.getElementById('friday-checklist');
+      const addBtn = container.parentElement.querySelector('.add-item-btn');
+      const newItem = document.createElement('div');
+      newItem.className = 'action-item';
+      newItem.dataset.section = 'friday';
+      newItem.innerHTML = `
+        <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
+        <div class="action-title">${title.trim()}</div>
+        <div class="action-description">${desc.trim()}</div>
+        <div class="action-meta">
+          <span>Added ${new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+          <span class="action-status">To Do</span>
+        </div>
+      `;
+      container.appendChild(newItem);
+    }
+
+    // Reset Friday checklist each week
+    function resetFridayChecklist() {
+      document.querySelectorAll('[data-section="friday"]').forEach(item => {
+        item.classList.remove('dismissed');
+        item.style.opacity = '';
+        item.style.borderLeftColor = '';
+        const title = item.querySelector('.action-title');
+        if (title) title.style.textDecoration = '';
+        const status = item.querySelector('.action-status');
+        if (status) {
+          status.textContent = 'To Do';
+          status.style.background = '';
+          status.style.color = '';
+        }
+      });
+      localStorage.removeItem('brandthnk-friday-state');
+    }
+
+    // Refresh timestamps - populated by the refresh-portal skill
+    // The skill writes data-refreshed attributes to the HTML before deploy
+    function setRefreshTimestamps() {
+      const refreshDate = document.documentElement.getAttribute('data-refreshed') || '2026-04-04T16:00:00';
+      const d = new Date(refreshDate);
+      const formatted = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      const ids = ['deadlines-refresh-time', 'focus-refresh-time', 'pipeline-refresh-time', 'whiteboard-refresh-time', 'content-refresh-time', 'product-refresh-time'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = formatted;
+      });
+      const globalEl = document.getElementById('intelligenceRefresh');
+      if (globalEl) globalEl.textContent = formatted;
+    }
+    document.addEventListener('DOMContentLoaded', setRefreshTimestamps);
+
+
+  </script>
+</body>
+</html>

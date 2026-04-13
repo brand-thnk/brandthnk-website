@@ -324,6 +324,28 @@
             border-left: 3px solid var(--yellow);
         }
 
+        .action-card.completed {
+            background: var(--light-gray);
+            opacity: 0.7;
+            border-left: 3px solid var(--gray);
+        }
+
+        .action-card.completed h4 {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+
+        .action-card.completed::after {
+            content: "✓ COMPLETED";
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gray);
+            letter-spacing: 1px;
+            float: right;
+            margin-top: -20px;
+        }
+
         /* TABS */
         .tab-nav {
             display: flex;
@@ -376,10 +398,144 @@
         .footer span {
             color: var(--yellow);
         }
+
+        /* PORTAL NAVIGATION STYLES */
+        .portal-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 30px 0;
+            border-bottom: 4px solid var(--yellow);
+        }
+
+        .portal-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .client-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .portal-subtitle {
+            font-size: 14px;
+            color: var(--yellow);
+            font-weight: 400;
+        }
+
+        .portal-nav {
+            background: var(--offwhite);
+            border-bottom: 1px solid var(--light-gray);
+            overflow-x: auto;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            min-width: max-content;
+        }
+
+        .nav-tab {
+            flex-shrink: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--black);
+            background: rgba(255, 235, 59, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--black);
+            border-bottom-color: var(--yellow);
+            background: rgba(255, 235, 59, 0.2);
+        }
+
+        /* PAGE HEADER STYLES */
+        .page-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px 60px;
+        }
+
+        .page-header .brandmark {
+            font-family: 'Roboto Slab', serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .page-header .subtitle {
+            font-size: 13px;
+            color: var(--light-gray);
+            margin-bottom: 4px;
+        }
+
+        .page-header .meta {
+            font-size: 11px;
+            color: var(--gray);
+            margin-top: 16px;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
+    <!-- PORTAL HEADER -->
+    <header class="portal-header">
+        <div class="portal-header-content">
+            <h1 class="client-title">Digital Onboarding</h1>
+            <p class="portal-subtitle">BrandThnk Client Portal</p>
+        </div>
+    </header>
+
+    <!-- HORIZONTAL NAVIGATION -->
+    <nav class="portal-nav">
+        <div class="nav-container">
+            <ul class="nav-tabs">
+                <li class="nav-tab"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                <li class="nav-tab"><a href="competitive-analysis.html" class="nav-link">Competitive Analysis</a></li>
+                <li class="nav-tab"><a href="distribution-calendar.html" class="nav-link active">Distribution Calendar</a></li>
+                <li class="nav-tab"><a href="visibility-profile.html" class="nav-link">Visibility Profile</a></li>
+                <li class="nav-tab"><a href="linkedin-audit.html" class="nav-link">LinkedIn Audit</a></li>
+                <li class="nav-tab"><a href="website-audit.html" class="nav-link">Website Audit</a></li>
+                <li class="nav-tab"><a href="analyst-relations.html" class="nav-link">Analyst Relations</a></li>
+                <li class="nav-tab"><a href="paid-media-guide.html" class="nav-link">Paid Media Guide</a></li>
+                <li class="nav-tab"><a href="cu20-pitch.html" class="nav-link">CU 2.0 Pitch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
         <div class="brandmark">BrandThnk</div>
         <h1>Distribution & Editorial Calendar Map</h1>
         <div class="subtitle">Digital Onboarding, Inc. | 8 Target Publications | April through September 2026</div>
@@ -395,19 +551,19 @@
                 <div class="action-card immediate">
                     <h4>CU 2.0 Provider Guide</h4>
                     <p>Contact info@cu-2.com to get DO listed in the Account Opening and Onboarding Provider Guide. Zero-effort, high-value evergreen placement.</p>
-                    <div class="timing">Owner: Jen Packard | Deadline: March 30</div>
+                    <div class="timing">Owner: Jen Packard</div>
                 </div>
 
-                <div class="action-card immediate">
+                <div class="action-card immediate completed">
                     <h4>Pitch CU 2.0 Podcast</h4>
                     <p>Pitch Nate for Kirk Drake's "Fintech Friday" or "Mastermind" podcast. Lead with Segmint/Alkami story and "Before You Deploy AI, Connect Your Data" thesis.</p>
-                    <div class="timing">Owner: BrandThnk | Deadline: April 7</div>
+                    <div class="timing">Owner: BrandThnk</div>
                 </div>
 
-                <div class="action-card immediate">
+                <div class="action-card immediate completed">
                     <h4>Draft BankThink Submission</h4>
                     <p>Draft "Before You Buy AI, Fix Your Data" for American Banker BankThink. Target May publication. Submit to Victoria Finkle per BankThink guidelines.</p>
-                    <div class="timing">Owner: BrandThnk + Nate | Deadline: April 15</div>
+                    <div class="timing">Owner: BrandThnk + Nate</div>
                 </div>
             </div>
         </div>

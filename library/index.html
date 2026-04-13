@@ -3,624 +3,1739 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library | BrandThnk</title>
-<meta name="description" content="Sharpen your thinking. Essential tools for fintech and bank brand strategy.">
+<title>Brand Diagnostic | BrandThnk</title>
+<meta name="description" content="One diagnostic. Three phases. A clear read on whether your brand is working, where it's weak, and how to write the position that fixes it.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
 <style>
-  :root {
-    --black: #000000;
-    --white: #FFFFFF;
-    --yellow: #FFEB3B;
-    --offwhite: #F5F5F5;
-    --gray: #666666;
-    --light-gray: #CCCCCC;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Roboto Mono', monospace;
-    background: var(--white);
-    color: var(--black);
-    font-size: 17px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--light-gray);
-  }
-
-  .nav-logo {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
-    font-size: 22px;
-    color: var(--black);
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--gray);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover, .nav-links a.active { color: var(--black); }
-
-  .nav-cta {
-    background: var(--black);
-    color: var(--white) !important;
-    padding: 10px 22px;
-    border-radius: 0;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
-
-  /* Mobile Menu Toggle */
-  .mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-  }
-
-  .mobile-menu-toggle span {
-    width: 22px;
-    height: 2px;
-    background: var(--black);
-    transition: all 0.3s ease;
-    transform-origin: center;
-  }
-
-  .mobile-menu-toggle.active span:first-child {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-toggle.active span:last-child {
-    transform: rotate(-45deg) translate(7px, -6px);
-  }
-
-  /* MAIN */
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 160px 60px 120px;
-  }
-
-  .page-header {
-    text-align: center;
-    margin-bottom: 100px;
-  }
-
-  .page-eyebrow {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 24px;
-  }
-
-  .page-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(48px, 6vw, 72px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 32px;
-    color: var(--black);
-    letter-spacing: -1px;
-  }
-
-  .page-description {
-    font-size: 20px;
-    color: var(--gray);
-    max-width: 640px;
-    margin: 0 auto;
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  .section {
-    margin-bottom: 120px;
-  }
-
-  .section:last-child { margin-bottom: 0; }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 24px;
-    margin-bottom: 48px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--black);
-  }
-
-  .section-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 3vw, 36px);
-    font-weight: 700;
-    color: var(--black);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-  }
-
-  .section-count {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  .content-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .content-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--light-gray);
-    gap: 40px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.2s;
-    position: relative;
-  }
-
-  .content-item:first-child {
-    border-top: 0;
-  }
-
-  .content-item-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .content-type {
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gray);
-    display: inline-block;
-  }
-
-  .content-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(20px, 2.5vw, 26px);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--black);
-    transition: color 0.2s;
-  }
-
-  .content-title a {
-    color: var(--black);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .content-title a:hover {
-    color: var(--gray);
-  }
-
-  .content-description {
-    font-size: 15px;
-    color: var(--gray);
-    max-width: 620px;
-    line-height: 1.6;
-    margin-top: 4px;
-  }
-
-  .content-download {
-    font-size: 13px;
-    color: var(--black);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    margin-top: 12px;
-    font-weight: 500;
-    transition: gap 0.2s;
-  }
-
-  .content-download:hover { gap: 14px; }
-  .content-download::after { content: '→'; }
-
-  .content-item.featured {
-    background: var(--yellow);
-    padding: 40px 36px;
-    margin-bottom: 0;
-    border-bottom: none;
-    border-top: none;
-  }
-
-  .content-item.featured .content-type { color: rgba(0,0,0,0.5); }
-  .content-item.featured .content-description { color: rgba(0,0,0,0.7); }
-  .content-item.featured .content-download {
-    border-top-color: rgba(0,0,0,0.15);
-  }
-
-  .featured-label {
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: var(--black);
-    color: var(--yellow);
-    padding: 4px 10px;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-
-  .newsletter-cta {
-    background: var(--black);
-    border-radius: 0;
-    padding: 80px 60px;
-    text-align: center;
-    margin-top: 140px;
-  }
-
-  .newsletter-cta h2 {
-    font-family: 'Roboto Slab', serif;
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 36px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.3;
-    line-height: 1.15;
-    letter-spacing: -1px;
-  }
-
-  .btn-primary {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 15px 32px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-primary:hover { background: var(--white); color: var(--black); }
-
-  .btn-black {
-    background: var(--black);
-    color: var(--white);
-    padding: 16px 40px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-    letter-spacing: 0.5px;
-  }
-
-  .btn-black:hover { background: var(--white); color: var(--black); }
-
-  .btn-yellow {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 16px 40px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-yellow:hover { background: var(--white); color: var(--black); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .page-eyebrow { animation: fadeUp 0.6s ease both; }
-  .page-title { animation: fadeUp 0.6s 0.1s ease both; }
-  .page-description { animation: fadeUp 0.6s 0.2s ease both; }
-
-  .section-title { animation: fadeUp 0.6s ease both; }
-  .section-description { animation: fadeUp 0.6s 0.1s ease both; }
-
-  .content-card {
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .content-card:nth-child(1) { animation-delay: 0.1s; }
-  .content-card:nth-child(2) { animation-delay: 0.2s; }
-  .content-card:nth-child(3) { animation-delay: 0.3s; }
-  .content-card:nth-child(4) { animation-delay: 0.4s; }
-
-  /* Briefing Signup */
-  .briefing-signup {
-    background: var(--black);
-    padding: 60px 40px;
-    text-align: center;
-    margin-top: 80px;
-  }
-
-  .briefing-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .briefing-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 16px;
-    line-height: 1.2;
-  }
-
-  .briefing-description {
-    color: var(--offwhite);
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 32px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .btn-briefing {
-    background: var(--yellow);
-    color: var(--black);
-    padding: 16px 32px;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    font-family: 'Roboto Mono', monospace;
-  }
-
-  .btn-briefing:hover {
-    background: var(--white);
-    color: var(--black);
-  }
-
-  @media (max-width: 900px) {
-    nav {
-      padding: 18px 24px;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mobile-menu-toggle { display: flex; }
-
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      border-top: 1px solid var(--light-gray);
-      flex-direction: column;
-      padding: 20px 24px;
-      gap: 16px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-links.active { display: flex; }
-
-    .nav-links li { width: 100%; }
-
-    .nav-links a {
-      display: block;
-      padding: 12px 0;
-      font-size: 16px;
-      border-bottom: 1px solid var(--light-gray);
-    }
-
-    .nav-links a:last-child { border-bottom: none; }
-
-    .container { padding: 140px 24px 80px; }
-    .content-item {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding: 24px 0;
-    }
-    .newsletter-cta { padding: 60px 24px; }
-
-    .page-header { margin-bottom: 80px; }
-    .section { margin-bottom: 80px; }
-    .section-header { margin-bottom: 40px; }
-
-    .briefing-signup {
-      padding: 50px 24px;
-      margin-top: 60px;
-    }
-
-    .briefing-title {
-      font-size: 24px;
-    }
-
-    .briefing-description {
-      font-size: 15px;
-    }
-  }
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --yellow: #FFEB3B;
+  --offwhite: #F5F5F5;
+  --gray: #666666;
+  --light-gray: #E0E0E0;
+  --font-heading: 'Roboto Slab', serif;
+  --font-body: 'Roboto Mono', monospace;
+  --sidebar-w: 260px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+::selection { background: var(--yellow); color: var(--black); }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOP NAV ── */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--black);
+}
+
+.nav-wordmark {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 22px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover { background: var(--yellow); color: var(--black); }
+
+/* ── MOBILE TOGGLE ── */
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--light-gray);
+  padding: 8px 14px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* ── LAYOUT ── */
+.app {
+  display: flex;
+  margin-top: 57px;
+  min-height: calc(100vh - 57px);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  top: 57px;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--offwhite);
+  border-right: 1px solid var(--light-gray);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 28px 20px 20px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.sidebar-header h2 {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.sidebar-header p {
+  font-size: 11px;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item:hover { background: rgba(0,0,0,0.03); }
+.nav-item.active { background: var(--white); border-left-color: var(--yellow); }
+.nav-item.completed .nav-step { background: var(--yellow); color: var(--black); }
+
+.nav-step {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.nav-item-text { display: flex; flex-direction: column; gap: 2px; }
+.nav-item-title { font-size: 12px; font-weight: 700; }
+.nav-item-subtitle { font-size: 10px; color: var(--gray); line-height: 1.4; }
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn-download-all {
+  width: 100%;
+  padding: 12px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-download-all:hover { background: var(--yellow); color: var(--black); }
+.btn-download-all:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-download-all:disabled:hover { background: var(--black); color: var(--white); }
+
+.download-note {
+  font-size: 10px;
+  color: var(--gray);
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: calc(100vh - 57px);
+}
+
+.panel {
+  display: none;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 48px 100px;
+}
+
+.panel.active { display: block; }
+
+.panel-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 16px;
+}
+
+.panel-title {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.panel-lead {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+/* ── PROGRESS BAR ── */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--light-gray);
+  margin: 16px 0 32px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.question-counter {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ── SHARED COMPONENTS ── */
+h2.section-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 20px;
+}
+
+h2.section-title:first-of-type { margin-top: 0; }
+
+.question-block {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: var(--offwhite);
+  border-left: 3px solid var(--light-gray);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.3;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.question-block.current {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  border-left-color: var(--black);
+  background: var(--white);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.question-block.answered {
+  opacity: 0.6;
+  transform: translateY(0);
+  border-left-color: var(--yellow);
+  pointer-events: none;
+  background: var(--offwhite);
+}
+
+.question-text {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.question-context {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-option {
+  padding: 10px 24px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.btn-option:hover { background: var(--offwhite); transform: translateY(-1px); }
+.btn-option.selected { background: var(--black); color: var(--white); }
+.btn-option.selected-yes { background: var(--yellow); color: var(--black); border-color: var(--black); }
+
+/* Score Display */
+.score-display {
+  margin: 40px 0;
+  padding: 32px;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.score-gauge {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.score-gauge svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.score-gauge circle {
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.score-gauge .score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--yellow);
+  text-align: center;
+  line-height: 1;
+}
+
+.score-content { flex: 1; }
+
+.score-number {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.score-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.score-verdict {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Input fields */
+.text-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid var(--light-gray);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+  background: var(--white);
+  transition: border-color 0.2s;
+}
+
+.text-input:focus { outline: none; border-color: var(--black); }
+.text-input::placeholder { color: #BBB; }
+
+.input-hint {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 8px;
+}
+
+.input-counter {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-counter .good { color: #2E7D32; }
+.input-counter .warn { color: #E65100; }
+
+/* Formula cards */
+.formula-card {
+  margin: 28px 0;
+  padding: 28px;
+  border: 2px solid var(--black);
+}
+
+.formula-card.box-card { background: var(--yellow); }
+.formula-card.edge-card { background: var(--white); }
+
+.formula-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.formula-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.formula-template {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 16px;
+  padding: 14px;
+  background: rgba(0,0,0,0.04);
+  border-left: 3px solid var(--black);
+}
+
+.edge-card .formula-template { background: var(--offwhite); }
+
+/* Scoring table */
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+}
+
+.score-table th {
+  background: var(--black);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.score-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--light-gray);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.score-table td:first-child { font-weight: 700; }
+
+.score-table .total-row {
+  background: var(--yellow);
+  font-weight: 700;
+}
+
+.score-input {
+  width: 56px;
+  padding: 8px;
+  border: 2px solid var(--light-gray);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+
+.score-input:focus { outline: none; border-color: var(--black); }
+
+/* Navigation buttons */
+.panel-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn-nav {
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-next { background: var(--black); color: var(--white); }
+.btn-next:hover { background: var(--yellow); color: var(--black); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+
+.btn-prev { background: none; color: var(--gray); border: 1px solid var(--light-gray); }
+.btn-prev:hover { color: var(--black); border-color: var(--black); }
+
+/* ── INTRO PANEL ── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 40px 0;
+}
+
+.intro-phase {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--light-gray);
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 4px;
+  margin: 0 -12px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.intro-phase:hover { padding-left: 20px; background: var(--offwhite); }
+.intro-phase:last-child { border-bottom: none; }
+
+.intro-phase-step {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 6px;
+}
+
+.intro-phase-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.intro-phase-desc {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ── RESULTS PANEL ── */
+.result-section {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.result-section:last-of-type { border-bottom: none; }
+
+.result-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.result-phase-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.result-score-badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--yellow);
+  font-weight: 700;
+}
+
+.result-detail {
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.result-input-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.result-input-value {
+  font-size: 14px;
+  padding: 12px 16px;
+  background: var(--offwhite);
+  border-left: 3px solid var(--yellow);
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+}
+
+.empty-state { color: var(--gray); font-style: italic; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  margin: 48px 0 0;
+  padding: 48px 32px;
+  background: var(--yellow);
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  font-size: 14px;
+  margin-bottom: 28px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-section a {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 36px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+
+.cta-section a:hover { transform: translateY(-2px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .sidebar-toggle { display: block; }
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .panel { padding: 40px 24px 80px; }
+  .top-nav { padding: 14px 20px; }
+  .nav-label { display: none; }
+  .btn-group { flex-direction: column; }
+  .score-display { flex-direction: column; text-align: center; }
+  .score-table td, .score-table th { padding: 10px 12px; font-size: 12px; }
+}
+
+@media (max-width: 600px) {
+  .panel-title { font-size: 26px; }
+  .formula-card { padding: 20px; }
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">BrandThnk</a>
-  <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="/#offers">Explore Services</a></li>
-    <li><a href="/library/" class="active">Use the Tools</a></li>
-    <li><a href="/book/">Read the Book</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
-  </ul>
-</nav>
-
-<!-- MAIN -->
-<div class="container">
-  <div class="page-header">
-    <p class="page-eyebrow">Our Toolkit</p>
-    <h1 class="page-title">Sharpen your thinking.</h1>
+<!-- TOP NAV -->
+<header class="top-nav">
+  <a href="/" class="nav-wordmark">BrandThnk</a>
+  <div class="nav-right">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">Menu</button>
+    <span class="nav-label">Brand Diagnostic</span>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta" target="_blank">Book a Call</a>
   </div>
+</header>
 
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Frameworks</h2>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Brand Diagnostic</h2>
+      <p>One diagnostic. Three phases. A clear read on your brand.</p>
     </div>
-    <div class="content-list">
-      <div class="content-item featured">
-        <div class="content-item-body">
-          <span class="featured-label">Signature Framework</span>
-          <span class="content-type">Framework</span>
-          <h3 class="content-title"><a href="/library/box-edge.html">Box-Edge Framework</a></h3>
-          <p class="content-description">A two-part positioning model that clarifies your customer-friendly category (the Box) and your sharp difference that creates pull (the Edge). The starting point for most BrandThnk engagements.</p>
-          <a href="/library/box-edge.html" class="content-download">Read</a>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-panel="intro" onclick="showPanel('intro')">
+        <div class="nav-step">i</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Start Here</div>
+          <div class="nav-item-subtitle">How this works</div>
         </div>
       </div>
 
-      <div class="content-item">
-        <div class="content-item-body">
-          <span class="content-type">Framework</span>
-          <h3 class="content-title"><a href="/library/reframe-vs-rebrand.html">Reframe vs. Rebrand</a></h3>
-          <p class="content-description">A diagnostic tool that prevents clients from investing in visual identity when their real problem is story clarity. Use it before you approve any brand budget.</p>
-          <a href="/library/reframe-vs-rebrand.html" class="content-download">Read</a>
+      <div class="nav-item" data-panel="symptoms" onclick="showPanel('symptoms')">
+        <div class="nav-step">1</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Symptoms</div>
+          <div class="nav-item-subtitle">Is your brand creating pull?</div>
         </div>
       </div>
 
-    </div>
-  </div>
-
-
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Diagnostics</h2>
-    </div>
-    <div class="content-list">
-      <div class="content-item">
-        <div class="content-item-body">
-          <span class="content-type">Diagnostic</span>
-          <h3 class="content-title"><a href="/assets/BrandThnk-Signal-Test.pdf" target="_blank">The Signal Test</a></h3>
-          <p class="content-description">Five quick tests that tell you whether your brand is generating signal or noise. A diagnostic for busy brands that haven't broken through yet.</p>
-          <a href="/assets/BrandThnk-Signal-Test.pdf" download class="content-download">Download PDF</a>
+      <div class="nav-item" data-panel="rootcause" onclick="showPanel('rootcause')">
+        <div class="nav-step">2</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Root Cause</div>
+          <div class="nav-item-subtitle">Where is it weak?</div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <h2 class="section-title">Briefings</h2>
-    </div>
-    <div class="content-list">
-
-
-    </div>
-  </div>
-
-  <div class="briefing-signup">
-    <div class="briefing-content">
-      <div class="briefing-text">
-        <h2 class="briefing-title">The BrandThnk Briefing</h2>
-        <p class="briefing-description">Join 2,000+ bank and fintech leaders who get sharp thinking on brand, positioning, and growth.</p>
+      <div class="nav-item" data-panel="position" onclick="showPanel('position')">
+        <div class="nav-step">3</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Position</div>
+          <div class="nav-item-subtitle">Write it down</div>
+        </div>
       </div>
-      <a href="https://brandthnk-briefing-from-allison-netzer.beehiiv.com/" class="btn-briefing">Subscribe to the Briefing</a>
+
+      <div class="nav-item" data-panel="diagnosis" onclick="showPanel('diagnosis')">
+        <div class="nav-step">Dx</div>
+        <div class="nav-item-text">
+          <div class="nav-item-title">Your Diagnosis</div>
+          <div class="nav-item-subtitle">Combined results</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-download-all" id="downloadAll" onclick="downloadReport()" disabled>
+        Download Report
+      </button>
+      <div class="download-note">Complete Phase 1 to enable</div>
     </div>
-  </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- ════ INTRO ════ -->
+    <div class="panel active" id="panel-intro">
+      <p class="panel-eyebrow">Brand Diagnostic</p>
+      <h1 class="panel-title">Find out what's actually working.</h1>
+      <p class="panel-lead">This is the diagnostic we run at the start of every BrandThnk engagement, and it takes about 10 minutes. At the end you'll get a comprehensive read-out.</p>
+
+      <div class="intro-grid">
+        <div class="intro-phase" onclick="showPanel('symptoms')">
+          <div class="intro-phase-step">Phase 1</div>
+          <div class="intro-phase-title">Is your brand creating pull?</div>
+          <div class="intro-phase-desc">Four yes-or-no questions that separate signal from activity.</div>
+        </div>
+        <div class="intro-phase" onclick="showPanel('rootcause')">
+          <div class="intro-phase-step">Phase 2</div>
+          <div class="intro-phase-title">Where is it weak?</div>
+          <div class="intro-phase-desc">Score four dimensions of brand health. The scores tell you whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</div>
+        </div>
+        <div class="intro-phase" onclick="showPanel('position')">
+          <div class="intro-phase-step">Phase 3</div>
+          <div class="intro-phase-title">Write your position.</div>
+          <div class="intro-phase-desc">Use the Box-Edge framework to draft your category (what you are) and your difference (why it matters).</div>
+        </div>
+      </div>
+
+      <div class="panel-nav" style="justify-content: flex-end;">
+        <button class="btn-nav btn-next" onclick="showPanel('symptoms')">Start the Diagnostic</button>
+      </div>
+    </div>
+
+    <!-- ════ PHASE 1: SYMPTOMS ════ -->
+    <div class="panel" id="panel-symptoms">
+      <p class="panel-eyebrow">Phase 1 of 3</p>
+      <h1 class="panel-title">Is your brand creating pull?</h1>
+      <p class="panel-lead">Answer four yes-or-no questions honestly.</p>
+
+      <div class="question-counter" id="symptom-counter">Question 1 of 4</div>
+      <div class="progress-bar"><div class="progress-fill" id="symptom-progress"></div></div>
+
+      <div id="symptom-questions">
+        <div class="question-block current" data-q="s1">
+          <div class="question-text">If you removed your logo from everything you published in the last 90 days, would anyone know it was you?</div>
+          <div class="question-context">If your content and collateral are interchangeable with a competitor's, your brand is not doing its job.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSymptom('s1','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s1','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s1','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s2">
+          <div class="question-text">Can your sales team explain what makes you different without a deck or a script?</div>
+          <div class="question-context">The real test of a brand is the unscripted explanation.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSymptom('s2','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s2','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s2','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s3">
+          <div class="question-text">Do prospects compare you to the right competitors?</div>
+          <div class="question-context">When your market puts you in the wrong category, they cannot evaluate your difference.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSymptom('s3','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s3','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s3','unsure',this)">Not sure</button>
+          </div>
+        </div>
+
+        <div class="question-block" data-q="s4">
+          <div class="question-text">If five employees independently described what your company does, would you get the same answer?</div>
+          <div class="question-context">Internal alignment impacts external execution more than spend.</div>
+          <div class="btn-group">
+            <button class="btn-option" onclick="answerSymptom('s4','yes',this)">Yes</button>
+            <button class="btn-option" onclick="answerSymptom('s4','no',this)">No</button>
+            <button class="btn-option" onclick="answerSymptom('s4','unsure',this)">Not sure</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-display" id="symptom-result" style="display:none;"></div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('intro')">Back</button>
+        <button class="btn-nav btn-next" onclick="showPanel('rootcause')">Next: Root Cause</button>
+      </div>
+    </div>
+
+    <!-- ════ PHASE 2: ROOT CAUSE ════ -->
+    <div class="panel" id="panel-rootcause">
+      <p class="panel-eyebrow">Phase 2 of 3</p>
+      <h1 class="panel-title">Where is it weak?</h1>
+      <p class="panel-lead">Score your brand on where it is today. The total determines whether you need a reframe (tighten the message) or a rebrand (rebuild the foundation).</p>
+
+      <p style="margin-bottom:20px;font-size:14px;color:var(--gray);">Rate each area 1 to 5 with 1 being "not at all" and 5 being "absolutely"</p>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>The real question</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Market Position</td>
+            <td>Do you own a clear, defensible position?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-position" oninput="updateRootCause()"></td>
+          </tr>
+          <tr>
+            <td>Brand Promise</td>
+            <td>Can you say what makes you different in one sentence?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-promise" oninput="updateRootCause()"></td>
+          </tr>
+          <tr>
+            <td>Message Clarity</td>
+            <td>Do customers understand what you stand for?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-clarity" oninput="updateRootCause()"></td>
+          </tr>
+          <tr>
+            <td>Visual Identity</td>
+            <td>Does your look reflect who you are today?</td>
+            <td><input type="number" class="score-input" min="1" max="5" id="rc-visual" oninput="updateRootCause()"></td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2"><strong>Total</strong></td>
+            <td><strong id="rc-total">0</strong>/20</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="score-display" id="rootcause-result" style="display:none;"></div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('symptoms')">Back</button>
+        <button class="btn-nav btn-next" onclick="showPanel('position')">Next: Write Your Position</button>
+      </div>
+    </div>
+
+    <!-- ════ PHASE 3: POSITION ════ -->
+    <div class="panel" id="panel-position">
+      <p class="panel-eyebrow">Phase 3 of 3</p>
+      <h1 class="panel-title">Write your position.</h1>
+      <p class="panel-lead">This is the Box-Edge framework. It forces clarity on two things every brand needs: what category you own and what makes you better in that category.</p>
+
+      <div class="formula-card box-card">
+        <div class="formula-label">The Box</div>
+        <div class="formula-title">What category do you own?</div>
+        <div class="formula-template">"We are a [category] for [specific segment]."</div>
+        <p style="font-size:13px;color:rgba(0,0,0,0.7);margin-bottom:16px;">If your market cannot place you in a category, they cannot evaluate your difference. Start with the Box.</p>
+        <textarea class="text-input" id="box-input" rows="3" placeholder="We are a [category] for [specific segment]..." oninput="updateBoxEdge()"></textarea>
+        <div class="input-counter">
+          <span id="box-count">0 words</span>
+          <span id="box-feedback"></span>
+        </div>
+      </div>
+
+      <div class="formula-card edge-card">
+        <div class="formula-label">The Edge</div>
+        <div class="formula-title">What is your actual difference?</div>
+        <div class="formula-template">"Unlike [status quo], we [mechanism] so you can [outcome]."</div>
+        <p style="font-size:13px;color:var(--gray);margin-bottom:16px;">The Edge is not a feature list. It is the single thing you do differently that produces a result your market cares about. One sentence. No hedging.</p>
+        <textarea class="text-input" id="edge-input" rows="3" placeholder="Unlike [status quo], we [mechanism] so you can [outcome]..." oninput="updateBoxEdge()"></textarea>
+        <div class="input-counter">
+          <span id="edge-count">0 words</span>
+          <span id="edge-feedback"></span>
+        </div>
+      </div>
+
+      <div id="position-feedback" style="display:none; margin-top:32px; padding:24px; background:var(--offwhite); border-left:3px solid var(--yellow);">
+        <p style="font-weight:700; margin-bottom:8px; font-size:14px;">Position check</p>
+        <p id="position-feedback-text" style="font-size:13px; color:var(--gray); line-height:1.7;"></p>
+      </div>
+
+      <div class="panel-nav">
+        <button class="btn-nav btn-prev" onclick="showPanel('rootcause')">Back</button>
+        <button class="btn-nav btn-next" onclick="showPanel('diagnosis')">See Your Diagnosis</button>
+      </div>
+    </div>
+
+    <!-- ════ DIAGNOSIS ════ -->
+    <div class="panel" id="panel-diagnosis">
+      <p class="panel-eyebrow">Your Diagnosis</p>
+      <h1 class="panel-title">Here is what we found.</h1>
+      <p class="panel-lead">This is a summary of your answers across all three phases. Download the full report to share with your team or bring to a call.</p>
+
+      <!-- Phase 1 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 1: Symptoms</div>
+          <div class="result-score-badge" id="dx-symptom-badge">--</div>
+        </div>
+        <p class="result-detail" id="dx-symptom-verdict">Complete Phase 1 to see results.</p>
+        <div id="dx-symptom-answers"></div>
+      </div>
+
+      <!-- Phase 2 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 2: Root Cause</div>
+          <div class="result-score-badge" id="dx-rootcause-badge">--</div>
+        </div>
+        <p class="result-detail" id="dx-rootcause-verdict">Complete Phase 2 to see results.</p>
+        <div id="dx-rootcause-scores"></div>
+      </div>
+
+      <!-- Phase 3 Results -->
+      <div class="result-section">
+        <div class="result-header">
+          <div class="result-phase-name">Phase 3: Position</div>
+        </div>
+        <div id="dx-position-content">
+          <p class="result-detail empty-state">Complete Phase 3 to see results.</p>
+        </div>
+      </div>
+
+      <!-- Where to Focus -->
+      <div class="result-section" id="dx-focus-section" style="display:none;">
+        <div class="result-header">
+          <div class="result-phase-name">Where to Focus First</div>
+        </div>
+        <p class="result-detail" id="dx-focus-text"></p>
+      </div>
+
+      <div class="panel-nav" style="margin-top:40px;">
+        <button class="btn-nav btn-prev" onclick="showPanel('position')">Back</button>
+        <button class="btn-nav btn-next" onclick="downloadReport()" style="background:var(--yellow);color:var(--black);">Download Full Report</button>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section" style="background:var(--black);margin-top:48px;">
+        <h2 style="color:var(--white);">Now you know.<br>What are you going to do about it?</h2>
+        <p style="color:rgba(255,255,255,0.8);">A 30-minute call is enough to confirm this diagnosis and decide what to fix first.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" target="_blank" style="background:var(--yellow);color:var(--black);">Book a Call</a>
+      </div>
+    </div>
+
+  </main>
 </div>
 
 <script>
-// Mobile menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+const state = {
+  symptoms: {},
+  symptomVerdict: '',
+  symptomScore: 0,
+  rootCause: { position: 0, promise: 0, clarity: 0, visual: 0 },
+  rootCauseTotal: 0,
+  rootCauseVerdict: '',
+  rootCauseLabel: '',
+  boxText: '',
+  edgeText: '',
+  positionVerdict: '',
+  completedPhases: new Set()
+};
 
-  if (mobileMenuToggle && navLinks) {
-    mobileMenuToggle.addEventListener('click', function() {
-      // Toggle active class on both button and nav links
-      mobileMenuToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
+// ══════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
 
-    // Close menu when clicking nav links
-    navLinks.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        mobileMenuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
-    });
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector('.nav-item[data-panel="' + id + '"]');
+  if (navItem) navItem.classList.add('active');
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('nav')) {
-        mobileMenuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-      }
-    });
+  if (id === 'diagnosis') renderDiagnosis();
+
+  // Close mobile sidebar
+  document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo(0, 0);
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function markPhaseComplete(phase) {
+  state.completedPhases.add(phase);
+  const navItem = document.querySelector('.nav-item[data-panel="' + phase + '"]');
+  if (navItem) navItem.classList.add('completed');
+
+  // Enable download button once Phase 1 is done
+  if (state.completedPhases.size > 0) {
+    document.getElementById('downloadAll').disabled = false;
   }
-});
-</script>
+}
 
+// ══════════════════════════════════════
+// PHASE 1: SYMPTOMS
+// ══════════════════════════════════════
+function answerSymptom(qId, answer, btn) {
+  state.symptoms[qId] = answer;
+
+  // Update button states
+  const block = btn.closest('.question-block');
+  block.querySelectorAll('.btn-option').forEach(b => {
+    b.classList.remove('selected', 'selected-yes');
+  });
+  btn.classList.add(answer === 'yes' ? 'selected-yes' : 'selected');
+
+  // Advance to next question
+  block.classList.remove('current');
+  block.classList.add('answered');
+
+  const allBlocks = document.querySelectorAll('#symptom-questions .question-block');
+  const answeredCount = Object.keys(state.symptoms).length;
+
+  // Update progress
+  document.getElementById('symptom-progress').style.width = (answeredCount / 4 * 100) + '%';
+  document.getElementById('symptom-counter').textContent = 'Question ' + Math.min(answeredCount + 1, 4) + ' of 4';
+
+  // Activate next question
+  if (answeredCount < allBlocks.length) {
+    allBlocks[answeredCount].classList.add('current');
+  }
+
+  // Show results when all answered
+  if (answeredCount === 4) {
+    showSymptomResult();
+    markPhaseComplete('symptoms');
+  }
+}
+
+function showSymptomResult() {
+  const yesCount = Object.values(state.symptoms).filter(a => a === 'yes').length;
+  const noCount = Object.values(state.symptoms).filter(a => a === 'no').length;
+  state.symptomScore = yesCount;
+
+  let verdict = '';
+  if (yesCount >= 3) {
+    verdict = 'Your brand is producing signal. The fundamentals are working. Phase 2 will tell you whether to optimize or leave it alone.';
+  } else if (yesCount >= 2) {
+    verdict = 'Mixed signal. Your brand is working in some areas but not others. Phase 2 will identify where the foundation is weak.';
+  } else {
+    verdict = 'Low signal. Your brand is generating activity but not pull. The problem is likely structural, not tactical. Phase 2 will confirm.';
+  }
+  state.symptomVerdict = verdict;
+
+  const container = document.getElementById('symptom-result');
+  container.style.display = 'flex';
+  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(yesCount, 4) + '<div class="score-text">' + yesCount + '/4</div></div>' +
+    '<div class="score-content"><div class="score-number">' + yesCount + '/4</div><div class="score-label">Signal Strength</div><div class="score-verdict">' + verdict + '</div></div>';
+}
+
+// ══════════════════════════════════════
+// PHASE 2: ROOT CAUSE
+// ══════════════════════════════════════
+function updateRootCause() {
+  const fields = ['position', 'promise', 'clarity', 'visual'];
+  let total = 0;
+  let filled = 0;
+
+  fields.forEach(f => {
+    const val = parseInt(document.getElementById('rc-' + f).value);
+    if (!isNaN(val) && val >= 1 && val <= 5) {
+      state.rootCause[f] = val;
+      total += val;
+      filled++;
+    }
+  });
+
+  state.rootCauseTotal = total;
+  document.getElementById('rc-total').textContent = total;
+
+  if (filled === 4) {
+    showRootCauseResult(total);
+    markPhaseComplete('rootcause');
+  } else {
+    document.getElementById('rootcause-result').style.display = 'none';
+  }
+}
+
+function showRootCauseResult(score) {
+  let verdict = '';
+  let label = '';
+
+  if (score >= 16) {
+    label = 'Minor Adjustments';
+    verdict = 'Your brand foundation is solid. Focus on consistent execution and small refinements. No major structural changes needed.';
+  } else if (score >= 12) {
+    label = 'Strategic Reframe';
+    verdict = 'Your fundamentals are sound but your positioning needs sharpening. A reframe fixes the story without starting over. Focus on message clarity and competitive positioning.';
+  } else if (score >= 8) {
+    label = 'Comprehensive Reframe';
+    verdict = 'Multiple dimensions need work. A thorough reframe addressing positioning, messaging, and visual alignment will build the foundation for growth. Do this before considering a full rebrand.';
+  } else {
+    label = 'Rebrand Consideration';
+    verdict = 'Your brand foundation needs significant rebuilding. Before committing to a full rebrand, validate whether the core business model and market position are sound. Sometimes a comprehensive reframe produces rebrand-level results at a fraction of the cost.';
+  }
+
+  state.rootCauseVerdict = verdict;
+  state.rootCauseLabel = label;
+
+  const container = document.getElementById('rootcause-result');
+  container.style.display = 'flex';
+  container.innerHTML = '<div class="score-gauge">' + createGaugeSVG(score, 20) + '<div class="score-text">' + score + '/20</div></div>' +
+    '<div class="score-content"><div class="score-number">' + label + '</div><div class="score-label">Score: ' + score + '/20</div><div class="score-verdict">' + verdict + '</div></div>';
+}
+
+// ══════════════════════════════════════
+// PHASE 3: POSITION
+// ══════════════════════════════════════
+function updateBoxEdge() {
+  const boxVal = document.getElementById('box-input').value.trim();
+  const edgeVal = document.getElementById('edge-input').value.trim();
+  state.boxText = boxVal;
+  state.edgeText = edgeVal;
+
+  // Word counts
+  const boxWords = boxVal ? boxVal.split(/\s+/).length : 0;
+  const edgeWords = edgeVal ? edgeVal.split(/\s+/).length : 0;
+
+  document.getElementById('box-count').textContent = boxWords + ' words';
+  document.getElementById('edge-count').textContent = edgeWords + ' words';
+
+  // Box feedback
+  const boxFb = document.getElementById('box-feedback');
+  if (boxWords === 0) boxFb.textContent = '';
+  else if (boxWords <= 15) { boxFb.textContent = 'Good length'; boxFb.className = 'good'; }
+  else { boxFb.textContent = 'Try tightening'; boxFb.className = 'warn'; }
+
+  // Edge feedback
+  const edgeFb = document.getElementById('edge-feedback');
+  if (edgeWords === 0) edgeFb.textContent = '';
+  else if (edgeWords <= 25) { edgeFb.textContent = 'Good length'; edgeFb.className = 'good'; }
+  else { edgeFb.textContent = 'Try tightening'; edgeFb.className = 'warn'; }
+
+  // Position feedback
+  const feedbackBox = document.getElementById('position-feedback');
+  const feedbackText = document.getElementById('position-feedback-text');
+
+  if (boxVal && edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You have both a Box and an Edge. Read them together out loud. If a prospect hears this for the first time, do they understand what you are and why it matters in under 10 seconds?';
+    feedbackText.textContent = state.positionVerdict;
+    markPhaseComplete('position');
+  } else if (boxVal && !edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You have a category but no stated difference. This is common and it is exactly where most positioning work starts. The Box without an Edge means prospects can place you but have no reason to choose you.';
+    feedbackText.textContent = state.positionVerdict;
+  } else if (!boxVal && edgeVal) {
+    feedbackBox.style.display = 'block';
+    state.positionVerdict = 'You wrote a difference but no category. Your market cannot evaluate your Edge until they know your Box. Category first, always.';
+    feedbackText.textContent = state.positionVerdict;
+  } else {
+    feedbackBox.style.display = 'none';
+    state.positionVerdict = '';
+  }
+}
+
+// ══════════════════════════════════════
+// DIAGNOSIS PANEL
+// ══════════════════════════════════════
+function renderDiagnosis() {
+  // Phase 1
+  const symBadge = document.getElementById('dx-symptom-badge');
+  const symVerdict = document.getElementById('dx-symptom-verdict');
+  const symAnswers = document.getElementById('dx-symptom-answers');
+
+  if (Object.keys(state.symptoms).length === 4) {
+    symBadge.textContent = state.symptomScore + '/4 Signal';
+    symVerdict.textContent = state.symptomVerdict;
+
+    const qLabels = {
+      s1: 'Distinctiveness (logo test)',
+      s2: 'Message portability (sales team test)',
+      s3: 'Category placement (competitor test)',
+      s4: 'Internal alignment (five-employee test)'
+    };
+
+    let answersHtml = '';
+    Object.keys(state.symptoms).forEach(k => {
+      const answer = state.symptoms[k];
+      const icon = answer === 'yes' ? '&#10003;' : answer === 'no' ? '&#10007;' : '?';
+      answersHtml += '<div style="display:flex;gap:10px;align-items:baseline;margin-bottom:8px;font-size:13px;">' +
+        '<span style="font-weight:700;width:20px;color:' + (answer === 'yes' ? '#2E7D32' : answer === 'no' ? '#C62828' : 'var(--gray)') + ';">' + icon + '</span>' +
+        '<span>' + qLabels[k] + '</span></div>';
+    });
+    symAnswers.innerHTML = answersHtml;
+  } else {
+    symBadge.textContent = '--';
+    symVerdict.textContent = 'Complete Phase 1 to see results.';
+    symAnswers.innerHTML = '';
+  }
+
+  // Phase 2
+  const rcBadge = document.getElementById('dx-rootcause-badge');
+  const rcVerdict = document.getElementById('dx-rootcause-verdict');
+  const rcScores = document.getElementById('dx-rootcause-scores');
+
+  if (state.rootCauseTotal > 0 && state.rootCauseLabel) {
+    rcBadge.textContent = state.rootCauseTotal + '/20';
+    rcVerdict.textContent = state.rootCauseVerdict;
+
+    const dims = ['position', 'promise', 'clarity', 'visual'];
+    const dimLabels = { position: 'Market Position', promise: 'Brand Promise', clarity: 'Message Clarity', visual: 'Visual Identity' };
+
+    let scoresHtml = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">';
+    dims.forEach(d => {
+      const val = state.rootCause[d] || 0;
+      const barWidth = (val / 5 * 100);
+      scoresHtml += '<div style="font-size:13px;"><div style="font-weight:700;margin-bottom:4px;">' + dimLabels[d] + ': ' + val + '/5</div>' +
+        '<div style="height:4px;background:var(--light-gray);border-radius:2px;"><div style="height:100%;width:' + barWidth + '%;background:' + (val >= 4 ? '#2E7D32' : val >= 3 ? 'var(--yellow)' : '#C62828') + ';border-radius:2px;"></div></div></div>';
+    });
+    scoresHtml += '</div>';
+    rcScores.innerHTML = scoresHtml;
+  } else {
+    rcBadge.textContent = '--';
+    rcVerdict.textContent = 'Complete Phase 2 to see results.';
+    rcScores.innerHTML = '';
+  }
+
+  // Phase 3
+  const posContent = document.getElementById('dx-position-content');
+  if (state.boxText || state.edgeText) {
+    let posHtml = '';
+    if (state.boxText) {
+      posHtml += '<div class="result-input-label">Your Box (Category)</div><div class="result-input-value">' + escapeHtml(state.boxText) + '</div>';
+    }
+    if (state.edgeText) {
+      posHtml += '<div class="result-input-label">Your Edge (Difference)</div><div class="result-input-value">' + escapeHtml(state.edgeText) + '</div>';
+    }
+    if (state.positionVerdict) {
+      posHtml += '<p class="result-detail" style="margin-top:12px;">' + state.positionVerdict + '</p>';
+    }
+    posContent.innerHTML = posHtml;
+  } else {
+    posContent.innerHTML = '<p class="result-detail empty-state">Complete Phase 3 to see results.</p>';
+  }
+
+  // Where to Focus
+  renderFocusSection();
+}
+
+function renderFocusSection() {
+  const section = document.getElementById('dx-focus-section');
+  const text = document.getElementById('dx-focus-text');
+
+  if (state.completedPhases.size < 2) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  let focusItems = [];
+
+  // Derive focus areas from scores
+  if (state.symptomScore <= 1) {
+    focusItems.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
+  }
+
+  if (state.rootCause.position && state.rootCause.position <= 2) {
+    focusItems.push('Market position scored lowest. Your market does not know where to place you. Define your Box before working on anything else.');
+  }
+
+  if (state.rootCause.promise && state.rootCause.promise <= 2) {
+    focusItems.push('Brand promise scored lowest. You cannot articulate what makes you different in one sentence. This is the root cause of most conversion problems.');
+  }
+
+  if (state.rootCause.clarity && state.rootCause.clarity <= 2) {
+    focusItems.push('Message clarity scored lowest. Your team knows the story but your market does not. The problem is translation, not substance.');
+  }
+
+  if (!state.boxText && state.completedPhases.has('position')) {
+    focusItems.push('You could not fill in the Box formula. Category clarity comes before differentiation. Start here.');
+  }
+
+  if (state.boxText && !state.edgeText && state.completedPhases.has('position')) {
+    focusItems.push('You have a Box but no Edge. Your market can place you but has no reason to choose you over the next option.');
+  }
+
+  if (focusItems.length === 0) {
+    if (state.symptomScore >= 3 && state.rootCauseTotal >= 16) {
+      focusItems.push('Your brand foundation is strong. The work now is consistency and execution, not strategy. Protect what is working before optimizing what is not.');
+    } else {
+      focusItems.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
+    }
+  }
+
+  text.innerHTML = focusItems.join('<br><br>');
+}
+
+// ══════════════════════════════════════
+// DOWNLOAD REPORT
+// ══════════════════════════════════════
+function downloadReport() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const pw = 210, ph = 297;
+  const ml = 24, mr = 24, contentW = pw - ml - mr;
+  const black = [0, 0, 0], white = [255, 255, 255], yellow = [255, 235, 59], gray = [102, 102, 102];
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  let y = 0;
+
+  function checkPage(needed) {
+    if (y + needed > ph - 24) { doc.addPage(); y = 24; }
+  }
+
+  function sectionTitle(text) {
+    checkPage(20);
+    y += 6;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+    doc.text(text.toUpperCase(), ml, y);
+    y += 2;
+    doc.setDrawColor(...yellow);
+    doc.setLineWidth(1.2);
+    doc.line(ml, y, ml + 36, y);
+    y += 8;
+  }
+
+  function bodyText(text, opts = {}) {
+    const fontSize = opts.bold ? 10 : 9.5;
+    doc.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+    doc.setFontSize(fontSize);
+    doc.setTextColor(...(opts.color || black));
+    const lines = doc.splitTextToSize(text, opts.width || contentW);
+    checkPage(lines.length * 4.5 + 2);
+    doc.text(lines, opts.x || ml, y);
+    y += lines.length * 4.5;
+    return lines.length;
+  }
+
+  function drawScoreBar(x, barY, value, maxVal, barW) {
+    doc.setFillColor(230, 230, 230);
+    doc.roundedRect(x, barY, barW, 3, 1.5, 1.5, 'F');
+    const fillW = (value / maxVal) * barW;
+    if (value >= 4) doc.setFillColor(46, 125, 50);
+    else if (value >= 3) doc.setFillColor(...yellow);
+    else doc.setFillColor(198, 40, 40);
+    doc.roundedRect(x, barY, Math.max(fillW, 3), 3, 1.5, 1.5, 'F');
+  }
+
+  // ── COVER HEADER ──
+  doc.setFillColor(...black);
+  doc.rect(0, 0, pw, 72, 'F');
+
+  // Yellow accent bar
+  doc.setFillColor(...yellow);
+  doc.rect(0, 72, pw, 3, 'F');
+
+  // Wordmark
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(28);
+  doc.setTextColor(...white);
+  doc.text('BrandThnk', ml, 30);
+
+  // Title
+  doc.setFontSize(14);
+  doc.setTextColor(...yellow);
+  doc.text('Brand Diagnostic Report', ml, 42);
+
+  // Date
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Generated ' + today, ml, 54);
+
+  // URL
+  doc.text('brandthnk.co/library', ml, 62);
+
+  y = 90;
+
+  // ── PHASE 1: SIGNAL STRENGTH ──
+  sectionTitle('Phase 1: Signal Strength');
+
+  if (Object.keys(state.symptoms).length === 4) {
+    // Score callout box
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(ml, y - 2, contentW, 18, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(32);
+    doc.setTextColor(...black);
+    doc.text(state.symptomScore + '/4', ml + 8, y + 11);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+    doc.text('SIGNAL STRENGTH', ml + 38, y + 5);
+
+    // Verdict inline
+    doc.setFontSize(8.5);
+    const vLines = doc.splitTextToSize(state.symptomVerdict, contentW - 46);
+    doc.text(vLines.slice(0, 2), ml + 38, y + 11);
+    y += 24;
+
+    // Question results
+    const qTexts = {
+      s1: 'Distinctiveness (logo test)',
+      s2: 'Message portability (sales team test)',
+      s3: 'Category placement (competitor test)',
+      s4: 'Internal alignment (five-employee test)'
+    };
+
+    Object.keys(state.symptoms).forEach(k => {
+      checkPage(7);
+      const answer = state.symptoms[k];
+      const icon = answer === 'yes' ? 'YES' : answer === 'no' ? 'NO' : '???';
+      const iconColor = answer === 'yes' ? [46, 125, 50] : answer === 'no' ? [198, 40, 40] : gray;
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...iconColor);
+      doc.text(icon, ml + 2, y);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(...black);
+      doc.text(qTexts[k], ml + 18, y);
+      y += 6;
+    });
+
+    y += 4;
+  } else {
+    bodyText('Phase 1 not completed.', { color: gray });
+    y += 4;
+  }
+
+  // ── PHASE 2: ROOT CAUSE ──
+  sectionTitle('Phase 2: Root Cause');
+
+  if (state.rootCauseTotal > 0 && state.rootCauseLabel) {
+    // Score + label
+    doc.setFillColor(245, 245, 245);
+    doc.roundedRect(ml, y - 2, contentW, 14, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.setTextColor(...black);
+    doc.text(state.rootCauseTotal + '/20', ml + 8, y + 8);
+
+    doc.setFillColor(...yellow);
+    doc.roundedRect(ml + 42, y, 48, 7, 1, 1, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...black);
+    doc.text(state.rootCauseLabel.toUpperCase(), ml + 44, y + 5);
+    y += 20;
+
+    // Dimension bars
+    const dims = [
+      { key: 'position', label: 'Market Position' },
+      { key: 'promise', label: 'Brand Promise' },
+      { key: 'clarity', label: 'Message Clarity' },
+      { key: 'visual', label: 'Visual Identity' }
+    ];
+
+    dims.forEach(d => {
+      checkPage(10);
+      const val = state.rootCause[d.key] || 0;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(...black);
+      doc.text(d.label, ml, y);
+
+      doc.setFont('helvetica', 'bold');
+      doc.text(val + '/5', ml + 52, y);
+
+      drawScoreBar(ml + 62, y - 2.5, val, 5, contentW - 62);
+      y += 8;
+    });
+
+    y += 4;
+    bodyText(state.rootCauseVerdict, { color: gray });
+    y += 4;
+  } else {
+    bodyText('Phase 2 not completed.', { color: gray });
+    y += 4;
+  }
+
+  // ── PHASE 3: POSITION ──
+  sectionTitle('Phase 3: Your Position');
+
+  if (state.boxText || state.edgeText) {
+    if (state.boxText) {
+      checkPage(24);
+      // Box card
+      doc.setFillColor(...yellow);
+      const boxLines = doc.splitTextToSize(state.boxText, contentW - 16);
+      const boxH = Math.max(boxLines.length * 4.5 + 14, 18);
+      doc.roundedRect(ml, y, contentW, boxH, 2, 2, 'F');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...black);
+      doc.text('THE BOX (CATEGORY)', ml + 6, y + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.text(boxLines, ml + 6, y + 13);
+      y += boxH + 6;
+    }
+
+    if (state.edgeText) {
+      checkPage(24);
+      // Edge card
+      doc.setDrawColor(...black);
+      doc.setLineWidth(0.5);
+      const edgeLines = doc.splitTextToSize(state.edgeText, contentW - 16);
+      const edgeH = Math.max(edgeLines.length * 4.5 + 14, 18);
+      doc.roundedRect(ml, y, contentW, edgeH, 2, 2, 'S');
+
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(...black);
+      doc.text('THE EDGE (DIFFERENCE)', ml + 6, y + 6);
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.text(edgeLines, ml + 6, y + 13);
+      y += edgeH + 6;
+    }
+
+    if (state.positionVerdict) {
+      y += 2;
+      bodyText(state.positionVerdict, { color: gray });
+    }
+    y += 4;
+  } else {
+    bodyText('Phase 3 not completed.', { color: gray });
+    y += 4;
+  }
+
+  // ── WHERE TO FOCUS FIRST ──
+  sectionTitle('Where to Focus First');
+
+  let focusItems = buildFocusItems();
+  focusItems.forEach(item => {
+    checkPage(16);
+    doc.setFillColor(245, 245, 245);
+    const focusLines = doc.splitTextToSize(item, contentW - 14);
+    const focusH = focusLines.length * 4.5 + 6;
+    doc.roundedRect(ml, y - 2, contentW, focusH, 2, 2, 'F');
+
+    // Yellow left accent
+    doc.setFillColor(...yellow);
+    doc.rect(ml, y - 2, 2.5, focusH, 'F');
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(...black);
+    doc.text(focusLines, ml + 8, y + 3);
+    y += focusH + 4;
+  });
+
+  // ── WHAT HAPPENS IF YOU WAIT ──
+  sectionTitle('What Happens If You Wait');
+  bodyText('Market windows close. The longer your brand generates activity instead of pull, the harder it is to claim the position you should own. Competitors with weaker products win because they are clearer. Clarity is a compounding advantage. Delay is a compounding cost.', { color: gray });
+
+  // ── CTA FOOTER ──
+  checkPage(40);
+  y += 8;
+  doc.setFillColor(...black);
+  doc.roundedRect(ml, y, contentW, 34, 2, 2, 'F');
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.setTextColor(...white);
+  doc.text('Now you know.', ml + 10, y + 12);
+
+  doc.setFontSize(10);
+  doc.setTextColor(...yellow);
+  doc.text('What are you going to do about it?', ml + 10, y + 20);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(8);
+  doc.setTextColor(180, 180, 180);
+  doc.text('Book a 30-minute call: calendar.app.google/ZoWdHFueshr6LQs17', ml + 10, y + 28);
+
+  // Page footer
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(...gray);
+    doc.text('brandthnk.co', ml, ph - 10);
+    doc.text('Brand Diagnostic Report', pw - mr - 42, ph - 10);
+  }
+
+  doc.save('BrandThnk-Diagnostic-Report.pdf');
+}
+
+function buildFocusItems() {
+  let items = [];
+
+  if (state.symptomScore <= 1 && Object.keys(state.symptoms).length === 4) {
+    items.push('Your brand is not creating pull. Before adding more marketing, fix the story. More output will not solve a clarity problem.');
+  }
+
+  if (state.rootCause.position && state.rootCause.position <= 2) {
+    items.push('Market position scored lowest. Your market does not know where to place you. Define your category before working on anything else.');
+  }
+
+  if (state.rootCause.promise && state.rootCause.promise <= 2) {
+    items.push('Brand promise scored lowest. You cannot articulate what makes you different in one sentence. This is the root cause of most conversion problems.');
+  }
+
+  if (state.rootCause.clarity && state.rootCause.clarity <= 2) {
+    items.push('Message clarity scored lowest. Your team knows the story but your market does not. The problem is translation, not substance.');
+  }
+
+  if (!state.boxText && state.completedPhases.has('position')) {
+    items.push('You could not fill in the Box formula. Category clarity comes before differentiation. Start here.');
+  }
+
+  if (state.boxText && !state.edgeText && state.completedPhases.has('position')) {
+    items.push('You have a category but no stated difference. Your market can place you but has no reason to choose you.');
+  }
+
+  if (items.length === 0) {
+    if (state.symptomScore >= 3 && state.rootCauseTotal >= 16) {
+      items.push('Your brand foundation is strong. The work now is consistency and execution, not strategy.');
+    } else {
+      items.push('Your scores suggest mixed results. The biggest return will come from sharpening your positioning and ensuring your team can repeat it without a script.');
+    }
+  }
+
+  return items;
+}
+
+// ══════════════════════════════════════
+// UTILITIES
+// ══════════════════════════════════════
+function createGaugeSVG(value, max) {
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  const pct = value / max;
+  const offset = circumference * (1 - pct);
+
+  return '<svg viewBox="0 0 100 100">' +
+    '<circle cx="50" cy="50" r="' + radius + '" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="6"/>' +
+    '<circle cx="50" cy="50" r="' + radius + '" fill="none" stroke="#FFEB3B" stroke-width="6" stroke-linecap="round" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/>' +
+    '</svg>';
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Initialize first question as current
+document.querySelector('#symptom-questions .question-block').classList.add('current');
+</script>
 </body>
 </html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CU 2.0 Pitch - Digital Onboarding Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #DDDDDD;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Portal Navigation */
+    .portal-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 20px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .portal-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      display: inline-block;
+      padding: 12px 20px;
+      background: var(--gray);
+      color: var(--white);
+      text-decoration: none;
+      border-right: 1px solid var(--black);
+      font-size: 14px;
+      font-weight: 400;
+      transition: background-color 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-tab:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .nav-tab.active {
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    .portal-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 4px solid var(--yellow);
+    }
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .header .subtitle { font-size: 18px; color: var(--gray); }
+    .header .meta { font-size: 14px; color: var(--yellow); margin-top: 10px; }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 25px 35px;
+      border-bottom: 3px solid var(--yellow);
+    }
+    .section-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .section-subtitle { font-size: 14px; color: var(--yellow); }
+    .section-content { padding: 30px 35px; }
+
+    h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 30px 0 15px 0;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--yellow);
+    }
+    h3:first-child { margin-top: 0; }
+
+    p { font-size: 14px; margin-bottom: 12px; line-height: 1.7; }
+
+    .pitch-email {
+      background: var(--offwhite);
+      border-left: 4px solid var(--yellow);
+      padding: 30px;
+      border-radius: 0 6px 6px 0;
+      margin: 20px 0;
+    }
+    .pitch-email .subject {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .pitch-email p { font-size: 14px; margin-bottom: 14px; }
+
+    .status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .status-ready {
+      background: var(--yellow);
+      color: var(--black);
+    }
+    .status-action {
+      background: var(--black);
+      color: var(--yellow);
+    }
+
+    .checklist { list-style: none; margin: 15px 0; }
+    .checklist li {
+      font-size: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: "[ ] ";
+      font-weight: 600;
+    }
+    .checklist li.done::before {
+      content: "[x] ";
+      color: var(--gray);
+    }
+    .checklist li.done { color: var(--gray); text-decoration: line-through; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 8px;
+      margin: 15px 0;
+    }
+    .info-label { font-weight: 600; font-size: 14px; }
+    .info-value { font-size: 14px; }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray);
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--light-gray);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="portal-header">
+    <div class="nav-container">
+      <div class="portal-title">Digital Onboarding Portal</div>
+      <div class="nav-tabs">
+        <a href="distribution-calendar" class="nav-tab">Distribution Calendar</a>
+        <a href="visibility-profile" class="nav-tab">Visibility Profile</a>
+        <a href="linkedin-audit" class="nav-tab">LinkedIn Audit</a>
+        <a href="website-audit" class="nav-tab">Website Audit</a>
+        <a href="analyst-relations" class="nav-tab">Analyst Relations</a>
+        <a href="paid-media-guide" class="nav-tab">Paid Media Guide</a>
+        <a href="cu20-pitch" class="nav-tab active">CU 2.0 Pitch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="portal-content">
+    <div class="header">
+      <h1>CU 2.0 Podcast Pitch</h1>
+      <div class="subtitle">Nate Shahan for Kirk Drake's CU 2.0 Podcast</div>
+      <div class="meta">Prepared by BrandThnk | April 2026</div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Pitch Overview</div>
+        <div class="section-subtitle">Ready-to-send pitch for Kirk Drake at CU 2.0</div>
+      </div>
+      <div class="section-content">
+        <div class="info-grid">
+          <div class="info-label">Target:</div>
+          <div class="info-value">Kirk Drake, CU 2.0 Podcast</div>
+          <div class="info-label">Guest:</div>
+          <div class="info-value">Nate Shahan, Chief Product Officer, Digital Onboarding</div>
+          <div class="info-label">Angle:</div>
+          <div class="info-value">"Before You Deploy AI, Connect Your Data" - the data foundation story</div>
+          <div class="info-label">Prior episode:</div>
+          <div class="info-value">Ted Brown appeared on Episode 203 (the engagement story)</div>
+          <div class="info-label">Hook:</div>
+          <div class="info-value">Episode 368 - Kirk said 95% of large companies with AI initiatives are getting zero results</div>
+          <div class="info-label">Status:</div>
+          <div class="info-value"><span class="status-ready">Ready to Send</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PITCH EMAIL -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">The Pitch Email</div>
+        <div class="section-subtitle">Copy/paste and send from Jen to Kirk</div>
+      </div>
+      <div class="section-content">
+        <p><strong>Instructions:</strong> This should come from Jen. Connect with Kirk on LinkedIn first, then send the email.</p>
+
+        <div class="pitch-email">
+          <div class="subject">Subject: The CPO who built the data layer behind Alkami -- and why it still wasn't enough</div>
+
+          <p>Hi Kirk,</p>
+
+          <p>You said it yourself on Episode 368: 95% of large companies with AI initiatives are getting zero results. You attributed it to MIT. And you asked the honest question your audience needed to hear.</p>
+
+          <p>I have the guest who can answer it.</p>
+
+          <p>Nate Shahan spent 14 years at Segmint, the data intelligence company he co-founded that classified billions of transactions for 147+ financial institutions -- building the Key Lifestyle Indicators that became the backbone of member intelligence for credit unions across the country. Alkami acquired Segmint for $135.5 million in 2022 specifically to solve the gap between data and engagement. Nate stayed on to run Alkami's data products division and watched firsthand what happened when FIs finally had the infrastructure. Some flew.</p>
+
+          <p>He joined Digital Onboarding as CPO in January to build what he describes as the missing chapter: a platform that closes the loop between data, engagement, and lifecycle -- purpose-built for the way community FIs actually operate.</p>
+
+          <p>His thesis for your audience: you cannot personalize what you cannot classify. Credit unions racing to deploy AI agents and automated engagement tools are building on sand if their member data is sitting in five systems that don't talk to each other. He's spent 20 years building the foundation, and he has a very specific point of view on what to fix before you sign your next AI contract.</p>
+
+          <p>Ted Brown, DO's CEO, was on CU 2.0 back in Episode 203. That episode told the engagement story. This would be the data story -- what makes engagement possible, and what breaks when the foundation isn't right.</p>
+
+          <p>Happy to send a one-pager with talking points if that's useful for your team!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXECUTION CHECKLIST -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Execution Checklist</div>
+        <div class="section-subtitle">Steps for Jen / DO team</div>
+      </div>
+      <div class="section-content">
+        <ul class="checklist">
+          <li>Connect with Kirk Drake on LinkedIn</li>
+          <li>Send pitch email (copy from above)</li>
+          <li>Prepare DO corporate one-pager to send if Kirk asks for more info</li>
+          <li>If accepted: coordinate scheduling between Nate and Kirk's team</li>
+          <li>If accepted: prepare talking points doc for Nate (BrandThnk to draft)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <strong>BrandThnk</strong><br>
+      Strategic Brand Partner for Financial Institutions
+    </div>
+  </div>
+</body>
+</html>
