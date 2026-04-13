@@ -750,17 +750,6 @@
 
   <!-- Detailed Results -->
   <div class="results-detail">
-    <!-- Anti-Slop Results -->
-    <div class="result-card">
-      <div class="result-header">
-        <h3>Anti-Slop Analysis</h3>
-        <div class="result-status" id="antislop-status">Checking...</div>
-      </div>
-      <div class="result-content" id="antislop-content">
-        <div class="loading-placeholder">Running AI content pattern detection...</div>
-      </div>
-    </div>
-
     <!-- HC3 Positioning Results -->
     <div class="result-card">
       <div class="result-header">
@@ -1120,16 +1109,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('score-zone').textContent = zoneLabels[data.zone];
     document.getElementById('score-zone').className = `score-zone ${data.zone}`;
-    document.getElementById('score-description').textContent = zoneDescriptions[data.zone];
 
-    // Display anti-slop results
-    displayAntiSlopResults(data.anti_slop_analysis);
+    // Process anti-slop results in background and incorporate into description
+    const antislopInfo = processAntiSlopBackground(data.anti_slop_analysis);
+    document.getElementById('score-description').textContent = `${zoneDescriptions[data.zone]}${antislopInfo}`;
 
     // Display positioning results
     displayPositioningResults(data.hc3_positioning);
 
-    // Display recommendations
-    displayRecommendations(data.hc3_positioning.recommendations);
+    // Display recommendations (include anti-slop recommendations)
+    const allRecommendations = [...(data.hc3_positioning.recommendations || [])];
+    if (data.anti_slop_analysis && data.anti_slop_analysis.first_pass && data.anti_slop_analysis.first_pass.flagged_patterns && data.anti_slop_analysis.first_pass.flagged_patterns.length > 0) {
+      allRecommendations.unshift(`Anti-slop check: ${data.anti_slop_analysis.first_pass.flagged_patterns.length} AI pattern(s) detected - consider revising for more natural language`);
+    }
+    displayRecommendations(allRecommendations);
 
     // Show revised copy if available
     if (data.revised_copy) {
@@ -1137,38 +1130,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function displayAntiSlopResults(antislopData) {
-    const statusEl = document.getElementById('antislop-status');
-    const contentEl = document.getElementById('antislop-content');
-
-    const firstPass = antislopData.first_pass;
-    const flaggedCount = firstPass.flagged_patterns ? firstPass.flagged_patterns.length : 0;
-
-    if (flaggedCount === 0) {
-      statusEl.textContent = 'Clean';
-      statusEl.className = 'result-status pass';
-      contentEl.innerHTML = '<p style="color: #28a745; font-weight: 600;">No AI slop patterns detected. Copy appears to be human-written.</p>';
-    } else {
-      statusEl.textContent = `${flaggedCount} Issues`;
-      statusEl.className = 'result-status fail';
-
-      let html = `<p><strong>Net Score:</strong> ${firstPass.net_score}</p>`;
-      html += `<p style="margin-bottom: 20px;"><strong>Overall Verdict:</strong> ${firstPass.overall_verdict}</p>`;
-
-      if (firstPass.flagged_patterns && firstPass.flagged_patterns.length > 0) {
-        firstPass.flagged_patterns.forEach(pattern => {
-          html += `
-            <div class="pattern-flag">
-              <div class="pattern-name">${pattern.pattern_name}</div>
-              <div class="pattern-quote">"${pattern.offending_line}"</div>
-              <div class="pattern-rewrite"><strong>Rewrite:</strong> ${pattern.rewrite}</div>
-            </div>
-          `;
-        });
+  function processAntiSlopBackground(antislopData) {
+    // Process anti-slop results in background and return summary for description
+    try {
+      if (!antislopData || !antislopData.first_pass) {
+        return '';
       }
-    }
 
-    contentEl.innerHTML = html;
+      const firstPass = antislopData.first_pass;
+      const flaggedCount = firstPass.flagged_patterns ? firstPass.flagged_patterns.length : 0;
+
+      if (flaggedCount === 0) {
+        return ' • AI pattern check passed';
+      } else {
+        return ` • ${flaggedCount} AI pattern(s) detected`;
+      }
+    } catch (error) {
+      console.log('Anti-slop background processing error:', error);
+      return '';
+    }
   }
 
   function displayPositioningResults(hc3Data) {
@@ -1272,13 +1252,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function displayError(errorMessage, manualChecklist = null) {
     const contentEls = [
-      document.getElementById('antislop-content'),
       document.getElementById('positioning-content'),
       document.getElementById('recommendations-content')
-    ];
+    ].filter(el => el !== null); // Filter out null elements
 
     contentEls.forEach(el => {
-      el.innerHTML = `<p style="color: #dc3545;">Analysis failed: ${errorMessage}</p>`;
+      if (el) {
+        el.innerHTML = `<p style="color: #dc3545;">Analysis failed: ${errorMessage}</p>`;
+      }
     });
 
     if (manualChecklist) {
