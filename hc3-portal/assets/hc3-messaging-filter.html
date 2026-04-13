@@ -332,6 +332,333 @@
     color: var(--gray-mid);
   }
 
+  /* ── NEW: ANALYSIS FUNCTIONALITY ── */
+
+  .analyze-section {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .analyze-button {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+    min-width: 160px;
+  }
+
+  .analyze-button:hover {
+    background: #333;
+    transform: translateY(-1px);
+  }
+
+  .analyze-button:disabled {
+    background: var(--gray-mid);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .analyze-info {
+    font-size: 12px;
+    color: var(--gray-mid);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .minimum-note {
+    opacity: 0.7;
+  }
+
+  /* Results Section */
+  .results-overview {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .score-display {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid var(--gray-light);
+    transition: all 0.3s ease;
+  }
+
+  .score-circle.strong {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+  }
+
+  .score-circle.needs-work {
+    border-color: #ff9500;
+    background: rgba(255, 149, 0, 0.1);
+  }
+
+  .score-circle.weak {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+  }
+
+  .score-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .score-label {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .score-summary {
+    flex: 1;
+  }
+
+  .score-zone {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .score-zone.strong {
+    color: #28a745;
+  }
+
+  .score-zone.needs-work {
+    color: #ff9500;
+  }
+
+  .score-zone.weak {
+    color: #dc3545;
+  }
+
+  .score-description {
+    font-size: 14px;
+    color: var(--gray-text);
+    line-height: 1.5;
+  }
+
+  .results-detail {
+    display: grid;
+    gap: 24px;
+  }
+
+  .result-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .result-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .result-header h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .result-status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(255, 235, 59, 0.2);
+    color: var(--yellow);
+    font-weight: 700;
+  }
+
+  .result-status.pass {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+  }
+
+  .result-status.fail {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+  }
+
+  .result-content {
+    padding: 24px;
+  }
+
+  .loading-placeholder {
+    color: var(--gray-mid);
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .pattern-flag {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .pattern-flag:last-child {
+    margin-bottom: 0;
+  }
+
+  .pattern-name {
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 8px;
+  }
+
+  .pattern-quote {
+    font-style: italic;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+  }
+
+  .pattern-rewrite {
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .filter-result {
+    background: var(--off-white);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .filter-result:last-child {
+    margin-bottom: 0;
+  }
+
+  .filter-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .filter-score {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+
+  .filter-score.strong {
+    background: #28a745;
+    color: white;
+  }
+
+  .filter-score.needs-work {
+    background: #ff9500;
+    color: white;
+  }
+
+  .filter-score.weak {
+    background: #dc3545;
+    color: white;
+  }
+
+  .filter-feedback {
+    font-size: 14px;
+    color: var(--gray-text);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .recommendation-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .recommendation-list li {
+    background: var(--off-white);
+    border-left: 4px solid var(--yellow);
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .recommendation-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .revised-copy-display {
+    width: 100%;
+    min-height: 120px;
+    padding: 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    background: var(--off-white);
+    color: var(--black);
+    resize: vertical;
+    margin-bottom: 16px;
+  }
+
+  .use-revision-btn {
+    background: var(--yellow);
+    color: var(--black);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .use-revision-btn:hover {
+    background: #e6d335;
+    transform: translateY(-1px);
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     :root { --pad: 24px; }
@@ -340,6 +667,16 @@
     .topnav .nav-links a { font-size: 9px; }
     .filter-content-inner { padding: 24px; }
     .checklist-section { padding: 24px; }
+
+    .score-display {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .analyze-button {
+      align-self: stretch;
+    }
   }
 </style>
 </head>
@@ -376,7 +713,85 @@
 
   <div class="input-section">
     <div class="input-label">Copy to Test</div>
-    <textarea class="copy-input" placeholder="Paste your draft copy here...&#10;&#10;Examples:&#10;• Website homepage copy&#10;• Email newsletter content&#10;• Sales presentation text&#10;• Product descriptions&#10;• Campaign messaging&#10;&#10;The tool will help you check if the copy aligns with HC3's positioning."></textarea>
+    <textarea class="copy-input" id="copy-textarea" placeholder="Paste your draft copy here...&#10;&#10;Examples:&#10;• Website homepage copy&#10;• Email newsletter content&#10;• Sales presentation text&#10;• Product descriptions&#10;• Campaign messaging&#10;&#10;The tool will help you check if the copy aligns with HC3's positioning."></textarea>
+
+    <!-- Analyze Button -->
+    <div class="analyze-section">
+      <button id="analyze-btn" class="analyze-button">
+        <span class="btn-text">Analyze Copy</span>
+        <span class="btn-loading" style="display: none;">Analyzing...</span>
+      </button>
+      <div class="analyze-info">
+        <span id="char-count">0 characters</span> •
+        <span class="minimum-note">Minimum 50 characters required</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS SECTION ── -->
+<div id="results-section" class="section" style="display: none;">
+  <div class="section-label">Analysis Results</div>
+  <h2>Automated Evaluation</h2>
+
+  <!-- Overall Score -->
+  <div class="results-overview">
+    <div class="score-display">
+      <div class="score-circle" id="score-circle">
+        <div class="score-number" id="score-number">--</div>
+        <div class="score-label" id="score-label">Score</div>
+      </div>
+      <div class="score-summary">
+        <div class="score-zone" id="score-zone">Analyzing...</div>
+        <div class="score-description" id="score-description">Running automated evaluation...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Results -->
+  <div class="results-detail">
+    <!-- Anti-Slop Results -->
+    <div class="result-card">
+      <div class="result-header">
+        <h3>Anti-Slop Analysis</h3>
+        <div class="result-status" id="antislop-status">Checking...</div>
+      </div>
+      <div class="result-content" id="antislop-content">
+        <div class="loading-placeholder">Running AI content pattern detection...</div>
+      </div>
+    </div>
+
+    <!-- HC3 Positioning Results -->
+    <div class="result-card">
+      <div class="result-header">
+        <h3>HC3 Positioning Check</h3>
+        <div class="result-status" id="positioning-status">Checking...</div>
+      </div>
+      <div class="result-content" id="positioning-content">
+        <div class="loading-placeholder">Evaluating against HC3 positioning filters...</div>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="result-card">
+      <div class="result-header">
+        <h3>Recommendations</h3>
+      </div>
+      <div class="result-content" id="recommendations-content">
+        <div class="loading-placeholder">Generating improvement suggestions...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revised Copy (if available) -->
+  <div id="revised-copy-section" class="result-card" style="display: none;">
+    <div class="result-header">
+      <h3>Suggested Revision</h3>
+    </div>
+    <div class="result-content">
+      <textarea id="revised-copy" readonly class="revised-copy-display"></textarea>
+      <button id="use-revision-btn" class="use-revision-btn">Use This Revision</button>
+    </div>
   </div>
 </div>
 
@@ -602,7 +1017,287 @@ document.addEventListener('DOMContentLoaded', function() {
   // Save copy text on input
   copyInput.addEventListener('input', function() {
     localStorage.setItem('hc3-filter-copy', copyInput.value);
+    updateCharCount();
   });
+
+  // ── NEW: ANALYSIS FUNCTIONALITY ──
+
+  const analyzeBtn = document.getElementById('analyze-btn');
+  const charCount = document.getElementById('char-count');
+  const resultsSection = document.getElementById('results-section');
+
+  // Update character count and button state
+  function updateCharCount() {
+    const count = copyInput.value.length;
+    charCount.textContent = `${count} characters`;
+
+    if (count >= 50) {
+      analyzeBtn.disabled = false;
+      analyzeBtn.style.opacity = '1';
+    } else {
+      analyzeBtn.disabled = true;
+      analyzeBtn.style.opacity = '0.6';
+    }
+  }
+
+  // Handle analysis
+  analyzeBtn.addEventListener('click', async function() {
+    const copy = copyInput.value.trim();
+    if (copy.length < 50) {
+      alert('Please enter at least 50 characters of copy to analyze.');
+      return;
+    }
+
+    // Show loading state
+    setLoadingState(true);
+    showResults();
+
+    try {
+      const response = await fetch('/.netlify/functions/evaluate-hc3-copy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ copy })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        displayResults(data);
+      } else {
+        displayError(data.error, data.manual_checklist);
+      }
+
+    } catch (error) {
+      console.error('Analysis error:', error);
+      displayError(error.message);
+    } finally {
+      setLoadingState(false);
+    }
+  });
+
+  function setLoadingState(loading) {
+    const btnText = document.querySelector('.btn-text');
+    const btnLoading = document.querySelector('.btn-loading');
+
+    if (loading) {
+      btnText.style.display = 'none';
+      btnLoading.style.display = 'inline';
+      analyzeBtn.disabled = true;
+    } else {
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+      analyzeBtn.disabled = false;
+    }
+  }
+
+  function showResults() {
+    resultsSection.style.display = 'block';
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function displayResults(data) {
+    // Update overall score
+    document.getElementById('score-number').textContent = data.overall_score;
+    document.getElementById('score-circle').className = `score-circle ${data.zone}`;
+
+    const zoneLabels = {
+      strong: 'Strong Alignment',
+      needs_work: 'Needs Work',
+      weak: 'Weak Positioning'
+    };
+
+    const zoneDescriptions = {
+      strong: 'Copy aligns well with HC3 positioning',
+      needs_work: 'Copy has potential but needs refinement',
+      weak: 'Copy needs significant repositioning'
+    };
+
+    document.getElementById('score-zone').textContent = zoneLabels[data.zone];
+    document.getElementById('score-zone').className = `score-zone ${data.zone}`;
+    document.getElementById('score-description').textContent = zoneDescriptions[data.zone];
+
+    // Display anti-slop results
+    displayAntiSlopResults(data.anti_slop_analysis);
+
+    // Display positioning results
+    displayPositioningResults(data.hc3_positioning);
+
+    // Display recommendations
+    displayRecommendations(data.hc3_positioning.recommendations);
+
+    // Show revised copy if available
+    if (data.revised_copy) {
+      showRevisedCopy(data.revised_copy);
+    }
+  }
+
+  function displayAntiSlopResults(antislopData) {
+    const statusEl = document.getElementById('antislop-status');
+    const contentEl = document.getElementById('antislop-content');
+
+    const firstPass = antislopData.first_pass;
+    const flaggedCount = firstPass.flagged_patterns ? firstPass.flagged_patterns.length : 0;
+
+    if (flaggedCount === 0) {
+      statusEl.textContent = 'Clean';
+      statusEl.className = 'result-status pass';
+      contentEl.innerHTML = '<p style="color: #28a745; font-weight: 600;">No AI slop patterns detected. Copy appears to be human-written.</p>';
+    } else {
+      statusEl.textContent = `${flaggedCount} Issues`;
+      statusEl.className = 'result-status fail';
+
+      let html = `<p><strong>Net Score:</strong> ${firstPass.net_score}</p>`;
+      html += `<p style="margin-bottom: 20px;"><strong>Overall Verdict:</strong> ${firstPass.overall_verdict}</p>`;
+
+      if (firstPass.flagged_patterns && firstPass.flagged_patterns.length > 0) {
+        firstPass.flagged_patterns.forEach(pattern => {
+          html += `
+            <div class="pattern-flag">
+              <div class="pattern-name">${pattern.pattern_name}</div>
+              <div class="pattern-quote">"${pattern.offending_line}"</div>
+              <div class="pattern-rewrite"><strong>Rewrite:</strong> ${pattern.rewrite}</div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    contentEl.innerHTML = html;
+  }
+
+  function displayPositioningResults(hc3Data) {
+    const statusEl = document.getElementById('positioning-status');
+    const contentEl = document.getElementById('positioning-content');
+
+    const overallScore = hc3Data.overall_score;
+    let status, statusClass;
+
+    if (overallScore >= 75) {
+      status = 'Strong';
+      statusClass = 'pass';
+    } else if (overallScore >= 50) {
+      status = 'Needs Work';
+      statusClass = '';
+    } else {
+      status = 'Weak';
+      statusClass = 'fail';
+    }
+
+    statusEl.textContent = status;
+    statusEl.className = `result-status ${statusClass}`;
+
+    let html = '';
+
+    // Filter 1
+    html += `
+      <div class="filter-result">
+        <div class="filter-name">
+          Filter 1: Is / Is Not
+          <span class="filter-score ${getScoreClass(hc3Data.filter_1_score)}">${hc3Data.filter_1_score}/100</span>
+        </div>
+        <div class="filter-feedback">${hc3Data.filter_1_feedback}</div>
+      </div>
+    `;
+
+    // Filter 2
+    html += `
+      <div class="filter-result">
+        <div class="filter-name">
+          Filter 2: Three Positioning Statements
+          <span class="filter-score ${getScoreClass(hc3Data.filter_2_score)}">${hc3Data.filter_2_score}/100</span>
+        </div>
+        <div class="filter-feedback">${hc3Data.filter_2_feedback}</div>
+      </div>
+    `;
+
+    // Filter 3
+    html += `
+      <div class="filter-result">
+        <div class="filter-name">
+          Filter 3: Competitive Differentiation
+          <span class="filter-score ${getScoreClass(hc3Data.filter_3_score)}">${hc3Data.filter_3_score}/100</span>
+        </div>
+        <div class="filter-feedback">${hc3Data.filter_3_feedback}</div>
+      </div>
+    `;
+
+    contentEl.innerHTML = html;
+  }
+
+  function displayRecommendations(recommendations) {
+    const contentEl = document.getElementById('recommendations-content');
+
+    if (!recommendations || recommendations.length === 0) {
+      contentEl.innerHTML = '<p style="color: #28a745;">No specific recommendations - copy is well-aligned with HC3 positioning.</p>';
+      return;
+    }
+
+    let html = '<ul class="recommendation-list">';
+    recommendations.forEach(rec => {
+      html += `<li>${rec}</li>`;
+    });
+    html += '</ul>';
+
+    contentEl.innerHTML = html;
+  }
+
+  function showRevisedCopy(revisedCopy) {
+    const section = document.getElementById('revised-copy-section');
+    const textarea = document.getElementById('revised-copy');
+    const useBtn = document.getElementById('use-revision-btn');
+
+    textarea.value = revisedCopy;
+    section.style.display = 'block';
+
+    useBtn.onclick = function() {
+      copyInput.value = revisedCopy;
+      localStorage.setItem('hc3-filter-copy', revisedCopy);
+      updateCharCount();
+      section.style.display = 'none';
+      copyInput.scrollIntoView({ behavior: 'smooth' });
+    };
+  }
+
+  function getScoreClass(score) {
+    if (score >= 75) return 'strong';
+    if (score >= 50) return 'needs-work';
+    return 'weak';
+  }
+
+  function displayError(errorMessage, manualChecklist = null) {
+    const contentEls = [
+      document.getElementById('antislop-content'),
+      document.getElementById('positioning-content'),
+      document.getElementById('recommendations-content')
+    ];
+
+    contentEls.forEach(el => {
+      el.innerHTML = `<p style="color: #dc3545;">Analysis failed: ${errorMessage}</p>`;
+    });
+
+    if (manualChecklist) {
+      document.getElementById('recommendations-content').innerHTML = `
+        <p style="color: #dc3545; margin-bottom: 16px;">Analysis temporarily unavailable. Please use manual checklist:</p>
+        <ul class="recommendation-list">
+          ${manualChecklist.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    // Reset score display
+    document.getElementById('score-number').textContent = '--';
+    document.getElementById('score-zone').textContent = 'Analysis Failed';
+    document.getElementById('score-description').textContent = 'Please try again or use manual checklist below.';
+  }
+
+  // Initialize character count on page load
+  updateCharCount();
 });
 </script>
 </body>
