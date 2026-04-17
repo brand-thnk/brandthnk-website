@@ -563,12 +563,12 @@
       <ul class="nav-tabs">
         <li class="nav-tab"><a href="#" class="nav-link active" onclick="showSection('morning-briefing', this)">Morning Briefing</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('dashboard', this)">Dashboard</a></li>
+        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('whiteboard', this)">Whiteboard</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('tools', this)">Tools</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('client-work', this)">Client Work</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('content-engine', this)">Content Engine</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('product-development', this)">Product Development</a></li>
         <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('operations-hub', this)">Friday</a></li>
-        <li class="nav-tab"><a href="#" class="nav-link" onclick="showSection('website', this)">Website</a></li>
       </ul>
     </div>
   </nav>
@@ -677,129 +677,13 @@
     <!-- DASHBOARD SECTION -->
     <div id="dashboard-section" class="content-section" style="display: none;">
 
-      <!-- 1. THIS WEEK'S DEADLINES -->
-      <div class="dashboard-section critical-actions" style="margin-bottom: 40px;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">This Week's Deadlines</h2>
-            <p class="section-subtitle">April 13 - 17, 2026</p>
-          </div>
-          <div>
-            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
-            <div class="refresh-meta" id="deadlines-refresh-time"></div>
-          </div>
-        </div>
-        <div class="section-content" id="deadlines-container">
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">Weekly check-in — Allison Netzer &lt;&gt; Kristan Hill</div>
-            <div class="action-description">30 min. Walk Kristan through House of Brands architecture (Orchestrate, Secure, Simplify, Scale) and confirm synthesis + 3 positioning framework options delivery timing. Pull Brandwatch credentials for brand equity assessment. Align on customer interview outcomes from yesterday's fired-client session and preview today's Fred C standalone. Kick off the "fired client" contact handoff Kristan committed to.</div>
-            <div class="action-meta">
-              <span>Client: HC3 | Today Fri Apr 17, 9:30am EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
 
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">Allison &lt;&gt; Griffin McGahey — HC3 standalone interview</div>
-            <div class="action-description">Rescheduled from Thursday. 30 min with Griffin at 10:00am CT / 11:00am ET. Surface his view on clean-break M&amp;A integration and the trust business narrative. Final internal input before synthesis. Fold findings into weekly check-ins going forward.</div>
-            <div class="action-meta">
-              <span>Client: HC3 | Today Fri Apr 17, 11:00am EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">BrandThnk Interview — Fred C (Horicon Bank)</div>
-            <div class="action-description">30 min at 12:00pm EDT. Persona validation interview. Closes out the leadership interview series (11 completed). Listen for confirmation of consolidation to 3–4 personas for commercial + retail and the Milwaukee vs. legacy market imbalance. Roll into Rose readback.</div>
-            <div class="action-meta">
-              <span>Client: Horicon Bank | Today Fri Apr 17, 12:00pm EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">BrandThnk Interview — Brenda Hetebrueg (Horicon Bank)</div>
-            <div class="action-description">30 min at 1:00pm EDT. Closes the 3/10 waiting-on list. Persona validation + frontline perspective on deposit growth framing. Listen for Total Expert platform usage gaps that reinforce "configuration not new investment" recommendation.</div>
-            <div class="action-meta">
-              <span>Client: Horicon Bank | Today Fri Apr 17, 1:00pm EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">BrandThnk Interview — Stephanie Albers (Horicon Bank)</div>
-            <div class="action-description">30 min at 1:30pm EDT. Final interview in the series — closes the full 11-person block. Focus on persona-driven spending framework to replace ad-hoc marketing requests. All inputs now in hand for Rose readback and consolidated persona one-pagers.</div>
-            <div class="action-meta">
-              <span>Client: Horicon Bank | Today Fri Apr 17, 1:30pm EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">Weekly Wrap: client updates, portal updates, calendar look-ahead</div>
-            <div class="action-description">Full wrap agenda: client update emails (live write), Gumroad pull for Alana, Rocket Money review, client portal updates, calendar look-ahead + time blocking, MLT review. Set commit dates on Book Buyer Outreach and IP Hierarchy from Someday. Roll today's Horicon interview block into persona one-pager drafts.</div>
-            <div class="action-meta">
-              <span>BrandThnk Ops | Today Fri Apr 17, 4:00pm EDT</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">Digital Onboarding: Jen's feature launch timing</div>
-            <div class="action-description">Jen owed timing for upcoming feature launches and press materials by Monday per the Apr 13 call. Expect it in inbox early next week — prep to match announcements to network over the weekend so CU2.0 podcast outreach and additional podcast intros land with a real news hook.</div>
-            <div class="action-meta">
-              <span>Client: Digital Onboarding | By Mon Apr 20</span>
-              <span class="action-status">Next Week</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">HC3: Synthesis + 3 positioning framework options</div>
-            <div class="action-description">Next deliverable to Kristan. Integrate the full interview set (leadership + customer + fired-client) into cross-interview synthesis and 3 framework options. Trust business vs. statement business is the convergence point. House of Brands architecture locked around the 4 pillars. Target: draft ready for Kristan review week of Apr 20.</div>
-            <div class="action-meta">
-              <span>Client: HC3 | Target week of Apr 20</span>
-              <span class="action-status">Next Week</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">Cody Hill (MVB Bank) — propose next-week meeting time</div>
-            <div class="action-description">Cody replied 4/15: booked this week, asked what next week looks like. Send 2–3 options for week of Apr 20 via CJ before end of today so it doesn't slip. Warm enough to hold momentum on the banking sector pipeline and test Bank Without a Building pilot fit.</div>
-            <div class="action-meta">
-              <span>Pipeline: MVB Bank | By EOD Fri Apr 17</span>
-              <span class="action-status blocked">Today</span>
-            </div>
-          </div>
-
-          <div class="action-item" data-section="deadlines">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete">×</button>
-            <div class="action-title">CU2.0 podcast outreach (Digital Onboarding)</div>
-            <div class="action-description">Reach out to CU2.0 contact this week with founder-led mission angle + text network for additional podcast opportunities. End-of-April target: one podcast scheduled = "huge win" per Jen. AI blog article already signed off by Nate and ready to repurpose for podcast content. Clear at Weekly Wrap if not done.</div>
-            <div class="action-meta">
-              <span>Client: Digital Onboarding | By end of April</span>
-              <span class="action-status">This Week</span>
-            </div>
-          </div>
-
-          <button class="add-item-btn" onclick="addDashboardItem('deadlines')">+ Add Deadline</button>
-        </div>
-      </div>
-
-      <!-- 2. THIS WEEK'S FOCUS -->
+      <!-- 1. WHAT TO WORK ON NEXT -->
       <div class="dashboard-section" style="margin-bottom: 40px;">
         <div class="section-header">
           <div>
-            <h2 class="section-title">This Week's Focus</h2>
-            <p class="section-subtitle">April 13 - 17, 2026</p>
+            <h2 class="section-title">What to Work on Next</h2>
+            <p class="section-subtitle">Priority tasks and next actions</p>
           </div>
           <div>
             <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
@@ -841,88 +725,11 @@
         </div>
       </div>
 
-      <!-- 3. PIPELINE OVERVIEW -->
-      <div class="dashboard-section" style="margin-bottom: 40px;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Pipeline Overview</h2>
-            <p class="section-subtitle">Active prospects and opportunities</p>
-          </div>
-          <div>
-            <div class="refresh-btn"><span class="refresh-icon">↻</span> Auto-refreshed</div>
-            <div class="refresh-meta" id="pipeline-refresh-time"></div>
-          </div>
-        </div>
-        <div class="section-content" id="pipeline-container">
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">HC3 — Positioning Lab (Synthesis Sprint)</div>
-            <div class="pipeline-meta">
-              <span>Stage: Interview phase closes today with Kristan weekly 9:30am + Griffin standalone 11am ET. Fred F. CEO interview completed yesterday via Laurie Lotz. Customer reference + fired-client interview completed Apr 16. House of Brands architecture locked (Orchestrate, Secure, Simplify, Scale). Clean-break M&amp;A philosophy confirmed. Next deliverable: synthesis + 3 positioning framework options to Kristan week of Apr 20. Brandwatch credentials to collect today. M&amp;A prep Q4 2026.</span>
-              <span class="pipeline-value">Active + ~$15,000 ext.</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">Horicon Bank — Interview Close + Rose Readback</div>
-            <div class="pipeline-meta">
-              <span>Stage: 11-interview leadership series closes today (Fred C 12pm, Brenda 1pm, Stephanie 1:30pm). Recommendation: consolidate to 3–4 personas for commercial + retail. Deposit growth framing needs sharpening beyond "attract younger customers." Milwaukee vs. legacy market imbalance and Total Expert underutilization are the standout POVs. Rose readback + finalized persona one-pagers next. Deposit invoice $11,250 still open.</span>
-              <span class="pipeline-value">Active · $11,250 open</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">Forward Bank — Q2 Retainer (Active)</div>
-            <div class="pipeline-meta">
-              <span>Stage: Brand implementation in active rollout. Box edge story strategy — inconvenient but valuable frontline moments — deployed across channels. Love letters concept finalizing with Molly before commercial lender rollout. Geofencing above industry average, switching to CD messaging. Cabin owner / generational wealth angle is the emerging strategic thread. Invoice #1023 ($1,500) due 4/26.</span>
-              <span class="pipeline-value">$1,500/mo · inv. due 4/26</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">Digital Onboarding — Introductions-Led Awareness (Active)</div>
-            <div class="pipeline-meta">
-              <span>Stage: Scope shift from strategy/feedback → market introductions and connections confirmed Apr 13. CU2.0 podcast outreach + network texts this week. Jen owes feature launch timing + press materials by Mon Apr 20. End-of-April: one podcast scheduled = priority win. Nate as face of data story (LinkedIn, short video, 16 editorial pitches). AI article approved and ready to repurpose. Nicole stays off executive calls.</span>
-              <span class="pipeline-value">$15,000 contracted</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">CheckAlt — Executive Workshop + Rolling Thunder</div>
-            <div class="pipeline-meta">
-              <span>Stage: Theresa was raising workshop with Jason in last 1:1. If approved, broader team workshop within 2 weeks. Portal edits including Datos update still pending. Events remain fastest Q2 revenue path. NCUA headcount reduction and TransUnion auto delinquency data are timely hooks. LoanPay needs market proof in 4–5 months. Nudge Theresa today before Weekly Wrap.</span>
-              <span class="pipeline-value">$17,500 est.</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">Bank Without a Building — Workshop Pilot (May 5 + May 13)</div>
-            <div class="pipeline-meta">
-              <span>Stage: May 5 at 11:00am EDT with Aggie Tuxhorn at Skyward CU (Wichita) confirmed via CJ. May 13 exec workshop block awaiting Jeff's confirmation. 11+ FI contacts reached. Post-Forum signal still warm — LinkedIn post + newsletter lead ship today at Weekly Wrap. Targeting 2–3 pilot FIs. Pain-first positioning is the sales anchor.</span>
-              <span class="pipeline-value">TBD per FI</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">MVB Bank (Cody Hill) — warm meeting request</div>
-            <div class="pipeline-meta">
-              <span>Stage: Cody Hill (EVP / COO) replied 4/15 wanting to schedule for next week. Propose 2–3 options via CJ by EOD today. Adjacent to Bank Without a Building workshop pipeline — explore fit as pilot.</span>
-              <span class="pipeline-value">Early · warm</span>
-            </div>
-          </div>
-          <div class="pipeline-item" data-section="pipeline" style="position: relative;">
-            <button class="action-dismiss" onclick="dismissItem(this)" title="Mark complete" style="position: absolute; top: 8px; right: 8px;">×</button>
-            <div class="pipeline-title">Signal Events — Monthly Partnership (Action Needed)</div>
-            <div class="pipeline-meta">
-              <span>Stage: Jorge Garcia LinkedIn intro + Kelsey Weaver email intro still pending from Apr 8. Forward Bank project plan share still outstanding. Monthly guest content for Swag Rules newsletter committed but not delivered. Fourth week carrying — clear at Weekly Wrap before Sangita raises it.</span>
-              <span class="pipeline-value">Monthly · overdue</span>
-            </div>
-          </div>
-          <button class="add-item-btn" onclick="addDashboardItem('pipeline')">+ Add Pipeline Item</button>
-        </div>
-      </div>
 
-      <!-- 4. WHITEBOARD -->
+    </div>
+
+    <!-- WHITEBOARD SECTION -->
+    <div id="whiteboard-section" class="content-section" style="display: none;">
       <div class="dashboard-section whiteboard">
         <div class="section-header">
           <div>
@@ -938,7 +745,7 @@
           <div id="whiteboard-items">
             <div class="whiteboard-item">
               <button class="whiteboard-item-delete" onclick="this.parentElement.remove(); saveWhiteboard();">×</button>
-              <div class="whiteboard-item-content">HC3 synthesis must make a recommendation, not a menu. Four pillars (Orchestrate, Secure, Simplify, Scale) are locked. Clean-break M&amp;A philosophy — no "powered by" transitions — is the bold positioning call. All interviews now in hand (leadership + customer + fired-client). Lead with pain → promise → proof, not product features. Trust business vs. statement business is the convergence point. Employee engagement at 82% is the pressure test — clarity is the real deliverable. Synthesis + 3 framework options targeted for Kristan review week of Apr 20.</div>
+              <div class="whiteboard-item-content">HC3 synthesis must make a recommendation, not a menu. Four pillars (Orchestrate, Secure, Simplify, Scale) are locked. Clean-break M&A philosophy — no "powered by" transitions — is the bold positioning call. All interviews now in hand (leadership + customer + fired-client). Lead with pain → promise → proof, not product features. Trust business vs. statement business is the convergence point. Employee engagement at 82% is the pressure test — clarity is the real deliverable. Synthesis + 3 framework options targeted for Kristan review week of Apr 20.</div>
               <div class="whiteboard-item-meta">Source: Granola — HC3 stakeholder + customer + CEO interviews (Apr 2–17)</div>
             </div>
             <div class="whiteboard-item">
@@ -1376,18 +1183,6 @@
     </div>
 
     <!-- WEBSITE TAB -->
-    <div id="website-section" class="content-section" style="display: none;">
-      <div class="dashboard-section">
-        <div class="section-header">
-          <h2 class="section-title">Website</h2>
-          <p class="section-subtitle">BrandThnk.co</p>
-        </div>
-        <div class="section-content" style="text-align: center; padding: 40px 30px;">
-          <p style="font-size: 16px; color: var(--gray); margin-bottom: 24px;">View and manage the live BrandThnk website.</p>
-          <a href="https://brandthnk.co" target="_blank" class="add-item-btn" style="display: inline-block; text-decoration: none; width: auto; padding: 16px 40px;">Open BrandThnk.co →</a>
-        </div>
-      </div>
-    </div>
 
   </main>
 
