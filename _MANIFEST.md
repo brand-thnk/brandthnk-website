@@ -19,10 +19,10 @@ This folder contains **two git repositories** serving two websites:
 
 | Portal | Path | Client | Status |
 |--------|------|--------|--------|
-| CheckAlt | `/checkalt-portal/` | CheckAlt (LoanPay Brand Strategy) | Active |
+| CheckAlt | `/archived/checkalt-portal/` | CheckAlt (LoanPay Brand Strategy) | Archived |
 | HC3 | `/hc3-portal/` | HC3 | Active |
 | Horicon Bank | `/horicon-bank-portal/` | Horicon Bank | Active |
-| Digital Onboarding | `/do-portal/` | Digital Onboarding | Active |
+| Digital Onboarding | `/archived/do-portal/` | Digital Onboarding | Archived |
 
 ### Main Site Pages (brandthnk.co)
 
