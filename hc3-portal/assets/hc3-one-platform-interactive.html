@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC3 One — Platform Architecture</title>
+<meta name="description" content="HC3 One is the single platform for community FI statement operations. Six capability layers, four positioning pillars.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap');
+
+  :root {
+    --black: #000;
+    --white: #fff;
+    --yellow: #FFEB3B;
+    --off-white: #F5F5F5;
+    --gray-text: #555;
+    --gray-mid: #888;
+    --gray-light: #E0E0E0;
+    --max-w: 960px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  .topnav { background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 4px solid var(--yellow); }
+  .topnav-inner { max-width: var(--max-w); margin: 0 auto; padding: 16px var(--pad); display: flex; justify-content: space-between; align-items: center; }
+  .topnav .logo { font-family: 'Roboto Slab', serif; color: var(--white); font-size: 20px; font-weight: 700; }
+  .topnav .nav-links { display: flex; gap: 24px; }
+  .topnav .nav-links a { font-size: 11px; color: var(--gray-mid); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; transition: color 0.2s; cursor: pointer; }
+  .topnav .nav-links a:hover, .topnav .nav-links a.active { color: var(--yellow); }
+
+  /* Hero */
+  .hero { background: var(--black); padding: 80px var(--pad) 64px; text-align: center; }
+  .hero h1 { font-family: 'Roboto Slab', serif; color: var(--white); font-size: 46px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .hero .subtitle { font-family: 'Roboto Slab', serif; color: var(--gray-mid); font-size: 18px; font-weight: 400; margin-bottom: 32px; }
+  .hero .yellow-rule { width: 60px; height: 4px; background: var(--yellow); margin: 0 auto 32px; }
+  .hero .meta { font-size: 12px; color: #999; max-width: 640px; margin: 0 auto; line-height: 1.7; }
+  .hero .tagline { color: var(--yellow); font-family: 'Roboto Slab', serif; font-size: 14px; font-weight: 700; margin-top: 20px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Sections */
+  section { max-width: var(--max-w); margin: 0 auto; padding: 72px var(--pad); border-bottom: 1px solid var(--gray-light); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 900; color: var(--black); margin-bottom: 12px; line-height: 1.2; }
+  .section-kicker { font-size: 11px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 12px; }
+  .section-intro { font-size: 14px; color: var(--gray-text); line-height: 1.7; margin-bottom: 32px; max-width: 680px; }
+  .yellow-bar { width: 40px; height: 3px; background: var(--yellow); margin-bottom: 24px; }
+
+  section[id] { scroll-margin-top: 80px; }
+
+  /* Capability grid */
+  .cap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .cap-card { background: var(--white); border: 1px solid var(--gray-light); padding: 28px; cursor: pointer; transition: all 0.25s ease; position: relative; }
+  .cap-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: transparent; transition: background 0.25s ease; }
+  .cap-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .cap-card:hover::after, .cap-card.active::after { background: var(--yellow); }
+  .cap-card.active { border-color: var(--black); }
+  .cap-card .cap-kicker { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; }
+  .cap-card .cap-name { font-family: 'Roboto Slab', serif; font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+  .cap-card .cap-headline { font-size: 13px; color: var(--black); font-weight: 700; margin-bottom: 10px; font-style: italic; line-height: 1.4; }
+  .cap-card .cap-body { font-size: 12.5px; color: var(--gray-text); line-height: 1.6; }
+
+  /* Capability detail */
+  .cap-detail { margin-top: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin 0.4s ease; }
+  .cap-detail.open { max-height: 640px; margin-top: 32px; }
+  .cap-detail-inner { background: var(--black); color: var(--white); padding: 40px 48px; position: relative; }
+  .cap-detail-inner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--yellow); }
+  .cd-name { font-family: 'Roboto Slab', serif; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .cd-headline { color: var(--yellow); font-size: 14px; font-style: italic; margin-bottom: 20px; }
+  .cd-row { margin-bottom: 18px; }
+  .cd-label { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+  .cd-text { font-size: 13px; color: #ccc; line-height: 1.7; }
+
+  /* Pillar cards */
+  .pillar-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .pillar-card { background: var(--white); border: 1px solid var(--gray-light); padding: 24px; cursor: pointer; transition: all 0.25s ease; position: relative; }
+  .pillar-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--gray-light); transition: background 0.25s ease; }
+  .pillar-card:hover { border-color: var(--black); }
+  .pillar-card:hover::before, .pillar-card.active::before { background: var(--yellow); }
+  .pillar-card.active { background: var(--off-white); border-color: var(--black); }
+  .pillar-card .p-name { font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.3; }
+  .pillar-card .p-summary { font-size: 12px; color: var(--gray-text); line-height: 1.6; }
+
+  .pillar-detail { margin-top: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin 0.4s ease; }
+  .pillar-detail.open { max-height: 600px; margin-top: 32px; }
+  .pillar-detail-inner { background: var(--off-white); color: var(--black); padding: 36px 44px; border-left: 4px solid var(--yellow); }
+  .pd-title { font-family: 'Roboto Slab', serif; font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .pd-body { font-size: 13px; color: var(--gray-text); line-height: 1.7; margin-bottom: 18px; }
+  .pd-proofs { list-style: none; }
+  .pd-proofs li { font-size: 12.5px; color: var(--black); line-height: 1.7; padding: 6px 0 6px 16px; position: relative; }
+  .pd-proofs li::before { content: '▸'; position: absolute; left: 0; color: var(--yellow); }
+
+  /* Verified / AutoAVS block */
+  .fit-test { background: var(--black); color: var(--white); padding: 48px; border-top: 4px solid var(--yellow); }
+  .fit-test h3 { font-family: 'Roboto Slab', serif; font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+  .fit-test p { font-size: 13.5px; line-height: 1.7; color: #ccc; margin-bottom: 14px; }
+  .fit-test strong { color: var(--white); }
+  .fit-table { width: 100%; margin: 24px 0; border-collapse: collapse; }
+  .fit-table th { background: #1a1a1a; color: var(--yellow); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; text-align: left; padding: 12px 14px; font-weight: 700; }
+  .fit-table td { font-size: 12.5px; color: #ccc; padding: 14px; border-bottom: 1px solid #2a2a2a; line-height: 1.6; vertical-align: top; }
+
+  /* Benefits */
+  .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+  .benefit { background: var(--off-white); border-left: 3px solid var(--yellow); padding: 22px; }
+  .benefit .b-label { font-size: 11px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+  .benefit .b-name { font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+  .benefit .b-text { font-size: 12.5px; color: var(--gray-text); line-height: 1.6; }
+
+  /* Footer */
+  footer { background: var(--black); color: var(--gray-mid); padding: 48px var(--pad); text-align: center; font-size: 11px; line-height: 1.7; }
+  footer .f-rule { width: 40px; height: 3px; background: var(--yellow); margin: 0 auto 20px; }
+  footer strong { color: var(--white); }
+
+  @media (max-width: 720px) {
+    :root { --pad: 24px; }
+    .hero h1 { font-size: 32px; }
+    .cap-grid, .benefits-grid { grid-template-columns: 1fr; }
+    .pillar-row { grid-template-columns: 1fr 1fr; }
+    .fit-test { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="logo">HC3 One</span>
+    <div class="nav-links">
+      <a onclick="scrollToId('capabilities')">Capabilities</a>
+      <a onclick="scrollToId('pillars')">Pillars</a>
+      <a onclick="scrollToId('verified')">Verified</a>
+      <a onclick="scrollToId('benefits')">Benefits</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="max-width:none;padding-left:var(--pad);padding-right:var(--pad);border-bottom:none;">
+  <h1>HC3 One</h1>
+  <p class="subtitle">Platform Architecture</p>
+  <div class="yellow-rule"></div>
+  <p class="meta">One platform. Six capability layers. Four positioning pillars. Built for community FI statement operations at 400+ financial institutions.</p>
+  <p class="tagline">A single platform to design, deliver, and scale your statements.</p>
+</section>
+
+<!-- SIX CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-kicker">Inside HC3 One</div>
+  <h2>Six capability layers</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">Each capability is a layer of HC3 One. They are not modules you assemble — they are the layers that run whenever a statement moves through HC3. Click any capability for detail.</p>
+  <div class="cap-grid" id="capGrid"></div>
+  <div id="capDetail" class="cap-detail">
+    <div class="cap-detail-inner" id="capDetailInner"></div>
+  </div>
+</section>
+
+<!-- FOUR POSITIONING PILLARS -->
+<section id="pillars">
+  <div class="section-kicker">What holds it up</div>
+  <h2>Four positioning pillars</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">Each pillar has proof drawn from how HC3 operates and from validated market signal. Click any pillar for detail.</p>
+  <div class="pillar-row" id="pillarRow"></div>
+  <div id="pillarDetail" class="pillar-detail">
+    <div class="pillar-detail-inner" id="pillarDetailInner"></div>
+  </div>
+</section>
+
+<!-- VERIFIED / AUTOAVS -->
+<section id="verified" style="padding-left:0;padding-right:0;max-width:none;">
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);">
+    <div class="section-kicker">Identity, built in</div>
+    <h2>Verified and the AutoAVS heritage</h2>
+    <div class="yellow-bar"></div>
+    <p class="section-intro">Verified is how HC3 One delivers account verification and fraud prevention inside every communication.</p>
+  </div>
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 var(--pad);">
+    <div class="fit-test">
+      <p>HC3's AutoAVS offering became the <strong>Verified</strong> capability: identity verification and settlement confirmation are no longer separate products. They are built into how HC3 One delivers every statement and notice.</p>
+      <p>When future capabilities join HC3 One, they follow the same pattern &mdash; a new layer of the platform, not a new product to integrate.</p>
+      <table class="fit-table">
+        <thead><tr><th>HC3 core offering</th><th>How Verified fits</th></tr></thead>
+        <tbody>
+          <tr><td>Multi-channel document delivery</td><td>Verified secures identity verification and settlement confirmation within those touchpoints.</td></tr>
+          <tr><td>Compliance + regulatory management</td><td>Verified eliminates settlement disputes and fraud, reducing compliance risk across the portfolio.</td></tr>
+          <tr><td>Data aggregation + presentation</td><td>Verified becomes the trusted identity layer connecting disparate systems securely.</td></tr>
+          <tr><td>Single provider consolidation</td><td>Verified integrates directly into HC3 One. No separate vendor integration required.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="section-kicker">What this unlocks</div>
+  <h2>What HC3 One delivers</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">One platform. One sales conversation. Clear buyer cuts. New capabilities slot in without reintegration.</p>
+  <div class="benefits-grid">
+    <div class="benefit">
+      <div class="b-label">One platform name</div>
+      <div class="b-name">Buyers learn HC3 One.</div>
+      <div class="b-text">The platform has one name. The capabilities are how it works. Sales stops teaching a taxonomy and starts solving a problem.</div>
+    </div>
+    <div class="benefit">
+      <div class="b-label">Audience-led messaging</div>
+      <div class="b-name">CEO, COO, CMO, CFO value props</div>
+      <div class="b-text">Every conversation starts with the person's concern, not the product taxonomy. Four audience cuts pulled directly from the positioning framework.</div>
+    </div>
+    <div class="benefit">
+      <div class="b-label">Future-ready</div>
+      <div class="b-name">Capabilities slot in.</div>
+      <div class="b-text">New capabilities added to HC3 One &mdash; whether built or acquired &mdash; become additional layers of the same platform. No reintegration, no rebrand.</div>
+    </div>
+    <div class="benefit">
+      <div class="b-label">Operational simplicity</div>
+      <div class="b-name">One platform. One sales motion.</div>
+      <div class="b-text">Functional product teams organized around capabilities. One story across design, delivery, verification, and compliance.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-rule"></div>
+  <p><strong>HC3 One &mdash; Platform Architecture</strong></p>
+  <p>Prepared by BrandThnk &nbsp;|&nbsp; 2026-04-22</p>
+</footer>
+
+<script>
+  const CAPABILITIES = [
+    { id: 'design', name: 'Design',
+      headline: 'Design statements that reflect your brand.',
+      body: 'The creative layer where banks define their statement experience — document design, branded templates, statement redesign, and visual customization.',
+      anchor: 'CMO / brand conversation',
+      detail: 'Design is where every HC3 One engagement starts. It turns a regulatory artifact into a brand touchpoint. Every statement leaving HC3 One has passed through Design — nothing ships unbranded or off-spec.' },
+    { id: 'deliver', name: 'Deliver',
+      headline: 'Get every statement where it needs to go.',
+      body: 'The execution layer that delivers statements and notices through the right channel — print, eStatement, or digital — while reducing vendor complexity.',
+      anchor: 'COO / operations leader conversation',
+      detail: 'Deliver is the spine. Every document Design produced gets to the customer through Deliver — print, eStatement, or digital — without the FI team managing multiple vendors. The execution layer consolidates what used to be three or four separate contracts.' },
+    { id: 'verified', name: 'Verified',
+      headline: 'Verified identity, verified communications.',
+      body: 'The trust and security layer ensuring communications reach verified, authenticated account holders. Fraud prevention and identity verification built into every interaction. Not bolted on. Built in.',
+      anchor: 'CTO / risk / compliance conversation',
+      detail: 'Verified wraps every Deliver event. If a communication leaves HC3 One, Verified has confirmed the recipient. Built on HC3\'s AutoAVS expertise — account verification and fraud prevention woven directly into how HC3 One delivers every statement.' },
+    { id: 'connect', name: 'Connect',
+      headline: 'Connect all your communications in one place.',
+      body: 'The operational control center — manage all communications from a single console with job tracking, reporting, analytics, and data hygiene standardization.',
+      anchor: 'IT / operations leader conversation',
+      detail: 'Connect is the single console. Gives the FI team one interface over every job, every channel, and every capability. Connect is how HC3 One stays invisible — the customer never manages the underlying work.' },
+    { id: 'campaign', name: 'Campaign',
+      headline: 'Turn statements into engagement opportunities.',
+      body: 'The personalization layer that transforms static statements into dynamic, targeted touchpoints — driving cross-sell, education, and member engagement.',
+      anchor: 'CMO / growth leader conversation',
+      detail: 'Campaign is the engagement surface. Statements reach 100% of customers every month — the highest-frequency brand channel the FI owns. Campaign turns that channel into cross-sell, education, and retention without separate sends.' },
+    { id: 'archive', name: 'Archive',
+      headline: 'Secure storage, easy compliance.',
+      body: 'The compliance and history layer — document archival, retrieval, audit trails, and regulatory-compliant records built into the platform.',
+      anchor: 'Compliance / audit conversation',
+      detail: 'Archive is the compliance tail. Every Design, Deliver, Verify, and Campaign event terminates in Archive. Auditors do not see a vendor here; they see a record.' },
+  ];
+
+  const PILLARS = [
+    { id: 'trust', name: 'Trust Protection',
+      summary: 'HC3 One protects the trust FIs build with every statement, notice, and communication sent.',
+      body: 'Every piece of paper or digital document represents the bank\'s relationship with that customer. One error can destroy millions of dollars in marketing-built trust. HC3 treats every statement error as a trust event, not a support ticket.',
+      proofs: [
+        'Trust is HC3\'s core business — every statement error is treated as a trust event, not a support ticket.',
+        'Human accountability throughout the communication chain, not AI-generated communications customers can\'t verify.',
+        'Market signal: Only 19% of Americans trust AI in financial services; HC3\'s human accountability model is the counter-position.',
+      ] },
+    { id: 'invisible', name: 'Invisible Excellence',
+      summary: 'The best statement operation is one the executive team never has to discuss.',
+      body: 'HC3 One succeeds when customers stop noticing the work because it runs without friction, without surprises, and without oversight. Customers follow HC3 team members between institutions — loyalty that transcends the FI itself.',
+      proofs: [
+        'Success is defined as the FI team not having to worry about communications operations again.',
+        'Customer loyalty that transcends the institution — clients follow HC3 team members between FIs.',
+        'Market signal: 75% of B2B buyers make purchasing decisions before contacting a vendor; HC3\'s reputation must precede the sales call.',
+      ] },
+    { id: 'accountability', name: 'Operational Accountability',
+      summary: 'When problems happen, HC3 takes ownership before the client escalates.',
+      body: 'This is not a customer service feature. It is the operating model. Competitors blame the data file, the core integration, or the timeline. HC3 treats every error as a trust event and communicates proactively.',
+      proofs: [
+        'Proactive communication when something goes wrong — ownership before the FI escalates.',
+        'Honesty over overpromising; implementation timelines reflect reality, not sales commitments.',
+        'Every error is treated as a trust event, not a ticket to close.',
+      ] },
+    { id: 'beyond-core', name: 'Beyond-Core Specialization',
+      summary: 'HC3 One handles what the core banking system was not built to do.',
+      body: 'Statement design, digital delivery, print operations, and regulatory notice management are specialized disciplines. Core providers treat them as an afterthought. HC3 treats them as the entire job.',
+      proofs: [
+        'HC3 solves what the core cannot — statement and notice operations are the entire focus, not an add-on.',
+        'Only 37% of community bankers prefer a single provider; best-of-breed purchasing is accelerating.',
+        'HC3\'s IBAT endorsement and industry association relationships validate specialist credibility.',
+      ] },
+  ];
+
+  function renderCapabilities() {
+    const grid = document.getElementById('capGrid');
+    grid.innerHTML = CAPABILITIES.map(c => `
+      <div class="cap-card" data-id="${c.id}" onclick="showCapability('${c.id}')">
+        <div class="cap-kicker">Capability</div>
+        <div class="cap-name">${c.name}</div>
+        <div class="cap-headline">"${c.headline}"</div>
+        <div class="cap-body">${c.body}</div>
+      </div>
+    `).join('');
+  }
+
+  function showCapability(id) {
+    const c = CAPABILITIES.find(x => x.id === id);
+    const detail = document.getElementById('capDetail');
+    const inner = document.getElementById('capDetailInner');
+    document.querySelectorAll('.cap-card').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+    inner.innerHTML = `
+      <div class="cd-name">${c.name}</div>
+      <div class="cd-headline">"${c.headline}"</div>
+      <div class="cd-row"><div class="cd-label">What the layer does</div><div class="cd-text">${c.body}</div></div>
+      <div class="cd-row"><div class="cd-label">Inside HC3 One</div><div class="cd-text">${c.detail}</div></div>
+      <div class="cd-row"><div class="cd-label">Anchors</div><div class="cd-text">${c.anchor}</div></div>
+    `;
+    detail.classList.add('open');
+  }
+
+  function renderPillars() {
+    const row = document.getElementById('pillarRow');
+    row.innerHTML = PILLARS.map(p => `
+      <div class="pillar-card" data-id="${p.id}" onclick="showPillar('${p.id}')">
+        <div class="p-name">${p.name}</div>
+        <div class="p-summary">${p.summary}</div>
+      </div>
+    `).join('');
+  }
+
+  function showPillar(id) {
+    const p = PILLARS.find(x => x.id === id);
+    const detail = document.getElementById('pillarDetail');
+    const inner = document.getElementById('pillarDetailInner');
+    document.querySelectorAll('.pillar-card').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+    inner.innerHTML = `
+      <div class="pd-title">${p.name}</div>
+      <div class="pd-body">${p.body}</div>
+      <ul class="pd-proofs">${p.proofs.map(pr => `<li>${pr}</li>`).join('')}</ul>
+    `;
+    detail.classList.add('open');
+  }
+
+  function scrollToId(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  renderCapabilities();
+  renderPillars();
+</script>
+
+</body>
+</html>
