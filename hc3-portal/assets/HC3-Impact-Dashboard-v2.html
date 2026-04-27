@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HC3 Impact Dashboard | BrandThnk</title>
+  <style>
+    @page {
+      margin: 1in;
+      @top-left {
+        content: "HC3 Impact Dashboard";
+        font-family: 'Roboto Mono', monospace;
+        font-size: 10pt;
+        color: #666666;
+      }
+      @top-right {
+        content: "BrandThnk Breakthrough";
+        font-family: 'Roboto Mono', monospace;
+        font-size: 10pt;
+        color: #666666;
+      }
+      @bottom-center {
+        content: counter(page);
+        font-family: 'Roboto Mono', monospace;
+        font-size: 10pt;
+        color: #666666;
+      }
+    }
+
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-white);
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 28pt;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header .subtitle {
+      font-size: 14pt;
+      opacity: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .header .tagline {
+      font-size: 12pt;
+      opacity: 0.7;
+    }
+
+    .brand-accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .content {
+      padding: 0 2rem;
+    }
+
+    h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 18pt;
+      font-weight: 600;
+      margin: 2rem 0 1rem 0;
+      color: var(--brandthnk-black);
+      border-left: 4px solid var(--brandthnk-yellow);
+      padding-left: 1rem;
+    }
+
+    h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14pt;
+      font-weight: 600;
+      margin: 1.5rem 0 1rem 0;
+      color: var(--brandthnk-black);
+    }
+
+    h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 12pt;
+      font-weight: 600;
+      margin: 1.25rem 0 0.75rem 0;
+      color: var(--brandthnk-black);
+    }
+
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    ul {
+      margin: 1rem 0 1rem 2rem;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      text-align: justify;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    .callout {
+      background: rgba(255, 235, 59, 0.1);
+      border: 1px solid var(--brandthnk-yellow);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      page-break-inside: avoid;
+    }
+
+    .callout h4 {
+      margin-top: 0;
+      color: var(--brandthnk-black);
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 10pt;
+    }
+
+    .data-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--brandthnk-light-gray);
+      text-align: left;
+    }
+
+    .data-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--brandthnk-light-gray);
+      vertical-align: top;
+    }
+
+    .data-table tbody tr:nth-child(even) {
+      background: rgba(245, 245, 245, 0.5);
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 14pt;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 10pt;
+      opacity: 0.8;
+    }
+
+    /* Print-specific adjustments */
+    @media print {
+      body {
+        font-size: 10pt;
+      }
+
+      .header h1 {
+        font-size: 24pt;
+      }
+
+      .header .subtitle {
+        font-size: 12pt;
+      }
+
+      .header .tagline {
+        font-size: 10pt;
+      }
+
+      h2 {
+        font-size: 16pt;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 12pt;
+        page-break-after: avoid;
+      }
+
+      h4 {
+        font-size: 11pt;
+        page-break-after: avoid;
+      }
+
+      .callout {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <h1>HC3 <span class="brand-accent">Impact Dashboard</span></h1>
+    <div class="subtitle">Feedback Loop Setup</div>
+    <div class="tagline">Bandwidth-Optimized Metrics for Small Marketing Teams</div>
+  </div>
+
+  <div class="content">
+    <h2>Dashboard Overview</h2>
+    <p>Most impact dashboards overwhelm small teams with metrics they can't realistically track. This dashboard focuses on signals HC3 can monitor with existing systems while protecting bandwidth for execution.</p>
+
+    <div class="callout">
+      <h4>Bandwidth Reality Check</h4>
+      <p><strong>HC3's constraint:</strong> Small marketing team with operational responsibilities. This dashboard tracks business outcomes, not marketing vanity metrics. Better to monitor 3-4 meaningful signals consistently than 20+ metrics sporadically.</p>
+    </div>
+
+    <h2>Metrics Priority Matrix</h2>
+
+    <h3>Protect at All Costs (Revenue Protection)</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Why It Matters</th>
+          <th>Data Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Customer Retention Rate</strong></td>
+          <td>Platform positioning should protect existing revenue</td>
+          <td>CRM/billing system (existing)</td>
+        </tr>
+        <tr>
+          <td><strong>Average Contract Value</strong></td>
+          <td>Beyond-core positioning should command premium</td>
+          <td>Sales operations (existing)</td>
+        </tr>
+        <tr>
+          <td><strong>Referral Activity</strong></td>
+          <td>Peer referral drives vendor discovery in banking</td>
+          <td>Sales team notes (low-tech tracking)</td>
+        </tr>
+        <tr>
+          <td><strong>Platform Story Adoption</strong></td>
+          <td>Internal alignment enables external consistency</td>
+          <td>Sales manager observation (quarterly check)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Execute If Bandwidth Allows (Market Signals)</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Tracking Method</th>
+          <th>Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Trade Association Mentions</strong></td>
+          <td>IBAT, ICBA, America's Credit Unions communications</td>
+          <td>Quarterly review</td>
+        </tr>
+        <tr>
+          <td><strong>Conference Lead Quality</strong></td>
+          <td>Follow-up meeting rate from conference contacts</td>
+          <td>Post-event (2-3 events annually)</td>
+        </tr>
+        <tr>
+          <td><strong>Content Engagement</strong></td>
+          <td>LinkedIn post engagement, article shares</td>
+          <td>Monthly (if posting consistently)</td>
+        </tr>
+        <tr>
+          <td><strong>Competitive Win Rate</strong></td>
+          <td>Win/loss vs Doxim, Messagepoint in qualified deals</td>
+          <td>Quarterly (if consistent deal flow)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Defer or Scale Back (Nice-to-Have)</h3>
+    <ul>
+      <li><strong>Brand awareness surveys</strong> — Expensive, hard to baseline, unclear ROI for small team</li>
+      <li><strong>Share-of-voice monitoring</strong> — Resource-intensive media tracking across multiple publications</li>
+      <li><strong>Analyst relations tracking</strong> — Important but secondary to customer retention and referrals</li>
+      <li><strong>Employee brand advocacy</strong> — Internal NPS and LinkedIn engagement measurement</li>
+      <li><strong>Quarterly prospect interviews</strong> — Valuable insights but requires dedicated research bandwidth</li>
+    </ul>
+
+    <h2>Simple Tracking Framework</h2>
+
+    <h3>Monthly Review (15 minutes)</h3>
+    <ul>
+      <li>Customer retention rate from billing system</li>
+      <li>Average contract value trend from sales operations</li>
+      <li>Referral mentions from sales team notes</li>
+    </ul>
+
+    <h3>Quarterly Review (1 hour)</h3>
+    <ul>
+      <li>Platform story adoption check with sales manager</li>
+      <li>Conference lead follow-up analysis</li>
+      <li>Trade association mention review</li>
+      <li>Competitive win/loss analysis (if sufficient deal volume)</li>
+    </ul>
+
+    <h3>Annual Review (Half day)</h3>
+    <ul>
+      <li>Customer satisfaction spot check (informal calls to 5-10 customers)</li>
+      <li>Market positioning assessment vs competitors</li>
+      <li>Distribution channel effectiveness review</li>
+    </ul>
+
+    <h2>Success Indicators</h2>
+    <p>These indicators signal the platform positioning is working without requiring complex measurement infrastructure:</p>
+
+    <h3>Revenue Protection Signals</h3>
+    <ul>
+      <li>Customer retention maintains or improves vs baseline</li>
+      <li>Contract renewal conversations become easier (sales team feedback)</li>
+      <li>Pricing pressure decreases in renewal discussions</li>
+      <li>Cross-sell attachment rate improves</li>
+    </ul>
+
+    <h3>Market Position Signals</h3>
+    <ul>
+      <li>Inbound referrals increase from existing customers</li>
+      <li>Trade association mentions HC3 in member communications</li>
+      <li>Conference contacts request follow-up meetings</li>
+      <li>Competitors start copying HC3's positioning language</li>
+    </ul>
+
+    <h3>Internal Alignment Signals</h3>
+    <ul>
+      <li>Sales team consistently uses platform story in pitches</li>
+      <li>Customer success incorporates platform value in touchpoints</li>
+      <li>Leadership references platform story in external settings</li>
+      <li>New employee onboarding includes platform positioning</li>
+    </ul>
+
+    <div class="callout">
+      <h4>What We're NOT Tracking (To Protect Bandwidth)</h4>
+      <ul>
+        <li><strong>Brand awareness surveys</strong> — Expensive baseline research with unclear actionability</li>
+        <li><strong>Complex analyst relations</strong> — Datos, Celent tracking requires dedicated analyst relations bandwidth</li>
+        <li><strong>Social media monitoring</strong> — Vanity metrics that don't correlate to revenue outcomes</li>
+        <li><strong>Share-of-voice measurement</strong> — Resource-intensive media monitoring across multiple channels</li>
+        <li><strong>Quarterly prospect interviews</strong> — Valuable but requires research infrastructure HC3 doesn't have</li>
+      </ul>
+    </div>
+
+    <h2>Red Flags (Course Correction Triggers)</h2>
+    <p>These signals indicate the positioning strategy needs adjustment:</p>
+
+    <h3>Revenue Risk Flags</h3>
+    <ul>
+      <li>Customer retention rate declines for 2+ consecutive quarters</li>
+      <li>Average contract value decreases or pricing pressure increases</li>
+      <li>Win rate drops significantly in competitive situations</li>
+      <li>Referral activity decreases vs baseline</li>
+    </ul>
+
+    <h3>Market Position Flags</h3>
+    <ul>
+      <li>Sales team reverts to old messaging in customer conversations</li>
+      <li>Conference presence generates low-quality leads</li>
+      <li>Trade association endorsements stall or reverse</li>
+      <li>Customer feedback indicates positioning confusion</li>
+    </ul>
+
+    <h3>Execution Flags</h3>
+    <ul>
+      <li>Team struggles to explain platform story consistently</li>
+      <li>Content strategy produces low engagement</li>
+      <li>Conference investment yields poor ROI</li>
+      <li>Distribution channels don't amplify messaging</li>
+    </ul>
+
+    <h2>Dashboard Implementation</h2>
+
+    <h3>Month 1: Baseline Setup</h3>
+    <ul>
+      <li>Extract current retention rate and ACV from existing systems</li>
+      <li>Brief sales team on referral tracking (simple note-taking)</li>
+      <li>Establish quarterly review rhythm with sales manager</li>
+    </ul>
+
+    <h3>Months 2-3: Signal Monitoring</h3>
+    <ul>
+      <li>Track monthly revenue protection metrics</li>
+      <li>Monitor trade association communication mentions</li>
+      <li>Assess platform story adoption with sales team</li>
+    </ul>
+
+    <h3>Month 4+: Rhythm Establishment</h3>
+    <ul>
+      <li>Quarterly business reviews include positioning effectiveness</li>
+      <li>Annual planning incorporates market position signals</li>
+      <li>Course correction triggers prompt strategy adjustment</li>
+    </ul>
+
+    <div class="callout">
+      <h4>Integration with Existing Systems</h4>
+      <p>This dashboard integrates with HC3's existing sales operations and CRM rather than requiring new tracking infrastructure. The goal is business intelligence that informs decisions, not comprehensive measurement that consumes bandwidth.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">BrandThnk</div>
+    <div class="footer-tagline">HC3 • BrandThnk Breakthrough • Week 7: Feedback Loop Setup</div>
+  </div>
+</body>
+</html>

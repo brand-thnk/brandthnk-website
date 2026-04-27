@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC3 Positioning Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap');
+
+  :root {
+    --black: #000;
+    --white: #fff;
+    --yellow: #FFEB3B;
+    --off-white: #F5F5F5;
+    --gray-text: #555;
+    --gray-mid: #888;
+    --gray-light: #E0E0E0;
+    --max-w: 960px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .topnav {
+    background: var(--black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid var(--yellow);
+  }
+  .topnav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 16px var(--pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topnav .logo {
+    font-family: 'Roboto Slab', serif;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .topnav .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  .topnav .nav-links a {
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .topnav .nav-links a:hover,
+  .topnav .nav-links a.active {
+    color: var(--yellow);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--black);
+    padding: 80px var(--pad) 64px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    color: var(--white);
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-family: 'Roboto Slab', serif;
+    color: var(--gray-mid);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+  .hero .yellow-rule {
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+    margin: 0 auto 32px;
+  }
+  .hero .meta {
+    font-size: 12px;
+    color: var(--gray-mid);
+    line-height: 1.8;
+  }
+  .hero .meta strong { color: var(--white); }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 64px var(--pad);
+  }
+  .section-dark {
+    background: var(--off-white);
+  }
+  .section-black {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .section-label {
+    font-size: 10px;
+    color: var(--gray-mid);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-black .section-label { color: var(--yellow); }
+
+  .section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+  .section-black h2 { color: var(--white); }
+
+  .section p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray-text);
+    max-width: 680px;
+    margin-bottom: 12px;
+  }
+  .section-black p { color: #bbb; }
+
+  /* ── WORKFLOW GRID ── */
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .workflow-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    padding: 32px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .workflow-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: transparent;
+    transition: background 0.25s ease;
+  }
+  .workflow-card:hover { background: var(--off-white); }
+  .workflow-card:hover::before { background: var(--yellow); }
+  .workflow-card.active { background: var(--off-white); border-color: var(--black); }
+  .workflow-card.active::before { background: var(--yellow); }
+
+  .workflow-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .workflow-problem {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .workflow-solution {
+    font-size: 11px;
+    color: var(--gray-mid);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── WORKFLOW DETAIL ── */
+  .workflow-detail {
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin 0.4s ease;
+  }
+  .workflow-detail.open {
+    max-height: 800px;
+    margin-top: 32px;
+  }
+  .workflow-detail-inner {
+    background: var(--black);
+    color: var(--white);
+    padding: 40px 48px;
+    position: relative;
+  }
+  .workflow-detail-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: var(--yellow);
+  }
+
+  .wd-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .wd-before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 24px;
+  }
+  .ba-column h4 {
+    font-size: 12px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .ba-item {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .ba-item.manual {
+    border-left: 3px solid #dc3545;
+  }
+  .ba-item.automated {
+    border-left: 3px solid #28a745;
+  }
+
+  /* ── VALUE PROPS ── */
+  .value-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .value-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    padding: 32px;
+    position: relative;
+    border-radius: 8px;
+  }
+  .value-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--yellow);
+  }
+  .value-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .value-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .value-desc {
+    font-size: 12px;
+    color: var(--gray-text);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--black);
+    padding: 32px var(--pad);
+    text-align: center;
+    border-top: 4px solid var(--yellow);
+  }
+  .site-footer .f-brand {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .site-footer .f-meta {
+    font-size: 11px;
+    color: var(--gray-mid);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    :root { --pad: 24px; }
+    .hero h1 { font-size: 28px; }
+    .workflow-grid, .value-grid { grid-template-columns: 1fr; }
+    .wd-before-after { grid-template-columns: 1fr; }
+    .topnav .nav-links { gap: 12px; }
+    .topnav .nav-links a { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── STICKY NAV ── -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="logo">HC3 Positioning Guide</span>
+    <div class="nav-links">
+      <a onclick="scrollTo_('core-mission')">Core Mission</a>
+      <a onclick="scrollTo_('workflows')">Key Workflows</a>
+      <a onclick="scrollTo_('foundation')">Statement Foundation</a>
+      <a onclick="scrollTo_('value')">Value Delivered</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <h1>HC3 Positioning Guide</h1>
+  <div class="subtitle">We eliminate manual work community FIs can't afford to get wrong</div>
+  <div class="yellow-rule"></div>
+  <div class="meta">
+    <strong>Our Mission:</strong> Take work off their plate so they can focus on banking<br>
+    April 2026 | BrandThnk Breakthrough | Week 3 Positioning Lab
+  </div>
+</section>
+
+<!-- ── CORE MISSION ── -->
+<div id="core-mission">
+  <div class="section">
+    <div class="section-label">Why We Exist</div>
+    <h2>The Manual Work Problem</h2>
+    <p>Community financial institutions operate with limited resources and constant operational pressure. Too much of their work is still manual, fragmented, and harder than it should be.</p>
+    <p>HC3 exists to eliminate the manual work they can't afford to get wrong—so their teams can focus on being bankers, not managing systems.</p>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-number">700+</div>
+        <div class="value-label">Financial Institutions</div>
+        <div class="value-desc">Trust HC3 with communications their customers use to decide whether to stay</div>
+      </div>
+      <div class="value-card">
+        <div class="value-number">60+</div>
+        <div class="value-label">Years of Experience</div>
+        <div class="value-desc">Understanding how community FIs actually operate and what they can't afford to have fail</div>
+      </div>
+      <div class="value-card">
+        <div class="value-number">100%</div>
+        <div class="value-label">Customer Reach</div>
+        <div class="value-desc">Every customer sees statements monthly—it's your highest-frequency brand touchpoint</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── KEY WORKFLOWS ── -->
+<div id="workflows" class="section-dark">
+  <div class="section">
+    <div class="section-label">Areas of Focus</div>
+    <h2>Where We Eliminate Manual Work</h2>
+    <p>We organize our solutions around important, ongoing work that community FIs depend on. Click each workflow to see how HC3 removes manual steps.</p>
+
+    <div class="workflow-grid">
+      <div class="workflow-card" data-workflow="statements" onclick="toggleWorkflow('statements')">
+        <div class="workflow-name">Customer Communications</div>
+        <div class="workflow-problem">Statement production, notice delivery, regulatory updates—all manual processes that require constant attention</div>
+        <div class="workflow-solution">HC3 Handles: Design, delivery, compliance, updates</div>
+      </div>
+
+      <div class="workflow-card" data-workflow="compliance" onclick="toggleWorkflow('compliance')">
+        <div class="workflow-name">Compliance & Risk</div>
+        <div class="workflow-problem">Regulatory monitoring, template updates, fraud prevention—manual tracking that creates liability</div>
+        <div class="workflow-solution">HC3 Handles: Rule monitoring, template updates, verification</div>
+      </div>
+
+      <div class="workflow-card" data-workflow="verification" onclick="toggleWorkflow('verification')">
+        <div class="workflow-name">Account Verification</div>
+        <div class="workflow-problem">Manual account validation, settlement confirmation, fraud detection across multiple touchpoints</div>
+        <div class="workflow-solution">HC3 Handles: Automated verification, fraud prevention, settlement</div>
+      </div>
+
+      <div class="workflow-card" data-workflow="operations" onclick="toggleWorkflow('operations')">
+        <div class="workflow-name">Communication Operations</div>
+        <div class="workflow-problem">Managing print, digital delivery, exception handling, customer service coordination</div>
+        <div class="workflow-solution">HC3 Handles: Multi-channel delivery, tracking, exceptions</div>
+      </div>
+    </div>
+
+    <div class="workflow-detail" id="workflow-detail">
+      <div class="workflow-detail-inner" id="workflow-detail-inner"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOUNDATION ── -->
+<div id="foundation" class="section-black">
+  <div class="section">
+    <div class="section-label">Our Foundation</div>
+    <h2>Statements: Where Trust Gets Built or Broken</h2>
+    <p>Statements are our anchor. Every month, 100% of your customers receive communications that either reinforce their trust in your institution or create doubt about your competence.</p>
+    <p>Most FIs treat statements as an operational afterthought. We treat them as your most important brand touchpoint—and build from there.</p>
+
+    <div style="margin: 32px 0; padding: 32px; border: 2px solid var(--yellow); position: relative;">
+      <div style="position: absolute; top: -12px; left: 24px; background: var(--black); padding: 0 12px; font-family: 'Roboto Slab', serif; font-size: 12px; color: var(--yellow); text-transform: uppercase; letter-spacing: 1px;">The Foundation Advantage</div>
+      <p style="color: #ccc; margin-bottom: 0;">When HC3 runs your customer communications, executive teams stop discussing them at quarterly reviews. The work gets done. Problems get handled. Your team focuses on banking, not managing vendors.</p>
+    </div>
+
+    <p>From this foundation, we expand into other workflows where manual processes create risk your team shouldn't have to carry.</p>
+  </div>
+</div>
+
+<!-- ── VALUE DELIVERED ── -->
+<div id="value">
+  <div class="section">
+    <div class="section-label">What You Get</div>
+    <h2>Manual Work Elimination in Action</h2>
+    <p>We don't just deliver communications. We eliminate the manual work that drains your team's time and creates operational risk.</p>
+
+    <div style="margin-top: 32px;">
+      <div style="background: var(--off-white); padding: 32px; border-left: 4px solid var(--yellow); margin-bottom: 24px;">
+        <h3 style="font-family: 'Roboto Slab', serif; margin-bottom: 12px; color: var(--black);">Instead of Managing Vendors</h3>
+        <p style="margin-bottom: 0; color: var(--gray-text);">Your team gets one operational partner who takes ownership. When something goes wrong, we tell you before you have to ask. When regulations change, we update templates automatically. When volumes spike, we handle capacity.</p>
+      </div>
+
+      <div style="background: var(--off-white); padding: 32px; border-left: 4px solid var(--yellow); margin-bottom: 24px;">
+        <h3 style="font-family: 'Roboto Slab', serif; margin-bottom: 12px; color: var(--black);">Instead of Manual Tracking</h3>
+        <p style="margin-bottom: 0; color: var(--gray-text);">You get automated monitoring. Statement runs, delivery confirmations, exception handling, compliance updates—all managed without requiring your team's daily attention.</p>
+      </div>
+
+      <div style="background: var(--off-white); padding: 32px; border-left: 4px solid var(--yellow);">
+        <h3 style="font-family: 'Roboto Slab', serif; margin-bottom: 12px; color: var(--black);">Instead of Reactive Support</h3>
+        <p style="margin-bottom: 0; color: var(--gray-text);">You get proactive communication. We monitor regulatory changes, anticipate operational issues, and communicate solutions before problems reach your customers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="f-brand">BrandThnk</div>
+  <div class="f-meta">HC3 Positioning Guide | April 2026 | Confidential</div>
+</footer>
+
+<script>
+/* ── WORKFLOW DATA ── */
+const workflowData = {
+  statements: {
+    name: 'Customer Communications',
+    beforeAfter: {
+      manual: [
+        'Monthly template review and updates',
+        'Regulatory monitoring and compliance checking',
+        'Print vendor coordination and quality control',
+        'Digital delivery setup and exception handling',
+        'Customer service issue escalation and resolution'
+      ],
+      automated: [
+        'Automatic template updates when regulations change',
+        'Built-in compliance monitoring and validation',
+        'Integrated print and digital delivery management',
+        'Proactive exception handling and customer notification',
+        'Direct issue resolution with transparent communication'
+      ]
+    }
+  },
+  compliance: {
+    name: 'Compliance & Risk',
+    beforeAfter: {
+      manual: [
+        'Tracking regulatory changes across multiple sources',
+        'Updating notice templates and disclosure requirements',
+        'Coordinating compliance reviews with legal teams',
+        'Managing audit documentation and evidence',
+        'Responding to examiner requests for communication records'
+      ],
+      automated: [
+        'Automated monitoring of regulatory updates',
+        'Template updates pushed automatically when rules change',
+        'Built-in compliance validation for all communications',
+        'Complete audit trails maintained automatically',
+        'Examiner-ready documentation generated on demand'
+      ]
+    }
+  },
+  verification: {
+    name: 'Account Verification',
+    beforeAfter: {
+      manual: [
+        'Account verification across multiple touchpoints',
+        'Settlement confirmation tracking and follow-up',
+        'Fraud detection and prevention coordination',
+        'Exception handling for verification failures',
+        'Customer communication about verification status'
+      ],
+      automated: [
+        'Integrated verification across all communication channels',
+        'Automatic settlement confirmation and tracking',
+        'Real-time fraud detection with immediate alerts',
+        'Automated exception processing and resolution',
+        'Proactive customer notification of verification issues'
+      ]
+    }
+  },
+  operations: {
+    name: 'Communication Operations',
+    beforeAfter: {
+      manual: [
+        'Coordinating print and digital delivery schedules',
+        'Managing vendor relationships and performance',
+        'Tracking delivery confirmations and failures',
+        'Handling customer delivery preferences and changes',
+        'Resolving delivery exceptions and customer complaints'
+      ],
+      automated: [
+        'Unified delivery orchestration across all channels',
+        'Single vendor relationship with full accountability',
+        'Automated delivery tracking with real-time status',
+        'Dynamic preference management and instant updates',
+        'Proactive exception resolution with customer communication'
+      ]
+    }
+  }
+};
+
+/* ── INTERACTIONS ── */
+let activeWorkflow = null;
+
+function toggleWorkflow(key) {
+  const panel = document.getElementById('workflow-detail');
+  const cards = document.querySelectorAll('.workflow-card');
+
+  if (activeWorkflow === key) {
+    activeWorkflow = null;
+    panel.classList.remove('open');
+    cards.forEach(c => c.classList.remove('active'));
+    return;
+  }
+
+  activeWorkflow = key;
+  const data = workflowData[key];
+  cards.forEach(c => c.classList.toggle('active', c.dataset.workflow === key));
+
+  const beforeItems = data.beforeAfter.manual.map(item =>
+    `<div class="ba-item manual">${item}</div>`).join('');
+  const afterItems = data.beforeAfter.automated.map(item =>
+    `<div class="ba-item automated">${item}</div>`).join('');
+
+  document.getElementById('workflow-detail-inner').innerHTML = `
+    <div class="wd-name">${data.name}</div>
+    <div class="wd-before-after">
+      <div class="ba-column">
+        <h4>Manual Process (Before HC3)</h4>
+        ${beforeItems}
+      </div>
+      <div class="ba-column">
+        <h4>Automated Process (With HC3)</h4>
+        ${afterItems}
+      </div>
+    </div>
+  `;
+
+  panel.classList.add('open');
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+function scrollTo_(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+/* Highlight active nav on scroll */
+const sections = ['core-mission', 'workflows', 'foundation', 'value'];
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 100) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('onclick')?.includes(current));
+  });
+});
+</script>
+</body>
+</html>
