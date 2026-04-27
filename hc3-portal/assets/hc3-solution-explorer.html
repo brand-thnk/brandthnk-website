@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC3 Solution Map</title>
+<meta name="description" content="HC3 is the operations partner for the work community FIs can't afford to get wrong. Statements first, with the adjacent notices, compliance, and data work running alongside them.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap');
+
+  :root {
+    --black: #000;
+    --white: #fff;
+    --yellow: #FFEB3B;
+    --off-white: #F5F5F5;
+    --gray-text: #555;
+    --gray-mid: #888;
+    --gray-light: #E0E0E0;
+    --max-w: 960px;
+    --pad: 48px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  .topnav { background: var(--black); position: sticky; top: 0; z-index: 100; border-bottom: 4px solid var(--yellow); }
+  .topnav-inner { max-width: var(--max-w); margin: 0 auto; padding: 16px var(--pad); display: flex; justify-content: space-between; align-items: center; }
+  .topnav .logo { font-family: 'Roboto Slab', serif; color: var(--white); font-size: 20px; font-weight: 700; }
+  .topnav .nav-links { display: flex; gap: 24px; }
+  .topnav .nav-links a { font-size: 11px; color: var(--gray-mid); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; transition: color 0.2s; cursor: pointer; }
+  .topnav .nav-links a:hover, .topnav .nav-links a.active { color: var(--yellow); }
+
+  /* Hero */
+  .hero { background: var(--black); padding: 80px var(--pad) 64px; text-align: center; }
+  .hero h1 { font-family: 'Roboto Slab', serif; color: var(--white); font-size: 46px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .hero .subtitle { font-family: 'Roboto Slab', serif; color: var(--gray-mid); font-size: 18px; font-weight: 400; margin-bottom: 32px; }
+  .hero .yellow-rule { width: 60px; height: 4px; background: var(--yellow); margin: 0 auto 32px; }
+  .hero .meta { font-size: 12px; color: #999; max-width: 640px; margin: 0 auto; line-height: 1.7; }
+  .hero .tagline { color: var(--yellow); font-family: 'Roboto Slab', serif; font-size: 14px; font-weight: 700; margin-top: 20px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* Sections */
+  section { max-width: var(--max-w); margin: 0 auto; padding: 72px var(--pad); border-bottom: 1px solid var(--gray-light); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 900; color: var(--black); margin-bottom: 12px; line-height: 1.2; }
+  .section-kicker { font-size: 11px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 12px; }
+  .section-intro { font-size: 14px; color: var(--gray-text); line-height: 1.7; margin-bottom: 32px; max-width: 680px; }
+  .yellow-bar { width: 40px; height: 3px; background: var(--yellow); margin-bottom: 24px; }
+
+  section[id] { scroll-margin-top: 80px; }
+
+  /* Flagship card (Statements) */
+  .flagship-wrap { margin-top: 24px; }
+  .flagship-card { background: var(--black); color: var(--white); padding: 36px 40px; cursor: pointer; transition: all 0.25s ease; position: relative; border-left: 6px solid var(--yellow); }
+  .flagship-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+  .flagship-kicker { font-size: 11px; color: var(--yellow); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 10px; }
+  .flagship-title { font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.3px; }
+  .flagship-headline { font-family: 'Roboto Slab', serif; font-size: 15px; font-style: italic; color: var(--yellow); margin-bottom: 16px; line-height: 1.5; }
+  .flagship-body { font-size: 13.5px; color: #ccc; line-height: 1.7; max-width: 620px; }
+  .flagship-cta { display: inline-block; margin-top: 20px; font-size: 11px; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+
+  /* Adjacent problem grid */
+  .adj-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .adj-card { background: var(--white); border: 1px solid var(--gray-light); padding: 28px; cursor: pointer; transition: all 0.25s ease; position: relative; }
+  .adj-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: transparent; transition: background 0.25s ease; }
+  .adj-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .adj-card:hover::after, .adj-card.active::after { background: var(--yellow); }
+  .adj-card.active { border-color: var(--black); }
+  .adj-kicker { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; }
+  .adj-name { font-family: 'Roboto Slab', serif; font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 10px; line-height: 1.3; }
+  .adj-summary { font-size: 12.5px; color: var(--gray-text); line-height: 1.6; }
+
+  /* Detail drawers (shared by flagship + adjacent) */
+  .detail { margin-top: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin 0.4s ease; }
+  .detail.open { max-height: 1200px; margin-top: 32px; }
+  .detail-inner { background: var(--off-white); color: var(--black); padding: 40px 48px; border-left: 4px solid var(--yellow); }
+  .d-title { font-family: 'Roboto Slab', serif; font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+  .d-row { margin-bottom: 20px; }
+  .d-label { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+  .d-text { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+  .d-proofs { list-style: none; margin-top: 4px; }
+  .d-proofs li { font-size: 12.5px; color: var(--black); line-height: 1.7; padding: 5px 0 5px 18px; position: relative; }
+  .d-proofs li::before { content: '▸'; position: absolute; left: 0; color: var(--yellow); }
+
+  /* Principle block */
+  .principle { background: var(--black); color: var(--white); padding: 44px 48px; margin-top: 48px; border-top: 4px solid var(--yellow); }
+  .principle h3 { font-family: 'Roboto Slab', serif; font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+  .principle p { font-size: 13.5px; line-height: 1.7; color: #ccc; }
+  .principle strong { color: var(--white); }
+
+  /* What makes HC3 different */
+  .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+  .outcome { background: var(--off-white); border-left: 3px solid var(--yellow); padding: 22px 24px; }
+  .outcome .o-label { font-size: 11px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+  .outcome .o-name { font-family: 'Roboto Slab', serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+  .outcome .o-text { font-size: 12.5px; color: var(--gray-text); line-height: 1.6; }
+
+  /* Footer */
+  footer { background: var(--black); color: var(--gray-mid); padding: 48px var(--pad); text-align: center; font-size: 11px; line-height: 1.7; }
+  footer .f-rule { width: 40px; height: 3px; background: var(--yellow); margin: 0 auto 20px; }
+  footer strong { color: var(--white); }
+
+  @media (max-width: 720px) {
+    :root { --pad: 24px; }
+    .hero h1 { font-size: 32px; }
+    .adj-grid, .outcomes-grid { grid-template-columns: 1fr; }
+    .flagship-card, .principle { padding: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="logo">HC3</span>
+    <div class="nav-links">
+      <a onclick="scrollToId('statements')">Statements</a>
+      <a onclick="scrollToId('adjacent')">Adjacent work</a>
+      <a onclick="scrollToId('different')">What's different</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" style="max-width:none;padding-left:var(--pad);padding-right:var(--pad);border-bottom:none;">
+  <h1>HC3</h1>
+  <p class="subtitle">Solution Map</p>
+  <div class="yellow-rule"></div>
+  <p class="meta">The operations partner for the work community FIs can't afford to get wrong. Statements first, with the adjacent notices, compliance workflows, and data work running alongside them.</p>
+  <p class="tagline">400+ community FIs. Family-owned. 60 years of operator experience.</p>
+</section>
+
+<!-- FLAGSHIP: STATEMENTS -->
+<section id="statements">
+  <div class="section-kicker">The work we own</div>
+  <h2>Statements</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">The highest-frequency and highest-consequence work in the building. HC3 owns statements end-to-end as one integrated service for 400+ community FIs.</p>
+  <div class="flagship-wrap">
+    <div class="flagship-card" onclick="toggleFlagship()">
+      <div class="flagship-kicker">Flagship</div>
+      <div class="flagship-title">Statements, end-to-end</div>
+      <div class="flagship-headline">"Statements reach every customer, document every account, and carry regulatory weight on every page. HC3 runs all of that."</div>
+      <div class="flagship-body">One wrong statement can destroy millions of dollars of relationship-building in a single cycle. Core systems produce statements as a secondary function, and vendor patchworks cover parts of the workflow while leaving the FI owning the seams between design, delivery, notices, and compliance. HC3 owns all of it, end-to-end.</div>
+      <span class="flagship-cta">Explore the work ▸</span>
+    </div>
+    <div id="flagshipDetail" class="detail">
+      <div class="detail-inner" id="flagshipDetailInner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADJACENT PROBLEMS -->
+<section id="adjacent">
+  <div class="section-kicker">What extends from the flagship</div>
+  <h2>Adjacent problems we solve</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">The operational discipline HC3 has built around statements extends into the adjacent work community FIs can't afford to be fragmented on. Named loosely, not as a fixed catalog. Click any area for detail.</p>
+  <div class="adj-grid" id="adjGrid"></div>
+  <div id="adjDetail" class="detail">
+    <div class="detail-inner" id="adjDetailInner"></div>
+  </div>
+
+  <div class="principle">
+    <h3>The principle</h3>
+    <p>HC3 extends where the work sits next to what we already own, where the proof carries, and where community FIs can't afford fragmentation. HC3 <strong>does not</strong> extend into everything, and we do not extend into anything before we can run it to the standard the flagship sets.</p>
+  </div>
+</section>
+
+<!-- WHAT MAKES HC3 DIFFERENT -->
+<section id="different">
+  <div class="section-kicker">Proof</div>
+  <h2>What makes HC3 different</h2>
+  <div class="yellow-bar"></div>
+  <p class="section-intro">Organized by outcome. What 400+ community FIs pay HC3 for, and what competitors selling technology cannot replicate.</p>
+  <div class="outcomes-grid">
+    <div class="outcome">
+      <div class="o-label">Customer Trust</div>
+      <div class="o-name">Loyalty that transcends the institution.</div>
+      <div class="o-text">Clients follow HC3 team members between FIs when they change jobs. Every statement error is treated as a trust event. Human-verified accuracy at scale, in a moment when only 19% of Americans trust AI in financial services.</div>
+    </div>
+    <div class="outcome">
+      <div class="o-label">Operational Reliability</div>
+      <div class="o-name">The work runs without the client watching it.</div>
+      <div class="o-text">Success is defined as the client not having to worry about the work again. A dedicated project manager and experience manager per client, with proactive communication during problems and ownership before escalation. Implementation timelines that reflect reality.</div>
+    </div>
+    <div class="outcome">
+      <div class="o-label">FI-Specific Scale</div>
+      <div class="o-name">400+ community FIs across 60 years of operator experience.</div>
+      <div class="o-text">Operator expertise refined across every channel community FIs run. Open-window envelope design reducing postage 17.5 cents per piece. 40% YoY print statement growth in a market projected to shrink.</div>
+    </div>
+    <div class="outcome">
+      <div class="o-label">What HC3 Is Not</div>
+      <div class="o-name">Not a platform. Not a core replacement.</div>
+      <div class="o-text">HC3 works alongside the core, taking on the specialized operational work that sits outside its scope. Not a patchwork of modular product categories, not a generic technology vendor. An operator.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-rule"></div>
+  <p><strong>HC3 Solution Map</strong></p>
+  <p>Prepared by BrandThnk &nbsp;|&nbsp; 2026-04-23</p>
+</footer>
+
+<script>
+  const FLAGSHIP_DETAIL = {
+    title: 'Statements, end-to-end',
+    reality: "Statements are the highest-frequency and highest-consequence piece of work a community FI produces. They reach every customer, document every account, and carry regulatory weight on every page. One wrong statement can destroy millions of dollars of relationship-building in a single cycle. Core systems produce statements as a secondary function, and vendor patchworks cover parts of the workflow while leaving the FI owning the seams between design, delivery, notices, and compliance. Those handoffs are where errors live.",
+    action: "HC3 owns statements end-to-end as one integrated service for 400+ community FIs: statement design reflecting the FI's brand, digital and print delivery through whichever channel the customer expects, contextual communication built on customer activity, compliance accuracy and required-notice handling in the same operation, secure archive and retrieval, and the operational accountability that keeps the work running without FI oversight.",
+    proofs: [
+      "400+ community bank and credit union clients run statements through HC3.",
+      "60 years of operator experience; 40% YoY print statement growth in a market projected to shrink.",
+      "Open-window envelope design reducing postage 17.5 cents per piece, the operator detail that compounds across 400+ FIs.",
+      "AutoAVS heritage: compliance-grade address verification for statements, built by HC3's people before the category caught up.",
+      "Customer loyalty that transcends the institution: clients follow HC3 team members between FIs when they change jobs.",
+    ]
+  };
+
+  const ADJACENT = [
+    { id: 'notices', name: 'Required notices & customer communications',
+      summary: "The disclosures, privacy mailings, and activity-driven communications that live next to statements in the operation, carrying the same compliance weight and consequence when content drifts.",
+      reality: "Required notices, privacy mailings, regulatory disclosures, and activity-driven customer communications carry the same compliance weight, customer-facing brand impact, and consequence when content drifts or delivery fails. Most FIs run them through a different process than statements, often a different vendor. That handoff is where the seams show up.",
+      action: "HC3 takes on the adjacent notice and communication work so it holds to the same accuracy, accountability, and brand standard HC3 sets on the statement. One operator owns every customer-facing document the FI sends.",
+      proofs: [
+        "Contextual, relevant communication based on customer activity, so statements earn their keep as a channel.",
+        "Every communication error treated as a trust event.",
+        "Dedicated project manager and experience manager assigned to every client.",
+      ] },
+    { id: 'compliance', name: 'Compliance & risk operations',
+      summary: "The compliance-critical workflows like address verification, fraud reporting, and third-party risk that are fragmented, underserved by the core, and carried by already-stretched internal teams.",
+      reality: "Compliance-critical workflows are often fragmented, underserved by the core, and carried by already-stretched internal teams. The consequence of getting any of it wrong is regulatory, financial, or reputational damage. None of it is optional.",
+      action: "HC3 takes on the compliance work that sits outside the core's scope, holding to the accuracy standard HC3 already sets on statements: AutoAVS-grade address verification, regulatory-current templates, and compliance-accurate delivery, run with the same operator discipline.",
+      proofs: [
+        "AutoAVS-grade address verification heritage embedded in HC3's statement operation.",
+        "Regulatory-current templates and compliance-accurate delivery across 400+ FIs.",
+        "Only 19% of Americans trust AI in financial services; HC3 delivers human-verified accuracy at scale.",
+      ] },
+    { id: 'data', name: 'Data that feeds the decision',
+      summary: "The loan data, underwriting inputs, and reporting that community FIs rebuild by hand because the core can't easily package what they need.",
+      reality: "The data FIs need to lend, decide, and operate often lives in places the core can't easily reach or package. Teams rebuild reports by hand, decisions wait on spreadsheets, and the underlying information is good while the plumbing isn't.",
+      action: "HC3 takes on the adjacent data work that sits next to the communications operation: loan data aggregation, underwriting inputs, and the reporting that feeds the decision. The operator layer that makes the data community FIs already have actually usable, without rebuilding anything in the core.",
+      proofs: [
+        "Operational expertise refined across 400+ FIs and every channel they run.",
+        "Family-owned business with 60 years of institutional memory about how community FIs actually operate.",
+        "Implementation timelines that reflect reality, not sales commitments.",
+      ] },
+  ];
+
+  function renderFlagshipDetail() {
+    const d = FLAGSHIP_DETAIL;
+    document.getElementById('flagshipDetailInner').innerHTML = `
+      <div class="d-title">${d.title}</div>
+      <div class="d-row"><div class="d-label">The operational reality</div><div class="d-text">${d.reality}</div></div>
+      <div class="d-row"><div class="d-label">What HC3 does</div><div class="d-text">${d.action}</div></div>
+      <div class="d-row"><div class="d-label">The proof behind the work</div><ul class="d-proofs">${d.proofs.map(p => `<li>${p}</li>`).join('')}</ul></div>
+    `;
+  }
+
+  function toggleFlagship() {
+    const detail = document.getElementById('flagshipDetail');
+    detail.classList.toggle('open');
+  }
+
+  function renderAdjacent() {
+    const grid = document.getElementById('adjGrid');
+    grid.innerHTML = ADJACENT.map(a => `
+      <div class="adj-card" data-id="${a.id}" onclick="showAdjacent('${a.id}')">
+        <div class="adj-kicker">Adjacent</div>
+        <div class="adj-name">${a.name}</div>
+        <div class="adj-summary">${a.summary}</div>
+      </div>
+    `).join('');
+  }
+
+  function showAdjacent(id) {
+    const a = ADJACENT.find(x => x.id === id);
+    const detail = document.getElementById('adjDetail');
+    const inner = document.getElementById('adjDetailInner');
+    document.querySelectorAll('.adj-card').forEach(el => el.classList.toggle('active', el.dataset.id === id));
+    inner.innerHTML = `
+      <div class="d-title">${a.name}</div>
+      <div class="d-row"><div class="d-label">The operational reality</div><div class="d-text">${a.reality}</div></div>
+      <div class="d-row"><div class="d-label">What HC3 does</div><div class="d-text">${a.action}</div></div>
+      <div class="d-row"><div class="d-label">The proof behind the work</div><ul class="d-proofs">${a.proofs.map(p => `<li>${p}</li>`).join('')}</ul></div>
+    `;
+    detail.classList.add('open');
+  }
+
+  function scrollToId(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  renderFlagshipDetail();
+  renderAdjacent();
+</script>
+
+</body>
+</html>
