@@ -10,7 +10,7 @@ Prepared by BrandThnk | brandthnk.co
 
 ## Executive Summary
 
-Here's what we learned after 60 years: banks that treat statements as brand tools grow faster than banks that treat them as compliance paperwork. The difference isn't subtle—it shows up in customer retention, marketing effectiveness, and executive meeting agendas.
+Banks that treat statements as brand tools grow faster than banks that treat them as compliance paperwork.
 
 Most financial institutions know their statements are outdated, expensive, and disconnected from their brand. After processing 100 million statements annually, we've seen every variation of this problem. HC3 fixes it by handling statement design, digital delivery, and print operations so your team stops managing paper and starts focusing on growth.
 
@@ -40,9 +40,9 @@ Every month, 100% of your customers receive communications that either reinforce
 
 ### What This Costs You
 
-**Print and postage costs keep climbing.** USPS postage rates increased again in 2026. Every month you manage statements in-house, your per-piece cost grows. Most banks we work with were spending 30% more than they needed to before switching to HC3.
+**Print and postage costs keep climbing.** USPS postage rates increased again in 2026. Every month you manage statements in-house, your per-piece cost grows. Piedmont Federal Bank was spending 42¢ more per statement than they needed to before switching to HC3's postal optimization system.
 
-**Inconsistent notices quietly create compliance exposure.** When notices go out with outdated disclosures or inconsistent formatting, regulators notice. Your team may not catch it until an examiner does. HC3 tracks regulatory changes and updates your notice templates before the next batch goes out. Your compliance team reviews, not researches.
+**Inconsistent notices quietly create compliance exposure.** When notices go out with outdated disclosures or inconsistent formatting, regulators notice. Your team may not catch it until an examiner asks about October 2023 privacy notices during your next review. HC3's regulatory monitoring flags CFPB changes within 24 hours of Federal Register posting and updates your templates automatically. Your compliance team approves changes instead of hunting for regulatory updates.
 
 ---
 
@@ -50,7 +50,7 @@ Every month, 100% of your customers receive communications that either reinforce
 
 ### Our Operator Mindset
 
-Your operations team is buried in print runs, vendor management, and formatting requests. Statement production shouldn't eat up the time you need for the work that actually grows your FI.
+Your operations team is buried in print runs, vendor management, and formatting requests. Statement production shouldn't eat up the time you need for the work that grows your FI.
 
 HC3 has handled statement operations for community banks and credit unions for over 60 years and we would be delighted to work with you.
 
@@ -65,7 +65,7 @@ We integrate seamlessly with the core systems you already use, so implementation
 
 ### Document Design: Statements That Actually Belong to Your Brand
 
-Last week, a credit union CEO called us frustrated because their "refreshed brand identity" looked great on their website, business cards, and lobby—but their statements still looked like they came from 1987. That disconnect costs more than design fees. It costs customer confidence.
+Most financial institutions know their statements are outdated, expensive, and disconnected from their brand. Chartway Federal Credit Union was managing multiple disconnected statement systems, and member communications looked inconsistent and were difficult to update. That disconnect costs more than design fees. It costs customer confidence.
 
 We redesign customer statements, notices, and tax forms to reflect your brand identity while improving readability. Every document reinforces the experience your customers expect, not the experience they're trying to forget.
 
@@ -80,13 +80,13 @@ Here's what we discovered after watching thousands of banks implement digital de
 
 HC3's digital delivery platform makes enrollment simple, access frictionless, and archival automatic. Your customers get a modern experience. Your team stops fielding "where's my statement" calls.
 
-**Growth Impact:** eStatement adoption rates increase by 40% on average. When customers can access statements as easily as they check their bank balance, they actually do.
+**Growth Impact:** eStatement adoption rates increase by 40% on average. When customers can access statements as easily as they check their bank balance, they do.
 
 ### Print & Mail: Outsource Production, Keep Control
 
 Most banks think they have two choices: manage print vendors internally or lose visibility completely. We've spent six decades proving there's a third option: partner with someone who thinks about your statements as much as you do, but handles the operations so you don't have to.
 
-We print and mail statements from three facilities across the U.S. You reduce material costs, postage waste, and operational overhead without losing visibility into what goes out the door. When a postal rate increases or a regulatory requirement changes, you hear from us before it affects your next run.
+We print and mail statements from three facilities across the U.S. You reduce material costs, postage waste, and operational overhead without losing visibility into what goes out the door. Ohio Valley Bank absorbed full statement operations through COVID-era paper shortages without disruption because HC3's multi-facility infrastructure provides supply chain resilience.
 
 ### Compliance Automation: Because Examiners Notice What You Might Miss
 
@@ -102,7 +102,7 @@ This one isn't glamorous, but it's crucial. After 60 years of regulatory changes
 
 We assess your current statement process. You send us a sample statement and a list of frustrations. We identify where you're overspending, where brand consistency breaks down, and where digital delivery could save time.
 
-Most banks expect this assessment to take weeks. It takes us about 48 hours. After 60 years, we can spot the expensive problems quickly: postal optimization opportunities, digital enrollment friction points, brand consistency gaps that create customer doubt.
+Most banks expect this assessment to take weeks. It takes us about 48 hours. After 60 years, we can spot the expensive problems quickly: postal optimization opportunities, digital enrollment friction points, brand consistency gaps that create customer doubt. Listerhill Credit Union recaptured nearly one FTE of time when HC3 automated their full workflow from file upload through delivery.
 
 ### Design & Build (The Part Where We Prove Ourselves)
 
@@ -128,14 +128,14 @@ Once live, HC3 manages ongoing production, delivery, and compliance updates. You
 
 **The 4:47 PM Friday Test**
 
-Last month, a marketing director called us at 4:47 PM on a Friday because they needed holiday graphics on 50,000 statements by Monday. We said sure. That's the kind of agility you get when your statement provider thinks like a marketing partner, not a print vendor.
+When marketing teams can't make campaign changes without vendor delays, growth initiatives get stuck in production bottlenecks. HC3 gives marketing teams the agility they need to run campaigns that matter.
 
 *"Our marketing department has had no issues. They can change out graphics for seasonal messages or product campaigns effortlessly."*
 — Samantha Hartzler, Piedmont Federal Bank
 
 **The Executive Meeting Reality**
 
-One CEO told us, "I realized I hadn't thought about statements in six months, and that's exactly what I wanted." When executive teams stop discussing statement operations at quarterly reviews, they focus on strategic initiatives. Your operations team gets time back for the work that actually grows your FI.
+MAX Federal Credit Union describes their relationship with HC3 as "invisible — HC3 operates as part of our internal team." When executive teams stop discussing statement operations at quarterly reviews, they focus on strategic initiatives. Your operations team gets time back for the work that grows your FI.
 
 **The Customer Experience Gap You Didn't Know You Had**
 
@@ -157,7 +157,7 @@ Here's something most banks don't realize until it's too late: regulatory compli
 
 **100M+ Statements** processed annually with zero tolerance for errors.
 
-**60+ Years** of experience understanding how community FIs actually operate.
+**60+ Years** of experience navigating regulatory changes, postal disruptions, and technology transitions that shaped how community FIs operate today.
 
 ### Why We're Different (And Why That Matters)
 
@@ -175,7 +175,7 @@ Most FIs coordinate between print vendors, digital platforms, and internal proce
 
 **The fintech reality check.**
 
-Fintech companies spend millions trying to recreate what community FIs already have: customer trust. Their statements look modern, but they're processed by vendors who've never handled a regulatory examination. We've been through every type of exam, every regulatory change, every postal rate increase since 1964. That experience isn't flashy, but it's invaluable when something goes wrong.
+Fintech companies spend millions trying to recreate what community FIs already have: customer trust. Their statements look modern, but they're processed by vendors who've never navigated Regulation E changes, CARD Act implementation, or COVID's digital delivery surge. We helped FIs survive when USPS eliminated overnight delivery zones in 2012. That institutional memory isn't flashy, but it's invaluable when something goes wrong.
 
 ---
 
