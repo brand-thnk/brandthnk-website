@@ -214,6 +214,57 @@
       font-size: 0.875rem;
     }
 
+    .owner-badge {
+      display: inline-block;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+      margin-left: 0.5rem;
+    }
+
+    .target-value {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+      margin-left: 0.5rem;
+    }
+
+    .eos-section {
+      background: rgba(76, 175, 80, 0.1);
+      border: 1px solid #4CAF50;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .issues-todo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .issues-section, .todos-section {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .issue-item, .todo-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 4px;
+    }
+
+    .priority-high { border-left: 4px solid var(--red); }
+    .priority-med { border-left: 4px solid var(--yellow); }
+    .priority-low { border-left: 4px solid var(--green); }
+
     @media print {
       body { background: white; }
       .container { box-shadow: none; }
@@ -223,7 +274,12 @@
       .container { padding: 1rem; }
       .header { margin: -1rem -1rem 2rem -1rem; padding: 1.5rem; }
       .header h1 { font-size: 1.75rem; }
-      .scorecard-grid, .targets-grid { grid-template-columns: 1fr; }
+      .scorecard-grid, .targets-grid, .issues-todo-grid { grid-template-columns: 1fr; }
+      .metric-item { flex-direction: column; align-items: flex-start; }
+      .target-value { margin-left: 0; margin-top: 0.25rem; }
+      .owner-badge { margin-left: 0; margin-top: 0.25rem; }
+      .metric-input { margin-top: 0.5rem; }
+      .status-indicator { margin-left: 0; margin-top: 0.5rem; }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,30 +297,34 @@
     <div class="section">
       <h2>Weekly Scorecard - Key Numbers</h2>
       <div class="highlight-box">
-        <strong>Track weekly in leadership team meetings.</strong> Green = on target, Yellow = at risk, Red = off target. Keep it simple: 5-15 key numbers that predict success.
+        <strong>EOS Level 10 Meeting Component.</strong> Each number has an owner, a target, and a weekly trend. Green = on target, Yellow = at risk, Red = off target. Review in 5 minutes or less.
       </div>
 
       <div class="scorecard-grid">
         <div class="scorecard-category">
           <h4>Revenue & Growth</h4>
           <div class="metric-item">
-            <span class="metric-label">Monthly Recurring Revenue (MRR)</span>
-            <input type="text" class="metric-input" placeholder="$">
+            <span class="metric-label">Monthly Recurring Revenue (MRR) <span class="owner-badge">CEO</span></span>
+            <span class="target-value">Target: $2.5M</span>
+            <input type="text" class="metric-input" placeholder="$2.1M">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">New Customer Count</span>
-            <input type="number" class="metric-input" placeholder="0">
+            <span class="metric-label">New Customer Count <span class="owner-badge">Sales</span></span>
+            <span class="target-value">Target: 25</span>
+            <input type="number" class="metric-input" placeholder="18">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Average Contract Value</span>
-            <input type="text" class="metric-input" placeholder="$">
+            <span class="metric-label">Average Contract Value <span class="owner-badge">Sales</span></span>
+            <span class="target-value">Target: $65K</span>
+            <input type="text" class="metric-input" placeholder="$58K">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Win Rate (Qualified Opps)</span>
-            <input type="number" class="metric-input" placeholder="%">
+            <span class="metric-label">Win Rate (Qualified Opps) <span class="owner-badge">Sales</span></span>
+            <span class="target-value">Target: 35%</span>
+            <input type="number" class="metric-input" placeholder="28%">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
         </div>
@@ -272,23 +332,27 @@
         <div class="scorecard-category">
           <h4>Operational Efficiency</h4>
           <div class="metric-item">
-            <span class="metric-label">Customer Cost Savings (Monthly)</span>
-            <input type="text" class="metric-input" placeholder="$">
+            <span class="metric-label">Customer Cost Savings (Monthly) <span class="owner-badge">Ops</span></span>
+            <span class="target-value">Target: $125K</span>
+            <input type="text" class="metric-input" placeholder="$98K">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Avg Processing Time Reduction</span>
-            <input type="number" class="metric-input" placeholder="%">
+            <span class="metric-label">Avg Processing Time Reduction <span class="owner-badge">Ops</span></span>
+            <span class="target-value">Target: 35%</span>
+            <input type="number" class="metric-input" placeholder="28%">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Statement Volume Processed</span>
-            <input type="number" class="metric-input" placeholder="0">
+            <span class="metric-label">Statement Volume (Monthly) <span class="owner-badge">Ops</span></span>
+            <span class="target-value">Target: 2.5M</span>
+            <input type="number" class="metric-input" placeholder="2.1M">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Implementation Speed (Days)</span>
-            <input type="number" class="metric-input" placeholder="0">
+            <span class="metric-label">Implementation Speed (Days) <span class="owner-badge">CS</span></span>
+            <span class="target-value">Target: ≤45</span>
+            <input type="number" class="metric-input" placeholder="52">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
         </div>
@@ -296,18 +360,21 @@
         <div class="scorecard-category">
           <h4>Customer Success</h4>
           <div class="metric-item">
-            <span class="metric-label">Customer Satisfaction Score</span>
-            <input type="number" class="metric-input" placeholder="/10">
+            <span class="metric-label">Customer Satisfaction Score <span class="owner-badge">CS</span></span>
+            <span class="target-value">Target: ≥8.5</span>
+            <input type="number" class="metric-input" placeholder="8.2">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Support Resolution Time (hrs)</span>
-            <input type="number" class="metric-input" placeholder="0">
+            <span class="metric-label">Support Resolution Time (hrs) <span class="owner-badge">CS</span></span>
+            <span class="target-value">Target: ≤4</span>
+            <input type="number" class="metric-input" placeholder="6">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
           <div class="metric-item">
-            <span class="metric-label">Customer Retention Rate</span>
-            <input type="number" class="metric-input" placeholder="%">
+            <span class="metric-label">Customer Retention Rate <span class="owner-badge">CS</span></span>
+            <span class="target-value">Target: ≥95%</span>
+            <input type="number" class="metric-input" placeholder="92%">
             <div class="status-indicator" onclick="toggleStatus(this)"></div>
           </div>
         </div>
@@ -317,30 +384,79 @@
     <div class="section">
       <h2>Quarterly Rocks - 90-Day Priorities</h2>
       <div class="highlight-box">
-        <strong>3-7 most important things to accomplish this quarter.</strong> Each rock should be specific, measurable, and have a clear owner.
+        <strong>EOS Quarterly Rocks.</strong> 3-7 most important priorities with clear owners and due dates. Each rock is specific, measurable, achievable, realistic, and timely (SMART).
       </div>
 
       <div class="rocks-section">
-        <h3>Q2 2026 Rocks</h3>
+        <h3>Q2 2026 Company Rocks</h3>
         <div class="rock-item">
           <input type="checkbox" class="rock-checkbox">
-          <span>Launch HC3 Cost Calculator Tool</span>
+          <span>Launch HC3 Cost Calculator Tool <span class="owner-badge">Product</span></span>
+          <span class="target-value">Due: June 30</span>
         </div>
         <div class="rock-item">
           <input type="checkbox" class="rock-checkbox">
-          <span>Achieve 35% Average Processing Time Reduction for Customers</span>
+          <span>Achieve 35% Average Processing Time Reduction for Customers <span class="owner-badge">Ops</span></span>
+          <span class="target-value">Due: June 15</span>
         </div>
         <div class="rock-item">
           <input type="checkbox" class="rock-checkbox">
-          <span>Complete 5 Operational Efficiency Case Studies</span>
+          <span>Complete 5 Operational Efficiency Case Studies <span class="owner-badge">Marketing</span></span>
+          <span class="target-value">Due: May 31</span>
         </div>
         <div class="rock-item">
           <input type="checkbox" class="rock-checkbox">
-          <span>Establish Industry Cost Savings Benchmarks</span>
+          <span>Establish Industry Cost Savings Benchmarks <span class="owner-badge">Strategy</span></span>
+          <span class="target-value">Due: May 15</span>
         </div>
         <div class="rock-item">
           <input type="checkbox" class="rock-checkbox">
-          <span>Implement Customer Success Tracking System</span>
+          <span>Implement Customer Success Tracking System <span class="owner-badge">CS</span></span>
+          <span class="target-value">Due: June 15</span>
+        </div>
+      </div>
+
+      <div class="issues-todo-grid">
+        <div class="issues-section">
+          <h3>Issues List</h3>
+          <div class="highlight-box">
+            <strong>Current obstacles and challenges.</strong> Prioritize for Level 10 discussion: High = discuss this week, Med = next 2 weeks, Low = monitor.
+          </div>
+          <div class="issue-item priority-high">
+            <span>Customer onboarding taking 60+ days (target: 45)</span>
+          </div>
+          <div class="issue-item priority-med">
+            <span>Win rate dropping on efficiency-focused deals</span>
+          </div>
+          <div class="issue-item priority-med">
+            <span>Support ticket volume increasing 15% month-over-month</span>
+          </div>
+          <div class="issue-item priority-low">
+            <span>Cost calculator tool feedback needs review</span>
+          </div>
+        </div>
+
+        <div class="todos-section">
+          <h3>To-Do List</h3>
+          <div class="highlight-box">
+            <strong>7-day action items from Level 10 meetings.</strong> Each to-do has an owner and due date. Review completion weekly.
+          </div>
+          <div class="todo-item">
+            <input type="checkbox" class="rock-checkbox">
+            <span>Review onboarding process bottlenecks <span class="owner-badge">CS</span></span>
+          </div>
+          <div class="todo-item">
+            <input type="checkbox" class="rock-checkbox">
+            <span>Update sales battlecards with cost data <span class="owner-badge">Marketing</span></span>
+          </div>
+          <div class="todo-item">
+            <input type="checkbox" class="rock-checkbox">
+            <span>Schedule customer success review calls <span class="owner-badge">CS</span></span>
+          </div>
+          <div class="todo-item">
+            <input type="checkbox" class="rock-checkbox">
+            <span>Analyze support ticket root causes <span class="owner-badge">Ops</span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -384,16 +500,39 @@
     </div>
 
     <div class="section">
-      <h2>How to Use This Dashboard</h2>
+      <h2>EOS Level 10 Meeting Agenda</h2>
+      <div class="eos-section">
+        <h3>90-Minute Weekly Format</h3>
+
+        <h4>1. Segue (5 minutes)</h4>
+        <p><strong>Good news:</strong> Personal and professional updates. Share wins, good news, anything positive.</p>
+
+        <h4>2. Scorecard Review (5 minutes)</h4>
+        <p><strong>Numbers only:</strong> Each owner reports their number. No discussion unless red. Note issues for later.</p>
+
+        <h4>3. Rock Review (5 minutes)</h4>
+        <p><strong>On track/Off track only:</strong> Each rock owner gives quick status. Off-track rocks become issues.</p>
+
+        <h4>4. Customer/Employee Headlines (5 minutes)</h4>
+        <p><strong>Critical updates:</strong> Anything the leadership team needs to know about customers or employees.</p>
+
+        <h4>5. To-Do List (5 minutes)</h4>
+        <p><strong>Completion review:</strong> Check off completed items. Note incomplete items as issues if overdue.</p>
+
+        <h4>6. IDS (Issues, Discuss, Solve) (60 minutes)</h4>
+        <p><strong>The heart of the meeting:</strong> Prioritize issues list, discuss top 3-5 issues, solve each one completely.</p>
+
+        <h4>7. Conclude (5 minutes)</h4>
+        <p><strong>Recap and commit:</strong> Review to-dos, cascading messages, confirm next meeting rating (1-10).</p>
+      </div>
+
       <div class="highlight-box">
-        <h3>Weekly Level 10 Meetings</h3>
-        <p><strong>Scorecard Review (5 minutes):</strong> Each department owner reports their numbers. Focus on red/yellow items only.</p>
-
-        <h3>Monthly Leadership Review</h3>
-        <p><strong>Rock Progress (10 minutes):</strong> Review quarterly rock completion percentage. Adjust resources as needed.</p>
-
-        <h3>Quarterly Planning</h3>
-        <p><strong>Rock Setting (90 minutes):</strong> Set new quarterly rocks based on annual targets and current performance gaps.</p>
+        <h3>Quarterly Rock Setting (4-Hour Session)</h3>
+        <p><strong>Review previous quarter:</strong> Complete rock review and lessons learned (30 minutes)</p>
+        <p><strong>Establish priorities:</strong> Identify 3-7 most important priorities for next quarter (90 minutes)</p>
+        <p><strong>SMART check:</strong> Ensure each rock is Specific, Measurable, Achievable, Realistic, Timely (60 minutes)</p>
+        <p><strong>Owner assignment:</strong> Each rock gets one clear owner who is accountable (30 minutes)</p>
+        <p><strong>Quarterly planning:</strong> Break rocks into monthly milestones and weekly actions (90 minutes)</p>
       </div>
     </div>
   </div>
