@@ -355,7 +355,7 @@
     <div class="section-label">The Statement Problem</div>
     <h2>Your statement process costs more than it should</h2>
     <p>Most financial institutions know their statements are outdated, expensive, and operationally inefficient. Print and postage costs keep climbing. Compliance updates require constant manual tracking. Digital delivery adoption stays low because the experience frustrates customers. Your team spends time managing paper instead of focusing on strategic initiatives that grow your institution.</p>
-    <p>USPS postage rates increased again in 2026. Inconsistent notices create compliance exposure. When your team manages statements in-house, operational costs and risk both increase. HC3 fixes these problems by handling statement design, digital delivery, and print operations — so your team stops managing paper and starts focusing on growth.</p>
+    <p>USPS postage rates increased again in 2026. Most banks we work with were spending 30% more than they needed to before switching to HC3. Inconsistent notices create compliance exposure that regulators catch during examinations. When your team manages statements in-house, both operational costs and regulatory risk increase. HC3 fixes these problems by handling statement design, digital delivery, and print operations — so your team stops managing paper and starts focusing on growth.</p>
 
     <div class="value-grid">
       <div class="value-card">
@@ -410,8 +410,8 @@
 
       <div class="workflow-card" data-workflow="compliance" onclick="toggleWorkflow('compliance')">
         <div class="workflow-name">Compliance Automation</div>
-        <div class="workflow-problem">Stay current on every regulatory requirement, automatically</div>
-        <div class="workflow-solution">Automatic regulatory updates and audit-ready documentation, handled before you have to ask</div>
+        <div class="workflow-problem">Stop researching CFPB updates and tracking regulation changes manually</div>
+        <div class="workflow-solution">Automatic CFPB, NCUA, and state agency monitoring with pre-built audit trails for examinations</div>
       </div>
     </div>
 
@@ -434,7 +434,7 @@
       <p style="color: #ccc; margin-bottom: 0;">Jack Henry • FIS • Fiserv • Q2 • NCR<br><br>We integrate seamlessly with the core systems you already use, so implementation doesn't disrupt your operations.</p>
     </div>
 
-    <p>400+ community financial institutions ($200M to $25B in assets) trust HC3 with communications their customers use to decide whether to stay. 100 million statements processed annually with zero tolerance for errors. First State Community Bank scaled from $3.5B to $4B in assets without adding operational burden because HC3 absorbed the statement volume without requiring additional headcount.</p>
+    <p>400+ community financial institutions ($200M to $25B in assets) trust HC3 with enterprise-grade financial statement processing and data orchestration. 100 million statements processed annually across three U.S. facilities with zero tolerance for errors. First State Community Bank scaled from $3.5B to $4B in assets without adding operational burden because HC3's infrastructure absorbed the statement volume without requiring additional headcount.</p>
   </div>
 </div>
 
@@ -487,18 +487,18 @@ const workflowData = {
     name: 'Document Design',
     beforeAfter: {
       manual: [
-        'Generic statement templates shared across institutions',
-        'Brand compliance checks handled manually, statement by statement',
-        'Seasonal campaign graphics require IT coordination',
-        'Marketing teams wait on vendor cycles to make copy changes',
-        'Inconsistent formatting across different communications'
+        'Generic statement templates increase customer service calls',
+        'Format compliance checks handled manually, statement by statement',
+        'Seasonal updates require IT coordination and vendor delays',
+        'Operations teams wait on vendor cycles to make critical changes',
+        'Inconsistent formatting creates customer confusion and support calls'
       ],
       automated: [
-        'Custom statement designs that reflect your unique brand identity',
-        'Built-in brand guidelines ensure consistency every month',
-        'Marketing teams change campaign graphics effortlessly',
-        'Self-serve tools for promotional messaging and seasonal updates',
-        'Every document reinforces the experience customers expect'
+        'Custom statement designs reduce readability complaints and support calls',
+        'Built-in formatting standards ensure consistency every month',
+        'Operations teams change seasonal graphics without vendor delays',
+        'Self-serve tools for regulatory updates and compliance messaging',
+        'Every document meets readability standards customers expect'
       ]
     }
   },
@@ -506,18 +506,18 @@ const workflowData = {
     name: 'Digital Delivery',
     beforeAfter: {
       manual: [
-        'Multi-step eStatement enrollment that adds friction for customers',
-        'Multiple logins and portals create a disjointed experience',
-        'Customers contact support to locate current statements',
-        'Paper-first approach with digital treated as secondary',
-        'Limited visibility into how customers engage with documents'
+        'Complex eStatement enrollment generates customer service calls',
+        'Multiple logins and portals create support tickets and frustration',
+        'Customers repeatedly contact support asking "where\'s my statement"',
+        'Paper-first approach increases operational costs and support burden',
+        'No visibility into delivery failures until customers call complaining'
       ],
       automated: [
-        'Simple enrollment process customers complete',
-        'Single sign-on integration with online banking',
-        'Proactive notifications when new statements are ready',
-        'Mobile-optimized experience that feels modern',
-        'Analytics show which customers engage most with content'
+        'Simple enrollment process reduces customer service calls',
+        'Single sign-on integration eliminates login support tickets',
+        'Proactive notifications prevent "where\'s my statement" calls',
+        'Mobile-optimized experience reduces accessibility complaints',
+        'Delivery confirmation eliminates customer confusion and support calls'
       ]
     }
   },
@@ -525,18 +525,18 @@ const workflowData = {
     name: 'Print & Mail',
     beforeAfter: {
       manual: [
-        'Managing relationships with multiple print vendors',
-        'Limited visibility into production schedules or mail timing',
-        'Postage costs without optimization leverage',
-        'Quality control requires constant vendor coordination',
-        'Exception handling spread across multiple touchpoints'
+        'Managing multiple print vendor relationships and SLAs',
+        'Limited visibility into production schedules and postal acceptance timing',
+        'Full-rate postage costs without presort discount optimization',
+        'Quality control requires constant vendor coordination and manual tracking',
+        'Exception handling (returns, address changes, holds) spread across multiple systems'
       ],
       automated: [
-        'Three HC3 facilities handle production with geographic redundancy for weather delays',
-        'Real-time tracking from data receipt through postal acceptance scanning',
-        'Postal optimization saves 42¢ per statement through intelligent sorting and presort discounts',
-        'Quality control with customer-specific approval workflows and error tracking',
-        'Single point exception handling: wrong address, holds, returns managed end-to-end'
+        'Three HC3 facilities with geographic redundancy and automated failover for weather delays',
+        'Real-time production tracking from data ingestion through USPS acceptance scanning',
+        'Postal optimization infrastructure saves 42¢ per statement through intelligent sorting and presort discounts',
+        'Automated quality control with customer-specific approval workflows and real-time error tracking',
+        'Centralized exception processing: address corrections, mail holds, and returns handled through single API'
       ]
     }
   },
@@ -544,11 +544,11 @@ const workflowData = {
     name: 'Compliance Automation',
     beforeAfter: {
       manual: [
-        'Monitoring Federal Register daily for CFPB, NCUA, and state agency changes',
-        'Tracking Regulation E updates against effective dates',
-        'Assembling audit trails when examiners request historical notices',
-        'Verifying privacy disclosures are current before each production run',
-        'Compliance team researching what changed instead of reviewing what needs approval'
+        'Manual monitoring of Federal Register for CFPB, NCUA, and state agency changes',
+        'Tracking Regulation E and privacy disclosure updates against effective dates',
+        'Scrambling to assemble audit trails when examiners request historical notices',
+        'Manually verifying disclosures are current before each production run',
+        'Compliance team spends time researching regulatory changes instead of strategic review'
       ],
       automated: [
         'Regulatory monitoring flags CFPB changes within 24 hours of Federal Register posting',
