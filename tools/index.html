@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Use the Tools | BrandThnk</title>
+<meta name="description" content="Three research-backed tools to diagnose your brand, understand your buyers, and track your competition. Built for fintech and financial services leaders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-menu-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--black);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .mobile-menu-toggle.active span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .hero-headline {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .hero-subhead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--gray);
+    max-width: 640px;
+    margin: 0 auto 48px;
+    font-weight: 400;
+  }
+
+  /* TOOLS GRID */
+  .tools-section {
+    padding: 0 60px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .tool-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 48px 40px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 480px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tool-card:hover {
+    border-color: var(--black);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  }
+
+  .tool-card.featured {
+    border-color: var(--yellow);
+    background: var(--yellow);
+  }
+
+  .tool-card.featured:hover {
+    border-color: var(--black);
+    background: var(--white);
+  }
+
+  .tool-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .tool-card.featured .tool-badge {
+    color: var(--black);
+  }
+
+  .tool-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .tool-card.featured .tool-icon {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .tool-card:hover .tool-icon {
+    background: var(--yellow);
+    color: var(--black);
+  }
+
+  .tool-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    line-height: 1.2;
+  }
+
+  .tool-description {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .tool-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .tool-features li {
+    font-size: 14px;
+    color: var(--gray);
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .tool-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+    border-radius: 50%;
+  }
+
+  .tool-cta {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: auto;
+    display: block;
+  }
+
+  .tool-cta:hover {
+    background: var(--yellow);
+    color: var(--black);
+  }
+
+  .tool-card.featured .tool-cta {
+    background: var(--white);
+    color: var(--black);
+    border: 2px solid var(--black);
+  }
+
+  .tool-card.featured .tool-cta:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* VALUE PROP SECTION */
+  .value-section {
+    padding: 100px 60px;
+    background: var(--offwhite);
+    text-align: center;
+  }
+
+  .value-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .value-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--black);
+  }
+
+  .value-description {
+    font-size: 18px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .value-cta {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .value-cta:hover {
+    background: var(--yellow);
+    color: var(--black);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    color: var(--gray);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav {
+      padding: 18px 24px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-menu-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      flex-direction: column;
+      padding: 20px 24px;
+      gap: 16px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active { display: flex; }
+
+    .nav-links li { width: 100%; }
+
+    .nav-links a {
+      display: block;
+      padding: 12px 0;
+      font-size: 16px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-links a:last-child { border-bottom: none; }
+
+    .hero {
+      padding: 120px 24px 60px;
+      text-align: center;
+    }
+
+    .tools-section {
+      padding: 0 24px 60px;
+    }
+
+    .tools-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .tool-card {
+      min-height: auto;
+      padding: 40px 32px;
+    }
+
+    .value-section {
+      padding: 60px 24px;
+    }
+
+    footer {
+      padding: 30px 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tool-card {
+      padding: 32px 24px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/" class="active">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">The BrandThnk Toolkit</div>
+  <h1 class="hero-headline">Use the Tools</h1>
+  <p class="hero-subhead">Three research-backed tools to diagnose your brand, understand your buyers, and track your competition.</p>
+</section>
+
+<!-- TOOLS GRID -->
+<section class="tools-section">
+  <div class="tools-grid">
+
+    <!-- BRAND DIAGNOSTIC -->
+    <a href="/library/" class="tool-card featured">
+      <div class="tool-badge">Start Here</div>
+      <div class="tool-icon">Dx</div>
+      <h2 class="tool-title">Brand Diagnostic</h2>
+      <p class="tool-description">Find out what's actually working. A 10-minute diagnostic that separates signal from activity and gives you a clear read on whether your brand is creating pull.</p>
+      <ul class="tool-features">
+        <li>3-phase assessment in 10 minutes</li>
+        <li>Signal strength vs. activity audit</li>
+        <li>Box-Edge positioning framework</li>
+        <li>Comprehensive PDF report</li>
+        <li>Action plan with priorities</li>
+      </ul>
+      <span class="tool-cta">Start the Diagnostic</span>
+    </a>
+
+    <!-- LITMUS -->
+    <a href="/litmus/" class="tool-card">
+      <div class="tool-badge">Know Your Buyers</div>
+      <div class="tool-icon">Li</div>
+      <h2 class="tool-title">Litmus</h2>
+      <p class="tool-description">Better GTM starts with better buyer data. 60 research-grade personas built from 50+ workshops, validated through 200+ sources, and mapped to channel behaviors.</p>
+      <ul class="tool-features">
+        <li>60 research-grade personas</li>
+        <li>8-layer behavioral model</li>
+        <li>Channel behavioral modes</li>
+        <li>LinkedIn, website, ads, content</li>
+        <li>Free for now</li>
+      </ul>
+      <span class="tool-cta">Request Access</span>
+    </a>
+
+    <!-- FOCAL -->
+    <a href="/focal/" class="tool-card">
+      <div class="tool-badge">Track Competition</div>
+      <div class="tool-icon">Fo</div>
+      <h2 class="tool-title">Focal</h2>
+      <p class="tool-description">See what your competitors are actually doing (and spending). Structured competitive intelligence with confidence scoring, not generic AI summaries.</p>
+      <ul class="tool-features">
+        <li>5-phase research methodology</li>
+        <li>Traffic and spend analysis</li>
+        <li>Ad intelligence across channels</li>
+        <li>Partnership mapping</li>
+        <li>Custom research samples</li>
+      </ul>
+      <span class="tool-cta">See Sample Research</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- VALUE PROPOSITION -->
+<section class="value-section">
+  <div class="value-content">
+    <h2 class="value-title">The work is clarity, not complexity.</h2>
+    <p class="value-description">Most tools generate more data. These tools generate clarity. Each one is built to answer a specific question that matters: Is your brand working? Who are your real buyers? What are your competitors actually doing?</p>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="value-cta">Discuss Your Needs</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+<script>
+// Mobile menu toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileMenuToggle && navLinks) {
+    mobileMenuToggle.addEventListener('click', function() {
+      // Toggle active class on both button and nav links
+      mobileMenuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking nav links
+    navLinks.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('nav')) {
+        mobileMenuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+  }
+});
+</script>
+
+</body>
+</html>
