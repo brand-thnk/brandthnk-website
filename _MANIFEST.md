@@ -19,7 +19,7 @@ This folder contains **two git repositories** serving two websites:
 
 | Portal | Path | Client | Status |
 |--------|------|--------|--------|
-| CheckAlt | `/archived/checkalt-portal/` | CheckAlt (LoanPay Brand Strategy) | Archived |
+| CheckAlt | `/client-portals/checkalt-portal/` | CheckAlt (LoanPay Brand Strategy) | Active |
 | HC3 | `/hc3-portal/` | HC3 | Active |
 | Horicon Bank | `/horicon-bank-portal/` | Horicon Bank | Active |
 | Digital Onboarding | `/archived/do-portal/` | Digital Onboarding | Archived |
