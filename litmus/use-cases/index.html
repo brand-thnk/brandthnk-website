@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five Ways to Use Litmus | BrandThnk</title>
+<meta name="description" content="Five use cases for Litmus buyer intelligence — from campaign copy to ABM targeting. Each one maps to specific persona layers with a walkthrough of how to apply the data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --yellow-tint: rgba(255,235,59,0.1);
+    --off-white: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #E0E0E0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-back {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--black); }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 72px 60px 64px;
+  }
+
+  .hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .hero-kicker {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    max-width: 760px;
+  }
+
+  .hero-intro {
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  /* ---- TOC ---- */
+  .toc-bar {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0 60px;
+    overflow-x: auto;
+  }
+
+  .toc-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+
+  .toc-link {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    padding: 16px 20px;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .toc-link:hover {
+    color: var(--black);
+    border-bottom-color: var(--yellow);
+  }
+
+  /* ---- MAIN ---- */
+  .main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 72px 60px 100px;
+  }
+
+  /* ---- USE CASE ---- */
+  .use-case {
+    margin-bottom: 80px;
+    padding-bottom: 80px;
+    border-bottom: 1px solid var(--light-gray);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.45s ease forwards;
+  }
+
+  .use-case:last-child { border-bottom: none; }
+
+  .use-case:nth-child(1) { animation-delay: 0.05s; }
+  .use-case:nth-child(2) { animation-delay: 0.1s; }
+  .use-case:nth-child(3) { animation-delay: 0.15s; }
+  .use-case:nth-child(4) { animation-delay: 0.2s; }
+  .use-case:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-header {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 40px;
+  }
+
+  .case-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .case-header h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .case-layer {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--yellow-tint);
+    border-left: 3px solid var(--yellow);
+    padding: 6px 12px;
+  }
+
+  /* ---- CONTENT BLOCKS ---- */
+  .case-body {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .block-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .block p {
+    font-size: 14px;
+    color: var(--black);
+    line-height: 1.7;
+    max-width: 760px;
+  }
+
+  /* ---- TWO COL ---- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .col-card {
+    background: var(--off-white);
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  .col-card h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--black);
+  }
+
+  .col-card p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .col-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .col-card li {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .col-card li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: var(--black);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+
+  /* ---- STEPS ---- */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .step-num {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    text-align: center;
+    padding-top: 2px;
+  }
+
+  .step p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .step strong { color: var(--black); }
+
+  /* ---- HIGHLIGHT BOX ---- */
+  .highlight-box {
+    background: var(--yellow-tint);
+    border-left: 3px solid var(--yellow);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .highlight-box p {
+    font-size: 14px;
+    color: var(--black);
+    line-height: 1.7;
+    max-width: 760px;
+  }
+
+  /* ---- CONTENT LIST ---- */
+  .content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .content-item {
+    padding-left: 20px;
+    border-left: 1px solid var(--light-gray);
+  }
+
+  .content-item strong {
+    display: block;
+    font-size: 14px;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+
+  .content-item p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  /* ---- FOOTER CTA ---- */
+  .footer-cta {
+    text-align: center;
+    padding: 64px 32px;
+    border-top: 1px solid var(--light-gray);
+    margin-top: 16px;
+  }
+
+  .footer-cta p {
+    font-size: 17px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .cta-btn:hover { background: #222; }
+
+  .cta-url {
+    display: block;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 32px 60px;
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  footer a {
+    color: var(--gray);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--black); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero { padding: 48px 24px 48px; }
+    .hero h1 { font-size: 30px; }
+    .toc-bar { padding: 0 24px; }
+    .main { padding: 48px 24px 80px; }
+    .two-col { grid-template-columns: 1fr; }
+    .case-header { grid-template-columns: 48px 1fr; gap: 16px; }
+    .case-number { font-size: 28px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <a href="/litmus" class="nav-back">&larr; Back to Litmus</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">BrandThnk / Litmus</div>
+    <h1>Five Ways to Use Litmus</h1>
+    <p class="hero-intro">Each use case maps to specific Litmus persona layers, with a walkthrough of how to apply the data to your GTM motion.</p>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <div class="toc-inner">
+    <a href="#uc1" class="toc-link">01 Campaign Copy</a>
+    <a href="#uc2" class="toc-link">02 Channel Strategy</a>
+    <a href="#uc3" class="toc-link">03 Sales Enablement</a>
+    <a href="#uc4" class="toc-link">04 Content Strategy</a>
+    <a href="#uc5" class="toc-link">05 ABM Targeting</a>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- ====== USE CASE 1 ====== -->
+  <div class="use-case" id="uc1">
+    <div class="case-header">
+      <div class="case-number">01</div>
+      <div>
+        <h2>Write campaign copy that lands on the first try</h2>
+        <div class="case-layer">Layer 8 / Messaging Receptivity</div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="block">
+        <div class="block-label">The Problem</div>
+        <p>Most fintech marketing teams write copy based on internal assumptions about what their buyers care about. They iterate through rounds of A/B tests, slowly converging on language that works, burning budget and time on every cycle. The feedback loop is slow and expensive.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">How Litmus Fixes It</div>
+        <p>Layer 8 of every Litmus persona documents three things: language that resonates, language that repels, and objection patterns. These aren't guesses. They're patterns observed across 50+ workshops with the exact buyers you're trying to reach. You start with copy that's tested against real behavioral data, not invented in a brainstorm.</p>
+      </div>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Language that resonates</h4>
+          <ul>
+            <li>"We work with 40 community banks your size across the Southeast."</li>
+            <li>"This integrates natively with Fiserv Premier. No middleware required."</li>
+            <li>"You will not need to hire additional staff to manage this."</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <h4>Language that repels</h4>
+          <ul>
+            <li>"Disrupt your legacy infrastructure."</li>
+            <li>"AI-powered" without a provable use case.</li>
+            <li>"Move fast and break things."</li>
+            <li>"Our Series C funding..."</li>
+          </ul>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-label">How to Apply It</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Identify your target persona.</strong> Match the prospect's title, institution type, and asset size to a Litmus persona.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Pull Layer 8.</strong> Read the resonance and repel language along with the objection patterns for that persona.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Draft with the grain.</strong> Write copy using the phrases and framing that align with how this buyer processes trust signals.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <p><strong>Audit against repel language.</strong> Check every line against the repel list. Remove anything that triggers skepticism before it ships.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== USE CASE 2 ====== -->
+  <div class="use-case" id="uc2">
+    <div class="case-header">
+      <div class="case-number">02</div>
+      <div>
+        <h2>Allocate channel spend by persona behavior</h2>
+        <div class="case-layer">Channel Behavioral Modes</div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="block">
+        <div class="block-label">The Problem</div>
+        <p>Marketing teams distribute budget across channels based on industry benchmarks or past performance. But the same buyer processes the same message completely differently depending on where they see it. A LinkedIn ad and a website landing page aren't just different formats. They activate different psychological modes.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">The Four Channel Modes</div>
+        <div class="two-col">
+          <div class="col-card">
+            <h4>LinkedIn: Peer-Visibility</h4>
+            <p>Buyers share what makes them look informed to peers. Content that doesn't serve this function gets scrolled past. Your ad needs to feel like something they'd want to be seen engaging with.</p>
+          </div>
+          <div class="col-card">
+            <h4>Website: Due Diligence</h4>
+            <p>Every claim on your site gets matched against what the buyer already knows about their own institution. Vague promises fail instantly. Specificity around core platform, bank size, and region is the only credibility signal.</p>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="col-card">
+            <h4>Thought Leadership: Learning</h4>
+            <p>Buyers are open to ideas but hostile to disguised sales. The test: can they use what you taught them tomorrow, even if they never buy from you? If yes, you earn trust. If not, you lose it.</p>
+          </div>
+          <div class="col-card">
+            <h4>Ads: Interruption</h4>
+            <p>Two seconds. Highest skepticism of any channel. Generic value propositions die here. The only thing that earns a click is painful specificity: their core platform, their asset range, their exact problem.</p>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-label">How to Apply It</div>
+        <p>For each target persona, check which channel mode aligns with where they are in the buying journey. A CEO in early exploration needs thought leadership (learning mode). The same CEO evaluating you needs your website (due diligence mode). Match the channel to the mode, not to the funnel stage.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== USE CASE 3 ====== -->
+  <div class="use-case" id="uc3">
+    <div class="case-header">
+      <div class="case-number">03</div>
+      <div>
+        <h2>Arm sales with real buyer context before every call</h2>
+        <div class="case-layer">Layers 5-7 / Psychographics, Pain Points, Buying Context</div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="block">
+        <div class="block-label">The Problem</div>
+        <p>Most discovery calls are generic. The rep asks the same qualification questions regardless of who they're talking to, and the buyer, who has sat through dozens of these calls, checks out. The information gap between what the rep knows and what the buyer expects them to know is where deals stall.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">What Layers 5-7 Give You</div>
+        <div class="two-col">
+          <div class="col-card">
+            <h4>Layer 5: Psychographics</h4>
+            <ul>
+              <li>Risk tolerance and decision style</li>
+              <li>Trust signals (peer references vs. data vs. demos)</li>
+              <li>Information diet: where they learn, who they listen to</li>
+              <li>What drives change (competitive fear vs. board pressure vs. opportunity)</li>
+            </ul>
+          </div>
+          <div class="col-card">
+            <h4>Layer 6: Pain Points</h4>
+            <ul>
+              <li>Top operational challenges ranked by urgency</li>
+              <li>Platform frustrations they live with daily</li>
+              <li>Competitive anxieties keeping them up at night</li>
+              <li>Board-level friction points they can't ignore</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <p><strong>Example:</strong> Before calling a community bank CEO on Fiserv Premier, your rep already knows: the contract renews in 8 months, the board chair forwarded a competitor's app ad asking "why don't we have this?", and the CEO won't move without calling three peer CEOs first. That's a conversation between people who already speak the same language.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">How to Apply It</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Match the persona pre-call.</strong> Use title, institution type, and asset size to find the right Litmus profile.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Build the one-pager.</strong> Pull Layer 5 psychographics, Layer 6 pain points, and Layer 7 buying context into a pre-call brief.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Lead with what you know.</strong> Open with a pain point, not a pitch. "We've seen banks your size on Premier struggling with [specific challenge]. Is that landing for you?"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== USE CASE 4 ====== -->
+  <div class="use-case" id="uc4">
+    <div class="case-header">
+      <div class="case-number">04</div>
+      <div>
+        <h2>Build content for real people, not abstract personas</h2>
+        <div class="case-layer">Layers 1-3 / Identity, Institution Profile, Role Authority</div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="block">
+        <div class="block-label">The Problem</div>
+        <p>Content teams write for "decision-makers in financial services" — an audience so broad it connects with no one. The resulting thought leadership is generic enough to apply to any institution of any size in any market, which means it's specific enough for none of them.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">What Layers 1-3 Unlock</div>
+        <p>These layers give you the biographical and institutional specificity to write for a real person. You know their career arc (Layer 1), their institution's size, charter type, and customer mix (Layer 2), and their actual authority: budget thresholds, board relationships, who reports to whom (Layer 3).</p>
+      </div>
+      <div class="two-col">
+        <div class="col-card">
+          <h4>Generic content</h4>
+          <p>"Digital transformation is a priority for financial institutions looking to stay competitive in today's market."</p>
+        </div>
+        <div class="col-card">
+          <h4>Litmus-informed content</h4>
+          <p>"If you're a community bank CEO on Fiserv Premier with a contract renewal in the next 12 months, your board is probably already asking why your mobile app looks like it was built in 2018."</p>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-label">Content Types This Powers</div>
+        <div class="content-list">
+          <div class="content-item">
+            <strong>Blog posts and articles</strong>
+            <p>Written for a specific persona's career stage and institutional reality, not an abstract role.</p>
+          </div>
+          <div class="content-item">
+            <strong>Case studies</strong>
+            <p>Framed around the exact pain points and buying context of the persona you're targeting, not a generic win story.</p>
+          </div>
+          <div class="content-item">
+            <strong>Webinar topics</strong>
+            <p>Chosen based on what each persona type is actually trying to learn, per their information diet in Layer 5.</p>
+          </div>
+          <div class="content-item">
+            <strong>Email sequences</strong>
+            <p>Written to reference specific technology stacks, regulatory pressures, and competitive dynamics, by segment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== USE CASE 5 ====== -->
+  <div class="use-case" id="uc5">
+    <div class="case-header">
+      <div class="case-number">05</div>
+      <div>
+        <h2>Prioritize ABM accounts by timing and fit</h2>
+        <div class="case-layer">Layers 4 &amp; 7 / Tech Landscape, Buying Context</div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="block">
+        <div class="block-label">The Problem</div>
+        <p>ABM programs target accounts by firmographic fit: asset size, geography, institution type. But firmographics don't tell you whether an account is ready to buy. A $5B bank that just signed a 7-year core contract is a bad target regardless of how well it fits your ICP on paper.</p>
+      </div>
+      <div class="block">
+        <div class="block-label">The Timing Signals in Litmus</div>
+        <div class="two-col">
+          <div class="col-card">
+            <h4>Layer 4: Tech Landscape</h4>
+            <ul>
+              <li>Core platform and contract status</li>
+              <li>Digital banking vendor and satisfaction level</li>
+              <li>Cloud posture and API readiness</li>
+              <li>Known integration pain points</li>
+            </ul>
+          </div>
+          <div class="col-card">
+            <h4>Layer 7: Buying Context</h4>
+            <ul>
+              <li>Active trigger events: renewal, board pressure, competitive threat</li>
+              <li>Budget cycle and annual tech spend range</li>
+              <li>Buying committee composition</li>
+              <li>Dealbreaker criteria: integration, references, compliance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-label">How to Apply It</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <p><strong>Score for timing.</strong> Overlay Litmus trigger events onto your target list. Accounts with converging triggers (contract renewal plus board pressure plus competitive threat) go to the top.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <p><strong>Score for fit.</strong> Match Layer 4 tech landscape to your integration strengths. If your product requires API readiness and the account has none, deprioritize.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <p><strong>Check for dealbreakers.</strong> Layer 7 documents what kills deals for each persona type. If you can't meet a dealbreaker criterion, don't spend the outreach.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <p><strong>Sequence by buying cycle.</strong> Use budget cycle data to time your outreach to the quarter when tech evaluations actually happen, not when your pipeline needs filling.</p>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <p><strong>The result:</strong> Instead of 200 accounts getting the same sequence, you have 40 accounts getting precisely timed, precisely messaged outreach based on where they actually are in their buying cycle, and 160 accounts parked until their timing improves.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="footer-cta">
+    <p>Get all 60 personas. Free, for now.</p>
+    <a class="cta-btn" href="https://brandthnk.co/litmus">Request Access</a>
+    <span class="cta-url">brandthnk.co/litmus</span>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
