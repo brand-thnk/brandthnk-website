@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horicon Bank Interview Insights | BrandThnk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --off-white: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #E0E0E0;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.65;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Roboto Slab', serif;
+      color: var(--black);
+      margin: 0 0 0.65rem 0;
+    }
+
+    h1 { font-size: 2.1rem; font-weight: 700; line-height: 1.15; }
+    h2 { font-size: 1.3rem; font-weight: 600; line-height: 1.2; page-break-after: avoid; break-after: avoid; }
+    h3 { font-size: 1.05rem; font-weight: 600; page-break-after: avoid; break-after: avoid; }
+    h4 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; page-break-after: avoid; break-after: avoid; }
+
+    p { margin: 0 0 0.65rem 0; }
+    strong { font-weight: 600; }
+    ul { margin: 0 0 0.65rem 0; padding-left: 1.2rem; }
+    li { margin-bottom: 0.3rem; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ---- HEADER ---- */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.75rem 0 2.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .header h1 { color: var(--white); margin-bottom: 0.4rem; }
+    .header .accent { color: var(--yellow); }
+
+    .kicker {
+      color: var(--yellow);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+
+    .header-meta {
+      color: #AAAAAA;
+      font-size: 0.78rem;
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .header-summary {
+      margin-top: 1.25rem;
+      color: #CCCCCC;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 680px;
+      border-left: 3px solid var(--yellow);
+      padding-left: 1rem;
+    }
+
+    /* ---- SECTIONS ---- */
+    .section {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--light-gray);
+      margin-bottom: 1.1rem;
+    }
+
+    /* ---- INTERVIEWEE GRID ---- */
+    .interviewee-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .interviewee-card {
+      background: var(--off-white);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      border-top: 2px solid var(--black);
+      flex: 0 0 calc(33.333% - 0.35rem);
+      box-sizing: border-box;
+    }
+
+    .interviewee-card .name {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .interviewee-card .role {
+      font-size: 0.75rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    .interviewee-card.note {
+      border-top-color: var(--gray);
+      opacity: 0.75;
+    }
+
+    /* ---- THEME BLOCKS ---- */
+    .theme-block {
+      margin-bottom: 1.35rem;
+      padding-bottom: 1.35rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .theme-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .theme-number {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      margin-bottom: 0.35rem;
+    }
+
+    .theme-block h3 { margin-bottom: 0.45rem; }
+
+    .pull-quote {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.45;
+      border-left: 3px solid var(--yellow);
+      padding: 0.35rem 0 0.35rem 0.9rem;
+      margin: 0.65rem 0;
+      color: #333;
+    }
+
+    .source-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      color: var(--gray);
+      background: var(--off-white);
+      border: 1px solid var(--light-gray);
+      border-radius: 3px;
+      padding: 0.05rem 0.4rem;
+      margin-left: 0.4rem;
+      font-style: normal;
+      vertical-align: middle;
+    }
+
+    /* ---- HIGHLIGHT BOX ---- */
+    .highlight-box {
+      background: rgba(255, 235, 59, 0.12);
+      border: 1px solid var(--yellow);
+      border-radius: 7px;
+      padding: 0.85rem 1.1rem;
+      margin: 0.85rem 0;
+      font-size: 0.85rem;
+    }
+
+    /* ---- METRIC CALLOUTS ---- */
+    .metrics-row {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .metric-box {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 7px;
+      padding: 0.85rem 1rem;
+      text-align: center;
+      flex: 1 1 0;
+      min-width: 150px;
+    }
+
+    .metric-box .number {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1.1;
+      display: block;
+    }
+
+    .metric-box .label {
+      font-size: 0.72rem;
+      color: #CCCCCC;
+      margin-top: 0.2rem;
+      line-height: 1.35;
+    }
+
+    /* ---- OPPORTUNITIES TABLE ---- */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.65rem 0;
+      font-size: 0.8rem;
+    }
+
+    .data-table th {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      padding: 0.55rem 0.85rem;
+      text-align: left;
+      font-size: 0.78rem;
+    }
+
+    .data-table td {
+      padding: 0.6rem 0.85rem;
+      border-bottom: 1px solid var(--light-gray);
+      vertical-align: top;
+    }
+
+    .data-table tr:nth-child(even) td { background: var(--off-white); }
+
+    .priority-high { font-weight: 600; }
+
+    /* ---- ISSUES GRID ---- */
+    .issues-grid {
+      column-count: 3;
+      column-gap: 0.85rem;
+      margin-top: 0.85rem;
+    }
+
+    .issue-card {
+      background: var(--off-white);
+      border-radius: 7px;
+      padding: 0.9rem 1.1rem;
+      border-top: 3px solid var(--black);
+      break-inside: avoid;
+      page-break-inside: avoid;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0.85rem;
+    }
+
+    .issue-card h4 { margin-top: 0; margin-bottom: 0.5rem; }
+    .issue-card ul { padding-left: 0.95rem; margin: 0; }
+    .issue-card li { font-size: 0.8rem; margin-bottom: 0.35rem; }
+
+    /* ---- COMPETITIVE LANDSCAPE ---- */
+    .region-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .region-card {
+      border: 1px solid var(--light-gray);
+      border-radius: 7px;
+      padding: 0.9rem 1rem;
+      flex: 1 1 0;
+      min-width: 180px;
+    }
+
+    .region-card h4 { margin-bottom: 0.4rem; font-size: 0.82rem; }
+    .region-card p { font-size: 0.78rem; margin-bottom: 0.3rem; }
+
+    .pressure-high { border-top: 3px solid #CC0000; }
+    .pressure-low { border-top: 3px solid #2E7D32; }
+    .pressure-building { border-top: 3px solid var(--yellow); }
+
+    .pressure-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .pressure-label.high { color: #CC0000; }
+    .pressure-label.low { color: #2E7D32; }
+    .pressure-label.building { color: #B8860B; }
+
+    /* ---- PERSONA CARDS ---- */
+    .persona-grid {
+      display: -webkit-flex;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 0.65rem;
+    }
+
+    .persona-card {
+      border: 1px solid var(--light-gray);
+      border-radius: 7px;
+      padding: 1rem 1.15rem;
+      flex: 1 1 0;
+      min-width: 220px;
+    }
+
+    .persona-card h3 {
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+      border-bottom: 2px solid var(--yellow);
+      padding-bottom: 0.3rem;
+    }
+
+    .persona-card p { font-size: 0.8rem; margin-bottom: 0.35rem; }
+    .opp { color: var(--gray); }
+    .opp strong { color: var(--black); }
+
+    .contrarian-card {
+      background: var(--off-white);
+      border: 1px dashed var(--gray);
+      border-radius: 7px;
+      padding: 0.9rem 1.1rem;
+      margin-top: 0.75rem;
+      grid-column: 1 / -1;
+    }
+
+    .contrarian-card h3 { font-size: 0.92rem; margin-bottom: 0.35rem; }
+    .contrarian-card p { font-size: 0.8rem; }
+
+    /* ---- TEAM SECTION ---- */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .team-card {
+      flex: 1 1 0;
+      min-width: 220px;
+      background: var(--off-white);
+      border-radius: 7px;
+      padding: 0.85rem 1rem;
+    }
+
+    .team-card .person { font-weight: 600; font-size: 0.85rem; }
+    .team-card .assessment { font-size: 0.8rem; margin-top: 0.2rem; color: #333; }
+
+    /* ---- COVERAGE NOTE ---- */
+    .coverage-note {
+      font-size: 0.75rem;
+      color: var(--gray);
+      background: var(--off-white);
+      border-radius: 6px;
+      padding: 0.65rem 0.9rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ---- FOOTER ---- */
+    .brand-footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 1.5rem 0;
+      margin-top: 2.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-footer .accent { color: var(--yellow); }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* ---- PRINT ---- */
+    @page { margin: 0.7in; size: letter; }
+
+    @media print {
+      html, body { font-size: 0.78rem; }
+      .no-print { display: none !important; }
+      .header { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { box-shadow: none; border: 1px solid var(--light-gray); border-left: 4px solid var(--yellow); }
+      .data-table th { background: var(--black) !important; color: var(--white) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .theme-number { background: var(--yellow) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .metric-box { background: var(--black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .interviewee-grid { display: table; width: 100%; }
+      .interviewee-card { display: inline-block; width: 32%; vertical-align: top; margin-bottom: 0.5rem; }
+      .issues-grid { display: block; }
+      .issue-card { display: inline-block; width: 32%; vertical-align: top; margin-right: 1%; margin-bottom: 0.75rem; }
+      .region-grid { display: block; }
+      .region-card { display: inline-block; width: 32%; vertical-align: top; margin-right: 1%; margin-bottom: 0.75rem; }
+      .persona-grid { display: block; }
+      .persona-card { display: inline-block; width: 48%; vertical-align: top; margin-right: 1%; margin-bottom: 0.75rem; }
+      .contrarian-card { display: block; width: 100%; }
+      .team-grid { display: block; }
+      .team-card { display: inline-block; width: 48%; vertical-align: top; margin-right: 1%; margin-bottom: 0.5rem; }
+      .metrics-row { display: block; }
+      .metric-box { display: inline-block; width: 32%; vertical-align: top; margin-right: 1%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <div class="kicker">Horicon Bank &nbsp;&middot;&nbsp; Stakeholder Research &nbsp;&middot;&nbsp; Confidential</div>
+      <h1>Interview Insights <span class="accent">.</span></h1>
+      <div class="header-meta">April 2026 &nbsp;&middot;&nbsp; 12 Completed Interviews &nbsp;&middot;&nbsp; Dec 2025 &ndash; Apr 2026</div>
+      <p class="header-summary">
+        Synthesis across 12 completed stakeholder interviews spanning the CEO, regional managers, operations, data analytics, marketing, and business development. Conducted as foundational research for Horicon Bank's 130th anniversary persona-driven marketing playbook.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- WHO WE HEARD FROM -->
+    <section class="section">
+      <div class="section-label">The voices</div>
+      <h2>Who We Heard From</h2>
+      <div class="interviewee-grid">
+        <div class="interviewee-card">
+          <div class="name">Fred Schwertfeger Jr.</div>
+          <div class="role">President &amp; CEO</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Rose Petitte</div>
+          <div class="role">Director of Business Development (Marketing oversight)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Steve Leaman</div>
+          <div class="role">VP, Business Banking</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Robert Traylor</div>
+          <div class="role">EVP / CPA (Contrarian voice)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Brenda Hetebrueg</div>
+          <div class="role">Regional Manager, Southern Region (Milwaukee)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Stephanie Albers</div>
+          <div class="role">Regional Manager, Northern Region (Fox Valley)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Erik Weis</div>
+          <div class="role">Business Development Officer, Milwaukee</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Cassie Voight</div>
+          <div class="role">Operations Officer, VP (23 years)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Chrissy Oelke</div>
+          <div class="role">Data Analytics / CRM Lead (30 years)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Kerry Murphy</div>
+          <div class="role">Customer Relations (19 years)</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Danielle Schraufnagel</div>
+          <div class="role">Marketing / Total Expert Admin</div>
+        </div>
+        <div class="interviewee-card">
+          <div class="name">Natalie Kollin</div>
+          <div class="role">Marketing, Digital &amp; Social</div>
+        </div>
+        <div class="interviewee-card note">
+          <div class="name">Amy B.</div>
+          <div class="role">Graphic Design / Marketing (email interview)</div>
+        </div>
+        <div class="interviewee-card note">
+          <div class="name">Fred Schwertfeger Sr.</div>
+          <div class="role">Vice Chair — technical failure; completed via email</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIMARY THEMES -->
+    <section class="section">
+      <div class="section-label">What we heard across 12 calls</div>
+      <h2>Primary Themes</h2>
+
+      <div class="theme-block">
+        <span class="theme-number">01</span>
+        <h3>Brand Awareness Gap in Growth Markets</h3>
+        <p>The single most consistent finding: Horicon has a strong, trusted brand in legacy markets and is nearly invisible in Milwaukee and Fox Valley despite years of investment and, in Milwaukee's case, personal commitment from the CEO.</p>
+        <div class="pull-quote">"People don't know Horicon Bank is here." <span class="source-tag">Stephanie Albers, Erik Weis, Kerry Murphy</span></div>
+        <p>The tagline "The Natural Choice" is tied to the Horicon Marsh and resonates in legacy markets but carries no meaning in Milwaukee. "Together Doing Good" is gaining internal traction as a replacement — particularly in the southern region. Erik Weis uses it consistently in Milwaukee because "Natural Choice" draws blank stares.</p>
+        <div class="highlight-box">
+          <strong>Root cause note:</strong> The Milwaukee investment has a personal dimension that shapes the imbalance. Fred Jr. has lived in Milwaukee since 1973, commuted to Horicon since 1982, and his children work at and live near Milwaukee branches. The COVID-era branch opportunity was 1 mile from his house. This explains why legacy markets (Dodge County, Beaver Dam) — still the deposit base — feel the budget is skewed against them. This is a leadership conversation, not just a marketing one.
+        </div>
+      </div>
+
+      <div class="theme-block">
+        <span class="theme-number">02</span>
+        <h3>Persona Work Is Underway but Has Not Reached the People Who Need It</h3>
+        <p>Personas exist, leadership has seen them, and the alignment around the framework is strong — described by multiple interviewees as unusual for this type of initiative. But they have not reached frontline staff. Branch teams still use demographic shorthand ("55 or better," "buying a house") because that's what they were trained on.</p>
+        <div class="pull-quote">"Frontline and back office staff wouldn't recognize persona language." <span class="source-tag">Cassie Voight</span></div>
+        <p>The current persona set is too large and too similar to drive action. The original Claritas-based personas (Wealthy Achievers, Flourishing Families, Upwardly Mobile) were designed for existing customer segmentation, not acquisition targeting. A commercial banking lens was missing entirely due to data source limitations. Strong recommendation across multiple voices: consolidate to 3&ndash;4 prioritized personas for both retail and commercial.</p>
+      </div>
+
+      <div class="theme-block">
+        <span class="theme-number">03</span>
+        <h3>Deposit Growth Is the Dominant Strategic Priority — and It's Being Confused with Customer Age</h3>
+        <p>Every stakeholder framed growth through deposits. But there is a specific internal misread happening: the directive to "grow deposits" is being interpreted by frontline staff as "we need younger customers." These are not the same thing.</p>
+        <div class="pull-quote">"Staff interpreting 'need younger customers' — needs clarification. Should focus on share of wallet across all personas." <span class="source-tag">Fred Schwertfeger Jr.</span></div>
+        <p>The most direct deposit gap: business clients who have loans with Horicon but no deposit accounts. Brenda Hetebrueg's southern region is already pursuing this — branch managers doing active business outreach is new behavior. The capture question is framed as: "What would it take to bring your full relationship to Horicon Bank?"</p>
+      </div>
+
+      <div class="theme-block">
+        <span class="theme-number">04</span>
+        <h3>Technology Investment Without Execution — and There Are Real Numbers to Prove It</h3>
+        <p>Total Expert has been in place 2&ndash;3 years. The good news from Danielle Schraufnagel: what's running is actually working. The problem is how little is running.</p>
+        <div class="metrics-row">
+          <div class="metric-box">
+            <span class="number">50–60%</span>
+            <div class="label">Email open rates on active Total Expert journeys</div>
+          </div>
+          <div class="metric-box">
+            <span class="number">56%</span>
+            <div class="label">E-statement conversion rate (launched January 2026)</div>
+          </div>
+          <div class="metric-box">
+            <span class="number">0%</span>
+            <div class="label">Failure rate on Gliders (55+) journey — highest engagement segment</div>
+          </div>
+        </div>
+        <p>Despite these results, a 3-year wish list of journeys sits unbuilt. A youth checking e-statement journey is built and waiting for approval. Commercial onboarding doesn't exist yet. The blocker is not technical: it's the absence of a decision-maker with authority to move.</p>
+        <div class="pull-quote">"Analysis paralysis in meetings prevents execution." <span class="source-tag">Danielle Schraufnagel</span></div>
+        <p>Chrissy Oelke's framing of the broader pattern: the organization operates in "survival mode" rather than strategic mode. The persona data exists. The platform can execute persona-driven journeys without new investment — configuration work only.</p>
+      </div>
+
+      <div class="theme-block">
+        <span class="theme-number">05</span>
+        <h3>Sales Culture in Transition — the Warmth Is an Asset, Not the Problem</h3>
+        <p>The bank is culturally "order-takers." Known as the nicest people in town, not proactive solvers. Kerry Murphy put it directly: they help with what customers ask for, but don't anticipate future needs. The first-ever sales quotas were introduced last year.</p>
+        <div class="pull-quote">"One teller generated 8 referrals in 1.5 weeks just by asking discovery questions." <span class="source-tag">Brenda Hetebrueg</span></div>
+        <p>The southern region reached 25% of Q1 goal — framed by Brenda as a major improvement from where they were. The coaching need is not about making staff "salesy" — it's about giving them language to invite deeper relationships. The discovery question doing the most work: "What would it take to bring your full relationship to Horicon Bank?"</p>
+      </div>
+    </section>
+
+    <!-- PLATFORM & EXECUTION -->
+    <section class="section">
+      <div class="section-label">On the ground</div>
+      <h2>Competitive Landscape by Region</h2>
+      <p>The competitive challenge is not uniform. Each market requires a different response.</p>
+      <div class="region-grid">
+        <div class="region-card pressure-high">
+          <div class="pressure-label high">High Pressure</div>
+          <h4>Fox Valley (Appleton / Oshkosh)</h4>
+          <p>Credit unions dominate through rate competition and heavy radio advertising. Horicon cannot match rates. Brand awareness is minimal — "teeny tiny fish in a very big sea." Need: break through noise with consistency, not spend.</p>
+        </div>
+        <div class="region-card pressure-building">
+          <div class="pressure-label building">Building</div>
+          <h4>Milwaukee / SE Wisconsin</h4>
+          <p>3 years in market, 4&ndash;5 branches. People are still surprised Horicon has Milwaukee locations. No billboards. Digital ads not geo-tracked. Metrics are impressions, not conversions. Need: brand-building investment with measurable output.</p>
+        </div>
+        <div class="region-card pressure-low">
+          <div class="pressure-label low">Low Pressure</div>
+          <h4>Legacy Markets (Dodge County / Ripon / Green Lake)</h4>
+          <p>50% deposit share in Dodge County. Losses are almost entirely from customer relocation, not competition. Strong service reputation. The risk here is internal: legacy markets feel deprioritized relative to Milwaukee spend.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPPORTUNITIES -->
+    <section class="section">
+      <div class="section-label">Where to play</div>
+      <h2>Primary Opportunities</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:28%">Opportunity</th>
+            <th>Signal from Transcripts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="priority-high">Business Owner Full-Relationship Capture</td>
+            <td>Many business loans exist with no deposit accounts. Southern region already running active outreach. Conversion rate strong once prospects engage — the gap is awareness and ask.</td>
+          </tr>
+          <tr>
+            <td class="priority-high">Senior Market in Milwaukee</td>
+            <td>Research shows minimal competition for senior programs in SE Wisconsin. Trust seminars averaging 100 attendees and generating new business. Kerry Murphy's entire 2026 focus. Partnerships with assisted living facilities and funeral trusts in development.</td>
+          </tr>
+          <tr>
+            <td class="priority-high">Total Expert Activation (No New Budget)</td>
+            <td>50&ndash;60% open rates and 56% e-statement conversion prove the platform works. A youth checking journey and commercial onboarding journey are built or near-built. Only barrier is a decision-maker with authority to launch.</td>
+          </tr>
+          <tr>
+            <td>Church &amp; Nonprofit Segment</td>
+            <td>Nonprofit checking pays interest — a genuine differentiator. One recent nonprofit brought ~$1M in deposits. Board members are often HNW individuals. Bank has 40 hours paid employee volunteer time as a natural entry point.</td>
+          </tr>
+          <tr>
+            <td>Banking at Work Program</td>
+            <td>Pilot running with cash bonuses for employee signups. Scalable with existing automation tools. Ops was excluded from initial design (created manual processes) — fixable with proper cross-functional involvement.</td>
+          </tr>
+          <tr>
+            <td>Youth / Next-Gen Banking</td>
+            <td>"My Money" checking launched. Financial literacy gap in schools creates a reach window. Chime and Cash App are the real competitors, not other banks. Cassie's 16-year-old works at the bank and has zero financial knowledge — the gap is visible at the staff level.</td>
+          </tr>
+          <tr>
+            <td>Customer Success Storytelling</td>
+            <td>Fred Jr. and Amy B. both flagged this independently: the team is "too humble." Amy also raised that community donations go almost exclusively to existing customers — a "stingy" perception risk in new markets. Stories about new-customer relationships are the most underused asset.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ISSUES -->
+    <section class="section">
+      <div class="section-label">What's in the way</div>
+      <h2>Issues to Address</h2>
+      <table class="issues-grid" style="width:100%; border-collapse: separate; border-spacing: 0.7rem 0; margin-top: 0.85rem;">
+        <tr>
+          <td class="issue-card" style="width:33.333%; vertical-align: top;">
+            <h4>Strategic</h4>
+            <ul>
+              <li>"Fear of missing out" prevents prioritization — spreading 5% effort across 20 initiatives vs. 50% on 2 (Traylor)</li>
+              <li>Milwaukee investment imbalance has a personal dimension — legacy markets are the deposit base but feel de-prioritized</li>
+              <li>No customer profitability measurement despite multiple attempts over multiple years (Traylor)</li>
+              <li>Deposit growth directive is being misread as "acquire younger customers" — needs explicit correction from leadership</li>
+            </ul>
+          </td>
+          <td class="issue-card" style="width:33.333%; vertical-align: top;">
+            <h4>Marketing &amp; Operations</h4>
+            <ul>
+              <li>Budget is allocation-based, not strategic — ~$1.5M includes $500 branch parade donations; $300K went to credit card stock (ended up $150&ndash;180K)</li>
+              <li>No billboards in Milwaukee; digital ads not geo-tracked; metrics are impressions not conversions (Erik Weis)</li>
+              <li>Radio budget was cut and reallocated — credit unions now saturate Fox Valley airwaves</li>
+              <li>Operations excluded from Banking at Work design, creating manual processes that limit scale</li>
+              <li>Community donations skew to existing customers — "stingy" perception risk in new markets (Amy B.)</li>
+            </ul>
+          </td>
+          <td class="issue-card" style="width:33.333%; vertical-align: top;">
+            <h4>Leadership &amp; Execution</h4>
+            <ul>
+              <li>No CMO or clear marketing decision-maker — Grace's departure left a gap that blocks execution</li>
+              <li>Total Expert renewed twice but underutilized; analysis paralysis in meetings is the specific blocker</li>
+              <li>Data insights from Chrissy's team not shared with frontline — branch staff can't act on intelligence they can't see</li>
+              <li>Org operates in "survival mode" vs. strategic mode (Chrissy Oelke)</li>
+              <li>External consultants repeatedly chosen over internal expertise, creating buyer's remorse pattern (Traylor)</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- MARKETING TEAM -->
+    <section class="section">
+      <div class="section-label">Internal capability</div>
+      <h2>Marketing Team Assessment</h2>
+      <p>Per Fred Jr.'s direct assessment — relevant for hiring and structure recommendations.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="person">Becky</div>
+          <div class="assessment">Most experienced. Can execute everything. Does not necessarily want a management role.</div>
+        </div>
+        <div class="team-card">
+          <div class="person">Kirsty</div>
+          <div class="assessment">Wants the leadership role most. Analytics background. Tendency to overanalyze; needs execution support and decisional authority.</div>
+        </div>
+        <div class="team-card">
+          <div class="person">Danielle Schraufnagel</div>
+          <div class="assessment">Strong writer and communicator. Manages Total Expert platform. Not management material but a critical execution resource.</div>
+        </div>
+        <div class="team-card">
+          <div class="person">Natalie Kollin</div>
+          <div class="assessment">Social media and digital background. Stepped up post-Grace departure. Handles merchandising and digital ad placement.</div>
+        </div>
+        <div class="team-card">
+          <div class="person">Amy B.</div>
+          <div class="assessment">Strong graphic design skills. Lacks confidence. Best suited to rural market materials. Works across all departments on visual production.</div>
+        </div>
+        <div class="team-card">
+          <div class="person">Rose Petitte</div>
+          <div class="assessment">Managing marketing while overseeing trust and business development. Has a marketing degree but not Grace's depth. May not want the long-term marketing leadership role.</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:0.85rem;">
+        <strong>Fred Jr.'s view:</strong> No immediate need for a CMO given current size and collaborative culture. Recommendation is to set strategic direction at the executive level and let the team execute. The gap is direction, not headcount.
+      </div>
+    </section>
+
+    <!-- PERSONAS -->
+    <section class="section">
+      <div class="section-label">Who they're serving</div>
+      <h2>Persona Insights</h2>
+      <div class="persona-grid">
+
+        <div class="persona-card">
+          <h3>Business Owner</h3>
+          <p>Primary commercial target. Loans often exist; deposits don't. Finds Horicon attractive once aware. Conversion rate is strong once prospects engage — the barrier is reach and ask, not fit.</p>
+          <p class="opp"><strong>Opportunity:</strong> Full-relationship capture; Banking at Work; Treasury management fee waivers as entry point</p>
+        </div>
+
+        <div class="persona-card">
+          <h3>Established Steward / Senior (55–74)</h3>
+          <p>Strongest existing segment. Zero churn on Total Expert journey. Trust-oriented, prefers in-person. Responds to estate planning, events, and community presence. Milwaukee has minimal senior program competition — an open lane.</p>
+          <p class="opp"><strong>Opportunity:</strong> Senior expansion in Milwaukee; Gliders event outreach to prospects (not just existing customers); funeral trust and assisted living partnerships</p>
+        </div>
+
+        <div class="persona-card">
+          <h3>Growing Family / First-Time Homebuyer</h3>
+          <p>Horicon has mortgage strength that isn't translating to brand awareness. "Best bank for mortgages" but not top-of-mind for home buyers. Proactive outreach at the mortgage moment is the window.</p>
+          <p class="opp"><strong>Opportunity:</strong> Mortgage marketing; Banking at Work employer partnerships; school-based financial literacy</p>
+        </div>
+
+        <div class="persona-card">
+          <h3>First-Gen / Youth (Under 25)</h3>
+          <p>Real competitors are Chime, Cash App, and GreenLight — not other banks. Financial literacy gap starts in high school. "My Money" checking gives Horicon an entry point if it can reach students before habits form. Cassie's own 16-year-old (who works at the bank) has zero financial knowledge.</p>
+          <p class="opp"><strong>Opportunity:</strong> "My Money" checking; high school visits and partnerships; digital-first engagement; financial literacy curriculum</p>
+        </div>
+
+        <div class="contrarian-card">
+          <h3>Contrarian View — Robert Traylor (EVP / CPA)</h3>
+          <p><strong>The argument:</strong> Focus on Boomers + Gen Z. Skip Millennials — they want digital speed and product breadth Horicon cannot match. Gen Z, counterintuitively, is showing preference for their parents' and grandparents' banking approaches — more traditional, more trust-based. This is the "bookend strategy."</p>
+          <p><strong>Why it's worth taking seriously:</strong> Traylor is the most analytically rigorous voice in the engagement. His Gen Z observation is consistent with emerging behavioral data. The underlying principle — concentrate resources where you can actually win — is sound regardless of whether the specific segmentation holds.</p>
+          <p><strong>What it needs:</strong> Validation against Horicon's own customer acquisition data before acting on it. If Millennial acquisition cost is materially higher than other segments, the argument strengthens considerably.</p>
+        </div>
+
+      </div>
+
+      <div class="coverage-note">
+        <strong>Coverage:</strong> 12 of 14 targeted interviews completed. Fred Schwertfeger Sr. (Vice Chair) experienced a technical failure on Google Meet (audio inaudible at 87); communication continued via email. The Apr 17 interview slot for Stephanie Albers did not take place — rescheduled and completed Apr 23. One brief Fred C. session (Apr 17) was superseded by the full CEO interview (Apr 16) and rescheduled Fred C. follow-up (Apr 27). All substantive content captured.
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="brand-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span><span class="accent">BrandThnk</span> &nbsp;&middot;&nbsp; Brand strategy for financial services and fintech</span>
+        <span>Confidential &nbsp;&middot;&nbsp; April 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

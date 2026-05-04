@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persona Quotes Update | Horicon Bank Portal</title>
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--brandthnk-off-white);
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .accent {
+      color: var(--brandthnk-yellow);
+    }
+
+    .content {
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .update-banner {
+      background: var(--brandthnk-yellow);
+      padding: 1rem 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-black);
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--brandthnk-black);
+    }
+
+    .quote-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .quote-box {
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid;
+    }
+
+    .before-quote {
+      background: #ffebee;
+      border-left-color: #d32f2f;
+    }
+
+    .after-quote {
+      background: #e8f5e8;
+      border-left-color: #2e7d32;
+    }
+
+    .quote-header {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quote-text {
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-attribution {
+      font-size: 0.8rem;
+      color: var(--brandthnk-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Horicon Bank Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="deliverables.html" class="nav-link">Deliverables</a>
+        <a href="persona-explorer.html" class="nav-link">Personas</a>
+        <a href="stakeholder-interviews.html" class="nav-link">Interviews</a>
+        <a href="persona-quotes-update.html" class="nav-link active">Updates</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1>Persona Quotes <span class="accent">Update</span></h1>
+      <p>Frontline Employee Perspectives • May 2026</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- Update Banner -->
+    <div class="update-banner">
+      <strong>✅ Update Complete:</strong> Persona quotes have been updated with frontline employee insights per Rose's feedback. The interactive persona explorer now features quotes from staff who work directly with customers daily.
+    </div>
+
+    <!-- Overview -->
+    <div class="content">
+      <div class="section">
+        <h2>What Changed</h2>
+        <p>Per Rose's feedback, we replaced management and leadership quotes with quotes from frontline employees who work directly with these personas daily. This provides a more authentic representation of operational reality and customer-facing experience.</p>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 1rem;">Key Frontline Staff Quoted:</h3>
+        <ul style="margin-left: 1.5rem;">
+          <li><strong>Kerry Murphy:</strong> Customer Relations Specialist, 19+ years frontline experience</li>
+          <li><strong>Brenda Hetebrueg:</strong> Regional Manager, Southern Region (frontline operations)</li>
+          <li><strong>Cassie Voight:</strong> Operations Officer, VP, 23+ years experience</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Updated Files</h2>
+        <ul style="margin-left: 1.5rem;">
+          <li>✅ <a href="persona-explorer.html">Interactive Persona Explorer</a> - Updated with all frontline quotes</li>
+          <li>📝 <a href="assets/Persona-PDF-Quote-Updates.md">PDF Update Reference</a> - Instructions for updating the PowerPoint/PDF version</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quote Examples -->
+    <div class="content">
+      <div class="section">
+        <h2>Example Quote Changes</h2>
+
+        <h3 style="margin-bottom: 1rem;">Wealthy Achievers Persona</h3>
+        <div class="quote-comparison">
+          <div class="quote-box before-quote">
+            <div class="quote-header">Before (Management)</div>
+            <div class="quote-text">"Business clients with trust department in the 55-74 age group - that's our sweet spot right now"</div>
+            <div class="quote-attribution">Erik, Business Development</div>
+          </div>
+          <div class="quote-box after-quote">
+            <div class="quote-header">After (Frontline)</div>
+            <div class="quote-text">"People don't know Horicon Bank is here. Milwaukee seniors are different - more diversity, more access to services. Many retirees not originally from the area."</div>
+            <div class="quote-attribution">Kerry Murphy, Customer Relations (19+ years)</div>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Flourishing Families Persona</h3>
+        <div class="quote-comparison">
+          <div class="quote-box before-quote">
+            <div class="quote-header">Before (Management)</div>
+            <div class="quote-text">"Flourishing families and upwardly mobile - we need improvement there. We're lacking content and products that appeal to the younger generation."</div>
+            <div class="quote-attribution">Natalie, Marketing</div>
+          </div>
+          <div class="quote-box after-quote">
+            <div class="quote-header">After (Frontline)</div>
+            <div class="quote-text">"We're the best bank for mortgages but we're not top-of-mind for home buyers. Even friends and acquaintances don't think of Horicon when they're financing a home."</div>
+            <div class="quote-attribution">Kerry Murphy, Customer Relations (19+ years)</div>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Upwardly Mobile Persona</h3>
+        <div class="quote-comparison">
+          <div class="quote-box before-quote">
+            <div class="quote-header">Before (Management)</div>
+            <div class="quote-text">"First-time workforce is my recommendation for a 90-day campaign. It's a major life moment with high growth potential."</div>
+            <div class="quote-attribution">Natalie, Marketing</div>
+          </div>
+          <div class="quote-box after-quote">
+            <div class="quote-header">After (Frontline)</div>
+            <div class="quote-text">"My 16-year-old works at the bank and has zero financial knowledge - the gap is visible at the staff level. Real competitors are Chime, Cash App, and GreenLight - not other banks."</div>
+            <div class="quote-attribution">Cassie Voight, Operations Officer (23+ years)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="content">
+      <div class="section">
+        <h2>Next Steps for PDF Version</h2>
+        <p>The interactive persona explorer has been updated. To update the PDF version:</p>
+        <ol style="margin-left: 1.5rem; margin-top: 1rem;">
+          <li>Open <code>Horicon-Bank-2026-Customer-Personas.pptx</code></li>
+          <li>Locate persona profile cards (slides 9–13, 15–17)</li>
+          <li>Replace quotes using the <a href="assets/Persona-PDF-Quote-Updates.md">reference document</a></li>
+          <li>Regenerate PDF and upload to portal</li>
+        </ol>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: var(--brandthnk-black); color: var(--brandthnk-white); padding: 2rem 0; margin-top: 4rem;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span><span style="color: var(--brandthnk-yellow);">BrandThnk</span> • Brand strategy for financial services</span>
+      <span style="font-size: 0.75rem; color: #999999;">Updated May 4, 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>

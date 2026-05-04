@@ -1,1323 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Persona Explorer | Horicon Bank Portal</title>
-  <style>
-    :root {
-      --brandthnk-black: #000000;
-      --brandthnk-white: #FFFFFF;
-      --brandthnk-yellow: #FFEB3B;
-      --brandthnk-off-white: #F5F5F5;
-      --brandthnk-gray: #666666;
-      --brandthnk-light-gray: #E0E0E0;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: var(--brandthnk-black);
-      background: var(--brandthnk-off-white);
-      min-height: 100vh;
-    }
-
-    .main-nav {
-      background: var(--brandthnk-white);
-      border-bottom: 1px solid var(--brandthnk-light-gray);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .nav-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-    }
-
-    .nav-brand {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-link {
-      color: var(--brandthnk-black);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background-color 0.2s ease;
-    }
-
-    .nav-link:hover {
-      background: var(--brandthnk-off-white);
-    }
-
-    .nav-link.active {
-      background: var(--brandthnk-yellow);
-      color: var(--brandthnk-black);
-      font-weight: 600;
-    }
-
-    .header {
-      background: var(--brandthnk-white);
-      border-bottom: 1px solid var(--brandthnk-light-gray);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .header-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .header-left h1 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
-      margin-bottom: 0.25rem;
-    }
-
-    .header-subtitle {
-      font-size: 0.875rem;
-      color: var(--brandthnk-gray);
-      margin-bottom: 0.75rem;
-    }
-
-    .header-badges {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.75rem;
-    }
-
-    .header-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .header-badge .icon {
-      color: #059669;
-    }
-
-    .header-badge.info .icon {
-      color: #0284C7;
-    }
-
-    .header-right {
-      text-align: right;
-    }
-
-    .header-section-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--brandthnk-gray);
-      margin-bottom: 0.25rem;
-    }
-
-    .interview-list {
-      font-size: 0.75rem;
-      color: var(--brandthnk-gray);
-      margin-bottom: 0.75rem;
-    }
-
-    .interview-item {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      justify-content: flex-end;
-      margin-bottom: 0.25rem;
-    }
-
-    .interview-item .icon {
-      font-size: 0.75rem;
-    }
-
-    .interview-item.completed .icon {
-      color: #059669;
-    }
-
-    .interview-item.upcoming .icon {
-      color: #0284C7;
-    }
-
-    .interview-item.unscheduled .icon {
-      color: #D97706;
-    }
-
-    .main-container {
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 1.5rem;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 80px;
-      height: fit-content;
-    }
-
-    .sidebar-card {
-      background: var(--brandthnk-white);
-      border-radius: 8px;
-      border: 1px solid var(--brandthnk-light-gray);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      padding: 1rem;
-    }
-
-    .sidebar-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar-header .icon {
-      color: var(--brandthnk-gray);
-    }
-
-    .sidebar-header h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--brandthnk-black);
-    }
-
-    .persona-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .persona-button {
-      width: 100%;
-      text-align: left;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .persona-button:hover {
-      background: var(--brandthnk-off-white);
-    }
-
-    .persona-button.active {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
-      color: #1E40AF;
-      font-weight: 500;
-    }
-
-    .persona-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.25rem;
-    }
-
-    .persona-name {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: inherit;
-    }
-
-    .persona-priority {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #059669;
-    }
-
-    .persona-meta {
-      font-size: 0.75rem;
-      color: var(--brandthnk-gray);
-      margin-bottom: 0.5rem;
-    }
-
-    .persona-badges {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .persona-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-size: 0.75rem;
-      padding: 0.125rem 0.5rem;
-      border-radius: 9999px;
-    }
-
-    .persona-badge.confirmed {
-      background: #DCFCE7;
-      color: #166534;
-    }
-
-    .persona-badge.challenged {
-      background: #FEF3C7;
-      color: #92400E;
-    }
-
-    .main-content {
-      min-height: 500px;
-    }
-
-    .persona-header-card {
-      background: var(--brandthnk-white);
-      border-radius: 8px;
-      border: 1px solid var(--brandthnk-light-gray);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .persona-title-section {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .persona-title {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .persona-title h2 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.875rem;
-      font-weight: 700;
-      color: var(--brandthnk-black);
-    }
-
-    .priority-badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: #DCFCE7;
-      color: #166534;
-    }
-
-    .persona-tagline {
-      font-size: 1.125rem;
-      color: var(--brandthnk-gray);
-      margin-bottom: 1rem;
-    }
-
-    .segment-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      color: #1E40AF;
-    }
-
-    .segment-badge .icon {
-      color: #0284C7;
-    }
-
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .overview-card {
-      padding: 1rem;
-      border-radius: 6px;
-      border: 1px solid var(--brandthnk-light-gray);
-    }
-
-    .overview-card.size {
-      background: var(--brandthnk-off-white);
-    }
-
-    .overview-card.opportunity {
-      background: #ECFCCB;
-      border-color: #BEF264;
-    }
-
-    .overview-card.behavioral {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
-    }
-
-    .overview-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.25rem;
-      color: var(--brandthnk-gray);
-    }
-
-    .overview-card.opportunity .overview-label {
-      color: #365314;
-    }
-
-    .overview-card.behavioral .overview-label {
-      color: #1E40AF;
-    }
-
-    .overview-content {
-      font-size: 0.875rem;
-      color: var(--brandthnk-black);
-    }
-
-    .overview-card.opportunity .overview-content {
-      color: #166534;
-    }
-
-    .overview-card.behavioral .overview-content {
-      color: #1E40AF;
-    }
-
-    .tabs-card {
-      background: var(--brandthnk-white);
-      border-radius: 8px;
-      border: 1px solid var(--brandthnk-light-gray);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .tabs-nav {
-      border-bottom: 1px solid var(--brandthnk-light-gray);
-      padding: 0.5rem;
-      display: flex;
-      gap: 0.25rem;
-    }
-
-    .tab-button {
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      border: none;
-      background: transparent;
-      color: var(--brandthnk-gray);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .tab-button:hover {
-      background: var(--brandthnk-off-white);
-    }
-
-    .tab-button.active {
-      background: #EFF6FF;
-      color: #1E40AF;
-    }
-
-    .tab-content {
-      padding: 1.5rem;
-    }
-
-    .section {
-      margin-bottom: 1.5rem;
-    }
-
-    .section:last-child {
-      margin-bottom: 0;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-header h3 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--brandthnk-black);
-    }
-
-    .section-header .icon {
-      font-size: 1.25rem;
-    }
-
-    .section-header.goals .icon {
-      color: #059669;
-    }
-
-    .section-header.frustrations .icon {
-      color: #DC2626;
-    }
-
-    .section-header.reality .icon {
-      color: #D97706;
-    }
-
-    .section-header.confirmed .icon {
-      color: #059669;
-    }
-
-    .section-header.challenged .icon {
-      color: #DC2626;
-    }
-
-    .item-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: 1px solid transparent;
-    }
-
-    .item.goals {
-      background: #ECFCCB;
-      border-color: #BEF264;
-    }
-
-    .item.frustrations {
-      background: #FEF2F2;
-      border-color: #FECACA;
-    }
-
-    .item.reality {
-      background: #FEF3C7;
-      border-color: #FDE68A;
-    }
-
-    .item.confirmed {
-      background: #ECFCCB;
-      border-color: #BEF264;
-    }
-
-    .item.challenged {
-      background: #FEF2F2;
-      border-color: #FECACA;
-    }
-
-    .item .icon {
-      flex-shrink: 0;
-      font-size: 1.25rem;
-      line-height: 1;
-    }
-
-    .item.goals .icon {
-      color: #059669;
-    }
-
-    .item.frustrations .icon {
-      color: #DC2626;
-    }
-
-    .item.reality .icon {
-      color: #D97706;
-    }
-
-    .item.confirmed .icon {
-      color: #059669;
-    }
-
-    .item.challenged .icon {
-      color: #DC2626;
-    }
-
-    .item-text {
-      font-size: 0.875rem;
-      color: var(--brandthnk-black);
-      line-height: 1.5;
-    }
-
-    .item.goals .item-text {
-      color: #166534;
-    }
-
-    .item.frustrations .item-text {
-      color: #7F1D1D;
-    }
-
-    .item.reality .item-text {
-      color: #92400E;
-    }
-
-    .item.confirmed .item-text {
-      color: #166534;
-    }
-
-    .item.challenged .item-text {
-      color: #7F1D1D;
-    }
-
-    .data-table {
-      background: var(--brandthnk-off-white);
-      border: 1px solid var(--brandthnk-light-gray);
-      border-radius: 6px;
-      overflow: hidden;
-      margin-top: 0.75rem;
-    }
-
-    .data-table table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.875rem;
-    }
-
-    .data-table th {
-      background: #E5E7EB;
-      border-bottom: 1px solid var(--brandthnk-light-gray);
-      padding: 0.75rem;
-      text-align: left;
-      font-weight: 600;
-      color: #374151;
-    }
-
-    .data-table td {
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--brandthnk-light-gray);
-      color: var(--brandthnk-black);
-    }
-
-    .data-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .data-table .metric {
-      color: #374151;
-    }
-
-    .data-table .value {
-      font-weight: 500;
-      color: var(--brandthnk-black);
-    }
-
-    .data-table .source {
-      color: var(--brandthnk-gray);
-      font-size: 0.75rem;
-    }
-
-    .quote-note {
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 6px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .quote-note .note-text {
-      font-size: 0.875rem;
-      color: #1E40AF;
-    }
-
-    .quote-card {
-      background: var(--brandthnk-white);
-      border: 1px solid var(--brandthnk-light-gray);
-      border-radius: 6px;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
-    }
-
-    .quote-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .quote-avatar {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      background: #EFF6FF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-weight: 700;
-      font-size: 1.125rem;
-      color: #1E40AF;
-    }
-
-    .quote-content {
-      flex: 1;
-    }
-
-    .quote-attribution {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .quote-person {
-      font-weight: 600;
-      color: var(--brandthnk-black);
-    }
-
-    .quote-role {
-      font-size: 0.875rem;
-      color: var(--brandthnk-gray);
-    }
-
-    .quote-text {
-      position: relative;
-      padding-left: 1rem;
-    }
-
-    .quote-mark {
-      position: absolute;
-      left: -0.5rem;
-      top: -0.25rem;
-      font-size: 1.5rem;
-      color: #E5E7EB;
-    }
-
-    .quote-text p {
-      font-size: 0.875rem;
-      color: var(--brandthnk-gray);
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    .recommendations-note {
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      border-radius: 6px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .recommendation-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 1rem;
-      background: #ECFCCB;
-      border: 1px solid #BEF264;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-    }
-
-    .recommendation-number {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      background: #059669;
-      color: var(--brandthnk-white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .recommendation-text {
-      font-size: 0.875rem;
-      color: #166534;
-      line-height: 1.5;
-    }
-
-    .footer-note {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: #F3F4F6;
-      border: 1px solid var(--brandthnk-light-gray);
-      border-radius: 6px;
-    }
-
-    .footer-note p {
-      font-size: 0.875rem;
-      color: var(--brandthnk-gray);
-      line-height: 1.5;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 1024px) {
-      .nav-links {
-        gap: 1rem;
-      }
-
-      .nav-link {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.875rem;
-      }
-
-      .main-container {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-      }
-
-      .sidebar {
-        position: static;
-      }
-
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tabs-nav {
-        flex-wrap: wrap;
-      }
-
-      .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-container {
-        padding: 0 1rem;
-        height: auto;
-        flex-direction: column;
-        padding: 1rem;
-        align-items: flex-start;
-      }
-
-      .nav-brand {
-        margin-bottom: 1rem;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .persona-title h2 {
-        font-size: 1.5rem;
-      }
-
-      .quote-header {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .quote-avatar {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-    }
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horicon Bank - Customer Persona Explorer (Updated with Interview Insights)</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <nav class="main-nav">
-    <div class="nav-container">
-      <div class="nav-brand">Horicon Bank Portal</div>
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">Dashboard</a>
-        <a href="pre-engagement-assessment.html" class="nav-link">Assessment</a>
-        <a href="persona-maturity-assessment.html" class="nav-link">Persona Maturity</a>
-        <a href="stakeholder-interviews.html" class="nav-link">Interviews</a>
-        <a href="synthesis-document.html" class="nav-link">Synthesis</a>
-        <a href="recommendations-brief.html" class="nav-link">Recommendations</a>
-        <a href="interview-guide.html" class="nav-link">Interview Guide</a>
-        <a href="persona-explorer.html" class="nav-link active">Persona Explorer</a>
-        <a href="competitive-intelligence.html" class="nav-link">Market Intel</a>
-      </div>
-    </div>
-  </nav>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
 
-  <div id="root"></div>
+        const PersonaExplorer = () => {
+          const [selectedPersona, setSelectedPersona] = useState('wealthy-achievers');
+          const [activeTab, setActiveTab] = useState('overview');
 
-  <script type="text/babel">
-    const { useState } = React;
+          const Icon = ({ name, className }) => {
+            const icons = {
+              'chevron-right': '›',
+              'alert-circle': '⚠',
+              'check-circle': '✓',
+              'x-circle': '✗',
+              'trending-up': '↗',
+              'users': '👥',
+              'dollar-sign': '$',
+              'target': '🎯',
+              'message-circle': '💬',
+              'quote': '"'
+            };
+            return <span className={className}>{icons[name] || '•'}</span>;
+          };
 
-    const PersonaExplorer = () => {
-      const [selectedPersona, setSelectedPersona] = useState('established-stewards');
-      const [activeTab, setActiveTab] = useState('overview');
+          const personas = {
+            'wealthy-achievers': {
+              name: 'Wealthy Achievers',
+              code: 'M2',
+              ageRange: '55-74',
+              tagline: 'Established affluence, seeking legacy and control',
+              priority: 'High',
+              color: '#2C5F7C',
+              segment: {
+                code: '10',
+                name: 'Leasing Luxury',
+                description: 'Affluent segment within Wealthy Achievers with high deposit potential'
+              },
+              overview: {
+                size: 'Significant current customer base',
+                opportunity: 'High deposit growth potential, especially in southeast Wisconsin',
+                behavioral: 'Strong cross-sell adoption once acquired, high checking penetration'
+              },
+              validated: {
+                confirmed: [
+                  'Data confirms segment exists and matches wealthy achievers profile (Chrissy)',
+                  'Strong with established customers in legacy markets (Erik, Kerry)',
+                  'Trust department connection validated for this age group (Erik)',
+                  'Responds to educational vs sales approach (confirmed by glider program performance)'
+                ],
+                challenged: [
+                  'Milwaukee market seniors are different demographic - more diverse, access to more services, many not originally from area (Kerry)',
+                  'Acquisition still struggles even in strong segment areas (Chrissy)',
+                  'Not currently using "persona" language at all - identify by life events instead (Kerry)'
+                ]
+              },
+              stakeholderQuotes: [
+                { person: 'Kerry Murphy', role: 'Customer Relations (19+ years frontline)', quote: 'People don\'t know Horicon Bank is here. Milwaukee seniors are different - more diversity, more access to services. Many retirees not originally from the area.' },
+                { person: 'Brenda Hetebrueg', role: 'Regional Manager, Southern Region (frontline)', quote: 'One teller generated 8 referrals in 1.5 weeks just by asking discovery questions. The southern region reached 25% of Q1 goal - a major improvement from where we were.' },
+                { person: 'Cassie Voight', role: 'Operations Officer (23+ years)', quote: 'Frontline and back office staff wouldn\'t recognize persona language. We operate in survival mode rather than strategic mode.' }
+              ],
+              performanceData: [
+                { metric: 'Glider Journey (55+)', value: '0% failure rate', source: 'Danielle - Total Expert metrics' },
+                { metric: 'E-statement Conversion', value: '56%', source: 'Danielle - Total Expert metrics' },
+                { metric: 'Senior Seminar Attendance', value: '100 avg attendees', source: 'Pre-engagement assessment' },
+                { metric: 'Cross-sell Performance', value: 'Strong in established markets', source: 'Chrissy - data analysis' }
+              ],
+              operationalReality: [
+                'Frontline doesn\'t use persona language - they identify by demographics and life events: "55 or better gets certain products" (Kerry)',
+                'Trust seminars working but limited reach in Milwaukee/Fox Valley markets (Erik)',
+                'Different senior demographics between Milwaukee and legacy markets require different approaches (Kerry)',
+                'Strong community presence but weak at proactive sales (Kerry)'
+              ],
+              goals: [
+                'Preserve and transfer wealth to next generation',
+                'Access trusted expertise for estate planning and trust services',
+                'Simplify complex financial lives without losing control',
+                'Support community causes aligned with values',
+                'Maintain financial independence through retirement'
+              ],
+              frustrations: [
+                'Banks that treat them as transactions, not relationships',
+                'Generic advice that doesn\'t account for their specific situation',
+                'Confusion about new technology vs old processes (Kerry: "unhappy customers primarily confused about new money transfer methods vs old")',
+                'Feeling pressured to adopt digital when they prefer personal service',
+                'Difficulty finding advisors who actually understand their goals'
+              ],
+              recommendations: [
+                'Kerry\'s 2026 focus: Expand senior customers in Milwaukee County through senior center symposiums, bingo sponsorship, assisted living partnerships',
+                'Consider dedicated Golden Free Club Facebook page for exclusive senior content (Kerry)',
+                'Scale trust seminar model into underserved southeast Wisconsin market (pre-engagement)',
+                'Separate Milwaukee senior strategy from legacy market approach due to demographic differences (Kerry)'
+              ]
+            },
+            'flourishing-families': {
+              name: 'Flourishing Families',
+              code: 'F1',
+              ageRange: '35-54',
+              tagline: 'Peak earning, peak complexity, seeking guidance',
+              priority: 'High',
+              color: '#C17C3B',
+              segment: {
+                code: '14',
+                name: 'School Daze',
+                description: 'Families managing education expenses alongside home, career growth'
+              },
+              overview: {
+                size: 'Growing opportunity in suburban Milwaukee markets',
+                opportunity: 'High lifetime value, mortgage entry point, Bank at Work potential',
+                behavioral: 'Digitally fluent, time-starved, multi-product households'
+              },
+              validated: {
+                confirmed: [
+                  'Geographic targeting tools exist for people moving to Milwaukee (Natalie)',
+                  'Mortgage is strong product, though not top-of-mind for buyers (Kerry)',
+                  'Banking at Work program exists and targets their employers (Erik, Danielle)',
+                  'Strong cross-sell potential once acquired (Chrissy)'
+                ],
+                challenged: [
+                  'Natalie identifies this as needing improvement - lacking content/products that appeal',
+                  'Website not optimized for this demographic - audit planned for modernization (Natalie)',
+                  'Banking at Work initially struggled with traction - recently modified with cash bonuses (Erik)',
+                  'Not reaching them during home purchase journey despite mortgage strength (Kerry)',
+                  'Hard to reach - don\'t visit branches (Natalie)'
+                ]
+              },
+              stakeholderQuotes: [
+                { person: 'Kerry Murphy', role: 'Customer Relations (19+ years frontline)', quote: 'We\'re the best bank for mortgages but we\'re not top-of-mind for home buyers. Even friends and acquaintances don\'t think of Horicon when they\'re financing a home.' },
+                { person: 'Brenda Hetebrueg', role: 'Regional Manager, Southern Region (frontline)', quote: 'Banking hours don\'t match their life - work 8-5, bank 9-4. We help with what customers ask for, but don\'t anticipate future needs.' },
+                { person: 'Cassie Voight', role: 'Operations Officer (23+ years)', quote: 'Transaction volume down, but service complexity up - branches handle problems not routine. Operations was excluded from Banking at Work design, creating manual processes.' }
+              ],
+              performanceData: [
+                { metric: 'Banking at Work', value: 'Modified program, pilot phase', source: 'Erik - recent changes' },
+                { metric: 'Website Audit', value: 'Planned for modernization', source: 'Natalie - upcoming initiative' },
+                { metric: 'Digital Ads Performance', value: 'Strong in Milwaukee/Wawatosa', source: 'Natalie' }
+              ],
+              operationalReality: [
+                'Banking hours don\'t match their life - work 8-5, bank 9-4 (inferred from Kerry\'s comments)',
+                'Transaction volume down, but service complexity up - branches handle problems not routine (Kerry)',
+                'Need mobile-first approach for this segment (Natalie)',
+                'Event-heavy focus without follow-up playbooks or systematic post-event nurturing (Danielle)'
+              ],
+              goals: [
+                'Balance competing priorities: home, education, retirement',
+                'Find banking that works with their schedule, not against it',
+                'Get proactive guidance without feeling sold to',
+                'Support kids\' financial education and first accounts',
+                'Align banking with values (community, local, sustainability)'
+              ],
+              frustrations: [
+                'Banking hours that don\'t match their life',
+                'Having to chase down answers across multiple channels',
+                'Advisors who push products instead of listening',
+                'Complexity of managing household finances across accounts',
+                'Order-taking culture vs anticipating future needs (Kerry insight)'
+              ],
+              recommendations: [
+                'Prioritize Banking at Work with improved incentives - cash bonuses working better (Erik)',
+                'Website modernization for younger demographics critical (Natalie)',
+                'Develop post-event nurturing playbooks (Danielle)',
+                'Create mobile-first content and journeys (Natalie)'
+              ]
+            },
+            'upwardly-mobile': {
+              name: 'Upwardly Mobile / First-Time Workforce',
+              code: 'Y1',
+              ageRange: '25-44',
+              tagline: 'Building foundation, seeking modern banking that enables growth',
+              priority: 'High',
+              color: '#5B8BA0',
+              segment: {
+                code: '19',
+                name: 'Fiscal Rookies',
+                description: 'Early-career professionals establishing financial foundation'
+              },
+              overview: {
+                size: 'Smaller current base, identified as 90-day campaign priority',
+                opportunity: 'Future lifetime value, digital-first expectations, acquisition at young age = long-term retention',
+                behavioral: 'Digital-native, low initial balances, high growth trajectory, hard to reach'
+              },
+              validated: {
+                confirmed: [
+                  'Natalie recommends first-time workforce as 90-day campaign focus',
+                  'Major life moment with high growth potential (Natalie)',
+                  'Hard to reach - don\'t visit branches (Natalie)',
+                  'Digital-first strategy required (Natalie)',
+                  'Can be reached through employers via Banking at Work (Erik)'
+                ],
+                challenged: [
+                  'Current focus skews heavily toward older customers (Natalie)',
+                  'Very low acquisition in this segment currently',
+                  'No specific content or products tailored to this demographic (Natalie)',
+                  'Minimal brand awareness among this age group (Erik: people surprised we have Milwaukee branches)'
+                ]
+              },
+              stakeholderQuotes: [
+                { person: 'Kerry Murphy', role: 'Customer Relations (19+ years frontline)', quote: 'Staff interpreting "need younger customers" - needs clarification. Should focus on share of wallet across all personas, not just age.' },
+                { person: 'Cassie Voight', role: 'Operations Officer (23+ years)', quote: 'My 16-year-old works at the bank and has zero financial knowledge - the gap is visible at the staff level. Real competitors are Chime, Cash App, and GreenLight - not other banks.' },
+                { person: 'Brenda Hetebrueg', role: 'Regional Manager, Southern Region (frontline)', quote: 'People are surprised we have Milwaukee branches. Digital ads not geo-tracked; metrics are impressions not conversions.' }
+              ],
+              performanceData: [
+                { metric: '90-Day Priority', value: 'Recommended by Marketing', source: 'Natalie' },
+                { metric: 'Current Performance', value: 'Needs improvement', source: 'Natalie' },
+                { metric: 'Brand Awareness', value: 'Low in Milwaukee market', source: 'Erik' }
+              ],
+              operationalReality: [
+                'Digital ads performing well but focus on impressions not clicks/conversions (Erik)',
+                'No billboards in Milwaukee market for brand building (Erik)',
+                'Events planned without systematic follow-up (Danielle)',
+                'Website complexity issues for online banking (Kerry)'
+              ],
+              goals: [
+                'Establish credit and build financial foundation',
+                'Find banking that doesn\'t penalize them for starting out',
+                'Access modern tools (mobile, instant transfers, budgeting)',
+                'Get guidance without condescension',
+                'Align with brands that reflect their values'
+              ],
+              frustrations: [
+                'Banks that feel like their parents\' generation',
+                'Being treated like they don\'t matter because balances are small',
+                'Hidden fees and outdated technology',
+                'Lack of educational resources that aren\'t patronizing',
+                'Confusion about new vs old banking processes (Kerry)'
+              ],
+              recommendations: [
+                'Natalie\'s campaign concept: Food truck + ITM demonstration events to showcase digital capabilities',
+                'Prioritize digital-first strategy (Natalie)',
+                'Geographic targeting for people moving to Milwaukee (Natalie)',
+                'Banking at Work as employer connection point (Erik)',
+                'Develop youth checking e-statement journey (Danielle: ready to launch, awaiting approval)'
+              ]
+            }
+          };
 
-      const personas = {
-        'established-stewards': {
-          name: 'Established Stewards',
-          aspiration: 'Protect and transfer what they\'ve built.',
-          mapsFrom: 'Wealthy Achievers + Gliders + Empty Nesters',
-          ageRange: '55-74',
-          priority: 'High',
-          color: '#004777',
-          overview: 'Horicon\'s strongest existing segment. High deposit balances, strong cross-sell adoption, and trust services as a competitive advantage. Trust seminars convert at high rates and the Glider journey in Total Expert has a 0% failure rate.',
-          goals: [
-            'Preserve and transfer wealth to the next generation',
-            'Access trusted expertise for estate planning and trust services',
-            'Simplify complex financial lives without losing control',
-            'Maintain financial independence through retirement',
-            'Support community causes aligned with their values'
-          ],
-          frustrations: [
-            'Banks that treat them as transactions, not relationships',
-            'Generic advice that doesn\'t account for their situation',
-            'Pressure to adopt digital when they prefer personal service',
-            'Confusion about new technology vs. familiar processes',
-            'Difficulty finding advisors who understand their goals'
-          ],
-          howToSpot: [
-            'Asking about estate planning, trusts, or wealth transfer',
-            'Referencing adult children or grandchildren\'s finances',
-            'Consolidating accounts after life transition (retirement, downsizing)',
-            'Attending trust seminars or senior events',
-            'Existing high-balance checking or savings relationships'
-          ],
-          whatToSay: 'You spent decades building something. We\'ll help you protect it, grow it, and pass it on. Our trust team has been doing this for 130 years, and they\'ll work with your attorney and CPA to make sure your plan actually works.',
-          products: ['Trust and estate planning services', 'Glider checking', 'CD laddering', 'Golden Free Club', 'Funeral trust partnerships'],
-          keyData: [
-            { label: 'Glider Journey', value: '0% failure rate, highest engagement of any segment' },
-            { label: 'Trust Seminars', value: '100 avg attendees, proven conversion' },
-            { label: 'Opportunity', value: 'Expand prospect acquisition into Milwaukee/SE Wisconsin' }
-          ],
-          quote: 'Dodge County is rural, simple lifestyle preferences, multi-generational values. Milwaukee is different senior demographics, more diversity, requires a different approach.',
-          quoteAttribution: 'Kerry Murphy, Customer Relations (19 years)',
-          pdfDownload: 'downloads/Horicon-Bank-Persona-Established-Stewards.pdf'
-        },
-        'growing-families': {
-          name: 'Growing Families',
-          aspiration: 'Build a stable foundation while managing competing demands.',
-          mapsFrom: 'Flourishing Families + School Daze segment',
-          ageRange: '35-54',
-          priority: 'High',
-          color: '#C4843C',
-          overview: 'Peak earning, peak complexity. Juggling mortgages, education costs, career growth, and retirement planning. Strong lifetime value and multi-product household potential, especially through mortgage as an entry point.',
-          goals: [
-            'Balance competing priorities: home, education, retirement savings',
-            'Find banking that works with their schedule, not against it',
-            'Get proactive guidance without feeling sold to',
-            'Support kids\' financial education and first accounts',
-            'Align banking with values like community and local investment'
-          ],
-          frustrations: [
-            'Banking hours that don\'t match their life (work 8-5, bank 9-4)',
-            'Having to chase answers across multiple channels',
-            'Advisors who push products instead of listening',
-            'Complexity of managing household finances across accounts',
-            'Guilt about not optimizing finances while juggling everything'
-          ],
-          howToSpot: [
-            'Applying for a mortgage or refinancing',
-            'Opening children\'s savings or My Money accounts',
-            'Asking about education savings options or 529 plans',
-            'Employer connected through Bank at Work program',
-            'Visiting branches on weekends or using ITM/digital heavily'
-          ],
-          whatToSay: 'Between the mortgage, the kids\' accounts, and the insurance, you need a bank that sees the whole picture. We\'re not going to sell you something you don\'t need. We\'re going to help you build a plan that grows with your family.',
-          products: ['Mortgage and home equity lending', 'My Money youth checking (for their kids)', 'Personal checking with digital tools', 'Education savings and 529 referrals', 'Bank at Work employee benefits'],
-          keyData: [
-            { label: 'Entry Point', value: 'Mortgage is the primary acquisition trigger' },
-            { label: 'Digital', value: 'Expect mobile-first banking and ITM convenience' },
-            { label: 'Cross-sell', value: 'Strong multi-product adoption once acquired' }
-          ],
-          quote: 'Flourishing Families and Upwardly Mobile need work. Website requires updates for younger demographics. Mobile-first approach is critical.',
-          quoteAttribution: 'Natalie Kollin, Marketing',
-          pdfDownload: 'downloads/Horicon-Bank-Persona-Growing-Families.pdf'
-        },
-        'first-generation-builders': {
-          name: 'First-Generation Builders',
-          aspiration: 'Get real financial footing and make smart first decisions.',
-          mapsFrom: 'Upwardly Mobile + Fiscal Rookies + Youth (My Money)',
-          ageRange: '16-44',
-          priority: 'High (90-Day Sprint)',
-          color: '#628374',
-          overview: 'The growth engine. Spans from youth banking (My Money) through early-career professionals. Lower current balances but highest future lifetime value. My Money auto-transitions at 18 with no re-signup friction.',
-          goals: [
-            'Establish credit and build a real financial foundation',
-            'Find a bank that doesn\'t penalize them for starting out',
-            'Access modern tools: mobile, instant transfers, budgeting',
-            'Get financial guidance without condescension',
-            'Align with a brand that reflects their values'
-          ],
-          frustrations: [
-            'Minimum balance requirements that feel punitive',
-            'Being treated like they don\'t matter because balances are small',
-            'Banks that feel like their parents\' generation',
-            'Hidden fees and outdated technology',
-            'Lack of financial education that isn\'t patronizing'
-          ],
-          howToSpot: [
-            'Opening a first checking or savings account',
-            'My Money account holders approaching age 18 transition',
-            'Asking about credit building or first-time homebuyer programs',
-            'Arriving through Bank at Work employer connection',
-            'High mobile/digital engagement, low branch visits'
-          ],
-          whatToSay: 'Your first real bank should be one that shares your values. We\'re not an app. We\'re a 130-year community bank that believes doing good is good banking. Start here, and we\'ll grow with you.',
-          products: ['My Money youth checking (auto-transition at 18)', 'Natural Choice Checking', 'Savings automation tools', 'First-time homebuyer mortgage programs', 'Bank at Work employee checking ($500 bonus)'],
-          keyData: [
-            { label: '90-Day Goal', value: '50 new My Money accounts in 90 days' },
-            { label: 'Gen Z Insight', value: '52% choose banks based on values alignment' },
-            { label: 'Retention', value: 'My Money auto-transitions at 18, zero re-signup friction' }
-          ],
-          quote: 'Our opportunity comes in youth. My 16-year-old daughter knows zero about banking and I work for a bank. Greenlight is pulling money out of our accounts.',
-          quoteAttribution: 'Cassie Voight, Operations VP (23 years)',
-          pdfDownload: 'downloads/Horicon-Bank-Persona-First-Generation-Builders.pdf'
-        },
-        'business-owners': {
-          name: 'Business Owners',
-          aspiration: 'Grow the business without outgrowing the bank.',
-          mapsFrom: 'Commercial Banking + Professional Services + Manufacturing + CRE',
-          ageRange: 'Varies',
-          priority: 'High',
-          color: '#004B51',
-          overview: 'The missing persona. Horicon is a significant commercial bank, but the persona framework previously focused only on retail. Bank at Work creates a bridge from commercial to consumer relationships.',
-          goals: [
-            'Find a bank that understands their industry, not just their balance',
-            'Manage cash flow and operations efficiently with TM solutions',
-            'Access working capital for growth without bureaucracy',
-            'Provide competitive employee benefits to attract talent',
-            'Consolidate business and personal banking with one trusted partner'
-          ],
-          frustrations: [
-            'Banks that don\'t understand their business model or industry cycles',
-            'One-size-fits-all treasury management that doesn\'t fit',
-            'Slow or unresponsive relationship managers',
-            'Employee banking programs that are complicated to administer',
-            'Being treated like a transaction instead of a strategic relationship'
-          ],
-          howToSpot: [
-            'Existing commercial loan customer without deposit relationship',
-            'Business owner asking about employee benefit programs',
-            'Professional services firm (CPA, attorney) as center of influence',
-            'Manufacturing or CRE client discussing growth or expansion',
-            'Nonprofit leader inquiring about interest-bearing checking'
-          ],
-          whatToSay: 'You need a bank that understands your business, not just your balance sheet. Together, we\'ll build the financial foundation that lets you focus on growth, your employees, and your community.',
-          products: ['Treasury management solutions', 'Commercial lending and lines of credit', 'Bank at Work employee benefit program', 'Business owner personal wealth and trust', 'Nonprofit interest-bearing checking (unique product)'],
-          keyData: [
-            { label: 'Bank at Work', value: '$500 checking bonus + $300 off mortgage for employees' },
-            { label: 'Nonprofit Win', value: 'Recent nonprofit brought ~$1M deposits + board members' },
-            { label: 'COI Strategy', value: 'CPAs and attorneys as referral partners for trust services' }
-          ],
-          quote: 'We\'re a pretty big business bank, a commercial bank. Shouldn\'t there be some focus on those business owners? It was like they were missing.',
-          quoteAttribution: 'Cassie Voight, Operations VP (23 years)',
-          pdfDownload: 'downloads/Horicon-Bank-Persona-Business-Owners.pdf'
-        }
-      };
+          const currentPersona = personas[selectedPersona];
 
-      const currentPersona = personas[selectedPersona];
-
-      return (
-        <div>
-          {/* Header */}
-          <div className="header">
-            <div className="header-container">
-              <div className="header-left">
-                <h1>Horicon Bank Customer Personas</h1>
-                <div className="header-subtitle">Finalized with 7 stakeholder interview insights — April 2026</div>
-                <div className="header-badges">
-                  <div className="header-badge">
-                    <span className="icon">✓</span>
-                    <span>7 stakeholder interviews completed</span>
-                  </div>
-                  <div className="header-badge info">
-                    <span className="icon">📄</span>
-                    <span>Personas finalized & one-pagers ready</span>
-                  </div>
-                </div>
-              </div>
-              <div className="header-right">
-                <div className="header-section-title">Interviews Conducted</div>
-                <div className="interview-list">
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Chrissy Oelke (Data Analytics) — Feb 25</span>
-                  </div>
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Kerry Murphy (Customer Relations) — Mar 2</span>
-                  </div>
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Danielle Schraufnagel (Total Expert) — Mar 4</span>
-                  </div>
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Natalie Kollin (Marketing) — Mar 4</span>
-                  </div>
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Erik W. (Business Development) — Mar 9</span>
-                  </div>
-                </div>
-                <div className="header-section-title">Additional Completed</div>
-                <div className="interview-list">
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Cassie Voight (Operations/Sr. Mgmt) — Mar 20</span>
-                  </div>
-                  <div className="interview-item completed">
-                    <span className="icon">✓</span>
-                    <span>Rose Petitte (SVP, Marketing & Trust) — Mar 23</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="main-container">
-            {/* Sidebar */}
-            <div className="sidebar">
-              <div className="sidebar-card">
-                <div className="sidebar-header">
-                  <span className="icon">👥</span>
-                  <h3>Priority Retail Personas</h3>
-                </div>
-                <div className="persona-list">
-                  {Object.entries(personas).map(([key, persona]) => (
-                    <button
-                      key={key}
-                      onClick={() => setSelectedPersona(key)}
-                      className={`persona-button ${selectedPersona === key ? 'active' : ''}`}
-                    >
-                      <div className="persona-header">
-                        <div className="persona-name">{persona.name}</div>
-                        <div className="persona-priority"></div>
+          return (
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+              {/* Header */}
+              <div className="bg-white border-b border-slate-200 shadow-sm">
+                <div className="max-w-7xl mx-auto px-6 py-6">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h1 className="text-2xl font-bold text-slate-900">Horicon Bank Customer Personas</h1>
+                      <p className="text-sm text-slate-600 mt-1">Updated with stakeholder interview insights — March 2026</p>
+                      <div className="mt-3 flex items-center gap-4 text-xs">
+                        <div className="flex items-center gap-2">
+                          <Icon name="check-circle" className="text-green-600" />
+                          <span className="text-slate-600">5 of 8 stakeholder interviews completed</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Icon name="message-circle" className="text-blue-600" />
+                          <span className="text-slate-600">Real quotes & validation data integrated</span>
+                        </div>
                       </div>
-                      <div className="persona-meta">{persona.mapsFrom} • Ages {persona.ageRange}</div>
-                      <div className="persona-priority-badge">{persona.priority}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="main-content">
-              {/* Persona Header */}
-              <div className="persona-header-card">
-                <div className="persona-title-section">
-                  <div>
-                    <div className="persona-title">
-                      <h2>{currentPersona.name}</h2>
-                      <span className="priority-badge">{currentPersona.priority} Priority</span>
                     </div>
-                    <div className="persona-tagline">{currentPersona.tagline}</div>
-                    {currentPersona.segment && (
-                      <div className="segment-badge">
-                        <span className="icon">🎯</span>
-                        <span>
-                          <strong>Segment {currentPersona.segment.code}:</strong> {currentPersona.segment.name}
-                        </span>
+                    <div className="text-right">
+                      <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Interviews Conducted</div>
+                      <div className="space-y-1 text-xs text-slate-700">
+                        <div className="flex items-center gap-1 justify-end"><span className="text-green-600">✓</span> Chrissy Oelke (Data Analytics) — Feb 25</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-green-600">✓</span> Kerry Murphy (Customer Relations) — Mar 2</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-green-600">✓</span> Danielle Schraufnagel (Total Expert) — Mar 4</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-green-600">✓</span> Natalie Kollin (Marketing) — Mar 4</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-green-600">✓</span> Erik W. (Business Development) — Mar 9</div>
                       </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Overview Card */}
-                <div className="overview-section">
-                  <div className="overview-card">
-                    <div className="overview-label">Overview</div>
-                    <div className="overview-content">{currentPersona.overview}</div>
-                  </div>
-                  <div className="download-section">
-                    <a href={currentPersona.pdfDownload} download className="download-btn">
-                      <span className="icon">📄</span>
-                      Download One-Pager (PDF)
-                    </a>
+                      <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1 mt-3">Upcoming</div>
+                      <div className="space-y-1 text-xs text-slate-700">
+                        <div className="flex items-center gap-1 justify-end"><span className="text-blue-600">○</span> Cassie Voight (Operations/Sr. Mgmt) — Mar 20</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-blue-600">○</span> Stephanie K. Albers (AVP, Northern Regional Mgr) — Mar 23</div>
+                        <div className="flex items-center gap-1 justify-end"><span className="text-amber-600">⏳</span> Brenda Heteberg (Regional Mgr, Southern) — Unscheduled</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Tabs */}
-              <div className="tabs-card">
-                <div className="tabs-nav">
-                  {[
-                    { key: 'overview', label: 'Goals & Frustrations' },
-                    { key: 'practical', label: 'How to Spot & What to Say' },
-                    { key: 'products', label: 'Products & Key Data' },
-                    { key: 'quote', label: 'Stakeholder Quote' }
-                  ].map((tab) => (
-                    <button
-                      key={tab.key}
-                      onClick={() => setActiveTab(tab.key)}
-                      className={`tab-button ${activeTab === tab.key ? 'active' : ''}`}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="tab-content">
-                  {activeTab === 'overview' && (
-                    <div>
-                      {/* Goals */}
-                      <div className="section">
-                        <div className="section-header goals">
-                          <span className="icon">🎯</span>
-                          <h3>Goals & Motivations</h3>
-                        </div>
-                        <div className="item-list">
-                          {currentPersona.goals.map((goal, idx) => (
-                            <div key={idx} className="item goals">
-                              <span className="icon">›</span>
-                              <div className="item-text">{goal}</div>
-                            </div>
-                          ))}
-                        </div>
+              <div className="max-w-7xl mx-auto px-6 py-8">
+                <div className="grid grid-cols-12 gap-6">
+                  {/* Sidebar */}
+                  <div className="col-span-3">
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 sticky top-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <Icon name="users" className="text-slate-600" />
+                        <h3 className="font-semibold text-slate-900 text-sm uppercase tracking-wide">Priority Retail Personas</h3>
                       </div>
-
-                      {/* Frustrations */}
-                      <div className="section">
-                        <div className="section-header frustrations">
-                          <span className="icon">⚠</span>
-                          <h3>Pain Points & Frustrations</h3>
-                        </div>
-                        <div className="item-list">
-                          {currentPersona.frustrations.map((frustration, idx) => (
-                            <div key={idx} className="item frustrations">
-                              <span className="icon">›</span>
-                              <div className="item-text">{frustration}</div>
+                      <div className="space-y-1">
+                        {Object.entries(personas).map(([key, persona]) => (
+                          <button
+                            key={key}
+                            onClick={() => setSelectedPersona(key)}
+                            className={`w-full text-left px-3 py-3 rounded-lg transition-all ${
+                              selectedPersona === key
+                                ? 'bg-blue-50 text-blue-900 font-medium border border-blue-200'
+                                : 'text-slate-700 hover:bg-slate-50'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="text-sm font-medium">{persona.name}</div>
+                              <div className={`w-2 h-2 rounded-full ${persona.priority === 'High' ? 'bg-green-500' : 'bg-amber-500'}`} />
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                    </div>
-                  )}
-
-                  {activeTab === 'practical' && (
-                    <div>
-                      {/* How to Spot */}
-                      <div className="section">
-                        <div className="section-header spot">
-                          <span className="icon">👁</span>
-                          <h3>How to Spot This Persona</h3>
-                        </div>
-                        <div className="item-list">
-                          {currentPersona.howToSpot.map((item, idx) => (
-                            <div key={idx} className="item spot">
-                              <span className="icon">›</span>
-                              <div className="item-text">{item}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* What to Say */}
-                      <div className="section">
-                        <div className="section-header messaging">
-                          <span className="icon">💬</span>
-                          <h3>What to Say (Messaging Hook)</h3>
-                        </div>
-                        <div className="messaging-box">
-                          <div className="messaging-text">{currentPersona.whatToSay}</div>
-                        </div>
+                            <div className="text-xs text-slate-500">{persona.code} • Ages {persona.ageRange}</div>
+                            {persona.validated && (
+                              <div className="mt-2 flex gap-2">
+                                <span className="inline-flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">
+                                  <Icon name="check-circle" className="text-xs" />
+                                  {persona.validated.confirmed.length}
+                                </span>
+                                <span className="inline-flex items-center gap-1 text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded">
+                                  <Icon name="x-circle" className="text-xs" />
+                                  {persona.validated.challenged.length}
+                                </span>
+                              </div>
+                            )}
+                          </button>
+                        ))}
                       </div>
                     </div>
-                  )}
+                  </div>
 
-                  {activeTab === 'products' && (
-                    <div>
-                      {/* Products */}
-                      <div className="section">
-                        <div className="section-header products">
-                          <span className="icon">🏦</span>
-                          <h3>Recommended Products & Services</h3>
-                        </div>
-                        <div className="item-list">
-                          {currentPersona.products.map((product, idx) => (
-                            <div key={idx} className="item products">
-                              <span className="icon">›</span>
-                              <div className="item-text">{product}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Key Data */}
-                      <div className="section">
-                        <div className="section-header data">
-                          <span className="icon">📊</span>
-                          <h3>Key Data & Insights</h3>
-                        </div>
-                        <div className="data-grid">
-                          {currentPersona.keyData.map((data, idx) => (
-                            <div key={idx} className="data-card">
-                              <div className="data-label">{data.label}</div>
-                              <div className="data-value">{data.value}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {activeTab === 'quote' && (
-                    <div>
-                      <div className="quote-section">
-                        <div className="quote-card">
-                          <div className="quote-text">
-                            <span className="quote-mark">"</span>
-                            <p>{currentPersona.quote}</p>
+                  {/* Main Content */}
+                  <div className="col-span-9">
+                    {/* Persona Header */}
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <div className="flex items-center gap-3 mb-2">
+                            <h2 className="text-3xl font-bold text-slate-900">{currentPersona.name}</h2>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                              currentPersona.priority === 'High' 
+                                ? 'bg-green-100 text-green-800' 
+                                : 'bg-amber-100 text-amber-800'
+                            }`}>
+                              {currentPersona.priority} Priority
+                            </span>
                           </div>
-                          <div className="quote-attribution">
-                            <span className="quote-person">{currentPersona.quoteAttribution}</span>
-                          </div>
+                          <p className="text-lg text-slate-600 mb-4">{currentPersona.tagline}</p>
+                          {currentPersona.segment && (
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-lg">
+                              <Icon name="target" className="text-blue-600" />
+                              <span className="text-sm text-blue-900">
+                                <strong>Segment {currentPersona.segment.code}:</strong> {currentPersona.segment.name}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Overview Cards */}
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                          <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-1">Market Size</div>
+                          <div className="text-sm text-slate-900">{currentPersona.overview.size}</div>
+                        </div>
+                        <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                          <div className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Opportunity</div>
+                          <div className="text-sm text-green-900">{currentPersona.overview.opportunity}</div>
+                        </div>
+                        <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                          <div className="text-xs font-semibold text-blue-700 uppercase tracking-wide mb-1">Behavioral</div>
+                          <div className="text-sm text-blue-900">{currentPersona.overview.behavioral}</div>
                         </div>
                       </div>
                     </div>
-                  )}
+
+                    {/* Tabs */}
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200">
+                      <div className="border-b border-slate-200">
+                        <div className="flex gap-1 p-2">
+                          {['overview', 'validation', 'quotes', 'recommendations'].map((tab) => (
+                            <button
+                              key={tab}
+                              onClick={() => setActiveTab(tab)}
+                              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                                activeTab === tab
+                                  ? 'bg-blue-50 text-blue-900'
+                                  : 'text-slate-600 hover:bg-slate-50'
+                              }`}
+                            >
+                              {tab === 'overview' && 'Goals & Frustrations'}
+                              {tab === 'validation' && 'Interview Validation'}
+                              {tab === 'quotes' && 'Stakeholder Quotes'}
+                              {tab === 'recommendations' && 'Next Steps'}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="p-6">
+                        {activeTab === 'overview' && (
+                          <div className="space-y-6">
+                            {/* Goals */}
+                            <div>
+                              <h3 className="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                                <Icon name="target" className="text-green-600 text-xl" />
+                                Goals & Motivations
+                              </h3>
+                              <div className="space-y-2">
+                                {currentPersona.goals.map((goal, idx) => (
+                                  <div key={idx} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                                    <Icon name="chevron-right" className="text-green-600 text-xl flex-shrink-0" />
+                                    <p className="text-sm text-slate-800">{goal}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Frustrations */}
+                            <div>
+                              <h3 className="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                                <Icon name="alert-circle" className="text-red-600 text-xl" />
+                                Pain Points & Frustrations
+                              </h3>
+                              <div className="space-y-2">
+                                {currentPersona.frustrations.map((frustration, idx) => (
+                                  <div key={idx} className="flex items-start gap-3 p-3 bg-red-50 rounded-lg border border-red-100">
+                                    <Icon name="chevron-right" className="text-red-600 text-xl flex-shrink-0" />
+                                    <p className="text-sm text-slate-800">{frustration}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Operational Reality */}
+                            {currentPersona.operationalReality && (
+                              <div>
+                                <h3 className="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                                  <Icon name="alert-circle" className="text-amber-600 text-xl" />
+                                  Operational Reality (from interviews)
+                                </h3>
+                                <div className="space-y-2">
+                                  {currentPersona.operationalReality.map((item, idx) => (
+                                    <div key={idx} className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg border border-amber-100">
+                                      <Icon name="chevron-right" className="text-amber-600 text-xl flex-shrink-0" />
+                                      <p className="text-sm text-slate-800">{item}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {activeTab === 'validation' && currentPersona.validated && (
+                          <div className="space-y-6">
+                            {/* Confirmed */}
+                            <div>
+                              <h3 className="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                                <Icon name="check-circle" className="text-green-600 text-xl" />
+                                Confirmed by Interviews
+                              </h3>
+                              <div className="space-y-2">
+                                {currentPersona.validated.confirmed.map((item, idx) => (
+                                  <div key={idx} className="flex items-start gap-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <Icon name="check-circle" className="text-green-600 text-xl flex-shrink-0" />
+                                    <p className="text-sm text-slate-800">{item}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Challenged */}
+                            <div>
+                              <h3 className="text-lg font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                                <Icon name="x-circle" className="text-red-600 text-xl" />
+                                Challenged by Interviews
+                              </h3>
+                              <div className="space-y-2">
+                                {currentPersona.validated.challenged.map((item, idx) => (
+                                  <div key={idx} className="flex items-start gap-3 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <Icon name="x-circle" className="text-red-600 text-xl flex-shrink-0" />
+                                    <p className="text-sm text-slate-800">{item}</p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Performance Data */}
+                            {currentPersona.performanceData && (
+                              <div>
+                                <h3 className="text-lg font-semibold text-slate-900 mb-3">Performance Data</h3>
+                                <div className="bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+                                  <table className="w-full text-sm">
+                                    <thead className="bg-slate-100 border-b border-slate-200">
+                                      <tr>
+                                        <th className="text-left p-3 font-semibold text-slate-700">Metric</th>
+                                        <th className="text-left p-3 font-semibold text-slate-700">Value</th>
+                                        <th className="text-left p-3 font-semibold text-slate-700">Source</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {currentPersona.performanceData.map((item, idx) => (
+                                        <tr key={idx} className="border-b border-slate-200 last:border-0">
+                                          <td className="p-3 text-slate-800">{item.metric}</td>
+                                          <td className="p-3 font-medium text-slate-900">{item.value}</td>
+                                          <td className="p-3 text-slate-600 text-xs">{item.source}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {activeTab === 'quotes' && currentPersona.stakeholderQuotes && (
+                          <div className="space-y-4">
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                              <p className="text-sm text-blue-900">
+                                <strong>Note:</strong> These are direct quotes from frontline employee interviews conducted February-April 2026. They represent the operational reality and customer-facing experience of staff who work directly with these personas daily.
+                              </p>
+                            </div>
+                            {currentPersona.stakeholderQuotes.map((item, idx) => (
+                              <div key={idx} className="bg-white rounded-lg border border-slate-200 p-5">
+                                <div className="flex items-start gap-4">
+                                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                                    <span className="text-blue-700 font-bold text-lg">{item.person[0]}</span>
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-2">
+                                      <span className="font-semibold text-slate-900">{item.person}</span>
+                                      <span className="text-xs text-slate-500">•</span>
+                                      <span className="text-sm text-slate-600">{item.role}</span>
+                                    </div>
+                                    <div className="relative">
+                                      <Icon name="quote" className="absolute -left-2 -top-1 text-slate-300 text-2xl" />
+                                      <p className="text-sm text-slate-700 italic pl-4">{item.quote}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {activeTab === 'recommendations' && currentPersona.recommendations && (
+                          <div className="space-y-4">
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                              <p className="text-sm text-blue-900">
+                                <strong>These recommendations come directly from stakeholder interviews.</strong> They reflect what people closest to the work believe would make the biggest impact for this persona.
+                              </p>
+                            </div>
+                            {currentPersona.recommendations.map((rec, idx) => (
+                              <div key={idx} className="flex items-start gap-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                                <div className="w-6 h-6 rounded-full bg-green-600 text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">
+                                  {idx + 1}
+                                </div>
+                                <p className="text-sm text-slate-800">{rec}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Footer Note */}
+                    <div className="mt-6 p-4 bg-slate-100 border border-slate-200 rounded-lg">
+                      <p className="text-sm text-slate-700">
+                        <strong>Data sources:</strong> This persona explorer integrates insights from 5 completed stakeholder interviews (Chrissy Oelke, Danielle Schraufnagel, Kerry Murphy, Natalie Kollin, Erik W.), Total Expert platform metrics, Bancography behavioral analysis, and AnalyzerIQ segmentation data. 3 interviews remaining: Cassie Voight (Mar 20), Stephanie K. Albers (Mar 23), Brenda Heteberg (unscheduled). Validated = confirmed by multiple sources. Challenged = contradicted by interview findings. Last updated: March 19, 2026.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Footer Note */}
-              <div className="footer-note">
-                <p>
-                  <strong>Data sources:</strong> This persona explorer integrates insights from 5 completed stakeholder interviews (Chrissy Oelke, Danielle Schraufnagel, Kerry Murphy, Natalie Kollin, Erik W.), Total Expert platform metrics, Bancography behavioral analysis, and AnalyzerIQ segmentation data. 3 interviews remaining: Cassie Voight (Mar 20), Stephanie K. Albers (Mar 23), Brenda Heteberg (unscheduled). Validated = confirmed by multiple sources. Challenged = contradicted by interview findings. Last updated: March 19, 2026.
-                </p>
-              </div>
             </div>
-          </div>
-        </div>
-      );
-    };
+          );
+        };
 
-    ReactDOM.render(<PersonaExplorer />, document.getElementById('root'));
-  </script>
+        ReactDOM.render(<PersonaExplorer />, document.getElementById('root'));
+    </script>
 </body>
 </html>
