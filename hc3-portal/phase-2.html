@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 2 - Website Implementation | HC3 Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Updated 2026-05-08 -->
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      min-width: max-content;
+      gap: 0;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 16px 24px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--brandthnk-black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--brandthnk-black);
+      border-bottom-color: var(--brandthnk-yellow);
+      background: rgba(255, 235, 59, 0.2);
+    }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      background: var(--brandthnk-white);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--brandthnk-yellow);
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      font-weight: 500;
+      color: var(--brandthnk-black);
+    }
+
+    .investment-box {
+      background: var(--brandthnk-off-white);
+      padding: 25px;
+      border-left: 5px solid var(--brandthnk-yellow);
+      margin: 30px 0;
+      font-weight: 500;
+    }
+
+    .investment-box strong {
+      font-size: 1.1em;
+    }
+
+    .price-original {
+      text-decoration: line-through;
+      color: #666;
+      font-size: 0.9em;
+      margin-right: 15px;
+    }
+
+    .price-discounted {
+      color: var(--brandthnk-black);
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+
+    .discount-note {
+      color: var(--brandthnk-yellow);
+      background: var(--brandthnk-black);
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.8em;
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: 500;
+    }
+
+    .what-you-get {
+      background: var(--brandthnk-white);
+      border: 2px solid var(--brandthnk-off-white);
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .what-you-get ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .what-you-get li {
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .what-you-get li:before {
+      content: "●";
+      color: var(--brandthnk-yellow);
+      font-size: 1.2em;
+      position: absolute;
+      left: 0;
+      top: 2px;
+    }
+
+    .next-steps {
+      background: var(--brandthnk-off-white);
+      padding: 25px;
+      border-left: 5px solid var(--brandthnk-black);
+      margin-top: 40px;
+    }
+
+    .next-steps ol {
+      margin-left: 20px;
+    }
+
+    .next-steps h2 {
+      margin-top: 0;
+      border-bottom: none;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 2rem;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .nav-container {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">HC3 Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="project-plan.html" class="nav-link">Project Plan</a>
+        <a href="statement-health-check.html" class="nav-link">Health Check</a>
+        <a href="interviews.html" class="nav-link">Interviews</a>
+        <a href="deliverables.html" class="nav-link">Deliverables</a>
+        <a href="https://hc32.brandthnkinsights.com" class="nav-link" target="_blank">Competitive</a>
+        <a href="phase-2.html" class="nav-link active">Phase 2</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="header">
+    <div class="container">
+      <h1>Phase 2: Website Implementation & Advisory</h1>
+      <p>Complete website launch with HubSpot integration and ongoing strategic support</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <h2>Scope of Work</h2>
+
+      <h3>1. HubSpot Integration</h3>
+      <ul>
+        <li>Connect current draft site to your existing HubSpot instance</li>
+        <li>Configure seamless lead capture and contact form intake</li>
+        <li>Set up form tracking and attribution</li>
+        <li>Test all integration points</li>
+      </ul>
+
+      <h3>2. Domain Migration</h3>
+      <ul>
+        <li>Port website to HC3 domain</li>
+        <li>Coordinate with your IT team for seamless transition</li>
+        <li>DNS configuration and testing</li>
+        <li>Go-live support</li>
+      </ul>
+
+      <h3>3. Revisions & Optimization</h3>
+      <ul>
+        <li>3 rounds of revisions (pre or post-launch)</li>
+        <li>Content adjustments and refinements</li>
+        <li>Technical optimization as needed</li>
+      </ul>
+
+      <h3>4. Training & Documentation</h3>
+      <ul>
+        <li>1x 60-minute live training session on making updates</li>
+        <li>Session recorded for future reference and team onboarding</li>
+        <li>Documentation of common update procedures</li>
+        <li>Best practices for maintaining site integrity</li>
+      </ul>
+
+      <h3>5. Ongoing Advisory</h3>
+      <ul>
+        <li>3 months of weekly advisory support</li>
+        <li>1x 45-minute session per week</li>
+        <li>Strategic guidance on website optimization</li>
+        <li>Content and messaging consultation</li>
+        <li>Performance monitoring and recommendations</li>
+      </ul>
+
+      <h2>Investment & Structure</h2>
+
+      <div class="investment-box">
+        <strong>Total Investment:</strong>
+        <span class="price-original">$42,500</span>
+        <span class="price-discounted">$36,400</span>
+        <span class="discount-note">Current Customer Discount</span><br><br>
+        <strong>Payment Structure:</strong> 50% at project start, 50% at launch<br><br>
+        <strong>Timeline:</strong><br>
+        • Implementation: 2-3 weeks<br>
+        • Advisory: 12 weeks following launch
+      </div>
+
+      <h2>What You Get</h2>
+
+      <div class="what-you-get">
+        <ul>
+          <li><strong>HubSpot integration</strong> with seamless lead capture</li>
+          <li><strong>Domain migration</strong> with IT coordination</li>
+          <li><strong>3 rounds of revisions</strong> for optimization</li>
+          <li><strong>Recorded training session</strong> for your team</li>
+          <li><strong>12 weeks of advisory support</strong> for ongoing optimization</li>
+        </ul>
+      </div>
+
+      <div class="next-steps">
+        <h2>Next Steps</h2>
+        <p><strong>To move forward:</strong></p>
+        <ol>
+          <li>Review and approve this scope</li>
+          <li>Sign project agreement</li>
+          <li>Provide HubSpot and domain access</li>
+          <li>Begin implementation immediately</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
