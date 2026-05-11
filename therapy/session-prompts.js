@@ -75,6 +75,14 @@ services.
             want to belong to something bigger. Build identity around shared
             beliefs, not shared geography or demographics.`,
         },
+        {
+          name: 'Summer Fridays Case Study',
+          concept: 'Aspirational Accessibility',
+          application: `Create identity that's aspirational but approachable.
+            Financial services can break down traditional barriers between
+            institution and member by making banking feel like something
+            people deserve, not endure.`,
+        },
       ],
 
       context: `This is the mirror-holding session. It helps FIs and fintechs
@@ -130,6 +138,14 @@ services.
           application: `Earn attention, don't steal it. Products should invite
             engagement rather than interrupt. Financial services built on
             trust, not tricks.`,
+        },
+        {
+          name: 'Summer Fridays Case Study',
+          concept: 'Quality Over Speed',
+          application: `Slower development cycles create better products.
+            Most FIs rush to market with me-too offerings. Take 18+ months
+            to perfect a deposit product or lending experience that actually
+            solves problems instead of checking competitive boxes.`,
         },
       ],
 
@@ -196,6 +212,14 @@ services.
             people something to believe in, then give them tools to share
             that belief. The story isn't about you, it's about the change
             you're leading.`,
+        },
+        {
+          name: 'Summer Fridays Case Study',
+          concept: 'Narrative Tools Over Revenue',
+          application: `Branded merchandise and community elements should tell
+            stories, not generate profit. A credit union tote bag or small
+            business bank coffee mug becomes aspirational when it represents
+            values worth sharing, not just logo placement.`,
         },
       ],
 
