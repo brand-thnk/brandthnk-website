@@ -1,6 +1,9 @@
 # Local Netlify folder
 .netlify
 
+# Netlify deploy artifacts (never commit or keep in vault)
+deploy-*.zip
+
 # Environment variables
 .env
 .env.local
