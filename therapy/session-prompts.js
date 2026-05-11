@@ -61,6 +61,20 @@ services.
             team can't articulate what the brand stands for, your market
             won't either.`,
         },
+        {
+          name: 'Seth Godin',
+          concept: 'Purple Cow',
+          application: `Being safe is risky. Financial services companies
+            die in the middle of the bell curve. Remarkable doesn't mean
+            wacky, it means worth making a remark about.`,
+        },
+        {
+          name: 'Seth Godin',
+          concept: 'Tribes',
+          application: `People don't just want to belong to your bank, they
+            want to belong to something bigger. Build identity around shared
+            beliefs, not shared geography or demographics.`,
+        },
       ],
 
       context: `This is the mirror-holding session. It helps FIs and fintechs
@@ -101,6 +115,21 @@ services.
           concept: 'Obsessed',
           application: `The most important question is not what the product
             does, but what you want people to feel when they use it.`,
+        },
+        {
+          name: 'Seth Godin',
+          concept: 'Purple Cow',
+          application: `Products that blend in are invisible. Create something
+            your customers would miss if it disappeared. The goal isn't to
+            build another checking account, it's to build the checking account
+            that makes other banks look boring.`,
+        },
+        {
+          name: 'Seth Godin',
+          concept: 'Permission Marketing',
+          application: `Earn attention, don't steal it. Products should invite
+            engagement rather than interrupt. Financial services built on
+            trust, not tricks.`,
         },
       ],
 
@@ -151,6 +180,22 @@ services.
           application: `Internal stories matter as much as external ones.
             Employee culture stories attract talent and build brand alignment
             from the inside out.`,
+        },
+        {
+          name: 'Seth Godin',
+          concept: 'All Marketers Are Liars',
+          application: `Stories aren't facts, they're frames. People don't want
+            the truth about your bank, they want a truth that fits their
+            worldview. The story they tell themselves about choosing you
+            matters more than your features.`,
+        },
+        {
+          name: 'Seth Godin',
+          concept: 'Tribes',
+          application: `Great stories create movements, not customers. Give
+            people something to believe in, then give them tools to share
+            that belief. The story isn't about you, it's about the change
+            you're leading.`,
         },
       ],
 
