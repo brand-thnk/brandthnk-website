@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HC3 Executive Briefing - Messaging & Positioning Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: #fff;
+    color: #000;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .presentation-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background: #000;
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+  }
+
+  .header h1 {
+    font-family: 'Roboto Slab', serif;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .header .brand-tag {
+    font-family: 'Roboto Slab', serif;
+    color: #888;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #FFEB3B;
+    transition: width 0.5s ease;
+    z-index: 101;
+  }
+
+  .slide-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 48px 48px;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide.prev {
+    transform: translateX(-50px);
+  }
+
+  .slide-content {
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .slide h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  .slide h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+    border-left: 4px solid #FFEB3B;
+    padding-left: 16px;
+  }
+
+  .slide h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 12px;
+  }
+
+  .slide p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 24px;
+  }
+
+  .slide ul {
+    list-style: none;
+    margin: 24px 0;
+  }
+
+  .slide li {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 16px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .slide li::before {
+    content: '•';
+    color: #FFEB3B;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+  }
+
+  .question-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 32px 0;
+  }
+
+  .question-item {
+    background: #F5F5F5;
+    padding: 24px;
+    border-left: 4px solid #FFEB3B;
+  }
+
+  .question-item h4 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #000;
+    font-size: 18px;
+  }
+
+  .question-item p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 32px 0;
+  }
+
+  .comparison-card {
+    padding: 24px;
+    border-radius: 4px;
+  }
+
+  .comparison-card.current {
+    background: #F5F5F5;
+    border-left: 4px solid #999;
+  }
+
+  .comparison-card.future {
+    background: #FFEB3B;
+    border-left: 4px solid #000;
+  }
+
+  .comparison-card h4 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #000;
+  }
+
+  .comparison-card ul {
+    margin: 0;
+  }
+
+  .comparison-card li {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .highlight-box {
+    background: #000;
+    color: #fff;
+    padding: 32px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #FFEB3B;
+  }
+
+  .highlight-box h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .highlight-box p {
+    color: #ccc;
+    margin-bottom: 12px;
+  }
+
+  .key-metric {
+    display: inline-block;
+    background: #FFEB3B;
+    color: #000;
+    padding: 4px 8px;
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 4px;
+  }
+
+  .navigation {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 16px;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #000;
+  }
+
+  .nav-btn:hover {
+    background: #FFEB3B;
+    color: #000;
+    border-color: #FFEB3B;
+  }
+
+  .nav-btn:disabled {
+    background: #ccc;
+    color: #888;
+    border-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .slide-number {
+    position: fixed;
+    bottom: 24px;
+    left: 48px;
+    font-size: 12px;
+    color: #888;
+    z-index: 100;
+  }
+
+  .acquisition-examples {
+    background: #F5F5F5;
+    padding: 24px;
+    margin: 24px 0;
+    border-left: 4px solid #000;
+  }
+
+  .acquisition-examples h4 {
+    margin-bottom: 16px;
+  }
+
+  .acquisition-examples p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 16px 24px; }
+    .slide { padding: 32px 24px 24px; }
+    .slide h2 { font-size: 32px; }
+    .comparison-grid { grid-template-columns: 1fr; gap: 16px; }
+    .navigation { right: 16px; bottom: 16px; }
+    .slide-number { left: 24px; bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="presentation-container">
+  <div class="header">
+    <h1>HC3 Executive Briefing: Messaging & Positioning Strategy</h1>
+    <span class="brand-tag">June 2026</span>
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div class="slide-container">
+    <!-- Slide 1: Your Questions First -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-content">
+        <h2>Your Questions First</h2>
+
+        <p>I took a swing at what your questions probably are. Let's address these upfront, then get into the content tailored around your concerns.</p>
+
+        <div class="question-grid">
+          <div class="question-item">
+            <h4>Why now? Why not wait until we have a compelling business event?</h4>
+            <p><strong>Answer:</strong> The best time for strategic positioning is when you don't have pressure on your back. Like redecorating your house—you want to do it business-as-usual, not right before Christmas when family's coming. This gives us quality execution before any existential events, acquisitions, or staff changes force our hand.</p>
+          </div>
+
+          <div class="question-item">
+            <h4>What's this going to cost us? What's the investment?</h4>
+            <p><strong>Answer:</strong> Positioning work is complete—that investment is behind us. Implementation is primarily internal effort with Kristen leading GTM activation. The ROI comes from moving buyer conversations from cost reduction (CFO level) to strategic value (CTO/CEO level), enabling 40-60% higher deal values.</p>
+          </div>
+
+          <div class="question-item">
+            <h4>Bottom line: what should we hold you accountable for?</h4>
+            <p><strong>Answer:</strong> Three specific metrics: (1) Analyst mentions of HC3 as "operations partner" vs. "statements vendor" (2) Pipeline quality—more CEO/COO efficiency conversations, fewer CFO cost discussions (3) Customer retention conversations shifting to expansion/cross-sell rather than price negotiations, with measurable <span class="key-metric">$50,000+</span> annual savings per customer.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Slide 2: The Acquisition-Ready Foundation -->
+    <div class="slide" id="slide-2">
+      <div class="slide-content">
+        <h2>The Acquisition-Ready Foundation</h2>
+
+        <h3>32-Second Elevator Pitch (Works for Any Acquisition)</h3>
+        <div class="highlight-box">
+          <h4>HC3 is the operations partner for critical work community FIs can't afford to get wrong.</h4>
+          <p>We deliver measurable operational efficiency: <span class="key-metric">$50,000+</span> annual cost savings per customer, <span class="key-metric">30-40%</span> processing time reduction, and <span class="key-metric">50%+</span> error rate reduction. <span class="key-metric">400+</span> FIs trust us because we handle the complex operational work their teams don't have the bandwidth or expertise to perfect.</p>
+        </div>
+
+        <h3>How Non-Statement Products Fit (Auto ABS Example)</h3>
+        <div class="acquisition-examples">
+          <h4>Customer Perspective vs. Internal Perspective</h4>
+          <p><strong>Customers think:</strong> "HC3 handles critical operational work we can't afford to get wrong—they have the expertise and capacity we don't." Auto ABS fits this naturally—it's high-stakes verification work that requires specialized operational discipline.</p>
+          <p><strong>We think:</strong> "But that's not statements!" This internal categorization is what we need to change.</p>
+        </div>
+
+        <h3>Tagline Strategy</h3>
+        <ul>
+          <li><strong>"Make a Statement" stays.</strong> <span class="key-metric">60 years</span> of messaging equity is too valuable to sacrifice</li>
+          <li><strong>Acquisition filter:</strong> Never acquire companies that would force us to change our DNA</li>
+          <li><strong>Brand equity protection:</strong> The tagline makes every acquisition a better "statements company" by customer definition</li>
+          <li><strong>Strategic constraint:</strong> If an acquisition would break the tagline, we shouldn't do it</li>
+        </ul>
+
+        <div class="highlight-box">
+          <h4>Competitive Advantage</h4>
+          <p>This positioning creates market differentiation no competitor can match. Jack Henry and Fiserv sell core bundles. Doxim sells enterprise software. HC3 operates as the specialized partner for critical work that requires perfection—delivering measurable operational outcomes with room for strategic growth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <button class="nav-btn" id="prev-btn" onclick="previousSlide()">Previous</button>
+    <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next</button>
+  </div>
+
+  <div class="slide-number" id="slide-number">1 / 2</div>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 2;
+
+function updateSlideDisplay() {
+  // Hide all slides
+  document.querySelectorAll('.slide').forEach(slide => {
+    slide.classList.remove('active', 'prev');
+  });
+
+  // Show current slide
+  const current = document.getElementById(`slide-${currentSlide}`);
+  current.classList.add('active');
+
+  // Mark previous slides
+  if (currentSlide > 1) {
+    const prev = document.getElementById(`slide-${currentSlide - 1}`);
+    prev.classList.add('prev');
+  }
+
+  // Update progress bar
+  const progress = (currentSlide / totalSlides) * 100;
+  document.getElementById('progress-bar').style.width = `${progress}%`;
+
+  // Update slide number
+  document.getElementById('slide-number').textContent = `${currentSlide} / ${totalSlides}`;
+
+  // Update navigation buttons
+  document.getElementById('prev-btn').disabled = currentSlide === 1;
+  document.getElementById('next-btn').disabled = currentSlide === totalSlides;
+}
+
+function nextSlide() {
+  if (currentSlide < totalSlides) {
+    currentSlide++;
+    updateSlideDisplay();
+  }
+}
+
+function previousSlide() {
+  if (currentSlide > 1) {
+    currentSlide--;
+    updateSlideDisplay();
+  }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    nextSlide();
+  } else if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    previousSlide();
+  }
+});
+
+// Initialize
+updateSlideDisplay();
+</script>
+
+</body>
+</html>
