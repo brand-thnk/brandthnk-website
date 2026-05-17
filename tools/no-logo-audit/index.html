@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 90-Day No-Logo Audit | BrandThnk</title>
+<meta name="description" content="Pull your last 90 days of content, strip the logo, and score what's left. Five dimensions reveal whether your brand has a distinct operating system — or just a lot of activity.">
+<link rel="canonical" href="https://brandthnk.co/tools/no-logo-audit/">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bt-black: #000000;
+    --bt-white: #FFFFFF;
+    --bt-yellow: #FFEB3B;
+    --bt-off-white: #F5F5F5;
+    --bt-gray: #666666;
+    --bt-light-gray: #E0E0E0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    background: var(--bt-white);
+    border-bottom: 1px solid var(--bt-light-gray);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+
+  .brand-mark {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--bt-black);
+  }
+
+  .back-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bt-gray);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+
+  .back-link:hover { color: var(--bt-black); }
+
+  .brand-mark .accent {
+    background: var(--bt-yellow);
+    padding: 0 0.25rem;
+  }
+
+  .nav-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bt-gray);
+  }
+
+  /* PROGRESS */
+  .progress-track {
+    height: 3px;
+    background: var(--bt-light-gray);
+    width: 100%;
+  }
+
+  .progress-fill {
+    height: 3px;
+    background: var(--bt-yellow);
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  /* SCREENS */
+  .screen {
+    display: none;
+    min-height: calc(100vh - 67px);
+    animation: fadeUp 0.3s ease forwards;
+  }
+
+  .screen.active { display: flex; flex-direction: column; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── WELCOME ── */
+  .welcome {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    flex: 1;
+  }
+
+  .welcome h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--bt-white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .welcome h1 .yl { color: var(--bt-yellow); }
+
+  .welcome .subtitle {
+    font-size: clamp(0.9375rem, 2vw, 1.125rem);
+    color: #CCCCCC;
+    max-width: 520px;
+    line-height: 1.7;
+    margin: 0 auto 1rem;
+  }
+
+  .welcome .detail {
+    font-size: 0.8125rem;
+    color: #777;
+    margin-bottom: 3rem;
+  }
+
+  .welcome .content-tags {
+    font-size: 0.75rem;
+    color: #555;
+    border: 1px solid #333;
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    margin-top: 2rem;
+    line-height: 1.8;
+    max-width: 480px;
+  }
+
+  /* ── INVENTORY ── */
+  .inventory {
+    padding: 3rem 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+  }
+
+  .inner {
+    max-width: 680px;
+    width: 100%;
+  }
+
+  .screen-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bt-gray);
+    margin-bottom: 0.75rem;
+  }
+
+  .inventory h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.625rem;
+  }
+
+  .inventory .desc {
+    font-size: 0.9375rem;
+    color: var(--bt-gray);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .chip {
+    border: 2px solid var(--bt-light-gray);
+    border-radius: 8px;
+    padding: 0.75rem 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    user-select: none;
+  }
+
+  .chip:hover { border-color: #999; }
+
+  .chip.on {
+    border-color: var(--bt-black);
+    background: var(--bt-yellow);
+  }
+
+  .chip .box {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--bt-light-gray);
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    transition: all 0.15s;
+  }
+
+  .chip.on .box {
+    background: var(--bt-black);
+    border-color: var(--bt-black);
+    color: var(--bt-white);
+  }
+
+  .inventory-note {
+    font-size: 0.8125rem;
+    color: var(--bt-gray);
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── QUESTION ── */
+  .question {
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+    flex: 1;
+  }
+
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .q-num {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bt-gray);
+  }
+
+  .dim-tag {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bt-yellow);
+    color: var(--bt-black);
+    padding: 0.2rem 0.625rem;
+    border-radius: 4px;
+  }
+
+  .q-text {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.875rem;
+  }
+
+  .q-clarifier {
+    font-size: 0.9375rem;
+    color: var(--bt-gray);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* RATING */
+  .rating-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .r-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .r-btn {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 60px;
+    border: 2px solid var(--bt-light-gray);
+    border-radius: 8px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .r-btn:hover {
+    border-color: var(--bt-black);
+    background: var(--bt-off-white);
+  }
+
+  .r-option.picked .r-btn {
+    background: var(--bt-black);
+    border-color: var(--bt-black);
+    color: var(--bt-yellow);
+  }
+
+  .r-label {
+    font-size: 0.65rem;
+    text-align: center;
+    color: var(--bt-gray);
+    line-height: 1.3;
+    font-weight: 500;
+    max-width: 70px;
+  }
+
+  .r-option.picked .r-label {
+    color: var(--bt-black);
+    font-weight: 700;
+  }
+
+  /* NAV BUTTONS */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.8125rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary { background: var(--bt-black); color: var(--bt-white); }
+  .btn-primary:hover { background: #222; }
+
+  .btn-primary:disabled {
+    background: var(--bt-light-gray);
+    color: var(--bt-gray);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--bt-gray);
+    border: 1.5px solid var(--bt-light-gray);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--bt-black);
+    color: var(--bt-black);
+  }
+
+  .btn-yellow { background: var(--bt-yellow); color: var(--bt-black); }
+  .btn-yellow:hover { background: #FFE000; }
+
+  /* ── RESULTS ── */
+  .results {
+    background: var(--bt-off-white);
+    align-items: center;
+    padding: 3rem 2rem;
+    flex: 1;
+  }
+
+  .results-inner {
+    max-width: 780px;
+    width: 100%;
+  }
+
+  .verdict-card {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .verdict-eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.75rem;
+  }
+
+  .verdict-score {
+    font-family: 'Roboto Slab', serif;
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--bt-yellow);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .verdict-denom {
+    font-size: 0.9375rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .verdict-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--bt-white);
+    margin-bottom: 0.75rem;
+  }
+
+  .verdict-line {
+    font-size: 0.9375rem;
+    color: #BBBBBB;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* SCORECARD */
+  .card {
+    background: var(--bt-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    margin-bottom: 1.5rem;
+  }
+
+  .card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--bt-light-gray);
+  }
+
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.625rem 0.5rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  .score-row:hover { background: var(--bt-off-white); }
+  .score-row + .score-row { border-top: 1px solid var(--bt-light-gray); }
+
+  .score-dim { flex: 1; }
+
+  .score-dim-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .score-dim-sub {
+    font-size: 0.75rem;
+    color: var(--bt-gray);
+  }
+
+  .score-bar-wrap { width: 140px; flex-shrink: 0; }
+
+  .score-bar-track {
+    height: 6px;
+    background: var(--bt-light-gray);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.2rem;
+  }
+
+  .score-bar-fill {
+    height: 6px;
+    border-radius: 3px;
+    transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bar-low  { background: var(--bt-light-gray); border: 1px solid #ccc; }
+  .bar-mid  { background: var(--bt-black); }
+  .bar-high { background: var(--bt-yellow); border: 1px solid #DDD000; }
+
+  .score-val {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    width: 32px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* WHAT NEXT */
+  .what-next {
+    background: var(--bt-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    border-left: 4px solid var(--bt-yellow);
+    margin-bottom: 1.5rem;
+  }
+
+  .what-next h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .what-next p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--bt-black);
+    margin-bottom: 0.875rem;
+  }
+
+  .what-next p:last-child { margin-bottom: 0; }
+
+  /* ACTIONS */
+  .result-actions {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    padding: 1.75rem 2rem;
+    text-align: center;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .footer .yl { color: var(--bt-yellow); }
+
+  /* ── LEAD CAPTURE ── */
+  .lead-card {
+    background: var(--bt-black);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--bt-yellow);
+  }
+
+  .lead-card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--bt-white);
+    margin-bottom: 0.375rem;
+  }
+
+  .lead-card .lead-sub {
+    font-size: 0.8125rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .lead-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #333;
+    border-radius: 6px;
+    background: #111;
+    color: var(--bt-white);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    transition: border-color 0.15s;
+  }
+
+  .lead-input::placeholder { color: #555; }
+  .lead-input:focus { outline: none; border-color: var(--bt-yellow); }
+
+  .lead-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .lead-row .lead-input { flex: 1; }
+
+  .btn-send {
+    background: var(--bt-yellow);
+    color: var(--bt-black);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-send:hover { background: #FFE000; transform: translateY(-1px); }
+  .btn-send:disabled { background: #333; color: #666; cursor: not-allowed; transform: none; }
+
+  .lead-notice {
+    font-size: 0.6875rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .lead-success {
+    display: none;
+    background: rgba(255, 235, 59, 0.1);
+    border: 1px solid var(--bt-yellow);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--bt-yellow);
+    font-weight: 600;
+  }
+
+  .lead-error {
+    display: none;
+    font-size: 0.8125rem;
+    color: #ff6b6b;
+    margin-top: 0.25rem;
+  }
+
+  /* CTA BLOCK */
+  .cta-block {
+    background: var(--bt-black);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .cta-eyebrow {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--bt-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .cta-heading {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--bt-white);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .cta-sub {
+    font-size: 0.9375rem;
+    color: #888;
+    line-height: 1.65;
+    max-width: 440px;
+    margin: 0 auto 2rem;
+  }
+
+  /* PRINT */
+  @media print {
+    .no-print { display: none !important; }
+    .screen { display: none !important; }
+    #s-results { display: flex !important; }
+    .results { padding: 2rem 0; }
+    .verdict-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 560px) {
+    .r-label { font-size: 0.6rem; }
+    .r-btn { font-size: 1rem; }
+    .verdict-score { font-size: 3.5rem; }
+    .chips { grid-template-columns: 1fr 1fr; }
+    .score-bar-wrap { width: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav no-print">
+  <a href="/" class="brand-mark">Brand<span class="accent">Thnk</span></a>
+  <div class="nav-meta" id="nav-label"><a href="/tools/" class="back-link">← Tools</a></div>
+</nav>
+<div class="progress-track no-print">
+  <div class="progress-fill" id="prog"></div>
+</div>
+
+<!-- ── WELCOME ── -->
+<div class="screen active" id="s-welcome">
+  <div class="welcome">
+    <h1>The 90-Day<br><span class="yl">No-Logo Audit</span></h1>
+    <p class="subtitle">This diagnostic will help you pull your last 90 days of public-facing content and strip the logo to find out if your brand can stand on its own.</p>
+    <p class="detail">5 questions &nbsp;·&nbsp; 10 minutes</p>
+    <button class="btn btn-yellow" onclick="go('s-inventory')">Start Audit →</button>
+    <div class="content-tags">
+      LinkedIn posts &nbsp;·&nbsp; Emails &nbsp;·&nbsp; Website copy &nbsp;·&nbsp; Ads<br>
+      Sales decks &nbsp;·&nbsp; Webinar promos &nbsp;·&nbsp; Thought leadership<br>
+      Case studies &nbsp;·&nbsp; Product announcements
+    </div>
+  </div>
+</div>
+
+<!-- ── INVENTORY ── -->
+<div class="screen" id="s-inventory">
+  <div class="inventory">
+    <div class="inner">
+      <div class="screen-label">Before You Score</div>
+      <h2>What's in your 90-day audit?</h2>
+      <p class="desc">Select what you pulled. Score what you actually reviewed.</p>
+
+      <div class="chips">
+        <div class="chip on"  onclick="toggle(this)"><span class="box">✓</span>LinkedIn Posts</div>
+        <div class="chip on"  onclick="toggle(this)"><span class="box">✓</span>Emails</div>
+        <div class="chip on"  onclick="toggle(this)"><span class="box">✓</span>Website Copy</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Ads</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Sales Decks</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Webinar Promos</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Thought Leadership</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Case Studies</div>
+        <div class="chip"     onclick="toggle(this)"><span class="box"></span>Product Announcements</div>
+      </div>
+      <p class="inventory-note">Incomplete coverage is fine. Note it when you score.</p>
+
+      <div class="nav-row" style="margin-top:2rem;">
+        <button class="btn btn-ghost" onclick="go('s-welcome')">← Back</button>
+        <button class="btn btn-primary" onclick="startQ(0)">Begin Scoring →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── QUESTIONS ── -->
+<div class="screen" id="s-question">
+  <div class="question">
+    <div class="inner">
+      <div class="q-meta">
+        <span class="q-num" id="q-num"></span>
+        <span class="dim-tag" id="q-dim"></span>
+      </div>
+      <h2 class="q-text" id="q-text"></h2>
+      <p class="q-clarifier" id="q-clarify"></p>
+      <div class="rating-group" id="rating-group"></div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="q-back">← Back</button>
+        <button class="btn btn-primary" id="q-next" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS ── -->
+<div class="screen" id="s-results">
+  <div class="results">
+    <div class="results-inner">
+
+      <div class="verdict-card">
+        <div class="verdict-eyebrow">90-Day No-Logo Audit · BrandThnk</div>
+        <div class="verdict-score" id="r-score"></div>
+        <div class="verdict-denom">out of 25</div>
+        <div class="verdict-name" id="r-name"></div>
+        <div class="verdict-line" id="r-line"></div>
+      </div>
+
+      <div class="card">
+        <h3>Dimension Scores</h3>
+        <div id="scorecard"></div>
+      </div>
+
+      <div class="what-next">
+        <h3>What this means</h3>
+        <div id="what-next"></div>
+      </div>
+
+      <div class="result-actions no-print">
+        <button class="btn btn-primary" onclick="window.print()">Download Scorecard</button>
+        <button class="btn btn-ghost" onclick="restart()">Run Again</button>
+      </div>
+
+      <div class="cta-block no-print">
+        <p class="cta-eyebrow">Now you know.</p>
+        <h2 class="cta-heading">What are you going to do about it?</h2>
+        <p class="cta-sub">A 30-minute call is enough to confirm this diagnosis and decide what to fix first.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" target="_blank" class="btn btn-yellow">Book a Call</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span class="yl">BrandThnk</span> &nbsp;·&nbsp; Brand Strategy for Financial Services &amp; Fintech
+  </footer>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const QS = [
+  {
+    dim: "Voice Recognition",
+    tag: "Voice",
+    text: "Would a stranger recognize who wrote this without the logo?",
+    clarify: "Pull three social posts or emails and remove any company mentions then read them aloud. Is there something in the rhythm and word choices that's distinctly yours or could any company in your category have posted/sent the same thing?",
+    labels: ["Anyone could write this", "Hard to tell", "Occasionally distinctive", "Usually recognizable", "Unmistakably us"],
+    sub: "Does this sound like us?"
+  },
+  {
+    dim: "Point-of-View Recognition",
+    tag: "POV",
+    text: "Does this content reveal what you believe instead of what you do?",
+    clarify: "Features describe what you do and a point of view shows what you believe about the market and the problem worth solving.",
+    labels: ["No POV visible", "Hints at something", "Occasionally clear", "A consistent stance", "Distinctive and specific"],
+    sub: "Does this reveal what we believe?"
+  },
+  {
+    dim: "Category Distinction",
+    tag: "Distinction",
+    text: "This content could only have come from us.",
+    clarify: "Now, pull up three competitor websites or LinkedIn feeds. Could any of them post your content without changing a word?",
+    labels: ["Any competitor could", "Most could use it", "About half could", "Few could claim it", "Only we'd say this"],
+    sub: "Could a competitor have published this?"
+  },
+  {
+    dim: "Decision Clarity",
+    tag: "Decisions",
+    text: "Does this content show what you've chosen to emphasize, avoid, or challenge?",
+    clarify: "Most content defaults to appealing to the widest possible audience. Does your content make a different choice...what it challenges, what it ignores, what it won't say?",
+    labels: ["No choices visible", "Vague preferences", "Some direction", "Clear emphasis", "Sharp and deliberate"],
+    sub: "Do we show what we choose to emphasize?"
+  },
+  {
+    dim: "Memory Value",
+    tag: "Memory",
+    text: "Would a buyer remember something specific from your last asset 24 hours later?",
+    clarify: "A phrase, a number, or an analogy they'd repeat to a colleague.",
+    labels: ["Nothing sticks", "Maybe one thing", "A few moments", "Several things", "Memorable throughout"],
+    sub: "Would a buyer remember this tomorrow?"
+  }
+];
+
+const TOTAL_STEPS = 8; // welcome(0), inventory(1), q1-q5(2-6), results(7)
+let scores = [null, null, null, null, null];
+let currentQ = 0;
+let _resultVerdict = '';
+let _resultTotal = 0;
+
+// ─── UTILITIES ───────────────────────────────────────────────────────────────
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  // re-trigger animation
+  const el = document.getElementById(id);
+  el.classList.remove('active');
+  void el.offsetWidth;
+  el.classList.add('active');
+}
+
+function setProgress(step) {
+  const pct = (step / TOTAL_STEPS) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+  const labels = ['', '', 'Q 1/5', 'Q 2/5', 'Q 3/5', 'Q 4/5', 'Q 5/5', 'Complete'];
+  const label = labels[step] || '';
+  const navMeta = document.getElementById('nav-label');
+  if (label) {
+    navMeta.innerHTML = label;
+  } else {
+    navMeta.innerHTML = '<a href="/tools/" class="back-link">← Tools</a>';
+  }
+}
+
+function toggle(el) {
+  el.classList.toggle('on');
+  const box = el.querySelector('.box');
+  box.textContent = el.classList.contains('on') ? '✓' : '';
+}
+
+// ─── QUESTION FLOW ────────────────────────────────────────────────────────────
+function startQ(idx) {
+  currentQ = idx;
+  renderQ(idx);
+  go('s-question');
+}
+
+function renderQ(idx) {
+  const q = QS[idx];
+  setProgress(idx + 2);
+
+  document.getElementById('q-num').textContent = `Question ${idx + 1} of ${QS.length}`;
+  document.getElementById('q-dim').textContent = q.tag;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-clarify').textContent = q.clarify;
+
+  // Rating buttons
+  const rg = document.getElementById('rating-group');
+  rg.innerHTML = '';
+  q.labels.forEach((lbl, i) => {
+    const val = i + 1;
+    const picked = scores[idx] === val;
+    const div = document.createElement('div');
+    div.className = 'r-option' + (picked ? ' picked' : '');
+    div.innerHTML = `<button class="r-btn" onclick="pick(${val})">${val}</button><span class="r-label">${lbl}</span>`;
+    rg.appendChild(div);
+  });
+
+  // Back button
+  const backBtn = document.getElementById('q-back');
+  if (idx === 0) {
+    backBtn.onclick = () => { setProgress(1); go('s-inventory'); };
+  } else {
+    backBtn.onclick = () => startQ(idx - 1);
+  }
+
+  // Next button
+  const nextBtn = document.getElementById('q-next');
+  nextBtn.disabled = (scores[idx] === null);
+  nextBtn.textContent = idx === QS.length - 1 ? 'See Results →' : 'Next →';
+  nextBtn.onclick = () => {
+    if (scores[currentQ] === null) return;
+    if (currentQ < QS.length - 1) {
+      startQ(currentQ + 1);
+    } else {
+      showResults();
+    }
+  };
+}
+
+function pick(val) {
+  scores[currentQ] = val;
+  document.querySelectorAll('.r-option').forEach((opt, i) => {
+    opt.classList.toggle('picked', i === val - 1);
+  });
+  document.getElementById('q-next').disabled = false;
+}
+
+// ─── RESULTS ─────────────────────────────────────────────────────────────────
+function showResults() {
+  setProgress(7);
+
+  const total = scores.reduce((a, b) => a + (b || 0), 0);
+  document.getElementById('r-score').textContent = total;
+
+  let name, line, whatNext;
+
+  if (total >= 20) {
+    name = 'Recognizable';
+    line = 'Your brand has a distinct operating system. More output from here just makes it more visible.';
+    whatNext = `
+      <p>Strip your name off three of these pieces. Someone who knows your work would recognize the fourth — that's the test, and you passed it.</p>
+      <p>The version of this that breaks down quietly is volume without sharpening. You have something worth protecting. Don't let output pace drift ahead of the specificity of what you're putting out.</p>
+      <p>Check which dimension is carrying the most weight. If POV is strong but Memory is lagging, that's the place to push before scaling.</p>
+    `;
+  } else if (total >= 13) {
+    name = 'Generic but Competent';
+    line = 'Covers the right topics. Could have come from anyone in your category.';
+    whatNext = `
+      <p>The output is professional. The position isn't clear enough to be yours alone — a competitor could publish most of this without changing a word, and readers wouldn't notice.</p>
+      <p>More content won't fix it. The fix is making actual choices: what you'll challenge, what you'll ignore, what you believe that the rest of your category won't say out loud.</p>
+      <p>Start with POV and Decision Clarity. When the position gets specific, voice tends to follow — and the content starts to accumulate instead of just moving.</p>
+    `;
+  } else {
+    name = 'Unanchored';
+    line = 'Content is moving. The strategy isn\'t specific enough to anchor it.';
+    whatNext = `
+      <p>Content is going out, but nothing is building. Each piece starts fresh because there's no position clear enough to anchor it.</p>
+      <p>More output won't fix this — it'll make the drift worse. Two questions to answer first: what does your brand actually believe, and what would it never say. Get those honest and the content decisions get a lot easier.</p>
+    `;
+  }
+
+  _resultVerdict = name;
+  _resultTotal = total;
+
+  document.getElementById('r-name').textContent = name;
+  document.getElementById('r-line').textContent = line;
+  document.getElementById('what-next').innerHTML = whatNext;
+
+  // Scorecard rows
+  const sc = document.getElementById('scorecard');
+  sc.innerHTML = '';
+  QS.forEach((q, i) => {
+    const s = scores[i] || 0;
+    const pct = (s / 5) * 100;
+    const barClass = s <= 2 ? 'bar-low' : s === 3 ? 'bar-mid' : 'bar-high';
+    sc.innerHTML += `
+      <div class="score-row">
+        <div class="score-dim">
+          <div class="score-dim-name">${q.dim}</div>
+          <div class="score-dim-sub">${q.sub}</div>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-track">
+            <div class="score-bar-fill ${barClass}" style="width:${pct}%"></div>
+          </div>
+        </div>
+        <div class="score-val">${s}/5</div>
+      </div>
+    `;
+  });
+
+  go('s-results');
+}
+
+// ─── LEAD CAPTURE ────────────────────────────────────────────────────────────
+async function submitLead() {
+  const emailEl  = document.getElementById('lead-email');
+  const nameEl   = document.getElementById('lead-name');
+  const submitEl = document.getElementById('lead-submit');
+  const errorEl  = document.getElementById('lead-error');
+  const formEl   = document.getElementById('lead-form');
+  const successEl= document.getElementById('lead-success');
+
+  const email = (emailEl.value || '').trim();
+  const name  = (nameEl.value  || '').trim();
+
+  errorEl.style.display = 'none';
+  errorEl.textContent = '';
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errorEl.textContent = 'Please enter a valid email address.';
+    errorEl.style.display = 'block';
+    emailEl.focus();
+    return;
+  }
+
+  submitEl.disabled = true;
+  submitEl.textContent = 'Sending…';
+
+  const scoreKeys = ['voice', 'pov', 'distinction', 'clarity', 'memory'];
+  const scoresObj = {};
+  scoreKeys.forEach((k, i) => { scoresObj[k] = scores[i] || 0; });
+
+  try {
+    const res = await fetch('/.netlify/functions/no-logo-capture', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name,
+        email,
+        scores: scoresObj,
+        totalScore: _resultTotal,
+        verdict: _resultVerdict,
+      }),
+    });
+
+    if (res.ok) {
+      formEl.style.display = 'none';
+      successEl.style.display = 'block';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    submitEl.disabled = false;
+    submitEl.textContent = 'Send →';
+    errorEl.textContent = 'Something went wrong — try again.';
+    errorEl.style.display = 'block';
+  }
+}
+
+function restart() {
+  scores = [null, null, null, null, null];
+  currentQ = 0;
+  _resultVerdict = '';
+  _resultTotal = 0;
+  // Reset lead form
+  document.getElementById('lead-form').style.display = '';
+  document.getElementById('lead-success').style.display = 'none';
+  document.getElementById('lead-email').value = '';
+  document.getElementById('lead-name').value = '';
+  document.getElementById('lead-error').style.display = 'none';
+  document.getElementById('lead-submit').disabled = false;
+  document.getElementById('lead-submit').textContent = 'Send →';
+  setProgress(0);
+  go('s-welcome');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+setProgress(0);
+</script>
+</body>
+</html>

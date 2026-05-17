@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharpen Your Edge | BrandThnk</title>
+<meta name="description" content="Find where your brand breaks down and turn that break into messaging sharp enough to cut through AI-accelerated noise. A free BrandThnk tool.">
+<link rel="canonical" href="https://brandthnk.co/tools/sharpen-your-edge/">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bt-black: #000000;
+    --bt-white: #FFFFFF;
+    --bt-yellow: #FFEB3B;
+    --bt-off-white: #F5F5F5;
+    --bt-gray: #666666;
+    --bt-light-gray: #E0E0E0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    background: var(--bt-white);
+    border-bottom: 1px solid var(--bt-light-gray);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+
+  .brand-mark {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: var(--bt-black);
+  }
+
+  .brand-mark .accent {
+    background: var(--bt-yellow);
+    padding: 0 0.25rem;
+  }
+
+  .back-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--bt-gray);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--bt-black); }
+
+  .nav-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bt-gray);
+  }
+
+  /* ── PROGRESS ── */
+  .progress-track {
+    height: 3px;
+    background: var(--bt-light-gray);
+    width: 100%;
+  }
+
+  .progress-fill {
+    height: 3px;
+    background: var(--bt-yellow);
+    transition: width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  /* ── SCREENS ── */
+  .screen {
+    display: none;
+    min-height: calc(100vh - 67px);
+    animation: fadeUp 0.3s ease forwards;
+  }
+
+  .screen.active { display: flex; flex-direction: column; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── WELCOME ── */
+  .welcome-wrap {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5rem 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .welcome-wrap h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--bt-white);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .welcome-wrap h1 .yl { color: var(--bt-yellow); }
+
+  .welcome-quote {
+    font-size: clamp(0.875rem, 1.8vw, 1.0625rem);
+    color: #888;
+    font-style: italic;
+    max-width: 460px;
+    margin: 0 auto 1.25rem;
+    line-height: 1.65;
+  }
+
+  .welcome-sub {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: #CCCCCC;
+    max-width: 500px;
+    line-height: 1.75;
+    margin: 0 auto 2rem;
+  }
+
+  .welcome-detail {
+    font-size: 0.8125rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+  }
+
+  .illustration-row {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2.5rem;
+    max-width: 520px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .ill-box {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    border-right: 1px solid #222;
+  }
+
+  .ill-box-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    margin-bottom: 0.375rem;
+  }
+
+  .ill-box-text {
+    font-size: 0.8125rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .ill-arrow {
+    padding: 0.75rem 1rem;
+    color: var(--bt-yellow);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    border-right: 1px solid #222;
+  }
+
+  .ill-edge {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    background: #111;
+    border-right: 1px solid #222;
+  }
+
+  .ill-edge-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bt-yellow);
+    margin-bottom: 0.375rem;
+  }
+
+  .ill-edge-text {
+    font-size: 0.8125rem;
+    color: var(--bt-white);
+    line-height: 1.5;
+  }
+
+  /* ── CONTENT SCREENS ── */
+  .content-wrap {
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3rem 2rem;
+    flex: 1;
+  }
+
+  .inner { max-width: 680px; width: 100%; }
+
+  .screen-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bt-gray);
+    margin-bottom: 0.75rem;
+  }
+
+  .pass-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bt-yellow);
+    color: var(--bt-black);
+    padding: 0.2rem 0.625rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .screen-head {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.875rem;
+    color: var(--bt-black);
+  }
+
+  .screen-desc {
+    font-size: 0.9375rem;
+    color: var(--bt-gray);
+    margin-bottom: 2rem;
+    line-height: 1.75;
+    max-width: 560px;
+  }
+
+  .callout-box {
+    background: rgba(255, 235, 59, 0.1);
+    border: 1.5px solid var(--bt-yellow);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--bt-black);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── QUESTIONS (Part 1) ── */
+  .q-block { margin-bottom: 1.5rem; }
+
+  .q-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--bt-black);
+    margin-bottom: 0.5rem;
+    display: block;
+    line-height: 1.5;
+  }
+
+  /* ── PREVIOUS PASS REFERENCE ── */
+  .prev-ref {
+    background: var(--bt-off-white);
+    border-radius: 8px;
+    border: 1px solid var(--bt-light-gray);
+    padding: 0.875rem 1.125rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--bt-gray);
+    display: none;
+  }
+
+  .prev-ref-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .prev-ref-text { color: var(--bt-black); }
+
+  /* ── INPUTS ── */
+  textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    border: 2px solid var(--bt-light-gray);
+    border-radius: 8px;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    resize: vertical;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: var(--bt-black);
+    box-shadow: 0 0 0 3px rgba(255, 235, 59, 0.3);
+  }
+
+  textarea::placeholder { color: #bbb; }
+
+  .field-hint {
+    font-size: 0.8rem;
+    color: var(--bt-gray);
+    margin-top: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.8125rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s, transform 0.15s, opacity 0.15s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary { background: var(--bt-black); color: var(--bt-white); }
+  .btn-primary:hover { background: #222; }
+
+  .btn-yellow { background: var(--bt-yellow); color: var(--bt-black); }
+  .btn-yellow:hover { background: #FFE000; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--bt-gray);
+    border: 1.5px solid var(--bt-light-gray);
+  }
+  .btn-ghost:hover { border-color: var(--bt-black); color: var(--bt-black); }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── FINAL TEST ── */
+  .edge-preview {
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 235, 59, 0.1);
+    border: 1.5px solid var(--bt-yellow);
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    color: var(--bt-black);
+    font-style: italic;
+  }
+
+  .test-q {
+    background: var(--bt-off-white);
+    border-radius: 8px;
+    border: 1px solid var(--bt-light-gray);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .test-q-text { flex: 1; font-size: 0.9375rem; line-height: 1.5; color: var(--bt-black); }
+
+  .test-btns { display: flex; gap: 6px; flex-shrink: 0; }
+
+  .tbtn {
+    padding: 0.375rem 1rem;
+    border: 1.5px solid var(--bt-light-gray);
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: var(--bt-white);
+    color: var(--bt-black);
+    transition: all 0.15s;
+  }
+
+  .tbtn:hover { border-color: var(--bt-black); }
+  .tbtn.picked-yes { background: var(--bt-yellow); border-color: var(--bt-black); color: var(--bt-black); }
+  .tbtn.picked-no  { background: var(--bt-black); color: var(--bt-white); border-color: var(--bt-black); }
+
+  .test-feedback {
+    display: none;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+  }
+
+  .tf-pass { background: rgba(39, 174, 96, 0.08); color: #1a7a3f; }
+  .tf-warn { background: rgba(200, 150, 0, 0.08); color: #7a5500; }
+  .tf-fail { background: rgba(200, 40, 40, 0.07);  color: #8b1a1a; }
+
+  /* ── RESULTS ── */
+  .results-wrap {
+    background: var(--bt-off-white);
+    align-items: center;
+    padding: 3rem 2rem;
+    flex: 1;
+  }
+
+  .results-inner { max-width: 780px; width: 100%; }
+
+  .edge-hero {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .edge-hero-eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.75rem;
+  }
+
+  .edge-hero-message {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    font-weight: 700;
+    color: var(--bt-yellow);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .edge-hero-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+  }
+
+  /* Progression card */
+  .card {
+    background: var(--bt-white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    margin-bottom: 1.5rem;
+  }
+
+  .card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--bt-light-gray);
+  }
+
+  .pass-row {
+    padding: 0.875rem 0;
+    border-top: 1px solid var(--bt-light-gray);
+  }
+
+  .pass-row:first-child { border-top: none; }
+
+  .pass-row-lbl {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    margin-bottom: 0.375rem;
+  }
+
+  .pass-row-txt {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--bt-black);
+  }
+
+  .pass-row.edge-row .pass-row-lbl {
+    color: var(--bt-black);
+    font-weight: 700;
+  }
+
+  .pass-row.edge-row .pass-row-txt {
+    font-size: 1rem;
+    border-left: 3px solid var(--bt-yellow);
+    padding-left: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  /* ── LEAD CAPTURE — matches no-logo-audit exactly ── */
+  .lead-card {
+    background: var(--bt-black);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--bt-yellow);
+  }
+
+  .lead-card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--bt-white);
+    margin-bottom: 0.375rem;
+    border: none;
+    padding: 0;
+  }
+
+  .lead-sub {
+    font-size: 0.8125rem;
+    color: #999;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .lead-form { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .lead-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #333;
+    border-radius: 6px;
+    background: #111;
+    color: var(--bt-white);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    transition: border-color 0.15s;
+  }
+
+  .lead-input::placeholder { color: #555; }
+  .lead-input:focus { outline: none; border-color: var(--bt-yellow); }
+
+  .lead-row { display: flex; gap: 0.75rem; }
+  .lead-row .lead-input { flex: 1; }
+
+  .btn-send {
+    background: var(--bt-yellow);
+    color: var(--bt-black);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .btn-send:hover { background: #FFE000; transform: translateY(-1px); }
+  .btn-send:disabled { background: #333; color: #666; cursor: not-allowed; transform: none; }
+
+  .lead-notice { font-size: 0.6875rem; color: #555; line-height: 1.5; }
+
+  .lead-error {
+    display: none;
+    font-size: 0.8125rem;
+    color: #ff6b6b;
+    margin-top: 0.25rem;
+  }
+
+  .lead-success {
+    display: none;
+    background: rgba(255, 235, 59, 0.1);
+    border: 1px solid var(--bt-yellow);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--bt-yellow);
+    font-weight: 600;
+  }
+
+  /* ── RESULT ACTIONS ── */
+  .result-actions {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  /* ── BOOK TIME CTA ── */
+  .book-cta {
+    background: var(--bt-off-white);
+    border: 2px solid var(--bt-black);
+    border-radius: 0;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .book-cta h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .book-cta p {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--bt-gray);
+    margin-bottom: 1.25rem;
+  }
+
+  .btn-book {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: var(--bt-black);
+    color: var(--bt-yellow);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--bt-black);
+    transition: opacity 0.15s;
+  }
+
+  .btn-book:hover { opacity: 0.8; }
+
+  /* ── EMAIL GATE MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--bt-white);
+    border: 2px solid var(--bt-black);
+    padding: 2.5rem;
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    animation: fadeUp 0.2s ease forwards;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--bt-gray);
+    line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.15s;
+  }
+
+  .modal-close:hover { color: var(--bt-black); }
+
+  .modal-box h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.625rem;
+    color: var(--bt-black);
+  }
+
+  .modal-box p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--bt-gray);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-input-row {
+    display: flex;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--bt-black);
+    background: var(--bt-white);
+    color: var(--bt-black);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .modal-input:focus { border-color: var(--bt-yellow); }
+  .modal-input::placeholder { color: #bbb; }
+
+  .modal-submit {
+    padding: 0.75rem 1.25rem;
+    background: var(--bt-black);
+    color: var(--bt-yellow);
+    border: 2px solid var(--bt-black);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+
+  .modal-submit:hover { opacity: 0.8; }
+  .modal-submit:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .modal-notice {
+    font-size: 0.6875rem;
+    color: var(--bt-gray);
+    line-height: 1.5;
+  }
+
+  .modal-error {
+    display: none;
+    font-size: 0.8rem;
+    color: #c0392b;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--bt-black);
+    color: var(--bt-white);
+    padding: 1.75rem 2rem;
+    text-align: center;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .site-footer .yl { color: var(--bt-yellow); }
+
+  /* ── PRINT ── */
+  @media print {
+    .no-print { display: none !important; }
+    .screen { display: none !important; }
+    #s-results { display: flex !important; }
+    .results-wrap { padding: 2rem 0; }
+    .edge-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 560px) {
+    .lead-row { flex-direction: column; }
+    .test-q { flex-direction: column; align-items: flex-start; }
+    .illustration-row { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav no-print">
+  <a href="/" class="brand-mark">Brand<span class="accent">Thnk</span></a>
+  <div class="nav-meta" id="nav-label"><a href="/tools/" class="back-link">← Tools</a></div>
+</nav>
+<div class="progress-track no-print">
+  <div class="progress-fill" id="prog"></div>
+</div>
+
+<!-- ── WELCOME ── -->
+<div class="screen active" id="s-welcome">
+  <div class="welcome-wrap">
+    <h1>Sharpen Your<br><span class="yl">Edge</span></h1>
+    <p class="welcome-quote">"AI made everyone faster. Your brand still has to earn its edge."</p>
+    <p class="welcome-sub">Find where your brand breaks down and turn that break into messaging sharp enough to cut through AI-accelerated noise.</p>
+    <p class="welcome-detail">2 parts &nbsp;·&nbsp; 5 passes &nbsp;·&nbsp; 15 minutes</p>
+
+    <div class="illustration-row">
+      <div class="ill-box">
+        <div class="ill-box-label">The Box</div>
+        <div class="ill-box-text">Necessary category language. How buyers can place you before digging deeper.</div>
+      </div>
+      <div class="ill-arrow">→</div>
+      <div class="ill-edge">
+        <div class="ill-edge-label">The Edge</div>
+        <div class="ill-edge-text">Your break from sameness. Sharpened.</div>
+      </div>
+    </div>
+
+    <button class="btn btn-yellow" style="font-size:1rem;padding:1rem 2rem" onclick="goScreen('s-part1'); setProgress(1)">
+      Start — Find Your Edge →
+    </button>
+  </div>
+</div>
+
+<!-- ── PART 1: THREE QUESTIONS ── -->
+<div class="screen" id="s-part1">
+  <div class="content-wrap">
+    <div class="inner">
+      <div class="screen-label">Part 1 — Find Your Edge</div>
+      <h2 class="screen-head">Three questions. One rough edge.</h2>
+      <p class="screen-desc">Before sharpening, you need something to sharpen. Answer these to locate where your brand breaks from the category.</p>
+
+      <div class="q-block">
+        <label class="q-label" for="q1">1. What does everyone in your category tend to say?</label>
+        <textarea id="q1" rows="3" placeholder="The industry default — language, claims, and promises your competitors all use..."></textarea>
+      </div>
+
+      <div class="q-block">
+        <label class="q-label" for="q2">2. What do you believe, see, or understand differently?</label>
+        <textarea id="q2" rows="3" placeholder="Your distinct perspective or belief the category has yet to claim..."></textarea>
+      </div>
+
+      <div class="q-block">
+        <label class="q-label" for="q3">3. What tension does your audience feel that your category rarely names well?</label>
+        <textarea id="q3" rows="3" placeholder="The uncomfortable truth — the gap between where they are and where they need to be..."></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goScreen('s-welcome'); setProgress(0)">← Back</button>
+        <button class="btn btn-primary" onclick="goScreen('s-rough-edge'); setProgress(2); populateQRef()">Next — Write Your Edge →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ROUGH EDGE ── -->
+<div class="screen" id="s-rough-edge">
+  <div class="content-wrap">
+    <div class="inner">
+      <div class="screen-label">Part 1 — Find Your Edge</div>
+      <h2 class="screen-head">Write your rough edge.</h2>
+      <p class="screen-desc">Based on your answers, capture your starting edge in one sentence. Rough is fine. Honest is what matters.</p>
+
+      <div id="q-ref-box" class="prev-ref">
+        <span class="prev-ref-label">Your answers</span>
+        <span class="prev-ref-text" id="q-ref-text"></span>
+      </div>
+
+      <label class="q-label" for="rough-edge">Your rough edge in one sentence:</label>
+      <textarea id="rough-edge" rows="3" placeholder="We believe... / We see... / The truth no one says is..."></textarea>
+      <div class="field-hint">Rough is fine. You're about to sharpen it.</div>
+
+      <div class="nav-row">
+        <button class="btn btn-ghost" onclick="goScreen('s-part1'); setProgress(1)">← Back</button>
+        <button class="btn btn-primary" onclick="startPass(0)">Start Sharpening →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PASS SCREEN (shared template) ── -->
+<div class="screen" id="s-pass">
+  <div class="content-wrap">
+    <div class="inner">
+      <div class="screen-label" id="p-label"></div>
+      <div class="pass-badge" id="p-badge"></div>
+      <h2 class="screen-head" id="p-head"></h2>
+      <p class="screen-desc" id="p-desc"></p>
+      <div class="callout-box" id="p-callout"></div>
+      <div class="prev-ref" id="p-prev">
+        <span class="prev-ref-label" id="p-prev-lbl"></span>
+        <span class="prev-ref-text" id="p-prev-txt"></span>
+      </div>
+      <label class="q-label" id="p-field-label" for="p-input"></label>
+      <textarea id="p-input" rows="4" placeholder=""></textarea>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="p-back">← Back</button>
+        <button class="btn btn-primary" id="p-next"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FINAL TEST ── -->
+<div class="screen" id="s-test">
+  <div class="content-wrap">
+    <div class="inner">
+      <div class="screen-label">Final Test</div>
+      <h2 class="screen-head">Three questions. Honest answers.</h2>
+      <p class="screen-desc">Run your edge message through this filter before you ship it anywhere.</p>
+
+      <div class="edge-preview" id="edge-preview">Your edge message will appear here.</div>
+
+      <div class="test-q">
+        <div class="test-q-text">Could three competitors say this exact message?</div>
+        <div class="test-btns">
+          <button class="tbtn" id="t1y" onclick="setTest(1,'y')">Yes</button>
+          <button class="tbtn" id="t1n" onclick="setTest(1,'n')">No</button>
+        </div>
+      </div>
+
+      <div class="test-q">
+        <div class="test-q-text">Would this make your next 90 days of content more recognizable?</div>
+        <div class="test-btns">
+          <button class="tbtn" id="t2y" onclick="setTest(2,'y')">Yes</button>
+          <button class="tbtn" id="t2n" onclick="setTest(2,'n')">No</button>
+        </div>
+      </div>
+
+      <div class="test-q">
+        <div class="test-q-text">Could this guide an AI prompt without making you sound generic?</div>
+        <div class="test-btns">
+          <button class="tbtn" id="t3y" onclick="setTest(3,'y')">Yes</button>
+          <button class="tbtn" id="t3n" onclick="setTest(3,'n')">No</button>
+        </div>
+      </div>
+
+      <div class="test-feedback" id="test-feedback"></div>
+
+      <div class="nav-row" style="margin-top:2rem">
+        <button class="btn btn-ghost" onclick="startPass(4)">← Back</button>
+        <button class="btn btn-primary" onclick="showResults()">See Your Output →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS ── -->
+<div class="screen" id="s-results">
+  <div class="results-wrap">
+    <div class="results-inner">
+
+      <div class="edge-hero">
+        <div class="edge-hero-eyebrow">Sharpen Your Edge · BrandThnk</div>
+        <div class="edge-hero-message" id="r-edge-message"></div>
+        <div class="edge-hero-label">Your Edge Message — Pass 5 of 5</div>
+      </div>
+
+      <div class="card">
+        <h3>Your Messaging Progression</h3>
+        <div id="progression-rows"></div>
+      </div>
+
+      <!-- Book Time CTA -->
+      <div class="book-cta no-print">
+        <h3>This is where the tool stops and the real work starts.</h3>
+        <p>BrandThnk works with banks, credit unions, and fintechs who know their brand should be doing more — but need a clearer path to get there. We help marketing leaders sharpen positioning, align their team, and build the case that gets leadership behind the investment.</p>
+        <p>If any of this resonated, a 30-minute conversation will tell us both whether there's a fit.</p>
+        <a href="https://calendar.app.google/RyJnkSz3VdxYh64x7" target="_blank" rel="noopener noreferrer" class="btn-book">
+          &#9679;&nbsp; Book Time
+        </a>
+      </div>
+
+      <div class="result-actions no-print">
+        <button class="btn btn-primary" onclick="handlePrint()">Download Brief</button>
+        <button class="btn btn-ghost" onclick="restart()">Run Again</button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="yl">BrandThnk</span> &nbsp;·&nbsp; Brand Strategy for Financial Services &amp; Fintech
+  </footer>
+</div>
+
+<!-- ── EMAIL GATE MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&#10005;</button>
+    <h4>Download your brief</h4>
+    <p>Drop your work email to unlock a print-ready version. Save as PDF and share with your team.</p>
+    <div class="modal-error" id="modal-error"></div>
+    <div class="modal-input-row">
+      <input class="modal-input" type="email" id="modal-email" placeholder="you@yourbank.com" autocomplete="email">
+      <button class="modal-submit" id="modal-submit" onclick="handleModalSubmit()">Get PDF</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── PASS DEFINITIONS ────────────────────────────────────────────────────────
+const PASSES = [
+  {
+    id: 'pass1',
+    label: 'Sharpening — Pass 1 of 5',
+    badge: 'Category Message',
+    head: 'Write the generic version first.',
+    desc: 'Write the version that tells buyers what you do and why it matters. This is the foundation — required, but only the starting point.',
+    callout: 'This is the message that lets buyers place you. Necessary — but only the starting point. Write the version that covers the basics before pushing for distinctiveness.',
+    fieldLabel: 'Category message:',
+    placeholder: 'The standard version — what anyone in your space could say...',
+    prevLabel: null,
+    prevId: null,
+    rows: 4,
+    step: 3
+  },
+  {
+    id: 'pass2',
+    label: 'Sharpening — Pass 2 of 5',
+    badge: 'Audience Message',
+    head: 'Write it for a specific person.',
+    desc: 'Rewrite for a specific person, never a market segment. Who exactly is this for? What moment are they in? The more specific, the sharper.',
+    callout: 'Move from "financial institutions" to the specific person making a specific decision. Name the role, the moment, the pressure they\'re under.',
+    fieldLabel: 'Audience message:',
+    placeholder: 'Same message, written for a specific person in a specific moment...',
+    prevLabel: 'Pass 1 — Category message',
+    prevId: 'pass1',
+    rows: 4,
+    step: 4
+  },
+  {
+    id: 'pass3',
+    label: 'Sharpening — Pass 3 of 5',
+    badge: 'Problem Message',
+    head: 'Lead with their problem.',
+    desc: 'Rewrite around what they\'re actually trying to solve. Stop describing your product and start describing their situation.',
+    callout: 'What are they trying to get done? Where do they keep hitting walls? What does your solution actually fix?',
+    fieldLabel: 'Problem message:',
+    placeholder: 'The message centered on their actual problem, built around their situation...',
+    prevLabel: 'Pass 2 — Audience message',
+    prevId: 'pass2',
+    rows: 4,
+    step: 5
+  },
+  {
+    id: 'pass4',
+    label: 'Sharpening — Pass 4 of 5',
+    badge: 'Tension Message',
+    head: 'Name the uncomfortable truth.',
+    desc: 'Name the gap, contradiction, or uncomfortable truth that makes the problem matter. Tension is what makes people lean in.',
+    callout: 'The gap between where they are and where they need to be. The thing that makes the problem urgent — beyond inconvenient. What\'s the contradiction no one wants to name?',
+    fieldLabel: 'Tension message:',
+    placeholder: 'The uncomfortable truth. The contradiction. The thing the category won\'t say...',
+    prevLabel: 'Pass 3 — Problem message',
+    prevId: 'pass3',
+    rows: 4,
+    step: 6
+  },
+  {
+    id: 'pass5',
+    label: 'Sharpening — Pass 5 of 5',
+    badge: 'Edge Message',
+    head: 'Write the version only you can own.',
+    desc: 'Write the version only your brand should be able to own. It carries your belief, names the tension, and speaks to the right person — in a way no competitor would say it.',
+    callout: 'If it sounds like a competitor could say it, it\'s still inside the box. Push until it sounds unmistakably like you.',
+    fieldLabel: 'Edge message:',
+    placeholder: 'The sharpest version. Distinct. Ownable. Hard to ignore...',
+    prevLabel: 'Pass 4 — Tension message',
+    prevId: 'pass4',
+    rows: 5,
+    step: 7
+  }
+];
+
+const TOTAL_STEPS = 11;
+let currentPassIdx = 0;
+const passValues = { pass1: '', pass2: '', pass3: '', pass4: '', pass5: '' };
+const testAnswers = { 1: null, 2: null, 3: null };
+
+// ─── UTILITIES ────────────────────────────────────────────────────────────────
+function gv(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+function goScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.remove('active');
+  void el.offsetWidth; // force reflow for animation
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function setProgress(step) {
+  document.getElementById('prog').style.width = ((step / TOTAL_STEPS) * 100) + '%';
+  const meta = document.getElementById('nav-label');
+  if (step === 0 || step >= TOTAL_STEPS) {
+    meta.innerHTML = step === 0
+      ? '<a href="/tools/" class="back-link">← Tools</a>'
+      : 'Complete';
+  } else {
+    meta.textContent = 'Step ' + step + ' / ' + (TOTAL_STEPS - 1);
+  }
+}
+
+// ─── PART 1: Q REFERENCE ─────────────────────────────────────────────────────
+function populateQRef() {
+  const q1 = gv('q1'), q2 = gv('q2'), q3 = gv('q3');
+  const box = document.getElementById('q-ref-box');
+  const txt = document.getElementById('q-ref-text');
+
+  if (q1 || q2 || q3) {
+    let parts = [];
+    if (q1) parts.push('<strong style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:#999;display:block;margin-bottom:2px;margin-top:0.5rem">Category says</strong>' + q1);
+    if (q2) parts.push('<strong style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:#999;display:block;margin-bottom:2px;margin-top:0.5rem">You see differently</strong>' + q2);
+    if (q3) parts.push('<strong style="font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:#999;display:block;margin-bottom:2px;margin-top:0.5rem">The tension</strong>' + q3);
+    txt.innerHTML = parts.join('');
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+// ─── PASS FLOW ────────────────────────────────────────────────────────────────
+function savePass() {
+  const p = PASSES[currentPassIdx];
+  passValues[p.id] = document.getElementById('p-input').value.trim();
+}
+
+function startPass(idx) {
+  currentPassIdx = idx;
+  const p = PASSES[idx];
+
+  document.getElementById('p-label').textContent = p.label;
+  document.getElementById('p-badge').textContent = p.badge;
+  document.getElementById('p-head').textContent = p.head;
+  document.getElementById('p-desc').textContent = p.desc;
+  document.getElementById('p-callout').textContent = p.callout;
+  document.getElementById('p-field-label').textContent = p.fieldLabel;
+
+  const input = document.getElementById('p-input');
+  input.placeholder = p.placeholder;
+  input.rows = p.rows;
+  input.value = passValues[p.id] || '';
+
+  const prevEl = document.getElementById('p-prev');
+  if (p.prevId && passValues[p.prevId]) {
+    document.getElementById('p-prev-lbl').textContent = p.prevLabel;
+    document.getElementById('p-prev-txt').textContent = passValues[p.prevId];
+    prevEl.style.display = 'block';
+  } else {
+    prevEl.style.display = 'none';
+  }
+
+  // Back button
+  document.getElementById('p-back').onclick = () => {
+    savePass();
+    if (idx === 0) {
+      goScreen('s-rough-edge');
+      setProgress(2);
+    } else {
+      startPass(idx - 1);
+    }
+  };
+
+  // Next button
+  const nextBtn = document.getElementById('p-next');
+  nextBtn.textContent = idx === PASSES.length - 1 ? 'Run Final Test →' : 'Pass ' + (idx + 2) + ' →';
+  nextBtn.onclick = () => {
+    savePass();
+    if (idx < PASSES.length - 1) {
+      startPass(idx + 1);
+    } else {
+      openTest();
+    }
+  };
+
+  setProgress(p.step);
+  goScreen('s-pass');
+}
+
+// ─── FINAL TEST ───────────────────────────────────────────────────────────────
+function openTest() {
+  savePass();
+  document.getElementById('edge-preview').textContent = passValues.pass5 || 'Your edge message will appear here.';
+
+  // Reset test state
+  testAnswers[1] = testAnswers[2] = testAnswers[3] = null;
+  [1, 2, 3].forEach(n => ['y','n'].forEach(v => {
+    const b = document.getElementById('t' + n + v);
+    if (b) b.className = 'tbtn';
+  }));
+  const fb = document.getElementById('test-feedback');
+  fb.style.display = 'none';
+  fb.className = 'test-feedback';
+
+  setProgress(9);
+  goScreen('s-test');
+}
+
+function setTest(num, val) {
+  testAnswers[num] = val;
+  ['y','n'].forEach(v => {
+    const b = document.getElementById('t' + num + v);
+    if (b) {
+      b.className = 'tbtn';
+      if (v === val) b.classList.add(val === 'y' ? 'picked-yes' : 'picked-no');
+    }
+  });
+
+  const answered = Object.values(testAnswers).filter(v => v !== null).length;
+  if (answered < 3) return;
+
+  const fb = document.getElementById('test-feedback');
+  fb.style.display = 'block';
+
+  if (testAnswers[1] === 'y') {
+    fb.className = 'test-feedback tf-fail';
+    fb.textContent = 'Competitors could say it — still inside the box. Go back to Pass 4 and name the tension harder. Then rewrite Pass 5.';
+  } else if (testAnswers[2] === 'n') {
+    fb.className = 'test-feedback tf-warn';
+    fb.textContent = 'If this fails to sharpen your content, it may still be too abstract. Anchor it to a specific belief or tension your audience already recognizes.';
+  } else if (testAnswers[3] === 'n') {
+    fb.className = 'test-feedback tf-warn';
+    fb.textContent = 'If it goes generic in an AI prompt, add specificity — the who, the tension, the belief that makes it yours.';
+  } else {
+    fb.className = 'test-feedback tf-pass';
+    fb.textContent = 'Passes the test. Distinct, directional, and usable. Ship it.';
+  }
+}
+
+// ─── RESULTS ──────────────────────────────────────────────────────────────────
+function showResults() {
+  setProgress(10);
+  document.getElementById('r-edge-message').textContent = passValues.pass5 || '—';
+
+  const rows = [
+    { lbl: 'Your rough edge', val: gv('rough-edge'), edge: false },
+    { lbl: 'Pass 1 — Category message', val: passValues.pass1, edge: false },
+    { lbl: 'Pass 2 — Audience message', val: passValues.pass2, edge: false },
+    { lbl: 'Pass 3 — Problem message', val: passValues.pass3, edge: false },
+    { lbl: 'Pass 4 — Tension message', val: passValues.pass4, edge: false },
+    { lbl: 'Pass 5 — Edge message',    val: passValues.pass5, edge: true  }
+  ];
+
+  const container = document.getElementById('progression-rows');
+  container.innerHTML = '';
+  rows.forEach(r => {
+    if (!r.val) return;
+    const div = document.createElement('div');
+    div.className = 'pass-row' + (r.edge ? ' edge-row' : '');
+    div.innerHTML = '<div class="pass-row-lbl">' + r.lbl + '</div>'
+                  + '<div class="pass-row-txt">' + r.val + '</div>';
+    container.appendChild(div);
+  });
+
+  goScreen('s-results');
+}
+
+// ─── PRINT GATE ───────────────────────────────────────────────────────────────
+let briefPrinted = false;
+
+function handlePrint() {
+  if (briefPrinted) {
+    printBrief();
+  } else {
+    openModal();
+  }
+}
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('modal-email').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.getElementById('modal-error').style.display = 'none';
+  document.getElementById('modal-submit').disabled = false;
+  document.getElementById('modal-submit').textContent = 'Get PDF';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('open')) {
+    handleModalSubmit();
+  }
+});
+
+async function handleModalSubmit() {
+  const emailEl  = document.getElementById('modal-email');
+  const submitEl = document.getElementById('modal-submit');
+  const errorEl  = document.getElementById('modal-error');
+  const email    = (emailEl.value || '').trim();
+
+  errorEl.style.display = 'none';
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errorEl.textContent = 'Please enter a valid email address.';
+    errorEl.style.display = 'block';
+    emailEl.focus();
+    return;
+  }
+
+  submitEl.disabled = true;
+  submitEl.textContent = 'Opening…';
+
+  // Fire-and-forget capture — don't block PDF on network
+  fetch('/.netlify/functions/sharpen-edge-capture', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email,
+      roughEdge: gv('rough-edge'),
+      pass1: passValues.pass1,
+      pass2: passValues.pass2,
+      pass3: passValues.pass3,
+      pass4: passValues.pass4,
+      pass5: passValues.pass5,
+    }),
+  }).catch(err => console.error('Capture failed:', err));
+
+  briefPrinted = true;
+  closeModal();
+  printBrief();
+}
+
+function printBrief() {
+  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const edge = passValues.pass5 || '—';
+
+  const rows = [
+    { lbl: 'Your rough edge',           val: gv('rough-edge') },
+    { lbl: 'Pass 1 — Category message', val: passValues.pass1 },
+    { lbl: 'Pass 2 — Audience message', val: passValues.pass2 },
+    { lbl: 'Pass 3 — Problem message',  val: passValues.pass3 },
+    { lbl: 'Pass 4 — Tension message',  val: passValues.pass4 },
+  ].filter(r => r.val);
+
+  const passesHTML = rows.map(r => `
+    <div style="padding:16px 0;border-top:1px solid #E0E0E0;">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:#999;margin-bottom:6px;">${r.lbl}</div>
+      <div style="font-size:13px;line-height:1.65;color:#000;">${r.val}</div>
+    </div>
+  `).join('');
+
+  const html = `
+    <div style="font-family:'Roboto Mono',Courier,monospace;color:#000;background:#fff;padding:48px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #000;padding-bottom:16px;margin-bottom:32px;">
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;">BrandThnk</div>
+        <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.4;">${date}</div>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:36px;line-height:1.1;">Sharpen Your <span style="background:#FFEB3B;padding:0 6px;">Edge</span></div>
+      </div>
+      <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;opacity:0.4;margin-bottom:32px;">A BrandThnk Messaging Brief</div>
+
+      <div style="background:#000;padding:28px 32px;margin-bottom:32px;">
+        <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#666;margin-bottom:10px;">Edge Message — Pass 5 of 5</div>
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:22px;line-height:1.3;color:#FFEB3B;">${edge}</div>
+      </div>
+
+      <div style="margin-bottom:32px;">
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:14px;border-bottom:2px solid #000;padding-bottom:10px;margin-bottom:0;">Messaging Progression</div>
+        ${passesHTML}
+      </div>
+
+      <div style="padding:24px;border:2px solid #000;background:#F5F5F5;break-inside:avoid;">
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:15px;margin-bottom:8px;">Want to pressure-test this?</div>
+        <div style="font-size:12px;line-height:1.7;opacity:0.6;margin-bottom:12px;">A tool sharpens the message. A strategist helps you build the case for it internally and make it compound across your content.</div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.05em;">Book time at brandthnk.co</div>
+      </div>
+
+      <div style="margin-top:32px;padding-top:16px;border-top:3px solid #000;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-family:'Roboto Slab',Georgia,serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">BrandThnk</div>
+        <div style="font-size:10px;opacity:0.3;letter-spacing:0.1em;text-transform:uppercase;">brandthnk.co</div>
+      </div>
+    </div>
+  `;
+
+  const printDoc = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sharpen Your Edge — BrandThnk Brief</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    @page { margin: 0.5in; size: letter; }
+    @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Roboto Mono', Courier, monospace; color: #000; background: #fff; }
+  </style>
+</head>
+<body>${html}</body>
+</html>`;
+
+  const iframe = document.createElement('iframe');
+  iframe.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:none;';
+  document.body.appendChild(iframe);
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(printDoc);
+  doc.close();
+
+  setTimeout(() => {
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print();
+    setTimeout(() => document.body.removeChild(iframe), 1000);
+  }, 600);
+}
+
+// ─── RESTART ──────────────────────────────────────────────────────────────────
+function restart() {
+  Object.keys(passValues).forEach(k => { passValues[k] = ''; });
+  testAnswers[1] = testAnswers[2] = testAnswers[3] = null;
+  briefPrinted = false;
+  document.querySelectorAll('textarea').forEach(t => { t.value = ''; });
+  document.getElementById('modal-email').value = '';
+  document.getElementById('modal-error').style.display = 'none';
+  document.getElementById('modal-submit').disabled = false;
+  document.getElementById('modal-submit').textContent = 'Get PDF';
+  setProgress(0);
+  goScreen('s-welcome');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+setProgress(0);
+</script>
+</body>
+</html>
