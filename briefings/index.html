@@ -144,9 +144,6 @@
   }
 
   .briefing-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
     margin-bottom: 20px;
   }
 
@@ -159,12 +156,6 @@
     color: var(--black);
     padding: 4px 12px;
     border-radius: 0;
-  }
-
-  .briefing-date {
-    font-size: 12px;
-    color: var(--gray);
-    font-weight: 400;
   }
 
   .briefing-title {
@@ -306,10 +297,18 @@
 
   <!-- BRIEFINGS GRID -->
   <div class="briefings-grid">
+    <a href="/briefings/personas-are-only-useful-if-they-help-you-say-no.html" class="briefing-card">
+      <div class="briefing-meta">
+        <span class="briefing-type">Strategy</span>
+      </div>
+      <h2 class="briefing-title">Personas Are Only Useful If They Help You Say No</h2>
+      <p class="briefing-excerpt">The value of personas is not that they perfectly describe every customer. Their value is that they help an organization focus. Learn how to build a shared system for attention and give your organization permission to say no.</p>
+      <span class="briefing-link">Read Briefing</span>
+    </a>
+
     <a href="/briefings/brand-strategy-moving-again.html" class="briefing-card">
       <div class="briefing-meta">
         <span class="briefing-type">Strategy</span>
-        <span class="briefing-date">May 29, 2026</span>
       </div>
       <h2 class="briefing-title">How to Get Your Brand Strategy Moving Again</h2>
       <p class="briefing-excerpt">Five ways to restart momentum when strategy stalls (and why stalling isn't failure). Strategic frameworks for getting brand strategy implementation back on track.</p>
@@ -319,7 +318,6 @@
     <a href="/briefings/branding-everyones-job.html" class="briefing-card">
       <div class="briefing-meta">
         <span class="briefing-type">Organization</span>
-        <span class="briefing-date">May 28, 2026</span>
       </div>
       <h2 class="briefing-title">Branding Is Everyone's Job (But Not Everyone Is a Marketer)</h2>
       <p class="briefing-excerpt">When we say branding is everyone's job, we aren't asking everyone to be a marketer. Learn how to move from brand alignment to brand accountability across your entire organization.</p>
@@ -329,7 +327,6 @@
     <a href="/briefings/commodity-customer-problem.html" class="briefing-card">
       <div class="briefing-meta">
         <span class="briefing-type">Strategy</span>
-        <span class="briefing-date">May 20, 2026</span>
       </div>
       <h2 class="briefing-title">Your Product May Be a Commodity. Your Customer's Problem Is Not.</h2>
       <p class="briefing-excerpt">The mistake is treating commoditization as defeat. Even if your product is a commodity, the customer's problem is not. Learn how to move beyond product features to create meaningful differentiation.</p>
@@ -341,7 +338,6 @@
     <a href="/briefings/[slug].html" class="briefing-card">
       <div class="briefing-meta">
         <span class="briefing-type">[Category]</span>
-        <span class="briefing-date">[Date]</span>
       </div>
       <h2 class="briefing-title">[Title]</h2>
       <p class="briefing-excerpt">[Excerpt]</p>
