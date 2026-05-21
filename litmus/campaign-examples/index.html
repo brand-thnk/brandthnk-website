@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Examples Library - Litmus by BrandThnk</title>
+<meta name="description" content="Before and after campaign examples showing the impact of persona-driven marketing. See how Litmus transforms generic campaigns into targeted, high-converting experiences.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+    --red: #F44336;
+    --success-green: #00C853;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 80px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-breadcrumb {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+  }
+
+  .hero-breadcrumb a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--light-gray);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 60px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .section-content {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--black);
+    margin-bottom: 40px;
+  }
+
+  .section-content p {
+    margin-bottom: 20px;
+  }
+
+  /* CAMPAIGN COMPARISON */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  .campaign-card {
+    background: var(--white);
+    border: 3px solid;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .campaign-card.before {
+    border-color: var(--red);
+  }
+
+  .campaign-card.after {
+    border-color: var(--success-green);
+  }
+
+  .campaign-header {
+    padding: 20px 24px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .campaign-card.before .campaign-header {
+    background: var(--red);
+  }
+
+  .campaign-card.after .campaign-header {
+    background: var(--success-green);
+  }
+
+  .campaign-icon {
+    font-size: 24px;
+  }
+
+  .campaign-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .campaign-body {
+    padding: 30px;
+  }
+
+  .campaign-type {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    background: var(--offwhite);
+    padding: 6px 10px;
+    display: inline-block;
+  }
+
+  .campaign-content {
+    background: var(--offwhite);
+    border: 1px solid var(--light-gray);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .email-subject {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .email-body {
+    color: var(--gray);
+  }
+
+  .campaign-metrics {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .metrics-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .metric {
+    text-align: center;
+  }
+
+  .metric-value {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  .campaign-card.before .metric-value {
+    color: var(--red);
+  }
+
+  .campaign-card.after .metric-value {
+    color: var(--success-green);
+  }
+
+  .metric-label {
+    color: var(--gray);
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* CAMPAIGN SELECTOR */
+  .campaign-selector {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .selector-btn {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .selector-btn:hover {
+    border-color: var(--gray);
+    color: var(--black);
+  }
+
+  .selector-btn.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+  }
+
+  /* LINKEDIN POST */
+  .linkedin-post {
+    background: var(--white);
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  .linkedin-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .linkedin-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .linkedin-meta {
+    flex: 1;
+  }
+
+  .linkedin-name {
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 2px;
+  }
+
+  .linkedin-title {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .linkedin-content {
+    color: #000;
+    margin-bottom: 12px;
+  }
+
+  .linkedin-hashtags {
+    color: #0073b1;
+    font-size: 13px;
+  }
+
+  .linkedin-engagement {
+    border-top: 1px solid #e1e5e9;
+    padding-top: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* WEBSITE MOCKUP */
+  .website-mockup {
+    border: 1px solid var(--light-gray);
+    background: var(--white);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .website-header {
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 11px;
+    color: var(--gray);
+    font-family: monospace;
+  }
+
+  .website-content {
+    padding: 20px;
+  }
+
+  .website-headline {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .website-body {
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .website-cta {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 8px 16px;
+    border: none;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* SALES DECK */
+  .slide-mockup {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    aspect-ratio: 16/9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slide-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .slide-content {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  .slide-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+    text-align: left;
+  }
+
+  .slide-bullets li {
+    padding: 4px 0 4px 16px;
+    position: relative;
+  }
+
+  .slide-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--yellow);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 130px 24px 60px;
+    }
+
+    .section {
+      padding: 60px 24px;
+    }
+
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .campaign-selector {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .selector-btn {
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .linkedin-header {
+      flex-wrap: wrap;
+    }
+
+    .slide-mockup {
+      aspect-ratio: 4/3;
+      padding: 16px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="../">← Back to Litmus</a></li>
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-breadcrumb"><a href="../">Litmus</a> → Campaign Examples</p>
+    <h1>Before vs After: Real Campaign Impact</h1>
+    <p>See exactly how Litmus personas transform generic campaigns into targeted, high-converting experiences. Side-by-side comparisons across email, LinkedIn, website, and sales materials.</p>
+  </div>
+</section>
+
+<!-- CAMPAIGN SELECTOR -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Choose Campaign Type</h2>
+    <div class="section-content">
+      <p>Select a campaign type to see before and after examples. Each comparison shows the same product marketed with generic vs persona-driven approaches.</p>
+    </div>
+
+    <div class="campaign-selector">
+      <button class="selector-btn active" onclick="showCampaign('email')" data-campaign="email">Email Campaign</button>
+      <button class="selector-btn" onclick="showCampaign('linkedin')" data-campaign="linkedin">LinkedIn Sequence</button>
+      <button class="selector-btn" onclick="showCampaign('website')" data-campaign="website">Website Messaging</button>
+      <button class="selector-btn" onclick="showCampaign('sales')" data-campaign="sales">Sales Deck</button>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN COMPARISONS -->
+<section class="section">
+  <div class="container">
+    <div class="comparison-grid" id="campaign-comparison">
+      <!-- Dynamic campaign content -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+  // Campaign data
+  const campaigns = {
+    email: {
+      title: 'Email Campaign: Core Banking Platform',
+      before: {
+        type: 'Generic ICP-Based Email',
+        subject: 'Transform Your Banking Operations with Our Platform',
+        content: `Hi [First Name],
+
+Are you struggling with outdated banking technology that's holding your institution back?
+
+Our modern banking platform helps community banks and credit unions:
+• Modernize legacy systems
+• Improve operational efficiency
+• Enhance customer experience
+• Reduce compliance burden
+
+We've helped 200+ financial institutions transform their operations. Our platform integrates with all major core systems and can be implemented in 90 days.
+
+Ready to see how we can help your institution? Book a demo today.
+
+Best regards,
+Sales Team`,
+        metrics: {
+          openRate: '18%',
+          clickRate: '2.1%',
+          responseRate: '0.3%',
+          demoRate: '0.1%'
+        }
+      },
+      after: {
+        type: 'Rob Castellano (CEO) Persona-Driven Email',
+        subject: 'How First National (Jackson) Renewed Fiserv Early - Without Board Pressure',
+        content: `Hi Rob,
+
+Mike Thompson at First National in Jackson mentioned you're facing a similar situation with your Fiserv renewal timeline.
+
+Like you, Mike was dealing with board questions about digital strategy while navigating a core contract renewal. He didn't want to rush into an expensive mistake.
+
+Here's what Mike found helpful:
+• Peer calls with 3 other Alabama bank CEOs before any vendor meetings
+• Implementation approach that satisfied his board without operational disruption
+• Cost structure that actually reduced his annual technology expense by 12%
+
+Mike offered to share his board presentation materials and lessons learned. Would a 15-minute call with him be valuable? I can facilitate the introduction.
+
+I know these decisions can't be rushed, especially with board visibility. Happy to help you evaluate options at your pace.
+
+Best regards,
+[Sales Rep Name]
+P.S. Mike's integration went live in October with zero downtime. Happy to share that timeline if useful.`,
+        metrics: {
+          openRate: '67%',
+          clickRate: '24%',
+          responseRate: '8.2%',
+          demoRate: '4.1%'
+        }
+      }
+    },
+    linkedin: {
+      title: 'LinkedIn Sequence: Digital Banking Solution',
+      before: {
+        type: 'Generic ICP-Based LinkedIn Post',
+        author: 'TechBank Solutions',
+        title: 'Sales Director at TechBank Solutions',
+        content: `🏦 Is your bank ready for the digital transformation?
+
+Our cutting-edge digital banking platform is revolutionizing how community banks serve their customers. With AI-powered features and seamless integration, we're helping banks stay competitive.
+
+✅ Modern user interface
+✅ Advanced analytics
+✅ Cloud-based architecture
+✅ 24/7 customer support
+
+Ready to future-proof your institution? Let's connect!
+
+#DigitalBanking #BankingTechnology #FinTech #Innovation`,
+        hashtags: '#DigitalBanking #BankingTechnology #FinTech #Innovation',
+        engagement: '12 likes • 2 comments • 0 shares',
+        metrics: {
+          impressions: '2,450',
+          engagement: '0.6%',
+          clicks: '8',
+          conversations: '0'
+        }
+      },
+      after: {
+        type: 'Rob Castellano (CEO) Persona-Driven Post',
+        author: 'TechBank Solutions',
+        title: 'Sales Director at TechBank Solutions',
+        content: `The board meeting question that stops CEOs cold: "Why don't we have what [competitor bank] just launched?"
+
+Last month, a $6B Alabama bank CEO got this exact question. His board forwarded a competitor's Instagram ad.
+
+Here's what worked:
+→ Peer CEO calls (not vendor demos) to understand real implementation challenges
+→ Focus on risk mitigation over features
+→ Regional reference customers, not national case studies
+
+The decision took 14 months. Board approved unanimously.
+
+Sometimes the best response to innovation pressure is strategic patience.`,
+        hashtags: '#CommunityBanking #BankingStrategy #Leadership',
+        engagement: '127 likes • 23 comments • 18 shares',
+        metrics: {
+          impressions: '18,340',
+          engagement: '9.1%',
+          clicks: '167',
+          conversations: '23'
+        }
+      }
+    },
+    website: {
+      title: 'Website Landing Page: Treasury Management',
+      before: {
+        type: 'Generic ICP-Based Landing Page',
+        url: 'treasurytech.com/community-banks',
+        headline: 'Modern Treasury Management for Community Banks',
+        content: `Streamline your treasury operations with our comprehensive platform designed specifically for community banks and credit unions.
+
+Our solution offers real-time cash management, automated reporting, and seamless integration with your existing systems. Join 500+ financial institutions who trust our platform.
+
+Key Benefits:
+• Automated cash positioning
+• Real-time liquidity monitoring
+• Regulatory reporting automation
+• Mobile access for executives
+• 24/7 support from banking experts
+
+Ready to modernize your treasury operations? Schedule a demo today.`,
+        metrics: {
+          conversion: '1.8%',
+          timeOnPage: '45 sec',
+          bounceRate: '78%',
+          demoRequests: '2.1%'
+        }
+      },
+      after: {
+        type: 'Rob Castellano (CEO) Persona-Driven Page',
+        url: 'treasurytech.com/fiserv-integration',
+        headline: 'Treasury Management That Actually Integrates with Fiserv Premier',
+        content: `No middleware. No file exports. Direct API integration that your board will understand.
+
+Used by 35 Southeast community banks including institutions in Birmingham, Nashville, and Atlanta markets. Average implementation: 4 weeks with zero downtime.
+
+What sets this apart:
+• Native Fiserv Premier integration (no additional software required)
+• Board-ready reporting that CFOs actually use
+• Implementation by former community bank treasury managers
+• Same-day phone support from people who understand community banking
+
+"We've had zero issues since go-live. The board presentation materials alone were worth it." - Mike Thompson, First National Bank (Jackson, MS)
+
+Ready to see the Fiserv integration in action?`,
+        metrics: {
+          conversion: '12.4%',
+          timeOnPage: '3m 22sec',
+          bounceRate: '23%',
+          demoRequests: '8.9%'
+        }
+      }
+    },
+    sales: {
+      title: 'Sales Deck: Lending Platform Presentation',
+      before: {
+        type: 'Generic Feature-Based Presentation',
+        slides: [
+          {
+            title: 'Next-Generation Lending Platform',
+            content: 'Revolutionizing lending for community financial institutions with AI-powered decision making and streamlined workflows.'
+          },
+          {
+            title: 'Key Features & Benefits',
+            bullets: [
+              'Automated underwriting with AI/ML capabilities',
+              'Seamless integration with core banking systems',
+              'Mobile-first loan application experience',
+              'Advanced analytics and reporting dashboard',
+              'Configurable workflow automation',
+              '99.9% uptime SLA with 24/7 support'
+            ]
+          },
+          {
+            title: 'Implementation Timeline',
+            content: '90-day implementation with dedicated project management, training, and ongoing support for your success.'
+          }
+        ],
+        metrics: {
+          closeRate: '8%',
+          cycleLength: '9 months',
+          objections: 'High',
+          nextSteps: '15%'
+        }
+      },
+      after: {
+        type: 'Rob Castellano (CEO) Pain-Point Presentation',
+        slides: [
+          {
+            title: 'Why First National (Jackson) Chose Us Over [Competitor]',
+            content: 'CEO Mike Thompson needed lending modernization without the risks that sank two competitors in Mississippi.'
+          },
+          {
+            title: 'Three Things Mike\'s Board Required',
+            bullets: [
+              'Fiserv Premier integration with zero middleware risk',
+              'Implementation by team with community bank experience',
+              'Reference calls from CEOs (not just IT directors)',
+              'Rollback plan if integration caused operational issues',
+              'Cost structure predictable through next board budget cycle',
+              'Compliance documentation reviewed by bank examiners'
+            ]
+          },
+          {
+            title: 'Mike\'s Outcome: 18 Months Later',
+            content: 'Loan processing time: 6 days to 2 days. Zero operational issues. Board presentation materials we provided helped him get unanimous approval for mobile expansion.'
+          }
+        ],
+        metrics: {
+          closeRate: '34%',
+          cycleLength: '5.2 months',
+          objections: 'Low',
+          nextSteps: '67%'
+        }
+      }
+    }
+  };
+
+  // Show campaign comparison
+  window.showCampaign = function(type) {
+    // Update selector state
+    document.querySelectorAll('.selector-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-campaign="${type}"]`).classList.add('active');
+
+    const campaign = campaigns[type];
+    const container = document.getElementById('campaign-comparison');
+
+    // Generate content based on campaign type
+    let beforeContent, afterContent;
+
+    switch(type) {
+      case 'email':
+        beforeContent = generateEmailContent(campaign.before);
+        afterContent = generateEmailContent(campaign.after);
+        break;
+      case 'linkedin':
+        beforeContent = generateLinkedInContent(campaign.before);
+        afterContent = generateLinkedInContent(campaign.after);
+        break;
+      case 'website':
+        beforeContent = generateWebsiteContent(campaign.before);
+        afterContent = generateWebsiteContent(campaign.after);
+        break;
+      case 'sales':
+        beforeContent = generateSalesContent(campaign.before);
+        afterContent = generateSalesContent(campaign.after);
+        break;
+    }
+
+    container.innerHTML = `
+      <div class="campaign-card before">
+        <div class="campaign-header">
+          <div class="campaign-icon">❌</div>
+          <div class="campaign-label">BEFORE: Without Litmus</div>
+        </div>
+        <div class="campaign-body">
+          <div class="campaign-type">${campaign.before.type}</div>
+          ${beforeContent}
+          ${generateMetrics(campaign.before.metrics, 'before')}
+        </div>
+      </div>
+
+      <div class="campaign-card after">
+        <div class="campaign-header">
+          <div class="campaign-icon">✅</div>
+          <div class="campaign-label">AFTER: With Litmus Personas</div>
+        </div>
+        <div class="campaign-body">
+          <div class="campaign-type">${campaign.after.type}</div>
+          ${afterContent}
+          ${generateMetrics(campaign.after.metrics, 'after')}
+        </div>
+      </div>
+    `;
+  };
+
+  // Generate email content
+  function generateEmailContent(data) {
+    return `
+      <div class="campaign-content">
+        <div class="email-subject">Subject: ${data.subject}</div>
+        <div class="email-body">${data.content.replace(/\n/g, '<br>')}</div>
+      </div>
+    `;
+  }
+
+  // Generate LinkedIn content
+  function generateLinkedInContent(data) {
+    return `
+      <div class="campaign-content">
+        <div class="linkedin-post">
+          <div class="linkedin-header">
+            <div class="linkedin-avatar">${data.author.charAt(0)}</div>
+            <div class="linkedin-meta">
+              <div class="linkedin-name">${data.author}</div>
+              <div class="linkedin-title">${data.title}</div>
+            </div>
+          </div>
+          <div class="linkedin-content">${data.content.replace(/\n/g, '<br>')}</div>
+          <div class="linkedin-hashtags">${data.hashtags}</div>
+          <div class="linkedin-engagement">${data.engagement}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Generate website content
+  function generateWebsiteContent(data) {
+    return `
+      <div class="campaign-content">
+        <div class="website-mockup">
+          <div class="website-header">${data.url}</div>
+          <div class="website-content">
+            <div class="website-headline">${data.headline}</div>
+            <div class="website-body">${data.content.replace(/\n/g, '<br>')}</div>
+            <button class="website-cta">Schedule Demo</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Generate sales content
+  function generateSalesContent(data) {
+    return `
+      <div class="campaign-content">
+        ${data.slides.map((slide, index) => `
+          <div class="slide-mockup" style="margin-bottom: 16px;">
+            <div class="slide-title">Slide ${index + 1}: ${slide.title}</div>
+            <div class="slide-content">
+              ${slide.content ? `<p>${slide.content}</p>` : ''}
+              ${slide.bullets ? `
+                <ul class="slide-bullets">
+                  ${slide.bullets.map(bullet => `<li>${bullet}</li>`).join('')}
+                </ul>
+              ` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Generate metrics section
+  function generateMetrics(metrics, type) {
+    const metricEntries = Object.entries(metrics);
+
+    return `
+      <div class="campaign-metrics">
+        <div class="metrics-title">Campaign Performance</div>
+        <div class="metrics-grid">
+          ${metricEntries.map(([key, value]) => `
+            <div class="metric">
+              <div class="metric-value">${value}</div>
+              <div class="metric-label">${key.replace(/([A-Z])/g, ' $1').trim()}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Initialize with email campaign
+  showCampaign('email');
+})();
+</script>
+
+</body>
+</html>

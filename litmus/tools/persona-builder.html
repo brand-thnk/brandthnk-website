@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Persona Builder | Litmus by BrandThnk</title>
+<meta name="description" content="Create custom personas using the proven 8-layer Litmus methodology with guided interviews and institutional data integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --green: #4CAF50;
+    --blue: #2196F3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--offwhite);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-breadcrumb {
+    color: var(--gray);
+    font-size: 14px;
+  }
+
+  .nav-breadcrumb a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .header p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    background: var(--white);
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 100%);
+    transition: width 0.3s ease;
+    width: 12.5%;
+  }
+
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  .progress-label {
+    color: var(--gray);
+  }
+
+  .progress-label.active {
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .progress-label.completed {
+    color: var(--green);
+  }
+
+  /* MAIN CONTAINER */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  /* LAYER SECTIONS */
+  .layer-section {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    border-radius: 0;
+    padding: 40px;
+    margin-bottom: 40px;
+    display: none;
+  }
+
+  .layer-section.active {
+    display: block;
+  }
+
+  .layer-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--yellow);
+  }
+
+  .layer-number {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 0;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .layer-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .layer-description {
+    color: var(--gray);
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  /* FORM ELEMENTS */
+  .form-group {
+    margin-bottom: 32px;
+  }
+
+  .form-label {
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 16px;
+  }
+
+  .form-sublabel {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--light-gray);
+    background: var(--white);
+    font-family: inherit;
+    font-size: 16px;
+    border-radius: 0;
+    transition: all 0.2s;
+  }
+
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--black);
+    background: var(--offwhite);
+  }
+
+  .form-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--light-gray);
+    background: var(--offwhite);
+    transition: all 0.2s;
+  }
+
+  .checkbox-item:hover {
+    background: var(--white);
+    border-color: var(--gray);
+  }
+
+  .checkbox-item.selected {
+    background: var(--white);
+    border-color: var(--yellow);
+    border-width: 2px;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+  }
+
+  .checkbox-content {
+    flex: 1;
+  }
+
+  .checkbox-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .checkbox-description {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .radio-grid {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--light-gray);
+    background: var(--offwhite);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .radio-item:hover {
+    background: var(--white);
+    border-color: var(--gray);
+  }
+
+  .radio-item.selected {
+    background: var(--white);
+    border-color: var(--yellow);
+    border-width: 2px;
+  }
+
+  .radio-item input[type="radio"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 16px 32px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-success {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .btn:disabled {
+    background: var(--light-gray);
+    color: var(--gray);
+    border-color: var(--light-gray);
+    cursor: not-allowed;
+  }
+
+  .btn:disabled:hover {
+    background: var(--light-gray);
+    color: var(--gray);
+    border-color: var(--light-gray);
+  }
+
+  /* NAVIGATION BUTTONS */
+  .layer-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  /* INSTITUTIONAL DATA LOOKUP */
+  .lookup-section {
+    background: var(--offwhite);
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .lookup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .lookup-icon {
+    background: var(--blue);
+    color: var(--white);
+    padding: 8px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .lookup-title {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .lookup-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    align-items: end;
+  }
+
+  /* PERSONA SUMMARY */
+  .persona-summary {
+    background: var(--white);
+    border: 2px solid var(--yellow);
+    padding: 32px;
+    margin-bottom: 32px;
+    display: none;
+  }
+
+  .persona-summary.visible {
+    display: block;
+  }
+
+  .summary-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .summary-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .summary-role {
+    color: var(--gray);
+    font-size: 16px;
+  }
+
+  .summary-layers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .summary-layer {
+    padding: 16px 0;
+  }
+
+  .summary-layer h4 {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .summary-layer p {
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* EXPORT SECTION */
+  .export-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 40px;
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .export-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .export-options {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+
+    .header {
+      padding: 40px 20px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+    }
+
+    nav {
+      padding: 20px;
+    }
+
+    .progress-container {
+      padding: 20px;
+    }
+
+    .layer-section {
+      padding: 24px;
+    }
+
+    .lookup-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .summary-layers {
+      grid-template-columns: 1fr;
+    }
+
+    .export-options {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Litmus</a>
+  <div class="nav-breadcrumb">
+    <a href="../index.html">Litmus</a> → Tools → Persona Builder
+  </div>
+  <div class="nav-actions">
+    <button class="btn btn-secondary" onclick="saveProgress()">Save Progress</button>
+    <button class="btn btn-secondary" onclick="loadProgress()">Load Saved</button>
+  </div>
+</nav>
+
+<section class="header">
+  <h1>Advanced Persona Builder</h1>
+  <p>Create research-grade personas using the proven 8-layer Litmus methodology with guided interviews and institutional data integration.</p>
+</section>
+
+<div class="progress-container">
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-labels">
+    <span class="progress-label active" data-layer="1">Identity</span>
+    <span class="progress-label" data-layer="2">Institution</span>
+    <span class="progress-label" data-layer="3">Authority</span>
+    <span class="progress-label" data-layer="4">Technology</span>
+    <span class="progress-label" data-layer="5">Psychographics</span>
+    <span class="progress-label" data-layer="6">Pain Points</span>
+    <span class="progress-label" data-layer="7">Buying Context</span>
+    <span class="progress-label" data-layer="8">Messaging</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Layer 1: Identity & Personal Background -->
+  <div class="layer-section active" id="layer-1">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 1</div>
+      <h2 class="layer-title">Identity & Personal Background</h2>
+      <p class="layer-description">Define the basic identity and demographic profile of your persona.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Persona Name</label>
+      <span class="form-sublabel">Choose a realistic name that represents your target audience</span>
+      <input type="text" class="form-input" id="persona-name" placeholder="e.g., Rebecca Martinez">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Job Title</label>
+      <span class="form-sublabel">Specific title, not just "CEO" or "CTO"</span>
+      <input type="text" class="form-input" id="job-title" placeholder="e.g., Chief Digital Officer">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Age Range</label>
+      <select class="form-select" id="age-range">
+        <option value="">Select age range...</option>
+        <option value="25-35">25-35 years</option>
+        <option value="35-45">35-45 years</option>
+        <option value="45-55">45-55 years</option>
+        <option value="55-65">55-65 years</option>
+        <option value="65+">65+ years</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Educational Background</label>
+      <select class="form-select" id="education">
+        <option value="">Select education level...</option>
+        <option value="bachelors-business">Bachelor's - Business/Finance</option>
+        <option value="bachelors-technical">Bachelor's - Technical/Engineering</option>
+        <option value="masters-mba">Master's - MBA</option>
+        <option value="masters-technical">Master's - Technical</option>
+        <option value="advanced">Advanced/Professional Degree</option>
+        <option value="other">Other/Self-educated</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Career Background</label>
+      <span class="form-sublabel">What path led them to their current role?</span>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="career-traditional" value="traditional-banking">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Traditional Banking</div>
+            <div class="checkbox-description">Worked up through bank operations</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="career-technology" value="technology">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Technology Background</div>
+            <div class="checkbox-description">Came from tech industry or IT roles</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="career-consulting" value="consulting">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Consulting</div>
+            <div class="checkbox-description">Management or technology consulting</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="career-other-industry" value="other-industry">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Other Industry</div>
+            <div class="checkbox-description">Retail, healthcare, manufacturing, etc.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <div></div>
+      <button class="btn" onclick="nextLayer()">Next: Institution Profile</button>
+    </div>
+  </div>
+
+  <!-- Layer 2: Institution Profile -->
+  <div class="layer-section" id="layer-2">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 2</div>
+      <h2 class="layer-title">Institution Profile</h2>
+      <p class="layer-description">Define the institutional context and organizational characteristics.</p>
+    </div>
+
+    <div class="lookup-section">
+      <div class="lookup-header">
+        <div class="lookup-icon">📊</div>
+        <div class="lookup-title">Institutional Data Lookup</div>
+      </div>
+      <div class="lookup-grid">
+        <input type="text" class="form-input" id="institution-name" placeholder="Search institution name...">
+        <button class="btn btn-secondary" onclick="lookupInstitution()">Search FDIC/NCUA</button>
+      </div>
+      <div id="lookup-results" style="margin-top: 16px; display: none;">
+        <!-- Dynamic lookup results -->
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Institution Type</label>
+      <select class="form-select" id="institution-type">
+        <option value="">Select institution type...</option>
+        <option value="community-bank">Community Bank</option>
+        <option value="credit-union">Credit Union</option>
+        <option value="regional-bank">Regional Bank</option>
+        <option value="fintech">Fintech Company</option>
+        <option value="credit-union-service-org">CUSO (Credit Union Service Organization)</option>
+        <option value="bank-service-company">Bank Service Company</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Asset Size</label>
+      <select class="form-select" id="asset-size">
+        <option value="">Select asset range...</option>
+        <option value="under-100m">Under $100M</option>
+        <option value="100m-500m">$100M - $500M</option>
+        <option value="500m-1b">$500M - $1B</option>
+        <option value="1b-5b">$1B - $5B</option>
+        <option value="5b-25b">$5B - $25B</option>
+        <option value="over-25b">Over $25B</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Geographic Market</label>
+      <input type="text" class="form-input" id="geographic-market" placeholder="e.g., Southeast Michigan, Rural Texas, Denver Metro">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Institutional Characteristics</label>
+      <span class="form-sublabel">Select all that apply to this institution</span>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-conservative" value="conservative">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Conservative Culture</div>
+            <div class="checkbox-description">Risk-averse, traditional approach</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-innovative" value="innovative">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Innovation-Focused</div>
+            <div class="checkbox-description">Early adopter, technology-forward</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-community" value="community-focused">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Community-Focused</div>
+            <div class="checkbox-description">Local relationships, community involvement</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-growth" value="growth-oriented">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Growth-Oriented</div>
+            <div class="checkbox-description">Expansion-focused, acquisition-minded</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-member" value="member-owned">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Member-Owned Focus</div>
+            <div class="checkbox-description">Credit union cooperative principles</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="char-efficiency" value="efficiency-driven">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Efficiency-Driven</div>
+            <div class="checkbox-description">Cost control, operational optimization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Decision Authority</button>
+    </div>
+  </div>
+
+  <!-- Layer 3: Role Authority & Decision Power -->
+  <div class="layer-section" id="layer-3">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 3</div>
+      <h2 class="layer-title">Role Authority & Decision Power</h2>
+      <p class="layer-description">Map decision-making authority, budget control, and influence within the organization.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Direct Budget Authority</label>
+      <span class="form-sublabel">What dollar amount can they approve without additional approval?</span>
+      <select class="form-select" id="budget-authority">
+        <option value="">Select budget authority...</option>
+        <option value="under-25k">Under $25,000</option>
+        <option value="25k-100k">$25,000 - $100,000</option>
+        <option value="100k-250k">$100,000 - $250,000</option>
+        <option value="250k-500k">$250,000 - $500,000</option>
+        <option value="500k-1m">$500,000 - $1,000,000</option>
+        <option value="over-1m">Over $1,000,000</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Decision-Making Style</label>
+      <span class="form-sublabel">How do they typically approach major decisions?</span>
+      <div class="radio-grid">
+        <div class="radio-item">
+          <input type="radio" name="decision-style" value="autonomous" id="decision-autonomous">
+          <label for="decision-autonomous">
+            <strong>Autonomous Decider</strong><br>
+            Makes decisions independently within their authority
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="decision-style" value="consensus" id="decision-consensus">
+          <label for="decision-consensus">
+            <strong>Consensus Builder</strong><br>
+            Seeks input from team and builds agreement
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="decision-style" value="validator" id="decision-validator">
+          <label for="decision-validator">
+            <strong>External Validator</strong><br>
+            Consults peers, board, or external advisors
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="decision-style" value="recommender" id="decision-recommender">
+          <label for="decision-recommender">
+            <strong>Recommender/Influencer</strong><br>
+            Recommends to others who make final decisions
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Approval Process Requirements</label>
+      <span class="form-sublabel">For purchases above their direct authority</span>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="approval-board" value="board-approval">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Board Approval Required</div>
+            <div class="checkbox-description">Board of directors must approve</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="approval-committee" value="committee-approval">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Committee Approval</div>
+            <div class="checkbox-description">Executive or technology committee</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="approval-ceo" value="ceo-approval">
+          <div class="checkbox-content">
+            <div class="checkbox-title">CEO/President Approval</div>
+            <div class="checkbox-description">Must get CEO sign-off</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="approval-alco" value="alco-approval">
+          <div class="checkbox-content">
+            <div class="checkbox-title">ALCO Review</div>
+            <div class="checkbox-description">Asset-liability committee review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Key Stakeholders They Must Convince</label>
+      <span class="form-sublabel">Who else has influence over their technology decisions?</span>
+      <textarea class="form-textarea" id="key-stakeholders" placeholder="e.g., Board chair who's skeptical of technology, CFO focused on cost control, operations manager worried about staff training..."></textarea>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Technology Landscape</button>
+    </div>
+  </div>
+
+  <!-- Continue with remaining layers... -->
+  <!-- For brevity, I'll include the key remaining layers -->
+
+  <!-- Layer 4: Technology Landscape -->
+  <div class="layer-section" id="layer-4">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 4</div>
+      <h2 class="layer-title">Technology Landscape</h2>
+      <p class="layer-description">Current technology stack, vendor relationships, and integration requirements.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Core Banking Platform</label>
+      <select class="form-select" id="core-platform">
+        <option value="">Select core platform...</option>
+        <option value="fiserv-premier">Fiserv Premier</option>
+        <option value="jack-henry-symitar">Jack Henry Symitar</option>
+        <option value="fis-profile">FIS Profile</option>
+        <option value="corelation-keystone">Corelation KeyStone</option>
+        <option value="temenos-t24">Temenos T24</option>
+        <option value="other">Other/Custom</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Technology Approach</label>
+      <div class="radio-grid">
+        <div class="radio-item">
+          <input type="radio" name="tech-approach" value="conservative" id="tech-conservative">
+          <label for="tech-conservative">
+            <strong>Conservative</strong><br>
+            Proven solutions, minimal risk, vendor-supported
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="tech-approach" value="pragmatic" id="tech-pragmatic">
+          <label for="tech-pragmatic">
+            <strong>Pragmatic</strong><br>
+            Balance innovation with stability
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="tech-approach" value="innovative" id="tech-innovative">
+          <label for="tech-innovative">
+            <strong>Innovative</strong><br>
+            Early adopter, competitive advantage through technology
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Psychographics</button>
+    </div>
+  </div>
+
+  <!-- Layer 5: Psychographics -->
+  <div class="layer-section" id="layer-5">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 5</div>
+      <h2 class="layer-title">Psychographics & Behavioral Traits</h2>
+      <p class="layer-description">Personality, values, motivations, and cognitive patterns that drive behavior.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Primary Personality Traits</label>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="trait-analytical" value="analytical">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Analytical</div>
+            <div class="checkbox-description">Data-driven, research-oriented</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trait-relationship" value="relationship-focused">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Relationship-Focused</div>
+            <div class="checkbox-description">Values personal connections and trust</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trait-results" value="results-oriented">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Results-Oriented</div>
+            <div class="checkbox-description">Focused on outcomes and performance</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trait-collaborative" value="collaborative">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Collaborative</div>
+            <div class="checkbox-description">Team-oriented, consensus-building</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Risk Tolerance</label>
+      <div class="radio-grid">
+        <div class="radio-item">
+          <input type="radio" name="risk-tolerance" value="risk-averse" id="risk-averse">
+          <label for="risk-averse">
+            <strong>Risk Averse</strong><br>
+            Prefers proven solutions, needs extensive validation
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="risk-tolerance" value="calculated" id="risk-calculated">
+          <label for="risk-calculated">
+            <strong>Calculated Risk</strong><br>
+            Willing to take measured risks with clear benefits
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="risk-tolerance" value="risk-taking" id="risk-taking">
+          <label for="risk-taking">
+            <strong>Risk Taking</strong><br>
+            Comfortable with uncertainty for competitive advantage
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Pain Points</button>
+    </div>
+  </div>
+
+  <!-- Layer 6: Pain Points -->
+  <div class="layer-section" id="layer-6">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 6</div>
+      <h2 class="layer-title">Pain Points & Challenges</h2>
+      <p class="layer-description">Specific problems, frustrations, and challenges driving their need for solutions.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Primary Pain Point</label>
+      <span class="form-sublabel">The most significant challenge they're facing</span>
+      <textarea class="form-textarea" id="primary-pain" placeholder="e.g., Fiserv contract renewal anxiety combined with board pressure for digital transformation, but terrified of member service disruption..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Secondary Challenges</label>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="pain-cost" value="cost-pressure">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Cost Pressure</div>
+            <div class="checkbox-description">Budget constraints, efficiency demands</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="pain-competition" value="competitive-pressure">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Competitive Pressure</div>
+            <div class="checkbox-description">Losing market share, fintech threats</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="pain-compliance" value="regulatory-compliance">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Regulatory Compliance</div>
+            <div class="checkbox-description">Keeping up with changing regulations</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="pain-technology" value="technology-debt">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Technology Debt</div>
+            <div class="checkbox-description">Legacy systems, integration challenges</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Buying Context</button>
+    </div>
+  </div>
+
+  <!-- Layer 7: Buying Context -->
+  <div class="layer-section" id="layer-7">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 7</div>
+      <h2 class="layer-title">Buying Context & Timeline</h2>
+      <p class="layer-description">Current buying situation, timeline, and decision-making process.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Current Buying Stage</label>
+      <div class="radio-grid">
+        <div class="radio-item">
+          <input type="radio" name="buying-stage" value="problem-unaware" id="stage-unaware">
+          <label for="stage-unaware">
+            <strong>Problem Unaware</strong><br>
+            Not actively looking for solutions
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="buying-stage" value="problem-aware" id="stage-aware">
+          <label for="stage-aware">
+            <strong>Problem Aware</strong><br>
+            Recognizes challenges, researching options
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="buying-stage" value="solution-exploring" id="stage-exploring">
+          <label for="stage-exploring">
+            <strong>Solution Exploring</strong><br>
+            Actively evaluating vendors and approaches
+          </label>
+        </div>
+        <div class="radio-item">
+          <input type="radio" name="buying-stage" value="decision-ready" id="stage-decision">
+          <label for="stage-decision">
+            <strong>Decision Ready</strong><br>
+            Ready to make purchase decision soon
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Typical Sales Cycle Length</label>
+      <select class="form-select" id="sales-cycle">
+        <option value="">Select typical timeline...</option>
+        <option value="1-3-months">1-3 months</option>
+        <option value="3-6-months">3-6 months</option>
+        <option value="6-12-months">6-12 months</option>
+        <option value="12-18-months">12-18 months</option>
+        <option value="18-months-plus">18+ months</option>
+      </select>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="nextLayer()">Next: Messaging Receptivity</button>
+    </div>
+  </div>
+
+  <!-- Layer 8: Messaging Receptivity -->
+  <div class="layer-section" id="layer-8">
+    <div class="layer-header">
+      <div class="layer-number">LAYER 8</div>
+      <h2 class="layer-title">Messaging Receptivity</h2>
+      <p class="layer-description">What messaging approaches work (and fail) with this persona across different channels.</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Trust-Building Approaches That Work</label>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="trust-peer" value="peer-references">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Peer References</div>
+            <div class="checkbox-description">"Here's what First National said..."</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trust-technical" value="technical-proof">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Technical Proof</div>
+            <div class="checkbox-description">Specifications, metrics, documentation</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trust-roi" value="roi-focus">
+          <div class="checkbox-content">
+            <div class="checkbox-title">ROI Focus</div>
+            <div class="checkbox-description">Cost savings, efficiency improvements</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="trust-case" value="case-studies">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Case Studies</div>
+            <div class="checkbox-description">Detailed implementation stories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Messaging That Fails</label>
+      <span class="form-sublabel">Approaches that backfire or create skepticism</span>
+      <textarea class="form-textarea" id="messaging-fails" placeholder="e.g., 'AI-powered innovation' without specific proof, 'disruptive technology' language, generic 'best-in-class' claims..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Preferred Communication Channels</label>
+      <div class="checkbox-grid">
+        <div class="checkbox-item">
+          <input type="checkbox" id="channel-email" value="email">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Direct Email</div>
+            <div class="checkbox-description">Professional, targeted email outreach</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="channel-linkedin" value="linkedin">
+          <div class="checkbox-content">
+            <div class="checkbox-title">LinkedIn</div>
+            <div class="checkbox-description">Professional networking and content</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="channel-phone" value="phone">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Phone/Video Calls</div>
+            <div class="checkbox-description">Direct conversation preferred</div>
+          </div>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="channel-events" value="events">
+          <div class="checkbox-content">
+            <div class="checkbox-title">Industry Events</div>
+            <div class="checkbox-description">Conferences, trade shows, webinars</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer-navigation">
+      <button class="btn btn-secondary" onclick="previousLayer()">Previous</button>
+      <button class="btn" onclick="generatePersona()">Generate Persona</button>
+    </div>
+  </div>
+
+  <!-- Persona Summary -->
+  <div class="persona-summary" id="persona-summary">
+    <div class="summary-header">
+      <h3 class="summary-name" id="summary-name">Persona Name</h3>
+      <p class="summary-role" id="summary-role">Role Summary</p>
+    </div>
+    <div class="summary-layers">
+      <div class="summary-layer">
+        <h4>Identity & Background</h4>
+        <p id="summary-layer-1">Layer 1 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Institution Profile</h4>
+        <p id="summary-layer-2">Layer 2 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Decision Authority</h4>
+        <p id="summary-layer-3">Layer 3 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Technology Context</h4>
+        <p id="summary-layer-4">Layer 4 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Psychographics</h4>
+        <p id="summary-layer-5">Layer 5 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Primary Pain Points</h4>
+        <p id="summary-layer-6">Layer 6 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Buying Context</h4>
+        <p id="summary-layer-7">Layer 7 summary...</p>
+      </div>
+      <div class="summary-layer">
+        <h4>Messaging Receptivity</h4>
+        <p id="summary-layer-8">Layer 8 summary...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Export Section -->
+<div class="export-section" style="display: none;" id="export-section">
+  <h3 class="export-title">Export Your Custom Persona</h3>
+  <p style="margin-bottom: 24px; opacity: 0.9;">Choose your preferred format for sharing and implementation.</p>
+  <div class="export-options">
+    <button class="btn btn-secondary" onclick="exportJSON()">Export JSON</button>
+    <button class="btn btn-secondary" onclick="exportPDF()">Download PDF</button>
+    <button class="btn btn-secondary" onclick="exportCRM()">CRM Template</button>
+    <button class="btn btn-secondary" onclick="sharePersona()">Share Link</button>
+  </div>
+</div>
+
+<script>
+let currentLayer = 1;
+const totalLayers = 8;
+let personaData = {};
+
+// Layer navigation
+function nextLayer() {
+  if (validateCurrentLayer()) {
+    saveLayerData();
+    if (currentLayer < totalLayers) {
+      currentLayer++;
+      showLayer(currentLayer);
+      updateProgress();
+    } else {
+      generatePersona();
+    }
+  }
+}
+
+function previousLayer() {
+  if (currentLayer > 1) {
+    currentLayer--;
+    showLayer(currentLayer);
+    updateProgress();
+  }
+}
+
+function showLayer(layerNum) {
+  document.querySelectorAll('.layer-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.getElementById(`layer-${layerNum}`).classList.add('active');
+}
+
+function updateProgress() {
+  const progressFill = document.getElementById('progress-fill');
+  const progressPercent = (currentLayer / totalLayers) * 100;
+  progressFill.style.width = progressPercent + '%';
+
+  document.querySelectorAll('.progress-label').forEach((label, index) => {
+    label.classList.remove('active', 'completed');
+    if (index + 1 === currentLayer) {
+      label.classList.add('active');
+    } else if (index + 1 < currentLayer) {
+      label.classList.add('completed');
+    }
+  });
+}
+
+function validateCurrentLayer() {
+  // Basic validation - ensure required fields are filled
+  const currentSection = document.getElementById(`layer-${currentLayer}`);
+  const requiredInputs = currentSection.querySelectorAll('input[required], select[required]');
+
+  for (let input of requiredInputs) {
+    if (!input.value.trim()) {
+      alert(`Please fill in the ${input.previousElementSibling.textContent} field.`);
+      input.focus();
+      return false;
+    }
+  }
+  return true;
+}
+
+function saveLayerData() {
+  // Save current layer data to personaData object
+  const currentSection = document.getElementById(`layer-${currentLayer}`);
+  const inputs = currentSection.querySelectorAll('input, select, textarea');
+
+  inputs.forEach(input => {
+    if (input.type === 'checkbox') {
+      if (!personaData.checkboxes) personaData.checkboxes = {};
+      personaData.checkboxes[input.id] = input.checked;
+    } else if (input.type === 'radio') {
+      if (input.checked) {
+        personaData[input.name] = input.value;
+      }
+    } else {
+      personaData[input.id] = input.value;
+    }
+  });
+}
+
+// Institutional data lookup (simulated)
+function lookupInstitution() {
+  const institutionName = document.getElementById('institution-name').value;
+  const resultsDiv = document.getElementById('lookup-results');
+
+  if (!institutionName.trim()) {
+    alert('Please enter an institution name to search.');
+    return;
+  }
+
+  // Simulated lookup results
+  resultsDiv.innerHTML = `
+    <div style="padding: 16px; background: var(--white); border: 1px solid var(--light-gray);">
+      <strong>Found: ${institutionName}</strong><br>
+      <small>Asset Size: $2.3B | Type: Community Bank | Location: Regional</small><br>
+      <button class="btn btn-secondary" style="margin-top: 8px; padding: 8px 16px; font-size: 14px;" onclick="fillInstitutionData()">Use This Data</button>
+    </div>
+  `;
+  resultsDiv.style.display = 'block';
+}
+
+function fillInstitutionData() {
+  // Auto-fill form with lookup data
+  document.getElementById('institution-type').value = 'community-bank';
+  document.getElementById('asset-size').value = '1b-5b';
+  document.getElementById('geographic-market').value = 'Regional Market';
+  alert('Institution data filled in. You can modify as needed.');
+}
+
+// Generate final persona
+function generatePersona() {
+  saveLayerData();
+
+  // Generate persona summary
+  const personaName = personaData['persona-name'] || 'Custom Persona';
+  const jobTitle = personaData['job-title'] || 'Executive';
+  const institutionType = personaData['institution-type'] || 'Financial Institution';
+
+  document.getElementById('summary-name').textContent = personaName;
+  document.getElementById('summary-role').textContent = `${jobTitle}, ${institutionType}`;
+
+  // Generate layer summaries
+  generateLayerSummaries();
+
+  // Show summary and export options
+  document.getElementById('persona-summary').classList.add('visible');
+  document.getElementById('export-section').style.display = 'block';
+
+  // Scroll to summary
+  document.getElementById('persona-summary').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateLayerSummaries() {
+  // Layer 1: Identity
+  const age = personaData['age-range'] || '';
+  const education = personaData['education'] || '';
+  document.getElementById('summary-layer-1').textContent =
+    `${age} years old with ${education.replace(/-/g, ' ')} background.`;
+
+  // Layer 2: Institution
+  const institutionType = personaData['institution-type']?.replace(/-/g, ' ') || '';
+  const assetSize = personaData['asset-size'] || '';
+  document.getElementById('summary-layer-2').textContent =
+    `Works at ${institutionType} with ${assetSize.replace(/-/g, ' ')} in assets.`;
+
+  // Layer 3: Authority
+  const budgetAuth = personaData['budget-authority']?.replace(/-/g, ' ') || '';
+  const decisionStyle = personaData['decision-style']?.replace(/-/g, ' ') || '';
+  document.getElementById('summary-layer-3').textContent =
+    `${budgetAuth} direct authority, ${decisionStyle} decision style.`;
+
+  // Layer 4: Technology
+  const corePlatform = personaData['core-platform']?.replace(/-/g, ' ') || '';
+  const techApproach = personaData['tech-approach']?.replace(/-/g, ' ') || '';
+  document.getElementById('summary-layer-4').textContent =
+    `Uses ${corePlatform}, ${techApproach} technology approach.`;
+
+  // Layer 5: Psychographics
+  const riskTolerance = personaData['risk-tolerance']?.replace(/-/g, ' ') || '';
+  document.getElementById('summary-layer-5').textContent =
+    `${riskTolerance} personality with relationship-focused approach.`;
+
+  // Layer 6: Pain Points
+  const primaryPain = personaData['primary-pain'] || 'Managing technology transformation challenges.';
+  document.getElementById('summary-layer-6').textContent = primaryPain.substring(0, 150) + '...';
+
+  // Layer 7: Buying Context
+  const buyingStage = personaData['buying-stage']?.replace(/-/g, ' ') || '';
+  const salesCycle = personaData['sales-cycle']?.replace(/-/g, ' ') || '';
+  document.getElementById('summary-layer-7').textContent =
+    `Currently ${buyingStage}, typical ${salesCycle} sales cycle.`;
+
+  // Layer 8: Messaging
+  const messagingFails = personaData['messaging-fails'] || 'Generic technology claims without proof.';
+  document.getElementById('summary-layer-8').textContent =
+    'Responds to peer references and proven results. Fails: ' + messagingFails.substring(0, 100) + '...';
+}
+
+// Export functions
+function exportJSON() {
+  const dataStr = JSON.stringify(personaData, null, 2);
+  const dataBlob = new Blob([dataStr], { type: 'application/json' });
+  const url = URL.createObjectURL(dataBlob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${personaData['persona-name']?.replace(/\s+/g, '_') || 'custom_persona'}.json`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function exportPDF() {
+  alert('PDF export functionality would integrate with a PDF generation service. For now, use the browser print function on this page.');
+  window.print();
+}
+
+function exportCRM() {
+  // Generate CRM-friendly format
+  const crmData = `
+Persona Name: ${personaData['persona-name'] || 'N/A'}
+Job Title: ${personaData['job-title'] || 'N/A'}
+Institution Type: ${personaData['institution-type'] || 'N/A'}
+Asset Size: ${personaData['asset-size'] || 'N/A'}
+Decision Authority: ${personaData['budget-authority'] || 'N/A'}
+Primary Pain Point: ${personaData['primary-pain'] || 'N/A'}
+Messaging Approach: Peer references, proven results
+Sales Cycle: ${personaData['sales-cycle'] || 'N/A'}
+`;
+
+  const dataBlob = new Blob([crmData], { type: 'text/plain' });
+  const url = URL.createObjectURL(dataBlob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${personaData['persona-name']?.replace(/\s+/g, '_') || 'persona'}_crm_template.txt`;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function sharePersona() {
+  // Generate shareable link (would require backend)
+  const shareData = btoa(JSON.stringify(personaData));
+  const shareUrl = `${window.location.origin}${window.location.pathname}?data=${shareData}`;
+
+  navigator.clipboard.writeText(shareUrl).then(() => {
+    alert('Share link copied to clipboard!');
+  }).catch(() => {
+    alert('Could not copy link. Please copy this URL manually: ' + shareUrl);
+  });
+}
+
+// Save/Load functionality
+function saveProgress() {
+  saveLayerData();
+  localStorage.setItem('litmus_persona_builder', JSON.stringify({
+    currentLayer: currentLayer,
+    personaData: personaData
+  }));
+  alert('Progress saved to browser storage.');
+}
+
+function loadProgress() {
+  const saved = localStorage.getItem('litmus_persona_builder');
+  if (saved) {
+    const data = JSON.parse(saved);
+    currentLayer = data.currentLayer;
+    personaData = data.personaData;
+
+    // Restore form values
+    Object.keys(personaData).forEach(key => {
+      const element = document.getElementById(key);
+      if (element) {
+        if (element.type === 'checkbox') {
+          element.checked = personaData.checkboxes?.[key] || false;
+        } else if (element.type === 'radio') {
+          if (personaData[element.name] === element.value) {
+            element.checked = true;
+          }
+        } else {
+          element.value = personaData[key];
+        }
+      }
+    });
+
+    showLayer(currentLayer);
+    updateProgress();
+    alert('Progress loaded successfully.');
+  } else {
+    alert('No saved progress found.');
+  }
+}
+
+// Load data from URL if present
+window.addEventListener('load', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const data = urlParams.get('data');
+  if (data) {
+    try {
+      personaData = JSON.parse(atob(data));
+      loadProgress();
+    } catch (e) {
+      console.error('Could not load shared persona data:', e);
+    }
+  }
+});
+
+// Checkbox selection handling
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'checkbox') {
+    const item = e.target.closest('.checkbox-item');
+    if (item) {
+      item.classList.toggle('selected', e.target.checked);
+    }
+  }
+
+  if (e.target.type === 'radio') {
+    const items = e.target.closest('.radio-grid')?.querySelectorAll('.radio-item');
+    if (items) {
+      items.forEach(item => item.classList.remove('selected'));
+      if (e.target.checked) {
+        e.target.closest('.radio-item').classList.add('selected');
+      }
+    }
+  }
+});
+
+// Initialize
+updateProgress();
+</script>
+
+</body>
+</html>

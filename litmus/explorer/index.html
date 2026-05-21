@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Persona Explorer - Litmus by BrandThnk</title>
+<meta name="description" content="Explore, filter, and compare 60 research-grade buyer personas. Side-by-side comparison, layer analysis, and persona export for your GTM campaigns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+    --success-green: #00C853;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 80px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-breadcrumb {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+  }
+
+  .hero-breadcrumb a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--light-gray);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* FILTERS */
+  .filter-section {
+    padding: 60px 60px 40px;
+    background: var(--offwhite);
+    border-bottom: 2px solid var(--light-gray);
+  }
+
+  .filter-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .filter-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--black);
+  }
+
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+
+  .filter-group {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 20px;
+  }
+
+  .filter-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--black);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .filter-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    color: var(--black);
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .filter-select:focus {
+    border-color: var(--yellow);
+    outline: none;
+  }
+
+  .filter-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* PERSONA GRID */
+  .personas-section {
+    padding: 60px 60px;
+  }
+
+  .personas-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .results-count {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+  }
+
+  .view-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .view-btn {
+    padding: 8px 16px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--offwhite);
+    border: 1px solid var(--light-gray);
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .view-btn.active {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+  }
+
+  .persona-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .persona-card:hover {
+    border-color: var(--gray);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .persona-card.selected {
+    border-color: var(--yellow);
+    border-width: 3px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  }
+
+  .persona-card-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 24px;
+  }
+
+  .persona-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .persona-title {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 8px;
+  }
+
+  .persona-meta {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  .persona-card-body {
+    padding: 24px;
+  }
+
+  .persona-summary {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .persona-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .persona-tag {
+    background: var(--offwhite);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .persona-pain {
+    font-size: 13px;
+    color: var(--black);
+    background: var(--yellow);
+    padding: 8px 12px;
+    font-weight: 700;
+    margin-top: 12px;
+  }
+
+  .select-checkbox {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    border-radius: 3px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .persona-card.selected .select-checkbox {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+
+  .select-checkbox::after {
+    content: '✓';
+    color: var(--black);
+    font-weight: 700;
+    font-size: 14px;
+    display: none;
+  }
+
+  .persona-card.selected .select-checkbox::after {
+    display: block;
+  }
+
+  /* COMPARISON VIEW */
+  .comparison-section {
+    padding: 60px 60px;
+    background: var(--offwhite);
+    display: none;
+  }
+
+  .comparison-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .comparison-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .comparison-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .comparison-card {
+    background: var(--white);
+    border: 2px solid var(--yellow);
+    overflow: hidden;
+  }
+
+  .comparison-actions {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .layer-comparison {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    margin-top: 30px;
+  }
+
+  .layer-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 20px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .layer-content {
+    padding: 20px;
+  }
+
+  .layer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .layer-item {
+    padding: 16px;
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+  }
+
+  .layer-persona-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .layer-persona-content {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--yellow);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 130px 24px 60px;
+    }
+
+    .filter-section, .personas-section, .comparison-section {
+      padding: 40px 24px;
+    }
+
+    .filter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .persona-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .results-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .view-controls {
+      align-self: stretch;
+      justify-content: center;
+    }
+
+    .comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .layer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="../">← Back to Litmus</a></li>
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-breadcrumb"><a href="../">Litmus</a> → Interactive Explorer</p>
+    <h1>Find Your Perfect Personas</h1>
+    <p>Search, filter, and compare 60 research-grade buyer personas. Side-by-side analysis, layer-by-layer comparison, and persona export for your campaigns.</p>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<section class="filter-section">
+  <div class="filter-container">
+    <h2 class="filter-title">Filter Personas</h2>
+
+    <div class="filter-grid">
+      <div class="filter-group">
+        <label class="filter-label" for="role-filter">Role</label>
+        <select id="role-filter" class="filter-select">
+          <option value="">All Roles</option>
+          <option value="CEO">CEO</option>
+          <option value="CIO">CIO</option>
+          <option value="CDO">CDO</option>
+          <option value="COO">COO</option>
+          <option value="CTO">CTO</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="institution-filter">Institution Type</label>
+        <select id="institution-filter" class="filter-select">
+          <option value="">All Types</option>
+          <option value="Community Bank">Community Bank</option>
+          <option value="Credit Union">Credit Union</option>
+          <option value="Fintech">Fintech</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="size-filter">Asset Size</label>
+        <select id="size-filter" class="filter-select">
+          <option value="">All Sizes</option>
+          <option value="<$1B">Under $1B</option>
+          <option value="$1B-$5B">$1B - $5B</option>
+          <option value="$5B+">$5B+</option>
+          <option value="Series A">Series A</option>
+          <option value="Series B">Series B</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="platform-filter">Core Platform</label>
+        <select id="platform-filter" class="filter-select">
+          <option value="">All Platforms</option>
+          <option value="Fiserv Premier">Fiserv Premier</option>
+          <option value="Jack Henry Symitar">Jack Henry Symitar</option>
+          <option value="FIS Profile">FIS Profile</option>
+          <option value="Corelation KeyStone">Corelation KeyStone</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+      <button class="btn btn-secondary" onclick="clearFilters()">Clear All</button>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="personas-section">
+  <div class="personas-container">
+    <div class="results-header">
+      <div class="results-count" id="results-count">Loading personas...</div>
+      <div class="view-controls">
+        <button class="view-btn active" onclick="showGrid()">Grid View</button>
+        <button class="view-btn" onclick="showComparison()" id="compare-btn" style="display: none;">Compare Selected (0)</button>
+      </div>
+    </div>
+
+    <div class="persona-grid" id="persona-grid">
+      <!-- Personas will be loaded here -->
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison-section" id="comparison-section">
+  <div class="comparison-container">
+    <div class="comparison-header">
+      <h2 class="comparison-title">Persona Comparison</h2>
+      <p>Side-by-side analysis of selected personas across all 8 behavioral layers</p>
+    </div>
+
+    <div class="comparison-actions">
+      <button class="btn btn-primary" onclick="exportComparison()">Export Comparison PDF</button>
+      <button class="btn btn-secondary" onclick="showGrid()">← Back to Grid</button>
+    </div>
+
+    <div class="comparison-grid" id="comparison-grid">
+      <!-- Comparison cards will be loaded here -->
+    </div>
+
+    <div id="layer-comparisons">
+      <!-- Layer-by-layer comparisons will be loaded here -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+  let personas = [];
+  let selectedPersonas = [];
+  let currentView = 'grid';
+
+  // Load persona data
+  async function loadPersonas() {
+    try {
+      const response = await fetch('persona-data.json');
+      const data = await response.json();
+      personas = data.personas;
+      displayPersonas(personas);
+      updateResultsCount(personas.length);
+    } catch (error) {
+      console.error('Error loading personas:', error);
+      document.getElementById('results-count').textContent = 'Error loading personas';
+    }
+  }
+
+  // Display personas in grid
+  function displayPersonas(personasToShow) {
+    const grid = document.getElementById('persona-grid');
+    grid.innerHTML = '';
+
+    personasToShow.forEach(persona => {
+      const card = document.createElement('div');
+      card.className = 'persona-card';
+      card.dataset.personaId = persona.id;
+
+      card.innerHTML = `
+        <div class="select-checkbox" onclick="togglePersonaSelection('${persona.id}')"></div>
+        <div class="persona-card-header">
+          <div class="persona-name">${persona.name}</div>
+          <div class="persona-title">${persona.title}, ${persona.institutionType}</div>
+          <div class="persona-meta">${persona.assetSize} | ${persona.location} | ${persona.corePlatform}</div>
+        </div>
+        <div class="persona-card-body">
+          <div class="persona-summary">${persona.summary}</div>
+          <div class="persona-tags">
+            ${persona.psychographics.map(trait => `<span class="persona-tag">${trait}</span>`).join('')}
+          </div>
+          <div class="persona-pain"><strong>Key Pain:</strong> ${persona.keyPain}</div>
+        </div>
+      `;
+
+      card.onclick = (e) => {
+        if (!e.target.classList.contains('select-checkbox')) {
+          togglePersonaSelection(persona.id);
+        }
+      };
+
+      grid.appendChild(card);
+    });
+
+    updateResultsCount(personasToShow.length);
+  }
+
+  // Toggle persona selection
+  window.togglePersonaSelection = function(personaId) {
+    const card = document.querySelector(`[data-persona-id="${personaId}"]`);
+    const checkbox = card.querySelector('.select-checkbox');
+
+    if (selectedPersonas.includes(personaId)) {
+      selectedPersonas = selectedPersonas.filter(id => id !== personaId);
+      card.classList.remove('selected');
+    } else if (selectedPersonas.length < 3) {
+      selectedPersonas.push(personaId);
+      card.classList.add('selected');
+    } else {
+      alert('Maximum 3 personas can be compared at once');
+      return;
+    }
+
+    updateCompareButton();
+
+    // Show/hide checkboxes based on selection state
+    document.querySelectorAll('.select-checkbox').forEach(cb => {
+      cb.style.display = selectedPersonas.length > 0 ? 'flex' : 'none';
+    });
+  };
+
+  // Update compare button
+  function updateCompareButton() {
+    const compareBtn = document.getElementById('compare-btn');
+    if (selectedPersonas.length > 0) {
+      compareBtn.style.display = 'block';
+      compareBtn.textContent = `Compare Selected (${selectedPersonas.length})`;
+    } else {
+      compareBtn.style.display = 'none';
+    }
+  }
+
+  // Apply filters
+  window.applyFilters = function() {
+    const roleFilter = document.getElementById('role-filter').value;
+    const institutionFilter = document.getElementById('institution-filter').value;
+    const sizeFilter = document.getElementById('size-filter').value;
+    const platformFilter = document.getElementById('platform-filter').value;
+
+    let filteredPersonas = personas.filter(persona => {
+      return (!roleFilter || persona.title === roleFilter) &&
+             (!institutionFilter || persona.institutionType === institutionFilter) &&
+             (!sizeFilter || persona.assetSize.includes(sizeFilter) || persona.assetSize === sizeFilter) &&
+             (!platformFilter || persona.corePlatform === platformFilter);
+    });
+
+    displayPersonas(filteredPersonas);
+  };
+
+  // Clear filters
+  window.clearFilters = function() {
+    document.getElementById('role-filter').value = '';
+    document.getElementById('institution-filter').value = '';
+    document.getElementById('size-filter').value = '';
+    document.getElementById('platform-filter').value = '';
+    displayPersonas(personas);
+  };
+
+  // Show grid view
+  window.showGrid = function() {
+    document.querySelector('.personas-section').style.display = 'block';
+    document.querySelector('.comparison-section').style.display = 'none';
+    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.view-btn').classList.add('active');
+    currentView = 'grid';
+  };
+
+  // Show comparison view
+  window.showComparison = function() {
+    if (selectedPersonas.length === 0) {
+      alert('Please select personas to compare');
+      return;
+    }
+
+    document.querySelector('.personas-section').style.display = 'none';
+    document.querySelector('.comparison-section').style.display = 'block';
+    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.view-btn')[1].classList.add('active');
+    currentView = 'comparison';
+
+    displayComparison();
+  };
+
+  // Display comparison
+  function displayComparison() {
+    const comparisonGrid = document.getElementById('comparison-grid');
+    const layerComparisons = document.getElementById('layer-comparisons');
+
+    comparisonGrid.innerHTML = '';
+    layerComparisons.innerHTML = '';
+
+    // Show selected personas
+    selectedPersonas.forEach(personaId => {
+      const persona = personas.find(p => p.id === personaId);
+      const card = document.createElement('div');
+      card.className = 'comparison-card';
+
+      card.innerHTML = `
+        <div class="persona-card-header">
+          <div class="persona-name">${persona.name}</div>
+          <div class="persona-title">${persona.title}, ${persona.institutionType}</div>
+          <div class="persona-meta">${persona.assetSize} | ${persona.location}</div>
+        </div>
+        <div class="persona-card-body">
+          <div class="persona-summary">${persona.summary}</div>
+          <div class="persona-pain"><strong>Key Pain:</strong> ${persona.keyPain}</div>
+        </div>
+      `;
+
+      comparisonGrid.appendChild(card);
+    });
+
+    // Create layer comparisons
+    for (let layerNum = 1; layerNum <= 8; layerNum++) {
+      const layerDiv = document.createElement('div');
+      layerDiv.className = 'layer-comparison';
+
+      const layerNames = {
+        1: 'Identity',
+        2: 'Institution Profile',
+        3: 'Role Authority',
+        4: 'Technology Landscape',
+        5: 'Psychographics',
+        6: 'Pain Points',
+        7: 'Buying Context',
+        8: 'Messaging Receptivity'
+      };
+
+      layerDiv.innerHTML = `
+        <div class="layer-header">Layer ${layerNum}: ${layerNames[layerNum]}</div>
+        <div class="layer-content">
+          <div class="layer-grid">
+            ${selectedPersonas.map(personaId => {
+              const persona = personas.find(p => p.id === personaId);
+              const layerContent = persona[`layer${layerNum}`] || 'Content not available';
+
+              return `
+                <div class="layer-item">
+                  <div class="layer-persona-name">${persona.name}</div>
+                  <div class="layer-persona-content">${layerContent}</div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+
+      layerComparisons.appendChild(layerDiv);
+    }
+  }
+
+  // Export comparison
+  window.exportComparison = function() {
+    alert('Export functionality would generate a branded PDF with the selected persona comparison. This would integrate with the existing PDF generation system.');
+  };
+
+  // Update results count
+  function updateResultsCount(count) {
+    document.getElementById('results-count').textContent = `${count} personas found`;
+  }
+
+  // Initialize
+  loadPersonas();
+})();
+</script>
+
+</body>
+</html>

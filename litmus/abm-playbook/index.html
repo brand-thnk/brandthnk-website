@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABM Playbook - Litmus by BrandThnk</title>
+<meta name="description" content="12 proven ABM tactics mapped to Litmus persona layers. Multi-touch sequences, account penetration strategies, and persona-to-campaign conversion templates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+    --success-green: #00C853;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 80px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-breadcrumb {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+  }
+
+  .hero-breadcrumb a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--light-gray);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 60px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  .section-content {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--black);
+    margin-bottom: 40px;
+  }
+
+  .section-content p {
+    margin-bottom: 20px;
+  }
+
+  /* TACTICS GRID */
+  .tactics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  .tactic-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .tactic-card:hover {
+    border-color: var(--yellow);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .tactic-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .tactic-number {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 12px;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .tactic-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .tactic-body {
+    padding: 24px;
+  }
+
+  .tactic-layer {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    background: var(--offwhite);
+    padding: 4px 8px;
+    display: inline-block;
+  }
+
+  .tactic-description {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .tactic-example {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .example-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .example-content {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  .tactic-personas {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .persona-tag {
+    background: var(--yellow);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* SEQUENCE SECTION */
+  .sequence-section {
+    background: var(--offwhite);
+  }
+
+  .sequence-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .role-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .role-tab {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .role-tab:hover {
+    border-color: var(--gray);
+    color: var(--black);
+  }
+
+  .role-tab.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+  }
+
+  .sequence-content {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 40px;
+    min-height: 400px;
+  }
+
+  .sequence-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--black);
+  }
+
+  .touch-sequence {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .touch-item {
+    display: flex;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--offwhite);
+  }
+
+  .touch-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .touch-number {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+
+  .touch-content {
+    flex: 1;
+  }
+
+  .touch-timing {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .touch-channel {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .touch-message {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .touch-goal {
+    font-size: 12px;
+    color: var(--black);
+    background: var(--offwhite);
+    padding: 6px 10px;
+    display: inline-block;
+  }
+
+  /* PENETRATION STRATEGY */
+  .penetration-section {
+    background: var(--white);
+  }
+
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+  }
+
+  .strategy-card {
+    background: var(--offwhite);
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+  }
+
+  .strategy-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 12px;
+  }
+
+  .strategy-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--yellow);
+  }
+
+  .strategy-content {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .strategy-steps {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+  }
+
+  .strategy-steps li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .strategy-steps li:last-child {
+    border-bottom: none;
+  }
+
+  .strategy-steps li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 10px 10px 0;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .action-buttons {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--yellow);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 130px 24px 60px;
+    }
+
+    .section {
+      padding: 60px 24px;
+    }
+
+    .tactics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .strategy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .role-tabs {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .role-tab {
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .sequence-content {
+      padding: 24px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="../">← Back to Litmus</a></li>
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-breadcrumb"><a href="../">Litmus</a> → ABM Playbook</p>
+    <h1>Persona-Driven ABM Tactics</h1>
+    <p>12 proven ABM tactics mapped to Litmus behavioral layers. Multi-touch sequences, account penetration strategies, and persona-to-campaign conversion templates that actually work.</p>
+  </div>
+</section>
+
+<!-- 12 ABM TACTICS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">12 Persona-Driven ABM Tactics</h2>
+    <div class="section-content">
+      <p>Each tactic is mapped to specific Litmus behavioral layers and tested personas. Stop guessing at ABM—use buyer intelligence to predict what works.</p>
+    </div>
+
+    <div class="tactics-grid">
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">01</div>
+          <div class="tactic-title">Peer Reference Orchestration</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 5: Psychographics</div>
+          <div class="tactic-description">Leverage persona's trust in peer validation to orchestrate introductions and reference calls at strategic moments.</div>
+          <div class="tactic-example">
+            <div class="example-title">Rob Castellano Example:</div>
+            <div class="example-content">"Rob, I'd like to introduce you to Mike Thompson, CEO of First National Bank in Jackson. Mike implemented our platform last year and has insights specific to Alabama banks your size. Would a 15-minute call be valuable?"</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CEO</span>
+            <span class="persona-tag">COO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">02</div>
+          <div class="tactic-title">Technical Integration Proof</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 4: Technology Landscape</div>
+          <div class="tactic-description">Create technical demonstrations that address specific integration concerns mapped to persona's existing tech stack.</div>
+          <div class="tactic-example">
+            <div class="example-title">Sarah Chen Example:</div>
+            <div class="example-content">Custom demo showing Jack Henry Symitar API integration with member experience metrics dashboard, focusing on compliance documentation and member impact measurement.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CIO</span>
+            <span class="persona-tag">CTO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">03</div>
+          <div class="tactic-title">Pain Point Amplification</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 6: Pain Points</div>
+          <div class="tactic-description">Send targeted content that validates and amplifies the persona's specific pain points before introducing solutions.</div>
+          <div class="tactic-example">
+            <div class="example-title">Marcus Rodriguez Example:</div>
+            <div class="example-content">Research report: "Why 67% of Bank-Fintech Partnerships Fail: The Credibility Gap" sent before any sales outreach to validate his bank skepticism concerns.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CDO</span>
+            <span class="persona-tag">CEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">04</div>
+          <div class="tactic-title">Authority-Based Outreach</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 3: Role Authority</div>
+          <div class="tactic-description">Tailor outreach timing and channel based on persona's approval authority and decision-making process.</div>
+          <div class="tactic-example">
+            <div class="example-title">David Mitchell Example:</div>
+            <div class="example-content">Target him during annual budget planning with operational ROI calculators that align with his $1M approval authority, not strategic vision presentations.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">COO</span>
+            <span class="persona-tag">CIO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">05</div>
+          <div class="tactic-title">Compliance Confidence Building</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 8: Messaging Receptivity</div>
+          <div class="tactic-description">Lead with compliance and security credentials before discussing features, matching persona's risk-first mindset.</div>
+          <div class="tactic-example">
+            <div class="example-title">Jennifer Wong Example:</div>
+            <div class="example-content">Send SOC 2 Type II reports and bank examiner endorsements before any product demos, addressing security-first decision criteria.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CTO</span>
+            <span class="persona-tag">CIO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">06</div>
+          <div class="tactic-title">Buying Trigger Activation</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 7: Buying Context</div>
+          <div class="tactic-description">Monitor for persona-specific trigger events and time outreach to coincide with active buying windows.</div>
+          <div class="tactic-example">
+            <div class="example-title">Rob Castellano Example:</div>
+            <div class="example-content">Track Fiserv contract renewal dates and board meeting schedules to time strategic conversations during his 8-month evaluation window.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CEO</span>
+            <span class="persona-tag">CDO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">07</div>
+          <div class="tactic-title">Operational Efficiency Proof</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 6: Pain Points</div>
+          <div class="tactic-description">Create calculators and ROI models that quantify operational improvements specific to persona's efficiency concerns.</div>
+          <div class="tactic-example">
+            <div class="example-title">David Mitchell Example:</div>
+            <div class="example-content">Custom ROI calculator showing 30% processing time reduction and staffing impact analysis for his specific FIS Profile integration scenario.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">COO</span>
+            <span class="persona-tag">CIO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">08</div>
+          <div class="tactic-title">Regional Credibility Signaling</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 1: Identity</div>
+          <div class="tactic-description">Emphasize local market knowledge and regional references that resonate with persona's geographic identity.</div>
+          <div class="tactic-example">
+            <div class="example-title">Rob Castellano Example:</div>
+            <div class="example-content">"We work with 15 community banks across Alabama and Tennessee, including institutions in Birmingham, Huntsville, and Mobile markets similar to yours."</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CEO</span>
+            <span class="persona-tag">COO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">09</div>
+          <div class="tactic-title">Member Impact Quantification</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 5: Psychographics</div>
+          <div class="tactic-description">Frame all benefits through member/customer impact lens for personas with member-first decision criteria.</div>
+          <div class="tactic-example">
+            <div class="example-title">Sarah Chen Example:</div>
+            <div class="example-content">"This reduces member wait times from 4 minutes to 90 seconds and increases member satisfaction scores by 23%, based on implementations at 5 similar credit unions."</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CIO</span>
+            <span class="persona-tag">CTO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">10</div>
+          <div class="tactic-title">Board-Ready Materials</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 3: Role Authority</div>
+          <div class="tactic-description">Provide presentation materials designed for board consumption when persona requires board approval.</div>
+          <div class="tactic-example">
+            <div class="example-title">Sarah Chen Example:</div>
+            <div class="example-content">Executive summary with member impact metrics, regulatory compliance confirmation, and competitive analysis formatted for board presentation requirements.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CIO</span>
+            <span class="persona-tag">CEO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">11</div>
+          <div class="tactic-title">Competitive Anxiety Leverage</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 6: Pain Points</div>
+          <div class="tactic-description">Address specific competitive threats mentioned in persona pain points without triggering risk aversion.</div>
+          <div class="tactic-example">
+            <div class="example-title">Rob Castellano Example:</div>
+            <div class="example-content">"Your board mentioned competitor digital initiatives. Here's how to respond strategically without the risks that caused failures at similar institutions."</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CEO</span>
+            <span class="persona-tag">CDO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-header">
+          <div class="tactic-number">12</div>
+          <div class="tactic-title">Implementation Confidence</div>
+        </div>
+        <div class="tactic-body">
+          <div class="tactic-layer">Layer 4: Technology Landscape</div>
+          <div class="tactic-description">Address implementation concerns with detailed project plans that account for persona's technical complexity tolerance.</div>
+          <div class="tactic-example">
+            <div class="example-title">Jennifer Wong Example:</div>
+            <div class="example-content">Phase-by-phase implementation roadmap with security checkpoints, member communication templates, and rollback procedures for risk mitigation.</div>
+          </div>
+          <div class="tactic-personas">
+            <span class="persona-tag">CTO</span>
+            <span class="persona-tag">COO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MULTI-TOUCH SEQUENCES -->
+<section class="section sequence-section">
+  <div class="sequence-container">
+    <h2 class="section-title">Multi-Touch Sequences by Role</h2>
+    <div class="section-content">
+      <p>Persona-specific touch sequences that map to actual buyer behavior patterns. Select a role to see the optimized approach for each C-suite persona.</p>
+    </div>
+
+    <div class="role-tabs">
+      <button class="role-tab active" onclick="showSequence('ceo')" data-role="ceo">CEO</button>
+      <button class="role-tab" onclick="showSequence('cio')" data-role="cio">CIO</button>
+      <button class="role-tab" onclick="showSequence('cdo')" data-role="cdo">CDO</button>
+      <button class="role-tab" onclick="showSequence('coo')" data-role="coo">COO</button>
+      <button class="role-tab" onclick="showSequence('cto')" data-role="cto">CTO</button>
+    </div>
+
+    <div class="sequence-content" id="sequence-content">
+      <!-- Dynamic sequence content -->
+    </div>
+  </div>
+</section>
+
+<!-- ACCOUNT PENETRATION -->
+<section class="section penetration-section">
+  <div class="container">
+    <h2 class="section-title">Account Penetration Strategies</h2>
+    <div class="section-content">
+      <p>Use multiple personas to systematically penetrate target accounts. Map influencer networks and decision-maker relationships for coordinated campaigns.</p>
+    </div>
+
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="strategy-title">The Committee Approach</div>
+        <div class="strategy-content">
+          <p>Simultaneously engage multiple committee members with role-specific messaging that builds consensus.</p>
+          <ul class="strategy-steps">
+            <li>Identify 2-3 key committee members from different functions</li>
+            <li>Launch parallel campaigns using persona-specific tactics</li>
+            <li>Coordinate timing so personas discuss internally</li>
+            <li>Provide committee-ready materials that support internal selling</li>
+            <li>Track cross-persona engagement and momentum</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">The Trojan Horse</div>
+        <div class="strategy-content">
+          <p>Enter through the most accessible persona and use internal referrals to reach the decision-maker.</p>
+          <ul class="strategy-steps">
+            <li>Start with persona showing highest engagement/lowest risk tolerance</li>
+            <li>Build credibility through tactical wins and quick deliverables</li>
+            <li>Request introductions to other stakeholders based on demonstrated value</li>
+            <li>Use first persona as internal champion and reference source</li>
+            <li>Escalate through authority layers with validated proof points</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">The Influence Network</div>
+        <div class="strategy-content">
+          <p>Map persona relationships and decision influence to identify the optimal engagement sequence.</p>
+          <ul class="strategy-steps">
+            <li>Document reporting relationships and influence patterns</li>
+            <li>Identify personas with highest internal credibility</li>
+            <li>Sequence outreach to build supporting momentum</li>
+            <li>Create content that travels well between personas</li>
+            <li>Monitor inter-persona discussions and adjust messaging</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="strategy-card">
+        <div class="strategy-title">The Competitive Response</div>
+        <div class="strategy-content">
+          <p>Use personas' competitive anxiety to accelerate evaluation timelines and decision urgency.</p>
+          <ul class="strategy-steps">
+            <li>Identify competitive triggers specific to each persona</li>
+            <li>Share competitive intelligence through appropriate channels</li>
+            <li>Position solution as competitive response/defense</li>
+            <li>Create urgency through market timing and peer pressure</li>
+            <li>Provide face-saving rationale for rapid decision making</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION BUTTONS -->
+<section class="section">
+  <div class="container">
+    <div class="action-buttons">
+      <a href="../" class="btn btn-primary">Get Complete Persona Library</a>
+      <a href="../explorer/" class="btn btn-secondary">Explore Personas</a>
+      <a href="../tools/buying-committee-mapper.html" class="btn btn-secondary">Map Your Committee</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+  // Multi-touch sequences data
+  const sequences = {
+    ceo: {
+      title: 'CEO Sequence: Trust Through Peer Validation',
+      description: 'Conservative, peer-referenced approach focusing on risk mitigation and operational stability',
+      touches: [
+        {
+          timing: 'Day 1',
+          channel: 'Email Introduction',
+          message: 'Brief introduction with specific peer reference from similar institution in their region. Mention 1-2 relevant banks by name.',
+          goal: 'Establish initial credibility through peer validation'
+        },
+        {
+          timing: 'Day 7',
+          channel: 'Research Report',
+          message: 'Send market analysis relevant to their competitive concerns (e.g., "Digital Banking Adoption in Alabama Community Banks").',
+          goal: 'Position as industry expert with local market knowledge'
+        },
+        {
+          timing: 'Day 14',
+          channel: 'Peer Reference Call',
+          message: 'Facilitated introduction to peer CEO who has successfully implemented similar solutions. Focus on risk mitigation.',
+          goal: 'Third-party validation and risk reduction through peer experience'
+        },
+        {
+          timing: 'Day 21',
+          channel: 'Executive Briefing',
+          message: 'Invite to exclusive executive briefing or private demonstration with other regional CEOs.',
+          goal: 'Social proof through peer group participation'
+        },
+        {
+          timing: 'Day 35',
+          channel: 'Board-Ready Materials',
+          message: 'Provide executive summary and board presentation materials that support internal decision-making process.',
+          goal: 'Enable internal selling with risk-focused business case'
+        },
+        {
+          timing: 'Day 45',
+          channel: 'Strategic Call',
+          message: 'Direct conversation focusing on strategic implications and competitive positioning rather than features.',
+          goal: 'Move from evaluation to strategic discussion'
+        }
+      ]
+    },
+    cio: {
+      title: 'CIO Sequence: Technical Validation with Member Impact',
+      description: 'Technology-focused approach emphasizing integration capabilities and member experience improvements',
+      touches: [
+        {
+          timing: 'Day 1',
+          channel: 'Technical Brief',
+          message: 'Send technical overview with specific integration details for their core platform (e.g., Jack Henry Symitar API documentation).',
+          goal: 'Establish technical credibility and integration confidence'
+        },
+        {
+          timing: 'Day 5',
+          channel: 'Case Study',
+          message: 'Share technical case study from similar institution showing member experience improvements and integration success.',
+          goal: 'Prove technical feasibility with member impact evidence'
+        },
+        {
+          timing: 'Day 12',
+          channel: 'Demo Invitation',
+          message: 'Invite to custom technical demonstration focusing on their specific integration requirements and member experience metrics.',
+          goal: 'Technical validation through hands-on evaluation'
+        },
+        {
+          timing: 'Day 18',
+          channel: 'Peer Technical Call',
+          message: 'Arrange call with peer CIO from similar institution to discuss technical implementation and lessons learned.',
+          goal: 'Technical peer validation and implementation insights'
+        },
+        {
+          timing: 'Day 25',
+          channel: 'Implementation Plan',
+          message: 'Provide detailed technical implementation roadmap with timeline, resource requirements, and risk mitigation strategies.',
+          goal: 'Address implementation complexity concerns'
+        },
+        {
+          timing: 'Day 35',
+          channel: 'ROI Analysis',
+          message: 'Share member impact ROI analysis with operational efficiency metrics and member satisfaction improvements.',
+          goal: 'Quantify member benefits for board presentation'
+        }
+      ]
+    },
+    cdo: {
+      title: 'CDO Sequence: Credibility Building with Growth Focus',
+      description: 'Relationship-focused approach emphasizing bank credibility signals and partnership success stories',
+      touches: [
+        {
+          timing: 'Day 1',
+          channel: 'Bank Partnership Overview',
+          message: 'Send overview of existing bank partnerships with specific institution names and partnership success metrics.',
+          goal: 'Establish credibility through existing bank relationships'
+        },
+        {
+          timing: 'Day 6',
+          channel: 'Compliance Documentation',
+          message: 'Share compliance credentials, bank examiner endorsements, and regulatory approval documentation.',
+          goal: 'Address compliance concerns proactively'
+        },
+        {
+          timing: 'Day 13',
+          channel: 'Success Story',
+          message: 'Detailed case study of successful bank partnership with growth metrics and relationship management insights.',
+          goal: 'Demonstrate partnership success and growth potential'
+        },
+        {
+          timing: 'Day 20',
+          channel: 'Market Intelligence',
+          message: 'Share competitive landscape analysis and market positioning insights relevant to their target market.',
+          goal: 'Position as market intelligence partner'
+        },
+        {
+          timing: 'Day 30',
+          channel: 'Relationship Introduction',
+          message: 'Introduce to existing bank partners for direct relationship building and peer validation.',
+          goal: 'Build trust through direct bank-to-fintech relationships'
+        },
+        {
+          timing: 'Day 40',
+          channel: 'Partnership Proposal',
+          message: 'Present structured partnership framework with specific relationship management and growth strategies.',
+          goal: 'Move from evaluation to partnership discussion'
+        }
+      ]
+    },
+    coo: {
+      title: 'COO Sequence: Operational Excellence and Efficiency',
+      description: 'Operations-focused approach emphasizing efficiency gains and seamless implementation',
+      touches: [
+        {
+          timing: 'Day 1',
+          channel: 'Efficiency Analysis',
+          message: 'Send operational efficiency analysis showing specific process improvements and cost reduction opportunities.',
+          goal: 'Align with operational improvement priorities'
+        },
+        {
+          timing: 'Day 8',
+          channel: 'ROI Calculator',
+          message: 'Provide interactive ROI calculator customized for their operational metrics and staffing model.',
+          goal: 'Quantify operational benefits and cost savings'
+        },
+        {
+          timing: 'Day 15',
+          channel: 'Implementation Case Study',
+          message: 'Share detailed implementation case study focusing on operational impact and change management success.',
+          goal: 'Address implementation concerns and change management'
+        },
+        {
+          timing: 'Day 22',
+          channel: 'Process Mapping Session',
+          message: 'Offer process mapping workshop to identify specific operational improvement opportunities.',
+          goal: 'Collaborative assessment of operational benefits'
+        },
+        {
+          timing: 'Day 30',
+          channel: 'Pilot Program Proposal',
+          message: 'Present low-risk pilot program proposal with specific operational metrics and success criteria.',
+          goal: 'Reduce risk through phased implementation approach'
+        },
+        {
+          timing: 'Day 40',
+          channel: 'Strategic Operations Call',
+          message: 'Discussion focused on long-term operational strategy and competitive operational advantages.',
+          goal: 'Elevate from tactical to strategic operational discussion'
+        }
+      ]
+    },
+    cto: {
+      title: 'CTO Sequence: Security-First Technical Excellence',
+      description: 'Security-focused technical approach emphasizing architecture and member experience innovation',
+      touches: [
+        {
+          timing: 'Day 1',
+          channel: 'Security Overview',
+          message: 'Send comprehensive security documentation including SOC 2, penetration testing results, and security architecture.',
+          goal: 'Establish security credibility and address primary concerns'
+        },
+        {
+          timing: 'Day 6',
+          channel: 'Architecture Review',
+          message: 'Share technical architecture documentation and integration security protocols for their environment.',
+          goal: 'Technical validation of security-first architecture'
+        },
+        {
+          timing: 'Day 14',
+          channel: 'Security Peer Call',
+          message: 'Arrange call with peer CTO to discuss security implementation and member experience technology strategy.',
+          goal: 'Peer validation of security approach and member benefits'
+        },
+        {
+          timing: 'Day 21',
+          channel: 'Technical Demo',
+          message: 'Custom technical demonstration focusing on security controls and member experience technology features.',
+          goal: 'Hands-on security and technology validation'
+        },
+        {
+          timing: 'Day 30',
+          channel: 'Implementation Security Plan',
+          message: 'Detailed security-focused implementation plan with member communication and rollback procedures.',
+          goal: 'Address implementation security and member impact concerns'
+        },
+        {
+          timing: 'Day 38',
+          channel: 'Innovation Roadmap',
+          message: 'Share technology innovation roadmap focusing on member experience improvements and security enhancements.',
+          goal: 'Position as long-term technology and member experience partner'
+        }
+      ]
+    }
+  };
+
+  // Show sequence based on role selection
+  window.showSequence = function(role) {
+    // Update tab states
+    document.querySelectorAll('.role-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelector(`[data-role="${role}"]`).classList.add('active');
+
+    const sequence = sequences[role];
+    const content = document.getElementById('sequence-content');
+
+    content.innerHTML = `
+      <div class="sequence-title">${sequence.title}</div>
+      <p style="color: var(--gray); margin-bottom: 30px; font-size: 16px; line-height: 1.5;">${sequence.description}</p>
+
+      <ul class="touch-sequence">
+        ${sequence.touches.map((touch, index) => `
+          <li class="touch-item">
+            <div class="touch-number">${index + 1}</div>
+            <div class="touch-content">
+              <div class="touch-timing">${touch.timing}</div>
+              <div class="touch-channel">${touch.channel}</div>
+              <div class="touch-message">${touch.message}</div>
+              <div class="touch-goal">Goal: ${touch.goal}</div>
+            </div>
+          </li>
+        `).join('')}
+      </ul>
+    `;
+  };
+
+  // Initialize with CEO sequence
+  showSequence('ceo');
+})();
+</script>
+
+</body>
+</html>

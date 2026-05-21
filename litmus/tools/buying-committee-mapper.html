@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buying Committee Mapper - Litmus by BrandThnk</title>
+<meta name="description" content="Visualize buying committee dynamics with interactive Venn diagrams. Find messaging sweet spots and understand multi-stakeholder decision processes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+    --success-green: #00C853;
+    --blue: #2196F3;
+    --red: #F44336;
+    --purple: #9C27B0;
+    --orange: #FF9800;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 80px;
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-breadcrumb {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+  }
+
+  .hero-breadcrumb a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .hero p {
+    font-size: 20px;
+    color: var(--light-gray);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 60px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 16px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--yellow);
+  }
+
+  /* PERSONA SELECTION */
+  .selector-section {
+    background: var(--offwhite);
+  }
+
+  .persona-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .persona-option {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .persona-option:hover {
+    border-color: var(--gray);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .persona-option.selected {
+    border-color: var(--yellow);
+    border-width: 3px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .persona-option::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--light-gray);
+    border-radius: 50%;
+    background: var(--white);
+  }
+
+  .persona-option.selected::after {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+
+  .persona-option.selected::before {
+    content: '✓';
+    position: absolute;
+    top: 19px;
+    right: 22px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--black);
+    z-index: 1;
+  }
+
+  .persona-name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .persona-role {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+
+  .persona-brief {
+    font-size: 13px;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  /* CONTROLS */
+  .controls {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 32px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 10px;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* VISUALIZATION */
+  .visualization-section {
+    background: var(--white);
+    min-height: 600px;
+  }
+
+  .committee-diagram {
+    background: var(--offwhite);
+    border: 2px solid var(--light-gray);
+    padding: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .diagram-placeholder {
+    color: var(--gray);
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .venn-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+
+  .persona-circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.2;
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
+
+  .persona-circle:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 10;
+  }
+
+  .persona-circle.persona-1 {
+    background: var(--blue);
+    border-color: var(--blue);
+    top: 50px;
+    left: 50px;
+  }
+
+  .persona-circle.persona-2 {
+    background: var(--red);
+    border-color: var(--red);
+    top: 50px;
+    right: 50px;
+  }
+
+  .persona-circle.persona-3 {
+    background: var(--purple);
+    border-color: var(--purple);
+    bottom: 50px;
+    left: 150px;
+  }
+
+  .persona-circle.persona-4 {
+    background: var(--orange);
+    border-color: var(--orange);
+    bottom: 50px;
+    right: 150px;
+  }
+
+  /* INSIGHTS */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .insight-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+  }
+
+  .insight-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+    position: relative;
+    padding-bottom: 12px;
+  }
+
+  .insight-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--yellow);
+  }
+
+  .insight-content {
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .insight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .insight-list li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--offwhite);
+  }
+
+  .insight-list li:last-child {
+    border-bottom: none;
+  }
+
+  .insight-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .sweet-spot {
+    background: linear-gradient(to top, var(--yellow) 20%, transparent 20%);
+    padding: 2px 4px;
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 60px;
+    background: var(--white);
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    color: var(--gray);
+  }
+
+  .footer a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--yellow);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .hero {
+      padding: 130px 24px 60px;
+    }
+
+    .section {
+      padding: 60px 24px;
+    }
+
+    .persona-selector {
+      grid-template-columns: 1fr;
+    }
+
+    .insights-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .venn-container {
+      height: 300px;
+    }
+
+    .persona-circle {
+      width: 120px;
+      height: 120px;
+      font-size: 11px;
+    }
+  }
+</style>
+</head>
+
+<body>
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="../">← Back to Litmus</a></li>
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/book/">Read the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-breadcrumb"><a href="../">Litmus</a> → Buying Committee Mapper</p>
+    <h1>Map Your Buying Committee</h1>
+    <p>Visualize multi-stakeholder decision processes and find messaging sweet spots that resonate across your entire buying committee. Select 2-4 personas to generate Venn diagram insights.</p>
+  </div>
+</section>
+
+<!-- PERSONA SELECTION -->
+<section class="section selector-section">
+  <div class="container">
+    <h2 class="section-title">Select Committee Members (2-4 personas)</h2>
+
+    <div class="persona-selector" id="persona-selector">
+      <div class="persona-option" data-persona="rob-castellano" onclick="togglePersona('rob-castellano')">
+        <div class="persona-name">Rob Castellano</div>
+        <div class="persona-role">CEO, Community Bank ($7.2B)</div>
+        <div class="persona-brief">Conservative decision-maker focused on peer validation and operational stability</div>
+      </div>
+
+      <div class="persona-option" data-persona="sarah-chen" onclick="togglePersona('sarah-chen')">
+        <div class="persona-name">Sarah Chen</div>
+        <div class="persona-role">CIO, Credit Union ($4.1B)</div>
+        <div class="persona-brief">Technology-forward leader balancing innovation with member impact</div>
+      </div>
+
+      <div class="persona-option" data-persona="marcus-rodriguez" onclick="togglePersona('marcus-rodriguez')">
+        <div class="persona-name">Marcus Rodriguez</div>
+        <div class="persona-role">CDO, Fintech (Series B)</div>
+        <div class="persona-brief">Growth executive building credibility with traditional bank buyers</div>
+      </div>
+
+      <div class="persona-option" data-persona="david-mitchell" onclick="togglePersona('david-mitchell')">
+        <div class="persona-name">David Mitchell</div>
+        <div class="persona-role">COO, Community Bank ($1.8B)</div>
+        <div class="persona-brief">Operations-focused executive managing efficiency and cost control</div>
+      </div>
+
+      <div class="persona-option" data-persona="jennifer-wong" onclick="togglePersona('jennifer-wong')">
+        <div class="persona-name">Jennifer Wong</div>
+        <div class="persona-role">CTO, Credit Union ($2.3B)</div>
+        <div class="persona-brief">Security-first technical leader driving digital transformation</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" id="generate-btn" onclick="generateCommitteeMap()" disabled>Generate Committee Map</button>
+      <button class="btn btn-secondary" onclick="clearSelection()">Clear Selection</button>
+    </div>
+  </div>
+</section>
+
+<!-- VISUALIZATION -->
+<section class="section visualization-section" id="visualization-section" style="display: none;">
+  <div class="container">
+    <h2 class="section-title">Committee Dynamics & Sweet Spots</h2>
+
+    <div class="committee-diagram" id="committee-diagram">
+      <div class="diagram-placeholder">
+        Select personas above to generate your buying committee visualization
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" onclick="exportDiagram()">Export as PNG</button>
+      <button class="btn btn-secondary" onclick="generateReport()">Generate Committee Report</button>
+    </div>
+
+    <div class="insights-grid" id="insights-grid">
+      <!-- Insights will be populated here -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 <a href="/">BrandThnk</a>. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+  let selectedPersonas = [];
+
+  const personaData = {
+    'rob-castellano': {
+      name: 'Rob Castellano',
+      title: 'CEO',
+      role: 'Final Decision Maker',
+      keyPains: ['Fiserv renewal anxiety', 'Board pressure for innovation', 'Talent retention'],
+      messagingWorks: ['Peer references', 'Regional credibility', 'Integration confidence'],
+      decisionFactors: ['Risk mitigation', 'Peer validation', 'Operational stability'],
+      authority: 'Final approval on all major decisions',
+      influence: 'High - Sets strategic direction'
+    },
+    'sarah-chen': {
+      name: 'Sarah Chen',
+      title: 'CIO',
+      role: 'Technology Evaluator',
+      keyPains: ['Member experience gaps', 'Compliance complexity', 'Innovation pressure'],
+      messagingWorks: ['Member benefit focus', 'Operational efficiency', 'Compliance confidence'],
+      decisionFactors: ['Member impact', 'Technical integration', 'Compliance requirements'],
+      authority: 'Technology recommendations and evaluation',
+      influence: 'High - Technical expertise and implementation'
+    },
+    'marcus-rodriguez': {
+      name: 'Marcus Rodriguez',
+      title: 'CDO',
+      role: 'Relationship Builder',
+      keyPains: ['Bank skepticism', 'Credibility building', 'Growth pressure'],
+      messagingWorks: ['Bank credibility signals', 'Compliance confidence', 'Success stories'],
+      decisionFactors: ['Relationship building', 'Credibility signals', 'Growth potential'],
+      authority: 'Partnership and vendor relationships',
+      influence: 'Medium - External perspective and market insights'
+    },
+    'david-mitchell': {
+      name: 'David Mitchell',
+      title: 'COO',
+      role: 'Operations Gatekeeper',
+      keyPains: ['Operational inefficiencies', 'Staffing constraints', 'Cost control'],
+      messagingWorks: ['Efficiency gains', 'Seamless integration', 'Cost management'],
+      decisionFactors: ['Operational impact', 'Implementation complexity', 'Staff training'],
+      authority: 'Operations budget and process changes',
+      influence: 'High - Day-to-day implementation and adoption'
+    },
+    'jennifer-wong': {
+      name: 'Jennifer Wong',
+      title: 'CTO',
+      role: 'Security Champion',
+      keyPains: ['Security threats', 'Digital competition', 'Member expectations'],
+      messagingWorks: ['Security confidence', 'Member benefits', 'Technical excellence'],
+      decisionFactors: ['Security requirements', 'Technical architecture', 'Member experience'],
+      authority: 'Technology security and architecture',
+      influence: 'High - Security and technical implementation'
+    }
+  };
+
+  // Toggle persona selection
+  window.togglePersona = function(personaId) {
+    const option = document.querySelector(`[data-persona="${personaId}"]`);
+
+    if (selectedPersonas.includes(personaId)) {
+      selectedPersonas = selectedPersonas.filter(id => id !== personaId);
+      option.classList.remove('selected');
+    } else if (selectedPersonas.length < 4) {
+      selectedPersonas.push(personaId);
+      option.classList.add('selected');
+    } else {
+      alert('Maximum 4 personas can be selected for committee analysis');
+      return;
+    }
+
+    updateGenerateButton();
+  };
+
+  // Update generate button state
+  function updateGenerateButton() {
+    const generateBtn = document.getElementById('generate-btn');
+    generateBtn.disabled = selectedPersonas.length < 2;
+  }
+
+  // Clear selection
+  window.clearSelection = function() {
+    selectedPersonas = [];
+    document.querySelectorAll('.persona-option').forEach(option => {
+      option.classList.remove('selected');
+    });
+    updateGenerateButton();
+    document.getElementById('visualization-section').style.display = 'none';
+  };
+
+  // Generate committee map
+  window.generateCommitteeMap = function() {
+    if (selectedPersonas.length < 2) {
+      alert('Please select at least 2 personas');
+      return;
+    }
+
+    document.getElementById('visualization-section').style.display = 'block';
+    generateVennDiagram();
+    generateInsights();
+
+    // Scroll to visualization
+    document.getElementById('visualization-section').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Generate Venn diagram
+  function generateVennDiagram() {
+    const diagram = document.getElementById('committee-diagram');
+    diagram.innerHTML = '';
+
+    const vennContainer = document.createElement('div');
+    vennContainer.className = 'venn-container';
+
+    selectedPersonas.forEach((personaId, index) => {
+      const persona = personaData[personaId];
+      const circle = document.createElement('div');
+      circle.className = `persona-circle persona-${index + 1}`;
+      circle.innerHTML = `<div>${persona.name}<br><small>${persona.title}</small></div>`;
+      circle.title = `${persona.name} - ${persona.role}`;
+      vennContainer.appendChild(circle);
+    });
+
+    diagram.appendChild(vennContainer);
+  }
+
+  // Generate insights
+  function generateInsights() {
+    const insightsGrid = document.getElementById('insights-grid');
+    insightsGrid.innerHTML = '';
+
+    // Sweet Spots Analysis
+    const sweetSpotsCard = document.createElement('div');
+    sweetSpotsCard.className = 'insight-card';
+    sweetSpotsCard.innerHTML = `
+      <div class="insight-title">Messaging Sweet Spots</div>
+      <div class="insight-content">
+        <ul class="insight-list">
+          ${generateSweetSpots().map(spot => `<li><span class="sweet-spot">${spot}</span></li>`).join('')}
+        </ul>
+      </div>
+    `;
+    insightsGrid.appendChild(sweetSpotsCard);
+
+    // Shared Pain Points
+    const painPointsCard = document.createElement('div');
+    painPointsCard.className = 'insight-card';
+    painPointsCard.innerHTML = `
+      <div class="insight-title">Shared Pain Points</div>
+      <div class="insight-content">
+        <ul class="insight-list">
+          ${generateSharedPains().map(pain => `<li>${pain}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+    insightsGrid.appendChild(painPointsCard);
+
+    // Decision Flow
+    const decisionFlowCard = document.createElement('div');
+    decisionFlowCard.className = 'insight-card';
+    decisionFlowCard.innerHTML = `
+      <div class="insight-title">Decision Flow</div>
+      <div class="insight-content">
+        <ul class="insight-list">
+          ${generateDecisionFlow().map(step => `<li>${step}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+    insightsGrid.appendChild(decisionFlowCard);
+  }
+
+  // Generate sweet spots based on selected personas
+  function generateSweetSpots() {
+    const spots = [];
+
+    if (selectedPersonas.includes('rob-castellano') && selectedPersonas.includes('sarah-chen')) {
+      spots.push('Regulatory compliance with member/customer impact');
+    }
+
+    if (selectedPersonas.includes('david-mitchell') && selectedPersonas.includes('jennifer-wong')) {
+      spots.push('Operational efficiency with security-first approach');
+    }
+
+    if (selectedPersonas.includes('marcus-rodriguez') && (selectedPersonas.includes('rob-castellano') || selectedPersonas.includes('sarah-chen'))) {
+      spots.push('Bank credibility signals with proven success stories');
+    }
+
+    // Universal sweet spots for any combination
+    spots.push('Seamless integration with existing systems');
+    spots.push('Proven ROI with minimal operational disruption');
+    spots.push('Compliance-ready with regulatory confidence');
+
+    return spots.slice(0, 5); // Limit to top 5
+  }
+
+  // Generate shared pain points
+  function generateSharedPains() {
+    const pains = [];
+    const selectedData = selectedPersonas.map(id => personaData[id]);
+
+    // Analyze common themes
+    const allPains = selectedData.flatMap(persona => persona.keyPains);
+    const painCounts = {};
+
+    allPains.forEach(pain => {
+      const theme = categorizeTheme(pain);
+      painCounts[theme] = (painCounts[theme] || 0) + 1;
+    });
+
+    // Return themes mentioned by multiple personas
+    Object.entries(painCounts).forEach(([theme, count]) => {
+      if (count > 1) {
+        pains.push(theme);
+      }
+    });
+
+    // Add universal pains
+    pains.push('Technology modernization pressure');
+    pains.push('Competitive market dynamics');
+    pains.push('Resource and budget constraints');
+
+    return pains.slice(0, 6);
+  }
+
+  // Categorize pain themes
+  function categorizeTheme(pain) {
+    if (pain.includes('compliance') || pain.includes('regulation')) {
+      return 'Compliance and regulatory challenges';
+    }
+    if (pain.includes('efficiency') || pain.includes('operational')) {
+      return 'Operational efficiency concerns';
+    }
+    if (pain.includes('security') || pain.includes('threat')) {
+      return 'Security and risk management';
+    }
+    if (pain.includes('innovation') || pain.includes('digital') || pain.includes('technology')) {
+      return 'Technology modernization pressure';
+    }
+    if (pain.includes('competition') || pain.includes('market')) {
+      return 'Competitive market dynamics';
+    }
+    return 'Strategic execution challenges';
+  }
+
+  // Generate decision flow
+  function generateDecisionFlow() {
+    const flow = [];
+    const selectedData = selectedPersonas.map(id => personaData[id]);
+
+    // Determine flow based on roles
+    if (selectedPersonas.includes('rob-castellano')) {
+      flow.push('CEO sets strategic direction and final approval requirements');
+    }
+
+    if (selectedPersonas.includes('sarah-chen') || selectedPersonas.includes('jennifer-wong')) {
+      flow.push('CIO/CTO evaluates technical requirements and integration');
+    }
+
+    if (selectedPersonas.includes('david-mitchell')) {
+      flow.push('COO assesses operational impact and implementation complexity');
+    }
+
+    if (selectedPersonas.includes('marcus-rodriguez')) {
+      flow.push('CDO manages vendor relationships and external communications');
+    }
+
+    flow.push('Committee reviews recommendations and reaches consensus');
+    flow.push('CEO provides final approval and implementation go-ahead');
+
+    return flow;
+  }
+
+  // Export diagram
+  window.exportDiagram = function() {
+    alert('Export functionality would generate a PNG image of the Venn diagram for use in presentations and campaign planning documents.');
+  };
+
+  // Generate report
+  window.generateReport = function() {
+    alert('Report generation would create a comprehensive PDF analysis of the buying committee dynamics, messaging strategies, and implementation recommendations.');
+  };
+
+})();
+</script>
+
+</body>
+</html>

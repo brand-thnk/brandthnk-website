@@ -430,6 +430,203 @@
     color: var(--gray);
   }
 
+  /* EXECUTIVE SUMMARY STYLES */
+  .persona-executive-summary {
+    border-bottom: 1px solid var(--light-gray);
+    margin-bottom: 30px;
+  }
+
+  .persona-summary-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .summary-btn {
+    background: var(--offwhite);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+
+  .summary-btn:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .summary-btn.active {
+    background: var(--white);
+    color: var(--black);
+    border-bottom-color: var(--yellow);
+  }
+
+  .summary-section {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .summary-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .summary-section h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .summary-section p {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .summary-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .summary-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+  }
+
+  .summary-cta {
+    padding-top: 16px;
+    text-align: center;
+  }
+
+  /* INTERACTIVE CHANNEL MODES STYLES */
+  .channel-persona-selector {
+    background: var(--offwhite);
+    border: 1px solid var(--light-gray);
+    padding: 30px;
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .selector-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .persona-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .persona-tab {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 16px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 140px;
+  }
+
+  .persona-tab:hover {
+    border-color: var(--gray);
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .persona-tab.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--black);
+  }
+
+  .persona-tab small {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  .channel-card.interactive {
+    transition: all 0.5s ease;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .channel-behavior {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--offwhite);
+    border-left: 3px solid var(--yellow);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .behavior-example {
+    font-style: italic;
+    color: var(--gray);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--light-gray);
+  }
+
+  .channel-insight {
+    background: var(--white);
+    border: 2px solid var(--yellow);
+    padding: 24px;
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .insight-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .insight-content {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
   /* CHANNEL MODES */
   .channel-grid {
     display: grid;
@@ -737,6 +934,8 @@
     <p class="hero-label">Introducing <span style="background: var(--yellow); color: var(--black); padding: 2px 8px; font-weight: 700;">LITMUS</span>, Powered by BrandThnk</p>
     <h1>Better GTM starts here</h1>
     <p>A library of research-grade personas built from 50+ BrandThnk workshops and validated through 200 public and private sources.</p>
+    <p style="color: var(--yellow); font-weight: 700; margin-top: 16px;">Behavioral targeting delivers 41% higher engagement rates and 208% more revenue than generic campaigns.*</p>
+    <p style="color: var(--white); font-size: 14px; opacity: 0.7;">*Source: 2026 B2B Marketing Performance Studies</p>
     <div class="hero-cta">
       <a href="#request-access" class="btn btn-primary">Request Access</a>
       <a href="#whats-inside" class="btn btn-secondary">See What's Inside</a>
@@ -857,28 +1056,27 @@
   <div class="container">
     <h2 class="section-title">NEW Channel Behavioral Modes</h2>
     <div class="section-content">
-      <p>Your buyers process the same message differently depending on where they see it. Litmus maps how each persona shifts behavior across four channels.</p>
+      <p>Your buyers process the same message differently depending on where they see it. Watch how persona behavior shifts across channels.</p>
     </div>
-    <div class="channel-grid">
-      <div class="channel-card">
-        <h3 class="channel-name">LinkedIn</h3>
-        <div class="channel-mode">Peer-Visibility</div>
-        <p class="channel-desc">They share what makes them look informed. Everything else gets scrolled past.</p>
+
+    <!-- PERSONA SELECTOR -->
+    <div class="channel-persona-selector">
+      <div class="selector-label">See how this persona behaves across channels:</div>
+      <div class="persona-tabs">
+        <button class="persona-tab active" onclick="showPersonaChannels('rob')" data-persona="rob">Rob Castellano<br><small>CEO, Bank</small></button>
+        <button class="persona-tab" onclick="showPersonaChannels('sarah')" data-persona="sarah">Sarah Chen<br><small>CIO, Credit Union</small></button>
+        <button class="persona-tab" onclick="showPersonaChannels('marcus')" data-persona="marcus">Marcus Rodriguez<br><small>CDO, Fintech</small></button>
       </div>
-      <div class="channel-card">
-        <h3 class="channel-name">Website</h3>
-        <div class="channel-mode">Due Diligence</div>
-        <p class="channel-desc">Every claim gets matched against what they already know about their own institution.</p>
-      </div>
-      <div class="channel-card">
-        <h3 class="channel-name">Thought Leadership</h3>
-        <div class="channel-mode">Learning</div>
-        <p class="channel-desc">Open to ideas but hostile to disguised sales. Teach them something they can use tomorrow.</p>
-      </div>
-      <div class="channel-card">
-        <h3 class="channel-name">Ads</h3>
-        <div class="channel-mode">Interruption</div>
-        <p class="channel-desc">You have two seconds and the highest skepticism of any channel. Specificity is the only thing that earns a click.</p>
+    </div>
+
+    <div class="channel-grid" id="channel-grid">
+      <!-- Dynamic channel content will be loaded here -->
+    </div>
+
+    <div class="channel-insight" id="channel-insight">
+      <div class="insight-title">💡 Key Insight</div>
+      <div class="insight-content" id="insight-content">
+        The same persona requires completely different messaging strategies across channels. One size fits none.
       </div>
     </div>
   </div>
@@ -898,7 +1096,41 @@
       </div>
       <div class="persona-body">
 
-        <div class="persona-detail">
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="persona-executive-summary">
+          <div class="persona-summary-toggle">
+            <button class="summary-btn active" onclick="showSummary()">Executive Summary</button>
+            <button class="summary-btn" onclick="showDetails()">Complete 8-Layer Profile</button>
+          </div>
+
+          <div class="summary-content" id="summary-view">
+            <div class="summary-section">
+              <h4>Who is Rob Castellano?</h4>
+              <p>Conservative community bank CEO who grew his Alabama bank from $800M to $7.2B through careful, peer-validated decisions. Rob evaluates vendors by calling CEO friends first and trusts regional references over feature lists. He's facing Fiserv contract renewal pressure while board members question the bank's digital strategy compared to competitors.</p>
+            </div>
+
+            <div class="summary-section">
+              <h4>Key Messaging Points</h4>
+              <ul class="summary-list">
+                <li><strong>Regional credibility:</strong> "We work with 40 community banks your size across the Southeast"</li>
+                <li><strong>Peer references:</strong> "Here's what First National in Jackson said about their experience with us"</li>
+                <li><strong>Integration confidence:</strong> "This integrates natively with Fiserv Premier. No middleware required"</li>
+              </ul>
+            </div>
+
+            <div class="summary-section">
+              <h4>Primary Pain Point</h4>
+              <p><strong>Technology renewal anxiety:</strong> Fiserv contract renewal in 8 months coinciding with board pressure for digital innovation. Rob needs solutions that reduce risk while satisfying board expectations.</p>
+            </div>
+
+            <div class="summary-cta">
+              <p style="color: var(--gray); font-size: 14px; font-style: italic;">Want the complete behavioral analysis? Toggle to the 8-layer profile above.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="detailed-content" id="detailed-view" style="display: none;">
+          <div class="persona-detail">
           <span class="persona-section-label">Layer 1: Identity</span>
           <h4>Career Narrative</h4>
           <p>Started as a commercial loan officer at 24. Turned around an underperforming market in Tuscaloosa. Joined current bank as EVP of Commercial Banking at 38, became CEO at 48. Grew the bank from $800M to $7.2B through organic growth and four acquisitions. Entire career in Alabama banking.</p>
@@ -997,6 +1229,7 @@
           </ul>
         </div>
 
+        </div> <!-- end detailed-content -->
       </div>
     </div>
   </div>
@@ -1114,6 +1347,174 @@
       submitBtn.textContent = 'Request Access';
     });
   });
+
+  // Persona summary toggle functionality
+  window.showSummary = function() {
+    document.getElementById('summary-view').style.display = 'block';
+    document.getElementById('detailed-view').style.display = 'none';
+
+    document.querySelectorAll('.summary-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector('.summary-btn').classList.add('active');
+  };
+
+  window.showDetails = function() {
+    document.getElementById('summary-view').style.display = 'none';
+    document.getElementById('detailed-view').style.display = 'block';
+
+    document.querySelectorAll('.summary-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.summary-btn')[1].classList.add('active');
+  };
+
+  // Channel behavioral modes data
+  const channelData = {
+    rob: {
+      name: 'Rob Castellano',
+      insight: 'Rob\'s conservative nature means he needs trust signals that vary dramatically by channel. LinkedIn is ignored, websites are scrutinized, and ads trigger instant skepticism.',
+      channels: {
+        linkedin: {
+          mode: 'Invisible',
+          description: 'Rob doesn\'t use LinkedIn. His information comes from peer calls and industry dinners.',
+          behavior: 'Zero engagement. Your LinkedIn campaigns miss him entirely.',
+          example: 'Even the best LinkedIn ad won\'t reach him. Focus on peer referrals and trade publications instead.'
+        },
+        website: {
+          mode: 'Detective',
+          description: 'Every claim gets fact-checked against his own bank\'s experience and peer feedback.',
+          behavior: 'Skeptical evaluation. Looks for proof points and regional references.',
+          example: '"Works with 40 Southeast community banks" gets his attention. "AI-powered innovation" gets closed immediately.'
+        },
+        thoughtLeadership: {
+          mode: 'Peer-Validator',
+          description: 'Values content that reinforces decisions he\'s already considering or validates his concerns.',
+          behavior: 'Shares articles that make him look informed to other CEOs.',
+          example: 'Forward a piece about "Why Community Banks Are Winning" to his board. Ignore thought leadership about "Digital Disruption."'
+        },
+        ads: {
+          mode: 'Instant-Skeptic',
+          description: 'Interruption triggers immediate distrust. Only ultra-specific, peer-referenced messages get through.',
+          behavior: 'Assumes all ads are exaggerated. Needs immediate credibility signals.',
+          example: '"Used by 15 Alabama banks like yours" might work. "Revolutionary banking solution" gets ignored.'
+        }
+      }
+    },
+    sarah: {
+      name: 'Sarah Chen',
+      insight: 'Sarah processes information through a member-impact filter across all channels. Technical details matter, but only if they connect to member benefits.',
+      channels: {
+        linkedin: {
+          mode: 'Learning-Sharer',
+          description: 'Shares content that positions her as a forward-thinking leader focused on member experience.',
+          behavior: 'Engages with posts about member experience, fintech partnerships, and CU innovation.',
+          example: 'Shares articles about "How CUs Can Compete with Neobanks" but ignores generic fintech promotional content.'
+        },
+        website: {
+          mode: 'Technical-Validator',
+          description: 'Evaluates technical architecture and integration complexity while measuring member impact.',
+          behavior: 'Deep-dives into technical documentation, API specs, and member experience case studies.',
+          example: 'Spends 20 minutes reading integration docs and member satisfaction metrics. Skips marketing fluff entirely.'
+        },
+        thoughtLeadership: {
+          mode: 'Member-Advocate',
+          description: 'Seeks content that helps her balance innovation with member-first credit union values.',
+          behavior: 'Values thought leadership about member experience, digital transformation, and CU differentiation.',
+          example: 'Subscribes to content about "Digital Banking Without Losing the Personal Touch" and member experience innovation.'
+        },
+        ads: {
+          mode: 'Benefit-Scanner',
+          description: 'Quickly scans for member benefit claims and technical credibility signals.',
+          behavior: 'Only clicks if ad clearly states member impact and technical integration approach.',
+          example: '"Reduce member wait times by 40%" gets attention. "Best-in-class fintech solution" gets scrolled past.'
+        }
+      }
+    },
+    marcus: {
+      name: 'Marcus Rodriguez',
+      insight: 'Marcus needs credibility-building content that helps him bridge the fintech-bank cultural gap. Every channel must reinforce his expertise and trustworthiness.',
+      channels: {
+        linkedin: {
+          mode: 'Authority-Builder',
+          description: 'Shares content that positions him as a knowledgeable bridge between fintech innovation and banking tradition.',
+          behavior: 'Posts about successful bank partnerships, compliance updates, and fintech industry insights.',
+          example: 'Shares case studies of fintech-bank partnerships and regulatory compliance success stories.'
+        },
+        website: {
+          mode: 'Credibility-Collector',
+          description: 'Gathers proof points and credibility signals to use in bank relationship building.',
+          behavior: 'Screenshots testimonials, downloads case studies, and bookmarks compliance documentation.',
+          example: 'Saves pages with bank CEO quotes and regulatory approval documentation for future sales conversations.'
+        },
+        thoughtLeadership: {
+          mode: 'Bridge-Content',
+          description: 'Consumes content that helps him understand and communicate to traditional bank buyers.',
+          behavior: 'Values insights about bank decision-making, regulatory trends, and successful fintech adoption.',
+          example: 'Reads "What Community Bank CEOs Really Think About Fintech Partnerships" and regulatory trend analyses.'
+        },
+        ads: {
+          mode: 'Proof-Seeker',
+          description: 'Looks for bank credibility signals and compliance confidence indicators.',
+          behavior: 'Only clicks ads that mention specific bank partnerships or regulatory credentials.',
+          example: '"Trusted by 100+ FDIC-insured banks" gets a click. "Fastest-growing fintech platform" gets ignored.'
+        }
+      }
+    }
+  };
+
+  // Show persona channels
+  window.showPersonaChannels = function(personaKey) {
+    // Update tab states
+    document.querySelectorAll('.persona-tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelector(`[data-persona="${personaKey}"]`).classList.add('active');
+
+    const persona = channelData[personaKey];
+    const channelGrid = document.getElementById('channel-grid');
+    const insightContent = document.getElementById('insight-content');
+
+    // Update insight
+    insightContent.textContent = persona.insight;
+
+    // Update channel grid
+    channelGrid.innerHTML = `
+      <div class="channel-card interactive">
+        <h3 class="channel-name">LinkedIn</h3>
+        <div class="channel-mode">${persona.channels.linkedin.mode}</div>
+        <p class="channel-desc">${persona.channels.linkedin.description}</p>
+        <div class="channel-behavior">
+          <strong>Behavior:</strong> ${persona.channels.linkedin.behavior}
+          <div class="behavior-example">${persona.channels.linkedin.example}</div>
+        </div>
+      </div>
+      <div class="channel-card interactive">
+        <h3 class="channel-name">Website</h3>
+        <div class="channel-mode">${persona.channels.website.mode}</div>
+        <p class="channel-desc">${persona.channels.website.description}</p>
+        <div class="channel-behavior">
+          <strong>Behavior:</strong> ${persona.channels.website.behavior}
+          <div class="behavior-example">${persona.channels.website.example}</div>
+        </div>
+      </div>
+      <div class="channel-card interactive">
+        <h3 class="channel-name">Thought Leadership</h3>
+        <div class="channel-mode">${persona.channels.thoughtLeadership.mode}</div>
+        <p class="channel-desc">${persona.channels.thoughtLeadership.description}</p>
+        <div class="channel-behavior">
+          <strong>Behavior:</strong> ${persona.channels.thoughtLeadership.behavior}
+          <div class="behavior-example">${persona.channels.thoughtLeadership.example}</div>
+        </div>
+      </div>
+      <div class="channel-card interactive">
+        <h3 class="channel-name">Ads</h3>
+        <div class="channel-mode">${persona.channels.ads.mode}</div>
+        <p class="channel-desc">${persona.channels.ads.description}</p>
+        <div class="channel-behavior">
+          <strong>Behavior:</strong> ${persona.channels.ads.behavior}
+          <div class="behavior-example">${persona.channels.ads.example}</div>
+        </div>
+      </div>
+    `;
+  };
+
+  // Initialize with Rob by default
+  showPersonaChannels('rob');
 })();
 </script>
 
