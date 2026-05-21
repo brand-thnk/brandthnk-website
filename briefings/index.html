@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandThnk Briefings | Strategic Insights for Financial Brands</title>
+<meta name="description" content="Strategic insights and frameworks for financial institutions and fintechs. In-depth briefings on brand strategy, positioning, and market differentiation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.current { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* MAIN CONTENT */
+  .main {
+    padding: 160px 60px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .page-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+
+  .page-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  .page-subtitle {
+    font-size: 19px;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* BRIEFINGS GRID */
+  .briefings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .briefing-card {
+    border: 2px solid var(--light-gray);
+    padding: 40px;
+    border-radius: 0;
+    background: var(--card-bg);
+    transition: all 0.2s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .briefing-card:hover {
+    border-color: var(--black);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .briefing-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .briefing-type {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--yellow);
+    color: var(--black);
+    padding: 4px 12px;
+    border-radius: 0;
+  }
+
+  .briefing-date {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  .briefing-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .briefing-excerpt {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
+  .briefing-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    text-decoration: none;
+  }
+
+  .briefing-card:hover .briefing-link {
+    color: var(--gray);
+  }
+
+  .briefing-link:after {
+    content: "→";
+    font-size: 12px;
+    transition: transform 0.2s;
+  }
+
+  .briefing-card:hover .briefing-link:after {
+    transform: translateX(4px);
+  }
+
+  /* NEWSLETTER SIGNUP */
+  .newsletter-section {
+    background: var(--black);
+    border-radius: 0;
+    padding: 64px 48px;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .newsletter-section h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .newsletter-section p {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--white); color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    border-top: 2px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .main { padding: 120px 24px 60px; }
+    .briefings-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .newsletter-section { padding: 48px 24px; margin-top: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/briefings/" class="current">Read the Briefing</a></li>
+    <li><a href="/book/">Buy the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <header class="page-header">
+    <div class="page-eyebrow">Strategic Insights</div>
+    <h1 class="page-title">BrandThnk Briefings</h1>
+    <p class="page-subtitle">In-depth analysis and frameworks for financial institutions and fintechs. Strategic insights that help you cut through the noise and build brands with pull.</p>
+  </header>
+
+  <!-- BRIEFINGS GRID -->
+  <div class="briefings-grid">
+    <a href="/briefings/branding-everyones-job.html" class="briefing-card">
+      <div class="briefing-meta">
+        <span class="briefing-type">Organization</span>
+        <span class="briefing-date">May 28, 2026</span>
+      </div>
+      <h2 class="briefing-title">Branding Is Everyone's Job (But Not Everyone Is a Marketer)</h2>
+      <p class="briefing-excerpt">When we say branding is everyone's job, we aren't asking everyone to be a marketer. Learn how to move from brand alignment to brand accountability across your entire organization.</p>
+      <span class="briefing-link">Read Briefing</span>
+    </a>
+
+    <a href="/briefings/commodity-customer-problem.html" class="briefing-card">
+      <div class="briefing-meta">
+        <span class="briefing-type">Strategy</span>
+        <span class="briefing-date">May 20, 2026</span>
+      </div>
+      <h2 class="briefing-title">Your Product May Be a Commodity. Your Customer's Problem Is Not.</h2>
+      <p class="briefing-excerpt">The mistake is treating commoditization as defeat. Even if your product is a commodity, the customer's problem is not. Learn how to move beyond product features to create meaningful differentiation.</p>
+      <span class="briefing-link">Read Briefing</span>
+    </a>
+
+    <!-- Future briefings will be added here -->
+    <!-- Card template for easy addition:
+    <a href="/briefings/[slug].html" class="briefing-card">
+      <div class="briefing-meta">
+        <span class="briefing-type">[Category]</span>
+        <span class="briefing-date">[Date]</span>
+      </div>
+      <h2 class="briefing-title">[Title]</h2>
+      <p class="briefing-excerpt">[Excerpt]</p>
+      <span class="briefing-link">Read Briefing</span>
+    </a>
+    -->
+  </div>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section class="newsletter-section">
+    <h3>Get New Briefings First</h3>
+    <p>Join 2,000+ bank and fintech leaders who get strategic insights delivered weekly. No fluff, just frameworks you can use.</p>
+    <a href="/newsletter/subscribe.html" class="btn-primary">Subscribe to Newsletter</a>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about" style="color: var(--gray); text-decoration: none;">About</a> &nbsp;·&nbsp; <a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="/focal/" style="color: var(--gray); text-decoration: none;">Insights</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
+</footer>
+
+</body>
+</html>

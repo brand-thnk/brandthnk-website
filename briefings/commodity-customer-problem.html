@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Product May Be a Commodity. Your Customer's Problem Is Not. | BrandThnk Briefing</title>
+<meta name="description" content="We know our industry is commoditized. The mistake is treating commoditization as defeat. The customer's problem is not a commodity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="7dd4774b-9004-4282-af5f-df6deacf4dcf"></script>
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* ARTICLE */
+  .article {
+    padding: 140px 60px 100px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .article-header {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  .article-category {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .article-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .article-date {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  /* CONTENT */
+  .article-content p {
+    margin-bottom: 24px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .article-content p:first-child {
+    font-size: 19px;
+    color: var(--gray);
+    margin-bottom: 32px;
+  }
+
+  .article-content .highlight {
+    background: var(--yellow);
+    padding: 2px 6px;
+    margin: 0 2px;
+  }
+
+  .article-content ul {
+    margin: 24px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-content li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .article-content li:before {
+    content: "—";
+    color: var(--yellow);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .article-content strong {
+    font-weight: 700;
+  }
+
+  .article-content em {
+    font-style: italic;
+  }
+
+  .article-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 2px solid var(--yellow);
+    text-align: center;
+  }
+
+  .article-footer p {
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 16px;
+  }
+
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    border-top: 2px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .article { padding: 120px 24px 60px; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/briefings/">Read the Briefing</a></li>
+    <li><a href="/book/">Buy the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article">
+  <header class="article-header">
+    <div class="article-category">BrandThnk Briefing</div>
+    <h1 class="article-title">Your Product May Be a Commodity.<br>Your Customer's Problem Is Not.</h1>
+    <div class="article-date">May 20, 2026</div>
+  </header>
+
+  <div class="article-content">
+    <p>We know our industry is commoditized. There are only so many ways to check a balance, open an account, move money, apply for a loan, or send a debit card.</p>
+
+    <p>The mistake is treating commoditization as defeat. It may be a product truth, but it is not an excuse, especially when it comes to brand. <span class="highlight">We must move beyond the product because even if it is a commodity, the customer's problem is not.</span></p>
+
+    <p>A checking account might be "table stakes" to us, but it does not feel that way to someone opening their first account after getting their first real job. A small business loan may look familiar on a product sheet, but it does not feel generic to the owner trying to make payroll, expand into a second location, or buy the equipment that changes what their company can become. A mortgage may be a standard product category, but there is nothing standard about the anxiety, hope, pressure, and identity wrapped up in buying a home.</p>
+
+    <p>Decommoditization does not always require inventing a new product. Often, it requires better packaging and sharper positioning. The question is not always, "What can we build that no one else has?" Sometimes the better question is, <span class="highlight">"Who is this really for, what problem are they trying to solve, and why should they believe we understand it best?"</span></p>
+
+    <p>So, instead of leading with "free checking," you lead with the life moment, behavior, or belief that makes the account matter. Instead of promoting "fast business lending," you clarify what kind of business owner needs speed, what they are up against, and what momentum looks like for them. Instead of saying "digital banking made easy," you define what easy means for the customer who is tired, overwhelmed, underbanked, overextended, growing fast, starting over, or trying to make one good financial decision at a time.</p>
+
+    <p>This is where many financial brands get stuck. They try to differentiate at the broadest possible level, which usually forces them into generic language. They want to be for everyone in the community, every small business, every family, every saver, every borrower, every stage of life, but clarity requires choice. The more specifically you define the customer, the more specific the value can become. The more specific the value becomes, the less the product feels like a commodity.</p>
+
+    <p>That is why making the customer the hero matters. When the product sits at the center of the story, sameness becomes obvious. <span class="highlight">When the customer sits at the center, the story changes. Their context creates the differentiation.</span></p>
+
+    <p>A bank account for a college student trying to manage money alone for the first time is a different story than a bank account for a family rebuilding after a financial setback. A business line of credit for a contractor waiting on receivables is a different story than a business line of credit for a boutique owner stocking up for the holiday season. A digital onboarding flow for someone who has opened five accounts before is a different experience than one for someone who is skeptical of banks altogether.</p>
+
+    <p>"Everyone offers this" may be true, but it is also incomplete. Everyone may offer the product, but everyone does not own the same audience, solve the same version of the problem, deliver the same experience, or earn trust in the same way. If you accept "we're just a commodity," you have already outsourced your differentiation.</p>
+
+    <p>Ask the harder questions:</p>
+
+    <ul>
+      <li>Who is this for?</li>
+      <li>What are they trying to get done?</li>
+      <li>What do they misunderstand, fear, avoid, or delay?</li>
+      <li>What language would make them feel seen?</li>
+      <li>What part of the experience creates confidence?</li>
+      <li>Where does our product become meaningful because of the way we package, explain, deliver, or support it?</li>
+    </ul>
+
+    <p>These questions are the difference between marketing a product and positioning an offer. A product is the thing you sell. An offer is the product made relevant to a specific customer in a specific context.</p>
+
+    <p>Financial institutions do not need to pretend the category is less commoditized than it is. But commoditization at the product level does not have to become commoditization at the brand level. Customers do not experience their lives as commodities. They experience pressure, ambition, confusion, transition, pride, frustration, and hope. They experience moments where money is tied to something bigger than money and the brands that break out are the ones that understand that.</p>
+
+    <p><span class="highlight">The product may be common. The meaning you create around it does not have to be.</span></p>
+  </div>
+
+  <footer class="article-footer">
+    <button class="btn-primary" data-beehiiv-form-trigger>Subscribe</button>
+    <a href="/briefings/" class="btn-secondary">More Briefings</a>
+  </footer>
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about" style="color: var(--gray); text-decoration: none;">About</a> &nbsp;·&nbsp; <a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="/focal/" style="color: var(--gray); text-decoration: none;">Insights</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
+</footer>
+
+</body>
+</html>
