@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Get Your Brand Strategy Moving Again | BrandThnk Briefing</title>
+<meta name="description" content="Five ways to restart momentum when strategy stalls (and why stalling isn't failure). Strategic frameworks for getting brand strategy implementation back on track.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="7dd4774b-9004-4282-af5f-df6deacf4dcf"></script>
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 0;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--yellow) !important; color: var(--black) !important; }
+
+  /* ARTICLE */
+  .article {
+    padding: 140px 60px 100px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .article-header {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  .article-category {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .article-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(36px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 16px;
+  }
+
+  .article-date {
+    font-size: 14px;
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  /* CONTENT */
+  .article-content p {
+    margin-bottom: 24px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .article-content p:first-child {
+    font-size: 19px;
+    color: var(--gray);
+    margin-bottom: 32px;
+  }
+
+  .article-content h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0 16px 0;
+    color: var(--black);
+  }
+
+  .article-content .highlight {
+    background: var(--yellow);
+    padding: 2px 6px;
+    margin: 0 2px;
+  }
+
+  .article-content ul {
+    margin: 24px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .article-content li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .article-content li:before {
+    content: "—";
+    color: var(--yellow);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .article-content strong {
+    font-weight: 700;
+  }
+
+  .article-content em {
+    font-style: italic;
+  }
+
+  .article-content a {
+    color: var(--black);
+    text-decoration: underline;
+  }
+
+  .article-content a:hover {
+    color: var(--gray);
+  }
+
+  .article-footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 2px solid var(--yellow);
+    text-align: center;
+  }
+
+  .article-footer p {
+    color: var(--gray);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 16px;
+  }
+
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    border-top: 2px solid var(--light-gray);
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--black);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .article { padding: 120px 24px 60px; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <ul class="nav-links">
+    <li><a href="/#offers">Explore Services</a></li>
+    <li><a href="/tools/">Use the Tools</a></li>
+    <li><a href="/briefings/">Read the Briefing</a></li>
+    <li><a href="/book/">Buy the Book</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article">
+  <header class="article-header">
+    <div class="article-category">BrandThnk Briefing</div>
+    <h1 class="article-title">How to Get Your Brand Strategy Moving Again</h1>
+    <div class="article-date">May 22, 2026</div>
+  </header>
+
+  <div class="article-content">
+    <p>A stalled strategy is easy to misread as failure, but every brand strategy stalls at some point as priorities shift, teams get busier or the marketing moves faster than the operating model.</p>
+
+    <p>This dip in buy-in or action tells you where belief is thin, where ownership is unclear, where the strategy is too big to act on, or where everything is still depending on one person to keep it alive.</p>
+
+    <p>Here are five ways to get things moving again:</p>
+
+    <h2>1. Stop calling it a restart</h2>
+
+    <p>(Or in the words of LL Cool J, "Don't call it a comeback, I been here for years.")</p>
+
+    <p>Calling it a restart can make the work feel like a failure before it has a chance to recover. The positive is you have just learned more about the strategy than you knew at the beginning.</p>
+
+    <p>You learned where it made sense and where it became abstract. You learned which teams picked it up quickly and which ones needed more translation. You learned where the language worked, where the process broke, and where the brand idea met the reality of the business.</p>
+
+    <p><strong><span class="highlight">The first version of a strategy is never the full test — the organization is the test.</span></strong></p>
+
+    <p>Once the strategy starts moving through departments, decisions, systems, incentives, and customer moments, you get better information and a stall gives you the chance to make the strategy more useful.</p>
+
+    <h2>2. Get a read on belief</h2>
+
+    <p>Before you build another plan or make the office rounds on the current one, get an honest read on whether people still believe in the direction.</p>
+
+    <p><strong>Ask directly: "Do we still believe this is what we are trying to build?"</strong></p>
+
+    <p>Pro tip: Do not turn the question into a defense of the strategy and do not ask it in a way that makes agreement the only safe answer.</p>
+
+    <p>Sometimes belief is still there, and people simply need a clearer next move. Sometimes belief exists at the leadership level and has faded everywhere else. Sometimes teams understand the strategy intellectually, yet they do not see how it changes their work. Sometimes the "right" words are still in use because people know they are supposed to use them, even though the conviction behind them has thinned out.</p>
+
+    <p>This is all useful to know because <strong><span class="highlight">strategy can survive a pause, but it has a much harder time surviving polite agreement without conviction.</span></strong></p>
+
+    <h2>3. Make it smaller before you make it bigger</h2>
+
+    <p>When a strategy stalls, the instinct is often to make it bigger, but sometimes the better move is to shrink it. It's critical to the effort and your morale to literally finish something (anything).</p>
+
+    <p><strong>Choose one experience where the strategy can become visible and useful. Bring it all the way through</strong> because completion builds internal trust and momentum more than ambition does.</p>
+
+    <p>People believe in strategy differently when they can see it working. A finished example gives the organization something to point to and it turns the strategy from a concept into evidence.</p>
+
+    <p>That evidence matters because stalled strategies often suffer from too much altitude. They sound right in the abstract and become harder to act on in the day-to-day...this is why smaller can get you back into motion.</p>
+
+    <h2>4. Find the nerve</h2>
+
+    <p>Every organization has a nerve. It may be a local competitor gaining attention or that something meaningful about the company is getting lost as it grows. When things stall (or ideally even beforehand), find that nerve.</p>
+
+    <p><strong><span class="highlight">Motivation that already exists in the room is easier to activate than motivation you must create.</span></strong></p>
+
+    <p>This does not mean manufacturing fear or turning the strategy into a fight. It means understanding what people already care about and connecting the work to that energy.</p>
+
+    <p>Brand strategy can become too sanitized inside organizations. It gets wrapped in language everyone can agree with, which often strips out the tension that made it necessary in the first place (readers of <a href="https://www.brandthnk.co/book">Think Like a Brand, Not a Bank</a> will be familiar with the concept that tension is a good thing).</p>
+
+    <p><strong>Hitting the nerve brings the tension back.</strong></p>
+
+    <p>If you don't know the nerve for your org, here are a few ways to find it:</p>
+
+    <ul>
+      <li>What are we tired of seeing happen?</li>
+      <li>What do we refuse to become?</li>
+      <li>What do we want customers to understand about us that they keep missing?</li>
+    </ul>
+
+    <h2>5. Get out of the middle</h2>
+
+    <p>Many brand strategies stall because everyone waits for marketing to translate the work to the brand and then every decision gets pulled back to the center. That model can work for a launch, but it breaks down massively when the strategy needs to scale.</p>
+
+    <p>This is where brand strategy becomes operational. It moves from the center of the organization into the places where customers experience it.</p>
+
+    <p>Hard pill to swallow, but <strong><span class="highlight">the goal is less control and more coherence</span></strong> because a brand strategy that lives only in marketing will die.</p>
+
+    <p>As marketers we need to build the tools, language, examples, and decision rules that let other people carry the strategy into their own work. Because, as we all like to say, <a href="https://brandthnk.co/briefings/branding-everyones-job">everyone owns the brand</a>.</p>
+
+    <hr style="border: none; border-top: 1px solid #eeeeee; margin: 40px 0 32px 0;">
+
+    <p><strong>The bottom line:</strong> A stall isn't a verdict on your strategy — it's feedback. Use it to make the work more useful, more believable, and more actionable. The goal isn't perfection; it's momentum.</p>
+  </div>
+
+  <footer class="article-footer">
+    <button class="btn-primary" data-beehiiv-form-trigger>Subscribe</button>
+    <a href="/briefings/" class="btn-secondary">More Briefings</a>
+  </footer>
+</article>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p><a href="/about" style="color: var(--gray); text-decoration: none;">About</a> &nbsp;·&nbsp; <a href="/therapy/" style="color: var(--gray); text-decoration: none;">Brand Therapy</a> &nbsp;·&nbsp; <a href="/focal/" style="color: var(--gray); text-decoration: none;">Insights</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Privacy</a> &nbsp;·&nbsp; <a href="#" style="color: var(--gray); text-decoration: none;">Contact</a></p>
+</footer>
+
+</body>
+</html>
