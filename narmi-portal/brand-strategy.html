@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Strategy • Narmi × BrandThnk Portal</title>
+    <meta name="description" content="Narmi Brand Strategy - positioning framework, messaging architecture, and competitive differentiation">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--brandthnk-white);
+            color: var(--brandthnk-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--brandthnk-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--brandthnk-black);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h4 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .status-in-progress {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .status-pending {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-gray);
+        }
+
+        .status-complete {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        /* Framework Boxes */
+        .framework-box {
+            background-color: var(--brandthnk-white);
+            border: 2px solid var(--brandthnk-yellow);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .framework-box h4 {
+            margin-top: 0;
+            color: var(--brandthnk-black);
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Competitive Table */
+        .competitive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .competitive-table th,
+        .competitive-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .competitive-table th {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            font-weight: 500;
+        }
+
+        .competitive-table tr:hover {
+            background-color: var(--brandthnk-off-white);
+        }
+
+        /* Messaging Hierarchy */
+        .messaging-tier {
+            background-color: var(--brandthnk-white);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .messaging-tier.tier-1 {
+            border-left-color: var(--brandthnk-yellow);
+        }
+
+        .messaging-tier.tier-2 {
+            border-left-color: var(--brandthnk-gray);
+        }
+
+        .messaging-tier.tier-3 {
+            border-left-color: var(--brandthnk-light-gray);
+        }
+
+        .tier-label {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Back to Dashboard */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--brandthnk-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--brandthnk-black);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .competitive-table {
+                font-size: 0.9rem;
+            }
+
+            .competitive-table th,
+            .competitive-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Narmi × BrandThnk</div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="brand-strategy.html" class="active">Brand Strategy</a></li>
+                <li><a href="website-audit.html">Website Audit</a></li>
+                <li><a href="project-plan.html">Project Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="index.html" class="back-link">Back to Dashboard</a>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Brand Strategy</h1>
+            <p class="subtitle">Positioning framework, messaging architecture, and competitive differentiation</p>
+        </div>
+
+        <!-- Project Status -->
+        <div class="content-section">
+            <h2>Project Status</h2>
+            <span class="status-badge status-in-progress">In Progress</span>
+            <p>Brand strategy development is currently in the discovery phase. Initial stakeholder interviews are being scheduled, and competitive landscape research is underway.</p>
+            <p><strong>Expected Completion:</strong> Week 4 (June 17, 2026)</p>
+            <p><strong>Next Milestone:</strong> Complete discovery phase and competitive analysis by June 10</p>
+        </div>
+
+        <!-- Brand Positioning Framework -->
+        <div class="content-section">
+            <h2>Brand Positioning Framework</h2>
+            <p>This section will contain Narmi's core brand positioning using the BrandThnk methodology. Framework development will begin following completion of the discovery phase.</p>
+
+            <div class="framework-grid">
+                <div class="framework-box">
+                    <h4>Target Audience</h4>
+                    <p><em>To be defined based on stakeholder interviews and market research</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Market Category</h4>
+                    <p><em>Digital banking platform positioning to be refined</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Unique Value Proposition</h4>
+                    <p><em>Core differentiation to be developed through competitive analysis</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Brand Promise</h4>
+                    <p><em>Primary customer promise to be crafted based on research findings</em></p>
+                </div>
+            </div>
+
+            <h3>Positioning Statement Template</h3>
+            <div class="framework-box">
+                <p><strong>For [target audience]</strong> who want [primary need/desire],</p>
+                <p><strong>Narmi is the [market category]</strong></p>
+                <p><strong>that [unique value proposition]</strong></p>
+                <p><strong>because [reasons to believe/proof points].</strong></p>
+            </div>
+        </div>
+
+        <!-- Competitive Landscape -->
+        <div class="content-section">
+            <h2>Competitive Landscape</h2>
+            <p>Comprehensive competitive analysis will map the digital banking platform landscape and identify positioning opportunities.</p>
+
+            <h3>Primary Competitors</h3>
+            <table class="competitive-table">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Market Position</th>
+                        <th>Key Differentiator</th>
+                        <th>Analysis Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Competitor A</td>
+                        <td>To be analyzed</td>
+                        <td>Pending research</td>
+                        <td>Scheduled</td>
+                    </tr>
+                    <tr>
+                        <td>Competitor B</td>
+                        <td>To be analyzed</td>
+                        <td>Pending research</td>
+                        <td>Scheduled</td>
+                    </tr>
+                    <tr>
+                        <td>Competitor C</td>
+                        <td>To be analyzed</td>
+                        <td>Pending research</td>
+                        <td>Scheduled</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Competitive analysis will be completed during Week 2 of the engagement (June 3-7, 2026).</em></p>
+        </div>
+
+        <!-- Messaging Architecture -->
+        <div class="content-section">
+            <h2>Messaging Architecture</h2>
+            <p>Hierarchical messaging framework will be developed following positioning completion. This structure will guide all communication efforts.</p>
+
+            <div class="messaging-tier tier-1">
+                <div class="tier-label">Primary Message</div>
+                <h4>Core Brand Message</h4>
+                <p><em>Primary value proposition to be developed based on positioning framework</em></p>
+            </div>
+
+            <div class="messaging-tier tier-2">
+                <div class="tier-label">Supporting Messages</div>
+                <h4>Key Benefit Messages</h4>
+                <ul>
+                    <li><em>Supporting message 1 - to be developed</em></li>
+                    <li><em>Supporting message 2 - to be developed</em></li>
+                    <li><em>Supporting message 3 - to be developed</em></li>
+                </ul>
+            </div>
+
+            <div class="messaging-tier tier-3">
+                <div class="tier-label">Proof Points</div>
+                <h4>Evidence & Validation</h4>
+                <ul>
+                    <li><em>Customer success stories and metrics</em></li>
+                    <li><em>Product capabilities and features</em></li>
+                    <li><em>Industry recognition and partnerships</em></li>
+                    <li><em>Technical infrastructure and security</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Brand Voice & Tone -->
+        <div class="content-section">
+            <h2>Brand Voice & Tone</h2>
+            <p>Brand voice guidelines will establish consistent communication personality across all touchpoints.</p>
+
+            <h3>Voice Characteristics</h3>
+            <div class="framework-grid">
+                <div class="framework-box">
+                    <h4>Voice Attribute 1</h4>
+                    <p><em>To be defined through brand personality exercise</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Voice Attribute 2</h4>
+                    <p><em>To be defined through brand personality exercise</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Voice Attribute 3</h4>
+                    <p><em>To be defined through brand personality exercise</em></p>
+                </div>
+            </div>
+
+            <h3>Tone Guidelines</h3>
+            <p><em>Situational tone guidelines will be developed to show how voice adapts across different communication contexts and audiences.</em></p>
+        </div>
+
+        <!-- Implementation Roadmap -->
+        <div class="content-section">
+            <h2>Implementation Roadmap</h2>
+            <p>Strategic implementation plan will prioritize brand strategy deployment across key touchpoints and communications.</p>
+
+            <h3>Phase 1: Foundation (Weeks 1-2)</h3>
+            <ul>
+                <li>Complete stakeholder interviews</li>
+                <li>Finalize competitive landscape analysis</li>
+                <li>Develop initial positioning concepts</li>
+            </ul>
+
+            <h3>Phase 2: Strategy Development (Weeks 3-4)</h3>
+            <ul>
+                <li>Create brand positioning framework</li>
+                <li>Develop messaging architecture</li>
+                <li>Define brand voice and tone guidelines</li>
+            </ul>
+
+            <h3>Phase 3: Validation & Refinement (Weeks 5-6)</h3>
+            <ul>
+                <li>Test positioning with key stakeholders</li>
+                <li>Refine messaging based on feedback</li>
+                <li>Create brand voice application examples</li>
+            </ul>
+
+            <h3>Phase 4: Documentation & Handoff (Weeks 7-8)</h3>
+            <ul>
+                <li>Finalize complete brand strategy documentation</li>
+                <li>Create implementation guidelines</li>
+                <li>Conduct team training and knowledge transfer</li>
+            </ul>
+        </div>
+
+        <!-- Key Deliverables -->
+        <div class="content-section">
+            <h2>Key Deliverables</h2>
+
+            <h3>Strategic Documents</h3>
+            <ul>
+                <li><strong>Brand Positioning Framework</strong> - Core positioning statement and strategic foundation</li>
+                <li><strong>Competitive Analysis Report</strong> - Market landscape and differentiation opportunities</li>
+                <li><strong>Messaging Architecture</strong> - Hierarchical messaging framework and key communications</li>
+                <li><strong>Brand Voice Guide</strong> - Voice characteristics, tone guidelines, and application examples</li>
+            </ul>
+
+            <h3>Implementation Tools</h3>
+            <ul>
+                <li><strong>Brand Strategy Summary</strong> - Executive overview for leadership team</li>
+                <li><strong>Implementation Roadmap</strong> - Priority actions and timeline for deployment</li>
+                <li><strong>Measurement Framework</strong> - Success metrics and tracking methodology</li>
+                <li><strong>Team Training Materials</strong> - Guidelines for consistent brand application</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

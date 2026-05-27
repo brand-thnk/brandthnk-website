@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narmi × BrandThnk Portal</title>
+    <meta name="description" content="Narmi Brand Positioning engagement portal - project dashboard, deliverables, and resources">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--brandthnk-white);
+            color: var(--brandthnk-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--brandthnk-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--brandthnk-black);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .engagement-type {
+            display: inline-block;
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .card-full {
+            grid-column: 1 / -1;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-member {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .team-member strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member small {
+            color: var(--brandthnk-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Status Grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .status-item {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .status-item .label {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .status-item .value {
+            font-weight: 500;
+        }
+
+        /* Actions */
+        .actions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .action-item {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .action-item:hover {
+            border-color: var(--brandthnk-yellow);
+            background-color: var(--brandthnk-off-white);
+        }
+
+        .action-item.completed {
+            opacity: 0.6;
+            background-color: var(--brandthnk-off-white);
+        }
+
+        .action-item.completed .action-title {
+            text-decoration: line-through;
+        }
+
+        .action-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--brandthnk-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .action-checkbox.checked {
+            background-color: var(--brandthnk-yellow);
+            border-color: var(--brandthnk-yellow);
+        }
+
+        .action-checkbox.checked::after {
+            content: '✓';
+            display: block;
+            color: var(--brandthnk-black);
+            text-align: center;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        .action-content {
+            flex: 1;
+        }
+
+        .action-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-meta {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Timeline */
+        .timeline-container {
+            margin-top: 1rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 1rem;
+            background-color: var(--brandthnk-white);
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-header:hover {
+            border-color: var(--brandthnk-yellow);
+        }
+
+        .timeline-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-toggle.expanded {
+            transform: rotate(180deg);
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .timeline-content.expanded {
+            max-height: 1000px;
+        }
+
+        .timeline-phases {
+            padding: 1rem;
+            background-color: var(--brandthnk-white);
+            border: 1px solid var(--brandthnk-light-gray);
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .phase {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .phase:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-title {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .phase-dates {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+        }
+
+        .phase-objective {
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .phase-activities {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .phase-activities li {
+            margin-bottom: 0.25rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .phase-activities li::before {
+            content: '•';
+            color: var(--brandthnk-yellow);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .phase-deliverable {
+            background-color: var(--brandthnk-off-white);
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .resource-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-card p {
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card a {
+            color: var(--brandthnk-black);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            background-color: var(--brandthnk-yellow);
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card a:hover {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Narmi × BrandThnk</div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="brand-strategy.html">Brand Strategy</a></li>
+                <li><a href="website-audit.html">Website Audit</a></li>
+                <li><a href="project-plan.html">Project Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Narmi Brand Positioning</h1>
+            <p class="subtitle">Strategic partnership to define market position and competitive differentiation</p>
+            <span class="engagement-type">8-Week Brand Positioning Engagement</span>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Team & Communication -->
+            <div class="card">
+                <h2>Team & Communication</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <strong>Allison Netzer</strong>
+                        <small>BrandThnk Lead<br>allison@brandthnk.co</small>
+                    </div>
+                    <div class="team-member">
+                        <strong>Client Contact</strong>
+                        <small>Narmi Lead<br>[Contact details]</small>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--brandthnk-gray);">
+                    Weekly check-ins scheduled for Wednesdays at 2:00 PM ET.
+                    Slack workspace available for daily communication.
+                </p>
+            </div>
+
+            <!-- Project Status -->
+            <div class="card">
+                <h2>Project Status</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="label">Start Date</div>
+                        <div class="value">May 27, 2026</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">End Date</div>
+                        <div class="value">July 22, 2026</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Current Phase</div>
+                        <div class="value">Discovery & Research</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Next Milestone</div>
+                        <div class="value">Competitive Analysis</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Next Actions -->
+            <div class="card card-full">
+                <h2>Critical Next Actions</h2>
+                <div class="actions-list">
+                    <div class="action-item" data-action="stakeholder-interviews">
+                        <div class="action-checkbox"></div>
+                        <div class="action-content">
+                            <div class="action-title">Schedule stakeholder interviews with leadership team</div>
+                            <div class="action-meta">Target: June 3 • Owner: Narmi Team</div>
+                        </div>
+                    </div>
+                    <div class="action-item" data-action="competitor-list">
+                        <div class="action-checkbox"></div>
+                        <div class="action-content">
+                            <div class="action-title">Provide list of key competitors for analysis</div>
+                            <div class="action-meta">Target: May 30 • Owner: Narmi Team</div>
+                        </div>
+                    </div>
+                    <div class="action-item" data-action="brand-assets">
+                        <div class="action-checkbox"></div>
+                        <div class="action-content">
+                            <div class="action-title">Gather current brand assets and messaging materials</div>
+                            <div class="action-meta">Target: June 5 • Owner: Narmi Team</div>
+                        </div>
+                    </div>
+                    <div class="action-item" data-action="discovery-session">
+                        <div class="action-checkbox"></div>
+                        <div class="action-content">
+                            <div class="action-title">Complete initial discovery session</div>
+                            <div class="action-meta">Target: May 29 • Owner: BrandThnk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="card card-full">
+                <h2>Project Timeline</h2>
+                <div class="timeline-container">
+                    <div class="timeline-header" onclick="toggleTimeline()">
+                        <span><strong>8 weeks</strong> • 4 phases • May 27 - July 22, 2026</span>
+                        <span class="timeline-toggle">▼</span>
+                    </div>
+                    <div class="timeline-content" id="timelineContent">
+                        <div class="timeline-phases">
+                            <div class="phase">
+                                <div class="phase-header">
+                                    <div class="phase-title">Phase 1: Discovery & Research</div>
+                                    <div class="phase-dates">Weeks 1-2</div>
+                                </div>
+                                <div class="phase-objective">Understand current market position, competitive landscape, and internal perspectives</div>
+                                <ul class="phase-activities">
+                                    <li>Stakeholder interviews with leadership team</li>
+                                    <li>Competitive analysis and positioning audit</li>
+                                    <li>Brand asset inventory and messaging review</li>
+                                    <li>Customer feedback and market research analysis</li>
+                                </ul>
+                                <div class="phase-deliverable"><strong>Deliverable:</strong> Discovery Summary & Competitive Landscape</div>
+                            </div>
+                            <div class="phase">
+                                <div class="phase-header">
+                                    <div class="phase-title">Phase 2: Strategic Foundation</div>
+                                    <div class="phase-dates">Weeks 3-4</div>
+                                </div>
+                                <div class="phase-objective">Define core brand positioning, value propositions, and market differentiation</div>
+                                <ul class="phase-activities">
+                                    <li>Brand positioning framework development</li>
+                                    <li>Value proposition refinement</li>
+                                    <li>Target audience segmentation and messaging</li>
+                                    <li>Competitive differentiation strategy</li>
+                                </ul>
+                                <div class="phase-deliverable"><strong>Deliverable:</strong> Brand Positioning Framework</div>
+                            </div>
+                            <div class="phase">
+                                <div class="phase-header">
+                                    <div class="phase-title">Phase 3: Message Architecture</div>
+                                    <div class="phase-dates">Weeks 5-6</div>
+                                </div>
+                                <div class="phase-objective">Create comprehensive messaging strategy and brand voice guidelines</div>
+                                <ul class="phase-activities">
+                                    <li>Core messaging hierarchy development</li>
+                                    <li>Brand voice and tone guidelines</li>
+                                    <li>Key message testing and refinement</li>
+                                    <li>Stakeholder messaging workshops</li>
+                                </ul>
+                                <div class="phase-deliverable"><strong>Deliverable:</strong> Brand Messaging Guide</div>
+                            </div>
+                            <div class="phase">
+                                <div class="phase-header">
+                                    <div class="phase-title">Phase 4: Implementation & Handoff</div>
+                                    <div class="phase-dates">Weeks 7-8</div>
+                                </div>
+                                <div class="phase-objective">Finalize brand strategy and create implementation roadmap</div>
+                                <ul class="phase-activities">
+                                    <li>Final brand strategy documentation</li>
+                                    <li>Implementation roadmap and priority recommendations</li>
+                                    <li>Team training and knowledge transfer</li>
+                                    <li>Success metrics and measurement framework</li>
+                                </ul>
+                                <div class="phase-deliverable"><strong>Deliverable:</strong> Complete Brand Strategy & Implementation Guide</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>Brand Strategy</h3>
+                <p>Core positioning framework, value propositions, and competitive differentiation strategy</p>
+                <a href="brand-strategy.html">View Strategy →</a>
+            </div>
+            <div class="resource-card">
+                <h3>Website Audit</h3>
+                <p>Current state analysis, messaging audit, and optimization recommendations</p>
+                <a href="website-audit.html">View Audit →</a>
+            </div>
+            <div class="resource-card">
+                <h3>Project Plan</h3>
+                <p>Detailed timeline, milestones, deliverables, and project structure</p>
+                <a href="project-plan.html">View Plan →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Timeline toggle
+        function toggleTimeline() {
+            const content = document.getElementById('timelineContent');
+            const toggle = document.querySelector('.timeline-toggle');
+
+            content.classList.toggle('expanded');
+            toggle.classList.toggle('expanded');
+        }
+
+        // Action items functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved states
+            loadActionStates();
+
+            // Add click handlers to action items
+            const actionItems = document.querySelectorAll('.action-item');
+            actionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    toggleActionItem(this);
+                });
+            });
+        });
+
+        function toggleActionItem(item) {
+            const checkbox = item.querySelector('.action-checkbox');
+            const actionKey = item.getAttribute('data-action');
+
+            // Toggle states
+            item.classList.toggle('completed');
+            checkbox.classList.toggle('checked');
+
+            // Save state
+            saveActionState(actionKey, item.classList.contains('completed'));
+        }
+
+        function saveActionState(actionKey, completed) {
+            localStorage.setItem(`narmi-action-${actionKey}`, completed);
+        }
+
+        function loadActionStates() {
+            const actionItems = document.querySelectorAll('.action-item');
+            actionItems.forEach(item => {
+                const actionKey = item.getAttribute('data-action');
+                const saved = localStorage.getItem(`narmi-action-${actionKey}`);
+
+                if (saved === 'true') {
+                    item.classList.add('completed');
+                    item.querySelector('.action-checkbox').classList.add('checked');
+                }
+            });
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+            const toggle = document.querySelector('.nav-toggle');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

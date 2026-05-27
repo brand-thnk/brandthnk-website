@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Plan • Narmi × BrandThnk Portal</title>
+    <meta name="description" content="Narmi Project Plan - detailed timeline, milestones, deliverables, and project structure">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--brandthnk-white);
+            color: var(--brandthnk-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--brandthnk-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--brandthnk-black);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h4 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Project Overview Cards */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .overview-card {
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .overview-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .overview-card .value {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--brandthnk-black);
+        }
+
+        /* Phase Timeline */
+        .timeline-container {
+            margin: 2rem 0;
+        }
+
+        .phase-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--brandthnk-yellow);
+        }
+
+        .phase-item {
+            position: relative;
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .phase-item::before {
+            content: '';
+            position: absolute;
+            left: -1.875rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background-color: var(--brandthnk-yellow);
+            border-radius: 50%;
+            border: 2px solid var(--brandthnk-white);
+        }
+
+        .phase-item.completed::before {
+            background-color: var(--brandthnk-black);
+        }
+
+        .phase-item.current::before {
+            background-color: var(--brandthnk-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 235, 59, 0.3);
+        }
+
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--brandthnk-black);
+        }
+
+        .phase-dates {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            text-align: right;
+        }
+
+        .phase-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .status-pending {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-gray);
+        }
+
+        .status-current {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .status-completed {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        .phase-objective {
+            font-style: italic;
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+        }
+
+        .phase-deliverables {
+            background-color: var(--brandthnk-off-white);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .phase-deliverables h5 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .phase-deliverables ul {
+            margin-left: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* Milestones Table */
+        .milestones-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .milestones-table th,
+        .milestones-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .milestones-table th {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            font-weight: 500;
+        }
+
+        .milestones-table tr:hover {
+            background-color: var(--brandthnk-off-white);
+        }
+
+        /* Stakeholder Cards */
+        .stakeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stakeholder-card {
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .stakeholder-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .stakeholder-role {
+            color: var(--brandthnk-gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Risk Management */
+        .risk-item {
+            background-color: var(--brandthnk-white);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .risk-item h5 {
+            margin: 0 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .risk-item p {
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-mitigation {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            font-style: italic;
+        }
+
+        /* Back to Dashboard */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--brandthnk-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--brandthnk-black);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .overview-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .phase-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .phase-dates {
+                text-align: left;
+            }
+
+            .milestones-table {
+                font-size: 0.9rem;
+            }
+
+            .milestones-table th,
+            .milestones-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Narmi × BrandThnk</div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="brand-strategy.html">Brand Strategy</a></li>
+                <li><a href="website-audit.html">Website Audit</a></li>
+                <li><a href="project-plan.html" class="active">Project Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="index.html" class="back-link">Back to Dashboard</a>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Project Plan</h1>
+            <p class="subtitle">Detailed timeline, milestones, deliverables, and project structure</p>
+        </div>
+
+        <!-- Project Overview -->
+        <div class="content-section">
+            <h2>Project Overview</h2>
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h4>Project Duration</h4>
+                    <div class="value">8 weeks</div>
+                </div>
+                <div class="overview-card">
+                    <h4>Start Date</h4>
+                    <div class="value">May 27, 2026</div>
+                </div>
+                <div class="overview-card">
+                    <h4>End Date</h4>
+                    <div class="value">July 22, 2026</div>
+                </div>
+                <div class="overview-card">
+                    <h4>Project Phases</h4>
+                    <div class="value">4 phases</div>
+                </div>
+                <div class="overview-card">
+                    <h4>Key Deliverables</h4>
+                    <div class="value">8 deliverables</div>
+                </div>
+                <div class="overview-card">
+                    <h4>Team Size</h4>
+                    <div class="value">2-3 people</div>
+                </div>
+            </div>
+
+            <h3>Project Objectives</h3>
+            <ul>
+                <li><strong>Define Clear Brand Positioning</strong> - Establish Narmi's unique market position and competitive differentiation</li>
+                <li><strong>Create Messaging Architecture</strong> - Develop hierarchical messaging framework for consistent communication</li>
+                <li><strong>Optimize Digital Presence</strong> - Analyze and improve website effectiveness and user experience</li>
+                <li><strong>Enable Team Implementation</strong> - Provide tools and training for ongoing brand strategy execution</li>
+            </ul>
+        </div>
+
+        <!-- Phase Timeline -->
+        <div class="content-section">
+            <h2>Phase Timeline</h2>
+            <div class="timeline-container">
+                <div class="phase-timeline">
+                    <!-- Phase 1 -->
+                    <div class="phase-item current">
+                        <div class="phase-header">
+                            <div>
+                                <div class="phase-title">Phase 1: Discovery & Research</div>
+                                <span class="phase-status status-current">Current Phase</span>
+                            </div>
+                            <div class="phase-dates">
+                                <div><strong>Weeks 1-2</strong></div>
+                                <div>May 27 - June 9, 2026</div>
+                            </div>
+                        </div>
+                        <div class="phase-objective">
+                            Understand current market position, competitive landscape, and internal perspectives to inform strategic foundation.
+                        </div>
+                        <ul>
+                            <li>Conduct stakeholder interviews with leadership team</li>
+                            <li>Complete comprehensive competitive analysis</li>
+                            <li>Review current brand assets and messaging materials</li>
+                            <li>Analyze customer feedback and market research</li>
+                            <li>Assess current website performance and messaging</li>
+                        </ul>
+                        <div class="phase-deliverables">
+                            <h5>Key Deliverables:</h5>
+                            <ul>
+                                <li>Discovery Summary Report</li>
+                                <li>Competitive Landscape Analysis</li>
+                                <li>Current State Assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="phase-item">
+                        <div class="phase-header">
+                            <div>
+                                <div class="phase-title">Phase 2: Strategic Foundation</div>
+                                <span class="phase-status status-pending">Upcoming</span>
+                            </div>
+                            <div class="phase-dates">
+                                <div><strong>Weeks 3-4</strong></div>
+                                <div>June 10 - June 23, 2026</div>
+                            </div>
+                        </div>
+                        <div class="phase-objective">
+                            Define core brand positioning, value propositions, and market differentiation strategy based on research insights.
+                        </div>
+                        <ul>
+                            <li>Develop brand positioning framework</li>
+                            <li>Create value proposition hierarchy</li>
+                            <li>Define target audience segments and messaging</li>
+                            <li>Establish competitive differentiation strategy</li>
+                            <li>Complete comprehensive website audit</li>
+                        </ul>
+                        <div class="phase-deliverables">
+                            <h5>Key Deliverables:</h5>
+                            <ul>
+                                <li>Brand Positioning Framework</li>
+                                <li>Website Audit Report</li>
+                                <li>Strategic Recommendations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="phase-item">
+                        <div class="phase-header">
+                            <div>
+                                <div class="phase-title">Phase 3: Message Architecture</div>
+                                <span class="phase-status status-pending">Pending</span>
+                            </div>
+                            <div class="phase-dates">
+                                <div><strong>Weeks 5-6</strong></div>
+                                <div>June 24 - July 7, 2026</div>
+                            </div>
+                        </div>
+                        <div class="phase-objective">
+                            Create comprehensive messaging strategy and brand voice guidelines for consistent communication across all touchpoints.
+                        </div>
+                        <ul>
+                            <li>Develop core messaging hierarchy</li>
+                            <li>Create brand voice and tone guidelines</li>
+                            <li>Test key messages with stakeholders</li>
+                            <li>Conduct messaging workshops with team</li>
+                            <li>Refine messaging based on feedback</li>
+                        </ul>
+                        <div class="phase-deliverables">
+                            <h5>Key Deliverables:</h5>
+                            <ul>
+                                <li>Brand Messaging Guide</li>
+                                <li>Voice & Tone Guidelines</li>
+                                <li>Message Testing Results</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="phase-item">
+                        <div class="phase-header">
+                            <div>
+                                <div class="phase-title">Phase 4: Implementation & Handoff</div>
+                                <span class="phase-status status-pending">Pending</span>
+                            </div>
+                            <div class="phase-dates">
+                                <div><strong>Weeks 7-8</strong></div>
+                                <div>July 8 - July 22, 2026</div>
+                            </div>
+                        </div>
+                        <div class="phase-objective">
+                            Finalize complete brand strategy documentation and create comprehensive implementation roadmap for ongoing execution.
+                        </div>
+                        <ul>
+                            <li>Complete final brand strategy documentation</li>
+                            <li>Create detailed implementation roadmap</li>
+                            <li>Conduct team training and knowledge transfer</li>
+                            <li>Establish success metrics and measurement framework</li>
+                            <li>Provide ongoing support guidelines</li>
+                        </ul>
+                        <div class="phase-deliverables">
+                            <h5>Key Deliverables:</h5>
+                            <ul>
+                                <li>Complete Brand Strategy Document</li>
+                                <li>Implementation Roadmap</li>
+                                <li>Team Training Materials</li>
+                                <li>Success Metrics Framework</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Milestones -->
+        <div class="content-section">
+            <h2>Key Milestones & Checkpoints</h2>
+            <table class="milestones-table">
+                <thead>
+                    <tr>
+                        <th>Milestone</th>
+                        <th>Target Date</th>
+                        <th>Deliverables</th>
+                        <th>Stakeholders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kickoff Complete</strong></td>
+                        <td>May 29, 2026</td>
+                        <td>Project kickoff, stakeholder alignment</td>
+                        <td>Leadership team, project leads</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Discovery Phase Complete</strong></td>
+                        <td>June 10, 2026</td>
+                        <td>Research summary, competitive analysis</td>
+                        <td>All stakeholders</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brand Foundation Approved</strong></td>
+                        <td>June 24, 2026</td>
+                        <td>Brand positioning, website audit</td>
+                        <td>Leadership team</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Messaging Framework Complete</strong></td>
+                        <td>July 8, 2026</td>
+                        <td>Message architecture, voice guidelines</td>
+                        <td>Marketing team, leadership</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Final Delivery</strong></td>
+                        <td>July 22, 2026</td>
+                        <td>Complete strategy, implementation plan</td>
+                        <td>All stakeholders</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Project Team & Roles -->
+        <div class="content-section">
+            <h2>Project Team & Roles</h2>
+            <div class="stakeholder-grid">
+                <div class="stakeholder-card">
+                    <h4>Allison Netzer</h4>
+                    <div class="stakeholder-role">BrandThnk Lead Strategist</div>
+                    <p>Overall project leadership, brand strategy development, stakeholder workshops, and final deliverable creation.</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>Narmi Project Lead</h4>
+                    <div class="stakeholder-role">Client Project Manager</div>
+                    <p>Internal coordination, stakeholder access, feedback consolidation, and implementation planning support.</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>Narmi Leadership Team</h4>
+                    <div class="stakeholder-role">Strategic Decision Makers</div>
+                    <p>Strategic input, positioning validation, final approvals, and long-term implementation ownership.</p>
+                </div>
+                <div class="stakeholder-card">
+                    <h4>Narmi Marketing Team</h4>
+                    <div class="stakeholder-role">Implementation Team</div>
+                    <p>Day-to-day implementation, messaging application, content creation, and ongoing brand stewardship.</p>
+                </div>
+            </div>
+
+            <h3>Communication Cadence</h3>
+            <ul>
+                <li><strong>Weekly Check-ins</strong> - Wednesdays at 2:00 PM ET with project leads</li>
+                <li><strong>Phase Reviews</strong> - End-of-phase presentations with leadership team</li>
+                <li><strong>Milestone Updates</strong> - Bi-weekly progress summaries to all stakeholders</li>
+                <li><strong>Ad-hoc Support</strong> - Slack workspace for daily communication and quick questions</li>
+            </ul>
+        </div>
+
+        <!-- Risk Management -->
+        <div class="content-section">
+            <h2>Risk Management & Contingencies</h2>
+
+            <div class="risk-item">
+                <h5>Stakeholder Availability Risk</h5>
+                <p>Limited availability of key stakeholders could impact interview scheduling and feedback cycles.</p>
+                <div class="risk-mitigation"><strong>Mitigation:</strong> Front-load stakeholder interviews in Week 1, maintain flexible scheduling options, and prepare asynchronous feedback mechanisms.</div>
+            </div>
+
+            <div class="risk-item">
+                <h5>Competitive Intelligence Gaps</h5>
+                <p>Incomplete competitive information could limit positioning differentiation opportunities.</p>
+                <div class="risk-mitigation"><strong>Mitigation:</strong> Use multiple research sources, leverage industry networks, and focus on observable competitive behaviors and positioning.</div>
+            </div>
+
+            <div class="risk-item">
+                <h5>Messaging Alignment Challenges</h5>
+                <p>Diverse stakeholder perspectives could create challenges in message alignment and approval.</p>
+                <div class="risk-mitigation"><strong>Mitigation:</strong> Structured workshop methodology, clear decision-making hierarchy, and incremental consensus building throughout phases.</div>
+            </div>
+
+            <div class="risk-item">
+                <h5>Implementation Capacity Constraints</h5>
+                <p>Limited internal resources could impact post-engagement implementation effectiveness.</p>
+                <div class="risk-mitigation"><strong>Mitigation:</strong> Prioritized implementation roadmap, phased approach, and comprehensive training and documentation handoff.</div>
+            </div>
+        </div>
+
+        <!-- Success Criteria -->
+        <div class="content-section">
+            <h2>Success Criteria & Measurement</h2>
+
+            <h3>Primary Success Metrics</h3>
+            <ul>
+                <li><strong>Strategic Clarity</strong> - Leadership team alignment on brand positioning and competitive differentiation</li>
+                <li><strong>Message Consistency</strong> - Unified messaging framework adopted across all communication channels</li>
+                <li><strong>Implementation Readiness</strong> - Team equipped with tools, guidelines, and confidence to execute strategy</li>
+                <li><strong>Competitive Differentiation</strong> - Clear articulation of unique value versus key market competitors</li>
+            </ul>
+
+            <h3>Measurement Framework</h3>
+            <ul>
+                <li><strong>Stakeholder Satisfaction Surveys</strong> - End-of-phase feedback on clarity, usefulness, and actionability</li>
+                <li><strong>Message Testing Results</strong> - Stakeholder validation of positioning and messaging effectiveness</li>
+                <li><strong>Implementation Adoption</strong> - Tracking of strategy application across marketing materials and communications</li>
+                <li><strong>Competitive Positioning Assessment</strong> - Validation of differentiation clarity versus market alternatives</li>
+            </ul>
+
+            <h3>Long-term Success Indicators</h3>
+            <p>Post-engagement indicators of brand strategy success (tracked by Narmi team):</p>
+            <ul>
+                <li>Increased message consistency across marketing materials and communications</li>
+                <li>Improved competitive win rates and sales cycle clarity</li>
+                <li>Enhanced internal team confidence in brand positioning and messaging</li>
+                <li>Measurable improvement in website engagement and conversion metrics</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
