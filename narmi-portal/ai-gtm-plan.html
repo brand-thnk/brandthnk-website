@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Go-to-Market Plan • Narmi × BrandThnk Portal</title>
+    <meta name="description" content="Narmi AI Go-to-Market Plan - positioning, messaging architecture, and strategic roadmap for AI thought leadership">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--brandthnk-white);
+            color: var(--brandthnk-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--brandthnk-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--brandthnk-black);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h4 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .status-in-progress {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .status-pending {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-gray);
+        }
+
+        .status-complete {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        /* Framework Boxes */
+        .framework-box {
+            background-color: var(--brandthnk-white);
+            border: 2px solid var(--brandthnk-yellow);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .framework-box h4 {
+            margin-top: 0;
+            color: var(--brandthnk-black);
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* AI Product Cards */
+        .ai-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .ai-product-card {
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .ai-product-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-status {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        /* GTM Components */
+        .gtm-component {
+            background-color: var(--brandthnk-white);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .gtm-component h5 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        /* Back to Dashboard */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--brandthnk-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--brandthnk-black);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        /* Waymo Moment Highlight */
+        .waymo-highlight {
+            background: linear-gradient(135deg, var(--brandthnk-yellow) 0%, #fff3b3 100%);
+            border: 2px solid var(--brandthnk-yellow);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .waymo-highlight h4 {
+            margin: 0 0 1rem 0;
+            color: var(--brandthnk-black);
+            font-size: 1.3rem;
+        }
+
+        .waymo-highlight p {
+            margin: 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .framework-grid, .ai-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Narmi × BrandThnk</div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="ai-gtm-plan.html" class="active">AI Go-to-Market</a></li>
+                <li><a href="narmi-one-brief.html">Narmi One Platform</a></li>
+                <li><a href="project-plan.html">Project Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="index.html" class="back-link">Back to Dashboard</a>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>AI Go-to-Market Plan</h1>
+            <p class="subtitle">Establish Narmi as the AI thought leader and delivery partner in community banking</p>
+        </div>
+
+        <!-- Project Status -->
+        <div class="content-section">
+            <h2>Development Status</h2>
+            <span class="status-badge status-in-progress">In Development</span>
+            <p>AI Go-to-Market strategy development is underway during the intake and discovery phase. Working with Narmi leadership to understand the technical AI roadmap and translate it into sharp external narrative.</p>
+            <p><strong>Expected Completion:</strong> Week 4 (June 23, 2026)</p>
+            <p><strong>Next Milestone:</strong> Complete LT briefings and AI product reviews by June 10</p>
+        </div>
+
+        <!-- The Waymo Moment -->
+        <div class="waymo-highlight">
+            <h4>The "Waymo Moment" Vision</h4>
+            <p>"Getting Narmi AI to a point where it just works and is so easy they will never turn it off (and we can charge whatever we want for it)" - in contrast to the Fiserv/FIS noise that commits massive $$$ to OpenAI/Anthropic for PR jumps but won't actually help a $2B CU write an agent.</p>
+        </div>
+
+        <!-- Strategic Objective -->
+        <div class="content-section">
+            <h2>Primary Objective & Market Context</h2>
+            <p>Establish Narmi as the AI thought leader and delivery partner in community banking. Translate Narmi's technical AI roadmap into a sharp external narrative, messaging architecture, and go-to-market plan that drives pipeline and conversion.</p>
+
+            <h3>MCP Success Foundation</h3>
+            <p>Building on the successful MCP launch where "we felt like we were on top of the world" and "the amount of people who said 'we had never heard of you until this' was nuts." Now leveraging that credibility for broader AI thought leadership.</p>
+
+            <h3>Competitive Context</h3>
+            <p><strong>The Real vs. The Noise:</strong> While Fiserv and FIS commit massive $$$ to OpenAI/Anthropic for PR and stock price jumps, they won't actually help a $2B credit union write an agent. That's where Narmi comes in as the true enabler of AI in community banking.</p>
+
+            <h3>Key Success Metrics</h3>
+            <ul>
+                <li><strong>Pipeline & Conversion Growth</strong> - More deals won because of AI positioning and capabilities</li>
+                <li><strong>Market Differentiation</strong> - Clear positioning as true AI enabler vs. incumbent core noise</li>
+                <li><strong>Thought Leadership</strong> - Establish credible AI expertise building on MCP foundation</li>
+                <li><strong>Sales Enablement</strong> - Team equipped with compelling "Waymo Moment" narrative</li>
+            </ul>
+        </div>
+
+        <!-- AI Product Portfolio -->
+        <div class="content-section">
+            <h2>Narmi AI Product Portfolio</h2>
+            <p>Comprehensive review of Narmi's AI capabilities and roadmap to inform positioning and messaging strategy.</p>
+
+            <div class="ai-products-grid">
+                <div class="ai-product-card">
+                    <h4>MCP (Model Context Protocol)</h4>
+                    <div class="product-status">Status: Successfully launched - market credibility established</div>
+                    <p>Core AI infrastructure enabling seamless integration. Launch generated significant market awareness with "people who said 'we had never heard of you until this' was nuts."</p>
+                </div>
+                <div class="ai-product-card">
+                    <h4>AI Decision Assist</h4>
+                    <div class="product-status">Status: Live product with demo recordings available</div>
+                    <p>Intelligent decision support system for community bank operations and customer service workflows. Demo recordings to be reviewed with Nathan.</p>
+                </div>
+                <div class="ai-product-card">
+                    <h4>Narmi Agentic Deployment Force (NADF)</h4>
+                    <div class="product-status">Status: Very early development - briefing scheduled</div>
+                    <p>Advanced AI agent deployment capability for autonomous banking operations and customer engagement. Jake to provide briefing on early development.</p>
+                </div>
+                <div class="ai-product-card">
+                    <h4>Claude Connectors</h4>
+                    <div class="product-status">Status: Available - integration options active</div>
+                    <p>Direct integration with Anthropic's Claude for enhanced conversational AI in banking applications.</p>
+                </div>
+                <div class="ai-product-card">
+                    <h4>ChatGPT & Microsoft Apps</h4>
+                    <div class="product-status">Status: Available - app ecosystem live</div>
+                    <p>Third-party AI integrations enabling banks to leverage leading AI platforms within Narmi ecosystem.</p>
+                </div>
+                <div class="ai-product-card">
+                    <h4>Multiple Smaller AI Use Cases</h4>
+                    <div class="product-status">Status: Live in product - comprehensive review planned</div>
+                    <p>Embedded AI functionality throughout Narmi platform for enhanced user experience and operational efficiency.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Positioning Framework -->
+        <div class="content-section">
+            <h2>AI Positioning Framework</h2>
+            <p>Strategic positioning framework to differentiate Narmi AI from incumbent cores and competitive alternatives.</p>
+
+            <div class="framework-grid">
+                <div class="framework-box">
+                    <h4>Target Audience</h4>
+                    <p><em>Community banks and credit unions seeking AI transformation without vendor lock-in to traditional core providers</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Market Category</h4>
+                    <p><em>AI-first digital banking platform for community financial institutions</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Unique Value Proposition</h4>
+                    <p><em>AI that "just works" - purpose-built for community banking without the complexity or compromises of big bank solutions</em></p>
+                </div>
+                <div class="framework-box">
+                    <h4>Competitive Differentiation</h4>
+                    <p><em>Native AI integration vs. bolt-on partnerships; community banking focus vs. one-size-fits-all enterprise solutions</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messaging Architecture -->
+        <div class="content-section">
+            <h2>Messaging Architecture</h2>
+            <p>Hierarchical messaging framework to guide all AI-related communication and thought leadership efforts.</p>
+
+            <h3>Core AI Message Hierarchy</h3>
+
+            <div class="gtm-component">
+                <h5>Primary Message</h5>
+                <p><em>Core AI value proposition to be developed based on discovery insights and positioning framework</em></p>
+            </div>
+
+            <div class="gtm-component">
+                <h5>Supporting Messages</h5>
+                <ul>
+                    <li><em>AI readiness and implementation advantage</em></li>
+                    <li><em>Community banking-specific AI applications</em></li>
+                    <li><em>Integration simplicity and deployment speed</em></li>
+                </ul>
+            </div>
+
+            <div class="gtm-component">
+                <h5>Proof Points</h5>
+                <ul>
+                    <li><em>MCP infrastructure and AI Decision Assist capabilities</em></li>
+                    <li><em>Customer success stories and deployment metrics</em></li>
+                    <li><em>Partnership ecosystem and technical integrations</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Go-to-Market Strategy -->
+        <div class="content-section">
+            <h2>Go-to-Market Strategy Components</h2>
+            <p>Comprehensive GTM framework covering audience segmentation, channel strategy, and activation tactics.</p>
+
+            <h3>Audience Segmentation</h3>
+            <div class="gtm-component">
+                <h5>Primary Audiences</h5>
+                <p><em>Audience segmentation to be developed based on stakeholder interviews and market analysis</em></p>
+            </div>
+
+            <h3>Channel Strategy</h3>
+            <div class="gtm-component">
+                <h5>Thought Leadership Channels</h5>
+                <ul>
+                    <li><em>Industry conferences and speaking opportunities</em></li>
+                    <li><em>Banking trade publications and media</em></li>
+                    <li><em>Digital content and webinar programs</em></li>
+                </ul>
+            </div>
+
+            <h3>Content & PR Angles</h3>
+            <div class="gtm-component">
+                <h5>Recommended Angles</h5>
+                <p><em>Thought leadership positioning and PR strategy to be developed, building on MCP credibility and technical leadership</em></p>
+            </div>
+        </div>
+
+        <!-- 90-Day Activation Roadmap -->
+        <div class="content-section">
+            <h2>90-Day Activation Roadmap</h2>
+            <p>Phased implementation plan for launching Narmi AI go-to-market strategy and thought leadership campaign.</p>
+
+            <h3>Phase 1: Foundation (Days 1-30)</h3>
+            <ul>
+                <li>Launch updated AI messaging across sales materials</li>
+                <li>Train sales and marketing teams on new positioning</li>
+                <li>Develop initial thought leadership content calendar</li>
+                <li>Identify key industry speaking opportunities</li>
+            </ul>
+
+            <h3>Phase 2: Amplification (Days 31-60)</h3>
+            <ul>
+                <li>Execute major AI announcement or thought leadership piece</li>
+                <li>Launch targeted content marketing campaign</li>
+                <li>Engage with industry media and analyst relations</li>
+                <li>Activate partnership co-marketing opportunities</li>
+            </ul>
+
+            <h3>Phase 3: Scale (Days 61-90)</h3>
+            <ul>
+                <li>Measure and optimize message performance</li>
+                <li>Expand thought leadership presence</li>
+                <li>Launch customer success story program</li>
+                <li>Plan next major AI product announcements</li>
+            </ul>
+        </div>
+
+        <!-- Key Deliverables -->
+        <div class="content-section">
+            <h2>AI GTM Plan Deliverables</h2>
+
+            <h3>Strategic Documents</h3>
+            <ul>
+                <li><strong>AI Positioning Framework</strong> - Core positioning statement and competitive differentiation</li>
+                <li><strong>Messaging Architecture</strong> - Hierarchical messaging framework for all AI communications</li>
+                <li><strong>Audience Strategy</strong> - Target segmentation and buyer persona development</li>
+                <li><strong>Channel Recommendations</strong> - Optimal channels for reaching target audiences</li>
+            </ul>
+
+            <h3>Activation Tools</h3>
+            <ul>
+                <li><strong>90-Day Roadmap</strong> - Detailed implementation plan with priorities and timelines</li>
+                <li><strong>Thought Leadership Strategy</strong> - PR angles and content recommendations</li>
+                <li><strong>Sales Enablement Materials</strong> - Talk tracks and competitive battle cards</li>
+                <li><strong>Success Metrics Framework</strong> - KPIs and measurement methodology</li>
+            </ul>
+        </div>
+
+        <!-- Stakeholder Coordination -->
+        <div class="content-section">
+            <h2>Stakeholder Coordination</h2>
+            <p>Close collaboration with Narmi product marketing and PR teams to ensure seamless strategy activation.</p>
+
+            <h3>Key Stakeholders</h3>
+            <ul>
+                <li><strong>Nikhil Lakhanpal</strong> - Co-Founder (strategic oversight)</li>
+                <li><strong>Chris Griffin</strong> - AI vision and technical direction</li>
+                <li><strong>Nathan Gonzalez</strong> - Product development insights</li>
+                <li><strong>Product Marketing Team</strong> - Implementation and activation</li>
+                <li><strong>PR Team</strong> - Thought leadership execution</li>
+            </ul>
+
+            <h3>Coordination Activities</h3>
+            <ul>
+                <li>Regular strategy review sessions with leadership</li>
+                <li>Product marketing team training and handoff</li>
+                <li>PR team alignment on messaging and angles</li>
+                <li>Final readout presentation to leadership team</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

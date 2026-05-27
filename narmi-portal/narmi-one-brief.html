@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narmi One Platform Brief • Narmi × BrandThnk Portal</title>
+    <meta name="description" content="Narmi One Platform Brief - sharpened platform messaging and competitive positioning strategy">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brandthnk-black: #000000;
+            --brandthnk-white: #FFFFFF;
+            --brandthnk-yellow: #FFEB3B;
+            --brandthnk-off-white: #F5F5F5;
+            --brandthnk-gray: #666666;
+            --brandthnk-light-gray: #E0E0E0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--brandthnk-white);
+            color: var(--brandthnk-black);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .nav {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--brandthnk-white);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a.active {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .nav-links a:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--brandthnk-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--brandthnk-black);
+                flex-direction: column;
+                padding: 1rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 3px solid var(--brandthnk-yellow);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            color: var(--brandthnk-gray);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section h4 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.5rem 0;
+            color: var(--brandthnk-black);
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul, .content-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .status-pending {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-gray);
+        }
+
+        .status-in-progress {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .status-complete {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+        }
+
+        /* Platform Vision Highlight */
+        .platform-vision {
+            background: linear-gradient(135deg, var(--brandthnk-yellow) 0%, #fff3b3 100%);
+            border: 2px solid var(--brandthnk-yellow);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .platform-vision h4 {
+            margin: 0 0 1rem 0;
+            color: var(--brandthnk-black);
+            font-size: 1.3rem;
+        }
+
+        .platform-vision p {
+            margin: 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Competitive Comparison */
+        .competitive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .competitive-table th,
+        .competitive-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .competitive-table th {
+            background-color: var(--brandthnk-black);
+            color: var(--brandthnk-white);
+            font-weight: 500;
+        }
+
+        .competitive-table tr:hover {
+            background-color: var(--brandthnk-off-white);
+        }
+
+        /* Advantage Indicators */
+        .advantage {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .advantage.strong {
+            background-color: var(--brandthnk-yellow);
+            color: var(--brandthnk-black);
+        }
+
+        .advantage.moderate {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-gray);
+        }
+
+        .advantage.weak {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        /* Platform Component Cards */
+        .platform-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .component-card {
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .component-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Marketing Tactics */
+        .tactics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tactic-card {
+            background-color: var(--brandthnk-white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--brandthnk-yellow);
+        }
+
+        .tactic-card h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .tactic-effort {
+            font-size: 0.9rem;
+            color: var(--brandthnk-gray);
+            margin-top: 1rem;
+        }
+
+        /* Back to Dashboard */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--brandthnk-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--brandthnk-black);
+        }
+
+        .back-link::before {
+            content: '← ';
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .platform-components, .tactics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .competitive-table {
+                font-size: 0.9rem;
+            }
+
+            .competitive-table th,
+            .competitive-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">Narmi × BrandThnk</div>
+            <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="ai-gtm-plan.html">AI Go-to-Market</a></li>
+                <li><a href="narmi-one-brief.html" class="active">Narmi One Platform</a></li>
+                <li><a href="project-plan.html">Project Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="index.html" class="back-link">Back to Dashboard</a>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Narmi One Platform Brief</h1>
+            <p class="subtitle">Sharpen platform positioning to "scream platform from the rooftops" against Alkami and Q2</p>
+        </div>
+
+        <!-- Project Status -->
+        <div class="content-section">
+            <h2>Brief Status</h2>
+            <span class="status-badge status-pending">Scheduled</span>
+            <p>Narmi One platform messaging brief development will begin in parallel with AI GTM strategy development in Weeks 3-4. Represents approximately 20% of total engagement effort.</p>
+            <p><strong>Expected Completion:</strong> Week 4 (June 23, 2026)</p>
+            <p><strong>Focus:</strong> Platform-first messaging to win 1:1 against Alkami's post-Mantl One Platform and Q2 in head-to-head deals</p>
+        </div>
+
+        <!-- Platform Vision -->
+        <div class="platform-vision">
+            <h4>Platform-First Strategy</h4>
+            <p>"Scream platform from the rooftops in a way the market and Narmi's sellers can repeat"</p>
+        </div>
+
+        <!-- Strategic Objective -->
+        <div class="content-section">
+            <h2>Platform Messaging Objective</h2>
+            <p>Sharpen Narmi One platform positioning to elevate platform benefits earlier in the sales process and marketing funnel, with emphasis on efficiency and flexibility during uncertain times.</p>
+
+            <h3>Current State Assessment</h3>
+            <p><strong>Good News:</strong> Narmi One is working - sellers understand it, it's on the website and in sales decks, people are genuinely knowledgeable about it.</p>
+            <p><strong>Challenge:</strong> Should be "screaming platform from the rooftops" more than currently doing. With Alkami pitching One Platform post-Mantl, Narmi should be crushing them 1:1 on platform features.</p>
+
+            <h3>Competitive Reality</h3>
+            <p><strong>Deal Dynamics:</strong> Most deals come down to Narmi, Alkami, or Q2 in banks. Platform advantages are stronger 1:1 than Alkami's - need to market the hell out of this advantage.</p>
+
+            <h3>Key Success Criteria</h3>
+            <ul>
+                <li><strong>Competitive Dominance</strong> - Crush Alkami One Platform 1:1 on platform features</li>
+                <li><strong>Early Differentiation</strong> - Platform benefits communicated upfront in sales conversations</li>
+                <li><strong>Marketing Team Understanding</strong> - Internal team fully grasps and articulates platform advantages</li>
+                <li><strong>Sales Enablement</strong> - Team equipped to destroy Alkami's platform marketing</li>
+            </ul>
+        </div>
+
+        <!-- Current State Assessment -->
+        <div class="content-section">
+            <h2>Current Platform Positioning Review</h2>
+            <p>Comprehensive analysis of existing Narmi One messaging across customer-facing materials and sales enablement.</p>
+
+            <h3>Materials Under Review</h3>
+            <ul>
+                <li><strong>Website Content</strong> - Primary platform messaging and value propositions</li>
+                <li><strong>Sales Decks</strong> - Current competitive positioning and feature comparisons</li>
+                <li><strong>Customer-Facing Materials</strong> - Proposals, case studies, and solution briefs</li>
+                <li><strong>Marketing Collateral</strong> - Platform-focused content and messaging</li>
+            </ul>
+
+            <h3>Assessment Focus Areas</h3>
+            <div class="platform-components">
+                <div class="component-card">
+                    <h4>Platform Hierarchy</h4>
+                    <p>How prominently platform benefits appear in messaging hierarchy and sales conversations</p>
+                </div>
+                <div class="component-card">
+                    <h4>Efficiency Messaging</h4>
+                    <p>Communication of operational efficiency gains and cost optimization benefits</p>
+                </div>
+                <div class="component-card">
+                    <h4>Flexibility Positioning</h4>
+                    <p>Articulation of platform adaptability and customization capabilities</p>
+                </div>
+                <div class="component-card">
+                    <h4>Integration Story</h4>
+                    <p>Platform connectivity and ecosystem integration advantages</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitive Analysis Framework -->
+        <div class="content-section">
+            <h2>1:1 Competitive Positioning</h2>
+            <p>Head-to-head feature and platform comparison against key competitors in community banking deals.</p>
+
+            <h3>Primary Competitive Targets</h3>
+            <table class="competitive-table">
+                <thead>
+                    <tr>
+                        <th>Competitor</th>
+                        <th>Platform Strategy</th>
+                        <th>Key Strengths</th>
+                        <th>Narmi Advantage Areas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Alkami One Platform (post-Mantl)</strong></td>
+                        <td>Integrated digital banking + account opening acquisition</td>
+                        <td>Enterprise scale, Mantl acquisition, established relationships</td>
+                        <td><em>Narmi platform advantages are stronger 1:1 - need to market this aggressively</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Q2</strong></td>
+                        <td>End-to-end digital banking platform</td>
+                        <td>Broad feature set, market presence in community banking</td>
+                        <td><em>Head-to-head competitor in most bank deals alongside Alkami</em></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Competitive Battle Cards</h3>
+            <p>Detailed feature-by-feature comparison and win strategies to be developed during brief creation phase.</p>
+        </div>
+
+        <!-- Platform Messaging Framework -->
+        <div class="content-section">
+            <h2>Platform-First Messaging Framework</h2>
+            <p>Refined messaging hierarchy that leads with platform advantages and integration benefits.</p>
+
+            <h3>Messaging Components Under Development</h3>
+
+            <div class="component-card">
+                <h4>Primary Platform Message</h4>
+                <p><em>Core platform value proposition to be developed based on competitive analysis and efficiency positioning</em></p>
+            </div>
+
+            <div class="component-card">
+                <h4>Efficiency & Flexibility Messaging</h4>
+                <p><em>Platform benefits during uncertain economic times - operational efficiency, cost optimization, rapid deployment</em></p>
+            </div>
+
+            <div class="component-card">
+                <h4>Integration & Connectivity</h4>
+                <p><em>Platform ecosystem advantages, third-party integrations, and future-proofing capabilities</em></p>
+            </div>
+
+            <div class="component-card">
+                <h4>Community Banking Focus</h4>
+                <p><em>Platform designed specifically for community bank needs vs. one-size-fits-all enterprise solutions</em></p>
+            </div>
+        </div>
+
+        <!-- Marketing Tactics & Activation -->
+        <div class="content-section">
+            <h2>Platform Marketing Tactics</h2>
+            <p>Short list of high-impact marketing tactics to amplify platform messaging across key channels.</p>
+
+            <div class="tactics-grid">
+                <div class="tactic-card">
+                    <h4>Platform Podcast Series</h4>
+                    <p>Educational podcast focusing on platform architecture, integration stories, and efficiency gains.</p>
+                    <div class="tactic-effort">Effort: Medium • Impact: High</div>
+                </div>
+
+                <div class="tactic-card">
+                    <h4>LinkedIn Platform Moments</h4>
+                    <p>Thought leadership content highlighting platform wins, customer success, and industry insights.</p>
+                    <div class="tactic-effort">Effort: Low • Impact: Medium</div>
+                </div>
+
+                <div class="tactic-card">
+                    <h4>Sales Enablement Training</h4>
+                    <p>Comprehensive platform messaging training with competitive battle cards and talk tracks.</p>
+                    <div class="tactic-effort">Effort: Medium • Impact: High</div>
+                </div>
+
+                <div class="tactic-card">
+                    <h4>Platform ROI Calculator</h4>
+                    <p>Interactive tool demonstrating efficiency gains and cost savings from platform consolidation.</p>
+                    <div class="tactic-effort">Effort: High • Impact: High</div>
+                </div>
+
+                <div class="tactic-card">
+                    <h4>Customer Success Showcases</h4>
+                    <p>Case studies and testimonials highlighting platform integration success and operational benefits.</p>
+                    <div class="tactic-effort">Effort: Medium • Impact: High</div>
+                </div>
+
+                <div class="tactic-card">
+                    <h4>Industry Conference Platform</h4>
+                    <p>Speaking opportunities and thought leadership positioning at key banking conferences.</p>
+                    <div class="tactic-effort">Effort: Medium • Impact: High</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Scope -->
+        <div class="content-section">
+            <h2>Brief Development Scope</h2>
+            <p>Focused workstream representing 20% of total engagement effort, developed in parallel with AI GTM strategy.</p>
+
+            <h3>Week 3-4 Activities</h3>
+            <ul>
+                <li>Review current Narmi One positioning materials</li>
+                <li>Conduct competitive feature analysis vs. Alkami and Q2</li>
+                <li>Develop platform-first messaging hierarchy</li>
+                <li>Create efficiency and flexibility positioning</li>
+                <li>Draft marketing tactics recommendations</li>
+            </ul>
+
+            <h3>Key Deliverables</h3>
+            <ul>
+                <li><strong>Platform Messaging Brief</strong> - Core positioning and messaging framework</li>
+                <li><strong>Competitive Battle Cards</strong> - 1:1 feature comparison and win strategies</li>
+                <li><strong>Marketing Tactics List</strong> - Prioritized recommendations for platform amplification</li>
+                <li><strong>Sales Enablement Tools</strong> - Talk tracks and competitive positioning guides</li>
+            </ul>
+        </div>
+
+        <!-- Stakeholder Alignment -->
+        <div class="content-section">
+            <h2>Stakeholder Coordination</h2>
+            <p>Close collaboration with sales, marketing, and product teams to ensure platform messaging resonates across organization.</p>
+
+            <h3>Key Stakeholders</h3>
+            <ul>
+                <li><strong>Sales Leadership</strong> - Platform messaging validation and competitive insights</li>
+                <li><strong>Product Marketing</strong> - Feature positioning and competitive analysis</li>
+                <li><strong>Marketing Team</strong> - Campaign development and content creation</li>
+                <li><strong>Customer Success</strong> - Platform implementation stories and ROI data</li>
+            </ul>
+
+            <h3>Validation Process</h3>
+            <ul>
+                <li>Sales team review of competitive positioning</li>
+                <li>Product marketing validation of feature messaging</li>
+                <li>Customer success input on platform benefits</li>
+                <li>Leadership approval of final platform brief</li>
+            </ul>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="content-section">
+            <h2>Platform Brief Success Metrics</h2>
+
+            <h3>Immediate Metrics (Weeks 5-6)</h3>
+            <ul>
+                <li><strong>Sales Team Adoption</strong> - Usage of new platform messaging in sales conversations</li>
+                <li><strong>Competitive Win Rate</strong> - Performance in head-to-head deals vs. Alkami and Q2</li>
+                <li><strong>Message Clarity</strong> - Internal stakeholder feedback on positioning clarity</li>
+            </ul>
+
+            <h3>Long-term Indicators (Post-Engagement)</h3>
+            <ul>
+                <li><strong>Deal Velocity</strong> - Faster progression through sales cycles with platform messaging</li>
+                <li><strong>Competitive Differentiation</strong> - Market recognition of Narmi One platform advantages</li>
+                <li><strong>Content Performance</strong> - Engagement with platform-focused marketing content</li>
+                <li><strong>Sales Confidence</strong> - Team comfort level with platform competitive positioning</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
