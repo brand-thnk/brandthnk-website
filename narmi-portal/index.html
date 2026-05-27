@@ -422,6 +422,80 @@
         }
 
         /* Resources */
+        /* Whiteboard */
+        .whiteboard-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .whiteboard-item {
+            background-color: var(--brandthnk-white);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--brandthnk-light-gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .whiteboard-item:hover {
+            border-color: var(--brandthnk-yellow);
+            background-color: var(--brandthnk-off-white);
+        }
+
+        .whiteboard-content {
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .whiteboard-meta {
+            font-size: 0.8rem;
+            color: var(--brandthnk-gray);
+            margin-top: 0.25rem;
+        }
+
+        .whiteboard-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .whiteboard-item:hover .whiteboard-actions {
+            opacity: 1;
+        }
+
+        .whiteboard-action {
+            background: none;
+            border: none;
+            color: var(--brandthnk-gray);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .whiteboard-action:hover {
+            background-color: var(--brandthnk-light-gray);
+            color: var(--brandthnk-black);
+        }
+
+        .whiteboard-action.delete:hover {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .whiteboard-empty {
+            text-align: center;
+            color: var(--brandthnk-gray);
+            font-style: italic;
+            padding: 2rem;
+        }
+
         .resources-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -587,6 +661,27 @@
                 </div>
             </div>
 
+            <!-- Whiteboard -->
+            <div class="card card-full">
+                <h2>Team Whiteboard</h2>
+                <p style="color: var(--brandthnk-gray); margin-bottom: 1.5rem;">Shared space for ideas, notes, and quick coordination. Anyone can add items.</p>
+
+                <div class="whiteboard-input" style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                        <input type="text" id="whiteboardInput" placeholder="Add a note, idea, or reminder..."
+                               style="flex: 1; padding: 0.75rem; border: 2px solid var(--brandthnk-light-gray); border-radius: 4px; font-family: 'Roboto Mono', monospace; background-color: var(--brandthnk-white);">
+                        <button onclick="addWhiteboardItem()"
+                                style="padding: 0.75rem 1.5rem; background-color: var(--brandthnk-yellow); color: var(--brandthnk-black); border: none; border-radius: 4px; font-family: 'Roboto Mono', monospace; font-weight: 500; cursor: pointer; transition: all 0.3s ease;">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+                <div class="whiteboard-items" id="whiteboardItems">
+                    <!-- Whiteboard items will be inserted here dynamically -->
+                </div>
+            </div>
+
             <!-- Timeline -->
             <div class="card card-full">
                 <h2>Project Timeline</h2>
@@ -677,6 +772,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Load saved states
             loadActionStates();
+            loadWhiteboardItems();
 
             // Add click handlers to action items
             const actionItems = document.querySelectorAll('.action-item');
@@ -684,6 +780,13 @@
                 item.addEventListener('click', function() {
                     toggleActionItem(this);
                 });
+            });
+
+            // Add Enter key support for whiteboard input
+            document.getElementById('whiteboardInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addWhiteboardItem();
+                }
             });
         });
 
@@ -714,6 +817,91 @@
                     item.querySelector('.action-checkbox').classList.add('checked');
                 }
             });
+        }
+
+        // Whiteboard functionality
+        function addWhiteboardItem() {
+            const input = document.getElementById('whiteboardInput');
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            const items = getWhiteboardItems();
+            const newItem = {
+                id: Date.now(),
+                text: text,
+                timestamp: new Date().toLocaleString(),
+                author: 'Team Member' // Could be enhanced to capture user names
+            };
+
+            items.push(newItem);
+            saveWhiteboardItems(items);
+            input.value = '';
+            renderWhiteboardItems();
+        }
+
+        function deleteWhiteboardItem(id) {
+            const items = getWhiteboardItems();
+            const filtered = items.filter(item => item.id !== id);
+            saveWhiteboardItems(filtered);
+            renderWhiteboardItems();
+        }
+
+        function editWhiteboardItem(id) {
+            const items = getWhiteboardItems();
+            const item = items.find(item => item.id === id);
+
+            if (item) {
+                const newText = prompt('Edit item:', item.text);
+                if (newText !== null && newText.trim() !== '') {
+                    item.text = newText.trim();
+                    item.timestamp = new Date().toLocaleString() + ' (edited)';
+                    saveWhiteboardItems(items);
+                    renderWhiteboardItems();
+                }
+            }
+        }
+
+        function getWhiteboardItems() {
+            const items = localStorage.getItem('narmi-whiteboard-items');
+            return items ? JSON.parse(items) : [];
+        }
+
+        function saveWhiteboardItems(items) {
+            localStorage.setItem('narmi-whiteboard-items', JSON.stringify(items));
+        }
+
+        function loadWhiteboardItems() {
+            renderWhiteboardItems();
+        }
+
+        function renderWhiteboardItems() {
+            const container = document.getElementById('whiteboardItems');
+            const items = getWhiteboardItems();
+
+            if (items.length === 0) {
+                container.innerHTML = '<div class="whiteboard-empty">No items yet. Add your first note above!</div>';
+                return;
+            }
+
+            container.innerHTML = items.map(item => `
+                <div class="whiteboard-item">
+                    <div class="whiteboard-content">
+                        <div class="whiteboard-text">${escapeHtml(item.text)}</div>
+                        <div class="whiteboard-meta">Added ${item.timestamp}</div>
+                    </div>
+                    <div class="whiteboard-actions">
+                        <button class="whiteboard-action" onclick="editWhiteboardItem(${item.id})" title="Edit">✎</button>
+                        <button class="whiteboard-action delete" onclick="deleteWhiteboardItem(${item.id})" title="Delete">✕</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // Close mobile nav when clicking outside
