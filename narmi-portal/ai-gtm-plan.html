@@ -311,6 +311,67 @@
             font-size: 1.1rem;
         }
 
+        /* Expandable Sections */
+        .expandable-section .content-section {
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: var(--brandthnk-off-white);
+            border-radius: 8px;
+            border-left: 4px solid var(--brandthnk-yellow);
+            transition: background-color 0.3s ease;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background-color: #eeeeee;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .expand-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--brandthnk-gray);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .section-header:hover .expand-icon {
+            color: var(--brandthnk-black);
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: var(--brandthnk-off-white);
+            border-radius: 0 0 8px 8px;
+            border-left: 4px solid var(--brandthnk-yellow);
+            border-top: 1px solid var(--brandthnk-light-gray);
+        }
+
+        .expandable-content.expanded {
+            max-height: 2000px;
+            transition: max-height 0.4s ease-in;
+        }
+
+        .expandable-content .content-inner {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .expandable-section.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
         @media (max-width: 768px) {
             .page-header h1 {
                 font-size: 2rem;
@@ -357,104 +418,174 @@
             <p><strong>Next Milestone:</strong> Complete LT briefings and AI product reviews by June 10</p>
         </div>
 
+        <!-- Deliverables -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Deliverables</h2>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="expandable-content">
+                <div class="content-inner">
+                    <h3>Phase 1: Discovery & Foundation (Weeks 1-2)</h3>
+                    <ul>
+                        <li><strong>Stakeholder Interview Summary</strong> - Leadership insights and AI roadmap understanding</li>
+                        <li><strong>Competitive Landscape Analysis</strong> - AI positioning analysis vs. Fiserv, FIS, and emerging players</li>
+                        <li><strong>Product Portfolio Assessment</strong> - Complete review of all AI capabilities and development pipeline</li>
+                        <li><strong>Market Opportunity Mapping</strong> - Target segments and use case prioritization</li>
+                    </ul>
+
+                    <h3>Phase 2: Strategy Development (Weeks 3-4)</h3>
+                    <ul>
+                        <li><strong>AI Positioning Framework</strong> - "Waymo Moment" positioning and differentiation strategy</li>
+                        <li><strong>Messaging Architecture</strong> - Hierarchical messaging for all AI communications</li>
+                        <li><strong>Audience Segmentation Strategy</strong> - Primary and secondary audience definitions with personas</li>
+                        <li><strong>Channel Strategy Blueprint</strong> - Thought leadership and activation channel recommendations</li>
+                    </ul>
+
+                    <h3>Phase 3: Go-to-Market Execution Plan (Week 4)</h3>
+                    <ul>
+                        <li><strong>90-Day Activation Roadmap</strong> - Priority initiatives with timeline and resource requirements</li>
+                        <li><strong>Content & PR Strategy</strong> - Thought leadership content calendar and media strategy</li>
+                        <li><strong>Sales Enablement Materials</strong> - AI-focused collateral and conversation frameworks</li>
+                        <li><strong>Success Metrics Dashboard</strong> - KPIs and measurement framework for AI GTM impact</li>
+                    </ul>
+
+                    <h3>Implementation Support</h3>
+                    <ul>
+                        <li><strong>Strategy Presentation</strong> - Executive briefing and alignment session</li>
+                        <li><strong>Team Handoff Documentation</strong> - Implementation guides and playbooks</li>
+                        <li><strong>30-Day Check-in</strong> - Progress review and tactical adjustments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- Strategic Objective -->
-        <div class="content-section">
-            <h2>Primary Objective & Market Context</h2>
-            <p>Establish Narmi as the AI thought leader and delivery partner in community banking. Translate Narmi's technical AI roadmap into a sharp external narrative, messaging architecture, and go-to-market plan that drives pipeline and conversion.</p>
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Primary Objective & Market Context</h2>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="expandable-content">
+                <div class="content-inner">
+                    <p>Establish Narmi as the AI thought leader and delivery partner in community banking. Translate Narmi's technical AI roadmap into a sharp external narrative, messaging architecture, and go-to-market plan that drives pipeline and conversion.</p>
 
-            <h3>MCP Success Foundation</h3>
-            <p>Building on the successful MCP launch where "we felt like we were on top of the world" and "the amount of people who said 'we had never heard of you until this' was nuts." Now leveraging that credibility for broader AI thought leadership.</p>
+                    <h3>MCP Success Foundation</h3>
+                    <p>Building on the successful MCP launch where "we felt like we were on top of the world" and "the amount of people who said 'we had never heard of you until this' was nuts." Now leveraging that credibility for broader AI thought leadership.</p>
 
-            <h3>Competitive Context</h3>
-            <p><strong>The Real vs. The Noise:</strong> While Fiserv and FIS commit massive $$$ to OpenAI/Anthropic for PR and stock price jumps, they won't actually help a $2B credit union write an agent. That's where Narmi comes in as the true enabler of AI in community banking.</p>
+                    <h3>Competitive Context</h3>
+                    <p><strong>The Real vs. The Noise:</strong> While Fiserv and FIS commit massive $$$ to OpenAI/Anthropic for PR and stock price jumps, they won't actually help a $2B credit union write an agent. That's where Narmi comes in as the true enabler of AI in community banking.</p>
 
-            <h3>AI-Specific Success Metrics</h3>
-            <ul>
-                <li><strong>Pipeline & Conversion Growth</strong> - More deals won because of AI positioning and capabilities</li>
-                <li><strong>"Waymo Moment" Recognition</strong> - Market understands Narmi AI "just works" vs. competitor noise</li>
-                <li><strong>Thought Leadership Credibility</strong> - Building on MCP success for broader AI expertise recognition</li>
-            </ul>
+                    <h3>AI-Specific Success Metrics</h3>
+                    <ul>
+                        <li><strong>Pipeline & Conversion Growth</strong> - More deals won because of AI positioning and capabilities</li>
+                        <li><strong>"Waymo Moment" Recognition</strong> - Market understands Narmi AI "just works" vs. competitor noise</li>
+                        <li><strong>Thought Leadership Credibility</strong> - Building on MCP success for broader AI expertise recognition</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- AI Product Portfolio -->
-        <div class="content-section">
-            <h2>Narmi AI Product Portfolio</h2>
-            <p>Comprehensive review of Narmi's AI capabilities and roadmap to inform positioning and messaging strategy.</p>
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Narmi AI Product Portfolio</h2>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="expandable-content">
+                <div class="content-inner">
+                    <p>Comprehensive review of Narmi's AI capabilities and roadmap to inform positioning and messaging strategy.</p>
 
-            <div class="ai-products-grid">
-                <div class="ai-product-card">
-                    <h4>MCP (Model Context Protocol)</h4>
-                    <div class="product-status">Status: Successfully launched - market credibility established</div>
-                    <p>Core AI infrastructure enabling seamless integration. Launch generated significant market awareness with "people who said 'we had never heard of you until this' was nuts."</p>
-                </div>
-                <div class="ai-product-card">
-                    <h4>AI Decision Assist</h4>
-                    <div class="product-status">Status: Live product with demo recordings available</div>
-                    <p>Intelligent decision support system for community bank operations and customer service workflows. Demo recordings to be reviewed with Nathan.</p>
-                </div>
-                <div class="ai-product-card">
-                    <h4>Narmi Agentic Deployment Force (NADF)</h4>
-                    <div class="product-status">Status: Very early development - briefing scheduled</div>
-                    <p>Advanced AI agent deployment capability for autonomous banking operations and customer engagement. Jake to provide briefing on early development.</p>
-                </div>
-                <div class="ai-product-card">
-                    <h4>Claude Connectors</h4>
-                    <div class="product-status">Status: Available - integration options active</div>
-                    <p>Direct integration with Anthropic's Claude for enhanced conversational AI in banking applications.</p>
-                </div>
-                <div class="ai-product-card">
-                    <h4>ChatGPT & Microsoft Apps</h4>
-                    <div class="product-status">Status: Available - app ecosystem live</div>
-                    <p>Third-party AI integrations enabling banks to leverage leading AI platforms within Narmi ecosystem.</p>
-                </div>
-                <div class="ai-product-card">
-                    <h4>Multiple Smaller AI Use Cases</h4>
-                    <div class="product-status">Status: Live in product - comprehensive review planned</div>
-                    <p>Embedded AI functionality throughout Narmi platform for enhanced user experience and operational efficiency.</p>
+                    <div class="ai-products-grid">
+                        <div class="ai-product-card">
+                            <h4>MCP (Model Context Protocol)</h4>
+                            <div class="product-status">Status: Successfully launched - market credibility established</div>
+                            <p>Core AI infrastructure enabling seamless integration. Launch generated significant market awareness with "people who said 'we had never heard of you until this' was nuts."</p>
+                        </div>
+                        <div class="ai-product-card">
+                            <h4>AI Decision Assist</h4>
+                            <div class="product-status">Status: Live product with demo recordings available</div>
+                            <p>Intelligent decision support system for community bank operations and customer service workflows. Demo recordings to be reviewed with Nathan.</p>
+                        </div>
+                        <div class="ai-product-card">
+                            <h4>Narmi Agentic Deployment Force (NADF)</h4>
+                            <div class="product-status">Status: Very early development - briefing scheduled</div>
+                            <p>Advanced AI agent deployment capability for autonomous banking operations and customer engagement. Jake to provide briefing on early development.</p>
+                        </div>
+                        <div class="ai-product-card">
+                            <h4>Claude Connectors</h4>
+                            <div class="product-status">Status: Available - integration options active</div>
+                            <p>Direct integration with Anthropic's Claude for enhanced conversational AI in banking applications.</p>
+                        </div>
+                        <div class="ai-product-card">
+                            <h4>ChatGPT & Microsoft Apps</h4>
+                            <div class="product-status">Status: Available - app ecosystem live</div>
+                            <p>Third-party AI integrations enabling banks to leverage leading AI platforms within Narmi ecosystem.</p>
+                        </div>
+                        <div class="ai-product-card">
+                            <h4>Multiple Smaller AI Use Cases</h4>
+                            <div class="product-status">Status: Live in product - comprehensive review planned</div>
+                            <p>Embedded AI functionality throughout Narmi platform for enhanced user experience and operational efficiency.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Go-to-Market Strategy -->
-        <div class="content-section">
-            <h2>Go-to-Market Strategy Components</h2>
-            <p>Comprehensive GTM framework covering audience segmentation, channel strategy, and activation tactics.</p>
-
-            <h3>Audience Segmentation</h3>
-            <div class="gtm-component">
-                <h5>Primary Audiences</h5>
-                <p><em>Audience segmentation to be developed based on stakeholder interviews and market analysis</em></p>
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>Go-to-Market Strategy Components</h2>
+                <span class="expand-icon">▼</span>
             </div>
+            <div class="expandable-content">
+                <div class="content-inner">
+                    <p>Comprehensive GTM framework covering audience segmentation, channel strategy, and activation tactics.</p>
 
-            <h3>Channel Strategy</h3>
-            <div class="gtm-component">
-                <h5>Thought Leadership Channels</h5>
-                <ul>
-                    <li><em>Industry conferences and speaking opportunities</em></li>
-                    <li><em>Banking trade publications and media</em></li>
-                    <li><em>Digital content and webinar programs</em></li>
-                </ul>
-            </div>
+                    <h3>Audience Segmentation</h3>
+                    <div class="gtm-component">
+                        <h5>Primary Audiences</h5>
+                        <p><em>Audience segmentation to be developed based on stakeholder interviews and market analysis</em></p>
+                    </div>
 
-            <h3>Content & PR Angles</h3>
-            <div class="gtm-component">
-                <h5>Recommended Angles</h5>
-                <p><em>Thought leadership positioning and PR strategy to be developed, building on MCP credibility and technical leadership</em></p>
+                    <h3>Channel Strategy</h3>
+                    <div class="gtm-component">
+                        <h5>Thought Leadership Channels</h5>
+                        <ul>
+                            <li><em>Industry conferences and speaking opportunities</em></li>
+                            <li><em>Banking trade publications and media</em></li>
+                            <li><em>Digital content and webinar programs</em></li>
+                        </ul>
+                    </div>
+
+                    <h3>Content & PR Angles</h3>
+                    <div class="gtm-component">
+                        <h5>Recommended Angles</h5>
+                        <p><em>Thought leadership positioning and PR strategy to be developed, building on MCP credibility and technical leadership</em></p>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Final Deliverable Components -->
-        <div class="content-section">
-            <h2>AI GTM Plan Components</h2>
-            <p><em>Complete deliverable specifications available in <a href="project-plan.html">Project Plan</a></em></p>
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>AI GTM Plan Components</h2>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="expandable-content">
+                <div class="content-inner">
+                    <p><em>Complete deliverable specifications available in <a href="project-plan.html">Project Plan</a></em></p>
 
-            <h3>Core Strategy Elements</h3>
-            <ul>
-                <li><strong>AI Positioning Framework</strong> - "Waymo Moment" positioning and competitive differentiation</li>
-                <li><strong>Messaging Architecture</strong> - Hierarchical messaging for all AI communications</li>
-                <li><strong>90-Day Activation Roadmap</strong> - Implementation plan with priorities and timelines</li>
-                <li><strong>Thought Leadership Strategy</strong> - Building on MCP credibility for broader AI expertise</li>
-            </ul>
+                    <h3>Core Strategy Elements</h3>
+                    <ul>
+                        <li><strong>AI Positioning Framework</strong> - "Waymo Moment" positioning and competitive differentiation</li>
+                        <li><strong>Messaging Architecture</strong> - Hierarchical messaging for all AI communications</li>
+                        <li><strong>90-Day Activation Roadmap</strong> - Implementation plan with priorities and timelines</li>
+                        <li><strong>Thought Leadership Strategy</strong> - Building on MCP credibility for broader AI expertise</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -475,6 +606,24 @@
                 navLinks.classList.remove('active');
             }
         });
+
+        // Expandable sections toggle
+        function toggleSection(headerElement) {
+            const expandableSection = headerElement.parentElement;
+            const content = expandableSection.querySelector('.expandable-content');
+            const icon = headerElement.querySelector('.expand-icon');
+
+            // Toggle the expanded class
+            expandableSection.classList.toggle('expanded');
+            content.classList.toggle('expanded');
+
+            // Update icon rotation
+            if (expandableSection.classList.contains('expanded')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
     </script>
 </body>
 </html>
