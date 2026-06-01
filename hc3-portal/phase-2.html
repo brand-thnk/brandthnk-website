@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phase 2 - Website Implementation | HC3 Portal</title>
+  <title>Website Implementation | HC3 Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <!-- Updated 2026-05-08 -->
   <style>
@@ -232,6 +232,200 @@
       border-bottom: none;
     }
 
+    .collapsible-section {
+      margin: 2rem 0;
+    }
+
+    .collapsible-header {
+      background: var(--brandthnk-off-white);
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .collapsible-header:hover {
+      background: var(--brandthnk-light-gray);
+    }
+
+    .collapsible-header h2 {
+      margin: 0;
+      border-bottom: none;
+      font-size: 1.3rem;
+    }
+
+    .collapse-icon {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .collapsible-content {
+      display: none;
+      padding: 1.5rem;
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .collapsible-content.active {
+      display: block;
+    }
+
+    .collapsible-header.active .collapse-icon {
+      transform: rotate(180deg);
+    }
+
+    .project-plan-section {
+      background: var(--brandthnk-off-white);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .project-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--brandthnk-white);
+      padding: 1.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .project-card h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .project-card p {
+      margin-bottom: 0.5rem;
+    }
+
+    .status-complete {
+      color: #4CAF50;
+      font-weight: 500;
+    }
+
+    .status-current {
+      color: var(--brandthnk-yellow);
+      background: var(--brandthnk-black);
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-yellow);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      margin-top: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--brandthnk-gray);
+      color: var(--brandthnk-white);
+    }
+
+    .checklist-section {
+      margin: 2rem 0;
+    }
+
+    .page-checklist {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .page-header {
+      background: var(--brandthnk-off-white);
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .checklist-items {
+      padding: 1.5rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 4px;
+      border-left: 3px solid var(--brandthnk-light-gray);
+    }
+
+    .checklist-item.client-action {
+      border-left-color: var(--brandthnk-yellow);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .checklist-item.integration-task {
+      border-left-color: var(--brandthnk-black);
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .checklist-item.strategic-decision {
+      border-left-color: #ff9800;
+      background: rgba(255, 152, 0, 0.1);
+    }
+
+    .checklist-checkbox {
+      margin-right: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .checklist-text {
+      flex: 1;
+    }
+
+    .checklist-label {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--brandthnk-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .round-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .round-title {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--brandthnk-black);
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
     @media (max-width: 1024px) {
       .nav-container {
         flex-direction: column;
@@ -285,111 +479,454 @@
         <a href="interviews.html" class="nav-link">Interviews</a>
         <a href="deliverables.html" class="nav-link">Deliverables</a>
         <a href="https://hc32.brandthnkinsights.com" class="nav-link" target="_blank">Competitive</a>
-        <a href="phase-2.html" class="nav-link active">Phase 2</a>
+        <a href="phase-2.html" class="nav-link active">Website</a>
       </div>
     </div>
   </nav>
 
   <div class="header">
     <div class="container">
-      <h1>Phase 2: Website Implementation & Advisory</h1>
+      <h1>Website</h1>
       <p>Complete website launch with HubSpot integration and ongoing strategic support</p>
     </div>
   </div>
 
   <div class="container">
     <div class="content">
-      <h2>Scope of Work</h2>
+      <h2>Project Plan</h2>
 
-      <h3>1. Website Implementation Options</h3>
-      <p>We can implement your website using either approach based on your technical preferences and team setup:</p>
+      <div class="project-plan-section">
+        <h3>Website Implementation Timeline</h3>
+        <p>Follow-on engagement to the 8-week BrandThnk Breakthrough. We're now implementing the website strategy and providing ongoing advisory support.</p>
 
-      <p><strong>Option A: External Site + HubSpot Integration</strong></p>
-      <ul>
-        <li>Build standalone website connected to your HubSpot instance</li>
-        <li>Configure seamless lead capture and form integration</li>
-        <li>Set up tracking, attribution, and analytics</li>
-        <li>Full design flexibility and custom functionality</li>
-      </ul>
+        <div class="project-overview">
+          <div class="project-card">
+            <h4>Phase 1: Brand Strategy</h4>
+            <p><span class="status-complete">✓ Complete</span></p>
+            <p>8-week BrandThnk Breakthrough with positioning, messaging, and go-to-market strategy.</p>
+            <p><strong>Deliverables:</strong> Strategy Brief, Brand Positioning, GTM Plan, Distribution Toolkit</p>
+          </div>
 
-      <p><strong>Option B: HubSpot Native Website</strong></p>
-      <ul>
-        <li>Build website directly within HubSpot's CMS platform</li>
-        <li>Native integration with all HubSpot marketing tools</li>
-        <li>Built-in forms, tracking, and lead management</li>
-        <li>Easier for team to maintain and update content</li>
-      </ul>
+          <div class="project-card">
+            <h4>Phase 2: Website Implementation</h4>
+            <p><span class="status-current">Current Phase</span></p>
+            <p>Complete website launch with HubSpot integration and 12 weeks of strategic support.</p>
+            <p><strong>Timeline:</strong> 2-3 weeks implementation + 12 weeks advisory</p>
+          </div>
 
-      <p><em>We'll determine the best approach during our kickoff based on your team's technical capabilities and long-term goals.</em></p>
+          <div class="project-card">
+            <h4>Key Milestones</h4>
+            <p><strong>Week 1:</strong> Technical setup & content integration</p>
+            <p><strong>Week 2-3:</strong> Testing, refinement & launch</p>
+            <p><strong>Weeks 4-15:</strong> Weekly advisory sessions</p>
+          </div>
+        </div>
 
-      <h3>2. Domain Migration</h3>
-      <ul>
-        <li>Port website to HC3 domain</li>
-        <li>Coordinate with your IT team for seamless transition</li>
-        <li>DNS configuration and testing</li>
-        <li>Go-live support</li>
-      </ul>
-
-      <h3>3. Revisions & Optimization</h3>
-      <ul>
-        <li>3 rounds of revisions (pre or post-launch)</li>
-        <li>Content adjustments and refinements</li>
-        <li>Technical optimization as needed</li>
-      </ul>
-
-      <h3>4. Training & Documentation</h3>
-      <ul>
-        <li>1x 60-minute live training session on making updates</li>
-        <li>Session recorded for future reference and team onboarding</li>
-        <li>Documentation of common update procedures</li>
-        <li>Best practices for maintaining site integrity</li>
-      </ul>
-
-      <h3>5. Ongoing Advisory</h3>
-      <ul>
-        <li>3 months of weekly advisory support</li>
-        <li>1x 45-minute session per week</li>
-        <li>Strategic guidance on website optimization</li>
-        <li>Content and messaging consultation</li>
-        <li>Performance monitoring and recommendations</li>
-      </ul>
-
-      <h2>Investment & Structure</h2>
-
-      <div class="investment-box">
-        <strong>Total Investment:</strong>
-        <span class="price-original">$42,500</span>
-        <span class="price-discounted">$36,400</span>
-        <span class="discount-note">Current Customer Discount</span><br><br>
-        <strong>Payment Structure:</strong> 50% at project start, 50% at launch<br><br>
-        <strong>Timeline:</strong><br>
-        • Implementation: 2-3 weeks<br>
-        • Advisory: 12 weeks following launch
+        <a href="project-plan.html" class="cta-button">View Full Project Plan</a>
       </div>
 
-      <h2>What You Get</h2>
+      <div class="collapsible-section">
+        <div class="collapsible-header" onclick="toggleCollapse('checklist-content')">
+          <h2>Website Implementation Checklist</h2>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="collapsible-content" id="checklist-content">
+          <div class="checklist-section">
 
-      <div class="what-you-get">
-        <ul>
-          <li><strong>Website implementation</strong> via external site + HubSpot integration OR HubSpot native build (based on your needs)</li>
-          <li><strong>Domain migration</strong> with IT coordination</li>
-          <li><strong>3 rounds of revisions</strong> for optimization</li>
-          <li><strong>Recorded training session</strong> for your team</li>
-          <li><strong>12 weeks of advisory support</strong> for ongoing optimization</li>
-        </ul>
+            <div class="page-checklist">
+              <div class="page-header">Contact Page</div>
+              <div class="checklist-items">
+                <div class="checklist-item integration-task">
+                  <input type="checkbox" class="checklist-checkbox">
+                  <div class="checklist-text">
+                    <div class="checklist-label">Integration Task</div>
+                    <strong>HubSpot embedded form:</strong> Swap our custom form for HubSpot's embed. Leads go straight in with full tracking, but we lose some design control.
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">About Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Verify years in operation, FIs served, mail pieces processed annually
+                    </div>
+                  </div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      List people to include under "Leadership" plus their LinkedIn profile links
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 3</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Partners Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Verify online and core banking integrations
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 3</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Customers Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Verify customers listed on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Send high-res customer logo images
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 3</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                  <div class="checklist-item strategic-decision">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Strategic Decision</div>
+                      Gate full case studies?
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Solutions/Document Design Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Solutions/Digital Delivery Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Verify: Average eStatement adoption rate across HC3 clients, Reduction in print volume within 12 months, Client quote about eStatement adoption improvement with specific numbers
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Solutions/Print and Mail Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Verify: Client quote about reliability/accuracy with specific improvements, Mail pieces processed annually, On-time delivery rate
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 3</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page-checklist">
+              <div class="page-header">Home Page</div>
+              <div class="checklist-items">
+                <div class="round-group">
+                  <div class="round-title">Round 1</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Copy approval on draft page
+                    </div>
+                  </div>
+                </div>
+                <div class="round-group">
+                  <div class="round-title">Round 2</div>
+                  <div class="checklist-item client-action">
+                    <input type="checkbox" class="checklist-checkbox">
+                    <div class="checklist-text">
+                      <div class="checklist-label">Client Action</div>
+                      Creative approval
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
-      <div class="next-steps">
-        <h2>Next Steps</h2>
-        <p><strong>To move forward:</strong></p>
-        <ol>
-          <li>Review and approve this scope</li>
-          <li>Sign project agreement</li>
-          <li>Provide HubSpot and domain access</li>
-          <li>Begin implementation immediately</li>
-        </ol>
+      <div class="collapsible-section">
+        <div class="collapsible-header" onclick="toggleCollapse('sow-content')">
+          <h2>Scope of Work</h2>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="collapsible-content" id="sow-content">
+          <h3>1. Website Implementation Options</h3>
+          <p>We can implement your website using either approach based on your technical preferences and team setup:</p>
+
+          <p><strong>Option A: External Site + HubSpot Integration</strong></p>
+          <ul>
+            <li>Build standalone website connected to your HubSpot instance</li>
+            <li>Configure seamless lead capture and form integration</li>
+            <li>Set up tracking, attribution, and analytics</li>
+            <li>Full design flexibility and custom functionality</li>
+          </ul>
+
+          <p><strong>Option B: HubSpot Native Website</strong></p>
+          <ul>
+            <li>Build website directly within HubSpot's CMS platform</li>
+            <li>Native integration with all HubSpot marketing tools</li>
+            <li>Built-in forms, tracking, and lead management</li>
+            <li>Easier for team to maintain and update content</li>
+          </ul>
+
+          <p><em>We'll determine the best approach during our kickoff based on your team's technical capabilities and long-term goals.</em></p>
+
+          <h3>2. Domain Migration</h3>
+          <ul>
+            <li>Port website to HC3 domain</li>
+            <li>Coordinate with your IT team for seamless transition</li>
+            <li>DNS configuration and testing</li>
+            <li>Go-live support</li>
+          </ul>
+
+          <h3>3. Revisions & Optimization</h3>
+          <ul>
+            <li>3 rounds of revisions (pre or post-launch)</li>
+            <li>Content adjustments and refinements</li>
+            <li>Technical optimization as needed</li>
+          </ul>
+
+          <h3>4. Training & Documentation</h3>
+          <ul>
+            <li>1x 60-minute live training session on making updates</li>
+            <li>Session recorded for future reference and team onboarding</li>
+            <li>Documentation of common update procedures</li>
+            <li>Best practices for maintaining site integrity</li>
+          </ul>
+
+          <h3>5. Ongoing Advisory</h3>
+          <ul>
+            <li>3 months of weekly advisory support</li>
+            <li>1x 45-minute session per week</li>
+            <li>Strategic guidance on website optimization</li>
+            <li>Content and messaging consultation</li>
+            <li>Performance monitoring and recommendations</li>
+          </ul>
+
+          <h2>Investment & Structure</h2>
+
+          <div class="investment-box">
+            <strong>Total Investment:</strong>
+            <span class="price-original">$42,500</span>
+            <span class="price-discounted">$36,400</span>
+            <span class="discount-note">Current Customer Discount</span><br><br>
+            <strong>Payment Structure:</strong> 50% at project start, 50% at launch<br><br>
+            <strong>Timeline:</strong><br>
+            • Implementation: 2-3 weeks<br>
+            • Advisory: 12 weeks following launch
+          </div>
+
+          <h2>What You Get</h2>
+
+          <div class="what-you-get">
+            <ul>
+              <li><strong>Website implementation</strong> via external site + HubSpot integration OR HubSpot native build (based on your needs)</li>
+              <li><strong>Domain migration</strong> with IT coordination</li>
+              <li><strong>3 rounds of revisions</strong> for optimization</li>
+              <li><strong>Recorded training session</strong> for your team</li>
+              <li><strong>12 weeks of advisory support</strong> for ongoing optimization</li>
+            </ul>
+          </div>
+
+          <div class="next-steps">
+            <h2>Next Steps</h2>
+            <p><strong>To move forward:</strong></p>
+            <ol>
+              <li>Review and approve this scope</li>
+              <li>Sign project agreement</li>
+              <li>Provide HubSpot and domain access</li>
+              <li>Begin implementation immediately</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleCollapse(contentId) {
+      const content = document.getElementById(contentId);
+      const header = content.previousElementSibling;
+
+      content.classList.toggle('active');
+      header.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
