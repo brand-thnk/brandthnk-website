@@ -732,7 +732,6 @@
     .mobile-toggle.active span:last-child {
       transform: rotate(-45deg) translate(7px, -6px);
     }
-  }
     .hero { padding: 120px 24px 60px; }
     .hero p { font-size: 18px; }
     .hero-cta { flex-direction: column; align-items: center; }
@@ -747,6 +746,39 @@
     .form-section { padding: 60px 24px; }
     .form-layout { grid-template-columns: 1fr; gap: 40px; }
     .footer { padding: 30px 24px; }
+  }
+
+  /* FOCAL IFRAME RESPONSIVE STYLES */
+  @media (max-width: 1024px) {
+    /* Reduce iframe height on tablets */
+    .method-section iframe {
+      height: 600px !important;
+    }
+  }
+
+  @media (max-width: 900px) {
+    /* Further reduce iframe height on mobile and add better spacing */
+    .method-section iframe {
+      height: 500px !important;
+    }
+    .method-section h3 {
+      font-size: 24px !important;
+    }
+    .method-section p {
+      font-size: 14px !important;
+      max-width: 100% !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    /* Even smaller height for very small screens */
+    .method-section iframe {
+      height: 400px !important;
+    }
+    .method-section h3 {
+      font-size: 20px !important;
+      margin-bottom: 8px !important;
+    }
   }
 </style>
 </head>
@@ -778,155 +810,59 @@
 
 
 
-<!-- WHAT YOU GET -->
+<!-- FOCAL PRODUCTS -->
 <section class="method-section">
   <div class="container">
-    <p class="section-label">What You Get</p>
-    <h2 class="section-title">Get 15 intelligence dimensions on your competitors' moves, spend, and strategy.</h2>
-    <p class="section-subtitle">Focal delivers 15 distinct analysis sections with actionable insights, strategic recommendations, and confidence-scored findings.</p>
+    <p class="section-label">Two Versions</p>
+    <h2 class="section-title">Focal FI for Financial Institutions. Focal Fintech for Fintechs.</h2>
+    <p class="section-subtitle">Experience the actual product dashboards with live data. Choose the version that fits your competitive landscape.</p>
 
-    <div class="method-grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">📊</div>
-        <div class="method-number">01</div>
-        <div class="method-name">Key Metrics Overview</div>
-        <div class="method-detail">Critical intelligence signals from the last 90 days across all competitors.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">📋</div>
-        <div class="method-number">02</div>
-        <div class="method-name">Executive Summary</div>
-        <div class="method-detail">Strategic narrative with headline findings, biggest threats, and key opportunities.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">🏢</div>
-        <div class="method-number">03</div>
-        <div class="method-name">Company Overview</div>
-        <div class="method-detail">Profiles, assets, market positioning, and financial metrics for each competitor.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">📈</div>
-        <div class="method-number">04</div>
-        <div class="method-name">Traffic Analysis</div>
-        <div class="method-detail">Web traffic estimates, channel mix, referral sources, and content velocity.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">📱</div>
-        <div class="method-number">05</div>
-        <div class="method-name">Paid Ads Audit</div>
-        <div class="method-detail">Meta, LinkedIn, and Google Ads intelligence with spend estimates and messaging themes.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">06</div>
-        <div class="method-name">Partnership Ecosystem</div>
-        <div class="method-detail">Technology integrations, distribution channels, and investor network analysis.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">07</div>
-        <div class="method-name">Positioning Matrix</div>
-        <div class="method-detail">Competitive capability scoring across strategic dimensions with radar visualization.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">💬</div>
-        <div class="method-number">08</div>
-        <div class="method-name">Voice of Customer</div>
-        <div class="method-detail">Review mining from G2, Capterra, Glassdoor with satisfaction signals and pain points.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">👥</div>
-        <div class="method-number">09</div>
-        <div class="method-name">Job Posting Intelligence</div>
-        <div class="method-detail">Hiring signals, new role categories, stalled roles, and tech stack keywords.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">10</div>
-        <div class="method-name">Earnings Intelligence</div>
-        <div class="method-detail">Public company transcript analysis with retention signals and product categories.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">🎯</div>
-        <div class="method-number">11</div>
-        <div class="method-name">Strategic Insights</div>
-        <div class="method-detail">Critical intelligence findings with confidence scoring and market implications.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 20px; right: 20px; font-size: 24px; opacity: 0.1;">⚡</div>
-        <div class="method-number">12</div>
-        <div class="method-name">Recommendations</div>
-        <div class="method-detail">Quick wins (30-90 days) and long-term strategic plays (12-18 months) with impact scoring.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://db.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">13</div>
-        <div class="method-name">Event Timeline</div>
-        <div class="method-detail">Press releases, product launches, partnership announcements from last 90 days.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Banking Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">14</div>
-        <div class="method-name">Confidence Assessment</div>
-        <div class="method-detail">Data quality scoring, source reliability hierarchy, and methodology transparency.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
-      <a href="https://bankanalytics.brandthnkinsights.com/" target="_blank" rel="noopener" class="method-step" style="text-decoration: none; color: inherit; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
-        <div class="method-number">15</div>
-        <div class="method-name">Competitive Comparison</div>
-        <div class="method-detail">Side-by-side metrics comparison with multi-dimensional competitive radar.</div>
-        <div style="font-size: 12px; color: var(--yellow); margin-top: 12px; font-weight: 700;">↗ See in Fintech Sample</div>
-      </a>
+    <div style="display: grid; grid-template-columns: 1fr; gap: 60px; margin-top: 60px;">
+
+      <!-- Focal FI -->
+      <div style="text-align: center;">
+        <div style="margin-bottom: 24px;">
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">Focal FI</h3>
+          <p style="color: #CCCCCC; font-size: 16px; max-width: 500px; margin: 0 auto;">Competitive intelligence designed for financial institutions. Analyze community banks, credit unions, and regional competitors.</p>
+        </div>
+        <div style="border: 2px solid var(--yellow); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15);">
+          <iframe
+            src="https://focalfi.brandthnkinsights.com"
+            style="width: 100%; height: 800px; border: none; display: block;"
+            title="Focal FI - Competitive Intelligence for Financial Institutions"
+            loading="lazy">
+          </iframe>
+        </div>
+        <div style="margin-top: 16px;">
+          <a href="https://focalfi.brandthnkinsights.com" target="_blank" rel="noopener" style="color: var(--yellow); text-decoration: none; font-size: 14px; font-weight: 700;">↗ Open in new tab</a>
+        </div>
+      </div>
+
+      <!-- Focal Fintech -->
+      <div style="text-align: center;">
+        <div style="margin-bottom: 24px;">
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">Focal Fintech</h3>
+          <p style="color: #CCCCCC; font-size: 16px; max-width: 500px; margin: 0 auto;">Competitive intelligence built for fintechs. Track emerging competitors, established players, and market positioning.</p>
+        </div>
+        <div style="border: 2px solid var(--yellow); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15);">
+          <iframe
+            src="https://bankanalytics.brandthnkinsights.com"
+            style="width: 100%; height: 800px; border: none; display: block;"
+            title="Focal Fintech - Competitive Intelligence for Fintechs"
+            loading="lazy">
+          </iframe>
+        </div>
+        <div style="margin-top: 16px;">
+          <a href="https://bankanalytics.brandthnkinsights.com" target="_blank" rel="noopener" style="color: var(--yellow); text-decoration: none; font-size: 14px; font-weight: 700;">↗ Open in new tab</a>
+        </div>
+      </div>
+
     </div>
 
   </div>
 </section>
 
 
-<!-- RESEARCH DASHBOARDS -->
-<section class="section section-alt" id="dashboards">
-  <div class="container">
-    <p class="section-label">See It In Action</p>
-    <h2 class="section-title">Real insights from Focal dashboards.</h2>
-
-
-    <!-- Sample Dashboard Links -->
-    <div class="dashboard-grid">
-      <div class="dashboard-card">
-        <span class="card-status live">Full Sample</span>
-        <div class="card-icon">&#9632;</div>
-        <h3 class="card-title">Community Banking - Ohio/Indiana Region</h3>
-        <p class="card-description">See the complete 13-page competitive intelligence dashboard with all 15 analysis dimensions.</p>
-        <div class="card-metrics">
-          <span>15 intelligence sections</span>
-          <span>Strategic recommendations</span>
-        </div>
-        <a href="https://db.brandthnkinsights.com/" class="card-link" target="_blank" rel="noopener">View full dashboard &#8594;</a>
-      </div>
-
-      <div class="dashboard-card">
-        <span class="card-status live">Full Sample</span>
-        <div class="card-icon">&#9650;</div>
-        <h3 class="card-title">Fintechs - Comparing Bank Data Analytics Firms</h3>
-        <p class="card-description">Complete competitive analysis of fintech companies with positioning matrix and strategic insights.</p>
-        <div class="card-metrics">
-          <span>Multi-dimensional scoring</span>
-          <span>Actionable recommendations</span>
-        </div>
-        <a href="https://bankanalytics.brandthnkinsights.com/" class="card-link" target="_blank" rel="noopener">View full dashboard &#8594;</a>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 <!-- THE OFFER + FORM -->
