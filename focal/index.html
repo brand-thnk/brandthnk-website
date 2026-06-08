@@ -780,6 +780,24 @@
       margin-bottom: 8px !important;
     }
   }
+
+  /* Navigation button styles */
+  .nav-button {
+    padding: 12px 24px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    background: transparent;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-button:hover {
+    background: var(--yellow);
+    color: var(--black);
+  }
 </style>
 </head>
 
@@ -803,7 +821,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-label">Introducing <span class="product-name">Focal</span>, Powered by BrandThnk</p>
+    <p class="hero-label">Introducing <span class="product-name">FOCAL</span>, Powered by BrandThnk</p>
     <h1>See what your competitors are doing and spending so you can make better marketing decisions.</h1>
   </div>
 </section>
@@ -814,21 +832,27 @@
 <section class="method-section">
   <div class="container">
     <p class="section-label">Example dashboards with live data.</p>
-    <h2 class="section-title">Choose the version that's right for you.</h2>
+    <h2 class="section-title">Choose the FOCAL that's right for you.</h2>
+
+    <!-- Navigation -->
+    <div style="display: flex; justify-content: center; gap: 16px; margin: 40px 0; flex-wrap: wrap;">
+      <button onclick="document.getElementById('focal-fi').scrollIntoView({behavior: 'smooth'})" class="nav-button">FOCAL FI</button>
+      <button onclick="document.getElementById('focal-fintech').scrollIntoView({behavior: 'smooth'})" class="nav-button">FOCAL Fintech</button>
+    </div>
 
     <div style="display: grid; grid-template-columns: 1fr; gap: 60px; margin-top: 60px;">
 
-      <!-- Focal FI -->
-      <div style="text-align: center;">
+      <!-- FOCAL FI -->
+      <div id="focal-fi" style="text-align: center;">
         <div style="margin-bottom: 24px;">
-          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">Focal FI</h3>
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">FOCAL FI</h3>
           <p style="color: #CCCCCC; font-size: 16px; max-width: 500px; margin: 0 auto;">Competitive intelligence designed for financial institutions. Analyze community banks, credit unions, and regional competitors.</p>
         </div>
         <div style="border: 2px solid var(--yellow); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15);">
           <iframe
             src="https://focalfi.brandthnkinsights.com"
             style="width: 100%; height: 800px; border: none; display: block;"
-            title="Focal FI - Competitive Intelligence for Financial Institutions"
+            title="FOCAL FI - Competitive Intelligence for Financial Institutions"
             loading="lazy">
           </iframe>
         </div>
@@ -837,17 +861,17 @@
         </div>
       </div>
 
-      <!-- Focal Fintech -->
-      <div style="text-align: center;">
+      <!-- FOCAL Fintech -->
+      <div id="focal-fintech" style="text-align: center;">
         <div style="margin-bottom: 24px;">
-          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">Focal Fintech</h3>
+          <h3 style="font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; color: var(--yellow); margin-bottom: 12px;">FOCAL Fintech</h3>
           <p style="color: #CCCCCC; font-size: 16px; max-width: 500px; margin: 0 auto;">Competitive intelligence built for fintechs. Track emerging competitors, established players, and market positioning.</p>
         </div>
         <div style="border: 2px solid var(--yellow); border-radius: 8px; overflow: hidden; box-shadow: 0 8px 32px rgba(255, 235, 59, 0.15);">
           <iframe
             src="https://bankanalytics.brandthnkinsights.com"
             style="width: 100%; height: 800px; border: none; display: block;"
-            title="Focal Fintech - Competitive Intelligence for Fintechs"
+            title="FOCAL Fintech - Competitive Intelligence for Fintechs"
             loading="lazy">
           </iframe>
         </div>
@@ -869,7 +893,7 @@
   <div class="form-layout">
     <div class="form-copy">
       <p class="section-label" style="color: var(--yellow);">How We Can Help</p>
-      <h2>Get Your Free Focal Report</h2>
+      <h2>Get Your Free FOCAL Report</h2>
     </div>
 
     <div class="form-container">
@@ -905,7 +929,7 @@
           <span data-fs-error="competitors" style="color: #FF8A65; font-size: 13px;"></span>
         </div>
 
-        <button type="submit" class="form-submit" data-fs-submit-btn>Generate My Focal</button>
+        <button type="submit" class="form-submit" data-fs-submit-btn>Generate My FOCAL</button>
       </form>
     </div>
   </div>
