@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klarivis Executive Visibility Engine Proposal — BrandThnk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Proposal Content */
+        .proposal-content {
+            margin-bottom: 48px;
+        }
+
+        .proposal-content h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .proposal-content h2 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .proposal-content h3 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .proposal-content p {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .proposal-content ul {
+            font-size: 14px;
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .proposal-content li {
+            margin-bottom: 8px;
+        }
+
+        .proposal-meta {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .proposal-meta p {
+            margin-bottom: 8px;
+        }
+
+        .proposal-meta strong {
+            font-weight: 700;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--offwhite);
+            padding: 32px;
+            margin: 32px 0;
+            border: 2px solid var(--black);
+        }
+
+        .pricing-section h2 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 24px;
+            text-align: center;
+            border: none;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+            text-align: center;
+        }
+
+        .price-subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: #666;
+        }
+
+        .price-breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        @media (max-width: 600px) {
+            .price-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .price-phase {
+            background: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .price-phase h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .price-phase p {
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .price-phase .phase-price {
+            font-size: 18px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        .payment-schedule {
+            background: var(--white);
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .payment-schedule h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .highlight {
+            background: var(--yellow);
+            padding: 2px 4px;
+            font-weight: 700;
+        }
+
+        /* Contact Action */
+        .contact-section {
+            background: var(--yellow);
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-section p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: #333;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .proposal-content h1 {
+                font-size: 28px;
+            }
+
+            .proposal-content h2 {
+                font-size: 18px;
+            }
+
+            .price {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BrandThnk</div>
+            <div class="tagline">Build a Growth Brand</div>
+        </header>
+
+        <main>
+            <div class="proposal-content">
+                <h1>Klarivis Executive Visibility Engine</h1>
+
+                <div class="proposal-meta">
+                    <p><strong>Prepared by:</strong> Allison Netzer, BrandThnk</p>
+                    <p><strong>Prepared for:</strong> Klarivis (Kim & Amber)</p>
+                    <p><strong>Proposed start:</strong> August 2026</p>
+                </div>
+
+                <h2>Objective</h2>
+                <p>We'll transform Klarivis's existing executive visibility into a durable pipeline asset by designing the infrastructure, systems, and operating model required to capture and commercialize market attention with direct alignment to the Klarivis Data and AI Institute as a lead-generation flywheel.</p>
+
+                <h2>Why this matters</h2>
+                <p>Kim and Amber generate visibility through speaking, travel, customer interaction, and industry participation. But visibility alone doesn't create pipeline. Without an underlying engine to capture insight, structure engagement, and convert attention into commercial momentum, too much value gets left on the table.</p>
+
+                <p>This engagement builds that engine: a practical system that increases impact from executive time, improves the quality of inbound opportunity, and gives Klarivis a repeatable process the team can run internally.</p>
+
+                <h2>Scope of Work</h2>
+
+                <h3>1. Strategic Architecture & Opportunity Audit — <span class="highlight">$16,500</span></h3>
+                <ul>
+                    <li>Audit current inbound flow to baseline lead volume and ICP fit</li>
+                    <li>Conduct a commercial architecture exercise to map Kim's current visibility and define the path from awareness to monetized engagement</li>
+                    <li>Inventory approximately 15 recent speaking engagements, appearances, or audience touchpoints for repurposing and repositioning</li>
+                    <li>Define success metrics around <strong>conversations participated in</strong>, not posting frequency or follower growth</li>
+                    <li>Identify a target list of relevant influencer, academic, and AI-adjacent voices for future amplification</li>
+                    <li>Ensure recommendations align with the Klarivis Data and AI Institute so the system supports broader lead-generation goals</li>
+                </ul>
+
+                <h3>2. Executive Engine Build — <span class="highlight">$19,500</span></h3>
+                <ul>
+                    <li>Design the raw-material capture system around each executive's working style</li>
+                    <li>Build an executive LinkedIn engagement system for Kim and Amber</li>
+                    <li>Create a lightweight nurture workflow for high-intent engagers using software support where appropriate</li>
+                    <li>Create the distribution system required for marketing to convert executive insight into channel-ready assets efficiently</li>
+                    <li>Develop a realistic operating cadence that's authentic, sustainable, and high impact</li>
+                    <li>Recommend how outside experts, academics, or fellows could strengthen Institute credibility and market reach</li>
+                    <li>Identify how Institute activity and executive visibility should reinforce one another</li>
+                </ul>
+
+                <h2>Deliverables</h2>
+                <ul>
+                    <li>Operational executive visibility engine</li>
+                    <li>Documented workflows for capture, review, packaging, and distribution</li>
+                    <li>Executive engagement system ready for internal use</li>
+                    <li>Target influencer/academic list with outreach recommendations</li>
+                    <li>KPI framework and reporting cadence</li>
+                    <li>Institute-aligned activation recommendations</li>
+                    <li>Final strategic guidance for internal handoff and execution</li>
+                </ul>
+
+                <h2>What I'll need from Klarivis</h2>
+                <ul>
+                    <li>ICBA Q&A document</li>
+                    <li>Klarivis Data and AI Institute framework materials</li>
+                    <li>Existing content and event archives</li>
+                    <li>Access to LinkedIn profiles, or exported/copied profile information</li>
+                    <li>Access to relevant historical speaking topics, appearances, and existing thought leadership materials</li>
+                    <li>Reasonable executive review time for feedback and approvals</li>
+                </ul>
+
+                <h2>Timing</h2>
+                <p><strong>Estimated engagement length:</strong> 8–10 weeks</p>
+                <p><strong>Proposed start:</strong> August 2026</p>
+            </div>
+
+            <div class="pricing-section">
+                <h2>Investment</h2>
+                <div class="price">$36,000</div>
+                <p class="price-subtitle">Fixed Fee Engagement</p>
+
+                <div class="price-breakdown">
+                    <div class="price-phase">
+                        <h4>Phase 1</h4>
+                        <p>Strategic Architecture & Opportunity Audit</p>
+                        <div class="phase-price">$16,500</div>
+                    </div>
+                    <div class="price-phase">
+                        <h4>Phase 2</h4>
+                        <p>Executive Engine Build</p>
+                        <div class="phase-price">$19,500</div>
+                    </div>
+                </div>
+
+                <div class="payment-schedule">
+                    <h4>Payment Schedule</h4>
+                    <p><strong>50% at kickoff</strong> — $18,000</p>
+                    <p><strong>50% upon final delivery</strong> — $18,000</p>
+                </div>
+
+                <div style="background: var(--white); padding: 20px; margin-top: 24px;">
+                    <h4 style="font-family: var(--font-heading); font-weight: 700; margin-bottom: 12px;">Additional Costs</h4>
+                    <p style="font-size: 13px; margin: 0;">Any third-party software subscriptions or tools will be billed directly to Klarivis or approved in advance (example: lightweight automation or workflow tools such as Phantom Buster).</p>
+                </div>
+            </div>
+
+            <div class="proposal-content">
+                <h2>Assumptions</h2>
+                <ul>
+                    <li>Klarivis will designate key stakeholders for timely review and decision-making</li>
+                    <li>We'll have access to sufficient background materials to assess current visibility and content opportunities</li>
+                    <li>This engagement focuses on strategy, systems design, workflow build, and documentation — not ongoing daily execution</li>
+                    <li>Klarivis's internal team will own execution after handoff unless a separate scope is created</li>
+                </ul>
+
+                <h2>Exclusions</h2>
+                <p>Unless added by separate agreement, this proposal doesn't include:</p>
+                <ul>
+                    <li>Daily social media management</li>
+                    <li>Full ghostwriting of all executive posts</li>
+                    <li>Paid media strategy or management</li>
+                    <li>CRM implementation</li>
+                    <li>Web development</li>
+                    <li>Institute launch execution beyond activation recommendations</li>
+                </ul>
+
+                <h2>Closing</h2>
+                <p>This engagement gives Klarivis more than content support. It creates the underlying system for a more scalable and commercial form of executive visibility.</p>
+
+                <p>The outcome is a repeatable engine Klarivis can use to convert attention into access, access into conversation, and conversation into pipeline — without requiring Kim and Amber to operate like full-time content creators.</p>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 BrandThnk. Strategic Brand Partners for Financial Services.</p>
+            <p>Questions? Contact allison@brandthnk.co | brandthnk.co</p>
+        </footer>
+    </div>
+</body>
+</html>
