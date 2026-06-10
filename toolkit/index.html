@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brand Operating System Toolkit | BrandThnk</title>
+<meta name="description" content="Five frameworks from Think Like a Brand, Not a Bank. Download the complete toolkit for operationalizing brand-first thinking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    padding: 160px 60px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  .hero-headline {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto 44px;
+    font-weight: 400;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-primary:hover { background: var(--yellow); color: var(--black); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  /* FRAMEWORK GRID */
+  .frameworks-section {
+    padding: 100px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .frameworks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .framework-card {
+    border: 2px solid var(--light-gray);
+    padding: 40px;
+    border-radius: 0;
+    background: var(--card-bg);
+    transition: all 0.2s;
+  }
+
+  .framework-card:hover {
+    border-color: var(--black);
+    transform: translateY(-4px);
+  }
+
+  .framework-number {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--light-gray);
+    margin-bottom: 16px;
+  }
+
+  .framework-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .framework-description {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .framework-use-case {
+    font-size: 13px;
+    color: var(--black);
+    background: var(--offwhite);
+    padding: 12px 16px;
+    border-left: 3px solid var(--yellow);
+    font-weight: 400;
+  }
+
+  /* CONTENT SECTION */
+  .content-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px;
+    line-height: 1.7;
+  }
+
+  .content-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 60px 0 24px 0;
+    color: var(--black);
+  }
+
+  .content-section h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 40px 0 16px 0;
+    color: var(--black);
+  }
+
+  .content-section h4 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 12px 0;
+    color: var(--black);
+  }
+
+  .content-section p {
+    margin-bottom: 20px;
+  }
+
+  .content-section ul {
+    margin: 16px 0 20px 20px;
+  }
+
+  .content-section li {
+    margin-bottom: 8px;
+  }
+
+  .content-section strong {
+    font-weight: 700;
+  }
+
+  .content-section em {
+    font-style: italic;
+    color: var(--gray);
+  }
+
+  .template-box {
+    background: var(--offwhite);
+    border: 2px solid var(--light-gray);
+    padding: 40px;
+    margin: 40px 0;
+    border-radius: 0;
+  }
+
+  .template-box h3 {
+    margin-top: 0;
+  }
+
+  .key-principle {
+    background: var(--yellow);
+    border: none;
+    padding: 32px;
+    margin: 40px 0;
+    border-radius: 0;
+  }
+
+  .key-principle h4 {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 2px solid var(--light-gray);
+  }
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid var(--light-gray);
+    font-size: 14px;
+  }
+
+  th {
+    background: var(--offwhite);
+    font-weight: 700;
+    font-family: 'Roboto Slab', serif;
+  }
+
+  .hr-rule {
+    border: none;
+    border-top: 2px solid var(--light-gray);
+    margin: 60px 0;
+  }
+
+  .cta-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 60px;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .cta-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .cta-section p {
+    color: var(--offwhite);
+    font-size: 17px;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-yellow {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 40px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-yellow:hover { background: var(--white); color: var(--black); }
+
+  .download-section {
+    background: var(--offwhite);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .download-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .download-section p {
+    color: var(--gray);
+    font-size: 17px;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav {
+      padding: 18px 24px;
+    }
+
+    .hero, .frameworks-section, .content-section, .cta-section, .download-section {
+      padding: 60px 24px;
+    }
+
+    .frameworks-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <a href="/" class="nav-back">← Back to BrandThnk</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Free Download</p>
+  <h1 class="hero-headline">The Brand Operating System Toolkit</h1>
+  <p class="hero-subtitle">Five frameworks from Think Like a Brand, Not a Bank. Operating tools designed to turn brand conviction into daily practice.</p>
+  <div class="hero-ctas">
+    <a href="#download" class="btn-primary">Download Toolkit (PDF)</a>
+    <a href="#frameworks" class="btn-secondary">Explore Frameworks</a>
+  </div>
+</div>
+
+<!-- FRAMEWORKS OVERVIEW -->
+<div id="frameworks" class="frameworks-section">
+  <h2 style="font-family: 'Roboto Slab', serif; font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 20px;">Five Frameworks to Operationalize Brand Thinking</h2>
+  <div class="frameworks-grid">
+    <div class="framework-card">
+      <div class="framework-number">01</div>
+      <div class="framework-title">F/M/B Mapping</div>
+      <p class="framework-description">Clarify who owns brand execution across your organization without rigid silos.</p>
+      <div class="framework-use-case">Use when: You're unclear on who owns brand execution</div>
+    </div>
+
+    <div class="framework-card">
+      <div class="framework-number">02</div>
+      <div class="framework-title">Box→Edge Positioning</div>
+      <p class="framework-description">Establish category clarity before differentiation. Box first, edge second.</p>
+      <div class="framework-use-case">Use when: Customers can't quickly explain what you do</div>
+    </div>
+
+    <div class="framework-card">
+      <div class="framework-number">03</div>
+      <div class="framework-title">Pain→Promise→Proof</div>
+      <p class="framework-description">Build narrative that matches how brains make decisions. Feel before think.</p>
+      <div class="framework-use-case">Use when: You're leading with features instead of outcomes</div>
+    </div>
+
+    <div class="framework-card">
+      <div class="framework-number">04</div>
+      <div class="framework-title">Assumption Audit</div>
+      <p class="framework-description">Surface beliefs that may be limiting growth. Question what "everyone knows."</p>
+      <div class="framework-use-case">Use when: You suspect your strategy is built on outdated beliefs</div>
+    </div>
+
+    <div class="framework-card">
+      <div class="framework-number">05</div>
+      <div class="framework-title">Creative Brief</div>
+      <p class="framework-description">Set the standard before work begins. Your brand's salt shaker.</p>
+      <div class="framework-use-case">Use when: Projects keep drifting off-message</div>
+    </div>
+  </div>
+</div>
+
+<div class="hr-rule"></div>
+
+<!-- HOW TO USE -->
+<div class="content-section">
+  <h2>How to Get the Most From These Frameworks</h2>
+
+  <ul>
+    <li><strong>Do them with your team.</strong> Misalignment surfaces faster in groups.</li>
+    <li><strong>Write rough first drafts.</strong> Perfection kills momentum.</li>
+    <li><strong>Test outputs with real customers or prospects.</strong> Internal consensus isn't validation.</li>
+    <li><strong>Revisit quarterly.</strong> Markets shift. Assumptions expire.</li>
+  </ul>
+
+  <h3>Recommended Order</h3>
+
+  <p>These templates work independently, but they build on each other. If you're starting from scratch:</p>
+
+  <ol>
+    <li><strong>Assumption Audit</strong> — Surface what you think you know</li>
+    <li><strong>Box→Edge Positioning</strong> — Establish clarity before differentiation</li>
+    <li><strong>Pain→Promise→Proof</strong> — Build your narrative system</li>
+    <li><strong>F/M/B Mapping</strong> — Clarify who owns execution</li>
+    <li><strong>Creative Brief</strong> — Set standards for every project</li>
+  </ol>
+
+  <h3>What's Next?</h3>
+
+  <p>You now have the frameworks. The question is: will you use them?</p>
+
+  <p>Pick one template. Complete it this week. Just completely.</p>
+
+  <p>Then pick another.</p>
+
+  <p>Build the muscle through practice.</p>
+</div>
+
+<!-- DOWNLOAD SECTION -->
+<div id="download" class="download-section">
+  <h2>Download the Complete Toolkit</h2>
+  <p>Get all five frameworks in a single PDF with worksheets, examples, and implementation guidance.</p>
+  <a href="/toolkit/brand-operating-system-toolkit.pdf" class="btn-primary" download>Download PDF Toolkit</a>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Need Help Implementing?</h2>
+  <p>BrandThnk works with fintechs and financial institutions ready to implement brand-first thinking. We help you move from frameworks to execution.</p>
+  <a href="/" class="btn-yellow">Work With BrandThnk</a>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top: 2px solid var(--light-gray); padding: 40px 60px; display: flex; align-items: center; justify-content: space-between; color: var(--gray); font-size: 13px;">
+  <div style="font-family: 'Roboto Slab', serif; font-weight: 700; font-size: 18px; color: var(--black);">BrandThnk</div>
+  <p>© 2026 BrandThnk. All rights reserved.</p>
+  <p>These frameworks are from <strong>Think Like a Brand, Not a Bank</strong> (Second Edition) by Allison Netzer</p>
+</div>
+
+<script>
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

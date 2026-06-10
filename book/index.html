@@ -1,715 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Think Like a Brand, Not a Bank — Second Edition</title>
-    <meta name="description" content="When everyone has a good product, brand becomes your only advantage. The second edition of the book that's changing how financial institutions think about brand.">
-    <meta property="og:title" content="Think Like a Brand, Not a Bank — Second Edition">
-    <meta property="og:description" content="When everyone has a good product, brand becomes your only advantage.">
-    <meta property="og:image" content="https://brandthnk.co/assets/book-cover.png">
-    <meta property="og:url" content="https://brandthnk.co/book">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #000000;
-            --white: #FFFFFF;
-            --yellow: #FFEB3B;
-            --offwhite: #F5F5F5;
-            --font-heading: 'Roboto Slab', serif;
-            --font-body: 'Roboto Mono', monospace;
-            --max-width: 1200px;
-            --gutter: 80px;
-            --section-spacing: 100px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::selection {
-            background: var(--yellow);
-            color: var(--black);
-        }
-
-        a {
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        /* Navigation */
-        .site-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 24px var(--gutter);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--white);
-            border-bottom: 1px solid var(--black);
-        }
-
-        .nav-wordmark {
-            font-family: var(--font-heading);
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: var(--black);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 36px;
-        }
-
-        .nav-links {
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 400;
-            color: #666666;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--black);
-        }
-
-        .nav-cta {
-            background: var(--black);
-            color: var(--white) !important;
-            padding: 10px 22px;
-            border-radius: 0;
-            transition: all 0.2s !important;
-        }
-
-        .nav-cta:hover {
-            background: var(--yellow) !important;
-            color: var(--black) !important;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 160px var(--gutter) var(--section-spacing);
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .book-cover-wrapper {
-            position: sticky;
-            top: 120px;
-        }
-
-        .book-cover {
-            width: 100%;
-            max-width: 380px;
-            height: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .book-cover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
-        }
-
-        .book-formats {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .format-btn {
-            font-family: var(--font-heading);
-            font-size: 14px;
-            font-weight: 700;
-            padding: 14px 28px;
-            border: 2px solid var(--black);
-            background: transparent;
-            transition: all 0.2s ease;
-            text-align: center;
-            flex: 1;
-        }
-
-        .format-btn:hover {
-            background: var(--yellow);
-            border-color: var(--yellow);
-        }
-
-        .format-btn.primary {
-            background: var(--yellow);
-            border-color: var(--yellow);
-        }
-
-        .format-btn.primary:hover {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-        }
-
-        .section-label {
-            font-family: var(--font-body);
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .hero-headline {
-            font-family: var(--font-heading);
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -1px;
-            margin-bottom: 28px;
-        }
-
-        .hero-description {
-            font-family: var(--font-body);
-            font-size: 17px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 55ch;
-        }
-
-        /* Audience */
-        .audience {
-            margin-bottom: 48px;
-        }
-
-        .audience-title {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .audience-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .audience-list li {
-            font-family: var(--font-body);
-            font-size: 15px;
-            line-height: 1.6;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .audience-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--yellow);
-        }
-
-        /* Bonus */
-        .bonus-card {
-            background: var(--offwhite);
-            border-left: 4px solid var(--yellow);
-            padding: 24px 28px;
-        }
-
-        .bonus-title {
-            font-family: var(--font-heading);
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .bonus-text {
-            font-family: var(--font-body);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        /* Frameworks Section */
-        .frameworks-section {
-            padding: var(--section-spacing) var(--gutter);
-            background: var(--offwhite);
-        }
-
-        .frameworks-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .section-heading {
-            font-family: var(--font-heading);
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-        }
-
-        .section-intro {
-            font-family: var(--font-body);
-            font-size: 17px;
-            max-width: 65ch;
-            line-height: 1.7;
-            margin-bottom: 48px;
-        }
-
-        .framework-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .framework-card {
-            border: 2px solid var(--black);
-            padding: 32px;
-            background: var(--white);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .framework-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 6px 6px 0 var(--black);
-        }
-
-        .framework-number {
-            font-family: var(--font-heading);
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--yellow);
-            margin-bottom: 12px;
-        }
-
-        .framework-title {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .framework-text {
-            font-family: var(--font-body);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* Testimonials */
-        .testimonials-section {
-            padding: var(--section-spacing) var(--gutter);
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 48px;
-        }
-
-        .testimonial {
-            padding: 32px;
-            border: 2px solid var(--black);
-        }
-
-        .testimonial-text {
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-family: var(--font-heading);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        /* Principles */
-        .principles-section {
-            padding: var(--section-spacing) var(--gutter);
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .principles-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .principles-section .section-label {
-            color: var(--yellow);
-        }
-
-        .principles-section .section-heading {
-            color: var(--white);
-        }
-
-        .principles-section .section-intro {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .principle-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .principle {
-            border-left: 3px solid var(--yellow);
-            padding-left: 24px;
-        }
-
-        .principle-title {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--white);
-        }
-
-        .principle-text {
-            font-family: var(--font-body);
-            font-size: 14px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Author */
-        .author-section {
-            padding: var(--section-spacing) var(--gutter);
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .author-layout {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 48px;
-            align-items: start;
-        }
-
-        .author-photo {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            filter: grayscale(100%);
-        }
-
-        .author-bio {
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.8;
-            max-width: 60ch;
-        }
-
-        .author-bio strong {
-            font-family: var(--font-heading);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: var(--section-spacing) var(--gutter);
-            background: var(--yellow);
-            text-align: center;
-        }
-
-        .cta-inner {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-headline {
-            font-family: var(--font-heading);
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .cta-section .section-intro {
-            color: var(--black);
-            margin-bottom: 0;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 32px;
-        }
-
-        .cta-btn {
-            font-family: var(--font-heading);
-            font-size: 16px;
-            font-weight: 700;
-            padding: 16px 36px;
-            border: 2px solid var(--black);
-            background: var(--black);
-            color: var(--white);
-            transition: all 0.2s ease;
-        }
-
-        .cta-btn:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .cta-btn.secondary {
-            background: transparent;
-            color: var(--black);
-        }
-
-        .cta-btn.secondary:hover {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        /* Footer */
-        .site-footer {
-            padding: 48px var(--gutter);
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .footer-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-wordmark {
-            font-family: var(--font-heading);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .footer-links a {
-            font-family: var(--font-body);
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--yellow);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            :root {
-                --gutter: 40px;
-            }
-
-            .hero-layout {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .book-cover-wrapper {
-                position: static;
-                max-width: 320px;
-                margin: 0 auto;
-            }
-
-            .framework-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .principle-list {
-                grid-template-columns: 1fr;
-            }
-
-            .author-layout {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .author-photo {
-                max-width: 200px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --gutter: 24px;
-                --section-spacing: 80px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .book-formats {
-                flex-direction: column;
-            }
-
-            .framework-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 24px;
-                text-align: center;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Think Like a Brand, Not a Bank (2nd Edition) | BrandThnk</title>
+<meta name="description" content="The definitive guide to brand strategy for financial services. Available now with free toolkit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --card-bg: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--black); }
+
+  /* TOOLKIT SECTION */
+  .toolkit-section {
+    background: var(--yellow);
+    padding: 80px 60px;
+    margin-top: 100px;
+  }
+
+  .toolkit-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .toolkit-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .toolkit-section p {
+    font-size: 17px;
+    color: var(--black);
+    margin-bottom: 32px;
+    opacity: 0.8;
+  }
+
+  .btn-black {
+    background: var(--black);
+    color: var(--white);
+    padding: 16px 40px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-black:hover { background: var(--white); color: var(--black); }
+</style>
 </head>
 <body>
-    <nav class="site-nav">
-        <a href="/" class="nav-wordmark">BrandThnk</a>
-        <ul class="nav-links">
-            <li><a href="/#offers">Explore Services</a></li>
-            <li><a href="/tools/">Use the Tools</a></li>
-            <li><a href="/briefings/">Read the Briefing</a></li>
-            <li><a href="/book/">Buy the Book</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="nav-cta">Book a Call</a></li>
-        </ul>
-    </nav>
 
-    <section class="hero">
-        <div class="hero-layout">
-            <div class="book-cover-wrapper">
-                <img src="../assets/book-cover.png" alt="Think Like a Brand, Not a Bank - Second Edition by Allison Netzer" class="book-cover">
-                <div class="book-formats">
-                    <a href="https://amzn.to/4cqm80z" class="format-btn primary" target="_blank" rel="noopener">Paperback</a>
-                    <a href="https://amzn.to/4857MSa" class="format-btn" target="_blank" rel="noopener">eBook</a>
-                    <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="format-btn" target="_blank" rel="noopener">Audiobook</a>
-                </div>
-            </div>
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">BrandThnk</a>
+  <a href="/" class="nav-back">← Back to BrandThnk</a>
+</nav>
 
-            <div class="book-details">
-                <div class="section-label">Think Like a Brand, Not a Bank — Second Edition</div>
-                <h1 class="hero-headline">Your competitors are winning on clarity, not product.</h1>
+<!-- TOOLKIT CTA -->
+<div class="toolkit-section">
+  <div class="toolkit-inner">
+    <h2>Included Free: TLAB2 Toolkit</h2>
+    <p>Get the Brand Operating System Toolkit with five complete frameworks you can use immediately. Download includes worksheets, templates, and implementation guides.</p>
+    <a href="/toolkit/" class="btn-black">Download Free Toolkit</a>
+  </div>
+</div>
 
-                <div class="hero-description" style="margin-bottom: 40px;">
-                    <p>You have a strong product and you've invested in marketing — content, campaigns, events, ads — and none of it is breaking through. The instinct is to do more, but more of the wrong thing creates noise, and noise makes you invisible. Most financial brands are built on product features and competitive comparisons. That doesn't create pull.</p>
-                </div>
-
-                <div class="audience">
-                    <div class="audience-title">Who this book is for:</div>
-                    <ul class="audience-list">
-                        <li><strong>CMOs</strong> stuck in campaign mode without organizational buy-in to build something that lasts</li>
-                        <li><strong>CEOs</strong> who keep losing to inferior competitors on pricing</li>
-                        <li><strong>Founders</strong> who've built something worth talking about and can't figure out why the market doesn't see it</li>
-                        <li><strong>Operators</strong> whose daily decisions either reinforce or undermine the brand promise</li>
-                    </ul>
-                </div>
-
-                <div class="bonus-card">
-                    <div class="bonus-title">Included free: TLAB 2 Toolkit</div>
-                    <div class="bonus-text">Six frameworks you can put in front of your leadership team the week you finish reading.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="principles-section">
-        <div class="principles-inner">
-            <div class="section-label">Core Ideas</div>
-            <h2 class="section-heading">Five principles that run through every chapter</h2>
-
-            <div class="principle-list">
-                <div class="principle">
-                    <div class="principle-title">Do the Counterintuitive Thing</div>
-                    <div class="principle-text">Pattern violations force attention. Attention creates memory.</div>
-                </div>
-                <div class="principle">
-                    <div class="principle-title">Embrace Tension and Create Contradictions</div>
-                    <div class="principle-text">Tension isn't a bug. It's a feature. The strings of a piano are tightened to extreme tension. That's what makes the sound.</div>
-                </div>
-                <div class="principle">
-                    <div class="principle-title">Cue the Remix</div>
-                    <div class="principle-text">You're not inventing from scratch. Take what you have and recombine in ways that solve problems differently. Fire bullets, then cannonballs.</div>
-                </div>
-                <div class="principle">
-                    <div class="principle-title">Product Is Proof, Not Promise</div>
-                    <div class="principle-text">Your mobile app, rates, and platform prove you can deliver. The brand is what you enable customers to do or become.</div>
-                </div>
-                <div class="principle">
-                    <div class="principle-title">Coach and Compose</div>
-                    <div class="principle-text">Innovation without implementation is expensive brainstorming. Medals are won in training. You claim them in the race.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="cta-section">
-        <div class="cta-inner">
-            <h2 class="cta-headline">Your product deserves a brand that matches it.</h2>
-            <div class="cta-buttons">
-                <a href="https://amzn.to/4cqm80z" class="cta-btn" target="_blank" rel="noopener">Get the Paperback</a>
-                <a href="https://amzn.to/4857MSa" class="cta-btn secondary" target="_blank" rel="noopener">Get the eBook</a>
-                <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="cta-btn secondary" target="_blank" rel="noopener">Get the Audiobook</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-wordmark">BrandThnk</div>
-            <p style="font-size: 13px; color: rgba(255,255,255,0.7);">© 2026 BrandThnk. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="/about">About</a>
-                <a href="/therapy/">Brand Therapy</a>
-                <a href="#">Privacy</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
