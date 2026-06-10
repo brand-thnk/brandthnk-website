@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Think Like a Brand, Not a Bank (2nd Edition) | BrandThnk</title>
-<meta name="description" content="The definitive guide to brand strategy for financial services. Available now with free toolkit.">
+<meta name="description" content="The definitive guide to brand strategy for financial services. For anyone who suspects that thinking differently about brand could unlock growth.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -66,38 +66,125 @@
 
   .nav-back:hover { color: var(--black); }
 
-  /* TOOLKIT SECTION */
-  .toolkit-section {
-    background: var(--yellow);
+  /* GENERAL SECTIONS */
+  .section {
     padding: 80px 60px;
-    margin-top: 100px;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
-  .toolkit-inner {
-    max-width: 1000px;
+  .section-small {
+    padding: 60px 60px;
+  }
+
+  /* HERO SECTION */
+  .hero-section {
+    padding: 140px 60px 80px;
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
 
-  .toolkit-section h2 {
+  .hero-section h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .hero-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--black);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ROLE SECTIONS */
+  .role-section {
+    background: var(--offwhite);
+    border-left: 4px solid var(--yellow);
+    padding: 40px;
+    margin: 32px 0;
+  }
+
+  .role-section h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+
+  .role-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  /* BENEFITS SECTION */
+  .benefits-section {
+    background: var(--white);
+    padding: 80px 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .benefits-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--black);
+  }
+
+  .benefits-section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  /* PURCHASE SECTION */
+  .purchase-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 60px;
+    text-align: center;
+  }
+
+  .purchase-section h2 {
     font-family: 'Roboto Slab', serif;
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--black);
-  }
-
-  .toolkit-section p {
-    font-size: 17px;
-    color: var(--black);
     margin-bottom: 32px;
-    opacity: 0.8;
+    color: var(--white);
   }
 
-  .btn-black {
-    background: var(--black);
-    color: var(--white);
-    padding: 16px 40px;
+  .purchase-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    padding: 16px 32px;
     font-size: 15px;
     font-weight: 400;
     border: none;
@@ -109,7 +196,96 @@
     font-family: 'Roboto Mono', monospace;
   }
 
-  .btn-black:hover { background: var(--white); color: var(--black); }
+  .btn-primary:hover { background: var(--white); color: var(--black); }
+
+  /* TOOLKIT SECTION */
+  .toolkit-section {
+    background: var(--offwhite);
+    padding: 60px 60px;
+  }
+
+  .toolkit-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .toolkit-section h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+
+  .toolkit-section p {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid var(--black);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  /* PERSONAL NOTE SECTION */
+  .personal-section {
+    padding: 60px 60px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .personal-section p {
+    font-size: 17px;
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .signature {
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--gray);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav {
+      padding: 18px 24px;
+    }
+
+    .section, .hero-section, .benefits-section, .purchase-section, .toolkit-section, .personal-section {
+      padding: 60px 24px;
+    }
+
+    .hero-section {
+      padding: 120px 24px 60px;
+    }
+
+    .role-section {
+      margin: 24px 0;
+      padding: 32px 24px;
+    }
+
+    .purchase-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 </style>
 </head>
 <body>
@@ -120,13 +296,74 @@
   <a href="/" class="nav-back">← Back to BrandThnk</a>
 </nav>
 
-<!-- TOOLKIT CTA -->
+<!-- HERO SECTION -->
+<div class="hero-section">
+  <h1>Think Like a Brand, Not a Bank</h1>
+  <p class="hero-subtitle">Second Edition</p>
+  <div class="hero-description">
+    <p>This book is for anyone in financial services who suspects that thinking differently about brand could unlock growth but isn't sure where to start.</p>
+  </div>
+  <a href="#purchase" class="btn-primary">Get the Book</a>
+</div>
+
+<!-- ROLE-BASED SECTIONS -->
+<div class="section">
+  <div class="role-section">
+    <h3>If you're a CEO, President, Founder:</h3>
+    <p>This book shows why brand is the strategic layer determining whether you compete on differentiation or commoditization. You'll get frameworks to operationalize brand thinking across your entire organization.</p>
+  </div>
+
+  <div class="role-section">
+    <h3>If you're in Marketing:</h3>
+    <p>This book gives you the language and frameworks to elevate brand from a marketing responsibility to an organizational operating system—making brand everyone's job without it becoming no one's job.</p>
+  </div>
+
+  <div class="role-section">
+    <h3>If you're in Product:</h3>
+    <p>This book shows how brand thinking (not just branding) accelerates growth, reduces friction, and creates loyalty that turns users into advocates.</p>
+  </div>
+</div>
+
+<!-- BENEFITS SECTION -->
+<div class="benefits-section">
+  <h2>What You'll Get Out Of It (No Matter What)</h2>
+
+  <p>Everything in this book has been tested with banks, credit unions, fintechs, and platforms navigating the same challenges you are.</p>
+
+  <p>After reading it, you'll understand why brand isn't soft, optional, or marketing's job and you'll learn the neuroscience behind why customers make decisions (spoiler: it's not rational).</p>
+
+  <p>There are plenty of frameworks included to help you like the Frontline/Midline/Backline (F/M/B) Model™ that gives you a clear structure for how brand thinking actually gets executed across your entire organization—not just in marketing, but in operations, product, customer experience, and leadership.</p>
+
+  <p>And it wouldn't be a business book without principles! This edition has the same 5 principles as the first, but with more clarity, data and stories.</p>
+
+  <p>Last, but not least, this book gives you the language and evidence to convince people that brand is strategic and measurable.</p>
+
+  <p>Every organization is different and this book doesn't give you a one-size-fits-all playbook. It gives you principles, frameworks, and examples you can adapt to your specific context. You'll finish knowing where to start (even without buy-in), what to prioritize (when everything feels important), how to measure progress (beyond vanity metrics), and when to push through resistance versus when to adjust course.</p>
+</div>
+
+<!-- PURCHASE SECTION -->
+<div id="purchase" class="purchase-section">
+  <h2>Available Now</h2>
+  <div class="purchase-buttons">
+    <a href="https://www.amazon.com/dp/B0D8KQXMTH" class="btn-primary" target="_blank">Buy Paperback</a>
+    <a href="https://www.amazon.com/dp/B0D8KQXMTH" class="btn-primary" target="_blank">Buy Ebook</a>
+    <a href="https://allisonthinker.gumroad.com/l/tlabaudio" class="btn-primary" target="_blank">Buy Audiobook</a>
+  </div>
+</div>
+
+<!-- TOOLKIT SECTION -->
 <div class="toolkit-section">
   <div class="toolkit-inner">
-    <h2>Included Free: TLAB2 Toolkit</h2>
-    <p>Get the Brand Operating System Toolkit with five complete frameworks you can use immediately. Download includes worksheets, templates, and implementation guides.</p>
-    <a href="/toolkit/" class="btn-black">Download Free Toolkit</a>
+    <h2>Also Available: The Brand Operating System Toolkit</h2>
+    <p>Five complete frameworks from the book designed as practical implementation tools. Includes worksheets, templates, and step-by-step guides.</p>
+    <a href="/toolkit/" class="btn-secondary">Explore the Toolkit</a>
   </div>
+</div>
+
+<!-- PERSONAL NOTE -->
+<div class="personal-section">
+  <p>Happy Reading!</p>
+  <p class="signature">—Allison</p>
 </div>
 
 </body>
