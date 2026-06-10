@@ -950,7 +950,28 @@
 
 <script>
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#insights-form', formId: 'xqegyyrq' });
+
+  // Initialize Formspree with success/error handling
+  formspree('initForm', {
+    formElement: '#insights-form',
+    formId: 'xqegyyrq',
+    onSuccess: function() {
+      // Hide the form and show success message
+      document.getElementById('insights-form').style.display = 'none';
+      const successEl = document.querySelector('[data-fs-success]');
+      if (successEl) {
+        successEl.style.display = 'block';
+      }
+    },
+    onError: function(errors) {
+      // Show error message
+      const errorEl = document.querySelector('[data-fs-error]');
+      if (errorEl) {
+        errorEl.style.display = 'block';
+        errorEl.textContent = 'Sorry, there was a problem submitting your request. Please try again.';
+      }
+    }
+  });
 
   // Mobile menu toggle functionality
   document.addEventListener('DOMContentLoaded', function() {
