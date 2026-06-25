@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrandThnk | How We Partner With You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 60px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-meta {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+  /* HERO */
+  .hero { padding: 96px 0 56px; }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 700;
+    line-height: 1.0;
+    margin-bottom: 36px;
+  }
+  .hero h1 .em {
+    font-style: italic;
+    color: transparent;
+    background: linear-gradient(135deg, var(--yellow) 0%, #FFD700 50%, var(--yellow) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 2px 4px 12px rgba(255, 235, 59, 0.3);
+  }
+  .premise p { font-size: 19px; line-height: 1.75; max-width: 780px; color: var(--gray); margin-bottom: 22px; }
+  .premise p:first-child { color: var(--black); }
+  .premise p strong { color: var(--black); font-weight: 700; }
+
+  /* BLACK QUOTE SECTION */
+  .quote-section {
+    background: var(--black);
+    color: var(--white);
+    padding: 84px 0;
+    margin: 80px 0;
+  }
+  .quote-section .wrap { text-align: center; }
+  .quote-section .mark {
+    font-family: 'Roboto Slab', serif;
+    font-size: 80px;
+    color: var(--yellow);
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 28px;
+  }
+  .quote-section p {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.3;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .quote-section .em { color: var(--yellow); font-style: italic; }
+
+  /* SECTION HEADER */
+  .section { padding: 24px 0 48px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 700;
+    line-height: 1.12;
+    margin-bottom: 8px;
+  }
+  .section-title .tick { color: var(--yellow); }
+  .section-intro { font-size: 18px; line-height: 1.7; color: var(--gray); max-width: 780px; margin-top: 20px; }
+  .section-intro strong { color: var(--black); font-weight: 700; }
+  .section-intro + .section-intro { margin-top: 14px; }
+
+  /* WEEK / PHASE CARDS */
+  .phases { margin-top: 44px; display: grid; gap: 24px; }
+  .card {
+    border: 2px solid var(--black);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 44px;
+  }
+  .card .chead .pnum {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--yellow);
+    line-height: 1;
+    -webkit-text-stroke: 1px var(--black);
+    margin-bottom: 12px;
+  }
+  .card .chead .ph {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.15;
+  }
+  .card .cbody > p { color: var(--gray); }
+  .card .cbody > p strong { color: var(--black); font-weight: 700; }
+  .card .cbody > p em { font-style: italic; color: var(--black); font-weight: 700; }
+  .io-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 700;
+    margin: 22px 0 10px;
+  }
+  .card .cbody ul { list-style: none; }
+  .card .cbody li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 9px;
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .card .cbody li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 8px;
+    width: 10px; height: 10px;
+    background: var(--yellow);
+  }
+  .output {
+    margin-top: 22px;
+    background: var(--offwhite);
+    border-left: 5px solid var(--yellow);
+    padding: 18px 22px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--black);
+  }
+  .output .ol {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .output strong { font-weight: 700; }
+
+  /* REQUIRES */
+  .requires {
+    background: var(--offwhite);
+    border-left: 6px solid var(--yellow);
+    padding: 44px 48px;
+    margin-top: 8px;
+  }
+  .requires p { font-size: 18px; line-height: 1.7; color: var(--black); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 56px 0;
+    margin-top: 96px;
+  }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  footer .flogo { font-family: 'Roboto Slab', serif; font-weight: 700; font-size: 24px; }
+  footer .fmeta { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--light-gray); }
+
+  @media (max-width: 760px) {
+    nav, .wrap { padding-left: 24px; padding-right: 24px; }
+    .card { grid-template-columns: 1fr; gap: 18px; padding: 28px 24px; }
+  }
+
+  /* PRINT / PDF */
+  @media print {
+    @page { size: A4; margin: 18mm 16mm; }
+    body { font-size: 12px; }
+    nav { padding: 0 0 14px; }
+    .hero { padding: 28px 0 24px; }
+    .hero h1 { font-size: 46px; }
+    /* gradient text-clip is invisible in PDF engines; force a solid fill */
+    .hero h1 .em {
+      color: #B8860B;
+      -webkit-text-fill-color: #B8860B;
+      background: none;
+      text-shadow: none;
+    }
+    .premise p { font-size: 13px; }
+    .quote-section { margin: 28px 0; padding: 40px 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; break-inside: avoid; }
+    .quote-section p { font-size: 22px; }
+    .section { padding: 14px 0 22px; break-inside: avoid; }
+    .section-title { font-size: 28px; }
+    .card { break-inside: avoid; padding: 22px 26px; }
+    .card .chead .pnum { -webkit-text-stroke: 0.5px var(--black); }
+    .output, .requires, .stat, footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    footer { margin-top: 32px; }
+    .wrap { max-width: none; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">BrandThnk</a>
+    <span class="nav-meta">Partnership Overview</span>
+  </nav>
+
+  <!-- HERO / PREMISE -->
+  <header class="hero">
+    <div class="wrap">
+      <h1>How We Partner<br><span class="em">With You</span></h1>
+      <div class="premise">
+        <p><strong>Most large financial institutions operate with brand in one lane and product marketing in another.</strong></p>
+        <p>The brand side lives as a sponsorship layer that's broad and credibility-building, but hard to tie to growth. The product side runs performance campaigns that drive revenue but feel disconnected from the larger story. Unfortunately, the market ends up hearing a lot without hearing anything clearly.</p>
+        <p>True market influence works more like surround sound. BrandThnk collaborates with you to build the positioning, messaging architecture, and go-to-market model that connect brand and product into a single system that creates this surround sound effect.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <div class="wrap">
+      <span class="mark">&ldquo;</span>
+      <p>Your customers should <span class="em">hear</span> the brand in different ways, from different directions, at different moments.</p>
+    </div>
+  </div>
+
+  <!-- PRACTICE -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">Practice</h2>
+      <p class="section-intro">We work with a maximum of two clients at a time, and our engagements are intentionally built so your team can carry it forward step by step. As a small shop, we don't win by keeping you dependent on our services.</p>
+      <p class="section-intro"><strong>Allison Netzer</strong> leads the work directly, supported by a team of four: a designer, a copywriter, a personal branding specialist, and operations.</p>
+    </div>
+  </section>
+
+  <!-- PROJECT PLAN -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">Project Plan (Example)</h2>
+
+      <div class="phases">
+
+        <div class="card">
+          <div class="chead"><div class="pnum">01</div><div class="ph">Deep Discovery</div></div>
+          <div class="cbody">
+            <p>Before we touch messaging or positioning, we get clear on what's broken. It's usually a misalignment: the product story is strong, the brand story is strong, but the customer hears neither clearly.</p>
+            <div class="io-label">Inputs</div>
+            <ul>
+              <li>Stakeholder interviews across marketing, product, sales, and executive leadership</li>
+              <li>Audit of existing brand, messaging, and go-to-market plans</li>
+              <li>Identify internal blockers and external whitespace</li>
+              <li>Define what breakthrough actually looks like for the business</li>
+            </ul>
+            <div class="output"><span class="ol">Output</span><strong>Strategy Brief</strong> with distilled insights, aligned goals, and a shared lens the rest of the engagement builds on.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><div class="pnum">02</div><div class="ph">Positioning Lab</div></div>
+          <div class="cbody">
+            <p>This is where the brand and product stories become one story. For institutions with deep market credibility, the opportunity is to find the sharpest articulation of your "why now" and build messaging that flows from brand down through product lines in a coherent hierarchy.</p>
+            <div class="io-label">Inputs</div>
+            <ul>
+              <li>Core narrative, proof points, and audience resonance mapping</li>
+              <li>Clarify what you are and what you are not</li>
+              <li>Build a messaging hierarchy from institutional brand down to product-level campaigns</li>
+            </ul>
+            <div class="output"><span class="ol">Output</span>New <strong>Brand Positioning Map</strong> and <strong>Messaging Framework</strong>.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><div class="pnum">03</div><div class="ph">Go-to-Market Model</div></div>
+          <div class="cbody">
+            <p>This week we build the go-to-market model grounded in business reality, where the proposed shift becomes operational: aligning product moments with brand moments so the market experiences one institution in surround sound instead of what feels like different banks.</p>
+            <div class="io-label">Inputs</div>
+            <ul>
+              <li>Select best-fit channels for your audiences and competitive dynamics</li>
+              <li>Align product moments with marketing moments</li>
+              <li>Define what "launch-ready" means and what follows it</li>
+            </ul>
+            <div class="output"><span class="ol">Output</span><strong>90-Day GTM Activation Plan</strong> with milestones, roles, content hooks, and leverage points.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><div class="pnum">04</div><div class="ph">Strategy-to-Execution Bridge</div></div>
+          <div class="cbody">
+            <p>This phase is about embedding the new platform into how the organization operates, and that means identifying the skeptics early and bringing them into the process. The rollout plan has to change language <em>and</em> behavior.</p>
+            <div class="io-label">Inputs</div>
+            <ul>
+              <li>Work with internal teams to prepare activation across functions</li>
+              <li>Set up internal documentation and operating norms</li>
+              <li>Coach teams and agencies on adoption and adaptation</li>
+            </ul>
+            <div class="output"><span class="ol">Output</span><strong>Internal Playbook.</strong></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><div class="pnum">05</div><div class="ph">Feedback Loop Setup</div></div>
+          <div class="cbody">
+            <p>Markets move, and the strategy has to flex without losing its shape. This week we build the measurement rhythm that ties brand and go-to-market performance to business outcomes and gives the team a system for knowing when to adjust and when to hold.</p>
+            <div class="io-label">Inputs</div>
+            <ul>
+              <li>Set KPIs tied to business outcomes</li>
+              <li>Build a rhythm for reflection and course correction</li>
+              <li>Define what "working" looks like</li>
+            </ul>
+            <div class="output"><span class="ol">Output</span><strong>Impact Dashboard Template</strong> with guidance on how to read, report, and act on what you see.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chead"><div class="pnum">06</div><div class="ph">Executive Strategy Session</div></div>
+          <div class="cbody">
+            <p>The work only holds if leadership owns it. The final week is a working session with your senior leadership where we'll co-present the full strategy, make the case for change, and map what comes next.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">Requirements</h2>
+      <div class="requires">
+        <p>A core team of 3–5 stakeholders who can commit to weekly working sessions and have the authority to make decisions. Access to customer-facing teams and relevant data. Cross-functional participation (particularly from product and product marketing) and a willingness to hear things that might be uncomfortable.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="flogo">BrandThnk</div>
+    </div>
+  </footer>
+
+</body>
+</html>
