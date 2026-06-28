@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandThnk Breakthrough Proposal — MembersFirst Credit Union</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Proposal Content */
+        .proposal-content {
+            margin-bottom: 48px;
+        }
+
+        .proposal-content h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .proposal-content h2 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .proposal-content h3 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+
+        .proposal-content p {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .proposal-content ul {
+            font-size: 14px;
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .proposal-content li {
+            margin-bottom: 8px;
+        }
+
+        .proposal-meta {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+            border-left: 4px solid var(--yellow);
+        }
+
+        .proposal-meta p {
+            margin-bottom: 8px;
+        }
+
+        .proposal-meta strong {
+            font-weight: 700;
+        }
+
+        /* Phase Cards */
+        .phase-card {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--black);
+        }
+
+        .phase-card h3 {
+            margin-top: 0;
+        }
+
+        .phase-card .deliverable {
+            font-size: 13px;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+
+        .phase-card .deliverable strong {
+            font-weight: 700;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--offwhite);
+            padding: 32px;
+            margin: 32px 0;
+            border: 2px solid var(--black);
+        }
+
+        .pricing-section h2 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 24px;
+            text-align: center;
+            border: none;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+            text-align: center;
+        }
+
+        .price-subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: #666;
+        }
+
+        .payment-schedule {
+            background: var(--white);
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .payment-schedule h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .payment-schedule p {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: var(--yellow);
+            padding: 2px 4px;
+            font-weight: 700;
+        }
+
+        /* Contact Action */
+        .contact-section {
+            background: var(--yellow);
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-section p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: #333;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 16px;
+            }
+
+            .proposal-content h1 {
+                font-size: 28px;
+            }
+
+            .proposal-content h2 {
+                font-size: 18px;
+            }
+
+            .price {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BrandThnk</div>
+            <div class="tagline">Build a Growth Brand</div>
+        </header>
+
+        <main>
+            <div class="proposal-content">
+                <h1>BrandThnk Breakthrough</h1>
+
+                <div class="proposal-meta">
+                    <p><strong>Prepared for:</strong> Terry Hardy, MembersFirst Credit Union</p>
+                    <p><strong>Prepared by:</strong> Allison Netzer, BrandThnk</p>
+                    <p><strong>Engagement:</strong> 8-week positioning and go-to-market sprint</p>
+                    <p><strong>Proposed start:</strong> August 2026</p>
+                </div>
+
+                <h2>The opportunity</h2>
+                <p>MembersFirst has built something members trust. The challenge is the gap between what you've built and what the market understands you've built.</p>
+
+                <p>In a category where most institutions sound the same, sameness is expensive. It shows up as harder member acquisition, slower growth in the products that matter, and a story that depends on the people in the room to land. When the brand can't carry the message on its own, every campaign starts from zero.</p>
+
+                <p>The Breakthrough closes that gap. In eight weeks we'll define what makes MembersFirst different, build the messaging and go-to-market system to express it, and hand your team a playbook they can run without us.</p>
+
+                <h2>How the Breakthrough works</h2>
+                <p>This is a focused sprint, not an open-ended retainer. We work in four phases, each producing a concrete asset your team keeps and uses. We move from clarity, to positioning, to activation, to handoff, so the work is owned internally by the time we're done.</p>
+
+                <div class="phase-card">
+                    <h3>Phase One — Discovery and Diagnosis</h3>
+                    <p>We start by getting underneath the brand. Stakeholder interviews across leadership, marketing, and frontline, plus a messaging audit of how MembersFirst shows up today versus how the market reads it. We surface where members agree, where they don't, and where the real differentiation lives.</p>
+                    <p class="deliverable"><strong>You get:</strong> a Strategy Brief that distills the insight, aligns the team on goals, and sets a shared lens for the work ahead.</p>
+                </div>
+
+                <div class="phase-card">
+                    <h3>Phase Two — Positioning and Narrative</h3>
+                    <p>We define the core narrative and the messaging hierarchy underneath it: what MembersFirst stands for, who it serves best, and the proof that makes the claim credible. This becomes the spine every campaign, branch, and conversation pulls from.</p>
+                    <p class="deliverable"><strong>You get:</strong> a Brand Positioning Map and Messaging Framework your team can apply across every channel.</p>
+                </div>
+
+                <div class="phase-card">
+                    <h3>Phase Three — Go-to-Market and Activation</h3>
+                    <p>Positioning only matters if it ships. We translate the narrative into a practical activation model: which channels, which audiences, which hooks, and how to turn member trust into advocacy and referral. The plan is built around your real capacity, not an agency wish list.</p>
+                    <p class="deliverable"><strong>You get:</strong> a 90-Day GTM Activation Plan with milestones, roles, and content hooks, plus a Distribution and Advocacy Toolkit.</p>
+                </div>
+
+                <div class="phase-card">
+                    <h3>Phase Four — Enablement and Handoff</h3>
+                    <p>We coach your team to run the system, document how it works, and set the measurement that tells you it's working. We close with an executive session that maps the next moves and confirms ownership inside MembersFirst.</p>
+                    <p class="deliverable"><strong>You get:</strong> an Internal Playbook with training, a KPI and measurement framework, and an Executive Debrief that puts the strategy in leadership's hands.</p>
+                </div>
+
+                <h2>What you walk away with</h2>
+                <ul>
+                    <li>A Strategy Brief with the insight and alignment behind the work</li>
+                    <li>A Brand Positioning Map and Messaging Framework</li>
+                    <li>A 90-Day Go-to-Market Activation Plan</li>
+                    <li>A Distribution and Advocacy Toolkit</li>
+                    <li>An Internal Playbook with a live team training session</li>
+                    <li>A KPI and measurement framework to track impact</li>
+                    <li>An Executive Debrief presentation for leadership</li>
+                </ul>
+
+                <h2>Why this is different</h2>
+                <p>Most strategy engagements end with a deck on a shelf. The Breakthrough is built so your team owns and evolves the work. We collaborate directly with leadership, marketing, and frontline throughout, so by week eight the people who'll run it already understand it. You get a system, not a one-time campaign.</p>
+
+                <h2>What we'll need from MembersFirst</h2>
+                <ul>
+                    <li>A designated point of contact and access to key stakeholders for interviews</li>
+                    <li>Existing brand, messaging, and campaign materials</li>
+                    <li>Relevant member and market research, if available</li>
+                    <li>Reasonable leadership review time for feedback and approvals</li>
+                </ul>
+            </div>
+
+            <div class="pricing-section">
+                <h2>Investment</h2>
+                <div class="price">$25,000</div>
+                <p class="price-subtitle">Fixed fee, 8-week engagement</p>
+
+                <div class="payment-schedule">
+                    <h4>Payment Schedule</h4>
+                    <p><strong>50% at kickoff</strong> — $12,500</p>
+                    <p><strong>50% upon final delivery</strong> — $12,500</p>
+                </div>
+            </div>
+
+            <div class="proposal-content">
+                <h2>Assumptions</h2>
+                <ul>
+                    <li>MembersFirst will designate stakeholders for timely review and decision-making</li>
+                    <li>We'll have access to the background materials needed to assess current positioning</li>
+                    <li>The engagement focuses on strategy, positioning, go-to-market design, and enablement, not ongoing daily execution</li>
+                    <li>Your internal team owns execution after handoff unless a separate scope is created</li>
+                </ul>
+
+                <h2>Closing</h2>
+                <p>MembersFirst doesn't need to sound like every other institution to grow. It needs a clear story, a system to tell it, and a team confident enough to run that system on its own.</p>
+
+                <p>That's what the Breakthrough delivers. Eight weeks from kickoff, you'll have the positioning, the plan, and the playbook to build a growth brand from here.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3>Ready to start?</h3>
+                <p>A 30-minute call is enough to confirm the Breakthrough is the right fit and lock a start date.</p>
+                <a href="mailto:allison@brandthnk.co?subject=BrandThnk%20Breakthrough%20—%20MembersFirst" class="contact-btn">Let's Talk</a>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <p>© 2026 BrandThnk. Strategic Brand Partners for Financial Services.</p>
+            <p>Questions? Contact allison@brandthnk.co | brandthnk.co</p>
+        </footer>
+    </div>
+</body>
+</html>
