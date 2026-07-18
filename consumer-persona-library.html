@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumer Persona Library — Community & Regional Bank Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #FFFFFF;
+            color: #000000;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .page {
+            width: 8.5in;
+            min-height: 11in;
+            margin: 0 auto;
+            padding: 0.75in;
+            page-break-after: always;
+            background-color: #FFFFFF;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .brandthnk-logo {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            background-color: #FFEB3B;
+            padding: 8px 16px;
+            display: inline-block;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .intro-text p {
+            margin-bottom: 16px;
+        }
+
+        .persona-card {
+            border: 2px solid #000000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 40px 0;
+        }
+
+        .persona-header {
+            background-color: #000000;
+            color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .persona-number {
+            font-family: 'Roboto Slab', serif;
+            font-size: 48px;
+            font-weight: 700;
+            float: left;
+            margin-right: 20px;
+            line-height: 1;
+        }
+
+        .persona-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .persona-tagline {
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .persona-body {
+            padding: 20px;
+            background-color: #F5F5F5;
+        }
+
+        .persona-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            color: #666;
+        }
+
+        .stat-value {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .section-content {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .section-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .section-content li {
+            margin-bottom: 4px;
+        }
+
+        .section-content li:before {
+            content: "• ";
+            color: #FFEB3B;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .sources-box {
+            background-color: #F5F5F5;
+            border-left: 4px solid #FFEB3B;
+            padding: 12px;
+            margin-top: 16px;
+        }
+
+        .sources-title {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .sources-content {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .matrix-table th {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+        }
+
+        .matrix-table .persona-name {
+            background-color: #FFEB3B;
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background-color: #FFEB3B;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0.5in;
+            left: 0.75in;
+            right: 0.75in;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            border-top: 1px solid #000000;
+            padding-top: 8px;
+        }
+
+        @media print {
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Title Page -->
+    <div class="page">
+        <div class="brandthnk-logo">brandthnk.co</div>
+
+        <div class="header">
+            <div class="subtitle">A Practitioner Tool for Community & Regional Banks</div>
+
+            <h1>Consumer Persona Library</h1>
+            <h2 style="margin-bottom: 40px;">Community & Regional Bank Edition</h2>
+
+            <div class="intro-text">
+                <h3>An aspirations-based approach to consumer segmentation</h3>
+
+                <p>Most segmentation stops at demographics — it tells you where a customer is today, but not where they are trying to go. This library is built on a different premise: personas are defined not just by who people are, but by what they aspire to. Aspiration is the difference between "a 34-year-old renter earning $72,000" and "someone one step from owning their first home, for roots, not status." The second framing is what a bank can actually act on.</p>
+
+                <p>Here, aspirations are not guessed. They are inferred from demographic anchors cross-referenced against publicly available survey data — from Pew, Gallup, the National Association of Realtors, Cerulli, the FDIC, and others — and validated against insights from 50+ community and regional bank strategy workshops conducted by brandthnk.co (2018–2026). Each persona pairs a concrete demographic profile with an evidence-backed read on where that person wants to go next, so messaging and product strategy can meet them on the path rather than at the starting line.</p>
+
+                <p><strong>Use 2–3 personas as a focus, not a ceiling.</strong> The strongest community and regional bank strategies pick a small number of aspirations to own deeply rather than addressing all eight at once. Choose the personas that fit your market, your products, and your ambition — and let the rest inform the edges.</p>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            This aspirations-based persona approach was developed by Allison Netzer and brandthnk.co, a boutique brand and growth strategy collective for financial institutions and fintechs.
+        </div>
+    </div>
+
+    <!-- Page 2: The Launchpad -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">01</div>
+                <div>
+                    <div class="persona-title">The Launchpad</div>
+                    <div class="persona-tagline">Not behind — just getting started, and determined to build something real.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">22–32</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$35K–$65K</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Recent grad / early career</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Employed, likely renting</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Financial independence and a real start. They want to stop feeling behind and build something real — a savings cushion, a credit history, eventually a home. They're not chasing wealth; they're chasing stability and proof they can do this.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Only 39% of 21-year-olds work full time today versus 64% in 1980, and just 25% are financially independent versus 42% in 1980 (Pew Research, 2023) — yet 64% of Americans still believe young adults should be independent by 22 (Pew, 2019).</li>
+                            <li>71% of Gen Z and Millennials say wealth-building opportunities are becoming less achievable and 57% feel their generation was set up for financial failure, even as homeownership remains a top aspiration (Operation HOPE / Beyond Finance, 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>First checking and savings accounts with no minimum balance</li>
+                            <li>Credit-builder products and financial literacy resources</li>
+                            <li>Mobile-first access designed for digital natives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Pew Research Center (2023). Young adults in the U.S. are reaching key life milestones later than in the past. pewresearch.org<br>
+                        Pew Research Center (2019). Majority of Americans say parents do too much for their young adult children. pewresearch.org<br>
+                        Operation HOPE / Beyond Finance (2026). Gen Z & Millennial Wealth-Building Survey. operationhope.org
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>2</span>
+        </div>
+    </div>
+
+    <!-- Page 3: The Breakthrough -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">02</div>
+                <div>
+                    <div class="persona-title">The Breakthrough</div>
+                    <div class="persona-tagline">Breaking through the weight of debt — ready to make money feel like theirs again.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">28–45</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$55K–$120K</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Established, carrying debt</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Full-time / dual-income</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Freedom from debt, on their own terms. They want to stop being owned by their past financial decisions and start making choices that feel like theirs. Debt payoff is the goal; financial breathing room is the dream.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Among workers without access to retirement plans, paying down or paying off debt was the #1 short-term financial goal — cited by 44%–69% depending on race and ethnicity (Pew Charitable Trusts, 2024).</li>
+                            <li>More than 40% of Millennials and Gen Z report challenges with saving, paying down debt, and maintaining financial confidence, with many preoccupied by immediate concerns — security before wealth (Operation HOPE / Beyond Finance, 2026; Pew, 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Debt consolidation loans and HELOC options</li>
+                            <li>Automatic savings features that build margin quietly</li>
+                            <li>Simple, transparent fee structures with no surprises</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Pew Charitable Trusts (2024). Workers without access to retirement benefits struggle to build wealth. pewtrusts.org<br>
+                        Operation HOPE / Beyond Finance (2026). Gen Z & Millennial Wealth-Building Survey. operationhope.org<br>
+                        Pew Research Center (2026). How Americans' Views on Wealth and Retirement Differ. pew.org<br>
+                        brandthnk.co — 50+ Community & Regional Bank Workshops (2018–2026). brandthnk.co
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>3</span>
+        </div>
+    </div>
+
+    <!-- Page 4: The Threshold -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">03</div>
+                <div>
+                    <div class="persona-title">The Threshold</div>
+                    <div class="persona-tagline">One step from owning — not for status, but for roots.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">28–42</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$60K–$110K</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Aspiring first-time buyer</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Employed, currently renting</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Owning a home — not for status, but for roots. They want a place that's theirs, a stable address for their family, and proof that they made it to the next chapter. The barrier isn't desire; it's the gap between where they are and where they need to be.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>First-time buyers' median age hit an all-time high of 40 and their share fell to a historic low of 21% (NAR 2025) — yet 95% of adults ages 18–44 still desire to own a home (National MI NextGen Homebuyer Report, 2025) and 67% of Gen Z call it an important lifetime goal (Realtor.com Gen Z Survey, Oct 2025).</li>
+                            <li>Even so, only 25% of non-homeowners expect to buy within five years — the lowest share Gallup has ever recorded (Gallup, 2026) — and 75% of Gen Z and Millennials say financial knowledge alone won't make homeownership attainable (Operation HOPE / Beyond Finance, 2026). This is a structural gap, not a motivation gap.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>First-time homebuyer loan programs and down payment assistance guidance</li>
+                            <li>Pre-qualification education plus FHFA / USDA loan products</li>
+                            <li>Savings accounts earmarked for a down payment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        NAR (2025). First-Time Home Buyer Share Falls to Historic Low of 21%, Median Age Rises to 40. nar.realtor<br>
+                        National MI NextGen Homebuyer Report (2025). nationalmi.com<br>
+                        Realtor.com Gen Z Survey (Oct 2025). realtor.com<br>
+                        Gallup (2026). Homebuying Intentions Decline Further. news.gallup.com<br>
+                        Operation HOPE / Beyond Finance (2026). Gen Z & Millennial Wealth-Building Survey. operationhope.org
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>4</span>
+        </div>
+    </div>
+
+    <!-- Page 5: The Maker -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header" style="background-color: #B8860B;">
+                <div class="persona-number">04</div>
+                <div>
+                    <div class="persona-title">The Maker</div>
+                    <div class="persona-tagline">Tired of building someone else's vision — ready to bet on a business of their own.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">25–50</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$30K–$150K (varies)</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Starting / just started a business</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Employed / founder</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Being their own boss — not someday, but soon. They're tired of building someone else's vision and want to bet on themselves. The dream isn't just income; it's autonomy, flexibility, and the right to define what success looks like.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>62% of U.S. adults prefer to be their own boss and 52% are willing to accept financial risk to do so, yet lack of funding is the #1 barrier (cited by 60%) and access to business loans by 24% (Gallup / Shopify Entrepreneurship Study, 2024).</li>
+                            <li>36% of Black adults say owning a business is essential or important to their definition of financial success, and 30% of Asian Americans say it's important to their American Dream (Pew Research, 2024).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>SBA loans, small business lending, and business lines of credit</li>
+                            <li>Business checking accounts and cash flow management tools</li>
+                            <li>A banker-as-advisor relationship, not a transaction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Gallup / Shopify Entrepreneurship Study (2024). Desire to Be Own Boss Widely Held in U.S. gallup.com<br>
+                        Pew Research Center (2024). A look at small businesses in the U.S. pewresearch.org<br>
+                        brandthnk.co — 50+ Community & Regional Bank Workshops (2018–2026). brandthnk.co
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>5</span>
+        </div>
+    </div>
+
+    <!-- Page 6: The Pivot -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">05</div>
+                <div>
+                    <div class="persona-title">The Pivot</div>
+                    <div class="persona-tagline">Not reinventing a business — reinventing themselves. The second act is a new identity, not just a new job.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">45–62</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$70K–$150K</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Career / life reinvention</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Mid-to-senior, planning a leap</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        A second act on their own terms. They've built enough to take a calculated risk, and they're done waiting for permission. The aspiration is not retirement — it's reinvention: a new career path, a new identity, a new chapter of purpose. This is not The Maker's bet on a specific business idea; it's something deeper — autonomy through becoming someone new.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Workers now plan to retire at 66 versus 60 in 1995, but only 34% define retirement as stopping full-time work (Gallup, 2024); 29% of workers 65+ have previously retired and re-entered the workforce, driven by staying mentally engaged (70%) and financial stability (59%) (SHRM, 2026).</li>
+                            <li>Midlife career reinvention is increasingly common among workers 45–62 who have built financial cushion but feel misaligned with their current path — a pattern consistently observed across brandthnk.co's 50+ community and regional bank workshops (2018–2026).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>First-time SBA loans and HELOC for business or life funding</li>
+                            <li>IRA / rollover products and cash management for variable income</li>
+                            <li>Small business setup guidance for the transition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Gallup (2024). U.S. workers continue to push back retirement age. gallup.com<br>
+                        SHRM (2026). Redefining Talent with the 65-and-over Workforce. shrm.org<br>
+                        brandthnk.co — 50+ Community & Regional Bank Workshops (2018–2026). brandthnk.co
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>6</span>
+        </div>
+    </div>
+
+    <!-- Page 7: The Nester -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">06</div>
+                <div>
+                    <div class="persona-title">The Nester</div>
+                    <div class="persona-tagline">Protecting and expanding what they've built — because life is getting more complicated.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">35–55</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$75K–$200K+</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Family / life in transition</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Established homeowner</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Protecting and expanding what they've built. They're not thinking about retirement yet — they're thinking about the next 10 years: a bigger home, a renovation, a college fund, supporting parents, building equity with intention. Life is getting more expensive and more complicated, and they want a bank that can keep up.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Median expected tenure in a purchased home is now 15 years, and 28% call it their "forever home" (NAR, 2025); wealth and security are most often linked to a better quality of life for family and retiring comfortably (Pew, 2026).</li>
+                            <li>$124 trillion in wealth will transfer through 2048, and Gen X stands to inherit the greatest portion — about $14 trillion — over the next 10 years (Cerulli Associates, 2024).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>HELOC and home equity products plus mortgage refinance</li>
+                            <li>College savings (529) guidance and trust / estate conversations</li>
+                            <li>Umbrella banking relationships across multiple needs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        NAR (2025). 2025 Profile of Home Buyers and Sellers. nar.realtor<br>
+                        Pew Research Center (2026). How Americans' Views on Wealth and Retirement Differ. pew.org<br>
+                        Cerulli Associates (2024). Cerulli Anticipates $124 Trillion in Wealth Will Transfer Through 2048. cerulli.com
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>7</span>
+        </div>
+    </div>
+
+    <!-- Page 8: The Steward -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header">
+                <div class="persona-number">07</div>
+                <div>
+                    <div class="persona-title">The Steward</div>
+                    <div class="persona-tagline">More wealth isn't the point — leaving something behind, and not becoming a burden, is.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">58–75</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">Assets vary</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Legacy-focused</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Boomer / early Silent gen</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Leaving something behind — and not becoming a burden. The aspiration isn't more wealth; it's the responsible transfer and protection of what they've built. They want their children to have a head start, their spouse to be secure, and ideally their community to benefit.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Baby Boomers account for roughly 81% of the $124 trillion in projected transfers through 2048 (about $100T), with nearly $40 trillion in spousal transfers going to widowed women in Boomer and older generations (Cerulli Associates, 2024).</li>
+                            <li>More Americans now plan to leave an inheritance than expect to receive one (Northwestern Mutual, 2025), and the desire to support family and not burden children was among the most common wealth themes across all racial and ethnic groups (Pew, 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Trust and estate services and beneficiary designation support</li>
+                            <li>CDs and laddered savings for stability</li>
+                            <li>Charitable giving guidance and spousal financial planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Cerulli Associates (2024). $124 Trillion Great Wealth Transfer Through 2048. cerulli.com<br>
+                        Northwestern Mutual (2025). Planning & Progress Study. northwesternmutual.com<br>
+                        Pew Research Center (2026). How Americans' Views on Wealth and Retirement Differ. pew.org
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>8</span>
+        </div>
+    </div>
+
+    <!-- Page 9: The Rooted -->
+    <div class="page">
+        <div class="persona-card">
+            <div class="persona-header" style="background-color: #B8860B;">
+                <div class="persona-number">08</div>
+                <div>
+                    <div class="persona-title">The Rooted</div>
+                    <div class="persona-tagline">Not chasing growth — protecting what they have, with a bank that knows their name.</div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="persona-body">
+                <div class="persona-stats">
+                    <div class="stat">
+                        <div class="stat-label">Age</div>
+                        <div class="stat-value">30–65</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Income</div>
+                        <div class="stat-value">$40K–$90K</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Life Stage</div>
+                        <div class="stat-value">Long-term community resident</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-label">Employment</div>
+                        <div class="stat-value">Small business / trades / ag</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Aspiration</div>
+                    <div class="section-content">
+                        Stability, trust, and a bank that knows their name. They're not chasing growth — they're protecting what they have, investing in their community, and working with people who understand their life. They want a banking relationship, not a product transaction.
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">What Drives This Aspiration</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>About 36% of community bank customers are "actively engaged," far higher than at large national banks (Gallup, 2014), and teller use remains more prevalent among rural, lower-income, and older households (FDIC, 2023; CFPB, 2022).</li>
+                            <li>"It is more important for me to be secure financially than to build wealth... I would rather put my efforts into building or giving back to community" — a sentiment broadly shared (Pew, 2026).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Banking Relevance</div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Agricultural and small business lending</li>
+                            <li>Relationship banking, in-person service, and personal banker access</li>
+                            <li>Community investment products and local payment solutions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sources-box">
+                    <div class="sources-title">Sources Cited on This Card</div>
+                    <div class="sources-content">
+                        Gallup (2014). Community Banks: Focus on Customers and Employees to Stay Competitive. gallup.com<br>
+                        FDIC (2023). National Survey of Unbanked and Underbanked Households. fdic.gov<br>
+                        CFPB (2022). Data Spotlight: Challenges in Rural Banking Access. consumerfinance.gov<br>
+                        Pew Research Center (2026). How Americans' Views on Wealth and Retirement Differ. pew.org<br>
+                        brandthnk.co — 50+ Community & Regional Bank Workshops (2018–2026). brandthnk.co
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>9</span>
+        </div>
+    </div>
+
+    <!-- Page 10: Summary Selection Matrix -->
+    <div class="page">
+        <h2 style="text-align: center; margin-bottom: 20px;">Summary Selection Matrix</h2>
+        <p style="text-align: center; margin-bottom: 30px; font-style: italic;">All eight personas at a glance. Use this to choose the 2–3 aspirations your bank is best positioned to own.</p>
+
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Persona</th>
+                    <th style="width: 15%;">Life Stage</th>
+                    <th style="width: 18%;">Core Aspiration</th>
+                    <th style="width: 18%;">Top Product Fit</th>
+                    <th style="width: 15%;">Messaging Tone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="persona-name"><strong>01 Launchpad</strong></td>
+                    <td>Recent grad / early career</td>
+                    <td>A real financial start</td>
+                    <td>No-min checking + credit builder</td>
+                    <td>Encouraging, no-shame</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>02 Breakthrough</strong></td>
+                    <td>Carrying debt, building momentum</td>
+                    <td>Freedom from debt</td>
+                    <td>Debt consolidation + HELOC</td>
+                    <td>Liberating, empathetic</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>03 Threshold</strong></td>
+                    <td>Aspiring first-time buyer</td>
+                    <td>Homeownership & roots</td>
+                    <td>First-time buyer loans + DPA</td>
+                    <td>Reassuring, practical</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>04 Maker</strong></td>
+                    <td>Aspiring founder</td>
+                    <td>Be their own boss</td>
+                    <td>SBA / small biz lending</td>
+                    <td>Bold, believing</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>05 Pivot</strong></td>
+                    <td>Career reinvention</td>
+                    <td>A second act</td>
+                    <td>SBA + IRA rollover</td>
+                    <td>Empowering, decisive</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>06 Nester</strong></td>
+                    <td>Family in transition</td>
+                    <td>Protect & expand</td>
+                    <td>HELOC + 529 + refi</td>
+                    <td>Capable, anticipatory</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>07 Steward</strong></td>
+                    <td>Legacy-focused</td>
+                    <td>Pass it on responsibly</td>
+                    <td>Trust/estate + CDs</td>
+                    <td>Dignified, protective</td>
+                </tr>
+                <tr>
+                    <td class="persona-name"><strong>08 Rooted</strong></td>
+                    <td>Community resident</td>
+                    <td>Stability & trust</td>
+                    <td>Ag + relationship banking</td>
+                    <td>Rooted, neighborly</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box">
+            <strong>Reading the matrix:</strong> Pair the personas whose Core Aspiration aligns with your strongest product capabilities, then unify around a consistent Messaging Tone. Two well-served aspirations will outperform eight that are merely acknowledged.
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>10</span>
+        </div>
+    </div>
+
+    <!-- Page 11: Sources & Methodology -->
+    <div class="page">
+        <h2 style="margin-bottom: 20px;">Sources & Methodology</h2>
+
+        <p style="margin-bottom: 20px;">Citations appear both inline on each persona card and in the full source list below. Aspirations were inferred by cross-referencing demographic anchors against publicly available survey data and informed by insights from 50+ community and regional bank strategy workshops conducted by brandthnk.co (2018–2026).</p>
+
+        <div style="font-size: 11px; line-height: 1.4;">
+            <p style="margin-bottom: 12px;"><strong>1.</strong> Pew Research Center (2023) — Young adults reaching milestones later — https://www.pewresearch.org/short-reads/2023/05/23/young-adults-in-the-u-s-are-reaching-key-life-milestones-later-than-in-the-past/</p>
+
+            <p style="margin-bottom: 12px;"><strong>2.</strong> Pew Research Center (2019) — Parents doing too much for young adult children — https://www.pewresearch.org/social-trends/2019/10/23/majority-of-americans-say-parents-are-doing-too-much-for-their-young-adult-children/</p>
+
+            <p style="margin-bottom: 12px;"><strong>3.</strong> Pew Research Center (2024) — Financial help and independence in young adulthood — https://www.pewresearch.org/social-trends/2024/01/25/financial-help-and-independence-in-young-adulthood/</p>
+
+            <p style="margin-bottom: 12px;"><strong>4.</strong> Operation HOPE / Beyond Finance (2026) — Gen Z & Millennial wealth-building survey — https://operationhope.org/over-seventy-percent-of-gen-z-and-millennials-say-survival-spending-is-the-norm-and-wealth-is-out-of-reach/</p>
+
+            <p style="margin-bottom: 12px;"><strong>5.</strong> Pew Charitable Trusts (2025) — Workers without access to retirement benefits & wealth building — https://www.pew.org/en/research-and-analysis/issue-briefs/2025/06/workers-without-access-to-retirement-benefits-struggle-to-build-wealth</p>
+
+            <p style="margin-bottom: 12px;"><strong>6.</strong> NAR 2025 Profile of Home Buyers — First-time buyer share & median age — https://www.nar.realtor/newsroom/first-time-home-buyer-share-falls-to-historic-low-of-21-median-age-rises-to-40</p>
+
+            <p style="margin-bottom: 12px;"><strong>7.</strong> Realtor.com Gen Z Survey (Oct 2025, n=1,000) — Gen Z homeownership aspirations — https://www.realtor.com/research/gen-z-survey-oct-2025/</p>
+
+            <p style="margin-bottom: 12px;"><strong>8.</strong> National MI NextGen Homebuyer Report (2025, n=1,000) — Homeownership desire ages 18–44 — https://www.nationalmi.com/wp-content/uploads/2025/03/Final-NextGen-Homebuyer-Report-2025.pdf</p>
+
+            <p style="margin-bottom: 12px;"><strong>9.</strong> Gallup (2026) — Homebuying intentions decline further — https://news.gallup.com/poll/708995/homebuying-intentions-decline-further.aspx</p>
+
+            <p style="margin-bottom: 12px;"><strong>10.</strong> Gallup / Shopify Entrepreneurship Study (2024) — Entrepreneurial aspirations — https://news.gallup.com/poll/645593/desire-own-boss-widely-held.aspx</p>
+
+            <p style="margin-bottom: 12px;"><strong>11.</strong> Pew Research Center (2024) — A look at small businesses in the U.S. — https://www.pewresearch.org/short-reads/2024/04/22/a-look-at-small-businesses-in-the-us/</p>
+
+            <p style="margin-bottom: 12px;"><strong>12.</strong> Gallup (2024) — Retirement age expectations — https://news.gallup.com/poll/234302/snapshot-americans-project-retirement-age.aspx</p>
+
+            <p style="margin-bottom: 12px;"><strong>13.</strong> SHRM (2026) — Older workers re-entering the workforce — https://www.shrm.org/topics-tools/research/redefining-talent-with-65-over-workforce</p>
+
+            <p style="margin-bottom: 12px;"><strong>14.</strong> Cerulli Associates (2024) — $124 trillion great wealth transfer through 2048 — https://www.cerulli.com/press-releases/cerulli-anticipates-124-trillion-in-wealth-will-transfer-through-2048</p>
+
+            <p style="margin-bottom: 12px;"><strong>15.</strong> Northwestern Mutual (2025) — Inheritance Planning Study — https://news.northwesternmutual.com/2025-07-08-Intentions-Rise,-Expectations-Fall-The-Number-of-Americans-Planning-to-Leave-an-Inheritance-Goes-Up</p>
+
+            <p style="margin-bottom: 12px;"><strong>16.</strong> Pew Research Center (2026) — How Americans' Views on Wealth and Retirement Differ — https://www.pew.org/en/research-and-analysis/issue-briefs/2026/05/how-americans-views-on-wealth-and-retirement-differ</p>
+
+            <p style="margin-bottom: 12px;"><strong>17.</strong> Gallup (2014) — Community bank customer engagement — https://news.gallup.com/businessjournal/170701/community-banks-focus-customers-employees-stay-competitive.aspx</p>
+
+            <p style="margin-bottom: 12px;"><strong>18.</strong> FDIC (2023) — National Survey of Unbanked & Underbanked Households — https://www.fdic.gov/household-survey</p>
+
+            <p style="margin-bottom: 12px;"><strong>19.</strong> CFPB (2022) — Rural banking access — https://files.consumerfinance.gov/f/documents/cfpb_data-spotlight_challenges-in-rural-banking_2022-04.pdf</p>
+
+            <p style="margin-bottom: 12px;"><strong>20.</strong> brandthnk.co — 50+ Community & Regional Bank Workshops (2018–2026) — https://brandthnk.co</p>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #000000;">
+            <p style="font-size: 11px; color: #666;">Consumer Persona Library — Community & Regional Bank Edition. Prepared by brandthnk.co. The aspirations-based persona methodology was developed by Allison Netzer / brandthnk.co. This document is a strategy tool; figures reflect the cited sources as of their publication dates.</p>
+        </div>
+
+        <div class="footer">
+            <div class="brandthnk-logo" style="display: inline;">brandthnk.co</div>
+            <span style="margin: 0 20px;">Consumer Persona Library — Community & Regional Bank Edition</span>
+            <span>11</span>
+        </div>
+    </div>
+
+</body>
+</html>

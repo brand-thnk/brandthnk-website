@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persona Validation Toolkit | Litmus by BrandThnk</title>
+<meta name="description" content="Validate your persona assignments and measure campaign performance improvements with data-driven insights.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --yellow: #FFEB3B;
+    --offwhite: #F5F5F5;
+    --gray: #666666;
+    --light-gray: #CCCCCC;
+    --green: #4CAF50;
+    --red: #F44336;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .nav-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-breadcrumb {
+    color: var(--gray);
+    font-size: 14px;
+  }
+
+  .nav-breadcrumb a {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .header p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .tool-card {
+    background: var(--offwhite);
+    border: 2px solid var(--light-gray);
+    border-radius: 0;
+    padding: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .tool-card:hover {
+    border-color: var(--black);
+    transform: translateY(-2px);
+  }
+
+  .tool-card.active {
+    border-color: var(--yellow);
+    background: var(--white);
+  }
+
+  .tool-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .tool-number {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 0;
+  }
+
+  .tool-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .tool-description {
+    color: var(--gray);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .tool-content {
+    display: none;
+  }
+
+  .tool-card.active .tool-content {
+    display: block;
+  }
+
+  /* FORM ELEMENTS */
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-label {
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--light-gray);
+    background: var(--white);
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 0;
+  }
+
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--black);
+  }
+
+  .form-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+
+  .btn {
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    padding: 12px 24px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border-color: var(--black);
+  }
+
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  /* RESULTS */
+  .results {
+    background: var(--offwhite);
+    padding: 30px;
+    margin-top: 30px;
+    border-left: 4px solid var(--yellow);
+    display: none;
+  }
+
+  .results.visible {
+    display: block;
+  }
+
+  .results h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .score-item {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+  }
+
+  .score-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  .score-label {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .recommendation {
+    background: var(--white);
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .recommendation h4 {
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--black);
+  }
+
+  .recommendation ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .recommendation li {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--offwhite);
+  }
+
+  .recommendation li:before {
+    content: "→ ";
+    color: var(--yellow);
+    font-weight: 700;
+  }
+
+  /* SURVEY QUESTIONS */
+  .survey-question {
+    background: var(--white);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-gray);
+  }
+
+  .survey-question h4 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .radio-group {
+    display: grid;
+    gap: 8px;
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* DASHBOARD */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .dashboard-card {
+    background: var(--white);
+    border: 2px solid var(--light-gray);
+    padding: 24px;
+  }
+
+  .dashboard-card h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .metric-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .metric-label {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  .metric-change {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .metric-change.positive {
+    color: var(--green);
+  }
+
+  .metric-change.negative {
+    color: var(--red);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+
+    .tool-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .header {
+      padding: 40px 20px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+    }
+
+    nav {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Litmus</a>
+  <div class="nav-breadcrumb">
+    <a href="../index.html">Litmus</a> → Tools → Persona Validator
+  </div>
+</nav>
+
+<section class="header">
+  <h1>Persona Validation Toolkit</h1>
+  <p>Measure persona accuracy, validate assignments, and track campaign performance improvements with data-driven insights.</p>
+</section>
+
+<div class="container">
+  <div class="tool-grid">
+    <!-- CRM Data Analysis -->
+    <div class="tool-card active" id="crm-tool">
+      <div class="tool-header">
+        <div class="tool-number">01</div>
+        <h3 class="tool-title">CRM Data Analysis</h3>
+      </div>
+      <p class="tool-description">Upload or analyze your CRM data to validate persona assignments and identify accuracy patterns.</p>
+
+      <div class="tool-content">
+        <div class="form-group">
+          <label class="form-label">Company Size (Annual Revenue)</label>
+          <select class="form-select" id="company-size">
+            <option value="">Select size range...</option>
+            <option value="small">$50M - $500M</option>
+            <option value="medium">$500M - $5B</option>
+            <option value="large">$5B - $25B</option>
+            <option value="very-large">$25B+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Institution Type</label>
+          <select class="form-select" id="institution-type">
+            <option value="">Select type...</option>
+            <option value="community-bank">Community Bank</option>
+            <option value="credit-union">Credit Union</option>
+            <option value="fintech">Fintech</option>
+            <option value="regional-bank">Regional Bank</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Primary Contact Roles (Check all that apply)</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="ceo-role" value="CEO">
+              <label for="ceo-role">CEO/President</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cio-role" value="CIO">
+              <label for="cio-role">CIO/CTO</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="cdo-role" value="CDO">
+              <label for="cdo-role">CDO/CDMO</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="coo-role" value="COO">
+              <label for="coo-role">COO/COB</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="marketing-role" value="Marketing">
+              <label for="marketing-role">Marketing Director</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="other-role" value="Other">
+              <label for="other-role">Other C-suite</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Current Campaign Metrics</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="font-size: 12px; margin-bottom: 4px; display: block;">Email Open Rate (%)</label>
+              <input type="number" class="form-input" id="open-rate" placeholder="e.g. 18.5">
+            </div>
+            <div>
+              <label style="font-size: 12px; margin-bottom: 4px; display: block;">Click-through Rate (%)</label>
+              <input type="number" class="form-input" id="ctr" placeholder="e.g. 2.3">
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" onclick="analyzeCRMData()">Analyze Persona Match</button>
+
+        <div class="results" id="crm-results">
+          <h3>Persona Match Analysis</h3>
+          <div class="score-grid">
+            <div class="score-item">
+              <div class="score-number" id="match-score">--</div>
+              <div class="score-label">Match Accuracy</div>
+            </div>
+            <div class="score-item">
+              <div class="score-number" id="improvement-potential">--</div>
+              <div class="score-label">Improvement Potential</div>
+            </div>
+          </div>
+
+          <div class="recommendation">
+            <h4>Recommended Personas for Your Profile</h4>
+            <ul id="persona-recommendations">
+              <!-- Dynamic recommendations -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Interview Validator -->
+    <div class="tool-card" id="interview-tool">
+      <div class="tool-header">
+        <div class="tool-number">02</div>
+        <h3 class="tool-title">Customer Interview Validator</h3>
+      </div>
+      <p class="tool-description">Survey template to validate persona accuracy through direct customer interviews and feedback.</p>
+
+      <div class="tool-content">
+        <h4 style="font-family: 'Roboto Slab', serif; margin-bottom: 20px;">Interview Questions for Persona Validation</h4>
+
+        <div class="survey-question">
+          <h4>1. Decision-Making Process</h4>
+          <p style="margin-bottom: 12px; color: var(--gray);">"When evaluating new technology solutions, what's your typical approval process?"</p>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="decision-process" value="direct" id="decision-direct">
+              <label for="decision-direct">I can approve directly up to a specific dollar amount</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="decision-process" value="board" id="decision-board">
+              <label for="decision-board">Board or committee approval required</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="decision-process" value="recommendation" id="decision-recommendation">
+              <label for="decision-recommendation">I make recommendations to others</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="decision-process" value="technical" id="decision-technical">
+              <label for="decision-technical">I evaluate technical fit only</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="survey-question">
+          <h4>2. Trust-Building Preferences</h4>
+          <p style="margin-bottom: 12px; color: var(--gray);">"What helps you feel confident about a vendor's capabilities?"</p>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" value="peer-references" id="trust-peers">
+              <label for="trust-peers">References from peer institutions</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" value="technical-docs" id="trust-tech">
+              <label for="trust-tech">Detailed technical documentation</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" value="roi-proof" id="trust-roi">
+              <label for="trust-roi">ROI calculators and proof points</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" value="case-studies" id="trust-cases">
+              <label for="trust-cases">Case studies from similar institutions</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" value="compliance" id="trust-compliance">
+              <label for="trust-compliance">Regulatory compliance evidence</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" value="regional" id="trust-regional">
+              <label for="trust-regional">Local/regional market presence</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="survey-question">
+          <h4>3. Communication Preferences</h4>
+          <p style="margin-bottom: 12px; color: var(--gray);">"How do you prefer to receive information from vendors?"</p>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="communication-style" value="conservative" id="comm-conservative">
+              <label for="comm-conservative">Conservative, peer-referenced approach</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="communication-style" value="technical" id="comm-technical">
+              <label for="comm-technical">Technical detail and specifications</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="communication-style" value="member-impact" id="comm-member">
+              <label for="comm-member">Focus on member/customer impact</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="communication-style" value="efficiency" id="comm-efficiency">
+              <label for="comm-efficiency">Operational efficiency and cost savings</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="communication-style" value="security" id="comm-security">
+              <label for="comm-security">Security and risk mitigation first</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" onclick="generatePersonaMatch()">Analyze Interview Results</button>
+
+        <div class="results" id="interview-results">
+          <h3>Persona Match Based on Interview</h3>
+          <div id="persona-match-result">
+            <!-- Dynamic persona match results -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Dashboard -->
+    <div class="tool-card" id="performance-tool">
+      <div class="tool-header">
+        <div class="tool-number">03</div>
+        <h3 class="tool-title">Performance Dashboard</h3>
+      </div>
+      <p class="tool-description">Track campaign performance improvements and measure ROI of persona-driven marketing.</p>
+
+      <div class="tool-content">
+        <div class="form-group">
+          <label class="form-label">Campaign Type</label>
+          <select class="form-select" id="campaign-type">
+            <option value="">Select campaign type...</option>
+            <option value="email">Email Marketing</option>
+            <option value="linkedin">LinkedIn Outreach</option>
+            <option value="website">Website Conversion</option>
+            <option value="sales">Sales Outreach</option>
+            <option value="abm">Account-Based Marketing</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Before vs After Metrics</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div>
+              <label style="font-size: 12px; margin-bottom: 4px; display: block;">Before Litmus (%)</label>
+              <input type="number" class="form-input" id="before-metric" placeholder="e.g. 15.2">
+            </div>
+            <div>
+              <label style="font-size: 12px; margin-bottom: 4px; display: block;">After Litmus (%)</label>
+              <input type="number" class="form-input" id="after-metric" placeholder="e.g. 21.8">
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" onclick="calculatePerformance()">Calculate ROI Impact</button>
+
+        <div class="results" id="performance-results">
+          <h3>Performance Improvement Analysis</h3>
+          <div class="dashboard-grid">
+            <div class="dashboard-card">
+              <h3>Performance Lift</h3>
+              <div class="metric-value" id="performance-lift">--</div>
+              <div class="metric-label">Percentage improvement</div>
+              <div class="metric-change positive" id="lift-comparison">-- vs industry average</div>
+            </div>
+
+            <div class="dashboard-card">
+              <h3>Industry Benchmark</h3>
+              <div class="metric-value" id="industry-benchmark">--</div>
+              <div class="metric-label">Expected improvement</div>
+              <div class="metric-change" id="benchmark-status">--</div>
+            </div>
+          </div>
+
+          <div class="recommendation">
+            <h4>Performance Optimization Recommendations</h4>
+            <ul id="performance-recommendations">
+              <!-- Dynamic recommendations -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implementation Roadmap -->
+    <div class="tool-card" id="roadmap-tool">
+      <div class="tool-header">
+        <div class="tool-number">04</div>
+        <h3 class="tool-title">Implementation Roadmap</h3>
+      </div>
+      <p class="tool-description">Get personalized recommendations for improving persona accuracy and campaign performance.</p>
+
+      <div class="tool-content">
+        <div class="form-group">
+          <label class="form-label">Current Implementation Stage</label>
+          <select class="form-select" id="implementation-stage">
+            <option value="">Select current stage...</option>
+            <option value="getting-started">Getting started with personas</option>
+            <option value="basic">Basic persona assignments complete</option>
+            <option value="testing">A/B testing persona approaches</option>
+            <option value="optimizing">Optimizing based on results</option>
+            <option value="mature">Mature implementation</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Primary Challenge</label>
+          <select class="form-select" id="primary-challenge">
+            <option value="">Select main challenge...</option>
+            <option value="low-confidence">Low persona confidence scores</option>
+            <option value="poor-performance">Poor campaign performance</option>
+            <option value="team-adoption">Team resistance to new approach</option>
+            <option value="data-quality">CRM data quality issues</option>
+            <option value="measurement">Difficulty measuring results</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Team Size</label>
+          <select class="form-select" id="team-size">
+            <option value="">Select team size...</option>
+            <option value="small">1-3 people</option>
+            <option value="medium">4-10 people</option>
+            <option value="large">11-25 people</option>
+            <option value="enterprise">25+ people</option>
+          </select>
+        </div>
+
+        <button class="btn" onclick="generateRoadmap()">Generate Custom Roadmap</button>
+
+        <div class="results" id="roadmap-results">
+          <h3>Your Personalized Implementation Roadmap</h3>
+          <div id="roadmap-content">
+            <!-- Dynamic roadmap content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tool navigation
+function showTool(toolId) {
+  document.querySelectorAll('.tool-card').forEach(card => {
+    card.classList.remove('active');
+  });
+  document.getElementById(toolId).classList.add('active');
+}
+
+// Add click handlers to tool cards
+document.querySelectorAll('.tool-card').forEach(card => {
+  card.addEventListener('click', function() {
+    showTool(this.id);
+  });
+});
+
+// CRM Data Analysis
+function analyzeCRMData() {
+  const companySize = document.getElementById('company-size').value;
+  const institutionType = document.getElementById('institution-type').value;
+  const openRate = parseFloat(document.getElementById('open-rate').value) || 0;
+  const ctr = parseFloat(document.getElementById('ctr').value) || 0;
+
+  if (!companySize || !institutionType) {
+    alert('Please fill in company size and institution type.');
+    return;
+  }
+
+  // Calculate match score based on input
+  let matchScore = 65; // Base score
+
+  // Adjust based on company size and type alignment
+  if ((companySize === 'small' || companySize === 'medium') && institutionType === 'community-bank') {
+    matchScore += 15;
+  }
+  if (companySize === 'medium' && institutionType === 'credit-union') {
+    matchScore += 12;
+  }
+  if (institutionType === 'fintech') {
+    matchScore += 8;
+  }
+
+  // Calculate improvement potential
+  let improvementPotential = 0;
+  if (openRate > 0 && openRate < 20) {
+    improvementPotential = Math.round((25 - openRate) / openRate * 100);
+  } else if (openRate >= 20) {
+    improvementPotential = Math.round((35 - openRate) / openRate * 100);
+  }
+
+  // Generate persona recommendations
+  const recommendations = getPersonaRecommendations(companySize, institutionType);
+
+  // Display results
+  document.getElementById('match-score').textContent = matchScore + '%';
+  document.getElementById('improvement-potential').textContent = '+' + improvementPotential + '%';
+
+  const recommendationsList = document.getElementById('persona-recommendations');
+  recommendationsList.innerHTML = '';
+  recommendations.forEach(rec => {
+    const li = document.createElement('li');
+    li.textContent = rec;
+    recommendationsList.appendChild(li);
+  });
+
+  document.getElementById('crm-results').classList.add('visible');
+}
+
+function getPersonaRecommendations(size, type) {
+  const recommendations = [];
+
+  if (size === 'small' && type === 'community-bank') {
+    recommendations.push('Rob Castellano - Community Bank CEO (peer-focused decision making)');
+    recommendations.push('David Mitchell - Community Bank COO (efficiency-driven operations)');
+  } else if (type === 'credit-union') {
+    recommendations.push('Sarah Chen - Credit Union CIO (member impact focus)');
+    recommendations.push('Jennifer Wong - Credit Union CTO (compliance-first approach)');
+  } else if (type === 'fintech') {
+    recommendations.push('Marcus Rodriguez - Fintech CDO (credibility building)');
+    recommendations.push('Growth Executive - Series A/B (speed-to-market focus)');
+  } else {
+    recommendations.push('Multi-persona approach recommended for your profile');
+    recommendations.push('Consider buying committee analysis for complex decisions');
+  }
+
+  return recommendations;
+}
+
+// Customer Interview Analysis
+function generatePersonaMatch() {
+  const decisionProcess = document.querySelector('input[name="decision-process"]:checked')?.value;
+  const communicationStyle = document.querySelector('input[name="communication-style"]:checked')?.value;
+  const trustFactors = Array.from(document.querySelectorAll('#interview-tool input[type="checkbox"]:checked')).map(cb => cb.value);
+
+  if (!decisionProcess || !communicationStyle) {
+    alert('Please answer the decision-making and communication preference questions.');
+    return;
+  }
+
+  let personaMatch = 'Unknown';
+  let matchExplanation = '';
+
+  // Simple persona matching logic
+  if (decisionProcess === 'direct' && communicationStyle === 'conservative') {
+    personaMatch = 'Rob Castellano - Community Bank CEO';
+    matchExplanation = 'Direct decision authority with conservative, peer-referenced communication style aligns with Community Bank CEO profile.';
+  } else if (decisionProcess === 'technical' && communicationStyle === 'technical') {
+    personaMatch = 'Sarah Chen - Credit Union CIO';
+    matchExplanation = 'Technical evaluation role with detail-oriented communication matches Credit Union CIO behavioral profile.';
+  } else if (communicationStyle === 'member-impact') {
+    personaMatch = 'Credit Union Executive';
+    matchExplanation = 'Member impact focus indicates credit union leadership with stakeholder-centric decision making.';
+  } else if (decisionProcess === 'recommendation' && trustFactors.includes('roi-proof')) {
+    personaMatch = 'Marcus Rodriguez - Fintech CDO';
+    matchExplanation = 'Recommendation role with ROI focus suggests fintech leadership balancing growth and credibility.';
+  } else {
+    personaMatch = 'Multi-Stakeholder Profile';
+    matchExplanation = 'Your responses suggest a complex buying committee requiring multiple persona approaches.';
+  }
+
+  document.getElementById('interview-results').innerHTML = `
+    <h3>Persona Match Based on Interview</h3>
+    <div class="recommendation">
+      <h4>Primary Persona Match</h4>
+      <p style="font-weight: 700; color: var(--green); margin-bottom: 12px;">${personaMatch}</p>
+      <p>${matchExplanation}</p>
+    </div>
+  `;
+
+  document.getElementById('interview-results').classList.add('visible');
+}
+
+// Performance Analysis
+function calculatePerformance() {
+  const campaignType = document.getElementById('campaign-type').value;
+  const beforeMetric = parseFloat(document.getElementById('before-metric').value) || 0;
+  const afterMetric = parseFloat(document.getElementById('after-metric').value) || 0;
+
+  if (!campaignType || beforeMetric === 0) {
+    alert('Please select campaign type and enter before metric.');
+    return;
+  }
+
+  const performanceLift = afterMetric > 0 ? Math.round(((afterMetric - beforeMetric) / beforeMetric) * 100) : 0;
+
+  // Industry benchmarks based on research
+  const benchmarks = {
+    'email': { expected: 41, label: 'Email engagement lift' },
+    'linkedin': { expected: 35, label: 'LinkedIn response rate improvement' },
+    'website': { expected: 28, label: 'Website conversion improvement' },
+    'sales': { expected: 30, label: 'Sales cycle reduction' },
+    'abm': { expected: 208, label: 'ABM revenue improvement' }
+  };
+
+  const benchmark = benchmarks[campaignType] || { expected: 30, label: 'Performance improvement' };
+
+  document.getElementById('performance-lift').textContent = performanceLift + '%';
+  document.getElementById('industry-benchmark').textContent = benchmark.expected + '%';
+  document.getElementById('benchmark-status').textContent = performanceLift >= benchmark.expected ? 'Above industry average' : 'Below industry average';
+  document.getElementById('benchmark-status').className = 'metric-change ' + (performanceLift >= benchmark.expected ? 'positive' : 'negative');
+  document.getElementById('lift-comparison').textContent = `vs ${benchmark.expected}% industry average`;
+
+  // Generate recommendations
+  const recommendations = [];
+  if (performanceLift < benchmark.expected) {
+    recommendations.push('Review persona assignments for accuracy (target >80% confidence scores)');
+    recommendations.push('Test Layer 8 messaging receptivity patterns for better engagement');
+    recommendations.push('Implement A/B testing between generic vs persona-driven approaches');
+  } else {
+    recommendations.push('Performance exceeds industry benchmarks - maintain current approach');
+    recommendations.push('Consider expanding persona-driven approach to additional channels');
+    recommendations.push('Document best practices for team knowledge sharing');
+  }
+
+  const recommendationsList = document.getElementById('performance-recommendations');
+  recommendationsList.innerHTML = '';
+  recommendations.forEach(rec => {
+    const li = document.createElement('li');
+    li.textContent = rec;
+    recommendationsList.appendChild(li);
+  });
+
+  document.getElementById('performance-results').classList.add('visible');
+}
+
+// Implementation Roadmap
+function generateRoadmap() {
+  const stage = document.getElementById('implementation-stage').value;
+  const challenge = document.getElementById('primary-challenge').value;
+  const teamSize = document.getElementById('team-size').value;
+
+  if (!stage || !challenge || !teamSize) {
+    alert('Please fill in all fields to generate your roadmap.');
+    return;
+  }
+
+  const roadmaps = {
+    'getting-started': {
+      title: 'Getting Started Roadmap',
+      steps: [
+        'Week 1: Complete Quick Start Guide and select 3-5 core personas',
+        'Week 2: Assign personas to top 20 prospects in CRM',
+        'Week 3: Launch first A/B test with persona-driven email sequence',
+        'Week 4: Measure results and refine persona assignments'
+      ]
+    },
+    'basic': {
+      title: 'Optimization Roadmap',
+      steps: [
+        'Review current persona assignments for confidence scores >80%',
+        'Implement Layer 7 buying context tracking',
+        'Set up behavioral trigger workflows',
+        'Create persona-specific content templates'
+      ]
+    },
+    'testing': {
+      title: 'Performance Enhancement Roadmap',
+      steps: [
+        'Expand A/B testing across multiple channels',
+        'Implement CRM integration for automated scoring',
+        'Train sales team on persona-specific discovery techniques',
+        'Build performance measurement dashboard'
+      ]
+    },
+    'optimizing': {
+      title: 'Scale & Systematize Roadmap',
+      steps: [
+        'Document successful persona application patterns',
+        'Create team training materials and best practices',
+        'Implement advanced persona validation workflows',
+        'Expand to account-based marketing approach'
+      ]
+    },
+    'mature': {
+      title: 'Innovation & Expansion Roadmap',
+      steps: [
+        'Explore AI-enhanced persona matching',
+        'Develop custom persona variations for vertical markets',
+        'Implement predictive buying context scoring',
+        'Share success stories and mentor other teams'
+      ]
+    }
+  };
+
+  const roadmap = roadmaps[stage];
+
+  let roadmapHTML = `
+    <h4>${roadmap.title}</h4>
+    <div class="recommendation">
+      <h4>Next Steps for Your Team</h4>
+      <ul>
+  `;
+
+  roadmap.steps.forEach(step => {
+    roadmapHTML += `<li>${step}</li>`;
+  });
+
+  roadmapHTML += '</ul></div>';
+
+  // Add challenge-specific recommendations
+  const challengeAdvice = {
+    'low-confidence': 'Focus on data quality improvement and progressive profiling to increase persona confidence scores.',
+    'poor-performance': 'Review Layer 8 messaging receptivity patterns and test different channel approaches.',
+    'team-adoption': 'Start with willing early adopters and demonstrate quick wins before expanding rollout.',
+    'data-quality': 'Implement data validation rules and standardized persona assignment workflows.',
+    'measurement': 'Set up tracking dashboards and establish baseline metrics before optimization.'
+  };
+
+  roadmapHTML += `
+    <div class="recommendation">
+      <h4>Challenge-Specific Advice</h4>
+      <p>${challengeAdvice[challenge]}</p>
+    </div>
+  `;
+
+  document.getElementById('roadmap-content').innerHTML = roadmapHTML;
+  document.getElementById('roadmap-results').classList.add('visible');
+}
+</script>
+
+</body>
+</html>

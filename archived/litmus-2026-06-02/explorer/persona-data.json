@@ -1,0 +1,180 @@
+{
+  "personas": [
+    {
+      "id": "rob-castellano",
+      "name": "Rob Castellano",
+      "title": "CEO",
+      "institutionType": "Community Bank",
+      "assetSize": "$7.2B",
+      "location": "Birmingham, AL",
+      "corePlatform": "Fiserv Premier",
+      "summary": "Conservative community bank CEO who grew his Alabama bank from $800M to $7.2B through careful, peer-validated decisions.",
+      "keyPain": "Fiserv contract renewal anxiety with board pressure for digital innovation",
+      "messagingWorks": [
+        "We work with 40 community banks your size across the Southeast",
+        "Here's what First National in Jackson said about their experience",
+        "This integrates natively with Fiserv Premier. No middleware required"
+      ],
+      "messagingFails": [
+        "Disrupt your legacy infrastructure",
+        "AI-powered anything without specific use cases",
+        "Our Series C funding..."
+      ],
+      "buyingCycle": "9-15 months",
+      "decisionAuthority": "Up to $2M direct, Board approval above",
+      "psychographics": ["Conservative", "Peer-referenced", "Risk-averse"],
+      "layer1": "Started as commercial loan officer at 24. Alabama banking career. Grew bank through organic growth and acquisitions.",
+      "layer2": "State-chartered community bank, $7.2B assets, 47 branches, Birmingham metro coverage",
+      "layer3": "President and CEO, 10 years in role. Signs all tech contracts over $500K.",
+      "layer4": "Fiserv Premier on-prem, NCR Digital Insight, minimal cloud, low API readiness",
+      "layer5": "Conservative risk tolerance, trusts peer references over features, gut decisions with CFO data",
+      "layer6": "Deposit competition, core renewal pressure, talent loss to fintechs",
+      "layer7": "Active trigger: Fiserv renewal + board pressure. 9-15 month cycles. $8.5M budget.",
+      "layer8": "Regional credibility, peer references, integration confidence vs disruption language"
+    },
+    {
+      "id": "sarah-chen",
+      "name": "Sarah Chen",
+      "title": "CIO",
+      "institutionType": "Credit Union",
+      "assetSize": "$4.1B",
+      "location": "Denver, CO",
+      "corePlatform": "Jack Henry Symitar",
+      "summary": "Technology-forward CIO focused on member impact and operational efficiency. Measures everything against member experience improvements.",
+      "keyPain": "Balancing innovation with credit union member-first culture and regulatory compliance",
+      "messagingWorks": [
+        "Reduce member wait times by 40% while cutting operational costs",
+        "Here's how Mountain America CU improved member satisfaction",
+        "Native Jack Henry integration with full compliance documentation"
+      ],
+      "messagingFails": [
+        "Best-in-class technology without member benefits",
+        "Move fast and break things",
+        "Enterprise-grade complexity"
+      ],
+      "buyingCycle": "6-12 months",
+      "decisionAuthority": "Up to $250K direct, Board approval for major systems",
+      "psychographics": ["Member-focused", "Data-driven", "Innovation-balanced"],
+      "layer1": "Computer Science degree, 12 years credit union technology experience, member-first philosophy",
+      "layer2": "Federal credit union, $4.1B assets, 280,000 members, Colorado and Wyoming",
+      "layer3": "CIO, reports to CEO, technology committee chair, board presentations quarterly",
+      "layer4": "Jack Henry Symitar core, modern digital banking, cloud-forward strategy, API-enabled",
+      "layer5": "Measured risk tolerance, data-driven decisions, member impact focused",
+      "layer6": "Digital transformation pressure, member experience gaps, compliance complexity",
+      "layer7": "Budget cycles align with fiscal year, board approval processes, member impact requirements",
+      "layer8": "Member benefit focus, operational efficiency, compliance confidence vs complexity"
+    },
+    {
+      "id": "marcus-rodriguez",
+      "name": "Marcus Rodriguez",
+      "title": "CDO",
+      "institutionType": "Fintech",
+      "assetSize": "Series B",
+      "location": "Austin, TX",
+      "corePlatform": "Targeting Community Banks",
+      "summary": "Fintech growth executive balancing aggressive growth targets with community bank relationship building and credibility.",
+      "keyPain": "Building credibility with traditional bank buyers while meeting fintech growth expectations",
+      "messagingWorks": [
+        "We work with 40 community banks your size across Texas",
+        "Our compliance team includes former bank examiners",
+        "6-month implementation with dedicated support team"
+      ],
+      "messagingFails": [
+        "Disrupt legacy banking",
+        "Move fast and break things",
+        "Revolutionary fintech innovation"
+      ],
+      "buyingCycle": "3-9 months",
+      "decisionAuthority": "Full deal approval up to $500K ARR",
+      "psychographics": ["Growth-focused", "Credibility-building", "Relationship-driven"],
+      "layer1": "MBA Finance, 8 years fintech experience, former bank consultant background",
+      "layer2": "Series B fintech, $15M ARR, targeting $500M-5B community banks",
+      "layer3": "Chief Development Officer, reports to CEO, sales team of 12",
+      "layer4": "Cloud-native platform, API-first, bank integration expertise",
+      "layer5": "Aggressive growth balanced with relationship building, credibility-focused",
+      "layer6": "Bank skepticism of fintechs, long sales cycles, compliance complexity",
+      "layer7": "Quarterly growth targets, board reporting, bank buying committees",
+      "layer8": "Bank credibility signals, compliance confidence vs disruption messaging"
+    },
+    {
+      "id": "david-mitchell",
+      "name": "David Mitchell",
+      "title": "COO",
+      "institutionType": "Community Bank",
+      "assetSize": "$1.8B",
+      "location": "Nashville, TN",
+      "corePlatform": "FIS Profile",
+      "summary": "Operations-focused executive managing day-to-day efficiency while planning for growth and technology modernization.",
+      "keyPain": "Operational efficiency improvements needed while managing costs and avoiding disruption",
+      "messagingWorks": [
+        "Reduce processing time by 30% without adding staff",
+        "Seamless FIS Profile integration with zero downtime",
+        "Implementation support from banking operations experts"
+      ],
+      "messagingFails": [
+        "Transformational change management",
+        "Bleeding-edge technology solutions",
+        "Complete workflow overhaul"
+      ],
+      "buyingCycle": "6-18 months",
+      "decisionAuthority": "Operations budget up to $1M, CEO approval above",
+      "psychographics": ["Efficiency-focused", "Risk-averse", "Process-oriented"],
+      "layer1": "20+ years community banking, operations management expertise, efficiency-driven",
+      "layer2": "State-chartered bank, $1.8B assets, Tennessee markets, community-focused",
+      "layer3": "COO, 15 direct reports, operations oversight, technology steering committee",
+      "layer4": "FIS Profile core, legacy systems, gradual modernization approach",
+      "layer5": "Conservative change management, process improvement focus, cost-conscious",
+      "layer6": "Operational inefficiencies, staffing constraints, technology debt",
+      "layer7": "Annual budget cycles, operational ROI requirements, change management concerns",
+      "layer8": "Efficiency gains, seamless integration vs disruptive change language"
+    },
+    {
+      "id": "jennifer-wong",
+      "name": "Jennifer Wong",
+      "title": "CTO",
+      "institutionType": "Credit Union",
+      "assetSize": "$2.3B",
+      "location": "Seattle, WA",
+      "corePlatform": "Corelation KeyStone",
+      "summary": "Technical leader driving digital transformation while maintaining security and member focus in competitive Pacific Northwest market.",
+      "keyPain": "Balancing rapid digital innovation with credit union security and compliance requirements",
+      "messagingWorks": [
+        "Bank-grade security with credit union member focus",
+        "Corelation KeyStone certified with full API documentation",
+        "Deployed successfully at 15 credit unions our size"
+      ],
+      "messagingFails": [
+        "Move fast and break things approach",
+        "Enterprise banking complexity",
+        "Venture-funded innovation"
+      ],
+      "buyingCycle": "8-14 months",
+      "decisionAuthority": "Technology decisions up to $500K, board approval above",
+      "psychographics": ["Security-first", "Innovation-balanced", "Member-focused"],
+      "layer1": "Computer Engineering degree, 10 years credit union technology, member-centric approach",
+      "layer2": "Federal credit union, $2.3B assets, Pacific Northwest, tech-savvy membership",
+      "layer3": "CTO, technology team of 8, security oversight, digital strategy lead",
+      "layer4": "Corelation KeyStone, modern security stack, cloud migration in progress",
+      "layer5": "Security-first mindset, measured innovation, member impact driven",
+      "layer6": "Security threats, digital competition, member experience expectations",
+      "layer7": "Technology roadmap planning, security compliance cycles, member feedback integration",
+      "layer8": "Security confidence, member benefits vs complexity or risk language"
+    }
+  ],
+  "filters": {
+    "roles": ["CEO", "CIO", "CDO", "COO", "CTO"],
+    "institutionTypes": ["Community Bank", "Credit Union", "Fintech"],
+    "assetSizes": ["<$1B", "$1B-$5B", "$5B+", "Series A", "Series B", "Series C+"],
+    "corePlatforms": ["Fiserv Premier", "Jack Henry Symitar", "FIS Profile", "Corelation KeyStone", "Targeting Community Banks"]
+  },
+  "layers": [
+    {"number": 1, "name": "Identity", "description": "Career narrative, education, professional background"},
+    {"number": 2, "name": "Institution Profile", "description": "Charter type, asset size, market footprint"},
+    {"number": 3, "name": "Role Authority", "description": "Title, budget authority, buying committee role"},
+    {"number": 4, "name": "Technology Landscape", "description": "Core platform, digital banking, API readiness"},
+    {"number": 5, "name": "Psychographics", "description": "Risk tolerance, decision style, innovation posture"},
+    {"number": 6, "name": "Pain Points", "description": "Top challenges, platform frustration, competitive anxiety"},
+    {"number": 7, "name": "Buying Context", "description": "Trigger events, budget cycle, procurement process"},
+    {"number": 8, "name": "Messaging Receptivity", "description": "Language that resonates vs language that repels"}
+  ]
+}

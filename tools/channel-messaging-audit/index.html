@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Messaging Audit | B2B Fintech Comparison Tool | BrandThnk</title>
+    <meta name="description" content="Compare how the top 15 B2B fintech companies message across Website, LinkedIn, Ads, and Thought Leadership. See which companies shift dramatically vs. stay consistent.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --off-white: #F5F5F5;
+            --gray: #666666;
+            --light-gray: #E0E0E0;
+            --dark-gray: #333333;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--off-white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header .brand {
+            font-size: 12px;
+            color: var(--yellow);
+            margin-top: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Roboto Slab', serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .section-subtext {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        /* Company Grid */
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .company-card {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .company-card:hover {
+            border-color: var(--black);
+        }
+
+        .company-card.selected {
+            background: var(--yellow);
+            border-color: var(--black);
+        }
+
+        .company-card .name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .company-card .consistency {
+            font-size: 11px;
+            color: var(--gray);
+        }
+
+        .company-card.selected .consistency {
+            color: var(--dark-gray);
+        }
+
+        .company-card .check {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            background: var(--black);
+            color: var(--white);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .company-card.selected .check {
+            display: flex;
+        }
+
+        /* Selection Counter */
+        .selection-bar {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .selection-count {
+            font-size: 14px;
+        }
+
+        .selection-count span {
+            color: var(--yellow);
+            font-weight: 600;
+        }
+
+        .clear-btn {
+            background: transparent;
+            border: 1px solid var(--white);
+            color: var(--white);
+            padding: 8px 16px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clear-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Comparison View */
+        .comparison-section {
+            display: none;
+            margin-bottom: 48px;
+        }
+
+        .comparison-section.active {
+            display: block;
+        }
+
+        /* Channel Tabs */
+        .channel-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .channel-tab {
+            padding: 12px 24px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-bottom: none;
+            margin-bottom: -2px;
+            cursor: pointer;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .channel-tab:hover {
+            background: var(--off-white);
+        }
+
+        .channel-tab.active {
+            background: var(--yellow);
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .comparison-grid.two-cols {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .comparison-grid.three-cols {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 900px) {
+            .comparison-grid.two-cols,
+            .comparison-grid.three-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .company-comparison {
+            background: var(--white);
+            border: 2px solid var(--black);
+            overflow: hidden;
+        }
+
+        .company-comparison-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-comparison-header h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+        }
+
+        .consistency-badge {
+            font-size: 11px;
+            padding: 4px 8px;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .company-comparison-body {
+            padding: 20px;
+        }
+
+        .data-row {
+            margin-bottom: 20px;
+        }
+
+        .data-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .data-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+
+        .data-value {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .data-value.headline {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .data-value.small {
+            font-size: 12px;
+            color: var(--dark-gray);
+        }
+
+        /* LinkedIn Posts */
+        .linkedin-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .linkedin-post {
+            background: var(--off-white);
+            padding: 12px;
+            font-size: 12px;
+            border-left: 3px solid var(--yellow);
+        }
+
+        .linkedin-post .hook {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .linkedin-post .meta {
+            color: var(--gray);
+            font-size: 11px;
+        }
+
+        /* Channel Language Reference */
+        .language-reference {
+            background: var(--white);
+            border: 2px solid var(--black);
+            margin-top: 48px;
+        }
+
+        .language-reference-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+        }
+
+        .language-reference-header h2 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 18px;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        @media (max-width: 900px) {
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .language-column {
+            padding: 20px;
+            border-right: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .language-column:last-child {
+            border-right: none;
+        }
+
+        .language-column h4 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 14px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--yellow);
+        }
+
+        .language-column .words {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .language-column .words span {
+            display: inline-block;
+            background: var(--off-white);
+            padding: 2px 8px;
+            margin: 2px 4px 2px 0;
+        }
+
+        .language-column .avoid {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--light-gray);
+        }
+
+        .language-column .avoid-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+
+        .language-column .avoid span {
+            background: #FFE0E0;
+        }
+
+        /* Key Insight Callout */
+        .insight-callout {
+            background: var(--yellow);
+            padding: 24px;
+            margin-top: 32px;
+            border: 2px solid var(--black);
+        }
+
+        .insight-callout h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .insight-callout p {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .insight-callout p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 32px 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .footer p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .footer a {
+            color: var(--yellow);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--gray);
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 18px;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        /* Channel Content Panels */
+        .channel-panel {
+            display: none;
+        }
+
+        .channel-panel.active {
+            display: block;
+        }
+
+        /* Consistency Scale */
+        .consistency-scale {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+            padding: 16px;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+        }
+
+        .consistency-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .consistency-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .consistency-dot.very-high {
+            background: #2E7D32;
+        }
+
+        .consistency-dot.high {
+            background: #66BB6A;
+        }
+
+        .consistency-dot.low {
+            background: #EF5350;
+        }
+
+        /* Highlight differences */
+        .highlight-diff {
+            background: linear-gradient(to right, var(--yellow), transparent);
+            padding: 2px 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Channel Messaging Audit</h1>
+        <p>Compare how the top 15 B2B fintech and banking technology companies message across Website, LinkedIn, Ads, and Thought Leadership.</p>
+        <div class="brand">BrandThnk</div>
+    </header>
+
+    <div class="selection-bar">
+        <div class="selection-count">
+            Selected: <span id="selection-count">0</span> of 3 companies
+        </div>
+        <button class="clear-btn" onclick="clearSelection()">Clear Selection</button>
+    </div>
+
+    <div class="container">
+        <!-- Company Selection -->
+        <section>
+            <h2 class="section-header">Select Companies to Compare</h2>
+            <p class="section-subtext">Choose 2-3 companies to see side-by-side messaging comparison across all channels.</p>
+
+            <div class="company-grid" id="company-grid">
+                <!-- Companies will be populated by JavaScript -->
+            </div>
+
+            <div class="consistency-scale">
+                <div class="consistency-item">
+                    <div class="consistency-dot very-high"></div>
+                    <span>Very High Consistency</span>
+                </div>
+                <div class="consistency-item">
+                    <div class="consistency-dot high"></div>
+                    <span>High Consistency</span>
+                </div>
+                <div class="consistency-item">
+                    <div class="consistency-dot low"></div>
+                    <span>Low Consistency</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Empty State -->
+        <section class="comparison-section" id="empty-state">
+            <div class="empty-state">
+                <div class="icon">&#128269;</div>
+                <h3>Select companies above to compare</h3>
+                <p>Click on 2-3 company cards to see their messaging side-by-side across channels.</p>
+            </div>
+        </section>
+
+        <!-- Comparison View -->
+        <section class="comparison-section" id="comparison-view">
+            <h2 class="section-header">Channel Comparison</h2>
+
+            <div class="channel-tabs">
+                <button class="channel-tab active" data-channel="website">Website</button>
+                <button class="channel-tab" data-channel="linkedin">LinkedIn</button>
+                <button class="channel-tab" data-channel="ads">Ads</button>
+                <button class="channel-tab" data-channel="thought-leadership">Thought Leadership</button>
+            </div>
+
+            <!-- Website Panel -->
+            <div class="channel-panel active" id="panel-website">
+                <div class="comparison-grid" id="grid-website"></div>
+            </div>
+
+            <!-- LinkedIn Panel -->
+            <div class="channel-panel" id="panel-linkedin">
+                <div class="comparison-grid" id="grid-linkedin"></div>
+            </div>
+
+            <!-- Ads Panel -->
+            <div class="channel-panel" id="panel-ads">
+                <div class="comparison-grid" id="grid-ads"></div>
+            </div>
+
+            <!-- Thought Leadership Panel -->
+            <div class="channel-panel" id="panel-thought-leadership">
+                <div class="comparison-grid" id="grid-thought-leadership"></div>
+            </div>
+        </section>
+
+        <!-- Channel Language Reference -->
+        <section class="language-reference">
+            <div class="language-reference-header">
+                <h2>Channel Language Dictionary</h2>
+            </div>
+            <div class="language-grid">
+                <div class="language-column">
+                    <h4>Website</h4>
+                    <div class="words">
+                        <span>infrastructure</span>
+                        <span>platform</span>
+                        <span>solutions</span>
+                        <span>suite</span>
+                        <span>end-to-end</span>
+                        <span>seamless</span>
+                        <span>composable</span>
+                        <span>unified</span>
+                        <span>modernize</span>
+                        <span>accelerate</span>
+                    </div>
+                    <div class="avoid">
+                        <div class="avoid-label">Rarely used here</div>
+                        <div class="words">
+                            <span>we believe</span>
+                            <span>community</span>
+                            <span>peers</span>
+                            <span>prediction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-column">
+                    <h4>LinkedIn</h4>
+                    <div class="words">
+                        <span>predictions</span>
+                        <span>trends</span>
+                        <span>insights</span>
+                        <span>community</span>
+                        <span>peers</span>
+                        <span>we believe</span>
+                        <span>here's what</span>
+                        <span>what's next</span>
+                    </div>
+                    <div class="avoid">
+                        <div class="avoid-label">Rarely used here</div>
+                        <div class="words">
+                            <span>infrastructure</span>
+                            <span>suite</span>
+                            <span>end-to-end</span>
+                            <span>request a demo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-column">
+                    <h4>Ads</h4>
+                    <div class="words">
+                        <span>boardroom ready</span>
+                        <span>business case</span>
+                        <span>ROI</span>
+                        <span>90-day</span>
+                        <span>your board will ask</span>
+                        <span>download the report</span>
+                        <span>start in minutes</span>
+                    </div>
+                    <div class="avoid">
+                        <div class="avoid-label">Rarely used here</div>
+                        <div class="words">
+                            <span>we believe</span>
+                            <span>community</span>
+                            <span>what's next</span>
+                            <span>prediction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-column">
+                    <h4>Thought Leadership</h4>
+                    <div class="words">
+                        <span>research shows</span>
+                        <span>according to</span>
+                        <span>the future of</span>
+                        <span>state of the industry</span>
+                        <span>key findings</span>
+                        <span>benchmark</span>
+                    </div>
+                    <div class="avoid">
+                        <div class="avoid-label">Rarely used here</div>
+                        <div class="words">
+                            <span>request a demo</span>
+                            <span>contact sales</span>
+                            <span>get started</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insight -->
+        <div class="insight-callout">
+            <h3>The Pattern</h3>
+            <p>The most effective B2B fintechs don't copy-paste their website message to LinkedIn. They <strong>orchestrate</strong> distinct narratives tailored to each channel's psychology.</p>
+            <p><strong>Website:</strong> formal, outcome-driven, infrastructure language. <strong>LinkedIn:</strong> peer-to-peer, insight-led, first-person plural. <strong>Ads:</strong> urgent, ROI-focused, boardroom language. <strong>Thought Leadership:</strong> educational, research-backed, category-creating.</p>
+            <p>The companies with "Very High" consistency scores (nCino, Alkami, Verafin, Backbase) aren't repeating the same message. They're threading a core concept ("Agentic Banking", "Anticipatory Banking", "Engagement Banking") through channel-appropriate dialects.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Data current as of June 2026. Research by BrandThnk.</p>
+        <p><a href="/tools/no-logo-audit/">Take the No-Logo Audit</a> | <a href="/">BrandThnk.co</a></p>
+    </footer>
+
+    <script>
+        // Company Data
+        const companies = [
+            {
+                "company": "Stripe",
+                "website_headline": "Financial infrastructure to grow your revenue",
+                "website_value_prop": "Join the millions of companies of all sizes that use Stripe to accept payments online and in person, embed financial services, power custom revenue models, and build a more profitable business.",
+                "website_cta": "Start now",
+                "website_trust_signals": "Millions of companies worldwide; logos: Amazon, Google, Shopify, Lyft, Zoom; 'Used by millions of businesses'",
+                "website_target_audience": "Companies of all sizes; developers; platforms; marketplaces; SaaS businesses",
+                "linkedin_tagline": "Financial infrastructure for the internet",
+                "linkedin_description": "Stripe is a financial infrastructure platform for businesses. Millions of companies—from the world's largest enterprises to the most ambitious startups—use Stripe to accept payments, grow their revenu...",
+                "linkedin_followers": "1,200,000+",
+                "linkedin_post_1": "Hook: 'We just shipped something big for platforms…' | Type: Text + product screenshot | ~1,800 likes",
+                "linkedin_post_2": "Hook: 'Revenue recognition is broken. Here's why…' | Type: Thought-leadership article | ~950 likes",
+                "linkedin_post_3": "Hook: 'How Shopify scaled to $X billion in GMV with Stripe' | Type: Customer story video | ~2,100 likes",
+                "linkedin_post_4": "Hook: 'The hidden cost of payment fraud for SaaS companies' | Type: Data carousel | ~1,400 likes",
+                "linkedin_post_5": "Hook: 'Stripe Sessions 2026 recap: 5 things we announced' | Type: Event recap text | ~3,200 likes",
+                "linkedin_tone": "Conversational, developer-friendly, product-led",
+                "ad_copy_examples": "LinkedIn: 'Accept payments in 135+ currencies. Start in minutes.' | Google: 'Stripe Payments API — Trusted by millions. Start free.' | Meta: 'Power your business with Stripe. No setup fees.'",
+                "thought_leadership_headlines": "1. 'The State of SaaS Revenue Models 2026' (Stripe Blog, Patrick Collison) | 2. 'Why Embedded Finance Is the Next Platform Shift' (Forbes, Stripe exec) | 3. 'Fraud Prevention at Scale: Lessons from 1M+ Merchants' (Stripe Engineering Blog)",
+                "white_papers": "'The Global Payments Report 2026' — ungated; 'Embedded Finance Playbook' — gated",
+                "conference_topics": "Money20/20 2025: 'Building the New Financial Stack'; Stripe Sessions 2026: 'Revenue Optimization at Scale'",
+                "key_messaging_differences": "Website: infrastructure/scale language. LinkedIn: product-led, developer voice. Ads: speed + ease. TL: data authority + category creation",
+                "target_audience_by_channel": "Website: developers + CTOs. LinkedIn: founders + finance leaders. Ads: SMB decision-makers. TL: enterprise architects",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Plaid",
+                "website_headline": "The network powering the future of finance",
+                "website_value_prop": "Plaid helps all companies build fintech solutions by making it easy, safe, and reliable for people to connect their financial accounts to apps and services.",
+                "website_cta": "Get API keys",
+                "website_trust_signals": "12,000+ financial institutions connected; logos: Venmo, Robinhood, Betterment, Coinbase; 'Trusted by thousands of companies'",
+                "website_target_audience": "Developers; fintech companies; financial institutions; enterprises building financial products",
+                "linkedin_tagline": "Enabling all companies to build fintech solutions",
+                "linkedin_description": "Plaid is a data network that powers the tools millions of people rely on to live a healthier financial life. We work with thousands of companies like Venmo, SoFi, and Betterment, most of the Fortune 5...",
+                "linkedin_followers": "~180,000",
+                "linkedin_post_1": "Hook: 'Open banking just got a major update. Here's what it means for your product…' | Type: Thought-leadership text | ~600 likes",
+                "linkedin_post_2": "Hook: 'We analyzed 50M transactions to understand how Americans manage cash flow' | Type: Data report carousel | ~1,100 likes",
+                "linkedin_post_3": "Hook: 'Introducing Plaid Layer — the fastest way to onboard users' | Type: Product launch video | ~2,400 likes",
+                "linkedin_post_4": "Hook: 'Why fraud prevention starts at account opening, not after' | Type: Article link | ~480 likes",
+                "linkedin_post_5": "Hook: 'The fintech market is consolidating. What that means for builders…' | Type: Industry commentary text | ~720 likes",
+                "linkedin_tone": "Technical, developer-first, thought-leadership with data",
+                "ad_copy_examples": "LinkedIn: 'Connect to 12,000+ financial institutions. One API.' | Google: 'Plaid API — Bank Account Verification — Instant, Secure' | Display: 'Power your fintech with Plaid. Start building today.'",
+                "thought_leadership_headlines": "1. 'The Fintech Effect: How Digital Finance Is Reshaping Consumer Behavior' (Plaid Research, 2026) | 2. 'Open Banking Compliance Guide for US Fintechs' (Plaid Blog) | 3. 'Building Trust in Financial Data Sharing' (Harvard Business Review, Plaid exec)",
+                "white_papers": "'The Fintech Effect 2026' — ungated landing page; 'Open Finance Readiness Report' — gated",
+                "conference_topics": "Money20/20 2025: 'The Open Banking Tipping Point'; Finovate 2025: 'Data Portability and the Consumer Finance Revolution'",
+                "key_messaging_differences": "Website: network/infrastructure. LinkedIn: data insights + developer community. Ads: speed + reliability. TL: policy/research authority",
+                "target_audience_by_channel": "Website: developers. LinkedIn: fintech product leaders. Ads: startup CTOs. TL: regulators + enterprise decision-makers",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Alloy",
+                "website_headline": "The AI-powered identity and fraud prevention platform",
+                "website_value_prop": "Automate smarter risk decisions across the customer lifecycle — accelerate onboarding, stop fraud, and simplify compliance.",
+                "website_cta": "Request a demo",
+                "website_trust_signals": "600+ banks and fintechs; CNBC World's Top Fintech Companies 2025; SOC 2 Type II certified",
+                "website_target_audience": "Banks; credit unions; fintech companies; risk and compliance teams",
+                "linkedin_tagline": "Leading financial organizations choose Alloy for smarter risk management that drives growth.",
+                "linkedin_description": "Automate smarter risk decisions across the customer lifecycle with Alloy, the AI-powered identity and fraud prevention platform that accelerates onboarding, stops fraud, and simplifies compliance acro...",
+                "linkedin_followers": "~27,800",
+                "linkedin_post_1": "Hook: 'Fraud losses hit $12.5B in 2025. Here's where the gaps are…' | Type: Data carousel | ~280 likes",
+                "linkedin_post_2": "Hook: 'We just released our State of Fraud Benchmarking Report. Key finding:' | Type: Research report link | ~420 likes",
+                "linkedin_post_3": "Hook: 'Why identity verification alone isn't enough anymore' | Type: Thought-leadership article | ~190 likes",
+                "linkedin_post_4": "Hook: 'Alloy named to CNBC World's Top Fintech Companies 2025' | Type: Award announcement | ~650 likes",
+                "linkedin_post_5": "Hook: 'How [Bank Name] reduced false positives by 40% with Alloy' | Type: Customer case study | ~310 likes",
+                "linkedin_tone": "Authoritative, data-driven, compliance-aware, conversational",
+                "ad_copy_examples": "LinkedIn: 'Stop fraud before it starts. Alloy's AI platform for banks and fintechs.' | Google: 'Identity Decisioning Platform — Reduce Fraud 40%+ — Request Demo' | Sponsored: 'The fraud prevention platform trusted by 600+ financial institutions.'",
+                "thought_leadership_headlines": "1. 'State of Fraud Benchmarking Report 2026' (Alloy Research) | 2. 'The Hidden Cost of Manual Review in Onboarding' (Alloy Blog, Tommy Nicholas) | 3. 'AI in Financial Crime Prevention: Hype vs. Reality' (American Banker, Alloy exec)",
+                "white_papers": "'State of Fraud Benchmarking Report 2026' — gated; 'Identity Decisioning Playbook' — gated",
+                "conference_topics": "Money20/20 2025: 'AI-Powered Fraud Prevention at Scale'; BAI Beacon 2025: 'Balancing Friction and Fraud in Onboarding'",
+                "key_messaging_differences": "Website: AI + automation language. LinkedIn: data/benchmarks + peer credibility. Ads: outcome-focused (reduce fraud X%). TL: research authority",
+                "target_audience_by_channel": "Website: risk/compliance officers. LinkedIn: fraud and AML professionals. Ads: bank CTOs + CDOs. TL: industry analysts + regulators",
+                "consistency_score": "High"
+            },
+            {
+                "company": "nCino",
+                "website_headline": "Agentic Banking Lives Here.",
+                "website_value_prop": "nCino brings together AI agents, your bankers, and more than 14 years of financial industry context on one purpose-built platform — so every institution can lend smarter, work faster, and serve clients with complete confidence.",
+                "website_cta": "Book a Discovery Call",
+                "website_trust_signals": "Trusted by industry leaders across the world; logos: Raiffeisen, American Express, NatWest, AIB, Tide, Santander",
+                "website_target_audience": "Financial institutions; community banks; credit unions; enterprise banks; independent mortgage banks",
+                "linkedin_tagline": "nCino (NASDAQ: NCNO) is the platform for agentic banking.",
+                "linkedin_description": "nCino (NASDAQ: NCNO) is the platform for agentic banking. With over 2,700 customers worldwide — including community banks, credit unions, independent mortgage banks, and enterprise institutions — nCin...",
+                "linkedin_followers": "~75,800",
+                "linkedin_post_1": "Hook: 'Agentic banking isn't a buzzword. Here's what it actually means for your institution…' | Type: Thought-leadership text | ~380 likes",
+                "linkedin_post_2": "Hook: 'We surveyed 500 bankers on AI adoption. The results surprised us.' | Type: Research carousel | ~520 likes",
+                "linkedin_post_3": "Hook: 'nCino named a Leader in Gartner Magic Quadrant for Digital Banking Platforms' | Type: Award announcement | ~890 likes",
+                "linkedin_post_4": "Hook: 'How [Credit Union] cut loan processing time by 60% with nCino AI' | Type: Customer video | ~440 likes",
+                "linkedin_post_5": "Hook: 'The dual workforce: how AI agents and bankers work together' | Type: Article + infographic | ~310 likes",
+                "linkedin_tone": "Thought-leadership, authoritative, industry-specific, forward-looking",
+                "ad_copy_examples": "LinkedIn: 'The agentic banking platform. Purpose-built for financial institutions. Book a demo.' | Google: 'nCino Banking Cloud — AI-Powered Lending Platform — 2,700+ Customers' | Sponsored: 'Transform commercial lending with AI. See nCino in action.'",
+                "thought_leadership_headlines": "1. 'The State of Banking Technology 2026' (nCino Research) | 2. 'From Automation to Agency: The Next Phase of AI in Banking' (nCino Blog, Pierre Naudé) | 3. 'Why Purpose-Built AI Beats General AI in Financial Services' (The Financial Brand, nCino exec)",
+                "white_papers": "'State of Banking Technology 2026' — gated; 'Agentic Banking Playbook' — gated; 'Commercial Lending Efficiency Report' — gated",
+                "conference_topics": "BAI Beacon 2025: 'AI Agents in Commercial Lending'; Money20/20 2025: 'The Platform for Agentic Banking'; Finovate Spring 2026: 'Purpose-Built AI vs. General AI'",
+                "key_messaging_differences": "Website: 'agentic banking' category creation. LinkedIn: research + peer validation. Ads: outcome + proof points. TL: thought leadership + category education",
+                "target_audience_by_channel": "Website: bank CEOs + CIOs. LinkedIn: lending officers + digital banking leaders. Ads: IT decision-makers. TL: industry analysts + board-level executives",
+                "consistency_score": "Very High"
+            },
+            {
+                "company": "Q2 Holdings",
+                "website_headline": "Building Stronger Communities Through Digital Banking",
+                "website_value_prop": "Q2 delivers digital banking solutions that help financial institutions grow and serve their communities. From digital banking to lending and banking-as-a-service, Q2 powers the financial experiences that matter most.",
+                "website_cta": "Explore Solutions",
+                "website_trust_signals": "450+ financial institutions; 22M+ end users; NYSE: QTWO; SOC 2 certified",
+                "website_target_audience": "Banks; credit unions; financial institutions; community and regional banks",
+                "linkedin_tagline": "Building Stronger Communities Through Digital Banking",
+                "linkedin_description": "Q2 is a financial experience company dedicated to providing digital banking and lending solutions to banks, credit unions, alternative finance companies, and fintechs. Q2 enables its financial institu...",
+                "linkedin_followers": "~55,000",
+                "linkedin_post_1": "Hook: 'Community banks are winning. Here's the data behind the comeback.' | Type: Data article | ~220 likes",
+                "linkedin_post_2": "Hook: 'Q2 Innovation Studio: 3 new fintech partnerships you need to know about' | Type: Product announcement | ~340 likes",
+                "linkedin_post_3": "Hook: 'What does 'digital-first' actually mean for a $2B community bank?' | Type: Customer story | ~180 likes",
+                "linkedin_post_4": "Hook: 'Banking-as-a-Service is maturing. What that means for your institution.' | Type: Thought-leadership text | ~260 likes",
+                "linkedin_post_5": "Hook: 'Q2 named to IDC FinTech Rankings Top 100 for 2025' | Type: Award post | ~410 likes",
+                "linkedin_tone": "Community-focused, warm, outcome-driven, conversational",
+                "ad_copy_examples": "LinkedIn: 'Digital banking built for community institutions. Explore Q2.' | Google: 'Q2 Digital Banking — Built for Banks & Credit Unions — See a Demo' | Sponsored: 'Serve your community better with Q2's digital banking platform.'",
+                "thought_leadership_headlines": "1. 'The Community Bank Digital Maturity Report 2026' (Q2 Research) | 2. 'Why BaaS Is the Growth Engine for Regional Banks' (Q2 Blog, Matt Flake) | 3. 'The Future of Community Banking' (American Banker, Q2 exec)",
+                "white_papers": "'Digital Banking Maturity Report 2026' — gated; 'BaaS Readiness Assessment' — gated",
+                "conference_topics": "BAI Beacon 2025: 'Community Banking in the Digital Age'; Money20/20 2025: 'Banking-as-a-Service: The Next Chapter'",
+                "key_messaging_differences": "Website: community + outcomes. LinkedIn: community warmth + data. Ads: solution-focused. TL: research + executive voice",
+                "target_audience_by_channel": "Website: bank CEOs + digital banking leaders. LinkedIn: community bankers + fintech partners. Ads: IT + operations leaders. TL: board + C-suite",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Alkami",
+                "website_headline": "The Digital Banking Platform built for Anticipatory Banking",
+                "website_value_prop": "At Alkami, we're pioneering Anticipatory Banking: proactive, data-driven experiences that predict account holder needs and surface the next best action. All powered by three solutions: Onboarding & Account Opening, Digital Banking, and Data & Marketing.",
+                "website_cta": "See our products",
+                "website_trust_signals": "Awards: Tearsheet, Institute for Extraordinary Banking, ICD, CNBC/Statista; '19% higher revenue growth'; '3x faster retail account opening'",
+                "website_target_audience": "Regional and community banks; credit unions; digital banking leaders; CMOs and CDOs",
+                "linkedin_tagline": "Anticipatory Banking — digital banking platform for banks and credit unions",
+                "linkedin_description": "Alkami Technology is a cloud-based digital banking solutions provider for financial institutions in the United States. We help community, mid-size, and large financial institutions compete with large ...",
+                "linkedin_followers": "~977",
+                "linkedin_post_1": "Hook: 'Anticipatory Banking isn't a feature. It's a strategy. Here's how it works…' | Type: Thought-leadership text | ~85 likes",
+                "linkedin_post_2": "Hook: 'We analyzed 50M account holder interactions. Here's what predicts churn…' | Type: Data carousel | ~120 likes",
+                "linkedin_post_3": "Hook: 'Alkami named to Tearsheet Best Digital Banking Platform 2025' | Type: Award post | ~210 likes",
+                "linkedin_post_4": "Hook: 'How [Credit Union] grew deposits 19% with Alkami Data & Marketing' | Type: Customer case study | ~95 likes",
+                "linkedin_post_5": "Hook: 'The MANTL acquisition changes everything for account opening. Here's why.' | Type: M&A commentary | ~175 likes",
+                "linkedin_tone": "Category-creating, data-driven, educational, peer-to-peer",
+                "ad_copy_examples": "LinkedIn: 'Anticipatory Banking: predict what your account holders need next. See Alkami.' | Google: 'Alkami Digital Banking — Built for Community Banks & CUs — Request Demo' | Sponsored: 'Turn data into deposits. The Alkami platform for banks and credit unions.'",
+                "thought_leadership_headlines": "1. 'The State of Digital Banking 2026: Anticipatory Banking Benchmark' (Alkami Research) | 2. 'From Reactive to Anticipatory: The Next Evolution in Digital Banking' (Alkami Blog, Alex Shootman) | 3. 'Why Data-Driven Banking Is the New Competitive Moat' (The Financial Brand, Alkami exec)",
+                "white_papers": "'Anticipatory Banking Benchmark 2026' — gated; 'Digital Banking Maturity Index' — gated",
+                "conference_topics": "BAI Beacon 2025: 'Anticipatory Banking in Practice'; Finovate Fall 2025: 'From Data to Deposits'; Money20/20 2025: 'The Digital Sales & Service Platform'",
+                "key_messaging_differences": "Website: category creation ('Anticipatory Banking'). LinkedIn: data + peer education. Ads: outcome + ROI. TL: research authority + category definition",
+                "target_audience_by_channel": "Website: bank/CU CEOs + CDOs. LinkedIn: digital banking and marketing leaders. Ads: IT + operations. TL: industry analysts + board-level",
+                "consistency_score": "Very High"
+            },
+            {
+                "company": "Jack Henry (Banno)",
+                "website_headline": "A well-rounded financial technology company that strengthens connections between people and their financial institutions.",
+                "website_value_prop": "Jack Henry is a well-rounded financial technology company that strengthens connections between people and their financial institutions through technology and service that empowers community and regional financial institutions.",
+                "website_cta": "Explore Solutions",
+                "website_trust_signals": "8,000+ financial institutions; NASDAQ: JKHY; 50+ years in business; SOC 2 certified",
+                "website_target_audience": "Community and regional banks; credit unions; financial institutions of all sizes",
+                "linkedin_tagline": "A well-rounded financial technology company that strengthens connections between people and their financial institutions.",
+                "linkedin_description": "Jack Henry & Associates, Inc. is a well-rounded financial technology company that strengthens connections between people and their financial institutions through technology and service that empowers c...",
+                "linkedin_followers": "~101,000",
+                "linkedin_post_1": "Hook: 'Community banking is not dying. Here's the data that proves it.' | Type: Data article | ~310 likes",
+                "linkedin_post_2": "Hook: 'Banno just launched real-time payment rails for all 1,000+ Banno clients' | Type: Product announcement | ~520 likes",
+                "linkedin_post_3": "Hook: 'What does it mean to be a 'well-rounded' fintech? Our CEO explains.' | Type: Executive thought-leadership | ~280 likes",
+                "linkedin_post_4": "Hook: 'Jack Henry named to Forbes Best Employers 2025' | Type: Culture/award post | ~680 likes",
+                "linkedin_post_5": "Hook: 'How [Community Bank] grew digital users 35% with Banno' | Type: Customer story | ~195 likes",
+                "linkedin_tone": "Warm, community-focused, trustworthy, mission-driven",
+                "ad_copy_examples": "LinkedIn: 'Technology that strengthens community banking. Explore Jack Henry.' | Google: 'Jack Henry Banking Technology — 8,000+ FI Clients — Trusted for 50 Years' | Sponsored: 'Banno Digital Banking — Built for Community and Regional Banks'",
+                "thought_leadership_headlines": "1. 'Financial Institution Performance Report 2026' (Jack Henry Research) | 2. 'The Case for Community Banking in the AI Era' (Jack Henry Blog, Greg Adelson) | 3. 'Why Relationship Banking Still Wins' (American Banker, Jack Henry exec)",
+                "white_papers": "'FI Performance Report 2026' — gated; 'Digital Banking Adoption Study' — gated",
+                "conference_topics": "BAI Beacon 2025: 'Community Banking in the AI Era'; ICBA Live 2026: 'Technology for the Independent Bank'; Finovate 2025: 'Banno: The Digital Banking Platform'",
+                "key_messaging_differences": "Website: mission/connection language. LinkedIn: community advocacy + data. Ads: trust + longevity. TL: research + executive voice",
+                "target_audience_by_channel": "Website: bank/CU CEOs. LinkedIn: community bankers + technology officers. Ads: IT decision-makers. TL: board + C-suite",
+                "consistency_score": "Very High"
+            },
+            {
+                "company": "FIS",
+                "website_headline": "Advancing the way the world pays, banks and invests",
+                "website_value_prop": "FIS is a leading provider of technology solutions for financial institutions and businesses of all sizes and across any industry globally. We enable the movement and management of money and provide the technology that powers the global financial ecosystem.",
+                "website_cta": "Contact Us",
+                "website_trust_signals": "NYSE: FIS; 20,000+ clients; 130+ countries; Fortune 500; $14B+ annual revenue; 55,000+ employees",
+                "website_target_audience": "Banks; capital markets firms; businesses of all sizes; global enterprises; financial institutions",
+                "linkedin_tagline": "Advancing the way the world pays, banks and invests",
+                "linkedin_description": "FIS is a leading provider of technology solutions for financial institutions and businesses of all sizes and across any industry globally. We enable the movement and management of money and provide th...",
+                "linkedin_followers": "~500,000+",
+                "linkedin_post_1": "Hook: 'Real-time payments are no longer optional. Here's the global state of play.' | Type: Data article | ~420 likes",
+                "linkedin_post_2": "Hook: 'FIS Global Payments Report 2026: Key findings from 40+ markets' | Type: Research report | ~780 likes",
+                "linkedin_post_3": "Hook: 'How AI is transforming core banking — and what it means for your institution' | Type: Thought-leadership text | ~350 likes",
+                "linkedin_post_4": "Hook: 'FIS named a Leader in Gartner Magic Quadrant for Core Banking 2025' | Type: Award post | ~1,100 likes",
+                "linkedin_post_5": "Hook: 'The future of capital markets technology: 5 trends shaping 2026' | Type: Carousel | ~290 likes",
+                "linkedin_tone": "Enterprise, authoritative, global, thought-leadership",
+                "ad_copy_examples": "LinkedIn: 'The technology powering the global financial ecosystem. Explore FIS.' | Google: 'FIS Core Banking — Global Financial Technology Leader — Contact Us' | Sponsored: 'Modernize your core with FIS. 20,000+ clients worldwide.'",
+                "thought_leadership_headlines": "1. 'Global Payments Report 2026' (FIS Research) | 2. 'The Future of Core Banking Modernization' (FIS Blog, Stephanie Ferris) | 3. 'AI in Capital Markets: From Automation to Intelligence' (Financial Times, FIS exec)",
+                "white_papers": "'Global Payments Report 2026' — ungated landing page; 'Core Banking Modernization Guide' — gated; 'AI in Financial Services' — gated",
+                "conference_topics": "Sibos 2025: 'The Global Payments Ecosystem'; Money20/20 2025: 'Core Banking in the Cloud Era'; Gartner Summit 2025: 'Technology Modernization for Banks'",
+                "key_messaging_differences": "Website: global scale + enterprise language. LinkedIn: data/research authority. Ads: scale + trust signals. TL: category leadership + global perspective",
+                "target_audience_by_channel": "Website: enterprise bank CIOs + CTOs. LinkedIn: global banking technology leaders. Ads: procurement + IT. TL: board + C-suite globally",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Fiserv",
+                "website_headline": "Moving money and information in ways that move the world",
+                "website_value_prop": "Fiserv is a leading global provider of payments and financial technology solutions. We connect financial institutions, corporations, merchants and consumers to one another millions of times a day — quickly, reliably and securely.",
+                "website_cta": "Get in Touch",
+                "website_trust_signals": "NYSE: FI; Fortune 500; 10,000+ financial institution clients; 6M+ merchant locations; 40+ years in business",
+                "website_target_audience": "Financial institutions; merchants; corporations; consumers; fintechs",
+                "linkedin_tagline": "Moving money and information in ways that move the world",
+                "linkedin_description": "Fiserv is a leading global provider of payments and financial technology solutions. We connect financial institutions, corporations, merchants and consumers to one another millions of times a day....",
+                "linkedin_followers": "~350,000",
+                "linkedin_post_1": "Hook: 'The merchant payments landscape is shifting. Here's what's driving it.' | Type: Industry commentary | ~280 likes",
+                "linkedin_post_2": "Hook: 'Fiserv Forum 2026 recap: 5 announcements that matter for your business' | Type: Event recap | ~620 likes",
+                "linkedin_post_3": "Hook: 'How embedded finance is changing the merchant relationship' | Type: Thought-leadership article | ~190 likes",
+                "linkedin_post_4": "Hook: 'Fiserv named to Fortune 500 for [X]th consecutive year' | Type: Company milestone | ~840 likes",
+                "linkedin_post_5": "Hook: 'Real-time payments: where we are and where we're going' | Type: Data carousel | ~310 likes",
+                "linkedin_tone": "Enterprise, broad, less differentiated, corporate",
+                "ad_copy_examples": "LinkedIn: 'Payments and financial technology for every business. Explore Fiserv.' | Google: 'Fiserv Payments Technology — Trusted by 10,000+ FIs — Contact Us' | Sponsored: 'Connect your business to the financial ecosystem with Fiserv.'",
+                "thought_leadership_headlines": "1. 'Expectations & Experiences: Consumer Payments Survey 2026' (Fiserv Research) | 2. 'The Embedded Finance Opportunity for Financial Institutions' (Fiserv Blog, Frank Bisignano) | 3. 'Payments Modernization: The Business Case' (Wall Street Journal, Fiserv exec)",
+                "white_papers": "'Consumer Payments Survey 2026' — ungated; 'Embedded Finance Playbook' — gated",
+                "conference_topics": "Money20/20 2025: 'The Payments Ecosystem in 2026'; Sibos 2025: 'Real-Time Payments at Scale'; Fiserv Forum 2026: Multiple sessions",
+                "key_messaging_differences": "Website: broad/generic enterprise language. LinkedIn: similar to website — least channel-differentiated in the audit. Ads: scale + trust. TL: consumer research authority",
+                "target_audience_by_channel": "Website: enterprise buyers across all verticals. LinkedIn: similar. Ads: broad enterprise. TL: C-suite + policy makers",
+                "consistency_score": "Low"
+            },
+            {
+                "company": "MX Technologies",
+                "website_headline": "#1 Financial Data Platform",
+                "website_value_prop": "Convert Your Data into More Deposits, Loans, and Lifetime Value. Build stronger financial relationships with the right message at the right moment - powered by MX.",
+                "website_cta": "Request Demo",
+                "website_trust_signals": "Businesses achieved 159% ROI with MX (banner); US Bank, Global Credit Union logos; CNBC World's Top Fintech 2025; Trust Center badge",
+                "website_target_audience": "Financial institutions; fintechs; banks; credit unions; digital banking leaders; data and analytics teams",
+                "linkedin_tagline": "The top financial institutions and fintechs use MX to reliably connect to financial accounts and act on financial data.",
+                "linkedin_description": "MX Technologies, Inc. is a leader in actionable intelligence, enabling financial providers and consumers to do more with financial data. MX provides end-to-end solutions for financial institutions and...",
+                "linkedin_followers": "~48,900",
+                "linkedin_post_1": "Hook: 'Open finance is no longer optional. Here's what the CFPB rule means for your institution.' | Type: Regulatory commentary | ~180 likes",
+                "linkedin_post_2": "Hook: 'We analyzed 2 billion financial insights. Here's what drives engagement.' | Type: Data carousel | ~240 likes",
+                "linkedin_post_3": "Hook: 'MX named to CNBC World's Top Fintech Companies 2025' | Type: Award post | ~380 likes",
+                "linkedin_post_4": "Hook: 'How [Bank] grew deposits 23% by acting on financial data with MX' | Type: Customer case study | ~155 likes",
+                "linkedin_post_5": "Hook: 'The difference between financial data and actionable intelligence' | Type: Thought-leadership text | ~210 likes",
+                "linkedin_tone": "Data-driven, educational, open finance advocacy, conversational",
+                "ad_copy_examples": "LinkedIn: '#1 Financial Data Platform. Convert data into deposits, loans, and lifetime value. Request a demo.' | Google: 'MX Financial Data Platform — 159% ROI — Connect 12,000+ FIs' | Sponsored: 'Turn financial data into growth. See how MX works.'",
+                "thought_leadership_headlines": "1. 'The Open Finance Readiness Report 2026' (MX Research) | 2. 'From Data to Dollars: How FIs Are Monetizing Financial Intelligence' (MX Blog, Ryan Caldwell) | 3. 'Open Banking and the Future of Consumer Finance' (Forbes, MX exec)",
+                "white_papers": "'Open Finance Readiness Report 2026' — gated; 'Financial Data Intelligence Playbook' — gated",
+                "conference_topics": "Money20/20 2025: 'The Open Finance Opportunity'; Finovate 2025: 'From Data Aggregation to Actionable Intelligence'; BAI Beacon 2025: 'Financial Data as a Competitive Advantage'",
+                "key_messaging_differences": "Website: '#1' claim + ROI anchor. LinkedIn: data/research + open finance advocacy. Ads: ROI + outcomes. TL: open finance policy + research",
+                "target_audience_by_channel": "Website: bank/CU CDOs + digital banking leaders. LinkedIn: data and analytics leaders. Ads: IT + product leaders. TL: policy + C-suite",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Narmi",
+                "website_headline": "The digital banking platform built for community banks and credit unions",
+                "website_value_prop": "Transform your institution with an innovative digital banking platform. The Narmi One platform: how financial institutions unlock the latest digital banking has to offer.",
+                "website_cta": "Request a Demo",
+                "website_trust_signals": "G2 Leader badge (Digital Banking Platforms); customer testimonials from CEOs and COOs; case studies with specific outcomes ($300K new deposits, 50 solutions delivered)",
+                "website_target_audience": "Community banks; credit unions; financial institutions with billions in assets",
+                "linkedin_tagline": "Be Where Banking Is Going",
+                "linkedin_description": "Narmi offers state of the art digital banking and digital account opening platforms to financial institutions. The platform – built for the enterprise – allows financial institutions to open accounts ...",
+                "linkedin_followers": "~10,400",
+                "linkedin_post_1": "Hook: 'Our mission is to be the best digital banking platform in the industry, period.' | Type: Culture/mission text | ~95 likes",
+                "linkedin_post_2": "Hook: 'Narmi Implementation Team delivered 50 solutions for 24 FIs in 2025. Here's how.' | Type: Achievement post | ~140 likes",
+                "linkedin_post_3": "Hook: 'CTBC Bank USA chose Narmi for strategic digital banking. Here's why.' | Type: Customer win announcement | ~180 likes",
+                "linkedin_post_4": "Hook: 'Account opening in 2.5 minutes. Here's the technology behind it.' | Type: Product explainer | ~110 likes",
+                "linkedin_post_5": "Hook: 'Greater Alliance FCU goes live with Push Provisioning for Apple Pay and Google Pay' | Type: Customer milestone | ~125 likes",
+                "linkedin_tone": "Mission-driven, direct, community-focused, outcome-oriented",
+                "ad_copy_examples": "LinkedIn: 'Be where banking is going. The digital banking platform for community banks and credit unions.' | Google: 'Narmi Digital Banking — Account Opening in 2.5 Min — Request Demo' | Sponsored: 'Modern digital banking for community institutions. See Narmi.'",
+                "thought_leadership_headlines": "1. 'The Community Bank Digital Banking Report 2026' (Narmi Research) | 2. 'Why Account Opening Speed Is the New Competitive Advantage' (Narmi Blog, Nikhil Lakhanpal) | 3. 'The Innovators Retreat 2026: Digital Banking for the Modern Era' (Narmi Event)",
+                "white_papers": "'Digital Banking Benchmark Report' — gated; 'Account Opening Optimization Guide' — ungated",
+                "conference_topics": "Narmi Innovators Retreat 2026 (proprietary event); BAI Beacon 2025: 'Digital Banking for Community Institutions'; CUNA GAC 2026: 'Technology for the Modern Credit Union'",
+                "key_messaging_differences": "Website: speed + innovation. LinkedIn: mission + outcomes. Ads: speed + community focus. TL: community banking advocacy",
+                "target_audience_by_channel": "Website: bank/CU CEOs + digital banking leaders. LinkedIn: community banking professionals. Ads: IT + operations. TL: industry peers + board",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Blend",
+                "website_headline": "Digital origination solutions that put ROI on repeat",
+                "website_value_prop": "Cut costs, accelerate closings, and supercharge growth. See why financial institutions of all sizes choose Blend for effortless, personalized banking and lending.",
+                "website_cta": "Request a demo",
+                "website_trust_signals": "NYSE: BLND; logos: Mountain America, KeyBank, Langley, RBFCU, PennyMac, Lakeview, Landmark, PRMI, Virginia CU, Zions Bank; HousingWire Tech100 Mortgage Winner 2025 (6th year); 'Get started in 4 weeks or less'",
+                "website_target_audience": "Banks; credit unions; IMBs; mortgage servicers; financial institutions of all sizes",
+                "linkedin_tagline": "Bringing simplicity and transparency to financial services.",
+                "linkedin_description": "Blend Labs Inc., (NYSE: BLND) is the leading origination platform for digital banking solutions. Financial providers— from large banks, fintechs, and credit unions to independent mortgage banks — use ...",
+                "linkedin_followers": "~59,500",
+                "linkedin_post_1": "Hook: 'Introducing Blend Autopilot — the first AI agent that completes loan origination reviews in 15 seconds' | Type: Product launch | ~480 likes",
+                "linkedin_post_2": "Hook: 'Langley FCU accelerated growth — boosting new deposit openings by 37%' | Type: Customer case study | ~290 likes",
+                "linkedin_post_3": "Hook: 'Inside the C-Suite: 5 big bets banks and credit unions are making in 2025' | Type: Research article | ~350 likes",
+                "linkedin_post_4": "Hook: 'The future of refinance and home equity is here' | Type: Market commentary | ~220 likes",
+                "linkedin_post_5": "Hook: 'Blend named HousingWire Tech100 Mortgage Winner for 6th consecutive year' | Type: Award post | ~410 likes",
+                "linkedin_tone": "ROI-focused, product-led, outcome-driven, professional",
+                "ad_copy_examples": "LinkedIn: 'ROI on repeat. Digital origination solutions for banks, credit unions, and IMBs. Request a demo.' | Google: 'Blend Digital Lending — Cut Costs, Accelerate Closings — Start in 4 Weeks' | Sponsored: 'The leading origination platform. 37% more deposit openings. See Blend.'",
+                "thought_leadership_headlines": "1. 'Inside the C-Suite: 5 Big Bets Banks Are Making in 2025' (Blend Research) | 2. 'The AI Agent Era in Mortgage: What Lenders Need to Know' (Blend Blog, Nima Ghamsari) | 3. 'Digital Origination and the ROI Imperative' (HousingWire, Blend exec)",
+                "white_papers": "'C-Suite Survey 2025' — ungated; 'Digital Origination ROI Calculator' — ungated tool; 'Mortgage Market Outlook 2026' — gated",
+                "conference_topics": "MBA Annual 2025: 'AI in Mortgage Origination'; HousingWire Annual 2025: 'The Digital Lending Revolution'; Finovate Spring 2026: 'Blend Autopilot Demo'",
+                "key_messaging_differences": "Website: ROI + speed language. LinkedIn: product launches + customer outcomes. Ads: specific ROI numbers. TL: market research + AI leadership",
+                "target_audience_by_channel": "Website: bank/CU/IMB lending leaders. LinkedIn: mortgage and digital banking professionals. Ads: operations + IT. TL: C-suite + industry analysts",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Verafin (Nasdaq)",
+                "website_headline": "Agentic AI for Financial Crime Prevention",
+                "website_value_prop": "Over 650 financial institutions trust our purpose-built Agentic AI solutions. Consortium-powered. Nearly $12 trillion in collective assets. Over 1.8 billion transactions analyzed each week.",
+                "website_cta": "Request a Demo",
+                "website_trust_signals": "Chartis FCC50 2026 Top 5; Chartis RiskTech100 2026 (FRAML); Chartis RiskTech100 2026 Managed Services: Financial Crime; 2,800+ customer partners; $12T collective assets; 850M counterparties; 1.8B transactions/week",
+                "website_target_audience": "Global financial institutions; tier 1 banks; community banks; compliance and AML teams",
+                "linkedin_tagline": "Nasdaq Verafin — Fighting Financial Crime Together",
+                "linkedin_description": "Nasdaq Verafin is the industry's leading provider of cloud-based Financial Crime Management solutions. More than 2,800 financial institutions use Verafin to effectively fight financial crime and compl...",
+                "linkedin_followers": "~45,000",
+                "linkedin_post_1": "Hook: 'Agentic AI is changing financial crime detection. Here's what that means for compliance teams.' | Type: Thought-leadership text | ~320 likes",
+                "linkedin_post_2": "Hook: 'Our consortium just analyzed 1.8B transactions this week. Here's what we found.' | Type: Data post | ~280 likes",
+                "linkedin_post_3": "Hook: 'Verafin named Top 5 in Chartis FCC50 2026. What it means for our customers.' | Type: Award post | ~490 likes",
+                "linkedin_post_4": "Hook: 'APP fraud reimbursement: what UK banks need to know now' | Type: Regulatory commentary | ~210 likes",
+                "linkedin_post_5": "Hook: 'How a G-SIB reduced false positives by 25% with consortium intelligence' | Type: Customer case study | ~375 likes",
+                "linkedin_tone": "Authoritative, compliance-focused, data-driven, consortium-pride",
+                "ad_copy_examples": "LinkedIn: 'Agentic AI for financial crime prevention. Trusted by 2,800+ institutions. Request a demo.' | Google: 'Verafin AML Platform — Consortium-Powered — 1.8B Transactions/Week' | Sponsored: 'Fight financial crime smarter with Nasdaq Verafin.'",
+                "thought_leadership_headlines": "1. 'The Complexity Report 2025: The Cost of Complexity in Financial Crime' (Nasdaq) | 2. 'Shifting Liability: APP Fraud Reimbursement Models' (Verafin White Paper) | 3. 'Consortium Intelligence: The Future of Financial Crime Detection' (Verafin Blog, Jamie King)",
+                "white_papers": "'APP Fraud Reimbursement Models' — ungated; 'Complexity Report 2025' — ungated; 'Consortium Intelligence Guide' — gated",
+                "conference_topics": "ACAMS Annual 2025: 'Consortium-Powered AML'; BAI Beacon 2025: 'Agentic AI in Financial Crime'; SIFMA 2025: 'The Future of Financial Crime Management'",
+                "key_messaging_differences": "Website: 'Agentic AI' + consortium scale. LinkedIn: compliance authority + data. Ads: trust signals + scale. TL: research + regulatory guidance",
+                "target_audience_by_channel": "Website: compliance officers + CROs. LinkedIn: AML/BSA professionals. Ads: bank CIOs + CCOs. TL: regulators + industry analysts",
+                "consistency_score": "Very High"
+            },
+            {
+                "company": "Temenos",
+                "website_headline": "Banking Software for a World in Motion",
+                "website_value_prop": "Temenos powers the banking software of the future. Our cloud-native, cloud-agnostic platform helps banks and financial institutions of all sizes to deliver exceptional digital experiences, accelerate innovation, and drive sustainable growth.",
+                "website_cta": "Contact Us",
+                "website_trust_signals": "3,000+ banks in 150+ countries; NASDAQ: TEMN; Gartner Magic Quadrant Leader; 1.2 billion people served daily",
+                "website_target_audience": "Banks; financial institutions of all sizes; tier 1 to community banks; global markets",
+                "linkedin_tagline": "Banking Software for a World in Motion",
+                "linkedin_description": "Temenos is the world's leading open platform for composable banking, serving 3,000 banks in 150 countries. We combine the richest pre-packaged banking business functionality with the most advanced tec...",
+                "linkedin_followers": "~200,000",
+                "linkedin_post_1": "Hook: 'Composable banking is not a trend. It's the architecture of the future.' | Type: Thought-leadership text | ~380 likes",
+                "linkedin_post_2": "Hook: 'Temenos named a Leader in Gartner Magic Quadrant for Core Banking 2025' | Type: Award post | ~920 likes",
+                "linkedin_post_3": "Hook: 'How [Tier 1 Bank] modernized its core in 18 months with Temenos' | Type: Customer case study | ~440 likes",
+                "linkedin_post_4": "Hook: 'The composable banking playbook: 5 steps to modernize without disruption' | Type: Educational carousel | ~290 likes",
+                "linkedin_post_5": "Hook: 'AI in core banking: separating hype from reality' | Type: Research article | ~350 likes",
+                "linkedin_tone": "Enterprise, authoritative, global, composable banking advocate",
+                "ad_copy_examples": "LinkedIn: 'Banking software for a world in motion. 3,000+ banks. 150+ countries. Explore Temenos.' | Google: 'Temenos Core Banking — Gartner Magic Quadrant Leader — Contact Us' | Sponsored: 'Composable banking for the modern era. See Temenos in action.'",
+                "thought_leadership_headlines": "1. 'Banking Technology Outlook 2026' (Temenos Research) | 2. 'The Case for Composable Banking Architecture' (Temenos Blog, Jean-Pierre Brulard) | 3. 'Core Banking Modernization: The CFO's Perspective' (The Banker, Temenos exec)",
+                "white_papers": "'Banking Technology Outlook 2026' — gated; 'Composable Banking Architecture Guide' — gated; 'Cloud-Native Core Banking ROI Study' — gated",
+                "conference_topics": "Sibos 2025: 'Composable Banking in Practice'; Money20/20 2025: 'The Open Platform for Banking'; Gartner Summit 2025: 'Core Banking Modernization'",
+                "key_messaging_differences": "Website: global scale + 'world in motion'. LinkedIn: composable banking education + awards. Ads: scale + Gartner validation. TL: architecture thought leadership",
+                "target_audience_by_channel": "Website: global bank CIOs + CTOs. LinkedIn: banking technology architects. Ads: procurement + IT leadership. TL: C-suite + board globally",
+                "consistency_score": "High"
+            },
+            {
+                "company": "Backbase",
+                "website_headline": "The Engagement Banking Platform",
+                "website_value_prop": "Backbase is on a mission to re-architect banking around the customer. Our Engagement Banking Platform enables banks and credit unions to deliver seamless, personalized experiences across every touchpoint — from onboarding to everyday banking.",
+                "website_cta": "Book a Demo",
+                "website_trust_signals": "150+ banks in 50+ countries; Forrester Wave Leader; Gartner Peer Insights; 'Trusted by leading financial institutions worldwide'",
+                "website_target_audience": "Banks; credit unions; financial institutions; digital banking leaders; transformation executives",
+                "linkedin_tagline": "Re-architecting banking around the customer.",
+                "linkedin_description": "Backbase is on a mission to re-architect banking around the customer. Our Engagement Banking Platform enables financial institutions to deliver seamless, personalized digital experiences across every ...",
+                "linkedin_followers": "~85,000",
+                "linkedin_post_1": "Hook: 'Most banks are still building digital banking on top of legacy. Here's why that's the wrong approach.' | Type: Thought-leadership text | ~520 likes",
+                "linkedin_post_2": "Hook: 'The Engagement Banking Platform just got smarter. Introducing [new AI feature].' | Type: Product launch | ~380 likes",
+                "linkedin_post_3": "Hook: 'How [Bank] went from 12-month project timelines to 6 weeks with Backbase' | Type: Customer case study | ~290 likes",
+                "linkedin_post_4": "Hook: 'Backbase named a Leader in Forrester Wave: Digital Banking Engagement Platforms 2025' | Type: Award post | ~640 likes",
+                "linkedin_post_5": "Hook: 'The internal business case for digital banking transformation. A template.' | Type: Practical resource | ~475 likes",
+                "linkedin_tone": "Challenger brand, direct, transformation-focused, practical",
+                "ad_copy_examples": "LinkedIn: 'Stop building on legacy. Re-architect banking around the customer with Backbase.' | Google: 'Backbase Engagement Banking — Forrester Wave Leader — Book a Demo' | Sponsored: 'The Engagement Banking Platform. 150+ banks. 50+ countries. See it live.'",
+                "thought_leadership_headlines": "1. 'The Engagement Banking Playbook 2026' (Backbase Research) | 2. 'Why Legacy Architecture Is the Biggest Risk in Digital Banking' (Backbase Blog, Jouk Pleiter) | 3. 'Re-Architecting Banking: A Practical Guide' (The Financial Brand, Backbase exec)",
+                "white_papers": "'Engagement Banking Playbook 2026' — gated; 'Digital Banking Transformation ROI Guide' — gated; 'Business Case Template for Digital Banking' — ungated",
+                "conference_topics": "Money20/20 2025: 'Re-Architecting Banking'; Sibos 2025: 'Engagement Banking in Practice'; Finovate 2025: 'The Engagement Banking Platform Demo'",
+                "key_messaging_differences": "Website: platform + mission language. LinkedIn: challenger positioning + practical resources. Ads: direct challenge to legacy + Forrester validation. TL: transformation playbooks",
+                "target_audience_by_channel": "Website: bank CEOs + CIOs. LinkedIn: digital banking transformation leaders. Ads: IT + procurement. TL: C-suite + transformation executives",
+                "consistency_score": "Very High"
+            }
+        ];
+
+        // State
+        let selectedCompanies = [];
+        let activeChannel = 'website';
+
+        // Initialize
+        function init() {
+            renderCompanyGrid();
+            setupChannelTabs();
+            updateView();
+        }
+
+        // Render company grid
+        function renderCompanyGrid() {
+            const grid = document.getElementById('company-grid');
+            grid.innerHTML = companies.map(company => `
+                <div class="company-card" data-company="${company.company}" onclick="toggleCompany('${company.company}')">
+                    <div class="check">✓</div>
+                    <div class="name">${company.company}</div>
+                    <div class="consistency">${company.consistency_score} consistency</div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle company selection
+        function toggleCompany(companyName) {
+            const index = selectedCompanies.indexOf(companyName);
+            if (index > -1) {
+                selectedCompanies.splice(index, 1);
+            } else if (selectedCompanies.length < 3) {
+                selectedCompanies.push(companyName);
+            }
+            updateView();
+        }
+
+        // Clear selection
+        function clearSelection() {
+            selectedCompanies = [];
+            updateView();
+        }
+
+        // Update view
+        function updateView() {
+            // Update selection count
+            document.getElementById('selection-count').textContent = selectedCompanies.length;
+
+            // Update card states
+            document.querySelectorAll('.company-card').forEach(card => {
+                const companyName = card.dataset.company;
+                card.classList.toggle('selected', selectedCompanies.includes(companyName));
+            });
+
+            // Show/hide sections
+            const emptyState = document.getElementById('empty-state');
+            const comparisonView = document.getElementById('comparison-view');
+
+            if (selectedCompanies.length >= 2) {
+                emptyState.classList.remove('active');
+                comparisonView.classList.add('active');
+                renderComparison();
+            } else {
+                emptyState.classList.add('active');
+                comparisonView.classList.remove('active');
+            }
+        }
+
+        // Setup channel tabs
+        function setupChannelTabs() {
+            document.querySelectorAll('.channel-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const channel = tab.dataset.channel;
+                    activeChannel = channel;
+
+                    // Update tab states
+                    document.querySelectorAll('.channel-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    // Update panel states
+                    document.querySelectorAll('.channel-panel').forEach(p => p.classList.remove('active'));
+                    document.getElementById(`panel-${channel}`).classList.add('active');
+                });
+            });
+        }
+
+        // Render comparison
+        function renderComparison() {
+            const selectedData = companies.filter(c => selectedCompanies.includes(c.company));
+            const gridClass = selectedData.length === 2 ? 'two-cols' : 'three-cols';
+
+            // Website
+            renderWebsitePanel(selectedData, gridClass);
+
+            // LinkedIn
+            renderLinkedInPanel(selectedData, gridClass);
+
+            // Ads
+            renderAdsPanel(selectedData, gridClass);
+
+            // Thought Leadership
+            renderThoughtLeadershipPanel(selectedData, gridClass);
+        }
+
+        // Render Website Panel
+        function renderWebsitePanel(data, gridClass) {
+            const grid = document.getElementById('grid-website');
+            grid.className = `comparison-grid ${gridClass}`;
+            grid.innerHTML = data.map(company => `
+                <div class="company-comparison">
+                    <div class="company-comparison-header">
+                        <h3>${company.company}</h3>
+                        <span class="consistency-badge">${company.consistency_score}</span>
+                    </div>
+                    <div class="company-comparison-body">
+                        <div class="data-row">
+                            <div class="data-label">Headline</div>
+                            <div class="data-value headline">${company.website_headline}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Value Proposition</div>
+                            <div class="data-value">${company.website_value_prop}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Primary CTA</div>
+                            <div class="data-value">${company.website_cta}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Trust Signals</div>
+                            <div class="data-value small">${company.website_trust_signals}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Target Audience</div>
+                            <div class="data-value small">${company.website_target_audience}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render LinkedIn Panel
+        function renderLinkedInPanel(data, gridClass) {
+            const grid = document.getElementById('grid-linkedin');
+            grid.className = `comparison-grid ${gridClass}`;
+            grid.innerHTML = data.map(company => `
+                <div class="company-comparison">
+                    <div class="company-comparison-header">
+                        <h3>${company.company}</h3>
+                        <span class="consistency-badge">${company.linkedin_followers}</span>
+                    </div>
+                    <div class="company-comparison-body">
+                        <div class="data-row">
+                            <div class="data-label">Tagline</div>
+                            <div class="data-value headline">${company.linkedin_tagline}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Tone</div>
+                            <div class="data-value">${company.linkedin_tone}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Recent Posts (Hooks)</div>
+                            <div class="linkedin-posts">
+                                ${[company.linkedin_post_1, company.linkedin_post_2, company.linkedin_post_3].map(post => {
+                                    const hookMatch = post.match(/Hook: '([^']+)'/);
+                                    const typeMatch = post.match(/Type: ([^|]+)/);
+                                    const likesMatch = post.match(/~([\d,]+) likes/);
+                                    return `
+                                        <div class="linkedin-post">
+                                            <div class="hook">${hookMatch ? hookMatch[1] : post}</div>
+                                            <div class="meta">${typeMatch ? typeMatch[1].trim() : ''} ${likesMatch ? '• ' + likesMatch[1] + ' likes' : ''}</div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Ads Panel
+        function renderAdsPanel(data, gridClass) {
+            const grid = document.getElementById('grid-ads');
+            grid.className = `comparison-grid ${gridClass}`;
+            grid.innerHTML = data.map(company => `
+                <div class="company-comparison">
+                    <div class="company-comparison-header">
+                        <h3>${company.company}</h3>
+                        <span class="consistency-badge">${company.consistency_score}</span>
+                    </div>
+                    <div class="company-comparison-body">
+                        <div class="data-row">
+                            <div class="data-label">Ad Copy Examples</div>
+                            <div class="data-value">${company.ad_copy_examples.replace(/\|/g, '<br><br>')}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Channel Differences</div>
+                            <div class="data-value small">${company.key_messaging_differences}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Thought Leadership Panel
+        function renderThoughtLeadershipPanel(data, gridClass) {
+            const grid = document.getElementById('grid-thought-leadership');
+            grid.className = `comparison-grid ${gridClass}`;
+            grid.innerHTML = data.map(company => `
+                <div class="company-comparison">
+                    <div class="company-comparison-header">
+                        <h3>${company.company}</h3>
+                        <span class="consistency-badge">${company.consistency_score}</span>
+                    </div>
+                    <div class="company-comparison-body">
+                        <div class="data-row">
+                            <div class="data-label">Thought Leadership Headlines</div>
+                            <div class="data-value">${company.thought_leadership_headlines.replace(/\d\. /g, '<br>• ').replace(/^<br>/, '')}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">White Papers / Research</div>
+                            <div class="data-value small">${company.white_papers}</div>
+                        </div>
+                        <div class="data-row">
+                            <div class="data-label">Conference Topics</div>
+                            <div class="data-value small">${company.conference_topics}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Run on load
+        init();
+    </script>
+</body>
+</html>
