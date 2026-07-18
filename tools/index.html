@@ -298,47 +298,48 @@
   }
 
   /* VALUE PROP SECTION */
-  .value-section {
-    padding: 100px 60px;
-    background: var(--offwhite);
-    text-align: center;
-  }
-
-  .value-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .value-title {
-    font-family: 'Roboto Slab', serif;
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: var(--black);
-  }
-
-  .value-description {
-    font-size: 18px;
-    color: var(--gray);
-    line-height: 1.6;
-    margin-bottom: 40px;
-  }
-
-  .value-cta {
+  /* NEWSLETTER SIGNUP */
+  .newsletter-section {
     background: var(--black);
-    color: var(--white);
-    padding: 16px 32px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
-    font-weight: 400;
-    text-decoration: none;
-    transition: all 0.2s;
+    padding: 64px 48px;
+    text-align: center;
+    max-width: 900px;
+    margin: 100px auto;
   }
 
-  .value-cta:hover {
+  .newsletter-section h3 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .newsletter-section p {
+    color: var(--gray);
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn-primary {
     background: var(--yellow);
     color: var(--black);
+    padding: 15px 32px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    font-family: 'Roboto Mono', monospace;
   }
+
+  .btn-primary:hover { background: var(--white); color: var(--black); }
 
   /* FOOTER */
   footer {
@@ -416,8 +417,9 @@
       padding: 40px 32px;
     }
 
-    .value-section {
-      padding: 60px 24px;
+    .newsletter-section {
+      padding: 48px 24px;
+      margin: 60px auto;
     }
 
     footer {
@@ -455,8 +457,8 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">The BrandThnk Toolkit</div>
-  <h1 class="hero-headline">Use the Tools</h1>
+  <div class="hero-eyebrow">Applied Intelligence</div>
+  <h1 class="hero-headline">Use Our Tools</h1>
 </section>
 
 <!-- TOOLS GRID -->
@@ -531,12 +533,11 @@
   </div>
 </section>
 
-<!-- VALUE PROPOSITION -->
-<section class="value-section">
-  <div class="value-content">
-    <h2 class="value-title">Built around questions worth answering.</h2>
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="value-cta">Let's Talk</a>
-  </div>
+<!-- NEWSLETTER SIGNUP -->
+<section class="newsletter-section">
+  <h3>Get New Tools First</h3>
+  <p>Join 2,000+ bank and fintech leaders who get early access to our products.</p>
+  <a href="/newsletter/subscribe.html" class="btn-primary">Subscribe to the BrandThnk Briefing</a>
 </section>
 
 <!-- FOOTER -->
