@@ -621,16 +621,23 @@
 
   /* CTA BAND */
   .cta-band {
-    background: var(--offwhite);
-    padding: 96px 0;
+    background: var(--white);
+    padding: 128px 0;
     text-align: center;
     border-top: 1px solid var(--light-gray);
   }
 
   .cta-band-inner {
-    max-width: 620px;
+    max-width: 560px;
     margin: 0 auto;
     padding: 0 40px;
+  }
+
+  .cta-band-accent {
+    width: 32px;
+    height: 2px;
+    background: var(--yellow);
+    margin: 0 auto 28px;
   }
 
   .cta-band .section-label {
@@ -640,21 +647,23 @@
 
   .cta-band h2 {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(28px, 3.2vw, 38px);
-    font-weight: 700;
+    font-size: clamp(26px, 2.6vw, 34px);
+    font-weight: 400;
     color: var(--black);
-    margin-bottom: 16px;
-    line-height: 1.25;
+    margin-bottom: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.5px;
   }
 
   .cta-band p {
     color: var(--gray);
-    font-size: 17px;
-    margin-bottom: 36px;
+    font-size: 16px;
+    margin-bottom: 40px;
     font-weight: 400;
-    max-width: 500px;
+    max-width: 440px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.7;
   }
 
   .btn-white {
@@ -1037,9 +1046,9 @@
 <!-- CTA BAND -->
 <div id="book-a-call" class="cta-band full-bleed">
   <div class="cta-band-inner">
-    <p class="section-label" style="text-align:center;">Let's Talk</p>
+    <div class="cta-band-accent"></div>
     <h2>Let's see if we're a match.</h2>
-    <p>A 30-minute conversation will tell us whether the problem is one BrandThnk can help solve and what the right next step might be.</p>
+    <p>A 30-minute conversation will tell us whether the problem is one BrandThnk can help solve, and what the right next step might be.</p>
     <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Call</a>
   </div>
 </div>
