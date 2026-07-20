@@ -428,12 +428,37 @@
   }
 
   .plan-step {
+    position: relative;
     background: var(--card-bg);
     padding: 40px 32px;
-    transition: background 0.2s;
+    transition: background 0.25s ease;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .plan-step.revealed {
+    animation: stepReveal 0.55s ease forwards;
+  }
+
+  @keyframes stepReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .plan-step::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
 
   .plan-step:hover { background: var(--offwhite); }
+
+  .plan-step:hover::after { transform: scaleX(1); }
 
   .plan-number {
     font-family: 'Roboto Slab', serif;
@@ -442,6 +467,13 @@
     color: var(--light-gray);
     line-height: 1;
     margin-bottom: 20px;
+    transition: color 0.25s ease;
+  }
+
+  .plan-step:hover .plan-number { color: var(--black); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .plan-step { opacity: 1; transform: none; animation: none; }
   }
 
   .plan-title {
@@ -969,9 +1001,6 @@
       <span class="headline-line">The problem may not be your marketing.</span>
     </h1>
     <p class="hero-subhead">It may be the brand underneath it.</p>
-    <div class="hero-ctas">
-      <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Call</a>
-    </div>
   </div>
 </div>
 
@@ -986,6 +1015,7 @@
         <p>Most banks and fintechs are running good marketing for an underlying brand that isn't strong enough to hold the message together.</p>
         <p>Brand clarity in financial services requires more than marketing expertise. It requires understanding how a sales conversation breaks down when the brand isn't sharp, how a leadership team can lose confidence in its own positioning, and how a company with a superior product loses to a competitor with a better narrative.</p>
         <p>These are the problems we help you solve.</p>
+        <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow" style="margin-top: 12px;">Book a Call</a>
       </div>
     </div>
   </div>
@@ -1002,7 +1032,6 @@
         <p>After a decade in the field, I moved into marketing without any formal experience, which meant figuring out what worked rather than what the playbook said.</p>
         <p>I founded BrandThnk to be the resource, advisor, and thought partner I didn't have at the beginning of my marketing career but have been lucky enough to gain from the people around me over the past 25 years.</p>
       </div>
-      <blockquote class="guide-quote">Allison is a brand therapist. She didn't show us a road we've never considered, but gave us the confidence to take the one we've been avoiding.</blockquote>
       <a href="https://www.linkedin.com/in/allisonnetzer/" class="btn-primary" target="_blank" rel="noopener" style="margin-top: 8px;">Find Me on LinkedIn</a>
     </div>
     <div>
@@ -1088,6 +1117,25 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.classList.remove('active');
       }
     });
+  }
+
+  // Staggered scroll-in reveal for the How We Work steps
+  const steps = document.querySelectorAll('.plan-step');
+  if (steps.length && 'IntersectionObserver' in window) {
+    const stepObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const i = Array.prototype.indexOf.call(steps, el);
+          el.style.animationDelay = (i * 0.12) + 's';
+          el.classList.add('revealed');
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.25 });
+    steps.forEach(function(s) { stepObserver.observe(s); });
+  } else {
+    steps.forEach(function(s) { s.classList.add('revealed'); });
   }
 });
 </script>
