@@ -621,32 +621,40 @@
 
   /* CTA BAND */
   .cta-band {
-    background: var(--yellow);
-    padding: 80px 0;
+    background: var(--offwhite);
+    padding: 96px 0;
     text-align: center;
+    border-top: 1px solid var(--light-gray);
   }
 
   .cta-band-inner {
-    max-width: 640px;
+    max-width: 620px;
     margin: 0 auto;
     padding: 0 40px;
   }
 
+  .cta-band .section-label {
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
   .cta-band h2 {
     font-family: 'Roboto Slab', serif;
-    font-size: clamp(32px, 4vw, 44px);
+    font-size: clamp(28px, 3.2vw, 38px);
     font-weight: 700;
     color: var(--black);
     margin-bottom: 16px;
-    line-height: 1.2;
+    line-height: 1.25;
   }
 
   .cta-band p {
-    color: var(--black);
+    color: var(--gray);
     font-size: 17px;
     margin-bottom: 36px;
     font-weight: 400;
-    opacity: 0.8;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .btn-white {
@@ -938,7 +946,6 @@
     <span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#offers">Explore Services</a></li>
     <li><a href="/tools/">Use the Tools</a></li>
     <li><a href="/briefings/">Read the Briefing</a></li>
     <li><a href="/book/">Buy the Book</a></li>
@@ -950,13 +957,11 @@
 <div class="hero">
   <div class="hero-content">
     <h1 class="hero-headline">
-      <span class="headline-line">Your campaigns are running,</span>
-      <span class="headline-line">but customers still don't understand</span>
-      <span class="headline-line">why they should choose you.</span>
+      <span class="headline-line">The problem may not be your marketing.</span>
     </h1>
+    <p class="hero-subhead">It may be the brand underneath it.</p>
     <div class="hero-ctas">
       <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-yellow">Book a Call</a>
-      <a href="#offers" class="btn-secondary">Explore Services</a>
     </div>
   </div>
 </div>
@@ -967,10 +972,9 @@
 <div class="problem-section full-bleed">
   <div class="full-bleed-inner">
     <p class="section-label">The Real Problem</p>
-    <h2 class="section-title" style="color:white; max-width: 640px;">The problem may not be your marketing. It may be the brand underneath it.</h2>
     <div class="problem-grid">
       <div class="problem-text">
-        <p>Most banks and fintechs are running good marketing for an underlying brand that isn't strong enough to hold the message together. The spend goes out, the content gets published, the campaigns go live, and the results don't follow.</p>
+        <p>Most banks and fintechs are running good marketing for an underlying brand that isn't strong enough to hold the message together.</p>
         <p>Brand clarity in financial services requires more than marketing expertise. It requires understanding how a sales conversation breaks down when the brand isn't sharp, how a leadership team can lose confidence in its own positioning, and how a company with a superior product loses to a competitor with a better narrative.</p>
         <p>These are the problems we help you solve.</p>
       </div>
@@ -989,6 +993,8 @@
         <p>After a decade in the field, I moved into marketing without any formal experience, which meant figuring out what worked rather than what the playbook said.</p>
         <p>I founded BrandThnk to be the resource, advisor, and thought partner I didn't have at the beginning of my marketing career but have been lucky enough to gain from the people around me over the past 25 years.</p>
       </div>
+      <blockquote class="guide-quote">Allison is a brand therapist. She didn't show us a road we've never considered, but gave us the confidence to take the one we've been avoiding.</blockquote>
+      <a href="https://www.linkedin.com/in/allisonnetzer/" class="btn-primary" target="_blank" rel="noopener" style="margin-top: 8px;">Find Me on LinkedIn</a>
     </div>
     <div>
       <img src="/assets/headshot.jpeg" alt="Allison Netzer" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid var(--yellow); box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
@@ -1002,10 +1008,28 @@
 <section id="offers">
   <p class="section-label">How We Work</p>
   <h2 class="section-title">What you can expect.</h2>
-  <div class="guide-text" style="max-width: 760px;">
-    <p style="font-size: 17px; line-height: 1.7;">Our model is simple. We do a discovery session to understand the challenges, propose a reasonable, fixed-price scope, workshop the solution collaboratively, and then hand over the playbook so your team can run it without us.</p>
+  <div class="plan-grid">
+    <div class="plan-step">
+      <div class="plan-number">01</div>
+      <div class="plan-title">Discovery</div>
+      <p class="plan-body">A discovery session to understand the challenges.</p>
+    </div>
+    <div class="plan-step">
+      <div class="plan-number">02</div>
+      <div class="plan-title">Proposal</div>
+      <p class="plan-body">A fixed-price proposal, with the artifacts to be included spelled out.</p>
+    </div>
+    <div class="plan-step">
+      <div class="plan-number">03</div>
+      <div class="plan-title">Workshop</div>
+      <p class="plan-body">We workshop the solution collaboratively, with weekly project check-ins.</p>
+    </div>
+    <div class="plan-step">
+      <div class="plan-number">04</div>
+      <div class="plan-title">Handoff</div>
+      <p class="plan-body">We deliver the playbook so your team can run "it" without us.</p>
+    </div>
   </div>
-  <blockquote class="guide-quote" style="max-width: 760px;">Allison is a brand therapist. She didn't show us a road we've never considered, but gave us the confidence to take the one we've been avoiding.</blockquote>
 </section>
 
 
@@ -1013,9 +1037,10 @@
 <!-- CTA BAND -->
 <div id="book-a-call" class="cta-band full-bleed">
   <div class="cta-band-inner">
+    <p class="section-label" style="text-align:center;">Let's Talk</p>
     <h2>Let's see if we're a match.</h2>
     <p>A 30-minute conversation will tell us whether the problem is one BrandThnk can help solve and what the right next step might be.</p>
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-white">Book a Call</a>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Call</a>
   </div>
 </div>
 
