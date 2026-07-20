@@ -318,6 +318,26 @@
 
   .problem-section .section-title { color: var(--white); }
 
+  /* Integrated opening: hero statement flowing into the problem */
+  .opening { padding-top: 180px; }
+
+  .opening-lead {
+    padding-bottom: 52px;
+    margin-bottom: 52px;
+    border-bottom: 1px solid rgba(245,245,245,0.15);
+  }
+
+  .opening .hero-headline {
+    color: var(--white);
+    margin-bottom: 22px;
+  }
+
+  .opening .hero-subhead {
+    color: var(--light-gray);
+    max-width: 560px;
+    margin-bottom: 0;
+  }
+
   .problem-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -961,7 +981,7 @@
       grid-template-columns: 1fr;
       gap: 40px;
     }
-    .hero { padding: 120px 24px 60px; }
+    .opening { padding-top: 120px; }
     section, .library-section { padding: 60px 24px; }
     hr.rule { margin: 0 24px; }
     .plan-grid { grid-template-columns: 1fr 1fr; }
@@ -994,21 +1014,15 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <h1 class="hero-headline">
-      <span class="headline-line">The problem may not be your marketing.</span>
-    </h1>
-    <p class="hero-subhead">It may be the brand underneath it.</p>
-  </div>
-</div>
-
-<hr class="rule">
-
-<!-- PROBLEM -->
-<div class="problem-section full-bleed">
+<!-- OPENING: hero statement integrated into the Real Problem -->
+<div class="problem-section full-bleed opening">
   <div class="full-bleed-inner">
+    <div class="opening-lead">
+      <h1 class="hero-headline">
+        <span class="headline-line">The problem may not be your marketing.</span>
+      </h1>
+      <p class="hero-subhead">It may be the brand underneath it.</p>
+    </div>
     <p class="section-label">The Real Problem</p>
     <div class="problem-grid">
       <div class="problem-text">
