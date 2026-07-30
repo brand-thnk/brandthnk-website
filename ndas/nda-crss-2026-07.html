@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual NDA — BrandThnk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --yellow: #FFEB3B;
+            --offwhite: #F5F5F5;
+            --font-heading: 'Roboto Slab', serif;
+            --font-body: 'Roboto Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--black);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nda-content {
+            margin-bottom: 48px;
+        }
+
+        .nda-content h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .nda-content h2 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+
+        .nda-content p {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .nda-content ul {
+            font-size: 14px;
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .nda-content li {
+            margin-bottom: 8px;
+        }
+
+        .nda-meta {
+            background: var(--offwhite);
+            padding: 24px;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .nda-meta p {
+            margin-bottom: 8px;
+        }
+
+        .nda-meta strong {
+            font-weight: 700;
+        }
+
+        .signature-section {
+            background: var(--offwhite);
+            padding: 32px;
+            border: 2px solid var(--black);
+        }
+
+        .signature-section h3 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 24px;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .signature-block {
+            padding: 16px;
+            background: var(--white);
+        }
+
+        .signature-block h4 {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .signed-info {
+            font-size: 13px;
+        }
+
+        .signed-info p {
+            margin-bottom: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            border: 1px solid #ccc;
+            background: var(--white);
+        }
+
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            padding: 16px;
+            background: var(--white);
+            border: 1px solid #ccc;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .message {
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #ddd;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">BrandThnk</div>
+            <div class="tagline">Build a Growth Brand</div>
+        </header>
+
+        <main>
+            <div class="nda-content" id="nda-content">
+                <h1>Mutual Non-Disclosure Agreement</h1>
+
+                <div class="nda-meta">
+                    <p><strong>Between:</strong> BrandThnk LLC ("BrandThnk") and CRSS ("CRSS")</p>
+                    <p><strong>Prepared for:</strong> Rhonda Mills</p>
+                    <p><strong>Effective Date:</strong> July 30, 2026</p>
+                </div>
+
+                <p>This Mutual Non-Disclosure Agreement (this "Agreement") is entered into as of July 30, 2026 between BrandThnk LLC, a limited liability company ("BrandThnk"), and CRSS ("CRSS", and together with BrandThnk, the "Parties").</p>
+
+                <h2>1. Purpose</h2>
+                <p>The Parties wish to explore a potential business relationship (the "Purpose") and may disclose to each other certain non-public, confidential, or proprietary information in connection with that Purpose. This Agreement governs the treatment of such information.</p>
+
+                <h2>2. Confidential Information</h2>
+                <p>"Confidential Information" means any information disclosed by one Party (the "Disclosing Party") to the other (the "Receiving Party"), whether disclosed orally, in writing, or by any other means, that is designated as confidential or that reasonably should be understood to be confidential given the nature of the information and the circumstances of disclosure. Confidential Information includes, without limitation: business strategies, client lists, pricing, financial information, product or service plans, marketing approaches, proprietary methods, and any other technical or business information.</p>
+
+                <h2>3. Obligations</h2>
+                <p>Each Receiving Party agrees to:</p>
+                <ul>
+                    <li>Hold the Disclosing Party's Confidential Information in strict confidence using at least the same degree of care it uses to protect its own confidential information, but in no event less than reasonable care;</li>
+                    <li>Not disclose Confidential Information to any third party without the prior written consent of the Disclosing Party;</li>
+                    <li>Use Confidential Information solely for the Purpose and not for any other purpose;</li>
+                    <li>Limit access to Confidential Information to those of its employees, contractors, or advisors who have a need to know for the Purpose and who are bound by confidentiality obligations at least as protective as those in this Agreement.</li>
+                </ul>
+
+                <h2>4. Exclusions</h2>
+                <p>The obligations in Section 3 do not apply to information that the Receiving Party can demonstrate:</p>
+                <ul>
+                    <li>Was already known to the Receiving Party at the time of disclosure without restriction;</li>
+                    <li>Is or becomes publicly available through no breach of this Agreement by the Receiving Party;</li>
+                    <li>Was received from a third party who had the right to disclose it without restriction; or</li>
+                    <li>Was independently developed by the Receiving Party without use of or reference to the Disclosing Party's Confidential Information.</li>
+                </ul>
+                <p>If a Receiving Party is required by law or court order to disclose Confidential Information, it will provide prompt written notice to the Disclosing Party to the extent permitted by law so the Disclosing Party may seek a protective order.</p>
+
+                <h2>5. Term</h2>
+                <p>This Agreement is effective as of the Effective Date and will remain in effect for two (2) years, unless earlier terminated by either Party upon thirty (30) days' written notice. Obligations with respect to Confidential Information disclosed prior to termination survive for two (2) years following the termination date.</p>
+
+                <h2>6. Return or Destruction</h2>
+                <p>Upon request by the Disclosing Party or termination of this Agreement, the Receiving Party will promptly return or destroy all Confidential Information and any copies thereof, and certify such destruction in writing if requested.</p>
+
+                <h2>7. No License or Obligation</h2>
+                <p>Nothing in this Agreement grants either Party any license, right, or interest in any intellectual property of the other Party. This Agreement does not obligate either Party to enter into any further agreement or business relationship.</p>
+
+                <h2>8. Remedies</h2>
+                <p>Each Party acknowledges that breach of this Agreement may cause irreparable harm for which monetary damages would be an inadequate remedy, and that the non-breaching Party is entitled to seek equitable relief, including injunction and specific performance, without the requirement of posting bond or proving actual damages, in addition to all other remedies available at law or in equity.</p>
+
+                <h2>9. Governing Law</h2>
+                <p>This Agreement is governed by the laws of the State of North Carolina, without regard to its conflict of law principles. Any disputes arising under this Agreement will be resolved in the courts of the State of North Carolina.</p>
+
+                <h2>10. General</h2>
+                <p>This Agreement constitutes the entire agreement between the Parties with respect to its subject matter and supersedes all prior agreements, understandings, and discussions. This Agreement may not be amended except in writing signed by both Parties. If any provision of this Agreement is found unenforceable, the remaining provisions will continue in full force and effect.</p>
+            </div>
+
+            <div class="signature-section">
+                <h3>Agreement</h3>
+                <p style="font-size: 14px; margin-bottom: 24px;">
+                    By signing below, both parties agree to the terms of this Mutual Non-Disclosure Agreement.
+                </p>
+
+                <div class="signature-grid">
+                    <div class="signature-block">
+                        <h4>BrandThnk LLC</h4>
+                        <div class="signed-info">
+                            <p><strong>Name:</strong> Allison Netzer</p>
+                            <p><strong>Title:</strong> CEO</p>
+                            <p><strong>Signed:</strong> July 30, 2026</p>
+                        </div>
+                    </div>
+
+                    <div class="signature-block">
+                        <h4>CRSS</h4>
+
+                        <div id="signature-form-container">
+                            <form id="signature-form">
+                                <input type="hidden" name="contractId" value="nda-crss-2026-07">
+                                <input type="hidden" name="clientEmail" value="rhonda@crss.io">
+
+                                <div class="form-group">
+                                    <label for="signerName">Full Name</label>
+                                    <input type="text" id="signerName" name="signerName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signerTitle">Title</label>
+                                    <input type="text" id="signerTitle" name="signerTitle" required>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="signed-confirmation" class="hidden signed-info">
+                            <p><strong>Name:</strong> <span id="confirmed-name"></span></p>
+                            <p><strong>Title:</strong> <span id="confirmed-title"></span></p>
+                            <p><strong>Signed:</strong> <span id="confirmed-date"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="agreement-section">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeCheckbox" name="agree">
+                        <label for="agreeCheckbox">
+                            I have read and agree to all terms and conditions in this Mutual Non-Disclosure Agreement.
+                            I understand that checking this box and clicking "Sign Agreement" constitutes a legally binding electronic signature.
+                        </label>
+                    </div>
+
+                    <div id="form-message" class="message hidden"></div>
+
+                    <button type="button" id="submitBtn" class="submit-btn" disabled>
+                        Sign Agreement
+                    </button>
+                </div>
+
+                <div id="success-message" class="message success hidden">
+                    <strong>NDA signed successfully!</strong><br>
+                    A confirmation has been sent to both parties.
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>This agreement is secured and legally binding under the ESIGN Act and UETA.</p>
+            <p>Questions? Contact allison@brandthnk.co</p>
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('signature-form');
+        const submitBtn = document.getElementById('submitBtn');
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const formMessage = document.getElementById('form-message');
+        const successMessage = document.getElementById('success-message');
+        const agreementSection = document.getElementById('agreement-section');
+        const signedConfirmation = document.getElementById('signed-confirmation');
+        const formContainer = document.getElementById('signature-form-container');
+
+        function checkFormValid() {
+            const name = document.getElementById('signerName').value.trim();
+            const title = document.getElementById('signerTitle').value.trim();
+            const agreed = agreeCheckbox.checked;
+            submitBtn.disabled = !(name && title && agreed);
+        }
+
+        agreeCheckbox.addEventListener('change', checkFormValid);
+        document.getElementById('signerName').addEventListener('input', checkFormValid);
+        document.getElementById('signerTitle').addEventListener('input', checkFormValid);
+
+        submitBtn.addEventListener('click', async function() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            formMessage.classList.add('hidden');
+
+            const formData = new FormData(form);
+            const data = {
+                contractId: formData.get('contractId'),
+                clientEmail: formData.get('clientEmail'),
+                signerName: formData.get('signerName'),
+                signerTitle: formData.get('signerTitle'),
+                agreedToTerms: agreeCheckbox.checked,
+                signedAt: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+
+            try {
+                const response = await fetch('/.netlify/functions/sign-contract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    formContainer.classList.add('hidden');
+                    agreementSection.classList.add('hidden');
+                    signedConfirmation.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+
+                    document.getElementById('confirmed-name').textContent = data.signerName;
+                    document.getElementById('confirmed-title').textContent = data.signerTitle;
+                    document.getElementById('confirmed-date').textContent = new Date().toLocaleDateString('en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                } else {
+                    throw new Error(result.error || 'Failed to process signature');
+                }
+            } catch (error) {
+                formMessage.textContent = 'Error: ' + error.message;
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign Agreement';
+            }
+        });
+    </script>
+</body>
+</html>
