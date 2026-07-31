@@ -565,7 +565,7 @@
           <div class="hc3-badge">HC3</div>
           <h1 class="main-title">Statement Health Check</h1>
           <p class="main-subtitle">
-            Find out where your statement operation stands today. 12 questions. Takes about 3 minutes. You'll get a
+            Find out where your statement operation stands today. 10 questions. Takes about 3 minutes. You'll get a
             category-by-category breakdown with specific areas to evaluate.
           </p>
         </div>
@@ -622,7 +622,7 @@
         <div class="card overall-score-card">
           <div class="score-circle" id="scoreCircle">
             <span class="score-number" id="totalScore">0</span>
-            <span class="score-max" id="totalMax">of 48</span>
+            <span class="score-max" id="totalMax">of 40</span>
           </div>
           <div class="zone-badge" id="overallZoneBadge">Overall: Healthy</div>
           <p class="overall-description" id="overallDescription"></p>
@@ -675,17 +675,6 @@
   <script>
     // Health Check Data and Logic
     const questions = [
-      {
-        category: "Statement Design",
-        id: "design_age",
-        question: "When was the last time your statement templates were redesigned?",
-        options: [
-          { label: "Within the last 12 months", score: 4 },
-          { label: "1 to 3 years ago", score: 3 },
-          { label: "3 to 5 years ago", score: 2 },
-          { label: "More than 5 years ago (or I'm not sure)", score: 1 },
-        ],
-      },
       {
         category: "Statement Design",
         id: "design_brand",
@@ -783,17 +772,6 @@
           { label: "Two vendors", score: 3 },
           { label: "Three vendors", score: 2 },
           { label: "Four or more (or I'm not sure who handles what)", score: 1 },
-        ],
-      },
-      {
-        category: "Vendor & Operations",
-        id: "vendor_contact",
-        question: "When something goes wrong with a statement run, who do you call?",
-        options: [
-          { label: "A single point of contact who owns the full operation", score: 4 },
-          { label: "One main contact, but sometimes I get routed around", score: 3 },
-          { label: "It depends on whether the issue is print, digital, or design", score: 2 },
-          { label: "I usually have to figure out which vendor to call", score: 1 },
         ],
       },
       {
