@@ -671,6 +671,67 @@
 
   .btn-outline-light:hover { border-color: var(--white); color: var(--white); }
 
+  /* TRUSTED BY */
+  .trusted-by-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .trusted-by-section .section-label {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .marquee {
+    overflow: hidden;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll 50s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-logo {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--gray);
+    white-space: nowrap;
+    padding: 0 32px;
+    transition: color 0.2s;
+  }
+
+  .marquee-logo:hover { color: var(--black); }
+
+  .marquee-dot {
+    color: var(--light-gray);
+    font-size: 14px;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .marquee { overflow-x: auto; }
+  }
+
+  @media (max-width: 900px) {
+    .marquee-logo { font-size: 16px; padding: 0 20px; }
+  }
+
   /* CTA BAND */
   .cta-band {
     background: var(--white);
@@ -1084,6 +1145,61 @@
 </section>
 
 
+
+<!-- TRUSTED BY -->
+<div id="trusted-by" class="trusted-by-section full-bleed">
+  <p class="section-label">Trusted By</p>
+  <div class="marquee" aria-label="Companies BrandThnk has worked with">
+    <div class="marquee-track">
+      <span class="marquee-logo">Backbase</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Checkalt</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Community Choice Credit Union</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Finalytics</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">First Mutual Holding Company</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Forward Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Fulton County Savings Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Greencheck Verified</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">HC3.io</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Highpoint Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Horicon Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Marstone</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Monit</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Naehas</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Narmi</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">New York Savings Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Nuuvia</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Plinqit</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Quavo</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Strategy Corps</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">The Equitable Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Vericast</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">WSI</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Backbase</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Checkalt</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Community Choice Credit Union</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Finalytics</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">First Mutual Holding Company</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Forward Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Fulton County Savings Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Greencheck Verified</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">HC3.io</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Highpoint Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Horicon Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Marstone</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Monit</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Naehas</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Narmi</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">New York Savings Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Nuuvia</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Plinqit</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Quavo</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Strategy Corps</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">The Equitable Bank</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">Vericast</span><span class="marquee-dot">&middot;</span>
+      <span class="marquee-logo">WSI</span>
+    </div>
+  </div>
+</div>
 
 <!-- CTA BAND -->
 <div id="book-a-call" class="cta-band full-bleed">
