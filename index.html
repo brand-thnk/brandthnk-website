@@ -937,6 +937,82 @@
   .hero-ctas { animation: fadeUp 0.6s 0.3s ease both; }
   .hero-proof { animation: fadeUp 0.6s 0.35s ease both; }
 
+  /* TRUSTED BY */
+  .trusted-section {
+    padding: 80px 0;
+    max-width: none;
+  }
+
+  .trusted-head {
+    max-width: 1400px;
+    margin: 0 auto 48px;
+    padding: 0 60px;
+  }
+
+  .marquee {
+    position: relative;
+    overflow: hidden;
+    border-top: 2px solid var(--light-gray);
+    border-bottom: 2px solid var(--light-gray);
+    padding: 28px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Only scroll once JS has cloned the list, so the loop is seamless.
+     Without JS it degrades to a static wrapped row. */
+  .marquee-track.is-duplicated {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: marquee 70s linear infinite;
+  }
+
+  .marquee:hover .marquee-track.is-duplicated { animation-play-state: paused; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Spacing lives on the item (not a flex gap) so the cloned half is exactly 50%. */
+  .logo-item {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 0;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--gray);
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .logo-item:hover { color: var(--black); }
+
+  /* Yellow tick sits centered in the gap between names. */
+  .logo-item::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--yellow);
+    margin: 0 28px;
+    flex: 0 0 auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track.is-duplicated { animation: none; }
+  }
+
   @media (max-width: 900px) {
     nav {
       padding: 18px 24px;
@@ -984,6 +1060,10 @@
     .opening { padding-top: 120px; }
     section, .library-section { padding: 60px 24px; }
     hr.rule { margin: 0 24px; }
+    .trusted-section { padding: 60px 0; }
+    .trusted-head { padding: 0 24px; margin-bottom: 32px; }
+    .logo-item { margin: 8px 0; font-size: 16px; }
+    .logo-item::after { margin: 0 18px; }
     .plan-grid { grid-template-columns: 1fr 1fr; }
     .library-grid { grid-template-columns: 1fr; }
     .newsletter-strip { flex-direction: column; text-align: center; }
@@ -1083,7 +1163,57 @@
   </div>
 </section>
 
+<hr class="rule">
 
+<!-- TRUSTED BY -->
+<section id="trusted-by" class="trusted-section">
+  <div class="trusted-head">
+    <h2 class="section-title">Trusted By These Great Companies</h2>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track" id="trustedTrack">
+      <span class="logo-item">Backbase</span>
+      <span class="logo-item">Checkalt</span>
+      <span class="logo-item">Community Choice Credit Union</span>
+      <span class="logo-item">The Equitable Bank</span>
+      <span class="logo-item">Finalytics</span>
+      <span class="logo-item">First Mutual Holding Company</span>
+      <span class="logo-item">Forward Bank</span>
+      <span class="logo-item">Fulton County Savings Bank</span>
+      <span class="logo-item">Greencheck Verified</span>
+      <span class="logo-item">HC3.io</span>
+      <span class="logo-item">Highpoint Bank</span>
+      <span class="logo-item">Horicon Bank</span>
+      <span class="logo-item">Marstone</span>
+      <span class="logo-item">Monit</span>
+      <span class="logo-item">Naehas</span>
+      <span class="logo-item">Narmi</span>
+      <span class="logo-item">New York Savings Bank</span>
+      <span class="logo-item">Nuuvia</span>
+      <span class="logo-item">Plinqit</span>
+      <span class="logo-item">Quavo</span>
+      <span class="logo-item">Strategy Corps</span>
+      <span class="logo-item">Vericast</span>
+      <span class="logo-item">WSI</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var track = document.getElementById('trustedTrack');
+  if (!track) return;
+
+  // Clone the set so the scroll loops without a gap.
+  var clone = track.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.querySelectorAll('.logo-item').forEach(function (item) {
+    item.setAttribute('aria-hidden', 'true');
+  });
+  while (clone.firstChild) track.appendChild(clone.firstChild);
+  track.classList.add('is-duplicated');
+})();
+</script>
 
 <!-- CTA BAND -->
 <div id="book-a-call" class="cta-band full-bleed">
