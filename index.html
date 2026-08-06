@@ -940,80 +940,73 @@
   .hero-ctas { animation: fadeUp 0.6s 0.3s ease both; }
   .hero-proof { animation: fadeUp 0.6s 0.35s ease both; }
 
-  /* TRUSTED BY */
-  .trusted-section {
-    padding: 80px 0;
-    max-width: none;
-  }
-
-  .trusted-head {
-    max-width: 1400px;
-    margin: 0 auto 48px;
-    padding: 0 60px;
-  }
-
-  .marquee {
-    position: relative;
+  /* FEATURED CLIENTS — same hairline-grid system as .plan-grid */
+  .client-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--light-gray);
+    border: 2px solid var(--light-gray);
     overflow: hidden;
-    border-top: 2px solid var(--light-gray);
-    border-bottom: 2px solid var(--light-gray);
-    padding: 28px 0;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    margin-top: 56px;
   }
 
-  .marquee-track {
+  .client-cell {
+    position: relative;
+    background: var(--card-bg);
+    padding: 28px 24px;
+    min-height: 100px;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: center;
-  }
-
-  /* Only scroll once JS has cloned the list, so the loop is seamless.
-     Without JS it degrades to a static wrapped row. */
-  .marquee-track.is-duplicated {
-    width: max-content;
-    flex-wrap: nowrap;
-    animation: marquee 70s linear infinite;
-  }
-
-  .marquee:hover .marquee-track.is-duplicated { animation-play-state: paused; }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* Spacing lives on the item (not a flex gap) so the cloned half is exactly 50%. */
-  .logo-item {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    margin: 10px 0;
+    text-align: center;
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 1.2;
+    font-size: 15px;
+    line-height: 1.35;
     color: var(--gray);
-    white-space: nowrap;
-    transition: color 0.2s;
+    transition: background 0.2s, color 0.2s;
   }
 
-  .logo-item:hover { color: var(--black); }
-
-  /* Yellow tick sits centered in the gap between names. */
-  .logo-item::after {
+  .client-cell::after {
     content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
     background: var(--yellow);
-    margin: 0 28px;
-    flex: 0 0 auto;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track.is-duplicated { animation: none; }
+  .client-cell:hover { background: var(--offwhite); color: var(--black); }
+
+  .client-cell:hover::after { transform: scaleX(1); }
+
+  /* The 24th slot closes the grid and carries the CTA. */
+  .client-cta {
+    flex-direction: column;
+    gap: 10px;
+    background: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .client-cta::after { display: none; }
+
+  .client-cta:hover {
+    background: var(--black);
+    color: var(--yellow);
+  }
+
+  .client-cta-link {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
 
   @media (max-width: 900px) {
@@ -1063,10 +1056,7 @@
     .opening { padding-top: 120px; }
     section, .library-section { padding: 60px 24px; }
     hr.rule { margin: 0 24px; }
-    .trusted-section { padding: 60px 0; }
-    .trusted-head { padding: 0 24px; margin-bottom: 32px; }
-    .logo-item { margin: 8px 0; font-size: 16px; }
-    .logo-item::after { margin: 0 18px; }
+    .client-grid { grid-template-columns: repeat(2, 1fr); }
     .plan-grid { grid-template-columns: 1fr 1fr; }
     .library-grid { grid-template-columns: 1fr; }
     .newsletter-strip { flex-direction: column; text-align: center; }
@@ -1076,6 +1066,7 @@
   @media (max-width: 600px) {
     .plan-grid { grid-template-columns: 1fr; }
     .offers-grid { grid-template-columns: 1fr; }
+    .client-cell { padding: 20px 14px; min-height: 84px; font-size: 13px; }
   }
 </style>
 </head>
@@ -1166,66 +1157,40 @@
 
 <hr class="rule">
 
-<!-- TRUSTED BY -->
-<section id="trusted-by" class="trusted-section">
-  <div class="trusted-head">
-    <p class="section-label">Featured Clients</p>
-    <h2 class="section-title">Who we work with.</h2>
-  </div>
-  <div class="marquee">
-    <div class="marquee-track" id="trustedTrack">
-      <span class="logo-item">Backbase</span>
-      <span class="logo-item">Checkalt</span>
-      <span class="logo-item">Community Choice Credit Union</span>
-      <span class="logo-item">The Equitable Bank</span>
-      <span class="logo-item">Finalytics</span>
-      <span class="logo-item">First Mutual Holding Company</span>
-      <span class="logo-item">Forward Bank</span>
-      <span class="logo-item">Fulton County Savings Bank</span>
-      <span class="logo-item">Greencheck Verified</span>
-      <span class="logo-item">HC3.io</span>
-      <span class="logo-item">Highpoint Bank</span>
-      <span class="logo-item">Horicon Bank</span>
-      <span class="logo-item">Marstone</span>
-      <span class="logo-item">Monit</span>
-      <span class="logo-item">Naehas</span>
-      <span class="logo-item">Narmi</span>
-      <span class="logo-item">New York Savings Bank</span>
-      <span class="logo-item">Nuuvia</span>
-      <span class="logo-item">Plinqit</span>
-      <span class="logo-item">Quavo</span>
-      <span class="logo-item">Strategy Corps</span>
-      <span class="logo-item">Vericast</span>
-      <span class="logo-item">WSI</span>
-    </div>
+<!-- FEATURED CLIENTS -->
+<section id="trusted-by">
+  <p class="section-label">Featured Clients</p>
+  <h2 class="section-title">Who we work with.</h2>
+  <div class="client-grid">
+    <div class="client-cell">Backbase</div>
+    <div class="client-cell">Checkalt</div>
+    <div class="client-cell">Community Choice Credit Union</div>
+    <div class="client-cell">The Equitable Bank</div>
+    <div class="client-cell">Finalytics</div>
+    <div class="client-cell">First Mutual Holding Company</div>
+    <div class="client-cell">Forward Bank</div>
+    <div class="client-cell">Fulton County Savings Bank</div>
+    <div class="client-cell">Greencheck Verified</div>
+    <div class="client-cell">HC3.io</div>
+    <div class="client-cell">Highpoint Bank</div>
+    <div class="client-cell">Horicon Bank</div>
+    <div class="client-cell">Marstone</div>
+    <div class="client-cell">Monit</div>
+    <div class="client-cell">Naehas</div>
+    <div class="client-cell">Narmi</div>
+    <div class="client-cell">New York Savings Bank</div>
+    <div class="client-cell">Nuuvia</div>
+    <div class="client-cell">Plinqit</div>
+    <div class="client-cell">Quavo</div>
+    <div class="client-cell">Strategy Corps</div>
+    <div class="client-cell">Vericast</div>
+    <div class="client-cell">WSI</div>
+    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="client-cell client-cta">
+      Let's see if we're a match.
+      <span class="client-cta-link">Book a Call &rarr;</span>
+    </a>
   </div>
 </section>
-
-<script>
-(function () {
-  var track = document.getElementById('trustedTrack');
-  if (!track) return;
-
-  // Clone the set so the scroll loops without a gap.
-  var clone = track.cloneNode(true);
-  clone.removeAttribute('id');
-  clone.querySelectorAll('.logo-item').forEach(function (item) {
-    item.setAttribute('aria-hidden', 'true');
-  });
-  while (clone.firstChild) track.appendChild(clone.firstChild);
-  track.classList.add('is-duplicated');
-})();
-</script>
-
-<!-- CTA BAND -->
-<div id="book-a-call" class="cta-band full-bleed">
-  <div class="cta-band-inner">
-    <div class="cta-band-accent"></div>
-    <h2>Let's see if we're a match.</h2>
-    <p>A 30-minute conversation will tell us whether the problem is one BrandThnk can help solve, and what the right next step might be.</p>
-    <a href="https://calendar.app.google/ZoWdHFueshr6LQs17" class="btn-primary">Book a Call</a>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
