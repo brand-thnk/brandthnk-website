@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop | StrategyCorps Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .day-tab {
+      flex: 1;
+      padding: 1.25rem;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid var(--brandthnk-light-gray);
+      background: var(--brandthnk-white);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .day-tab:hover { border-color: var(--brandthnk-black); }
+
+    .day-tab.active {
+      border-color: var(--brandthnk-black);
+      background: var(--brandthnk-yellow);
+    }
+
+    .day-tab-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      opacity: 0.7;
+      margin-bottom: 0.35rem;
+    }
+
+    .day-tab-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .day-tab-date { font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; }
+
+    .day-content { display: none; }
+    .day-content.visible { display: block; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 2rem;
+    }
+
+    .card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .card p { margin-bottom: 0.875rem; font-size: 0.875rem; }
+    .card ul { margin-left: 1.5rem; margin-bottom: 0.875rem; }
+    .card li { margin-bottom: 0.5rem; font-size: 0.875rem; }
+
+    .objective-block {
+      background: var(--brandthnk-yellow);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .objective-block h3 {
+      margin-top: 0;
+      font-size: 0.9375rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .objective-block p { margin: 0; font-size: 0.8125rem; }
+
+    .session-block {
+      background: var(--brandthnk-off-white);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 3px solid var(--brandthnk-yellow);
+    }
+
+    .session-time {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--brandthnk-gray);
+      margin-bottom: 0.35rem;
+    }
+
+    .session-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .session-desc { font-size: 0.8125rem; color: var(--brandthnk-gray); }
+
+    .output-block {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .output-block h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--brandthnk-yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .output-block p { font-size: 0.8125rem; margin: 0; }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .day-tabs { flex-direction: column; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-work.html" class="nav-link">Pre-Work</a>
+        <a href="workshop.html" class="nav-link active">Workshop</a>
+        <a href="synthesis.html" class="nav-link">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Workshop <span class="brand-accent">Agenda</span></h1>
+      <p>Two-day leadership workshop &bull; August 3–4, 2026</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="day-tabs">
+      <div class="day-tab active" onclick="showDay(1)">
+        <div class="day-tab-label">Day 1</div>
+        <div class="day-tab-title">Get Clear on the Story</div>
+        <div class="day-tab-date">August 3, 2026</div>
+      </div>
+      <div class="day-tab" onclick="showDay(2)">
+        <div class="day-tab-label">Day 2</div>
+        <div class="day-tab-title">Turn It Into Language</div>
+        <div class="day-tab-date">August 4, 2026</div>
+      </div>
+    </div>
+
+    <!-- Day 1 -->
+    <div id="day-1" class="day-content visible">
+      <div class="card">
+        <h2>Day 1: Get Clear on the Story</h2>
+
+        <div class="objective-block">
+          <h3>Focus</h3>
+          <p>Understand where the business is, where it's going, and how leadership wants to describe that evolution. Get to a shared point of view on the company story and the positioning directions worth pursuing.</p>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Morning</div>
+          <div class="session-title">Where the Business Is Today</div>
+          <div class="session-desc">Open reflection on the current state — what's working, what feels muddy, where the gaps are between how leadership talks about the company internally vs. externally.</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Mid-Morning</div>
+          <div class="session-title">Where the Business Is Going</div>
+          <div class="session-desc">The growth story taking shape. What does the next chapter look like, and how does positioning need to carry that forward without getting ahead of what's real today?</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Midday</div>
+          <div class="session-title">Bezing and MonetizeIQ: The Integration Question</div>
+          <div class="session-desc">How should these two product lines fit together in the StrategyCorps story? Are they additive, integrated, or sequenced? What does a banker need to understand about how they connect?</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Afternoon</div>
+          <div class="session-title">What Bankers Need to Hear</div>
+          <div class="session-desc">A frank look at what language lands with community bank buyers — and what confuses them. What assumptions does the current messaging make? Where does it lose people?</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Late Afternoon</div>
+          <div class="session-title">Initial Positioning Directions</div>
+          <div class="session-desc">Emerging directions from the day's conversation. Not final — just enough shape to react to and refine on Day 2.</div>
+        </div>
+
+        <div class="output-block">
+          <h3>End of Day 1 Output</h3>
+          <p>A shared point of view on the company story and the main positioning paths worth pursuing on Day 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div id="day-2" class="day-content">
+      <div class="card">
+        <h2>Day 2: Turn the Story Into Usable Language</h2>
+
+        <div class="objective-block">
+          <h3>Focus</h3>
+          <p>Take the best direction from Day 1 and turn it into language the team can actually use. Leave with a clear positioning direction, a working message framework, and practical guidance for sales and marketing.</p>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Morning</div>
+          <div class="session-title">Review and Refine the Strongest Direction</div>
+          <div class="session-desc">Revisit the positioning directions that emerged from Day 1. Which one resonates most? What needs to shift? Get to a single direction the room can commit to.</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Mid-Morning</div>
+          <div class="session-title">What Should Lead the Story?</div>
+          <div class="session-desc">A critical choice: does the story lead with the platform, the problem, the outcome, or the use case? Different entry points work for different audiences and moments. We'll decide together.</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Midday</div>
+          <div class="session-title">The Clearest Banker-Friendly Language</div>
+          <div class="session-desc">Translate the positioning direction into language a community bank executive can receive without translation. Test multiple framings. Land on what's clearest and most credible.</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Afternoon</div>
+          <div class="session-title">Proof Points and Use Cases</div>
+          <div class="session-desc">Identify the strongest evidence behind the positioning. What client examples, outcomes, and use cases make the story concrete? What do we lead with in a sales conversation?</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Late Afternoon</div>
+          <div class="session-title">How the Story Carries Forward</div>
+          <div class="session-desc">Align on how this positioning should show up in sales conversations, marketing, and board discussions. What changes immediately? What gets updated over time?</div>
+        </div>
+
+        <div class="session-block">
+          <div class="session-time">Close</div>
+          <div class="session-title">Next Steps</div>
+          <div class="session-desc">Who owns what. What Allison delivers in the synthesis. What the team starts using right away.</div>
+        </div>
+
+        <div class="output-block">
+          <h3>End of Day 2 Output</h3>
+          <p>A clear positioning direction, working message framework, and practical guidance for how the team should start using it. Synthesis document to follow within 10 business days.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+  <script>
+    function showDay(n) {
+      document.querySelectorAll('.day-content').forEach(el => el.classList.remove('visible'));
+      document.querySelectorAll('.day-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('day-' + n).classList.add('visible');
+      document.querySelectorAll('.day-tab')[n - 1].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

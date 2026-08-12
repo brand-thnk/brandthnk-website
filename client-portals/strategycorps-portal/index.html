@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StrategyCorps Portal | BrandThnk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Nav */
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+
+    .nav-link.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    /* Header */
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { font-size: 1rem; opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    /* Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .section h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Status items */
+    .project-status {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-item {
+      background: var(--brandthnk-off-white);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .status-label {
+      font-size: 0.6875rem;
+      color: var(--brandthnk-gray);
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-value {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .current-phase {
+      background: var(--brandthnk-yellow);
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .current-phase h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    .current-phase p { font-size: 0.8125rem; }
+
+    /* Contact section */
+    .contact-section {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      grid-column: 1 / -1;
+      border-left: 4px solid var(--brandthnk-yellow);
+    }
+
+    .contact-section h2 { color: var(--brandthnk-yellow); }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-item h3 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--brandthnk-yellow);
+      font-size: 0.9375rem;
+    }
+
+    .contact-item p { margin-bottom: 0.35rem; font-size: 0.8125rem; }
+    .contact-item a { color: var(--brandthnk-white); text-decoration: none; }
+    .contact-item a:hover { color: var(--brandthnk-yellow); }
+
+    /* Action items */
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      padding: 0.875rem 1rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 8px;
+      border-left: 3px solid var(--brandthnk-yellow);
+      cursor: pointer;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .action-item:hover { background: var(--brandthnk-white); }
+
+    .action-item.completed {
+      opacity: 0.65;
+      background: var(--brandthnk-light-gray);
+      border-left-color: var(--brandthnk-gray);
+    }
+
+    .action-item.completed .action-title { text-decoration: line-through; }
+
+    .action-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--brandthnk-gray);
+      border-radius: 3px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .action-checkbox.checked {
+      background: var(--brandthnk-yellow);
+      border-color: var(--brandthnk-black);
+    }
+
+    .action-checkbox.checked::after {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .action-content { flex: 1; }
+
+    .action-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      line-height: 1.4;
+      font-size: 0.8125rem;
+    }
+
+    .action-meta {
+      font-size: 0.6875rem;
+      color: var(--brandthnk-gray);
+    }
+
+    /* Timeline */
+    .timeline-section { grid-column: 1 / -1; }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .timeline-phase {
+      background: var(--brandthnk-light-gray);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .timeline-phase:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .timeline-phase.active {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+      font-weight: 600;
+    }
+
+    .timeline-phase.completed {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+    }
+
+    .timeline-phase.selected { border-color: var(--brandthnk-black); }
+
+    .phase-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.35rem;
+      opacity: 0.7;
+    }
+
+    .phase-name {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .phase-dates { font-size: 0.6875rem; opacity: 0.8; }
+
+    .phase-details {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--brandthnk-white);
+      border-radius: 8px;
+      border-left: 4px solid var(--brandthnk-yellow);
+      display: none;
+    }
+
+    .phase-details.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .phase-details h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .phase-objective {
+      background: var(--brandthnk-yellow);
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-objective h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .phase-objective p { font-size: 0.8125rem; }
+
+    .phase-activities, .phase-deliverable { margin-bottom: 1.25rem; }
+
+    .phase-activities h4, .phase-deliverable h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 0.9375rem;
+    }
+
+    .phase-activities ul { margin-left: 1.5rem; }
+    .phase-activities li { margin-bottom: 0.4rem; font-size: 0.8125rem; }
+
+    .phase-deliverable {
+      background: var(--brandthnk-off-white);
+      padding: 1.25rem;
+      border-radius: 8px;
+    }
+
+    .phase-deliverable p { font-size: 0.8125rem; }
+
+    /* Resource cards */
+    .resources-section { grid-column: 1 / -1; }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .resource-card {
+      background: var(--brandthnk-white);
+      border: 1px solid var(--brandthnk-light-gray);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .resource-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--brandthnk-yellow);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    .resource-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .resource-description {
+      font-size: 0.8125rem;
+      color: var(--brandthnk-gray);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container { padding: 0 1rem; }
+      .header h1 { font-size: 1.75rem; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .nav-links { gap: 0.375rem; }
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="pre-work.html" class="nav-link">Pre-Work</a>
+        <a href="workshop.html" class="nav-link">Workshop</a>
+        <a href="synthesis.html" class="nav-link">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1>StrategyCorps <span class="brand-accent">Portal</span></h1>
+      <p>Positioning Workshop &bull; Strategic Positioning & Go-to-Market Clarity</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="dashboard-grid">
+
+      <!-- Team & Communication -->
+      <section class="section contact-section">
+        <h2>Team & Communication</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>BrandThnk</h3>
+            <p><strong>Allison Netzer</strong></p>
+            <p>Strategist & Workshop Facilitator</p>
+            <p><a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
+          </div>
+          <div class="contact-item">
+            <h3>StrategyCorps</h3>
+            <p><strong>Vince Bezemer</strong></p>
+            <p>Primary Contact</p>
+            <p><a href="mailto:vince.bezemer@strategycorps.com">vince.bezemer@strategycorps.com</a></p>
+          </div>
+          <div class="contact-item">
+            <h3>Quick Links</h3>
+            <p><a href="mailto:allison@brandthnk.co">Email Allison</a></p>
+            <p><a href="workshop.html">Workshop Agenda</a></p>
+            <p><a href="synthesis.html">Synthesis Document</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Status -->
+      <section class="section">
+        <h2>Project Status</h2>
+        <div class="project-status">
+          <div class="status-item">
+            <div class="status-label">Workshop</div>
+            <div class="status-value">Aug 3–4, 2026</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">Fee</div>
+            <div class="status-value">$18,500</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">Phase</div>
+            <div class="status-value">Synthesis</div>
+          </div>
+          <div class="status-item">
+            <div class="status-label">Format</div>
+            <div class="status-value">2-Day Workshop</div>
+          </div>
+        </div>
+        <div class="current-phase">
+          <h3>Current Phase: Post-Workshop Synthesis</h3>
+          <p>Turning workshop outputs into a clear positioning direction and message framework the team can use.</p>
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--brandthnk-gray);">Workshop completed Aug 3–4. Synthesis in progress. Final deliverable expected within 10 business days of workshop close.</p>
+      </section>
+
+      <!-- Critical Next Actions -->
+      <section class="section">
+        <h2>Critical Next Actions</h2>
+
+        <div class="action-item" data-action="review-synthesis" onclick="toggleAction(this)">
+          <div class="action-checkbox"></div>
+          <div class="action-content">
+            <div class="action-title">Review synthesis document draft</div>
+            <div class="action-meta">Target: Aug 15 &bull; Owner: Allison → Vince</div>
+          </div>
+        </div>
+
+        <div class="action-item" data-action="confirm-message-direction" onclick="toggleAction(this)">
+          <div class="action-checkbox"></div>
+          <div class="action-content">
+            <div class="action-title">Confirm preferred positioning direction</div>
+            <div class="action-meta">Target: Aug 18 &bull; Owner: StrategyCorps leadership</div>
+          </div>
+        </div>
+
+        <div class="action-item" data-action="feedback-synthesis" onclick="toggleAction(this)">
+          <div class="action-checkbox"></div>
+          <div class="action-content">
+            <div class="action-title">Share feedback on synthesis themes</div>
+            <div class="action-meta">Target: Aug 18 &bull; Owner: Vince</div>
+          </div>
+        </div>
+
+        <div class="action-item" data-action="final-debrief" onclick="toggleAction(this)">
+          <div class="action-checkbox"></div>
+          <div class="action-content">
+            <div class="action-title">Final debrief call to close engagement</div>
+            <div class="action-meta">Target: Aug 22 &bull; Owner: Allison + Vince</div>
+          </div>
+        </div>
+
+        <div class="action-item" data-action="optional-followon" onclick="toggleAction(this)">
+          <div class="action-checkbox"></div>
+          <div class="action-content">
+            <div class="action-title">Decide on optional follow-on scope</div>
+            <div class="action-meta">Target: TBD &bull; Owner: StrategyCorps</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="section timeline-section">
+        <h2>Engagement Timeline</h2>
+        <p style="font-size: 0.8125rem; color: var(--brandthnk-gray); margin-bottom: 0.5rem;">Click a phase to see details.</p>
+
+        <div class="timeline">
+          <div class="timeline-phase completed" onclick="showPhase('prework')">
+            <div class="phase-label">Phase 1</div>
+            <div class="phase-name">Pre-Work</div>
+            <div class="phase-dates">July 2026</div>
+          </div>
+          <div class="timeline-phase completed" onclick="showPhase('workshop')">
+            <div class="phase-label">Phase 2</div>
+            <div class="phase-name">Workshop</div>
+            <div class="phase-dates">Aug 3–4, 2026</div>
+          </div>
+          <div class="timeline-phase active" onclick="showPhase('synthesis')">
+            <div class="phase-label">Phase 3</div>
+            <div class="phase-name">Synthesis</div>
+            <div class="phase-dates">Aug 5–15, 2026</div>
+          </div>
+        </div>
+
+        <div id="phase-prework" class="phase-details">
+          <h3>Phase 1: Pre-Work</h3>
+          <div class="phase-objective">
+            <h4>Objective</h4>
+            <p>Gather the context and input needed to make the workshop productive from hour one. Understand the current business, products, and how leadership thinks about the story today.</p>
+          </div>
+          <div class="phase-activities">
+            <h4>Activities</h4>
+            <ul>
+              <li>Intake conversations with Vince and key leadership</li>
+              <li>Review of existing materials (pitch decks, website, sales collateral)</li>
+              <li>Prep brief sent to workshop participants</li>
+              <li>Allison orientation on Bezing and MonetizeIQ product lines</li>
+            </ul>
+          </div>
+          <div class="phase-deliverable">
+            <h4>Deliverable</h4>
+            <p>Workshop prep brief and orientation document for all participants.</p>
+          </div>
+        </div>
+
+        <div id="phase-workshop" class="phase-details">
+          <h3>Phase 2: Leadership Workshop</h3>
+          <div class="phase-objective">
+            <h4>Objective</h4>
+            <p>Bring the leadership team together to clarify how StrategyCorps should talk about the business, where it's headed, and how Bezing and MonetizeIQ fit into a single coherent story.</p>
+          </div>
+          <div class="phase-activities">
+            <h4>Activities</h4>
+            <ul>
+              <li>Day 1: Current state, company story, product integration, banker-friendly language</li>
+              <li>Day 2: Positioning direction selection, message framework, proof points, next steps</li>
+              <li>Facilitated working sessions with leadership team</li>
+              <li>Real-time synthesis and direction setting</li>
+            </ul>
+          </div>
+          <div class="phase-deliverable">
+            <h4>Deliverable</h4>
+            <p>Shared positioning direction and working message framework by end of Day 2.</p>
+          </div>
+        </div>
+
+        <div id="phase-synthesis" class="phase-details visible">
+          <h3>Phase 3: Synthesis (Current)</h3>
+          <div class="phase-objective">
+            <h4>Objective</h4>
+            <p>Turn workshop outputs into a durable, usable positioning foundation the team can put to work immediately in board conversations, sales discussions, and marketing.</p>
+          </div>
+          <div class="phase-activities">
+            <h4>Activities</h4>
+            <ul>
+              <li>Synthesis write-up from workshop notes and session outputs</li>
+              <li>Clear company story documentation</li>
+              <li>Bezing and MonetizeIQ narrative integration</li>
+              <li>Message framework draft with banker-friendly language</li>
+              <li>Guidance for sales and marketing application</li>
+            </ul>
+          </div>
+          <div class="phase-deliverable">
+            <h4>Deliverable</h4>
+            <p>Final synthesis document with positioning direction, message framework, and practical guidance. Expected by Aug 15.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resources -->
+      <section class="section resources-section">
+        <h2>Project Resources</h2>
+        <div class="resource-grid">
+          <a href="pre-work.html" class="resource-card">
+            <div class="resource-icon">📋</div>
+            <div class="resource-title">Pre-Work</div>
+            <div class="resource-description">Prep brief, intake materials, and background context shared ahead of the workshop.</div>
+          </a>
+          <a href="workshop.html" class="resource-card">
+            <div class="resource-icon">🗓</div>
+            <div class="resource-title">Workshop</div>
+            <div class="resource-description">Day 1 and Day 2 agendas, session structure, and workshop objectives.</div>
+          </a>
+          <a href="synthesis.html" class="resource-card">
+            <div class="resource-icon">📄</div>
+            <div class="resource-title">Synthesis</div>
+            <div class="resource-description">Post-workshop synthesis: positioning direction, message framework, and guidance for applying the work.</div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+    <p style="margin-top: 0.5rem; opacity: 0.6; font-size: 0.75rem;">Questions? Contact allison@brandthnk.co</p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'strategycorps_portal_actions';
+
+    function loadActions() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch { return {}; }
+    }
+
+    function saveActions(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function toggleAction(el) {
+      const key = el.dataset.action;
+      const state = loadActions();
+      const isCompleted = el.classList.contains('completed');
+
+      if (isCompleted) {
+        el.classList.remove('completed');
+        el.querySelector('.action-checkbox').classList.remove('checked');
+        state[key] = false;
+      } else {
+        el.classList.add('completed');
+        el.querySelector('.action-checkbox').classList.add('checked');
+        state[key] = true;
+      }
+
+      saveActions(state);
+    }
+
+    function initActions() {
+      const state = loadActions();
+      document.querySelectorAll('.action-item[data-action]').forEach(el => {
+        const key = el.dataset.action;
+        if (state[key]) {
+          el.classList.add('completed');
+          el.querySelector('.action-checkbox').classList.add('checked');
+        }
+      });
+    }
+
+    function showPhase(phase) {
+      document.querySelectorAll('.phase-details').forEach(el => el.classList.remove('visible'));
+      document.querySelectorAll('.timeline-phase').forEach(el => el.classList.remove('selected'));
+      document.getElementById('phase-' + phase).classList.add('visible');
+    }
+
+    initActions();
+  </script>
+
+</body>
+</html>

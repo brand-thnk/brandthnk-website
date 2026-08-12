@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthesis | StrategyCorps Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .status-banner {
+      background: var(--brandthnk-yellow);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .status-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+    .status-banner h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .status-banner p { font-size: 0.8125rem; }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 2rem;
+    }
+
+    .card.pending {
+      border-left-color: var(--brandthnk-light-gray);
+      opacity: 0.75;
+    }
+
+    .card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+    }
+
+    .card p { margin-bottom: 0.875rem; font-size: 0.875rem; }
+    .card ul { margin-left: 1.5rem; margin-bottom: 0.875rem; }
+    .card li { margin-bottom: 0.5rem; font-size: 0.875rem; }
+
+    .section-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--brandthnk-gray);
+      margin-bottom: 1rem;
+    }
+
+    .pending-note {
+      background: var(--brandthnk-off-white);
+      border: 2px dashed var(--brandthnk-light-gray);
+      border-radius: 8px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--brandthnk-gray);
+    }
+
+    .pending-note p { margin: 0; font-size: 0.8125rem; }
+
+    .deliverable-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .deliverable-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: var(--brandthnk-off-white);
+      margin-bottom: 0.75rem;
+      border-left: 3px solid var(--brandthnk-yellow);
+    }
+
+    .deliverable-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--brandthnk-yellow);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .deliverable-content { flex: 1; }
+
+    .deliverable-title {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .deliverable-desc { font-size: 0.8125rem; color: var(--brandthnk-gray); }
+
+    .timeline-note {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .timeline-item {
+      flex: 1;
+      min-width: 180px;
+      background: var(--brandthnk-off-white);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .timeline-item-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: var(--brandthnk-gray);
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-item-value {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .followon-block {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .followon-block h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--brandthnk-yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    .followon-block p { font-size: 0.8125rem; margin-bottom: 0.5rem; color: rgba(255,255,255,0.85); }
+    .followon-block ul { margin-left: 1.5rem; }
+    .followon-block li { font-size: 0.8125rem; margin-bottom: 0.35rem; color: rgba(255,255,255,0.85); }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-work.html" class="nav-link">Pre-Work</a>
+        <a href="workshop.html" class="nav-link">Workshop</a>
+        <a href="synthesis.html" class="nav-link active">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Post-Workshop <span class="brand-accent">Synthesis</span></h1>
+      <p>Positioning direction, message framework, and guidance for application</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="status-banner">
+      <div class="status-icon">🔄</div>
+      <div>
+        <h2>Synthesis In Progress</h2>
+        <p>Workshop complete. Allison is synthesizing the session outputs now. Final document expected by Aug 15, 2026.</p>
+      </div>
+    </div>
+
+    <!-- What synthesis will contain -->
+    <div class="card">
+      <h2>What This Document Will Contain</h2>
+      <div class="section-label">Deliverables from the workshop</div>
+
+      <ul class="deliverable-list">
+        <li class="deliverable-item">
+          <div class="deliverable-icon">🏢</div>
+          <div class="deliverable-content">
+            <div class="deliverable-title">The Company Story</div>
+            <div class="deliverable-desc">A clear, usable description of what StrategyCorps is today — not a tagline, but a narrative foundation leadership can work from.</div>
+          </div>
+        </li>
+        <li class="deliverable-item">
+          <div class="deliverable-icon">🔗</div>
+          <div class="deliverable-content">
+            <div class="deliverable-title">Bezing & MonetizeIQ Integration</div>
+            <div class="deliverable-desc">How the two product lines fit together in the story — the framing that makes the connection clear to a banker without requiring a full product walkthrough.</div>
+          </div>
+        </li>
+        <li class="deliverable-item">
+          <div class="deliverable-icon">💬</div>
+          <div class="deliverable-content">
+            <div class="deliverable-title">Message Framework</div>
+            <div class="deliverable-desc">Draft positioning language and message themes: what to lead with, what problems to name, what outcomes to claim, and what proof points to anchor to.</div>
+          </div>
+        </li>
+        <li class="deliverable-item">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-content">
+            <div class="deliverable-title">Priority Problems & Use Cases</div>
+            <div class="deliverable-desc">The specific problems and use cases that should anchor the story — ranked by resonance with community bank buyers.</div>
+          </div>
+        </li>
+        <li class="deliverable-item">
+          <div class="deliverable-icon">📢</div>
+          <div class="deliverable-content">
+            <div class="deliverable-title">Application Guidance</div>
+            <div class="deliverable-desc">How the positioning should show up in sales conversations, board presentations, and marketing — what to change immediately and what to update over time.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card">
+      <h2>Synthesis Timeline</h2>
+      <div class="timeline-note">
+        <div class="timeline-item">
+          <div class="timeline-item-label">Workshop Completed</div>
+          <div class="timeline-item-value">Aug 4, 2026</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-label">Draft to Vince</div>
+          <div class="timeline-item-value">Aug 15, 2026</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-label">Feedback Due</div>
+          <div class="timeline-item-value">Aug 18, 2026</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-label">Final Debrief</div>
+          <div class="timeline-item-value">Aug 22, 2026</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.25rem; font-size: 0.8125rem; color: var(--brandthnk-gray);">Vince will receive the synthesis document via email before it appears here. This page will be updated when the final version is ready.</p>
+    </div>
+
+    <!-- Placeholder content -->
+    <div class="card pending">
+      <h2>Positioning Direction</h2>
+      <div class="pending-note">
+        <p>This section will contain the selected positioning direction and key decision rationale.</p>
+        <p style="margin-top: 0.5rem;">Available after synthesis review (Aug 15).</p>
+      </div>
+    </div>
+
+    <div class="card pending">
+      <h2>Message Framework</h2>
+      <div class="pending-note">
+        <p>Company positioning language, message themes, and banker-friendly framing.</p>
+        <p style="margin-top: 0.5rem;">Available after synthesis review (Aug 15).</p>
+      </div>
+    </div>
+
+    <div class="card pending">
+      <h2>Application Guidance</h2>
+      <div class="pending-note">
+        <p>How to use this positioning in sales, marketing, and board conversations.</p>
+        <p style="margin-top: 0.5rem;">Available after synthesis review (Aug 15).</p>
+      </div>
+    </div>
+
+    <!-- Optional follow-on -->
+    <div class="card">
+      <h2>Optional Follow-On Support</h2>
+      <p>If useful, Allison can also help translate the workshop outputs into materials that operationalize the positioning. This would be scoped separately after the synthesis is complete.</p>
+
+      <div class="followon-block">
+        <h3>What follow-on could include</h3>
+        <ul>
+          <li>Messaging document and core narrative</li>
+          <li>Sales storylines and conversation frameworks</li>
+          <li>Website copy direction</li>
+          <li>Product marketing support for Bezing and MonetizeIQ</li>
+          <li>Board presentation framing</li>
+        </ul>
+        <p style="margin-top: 1rem;">To discuss, reach out to <a href="mailto:allison@brandthnk.co" style="color: var(--brandthnk-yellow);">allison@brandthnk.co</a>.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+</body>
+</html>

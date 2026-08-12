@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Work | StrategyCorps Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 2rem;
+    }
+
+    .card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .card p { margin-bottom: 0.875rem; font-size: 0.875rem; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .card li {
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .highlight {
+      background: var(--brandthnk-yellow);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .highlight h3 {
+      margin-top: 0;
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight p { font-size: 0.8125rem; margin-bottom: 0; }
+
+    .question-block {
+      background: var(--brandthnk-off-white);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--brandthnk-yellow);
+      margin-bottom: 0.875rem;
+    }
+
+    .question-block p { margin: 0; font-size: 0.8125rem; }
+
+    .status-badge {
+      display: inline-block;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-work.html" class="nav-link active">Pre-Work</a>
+        <a href="workshop.html" class="nav-link">Workshop</a>
+        <a href="synthesis.html" class="nav-link">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Pre-Work <span class="brand-accent">Materials</span></h1>
+      <p>Context and preparation ahead of the positioning workshop</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Why We're Here <span class="status-badge">Complete</span></h2>
+      <p>StrategyCorps has a strong existing business and a bigger growth story taking shape. The challenge is less about vision and more about clarity: how to describe the company, the offering set, and the value in a way that helps leadership, sales, and marketing all tell the same story.</p>
+      <p>This workshop brings the leadership team together to close that gap — not to invent a new direction, but to get sharp about the one that's already there.</p>
+    </div>
+
+    <div class="card">
+      <h2>The Three Questions</h2>
+      <div class="highlight">
+        <h3>What we're trying to answer</h3>
+        <p>These three questions frame everything we'll work through together.</p>
+      </div>
+      <div class="question-block">
+        <p><strong>1.</strong> How should StrategyCorps describe what it is today?</p>
+      </div>
+      <div class="question-block">
+        <p><strong>2.</strong> How should Bezing and MonetizeIQ fit together in the story?</p>
+      </div>
+      <div class="question-block">
+        <p><strong>3.</strong> What is the clearest, most banker-friendly way to talk about the value going forward?</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>What We'll Produce</h2>
+      <ul>
+        <li>A clearer company story</li>
+        <li>A clearer way to talk about Bezing and MonetizeIQ together</li>
+        <li>Draft positioning language and message themes</li>
+        <li>Priority problems, outcomes, and use cases to lead with</li>
+        <li>Guidance for how the story should show up in sales and marketing</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Pre-Work for Participants</h2>
+      <p>Before the workshop, each participant was asked to reflect on the following. These inputs shaped the Day 1 discussion.</p>
+
+      <h3>Individual Reflection Questions</h3>
+      <ul>
+        <li>How would you describe StrategyCorps to someone who's never heard of it? (in your own words, not from the website)</li>
+        <li>What's the thing bankers understand most clearly about what we do?</li>
+        <li>What's the thing that confuses them most?</li>
+        <li>How do you explain Bezing? How do you explain MonetizeIQ? How do you explain how they connect?</li>
+        <li>What are the 2-3 outcomes we deliver that matter most to a community bank?</li>
+        <li>Where does the story feel clearest today? Where does it feel muddiest?</li>
+      </ul>
+
+      <h3>Materials Reviewed Ahead of Workshop</h3>
+      <ul>
+        <li>Current website and positioning language</li>
+        <li>Recent pitch decks and sales materials</li>
+        <li>Bezing and MonetizeIQ product overviews</li>
+        <li>Representative client case examples</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>What Success Looks Like</h2>
+      <p>By the end of the engagement, the leadership team should be able to:</p>
+      <ul>
+        <li>Describe StrategyCorps in one clear sentence — without the product catalog</li>
+        <li>Explain how Bezing and MonetizeIQ fit into one integrated story</li>
+        <li>Walk into a board conversation or sales call with consistent, confident language</li>
+        <li>Hand marketing a foundation to build from — not start over</li>
+      </ul>
+
+      <div class="highlight" style="margin-top: 1.5rem;">
+        <h3>What this is not</h3>
+        <p>A rebrand. A new tagline. A new product. We're not inventing a new direction — we're getting sharper about the one already there.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+</body>
+</html>
