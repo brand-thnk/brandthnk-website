@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Feedback | StrategyCorps Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .intro-card {
+      background: var(--brandthnk-yellow);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .intro-card p { font-size: 0.875rem; margin: 0; }
+
+    .person-card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .person-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .person-name {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .person-meta {
+      font-size: 0.75rem;
+      color: var(--brandthnk-gray);
+      margin-top: 0.25rem;
+    }
+
+    .person-date {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--brandthnk-gray);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+
+    .person-card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .person-card h3:first-child { margin-top: 0; }
+
+    .person-card p {
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .person-card p:last-child { margin-bottom: 0; }
+
+    .person-card ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .person-card li {
+      margin-bottom: 0.4rem;
+      font-size: 0.875rem;
+    }
+
+    .feedback-item {
+      background: var(--brandthnk-off-white);
+      border-left: 3px solid var(--brandthnk-yellow);
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .quote-block {
+      background: var(--brandthnk-off-white);
+      border-left: 3px solid var(--brandthnk-yellow);
+      padding: 0.875rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.875rem 0;
+      font-style: italic;
+      font-size: 0.875rem;
+    }
+
+    .highlight {
+      background: var(--brandthnk-yellow);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .highlight p { margin: 0; font-size: 0.8125rem; }
+    .highlight strong { font-weight: 700; }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .person-header { flex-direction: column; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-work.html" class="nav-link">Pre-Work</a>
+        <a href="workshop.html" class="nav-link">Workshop</a>
+        <a href="workshop-notes.html" class="nav-link">Notes</a>
+        <a href="synthesis.html" class="nav-link active">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Post-Workshop <span class="brand-accent">Feedback</span></h1>
+      <p>Mock site feedback &amp; homework rollup &bull; August 7–10, 2026</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="intro-card">
+      <p>Participant feedback on the Day 2 mock-up site, plus homework responses. This input fed directly into the synthesis deliverables.</p>
+    </div>
+
+    <!-- Jon Ricci - Mock site notes -->
+    <div class="person-card">
+      <div class="person-header">
+        <div>
+          <div class="person-name">Jon Ricci</div>
+          <div class="person-meta">MIQ Mock Site Notes &amp; Homework</div>
+        </div>
+        <div class="person-date">Aug 7, 2026</div>
+      </div>
+
+      <h3>Homework Question</h3>
+      <div class="highlight">
+        <p><strong>How can Bezing best function as a monetization surface and data partner for MonetizeIQ?</strong></p>
+      </div>
+
+      <h3>Mock Site Feedback</h3>
+      <div class="feedback-item">Hero scroll/click — still don't know what you're getting after engaging. Overarching question: is the target audience afraid of everything?</div>
+      <div class="feedback-item">Was putting MIQ last intentional? Landing page leads with fear — MIQ should be first, not last.</div>
+      <div class="feedback-item">MIQ positioning feels better — leads with "already have," relief, already done the work, not a new lift. Implementation timing helps.</div>
+      <div class="feedback-item">"Execution infrastructure platform" takes too much time to think about what it is.</div>
+      <div class="feedback-item">Show the experience by persona visually. "Who typically owns monetize" should be an interactive tool illustrating the user journey — pick your persona.</div>
+      <div class="feedback-item">CheckingScore positioning feels like a WIP — they'll say all accounts matter.</div>
+      <div class="feedback-item">Bezing leads with fear — subhead needs to be dialed. Could be repositioned as something positive and aspirational.</div>
+      <div class="feedback-item">"Exclusively for community banks and credit unions" doesn't align with targeting upmarket FIs — may give the perception of not being built for enterprise.</div>
+      <div class="feedback-item">ROI promise needs to feel less like disclaiming and more confident.</div>
+      <div class="feedback-item">"Is MonetizeIQ available now" should be shown earlier so the promise feels real.</div>
+      <div class="feedback-item">About Us — should it restate the ROI/metrics from the top?</div>
+    </div>
+
+    <!-- Jon Ricci - How the products fit together -->
+    <div class="person-card">
+      <div class="person-header">
+        <div>
+          <div class="person-name">Jon Ricci</div>
+          <div class="person-meta">How the Products Fit Together</div>
+        </div>
+        <div class="person-date">Aug 7, 2026</div>
+      </div>
+
+      <p>Slide 11 is the flywheel — loads as an animation timed for talking cadence. Give it a second to get started. Included a deck attachment: Bezing board deck.</p>
+    </div>
+
+    <!-- Vince Bezemer -->
+    <div class="person-card">
+      <div class="person-header">
+        <div>
+          <div class="person-name">Vince Bezemer</div>
+          <div class="person-meta">SC Workshop 8/7</div>
+        </div>
+        <div class="person-date">Aug 7, 2026</div>
+      </div>
+
+      <h3>Objective</h3>
+      <p>What is the first line that "removed" people remember when engaging with our messaging?</p>
+
+      <h3>Positioning Concepts</h3>
+      <div class="quote-block">"We are a portfolio performance platform for community FIs that can add $1M of NII per $1B AUM." (Missing the proof — added at end of sentence.)</div>
+      <div class="quote-block">"Unlike product performance tools that stop at the diagnosis, we benchmark your product portfolio against 25 years of peer data and hand your team signals based on your own data, distilled into cohorts and offers. We make this actionable end-to-end, including the pricing, packaging and rollout plan."</div>
+      <div class="quote-block"><strong>Reworked:</strong> "We're a fee income growth platform for community banks and credit unions. Unlike analytics that stop at the diagnosis, we benchmark your portfolio against 25 years of peer data and deliver the pricing and packaging plan with it, so you add roughly $1M in annual fee income per $1B in assets."</div>
+      <div class="quote-block">"Imagine Zafin, Segment, Kasasa and Delta Sky Miles having a baby — that's us."</div>
+
+      <h3>Concept Feedback</h3>
+      <div class="feedback-item">Scorecard: gaining attention is high due to human language — but how do they enter? Fast comprehension is a little low (where we fit, what it replaces, who owns/runs it).</div>
+      <div class="feedback-item">Likes the down-to-earth language — very much his tone.</div>
+      <div class="feedback-item">Not clear if the box edge fully lands (the "unlike/competitors" part) — what's the role of proof ($, ecosystem integrations)?</div>
+      <div class="feedback-item">Likes how it brings solutions together but doesn't feel transcending yet.</div>
+      <div class="feedback-item">Missing the WIIFY — the what, what it replaces, category, ready for what's next.</div>
+    </div>
+
+    <!-- Mike Branton -->
+    <div class="person-card">
+      <div class="person-header">
+        <div>
+          <div class="person-name">Mike Branton</div>
+          <div class="person-meta">Re: StrategyCorps Workshop Follow Up</div>
+        </div>
+        <div class="person-date">Aug 10, 2026</div>
+      </div>
+
+      <h3>Workshop Goal (as Mike framed it)</h3>
+      <p>Determine general positioning of StrategyCorps with MonetizeIQ and historical solutions (CheckingScore, Bezing, BezingBiz) as a strategic solution expansion — not a "pivot" or "change" — that:</p>
+      <ul>
+        <li>Makes sense to bankers and minimizes perceived new risk (not an old company with a startup division)</li>
+        <li>Is believable to the investment community — capitalize Bezing/BezingBiz earnings at SaaS multiples, not subscription multiples (12.5x EBITDA)</li>
+      </ul>
+
+      <h3>Day 2 Feedback</h3>
+      <div class="feedback-item">Good start on landing pages — much better than current MonetizeIQ pages.</div>
+      <div class="feedback-item">Lean heavily toward Gain Attention for marketing. Fast Comprehension is difficult given all of MonetizeIQ's moving parts.</div>
+      <div class="feedback-item">Need to work on Fast Comprehension in sales pitches — focus on what parts of MIQ solve the biggest/most immediate issues. Don't overwhelm bankers with all capabilities.</div>
+      <div class="feedback-item">The SC System needs work — not connected or unified enough for the valuation capitalization objective.</div>
+      <div class="feedback-item">Likes that it focuses on what MonetizeIQ does for an FI, not what MonetizeIQ is (technical/mechanics).</div>
+      <div class="feedback-item">Doesn't like "enterprise" or "end-to-end" — bankers don't think or buy that way. Core processors use these terms and SC shouldn't be grouped with them.</div>
+      <div class="feedback-item">Needs to be about solving real issues by versatility — a modular solver of modern banking issues AND an opportunity identifier and proven solution deliverer.</div>
+      <div class="feedback-item">Less is more.</div>
+      <div class="feedback-item">The proven part is only anecdotal — need to find "typical" ROI numbers and later update with actual ones, plus a few banker quotes/references to start the buyer's journey.</div>
+
+      <div class="highlight" style="margin-top: 1.25rem;">
+        <p><strong>Key framing:</strong> A modular solver of modern banking issues — and an opportunity identifier with a proven solution delivery track record.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+</body>
+</html>
