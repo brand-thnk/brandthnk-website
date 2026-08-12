@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Notes | StrategyCorps Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .day-tab {
+      flex: 1;
+      padding: 1.25rem;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 2px solid var(--brandthnk-light-gray);
+      background: var(--brandthnk-white);
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .day-tab:hover { border-color: var(--brandthnk-black); }
+
+    .day-tab.active {
+      border-color: var(--brandthnk-black);
+      background: var(--brandthnk-yellow);
+    }
+
+    .day-tab-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      opacity: 0.7;
+      margin-bottom: 0.35rem;
+    }
+
+    .day-tab-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .day-tab-date { font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; }
+
+    .day-content { display: none; }
+    .day-content.visible { display: block; animation: fadeIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.6rem;
+      color: var(--brandthnk-black);
+    }
+
+    .card h3:first-child { margin-top: 0; }
+
+    .card p {
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul {
+      margin-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card li {
+      margin-bottom: 0.4rem;
+      font-size: 0.875rem;
+    }
+
+    .card strong { font-weight: 600; }
+
+    .highlight {
+      background: var(--brandthnk-yellow);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .highlight p { margin: 0; font-size: 0.8125rem; }
+
+    .quote-block {
+      background: var(--brandthnk-off-white);
+      border-left: 3px solid var(--brandthnk-yellow);
+      padding: 0.875rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 0.75rem 0;
+      font-style: italic;
+      font-size: 0.875rem;
+    }
+
+    .next-steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .next-steps-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 8px;
+      border-left: 3px solid var(--brandthnk-yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    .next-steps-item .owner {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--brandthnk-gray);
+      margin-top: 0.25rem;
+    }
+
+    .next-steps-bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--brandthnk-yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+      border: 2px solid var(--brandthnk-black);
+    }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .day-tabs { flex-direction: column; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">StrategyCorps Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="pre-work.html" class="nav-link">Pre-Work</a>
+        <a href="workshop.html" class="nav-link">Workshop</a>
+        <a href="workshop-notes.html" class="nav-link active">Notes</a>
+        <a href="synthesis.html" class="nav-link">Synthesis</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Workshop <span class="brand-accent">Notes</span></h1>
+      <p>Session recordings and notes &bull; August 6–7, 2026</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="day-tabs">
+      <div class="day-tab active" onclick="showDay(1)">
+        <div class="day-tab-label">Day 1</div>
+        <div class="day-tab-title">Get Clear on the Story</div>
+        <div class="day-tab-date">August 6, 2026</div>
+      </div>
+      <div class="day-tab" onclick="showDay(2)">
+        <div class="day-tab-label">Day 2</div>
+        <div class="day-tab-title">Turn It Into Language</div>
+        <div class="day-tab-date">August 7, 2026</div>
+      </div>
+    </div>
+
+    <!-- Day 1 -->
+    <div id="day-1" class="day-content visible">
+
+      <div class="card">
+        <h2>Workshop Context & Participants</h2>
+        <p>Full-day strategy workshop at StrategyCorps, facilitated by Allison (BrandThnk).</p>
+        <p><strong>Participants:</strong> Vince (host/CEO), Herbert (product), Craig, Dave, Mike, Ethan (sales ops), John (product owner, Bezing), Leo</p>
+        <p><strong>Goal:</strong> Position MonetizeIQ for market launch, then connect to the overall company story.</p>
+        <p>Vince's framing: the team knows the KPIs — this workshop is for collective intelligence, not his monologue.</p>
+      </div>
+
+      <div class="card">
+        <h2>MIQ Challenges: Where the Group Landed</h2>
+        <p>A true/false exercise surfaced unanimous agreement on five core challenges:</p>
+        <ul>
+          <li>Market interest exists</li>
+          <li>Too many capabilities competing for attention</li>
+          <li>The story requires too much explanation</li>
+          <li>No obvious first place to begin the conversation</li>
+          <li>Confusion about where MonetizeIQ fits relative to the other products</li>
+        </ul>
+        <p><strong>Additional challenge surfaced:</strong> bank buyers' purchasing authority has shrunk significantly — decisions now require full committees, not single signatories.</p>
+      </div>
+
+      <div class="card">
+        <h2>Box Edge Framework</h2>
+        <p>Bank buyers must be able to categorize a vendor before they'll engage: <em>box yourself first, then differentiate.</em></p>
+        <ul>
+          <li>The edge is not what makes you different — it's what makes you <strong>better</strong> than the incumbent or status quo</li>
+          <li>Banks don't buy "new." They buy "better with less risk"</li>
+          <li>Fintechs who resist the procurement box ("I'm not a CRM!") stall their own deals</li>
+          <li>Box = familiar category label. Edge = specific, comparative superiority</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Priority: Earn Attention vs. Fast Comprehension</h2>
+        <p>The group voted roughly evenly split — product leaning toward earning attention from the right bank executives, sales and marketing toward fast comprehension.</p>
+        <div class="highlight">
+          <p><strong>Key insight:</strong> The two goals serve each other. Earning attention for the wrong thing is costly and hard to reverse. Clarity of who you are is what cuts through noise — not repetition volume.</p>
+        </div>
+        <p>Underlying consensus: StrategyCorps doesn't get enough credit in market for what it has and can do.</p>
+      </div>
+
+      <div class="card">
+        <h2>MonetizeIQ Architecture: Where Does It Fit?</h2>
+        <p>The current product value chain was framed as three layers:</p>
+        <ul>
+          <li><strong>Diagnostic:</strong> CheckingScore</li>
+          <li><strong>Execution:</strong> Bezing / Bezing Biz</li>
+          <li><strong>Market expansion:</strong> SMB/retail depending on institution</li>
+        </ul>
+        <p>Where MonetizeIQ fits generated the richest debate:</p>
+        <div class="quote-block">"Bezing is the bag of golf clubs. MonetizeIQ is the cart. Our game gets better when we put them on the back." — Ethan</div>
+        <div class="quote-block">"MonetizeIQ is the hub of the flywheel, powering primacy across the whole platform." — Dave</div>
+        <p><strong>Vince's framing:</strong> use case is the box; category is the edge. They don't have to be mutually exclusive.</p>
+      </div>
+
+      <div class="card">
+        <h2>Promise vs. Proof: The Brand Architecture Gap</h2>
+        <ul>
+          <li>StrategyCorps is proof-heavy (25 years, proven product, loyal customers) but promise-light</li>
+          <li>Brand architecture disconnect confirmed by Focal data: products are floating without a clear anchor to the parent brand</li>
+          <li>Key risk: prospects who evaluated the product in 2014 think they already know it — they don't know what it is now</li>
+          <li>Recommended sequence: start with the promise (what the world looks like after), back it up with proof</li>
+        </ul>
+        <p>Empowerment in the age of AI is a nerve worth hitting: banker as hero, MonetizeIQ as the power plant.</p>
+      </div>
+
+      <div class="card">
+        <h2>Box Edge Exercise: Team Outputs</h2>
+        <p>Each participant completed a two-sentence box edge for MonetizeIQ. Common thread: <strong>every single person used the word "relationship."</strong></p>
+        <div class="quote-block">"Premier provider of small business banking products using data insights to optimize relationships. Unlike analytical tools that only deliver partial data, we translate data into actual warning signs and actionable offers." — Mike</div>
+        <div class="quote-block">"Relationship optimization platform for FIs. Unlike expensive bespoke or cumbersome aggregate solutions, we provide an end-to-end solution so you can be a partner in how your customers live their lives." — Ethan</div>
+        <div class="quote-block">"Relationship intelligence platform for banks and credit unions. Unlike traditional CRM tools, we measure the health of every relationship, detect changes, and turn them into actions that drive primacy and revenue." — Dave</div>
+        <div class="quote-block">"Relationship intelligence/execution/activation platform. Unlike analytics that stop at insight, MonetizeIQ closes the loop from data to action." — Herbert</div>
+        <div class="highlight">
+          <p><strong>Shared homework:</strong> Describe the best relationship in your life and what makes it great. "Relationship" is either the right word with the wrong definition, or the wrong word with the right definition. Must pick a lane.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Day 1 Next Steps</h2>
+        <ul class="next-steps-list">
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Run Focal brand intelligence report on Econocheck — quantitative (web traffic, branded search) plus qualitative (CAB survey, CMO network spend estimate). Crochet to lead.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Synthesize Day 1 workshop outputs overnight — box edge submissions, recordings, and research. Return Day 2 with clear decisions to make on MonetizeIQ positioning.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Complete relationship homework before Day 2. Describe the best relationship in your life and what makes it great.</div>
+              <div class="owner">Owner: All participants</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Refine box edge "unlike" statements to use emotional/human states rather than competitor names. Replace company-name unlikes with banker emotional states.</div>
+              <div class="owner">Owner: Mike, Herbert</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Day 2 -->
+    <div id="day-2" class="day-content">
+
+      <div class="card">
+        <h2>Day 2 Context</h2>
+        <p>Allison built a mock-up website overnight synthesizing Day 1 inputs and shared it via Teams link for a 30-minute review to open the day.</p>
+        <p><strong>Two priority goals set on Day 1:</strong></p>
+        <ul>
+          <li>Earn attention from the right banking executives</li>
+          <li>Fast comprehension of MonetizeIQ</li>
+        </ul>
+        <p><strong>Bonus goal:</strong> Premium, entrepreneurial feel for investor audience.</p>
+      </div>
+
+      <div class="card">
+        <h2>Mock-Up Review: What Worked</h2>
+        <ul>
+          <li>"Less is more" clarity landed well across the group</li>
+          <li>"This Morning's Focus" visualization (the data dashboard) was a standout — executives could immediately see: "this tells me where I stand and what to do." Live/real-time indicator resonated strongly</li>
+          <li>"Three products, one system" framing well received. "System" language validated as aspirational and differentiated</li>
+          <li>The word "automatically" praised as a regular-person term that still earns the follow-up question</li>
+          <li>Revenue/remedy framing appreciated for executive resonance</li>
+        </ul>
+        <div class="highlight">
+          <p><strong>Standout phrase:</strong> "Finding opportunities hidden in your data, turning them into targeted campaigns automatically."</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Feedback: Gaps and Adjustments Needed</h2>
+        <ul>
+          <li><strong>Product hierarchy needs rethinking:</strong> MonetizeIQ should be the roof, not the third box. CheckingScore and Bezing sit under it, not beside it as equals. Current layout reads as disparate</li>
+          <li><strong>Fear-based language skews too heavy</strong> — balance: credible challenge + believable opportunity. Doom-and-gloom risks numbness or alienation</li>
+          <li><strong>"What's in it for me" underdeveloped</strong> on the MonetizeIQ page — executives want to know: am I ready for what's next? Frame readiness around stablecoins, new fintech pressure, new entrants</li>
+          <li>Analyst/industry quotes feel tired — consider replacing with social proof or customer outcome stories</li>
+          <li>More people and human imagery needed, especially for community banking audience</li>
+          <li>Persona-based journeys missing: CMO, analyst, CEO each need their own path</li>
+          <li>Comprehension of where StrategyCorps fits inside the bank still unclear to an outsider</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Messaging Strategy: Key Principles</h2>
+        <ul>
+          <li><strong>Sequencing is the fix, not simplification</strong> — depth belongs in conversations 2 and 3. The homepage's only job is to earn the right to have the next conversation</li>
+          <li>SE-driven demo is still the conversion engine; the site just opens the door</li>
+          <li>Pain then promise is the right web structure; aspirational works better for billboards</li>
+        </ul>
+        <p><strong>Two buyer mindsets to address simultaneously:</strong></p>
+        <ul>
+          <li>Older executives: make life easier, reduce risk, don't disrupt</li>
+          <li>Younger executives: be a hero, don't fall behind</li>
+        </ul>
+        <div class="quote-block">"Winning" proposed as a unifying aspirational frame — CEOs want legacy, junior staff want to be heroes, both want to win. Fintechs rarely talk about helping clients win. That's an opening.</div>
+      </div>
+
+      <div class="card">
+        <h2>Positioning the StrategyCorps Evolution</h2>
+        <ul>
+          <li>25-year heritage is an asset: evidence-based growth strategies, starting with checking — natural evolution to all product lines and relationships</li>
+          <li>Framing: "the team that optimized checking now optimizes the entire relationship"</li>
+          <li>Bankers don't want "new" — they want "better with less risk." MonetizeIQ should feel like evolution, not pivot</li>
+          <li>De-risking the buyer is a core unlock — bankers' first instinct is defensive (CIO risk, budget risk, political risk)</li>
+        </ul>
+        <div class="quote-block">"I'm protecting your institution. How are we sharing this risk together?" — Vince's framing for outcome-based pricing</div>
+      </div>
+
+      <div class="card">
+        <h2>Reframing "Relationship" as Outcome, Not Claim</h2>
+        <p>Every community bank already claims "relationship banking" — the word is diluted. Most mean convenience and community presence, not data-driven personalization.</p>
+        <p><strong>Opportunity:</strong> make "relationship" tangible and measurable.</p>
+        <div class="highlight">
+          <p><strong>Proposed concept: a Relationship Score or Relationship Index</strong> — mirrors what CheckingScore did for checking. A report card that makes the abstract concrete. Could surface member attrition risk, propensity scores, relationship depth in one view.</p>
+        </div>
+        <ul>
+          <li>Relationships are an outcome, not a feature — the result of knowing, anticipating, and solving for the customer</li>
+          <li>For credit unions: profitability is the real goal; they use proxy words — efficiency, deepening, optimizing</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Closing Reflections</h2>
+        <p><strong>Top takeaways cited by the group:</strong></p>
+        <ul>
+          <li>Layer messaging: earn attention first, deepen the story over time</li>
+          <li>Permission to simplify: stop leading with the full ecosystem</li>
+          <li>Box Edge exercise opened up new thinking on content and positioning</li>
+          <li>Human conversation in a work context validated as both possible and productive</li>
+        </ul>
+        <p>Group dynamics praised: balanced participation, no single voice dominating. Allison noted increased conviction — team extended beyond their roles and engaged with shareholder mentality.</p>
+      </div>
+
+      <div class="card">
+        <h2>Day 2 Next Steps</h2>
+        <ul class="next-steps-list">
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Send detailed walkthrough notes to Allison — each participant to email or text feedback, highlights, and anything worth carrying forward from the mock-up review.</div>
+              <div class="owner">Owner: All participants</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Deliver positioning deliverables in document form with comment mode enabled — covers all Day 1 and Day 2 outputs. Participants add notes and edits before virtual reconvene.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Update mock-up site with workshop feedback — product hierarchy, aspiration/fear balance, persona journeys, and social proof.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Send Box Edge workbook with ~15 anonymized examples to the group.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+          <li class="next-steps-item">
+            <div class="next-steps-bullet"></div>
+            <div>
+              <div>Schedule virtual reconvene to review edits — timing to be confirmed based on participant schedules.</div>
+              <div class="owner">Owner: Allison</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <p>StrategyCorps Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+  <script>
+    function showDay(n) {
+      document.querySelectorAll('.day-content').forEach(el => el.classList.remove('visible'));
+      document.querySelectorAll('.day-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('day-' + n).classList.add('visible');
+      document.querySelectorAll('.day-tab')[n - 1].classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
