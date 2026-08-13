@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Truth | CRSS Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brandthnk-black: #000000;
+      --brandthnk-white: #FFFFFF;
+      --brandthnk-yellow: #FFEB3B;
+      --brandthnk-off-white: #F5F5F5;
+      --brandthnk-gray: #666666;
+      --brandthnk-light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--brandthnk-black);
+      background: var(--brandthnk-off-white);
+    }
+
+    .main-nav {
+      background: var(--brandthnk-white);
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--brandthnk-black);
+    }
+
+    .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .nav-link {
+      color: var(--brandthnk-black);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      font-size: 0.8125rem;
+    }
+
+    .nav-link:hover { background: var(--brandthnk-off-white); }
+    .nav-link.active { background: var(--brandthnk-yellow); font-weight: 600; }
+
+    .header {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p { opacity: 0.85; }
+    .brand-accent { color: var(--brandthnk-yellow); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .card {
+      background: var(--brandthnk-white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--brandthnk-yellow);
+      margin-bottom: 2rem;
+    }
+
+    .card h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--brandthnk-black);
+    }
+
+    .card p { margin-bottom: 0.875rem; font-size: 0.875rem; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul { margin-left: 1.5rem; margin-bottom: 0.875rem; }
+    .card li { margin-bottom: 0.5rem; font-size: 0.875rem; }
+
+    .highlight {
+      background: var(--brandthnk-yellow);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .highlight h3 {
+      margin-top: 0;
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight p { font-size: 0.875rem; margin-bottom: 0; font-weight: 600; }
+
+    .status-badge {
+      display: inline-block;
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .status-badge.yellow {
+      background: var(--brandthnk-yellow);
+      color: var(--brandthnk-black);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .col-block {
+      padding: 1.25rem;
+      border-radius: 8px;
+      font-size: 0.8125rem;
+    }
+
+    .col-block.does {
+      background: var(--brandthnk-yellow);
+    }
+
+    .col-block.does-not {
+      background: var(--brandthnk-off-white);
+      border: 1px solid var(--brandthnk-light-gray);
+    }
+
+    .col-block h4 {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.875rem;
+    }
+
+    .col-block ul { margin-left: 1.25rem; }
+    .col-block li { margin-bottom: 0.5rem; }
+
+    .capability-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .capability-table th {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 0.625rem 1rem;
+      text-align: left;
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .capability-table th:not(:first-child) { text-align: center; }
+
+    .capability-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      vertical-align: middle;
+    }
+
+    .capability-table td:not(:first-child) { text-align: center; }
+
+    .capability-table tr:last-child td { border-bottom: none; }
+    .capability-table tr:nth-child(even) td { background: var(--brandthnk-off-white); }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .status-pill.selectable {
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+
+    .status-pill.selectable:hover { border-color: var(--brandthnk-black); }
+    .status-pill.selectable.selected { border-color: var(--brandthnk-black); box-shadow: 0 0 0 2px var(--brandthnk-black); }
+
+    .pill-mvp { background: var(--brandthnk-yellow); color: var(--brandthnk-black); }
+    .pill-qualified { background: #d4edda; color: #155724; }
+    .pill-roadmap { background: #d1ecf1; color: #0c5460; }
+    .pill-not { background: var(--brandthnk-light-gray); color: var(--brandthnk-gray); }
+
+    .hold-back-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hold-back-table th {
+      background: #b71c1c;
+      color: var(--brandthnk-white);
+      padding: 0.625rem 1rem;
+      text-align: left;
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .hold-back-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      vertical-align: top;
+    }
+
+    .hold-back-table tr:last-child td { border-bottom: none; }
+    .hold-back-table tr:nth-child(even) td { background: #fff5f5; }
+
+    .hold-back-table td:first-child {
+      font-style: italic;
+      font-weight: 600;
+      color: #b71c1c;
+    }
+
+    .resolve-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--brandthnk-off-white);
+      border-radius: 8px;
+      border-left: 3px solid var(--brandthnk-yellow);
+      margin-bottom: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .resolve-number {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brandthnk-gray);
+      flex-shrink: 0;
+      min-width: 2rem;
+    }
+
+    .resolve-text {
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding-top: 0.2rem;
+    }
+
+    .hypothesis-item {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--brandthnk-light-gray);
+      align-items: flex-start;
+    }
+
+    .hypothesis-item:last-child { border-bottom: none; }
+
+    .hypothesis-number {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--brandthnk-yellow);
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+
+    .hypothesis-content h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .hypothesis-content p { font-size: 0.8125rem; color: var(--brandthnk-gray); margin: 0; }
+
+    .warning-box {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .warning-box p { color: var(--brandthnk-white); margin: 0; font-size: 0.875rem; }
+    .warning-box strong { color: var(--brandthnk-yellow); }
+
+    footer {
+      background: var(--brandthnk-black);
+      color: var(--brandthnk-white);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8125rem;
+    }
+
+    footer a { color: var(--brandthnk-yellow); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem 2rem; }
+      .nav-container {
+        height: auto;
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .two-col { grid-template-columns: 1fr; }
+      .capability-table, .hold-back-table { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">CRSS / TracePipe Portal</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="product-truth.html" class="nav-link active">Product Truth</a>
+        <a href="competitive.html" class="nav-link">Competitive</a>
+        <a href="onesheet.html" class="nav-link">One-Sheet</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container" style="max-width: 900px;">
+      <h1>Working <span class="brand-accent">Product-Truth</span> Summary</h1>
+      <p>A factual baseline for team correction and approval &bull; Delivered Aug 11, 2026</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Section 01 -->
+    <div class="card">
+      <h2>01 / The Product in One Sentence <span class="status-badge yellow">Working Draft</span></h2>
+      <p>This statement is the clearest current description of what TracePipe is. It is a working definition, not approved launch copy.</p>
+      <div class="highlight">
+        <p>TracePipe is a Chrome-based platform that captures browser workflows and converts them into reusable skills designed to run across compatible AI environments.</p>
+      </div>
+
+      <h3>How it works</h3>
+      <p>TracePipe instruments the browser directly. It processes structured application traces generated by the user's local browser activity, then turns the demonstrated workflow into a packaged skill.</p>
+
+      <h3>The distinction to protect</h3>
+      <p>TracePipe doesn't simply record a video, and it doesn't rely entirely on an AI model to infer what happened. The browser trace provides structured evidence about the workflow that was performed.</p>
+
+      <h3>The boundary to keep clear</h3>
+      <p>TracePipe observes what the browser does locally. It does not monitor internet or network infrastructure. Technical language about network-level proof should be removed.</p>
+    </div>
+
+    <!-- Section 02 -->
+    <div class="card">
+      <h2>02 / What the MVP Does — and Doesn't</h2>
+      <p>The launch story has to be built around shipping capability. Roadmap ambition should be labeled separately.</p>
+      <div class="two-col">
+        <div class="col-block does">
+          <h4>Does at MVP</h4>
+          <ul>
+            <li>Captures a user completing a browser-based workflow</li>
+            <li>Reads structured application traces from the browser, including page behavior, navigation, selectors, timing, and other execution events</li>
+            <li>Converts the captured workflow into a reusable skill</li>
+            <li>Exports the skill using the open Agent Skills specification</li>
+            <li>Packages the skill for Claude, Codex, and other compatible environments</li>
+            <li>Uses deterministic processing before applying AI, reducing unnecessary model use and improving consistency</li>
+            <li>Permanently shreds session data after processing</li>
+            <li>Supports manual skill export and distribution through a ZIP file</li>
+          </ul>
+        </div>
+        <div class="col-block does-not">
+          <h4>Does Not at MVP</h4>
+          <ul>
+            <li>Offer one-click distribution inside Claude, Codex, or another chat application</li>
+            <li>Automatically install a skill into every supported environment</li>
+            <li>Eliminate the manual ZIP upload currently required by AI platforms</li>
+            <li>Monitor internet or network infrastructure</li>
+            <li>Provide network-level proof of every execution</li>
+            <li>Hold a security, privacy, or data-handling certification unless one is obtained before launch</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 03 -->
+    <div class="card">
+      <h2>03 / The Portability Claim</h2>
+      <p>"LLM-agnostic" is directionally useful, but it can imply more universality than the product can prove.</p>
+      <div class="highlight">
+        <p>Capture a browser workflow once, convert it into an open skill, and use that skill across compatible AI platforms.</p>
+      </div>
+
+      <h3>What is defensible</h3>
+      <p>TracePipe creates portable skills based on an open specification rather than tying the workflow exclusively to one AI provider.</p>
+
+      <h3>What needs qualification</h3>
+      <ul>
+        <li>The product isn't independent of every model, platform, or technical requirement.</li>
+        <li>Compatibility should mean tested compatibility, not theoretical support for the specification.</li>
+        <li>The "40+ compatible platforms" figure must be validated before publication.</li>
+      </ul>
+
+      <h3>Competitive reality</h3>
+      <p>Distribution isn't the advantage today. Claude also requires users to upload a ZIP file manually. TracePipe's stronger point is that the resulting package is intended to move between compatible providers.</p>
+
+      <h3>Commercial question for the workshop</h3>
+      <p>Why does portability matter enough for a buyer to adopt TracePipe now: reduced provider dependence, less workflow rework, operational resilience, or something else?</p>
+    </div>
+
+    <!-- Section 04 -->
+    <div class="card">
+      <h2>04 / What TracePipe Can Prove</h2>
+      <p>The mechanism is becoming clearer. The customer promise is not yet settled.</p>
+      <div class="highlight">
+        <h3>Current technical description</h3>
+        <p>TracePipe instruments the browser directly and reads application traces generated by the user's local browser activity.</p>
+      </div>
+      <p style="margin-bottom: 1rem;">The team needs to define which outcomes are true at MVP. Mark each capability below:</p>
+      <table class="capability-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>MVP</th>
+            <th>Qualified</th>
+            <th>Roadmap</th>
+            <th>Not Supported</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Capture evidence that a workflow ran</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+          <tr>
+            <td>Confirm that specified steps occurred</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+          <tr>
+            <td>Confirm that the intended final outcome occurred</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+          <tr>
+            <td>Detect deviation from the recorded workflow</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+          <tr>
+            <td>Diagnose why an execution failed</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+          <tr>
+            <td>Monitor a skill over time for application drift</td>
+            <td><span class="status-pill pill-mvp">MVP</span></td>
+            <td><span class="status-pill pill-qualified">Qualified</span></td>
+            <td><span class="status-pill pill-roadmap">Roadmap</span></td>
+            <td><span class="status-pill pill-not">Not supported</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="warning-box">
+        <p><strong>Language constraint:</strong> Until these outcomes are resolved, avoid "proves," "guarantees," and "verifies every run."</p>
+      </div>
+    </div>
+
+    <!-- Section 05 -->
+    <div class="card">
+      <h2>05 / Data Handling and Trust</h2>
+      <p>TracePipe has a potentially strong data-handling story. Every control still needs technical confirmation before it becomes a public claim.</p>
+      <div class="highlight">
+        <p>TracePipe permanently shreds all session data after the session has been processed.</p>
+      </div>
+
+      <h3>Controls to reconcile</h3>
+      <ul>
+        <li>Password tokenization</li>
+        <li>Detection of unredacted secrets</li>
+        <li>Blocking exports when secrets are detected</li>
+        <li>The exact point at which session data is shredded</li>
+        <li>Whether any logs, metadata, derivatives, or backups persist after processing</li>
+      </ul>
+
+      <h3>Certification</h3>
+      <p>A security or privacy certification may strengthen the trust story later. It should remain a future initiative until the team selects a specific standard, completes the work, and can substantiate the claim.</p>
+
+      <h3>Product-owner confirmation needed</h3>
+      <p>Existing collateral references Chrome DevTools Protocol data that may include network requests and responses, while the current correction says TracePipe doesn't inspect network activity. Those descriptions may be reconcilable, but the technical boundary must be stated explicitly.</p>
+    </div>
+
+    <!-- Section 06 -->
+    <div class="card">
+      <h2>06 / The Commercial Hypothesis</h2>
+      <p>TracePipe currently appears to combine four forms of value. <strong>The workshop must choose which one creates the strongest reason to buy.</strong></p>
+
+      <div style="background: var(--brandthnk-white); border: 1px solid var(--brandthnk-light-gray); border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem;">
+        <div class="hypothesis-item">
+          <div class="hypothesis-number">01</div>
+          <div class="hypothesis-content">
+            <h4>Workflow Capture</h4>
+            <p>Turn demonstrated browser activity into an executable skill.</p>
+          </div>
+        </div>
+        <div class="hypothesis-item">
+          <div class="hypothesis-number">02</div>
+          <div class="hypothesis-content">
+            <h4>Portability</h4>
+            <p>Move skills across compatible AI environments.</p>
+          </div>
+        </div>
+        <div class="hypothesis-item">
+          <div class="hypothesis-number">03</div>
+          <div class="hypothesis-content">
+            <h4>Operational Control</h4>
+            <p>Observe, maintain, and potentially diagnose browser-based skills.</p>
+          </div>
+        </div>
+        <div class="hypothesis-item">
+          <div class="hypothesis-number">04</div>
+          <div class="hypothesis-content">
+            <h4>Efficiency</h4>
+            <p>Use structured events and deterministic processing to reduce dependence on costly model interpretation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <p>If all four values remain equal, the result will be a feature inventory — not a position.</p>
+      </div>
+
+      <h3>Likely fit — still a hypothesis</h3>
+      <ul>
+        <li>Organizations with consequential browser-based operational workflows</li>
+        <li>Teams building AI agents to perform repeatable work</li>
+        <li>Buyers expecting to operate across more than one AI provider</li>
+        <li>Operators who can't afford to rebuild workflows whenever platforms change</li>
+      </ul>
+    </div>
+
+    <!-- Section 07 -->
+    <div class="card">
+      <h2>07 / Claims to Hold Back</h2>
+      <p>These statements should not appear in launch materials until they are corrected or substantiated.</p>
+      <table class="hold-back-table">
+        <thead>
+          <tr>
+            <th>Do Not Publish As Written</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"Proves every run at the network level."</td>
+            <td>Incorrect mechanism; likely overstates the outcome.</td>
+          </tr>
+          <tr>
+            <td>"Every skill carries network-level checkpoints."</td>
+            <td>TracePipe reads local application traces, not network activity.</td>
+          </tr>
+          <tr>
+            <td>"One-click distribution inside a chat app."</td>
+            <td>Not available at MVP.</td>
+          </tr>
+          <tr>
+            <td>"Distribution is their superpower."</td>
+            <td>False competitive premise; providers also use manual ZIP upload.</td>
+          </tr>
+          <tr>
+            <td>"Works everywhere."</td>
+            <td>Universality isn't substantiated.</td>
+          </tr>
+          <tr>
+            <td>"The only platform that works for everyone."</td>
+            <td>Unprovable and commercially vague.</td>
+          </tr>
+          <tr>
+            <td>"40+ compatible platforms."</td>
+            <td>Requires a tested compatibility list.</td>
+          </tr>
+          <tr>
+            <td>Any guarantee of workflow outcome.</td>
+            <td>The verification boundary is unresolved.</td>
+          </tr>
+          <tr>
+            <td>Any certification claim.</td>
+            <td>No certification has been confirmed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 08 -->
+    <div class="card">
+      <h2>08 / What the Team Must Resolve</h2>
+      <p>These are the product-truth decisions required before BrandThnk can convert the strategy into launch messaging.</p>
+
+      <div style="margin: 1.5rem 0;">
+        <div class="resolve-item">
+          <div class="resolve-number">01</div>
+          <div class="resolve-text">What does TracePipe observe during a run, and what can it conclusively establish?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">02</div>
+          <div class="resolve-text">Does MVP include ongoing verification, drift detection, health monitoring, or failure diagnosis?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">03</div>
+          <div class="resolve-text">Which application-trace elements are captured? Do any include network requests or responses?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">04</div>
+          <div class="resolve-text">Which platforms have been tested, rather than theoretically supporting the open specification?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">05</div>
+          <div class="resolve-text">What happens to credentials, secrets, and PII before, during, and after processing?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">06</div>
+          <div class="resolve-text">Who owns the first consequential problem TracePipe will solve?</div>
+        </div>
+        <div class="resolve-item">
+          <div class="resolve-number">07</div>
+          <div class="resolve-text">Which capability creates the strongest reason to pay now?</div>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <p>The immediate priority: resolve the technical boundary between application traces and network activity. The launch language depends on it.</p>
+      </div>
+
+      <p style="margin-top: 1.25rem; font-size: 0.8125rem; color: var(--brandthnk-gray);">Next step: Team corrections will be incorporated into the approved product-truth baseline used for positioning and messaging development. Send corrections to <a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a>.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>CRSS / TracePipe Positioning Workshop &bull; Facilitated by <a href="mailto:allison@brandthnk.co">BrandThnk</a></p>
+  </footer>
+
+</body>
+</html>
