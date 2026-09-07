@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deliverables | Finalytics.ai Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--offwhite);
+    }
+
+    ::selection { background: var(--yellow); color: var(--black); }
+
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .nav-brand span {
+      color: var(--gray);
+      font-weight: 400;
+      font-size: 0.875rem;
+      margin-left: 8px;
+    }
+
+    .nav-links { display: flex; list-style: none; }
+
+    .nav-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      padding: 16px 20px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover { color: var(--black); background: rgba(255,235,59,0.1); }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255,235,59,0.15);
+    }
+
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.5rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header h1 span { color: var(--yellow); }
+    .header p { font-size: 1rem; opacity: 0.8; }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.8125rem;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .header-meta p { font-size: 0.8125rem; opacity: 1; margin-bottom: 4px; }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 28px;
+      border-bottom: 3px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .section-content { padding: 28px; }
+
+    /* Deliverable cards */
+    .deliverable {
+      border: 1px solid var(--light-gray);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .deliverable:last-child { margin-bottom: 0; }
+
+    .deliverable-top {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .deliverable-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+      flex-shrink: 0;
+    }
+
+    .deliverable-meta { flex: 1; }
+
+    .deliverable-title {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .deliverable-phase {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .deliverable-status {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .status-pending {
+      background: var(--offwhite);
+      color: var(--gray);
+      border: 1px solid var(--light-gray);
+    }
+
+    .status-in-progress {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .status-complete {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .deliverable-body {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .deliverable-body p { margin-bottom: 0.75rem; }
+    .deliverable-body p:last-child { margin-bottom: 0; }
+
+    .deliverable-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      color: var(--black);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.8125rem;
+      border-bottom: 2px solid var(--yellow);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
+    }
+
+    .deliverable-link:hover { border-color: var(--black); }
+
+    .portal-footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub { font-size: 0.75rem; opacity: 0.6; }
+
+    @media (max-width: 768px) {
+      .container, .nav-container { padding: 0 1rem; }
+      .header h1 { font-size: 1.75rem; }
+      .nav-links { display: none; }
+      .header-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Finalytics.ai <span>× BrandThnk</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dashboard</a></li>
+        <li><a href="messaging.html" class="nav-link">Messaging</a></li>
+        <li><a href="workshop.html" class="nav-link">Workshop</a></li>
+        <li><a href="deliverables.html" class="nav-link active">Deliverables</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="header-container">
+      <div>
+        <h1>Deliver<span>ables</span></h1>
+        <p>Positioning &amp; Go-to-Market Strategy</p>
+      </div>
+      <div class="header-meta">
+        <p>September 2026</p>
+        <p>Lead Strategist: Allison Netzer</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Project Deliverables</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="deliverable">
+          <div class="deliverable-top">
+            <div class="deliverable-icon">🎯</div>
+            <div class="deliverable-meta">
+              <div class="deliverable-title">Positioning &amp; Messaging Framework</div>
+              <div class="deliverable-phase">Phase 1 — Positioning &amp; Messaging Workshop</div>
+            </div>
+            <div class="deliverable-status status-in-progress">In Progress</div>
+          </div>
+          <div class="deliverable-body">
+            <p>Aligned across brand, website, keynote narrative, and pricing language. Built to show rather than say — grounded in proof points rather than claims.</p>
+            <a href="messaging.html" class="deliverable-link">View working draft ↗</a>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="deliverable-top">
+            <div class="deliverable-icon">🗺</div>
+            <div class="deliverable-meta">
+              <div class="deliverable-title">Go-to-Market &amp; Distribution Playbook</div>
+              <div class="deliverable-phase">Phase 2 — Go-to-Market &amp; Distribution Strategy</div>
+            </div>
+            <div class="deliverable-status status-pending">Pending</div>
+          </div>
+          <div class="deliverable-body">
+            <p>Right-sized to current team capacity. Channel prioritization framework including how to broaden beyond "credit union vendor" perception.</p>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="deliverable-top">
+            <div class="deliverable-icon">📊</div>
+            <div class="deliverable-meta">
+              <div class="deliverable-title">Channel &amp; Messaging Recommendations</div>
+              <div class="deliverable-phase">Phase 2 — Go-to-Market &amp; Distribution Strategy</div>
+            </div>
+            <div class="deliverable-status status-pending">Pending</div>
+          </div>
+          <div class="deliverable-body">
+            <p>Prioritized list tied to measurable goals. Includes speaking and conference calendar playbook for pre/during/post execution, connected to pipeline.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-content">
+      <div class="footer-logo">BrandThnk</div>
+      <div class="footer-sub">Build a Growth Brand · allison@brandthnk.co · brandthnk.co</div>
+    </div>
+  </footer>
+
+</body>
+</html>
