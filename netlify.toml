@@ -42,3 +42,8 @@
   from = "/do-portal/*"
   to = "/client-portals/do-portal/:splat"
   status = 301
+
+[[redirects]]
+  from = "/finalytics-portal/*"
+  to = "/client-portals/finalytics-portal/:splat"
+  status = 301
