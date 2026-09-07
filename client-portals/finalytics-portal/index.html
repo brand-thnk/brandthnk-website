@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalytics.ai Portal | BrandThnk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #E0E0E0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--black);
+      background: var(--offwhite);
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* Nav */
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .nav-brand span {
+      color: var(--gray);
+      font-weight: 400;
+      font-size: 0.875rem;
+      margin-left: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      padding: 16px 20px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      background: rgba(255, 235, 59, 0.1);
+    }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.15);
+    }
+
+    /* Header */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.5rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header h1 span {
+      color: var(--yellow);
+    }
+
+    .header p {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.8125rem;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .header-meta p {
+      font-size: 0.8125rem;
+      opacity: 1;
+      margin-bottom: 4px;
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Cards */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 28px;
+      border-bottom: 3px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .section-badge {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+    }
+
+    .section-content {
+      padding: 28px;
+    }
+
+    /* Status Grid */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-item {
+      background: var(--offwhite);
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid var(--light-gray);
+    }
+
+    .status-label {
+      font-size: 0.6875rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .status-value {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Current Phase Banner */
+    .current-phase {
+      background: var(--yellow);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .current-phase h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.375rem;
+    }
+
+    .current-phase p {
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress-track {
+      background: rgba(0,0,0,0.15);
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--black);
+      transition: width 0.4s ease;
+    }
+
+    .progress-label {
+      font-size: 0.75rem;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Phase Timeline */
+    .phase-timeline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .phase-block {
+      border: 2px solid var(--light-gray);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .phase-block:hover {
+      border-color: var(--black);
+    }
+
+    .phase-block.active {
+      border-color: var(--yellow);
+      background: rgba(255, 235, 59, 0.08);
+    }
+
+    .phase-block.active::before {
+      content: 'CURRENT';
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+    }
+
+    .phase-block.completed {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .phase-num {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-bottom: 0.375rem;
+    }
+
+    .phase-block.completed .phase-num {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .phase-block.active .phase-num {
+      color: var(--black);
+    }
+
+    .phase-name {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.375rem;
+    }
+
+    .phase-date {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .phase-block.completed .phase-date {
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Actions */
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-left: 3px solid var(--yellow);
+      background: var(--offwhite);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .action-item:hover {
+      background: var(--white);
+      border-left-color: var(--black);
+    }
+
+    .action-item.done {
+      opacity: 0.55;
+      border-left-color: var(--gray);
+    }
+
+    .action-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .action-check {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--gray);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .action-check.checked {
+      background: var(--yellow);
+      border-color: var(--black);
+    }
+
+    .action-check.checked::after {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .action-body {
+      flex: 1;
+    }
+
+    .action-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      line-height: 1.4;
+    }
+
+    .action-item.done .action-title {
+      text-decoration: line-through;
+    }
+
+    .action-meta {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    /* Owner badge */
+    .owner-bt {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.625rem;
+      padding: 1px 6px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-left: 6px;
+    }
+
+    .owner-client {
+      display: inline-block;
+      background: var(--light-gray);
+      color: var(--black);
+      font-size: 0.625rem;
+      padding: 1px 6px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-left: 6px;
+    }
+
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .team-card {
+      border: 1px solid var(--light-gray);
+      padding: 1.25rem;
+    }
+
+    .team-card h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .team-card p {
+      margin-bottom: 0.4rem;
+      font-size: 0.8125rem;
+    }
+
+    .team-card a {
+      color: var(--black);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .team-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Deliverables */
+    .deliverable-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--light-gray);
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .deliverable-item:hover {
+      border-color: var(--black);
+    }
+
+    .deliverable-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .deliverable-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    .deliverable-body h4 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .deliverable-body p {
+      font-size: 0.8125rem;
+      color: var(--gray);
+    }
+
+    .deliverable-status {
+      margin-left: auto;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    .status-pending {
+      background: var(--offwhite);
+      color: var(--gray);
+      border: 1px solid var(--light-gray);
+    }
+
+    .status-in-progress {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .status-complete {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* Resource link */
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.125rem 1.25rem;
+      border: 1px solid var(--light-gray);
+      text-decoration: none;
+      color: var(--black);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .resource-link:hover {
+      border-color: var(--black);
+      background: var(--offwhite);
+    }
+
+    .resource-link-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .resource-link-body { flex: 1; }
+
+    .resource-link-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .resource-link-sub {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    .resource-link-arrow {
+      font-size: 1.125rem;
+      color: var(--gray);
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .portal-footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .header-meta {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container, .nav-container {
+        padding: 0 1rem;
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      .team-grid, .investment-grid, .phase-timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Finalytics.ai <span>× BrandThnk</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Dashboard</a></li>
+        <li><a href="messaging.html" class="nav-link">Messaging</a></li>
+        <li><a href="deliverables.html" class="nav-link">Deliverables</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="header-container">
+      <div>
+        <h1>Finalytics<span>.ai</span> Portal</h1>
+        <p>Positioning &amp; Go-to-Market Strategy</p>
+      </div>
+      <div class="header-meta">
+        <p>September 2026</p>
+        <p>Lead Strategist: Allison Netzer</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="dashboard-grid">
+
+      <!-- Project Status -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Project Status</h2>
+          <span class="section-badge">Active</span>
+        </div>
+        <div class="section-content">
+          <div class="status-grid">
+            <div class="status-item">
+              <div class="status-label">Start Date</div>
+              <div class="status-value">Sept 7, 2026</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Target Close</div>
+              <div class="status-value">Sept 30, 2026</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Primary Contact</div>
+              <div class="status-value">Craig McLaughlin</div>
+            </div>
+            <div class="status-item">
+              <div class="status-label">Lead Strategist</div>
+              <div class="status-value">Allison Netzer</div>
+            </div>
+          </div>
+
+          <div class="current-phase">
+            <h3>Phase 1 — Positioning &amp; Messaging Workshop</h3>
+            <p><strong>Week 1:</strong> Stress-testing the "intelligence layer" positioning. Aligning brand story, website, keynote, and pricing narrative.</p>
+            <div class="progress-track">
+              <div class="progress-bar" style="width: 5%;"></div>
+            </div>
+            <div class="progress-label">Project just started</div>
+          </div>
+
+          <div class="phase-timeline">
+            <div class="phase-block active">
+              <div class="phase-num">Phase 1</div>
+              <div class="phase-name">Positioning &amp; Messaging</div>
+              <div class="phase-date">Workshop · Sept 7–18</div>
+            </div>
+            <div class="phase-block">
+              <div class="phase-num">Phase 2</div>
+              <div class="phase-name">Go-to-Market &amp; Distribution</div>
+              <div class="phase-date">Strategy · Sept 19–30</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Next Actions -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Critical Next Actions</h2>
+        </div>
+        <div class="section-content">
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Kickoff meeting — align on priorities, confirm access to materials</div>
+              <div class="action-meta">Target: Sept 7 <span class="owner-bt">BrandThnk</span></div>
+            </div>
+          </div>
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Share existing positioning materials, deck, and website copy</div>
+              <div class="action-meta">Target: Sept 7–8 <span class="owner-client">Finalytics</span></div>
+            </div>
+          </div>
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Share keynote or conference narrative currently in use</div>
+              <div class="action-meta">Target: Sept 8 <span class="owner-client">Finalytics</span></div>
+            </div>
+          </div>
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Run "intelligence layer" positioning through 20-attribute framework</div>
+              <div class="action-meta">Target: Sept 10–12 <span class="owner-bt">BrandThnk</span></div>
+            </div>
+          </div>
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Share current pricing language and sales narrative</div>
+              <div class="action-meta">Target: Sept 9 <span class="owner-client">Finalytics</span></div>
+            </div>
+          </div>
+
+          <div class="action-item" onclick="toggleAction(this)">
+            <div class="action-check"></div>
+            <div class="action-body">
+              <div class="action-title">Identify 3 best customer stories that show vs. say the product value</div>
+              <div class="action-meta">Target: Sept 12 <span class="owner-client">Finalytics</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Resources -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Resources</h2>
+        </div>
+        <div class="section-content">
+          <a href="https://drive.google.com/drive/folders/1w5OG4VhTqn1H8yVhfgY93FZ6gXAa4Fiy?usp=sharing" target="_blank" class="resource-link">
+            <div class="resource-link-icon">📁</div>
+            <div class="resource-link-body">
+              <div class="resource-link-title">Client Provided Content</div>
+              <div class="resource-link-sub">Google Drive — materials shared by Finalytics</div>
+            </div>
+            <div class="resource-link-arrow">↗</div>
+          </a>
+          <a href="https://finalytics.brandthnk.online" target="_blank" class="resource-link" style="margin-top: 0.75rem;">
+            <div class="resource-link-icon">🖥</div>
+            <div class="resource-link-body">
+              <div class="resource-link-title">Mock Website</div>
+              <div class="resource-link-sub">A canvas to see what the new messaging and positioning could look like in the real world</div>
+            </div>
+            <div class="resource-link-arrow">↗</div>
+          </a>
+          <a href="https://drive.google.com/drive/folders/1JBjSlOKDbR8RS-5FwAhd2CsIprbEKlra?usp=drive_link" target="_blank" class="resource-link" style="margin-top: 0.75rem;">
+            <div class="resource-link-icon">🎨</div>
+            <div class="resource-link-body">
+              <div class="resource-link-title">Sample "Show Me" Graphics</div>
+              <div class="resource-link-sub">Google Drive — visual examples of the positioning in action</div>
+            </div>
+            <div class="resource-link-arrow">↗</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Team & Communication -->
+      <section class="section">
+        <div class="section-header">
+          <h2>Team &amp; Communication</h2>
+        </div>
+        <div class="section-content">
+          <div class="team-grid">
+            <div class="team-card">
+              <h3>BrandThnk</h3>
+              <p><strong>Allison Netzer</strong></p>
+              <p>Lead Strategist</p>
+              <p><a href="mailto:allison@brandthnk.co">allison@brandthnk.co</a></p>
+            </div>
+            <div class="team-card">
+              <h3>Finalytics.ai</h3>
+              <p><strong>Craig McLaughlin</strong></p>
+              <p>Primary Contact</p>
+              <p><a href="mailto:craig@finalytics.ai">craig@finalytics.ai</a></p>
+            </div>
+          </div>
+          <div style="margin-top: 1.25rem; padding: 1rem; background: var(--offwhite); border: 1px solid var(--light-gray); font-size: 0.8125rem;">
+            <strong>How we work:</strong> Async-first. Use email for documentation, video calls for workshops and feedback. Each deliverable includes one round of consolidated revisions.
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Deliverables -->
+    <section class="section full-width" style="margin-bottom: 1.5rem;">
+      <div class="section-header">
+        <h2>Deliverables</h2>
+      </div>
+      <div class="section-content">
+        <div class="deliverable-item">
+          <div class="deliverable-icon">🎯</div>
+          <div class="deliverable-body">
+            <h4>Positioning &amp; Messaging Framework</h4>
+            <p>Aligned across brand, website, keynote narrative, and pricing language. Built to show rather than say.</p>
+          </div>
+          <div class="deliverable-status status-in-progress">In Progress</div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">🗺</div>
+          <div class="deliverable-body">
+            <h4>Go-to-Market &amp; Distribution Playbook</h4>
+            <p>Right-sized to current team capacity. Channel prioritization framework including how to broaden beyond "credit union vendor" perception.</p>
+          </div>
+          <div class="deliverable-status status-pending">Pending</div>
+        </div>
+        <div class="deliverable-item">
+          <div class="deliverable-icon">📊</div>
+          <div class="deliverable-body">
+            <h4>Channel &amp; Messaging Recommendations</h4>
+            <p>Prioritized list tied to measurable goals. Includes speaking and conference calendar playbook for pre/during/post execution.</p>
+          </div>
+          <div class="deliverable-status status-pending">Pending</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Scope -->
+    <section class="section full-width">
+      <div class="section-header">
+        <h2>Scope of Work</h2>
+      </div>
+      <div class="section-content">
+        <div class="dashboard-grid" style="margin-bottom: 0; gap: 1.5rem;">
+          <div>
+            <div style="font-family: 'Roboto Slab', serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--yellow);">Phase 1 — Positioning &amp; Messaging Workshop</div>
+            <ul style="margin-left: 1.25rem; color: var(--gray);">
+              <li style="margin-bottom: 0.5rem;">Define and stress-test the "intelligence layer" positioning against BrandThnk's 20-attribute framework</li>
+              <li style="margin-bottom: 0.5rem;">Align brand story, keynote narrative, website messaging, and pricing language to the new positioning</li>
+              <li style="margin-bottom: 0.5rem;">Identify where the story needs to show rather than say (product-led proof points vs. claims)</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-family: 'Roboto Slab', serif; font-size: 1rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--yellow);">Phase 2 — Go-to-Market &amp; Distribution Strategy</div>
+            <ul style="margin-left: 1.25rem; color: var(--gray);">
+              <li style="margin-bottom: 0.5rem;">Map the new positioning to the right channels</li>
+              <li style="margin-bottom: 0.5rem;">Build a channel prioritization framework, including how to broaden beyond "credit union vendor" perception</li>
+              <li style="margin-bottom: 0.5rem;">Playbook for pre/during/post execution across speaking and conference calendar, tied to pipeline</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-content">
+      <div class="footer-logo">BrandThnk</div>
+      <div class="footer-sub">Build a Growth Brand · allison@brandthnk.co · brandthnk.co</div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleAction(el) {
+      el.classList.toggle('done');
+      const check = el.querySelector('.action-check');
+      check.classList.toggle('checked');
+    }
+  </script>
+
+</body>
+</html>

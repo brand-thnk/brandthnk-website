@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messaging & Positioning | Finalytics.ai Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --yellow: #FFEB3B;
+      --offwhite: #F5F5F5;
+      --gray: #666666;
+      --light-gray: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--offwhite);
+    }
+
+    ::selection { background: var(--yellow); color: var(--black); }
+
+    /* Nav */
+    .main-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .nav-brand span {
+      color: var(--gray);
+      font-weight: 400;
+      font-size: 0.875rem;
+      margin-left: 8px;
+    }
+
+    .nav-links { display: flex; list-style: none; }
+
+    .nav-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      padding: 16px 20px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover { color: var(--black); background: rgba(255,235,59,0.1); }
+
+    .nav-link.active {
+      color: var(--black);
+      border-bottom-color: var(--yellow);
+      background: rgba(255,235,59,0.15);
+    }
+
+    /* Header */
+    .header {
+      background: var(--black);
+      color: var(--white);
+      padding: 2.5rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header h1 span { color: var(--yellow); }
+    .header p { font-size: 1rem; opacity: 0.8; }
+
+    .header-meta {
+      text-align: right;
+      font-size: 0.8125rem;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .header-meta p { font-size: 0.8125rem; opacity: 1; margin-bottom: 4px; }
+
+    /* Layout */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* Section Cards */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 28px;
+      border-bottom: 3px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .section-badge {
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+    }
+
+    .section-content { padding: 28px; }
+
+    /* Version tag */
+    .version-tag {
+      display: inline-block;
+      background: var(--offwhite);
+      border: 1px solid var(--light-gray);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Positioning items */
+    .positioning-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .positioning-value {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 1.75rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--light-gray);
+      margin: 1.75rem 0;
+    }
+
+    /* Competitor list */
+    .alt-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .alt-list li {
+      padding: 0.625rem 0.875rem;
+      border-left: 3px solid var(--light-gray);
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+
+    .alt-list li:last-child { margin-bottom: 0; }
+
+    .alt-num {
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    /* Attributes */
+    .attr-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .attr-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.875rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+
+    .attr-item:last-child {
+      border-bottom: none;
+    }
+
+    .attr-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--yellow);
+      border: 1px solid var(--black);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Segment */
+    .segment-box {
+      border: 1px solid var(--light-gray);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .segment-box:last-child { margin-bottom: 0; }
+
+    .segment-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .segment-title {
+      font-family: 'Roboto Slab', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.875rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--yellow);
+    }
+
+    .spot-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .spot-list li {
+      padding: 0.4rem 0;
+      padding-left: 1rem;
+      font-size: 0.8125rem;
+      border-bottom: 1px solid var(--light-gray);
+      position: relative;
+    }
+
+    .spot-list li:last-child { border-bottom: none; }
+
+    .spot-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gray);
+      font-size: 0.75rem;
+    }
+
+    /* Messaging blocks */
+    .msg-block {
+      margin-bottom: 1.75rem;
+    }
+
+    .msg-block:last-child { margin-bottom: 0; }
+
+    .msg-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-bottom: 0.625rem;
+    }
+
+    .msg-quote {
+      background: var(--offwhite);
+      border-left: 4px solid var(--yellow);
+      padding: 1.25rem 1.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.75;
+    }
+
+    .msg-quote p { margin-bottom: 0.875rem; }
+    .msg-quote p:last-child { margin-bottom: 0; }
+
+    .msg-quote strong {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* Long-form headline */
+    .msg-headline {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.875rem;
+    }
+
+    /* Persona cards */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .persona-card {
+      border: 1px solid var(--light-gray);
+      overflow: hidden;
+    }
+
+    .persona-card-header {
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 1.25rem;
+    }
+
+    .persona-card-header .persona-id {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--yellow);
+      margin-bottom: 0.25rem;
+    }
+
+    .persona-card-header h3 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .persona-card-body {
+      padding: 1.25rem;
+    }
+
+    .persona-row {
+      margin-bottom: 0.875rem;
+    }
+
+    .persona-row:last-child { margin-bottom: 0; }
+
+    .persona-row-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .persona-row p {
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    /* Objections */
+    .objection-item {
+      border: 1px solid var(--light-gray);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .objection-item:last-child { margin-bottom: 0; }
+
+    .objection-q {
+      background: var(--offwhite);
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .objection-a {
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      border-left: 4px solid var(--yellow);
+    }
+
+    /* Footer */
+    .portal-footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-logo {
+      font-family: 'Roboto Slab', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub { font-size: 0.75rem; opacity: 0.6; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container, .nav-container { padding: 0 1rem; }
+      .header h1 { font-size: 1.75rem; }
+      .persona-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .header-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">Finalytics.ai <span>× BrandThnk</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Dashboard</a></li>
+        <li><a href="messaging.html" class="nav-link active">Messaging</a></li>
+        <li><a href="deliverables.html" class="nav-link">Deliverables</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="header-container">
+      <div>
+        <h1>Messaging <span>&amp; Positioning</span></h1>
+        <p>Finalytics.ai — Working Document</p>
+      </div>
+      <div class="header-meta">
+        <p>V1 — September 7, 2026</p>
+        <p>Lead Strategist: Allison Netzer</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="version-tag">V1 — September 7, 2026</div>
+
+    <!-- Section 1: Positioning -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Section 1 — Positioning</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="positioning-label">Market Category — Frame of Reference</div>
+        <div class="positioning-value">Website personalization platform.</div>
+        <p style="font-size: 0.875rem; color: var(--gray); margin-top: -1rem; margin-bottom: 1.75rem;">Intelligence is the promise, but it is not a market category.</p>
+
+        <hr class="divider">
+
+        <div class="positioning-label" style="margin-bottom: 0.875rem;">Competitive Alternatives — What They Would Use Instead</div>
+        <ol class="alt-list">
+          <li><span class="alt-num">1.</span><strong>Login-gated personalization</strong> inside digital banking (Alkami, Personetics, and the personalization modules of incumbent platforms).</li>
+          <li><span class="alt-num">2.</span><strong>A website redesign</strong> from an agency or a CU-focused web vendor.</li>
+          <li><span class="alt-num">3.</span><strong>Enterprise martech bought out of fit</strong> — Example, Braze.</li>
+          <li><span class="alt-num">4.</span><strong>Doing nothing</strong>, and accepting that the public site is the same page for everyone.</li>
+        </ol>
+
+        <hr class="divider">
+
+        <div class="positioning-label" style="margin-bottom: 0.875rem;">Unique Finalytics Attributes</div>
+        <ul class="attr-list">
+          <li class="attr-item"><div class="attr-dot"></div>Recognition and decisioning from the <strong>first anonymous visit</strong>, before any login</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>In-session</strong> adaptation — the page changes while the visitor is on it</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>Abandoned application recovery:</strong> <em>"You started an application. Want to finish?"</em></li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>29 live integrations</strong>, first anonymous click through to funded loan</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>Funded attribution</strong> — which visits became funded loans and deposits, not which converted</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>A control group on every client site</strong>, so lift is measured rather than asserted</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>Wasted-channel proof</strong> — the ability to show a client what is producing nothing</li>
+          <li class="attr-item"><div class="attr-dot"></div><strong>Managed delivery.</strong> Finalytics runs it; sits on top of the existing site and stack</li>
+        </ul>
+
+        <hr class="divider">
+
+        <div class="positioning-label" style="margin-bottom: 0.875rem;">Customer Segments — And How to Spot One</div>
+
+        <div class="segment-box">
+          <div class="segment-label">Primary</div>
+          <div class="segment-title">Community credit unions and community banks, roughly $500M–$5B in assets</div>
+          <p style="font-size: 0.8125rem; margin-bottom: 1rem;">Where the retail marketing leader owns the website and carries a budget under $150K.</p>
+          <div class="positioning-label" style="margin-bottom: 0.5rem;">You are in the right account when:</div>
+          <ul class="spot-list">
+            <li>Marketing owns the unauthenticated website and IT does not gate changes to it</li>
+            <li>Growth targets are stated in funded loans, deposits or new members</li>
+            <li>The team is small enough that "we run it for you" is a relief rather than a threat</li>
+            <li>There is a live agency relationship consuming a meaningful share of the marketing budget</li>
+            <li>A redesign is being discussed, budgeted or regretted</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Messaging -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Section 2 — Messaging</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="msg-block">
+          <div class="msg-label">Boilerplate</div>
+          <div class="msg-quote">
+            <p>Finalytics is the website personalization platform for marketing leaders who need to turn traffic into funded loans and deposits. Unlike personalization that switches on after login, we adapt and run your site from the first anonymous click, increasing completed applications by 4.5x.</p>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="msg-block">
+          <div class="msg-label">Short</div>
+          <div class="msg-quote">
+            <p>Finalytics is the website personalization platform for community banks and credit unions. Most personalization starts after login, which means it never touches most of the traffic to your public site. Finalytics recognizes and adapts your website to every visitor from their first anonymous click, recovering abandoned applications, and tracing the result all the way to funded loans and deposits.</p>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="msg-block">
+          <div class="msg-label">Long</div>
+          <div class="msg-headline">With Finalytics, you'll never meet a stranger.</div>
+          <div class="msg-quote">
+            <p>You have spent years learning about who you serve, but then have to show everyone the same website because most of your traffic is anonymous.</p>
+            <p>Finalytics works where loan and deposit growth actually starts: your public website.</p>
+            <p><strong>What it does.</strong> Finalytics recognizes each visitor from their first anonymous click and adapts the site to them while they are on it and if someone abandons an application, Finalytics brings them back. And through 29 live integrations, it follows the result past the click and past the submission, to the funded loan or the funded deposit account.</p>
+            <p><strong>Why it is different.</strong> Most personalization in this industry switches on after login. That serves your existing audience, but misses everyone else. The other alternative is a website redesign, which changes how the site looks without changing what any individual visitor sees. Finalytics adapts the site you already have, on top of the technology stack you already bought, to help you drive ROI and growth.</p>
+            <p><strong>How you know it works.</strong> A control group runs on every client site, so we know for certain that clients running Finalytics saw 4.5x more completed applications than their control group on the same site. Finalytics also shows you what is <em>not</em> working: the channels with spend but without funded results.</p>
+            <p><strong>Who runs it.</strong> Finalytics does. We know you have a small team with big goals and expectations!</p>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="msg-label" style="margin-bottom: 1rem;">Value Points by Persona</div>
+        <div class="persona-grid">
+
+          <div class="persona-card">
+            <div class="persona-card-header">
+              <div class="persona-id">Persona A — Primary Buyer</div>
+              <h3>CMO / VP of Marketing</h3>
+            </div>
+            <div class="persona-card-body">
+              <div class="persona-row">
+                <div class="persona-row-label">Target Segment</div>
+                <p>Community bank or credit union, $500M–$5B assets</p>
+              </div>
+              <div class="persona-row">
+                <div class="persona-row-label">Buyer Persona</div>
+                <p>Owns the website, the brand and the agency relationship. Carries a growth number they do not fully control and cannot always prove they influenced.</p>
+              </div>
+              <div class="persona-row">
+                <div class="persona-row-label">Problem Space</div>
+                <p>Traffic exists, but funded growth does not follow. The reporting stops at form submission, so marketing's contribution is asserted rather than demonstrated.</p>
+              </div>
+              <div class="persona-row">
+                <div class="persona-row-label">Current Solutions</div>
+                <p>Agency-led redesigns, campaign tools, analytics dashboards, digital banking personalization they do not control.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-card">
+            <div class="persona-card-header">
+              <div class="persona-id">Persona B</div>
+              <h3>CEO / Chief Retail or Growth Officer</h3>
+            </div>
+            <div class="persona-card-body">
+              <div class="persona-row">
+                <div class="persona-row-label">Buyer Persona</div>
+                <p>Owns the growth plan. Cares about funded loans, deposits and products per member. Skeptical of martech claims and has been burned by at least one.</p>
+              </div>
+              <div class="persona-row">
+                <div class="persona-row-label">Problem Space</div>
+                <p>Digital is the primary acquisition channel and the least measurable one. Branch economics are under pressure; the digital front door has to carry more.</p>
+              </div>
+              <div class="persona-row">
+                <div class="persona-row-label">Current Solutions</div>
+                <p>Core and digital banking vendors, agency partners, an internal digital roadmap.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Objections -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Section 3 — Objection Resolution</h2>
+      </div>
+      <div class="section-content">
+
+        <div class="objection-item">
+          <div class="objection-q">"We already do personalization — it's in our digital banking platform."</div>
+          <div class="objection-a">That reaches people who already joined. It cannot see the stranger on your homepage deciding whether to apply. We start at the first anonymous click, before login, which is where new members and new loans come from.</div>
+        </div>
+
+        <div class="objection-item">
+          <div class="objection-q">"We'll need a new website first."</div>
+          <div class="objection-a">A redesign changes how the site looks to everyone, but it does not change what any one visitor sees. We adapt and run the site you have, to the person in front of it, and we can show you the lift against a control group on your own traffic.</div>
+        </div>
+
+        <div class="objection-item">
+          <div class="objection-q">"Our platform does everything — personalization is a module." <em style="font-weight: 400;">(Alkami, MX, Salesforce)</em></div>
+          <div class="objection-a">Full-suite platforms are built for institutions with the team to run them. Every community FI marketer we meet has a story about enterprise software bought out of fit and never fully deployed. We are built for community financial institutions, not adapted for them, and we run it for you.</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-content">
+      <div class="footer-logo">BrandThnk</div>
+      <div class="footer-sub">Build a Growth Brand · allison@brandthnk.co · brandthnk.co</div>
+    </div>
+  </footer>
+
+</body>
+</html>
